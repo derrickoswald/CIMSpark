@@ -6,20 +6,20 @@ import ch.ninecode.model._
 
 class CIMSuite extends AnyFunSuite
 {
-  /**
-   * Link to the scaladoc - very clear and detailed tutorial of AnyFunSuite
-   *
-   * http://doc.scalatest.org/3.1.2/org/scalatest/funsuite/AnyFunSuite.html
-   *
-   * Operators
-   *  - test
-   *  - ignore
-   *  - pending
-   */
+    /**
+     * Link to the scaladoc - very clear and detailed tutorial of AnyFunSuite
+     *
+     * http://doc.scalatest.org/3.1.2/org/scalatest/funsuite/AnyFunSuite.html
+     *
+     * Operators
+     *  - test
+     *  - ignore
+     *  - pending
+     */
     test ("Basic")
     {
         val xml =
-"""yadda yadda
+            """yadda yadda
     <cim:PSRType rdf:ID="PSRType_Substation">
         <cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
     </cim:PSRType>
@@ -33,7 +33,7 @@ foo bar"""
     test ("External Extra")
     {
         val xml =
-"""yadda yadda
+            """yadda yadda
 		<cim:PSRType rdf:ID="PSRType_Substation">
 			<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
 		</cim:PSRType>
@@ -52,7 +52,7 @@ yadda yadda"""
     test ("Internal Extra")
     {
         val xml =
-"""yadda yadda
+            """yadda yadda
 		<cim:PSRType rdf:ID="PSRType_Substation">
 			<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
 		</cim:PSRType>
@@ -75,7 +75,7 @@ yadda yadda"""
     {
         // Note: scala XML really hates processing instructions
         val xml =
-"""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 	<md:FullModel rdf:about="sias_current">
 		<md:Model.description>NIS Strom (http://nis.ch/produkte#nisStrom) export</md:Model.description>
@@ -91,14 +91,14 @@ yadda yadda"""
         val result = CHIM.parse (parser)
         assert (result._1.size === 1)
         assert (result._2.length === 0)
-        val voltage = result._1("BaseVoltage_0.400000000000").asInstanceOf[BaseVoltage]
+        val voltage = result._1 ("BaseVoltage_0.400000000000").asInstanceOf [BaseVoltage]
         assert (voltage.nominalVoltage === 0.40)
     }
 
     test ("Illegal Voltage")
     {
         val xml =
-"""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 	<md:FullModel rdf:about="sias_current">
 		<md:Model.description>NIS Strom (http://nis.ch/produkte#nisStrom) export</md:Model.description>
@@ -111,17 +111,17 @@ yadda yadda"""
 	</cim:BaseVoltage>
 </rdf:RDF>"""
         val parser = new CHIM (xml)
-        intercept[Exception]
-        {
-            val _ = CHIM.parse (parser)
-            fail ("invalid voltage accepted")
-        }
+        intercept [Exception]
+            {
+                val _ = CHIM.parse (parser)
+                fail ("invalid voltage accepted")
+            }
     }
 
     test ("Coordinate System")
     {
         val xml =
-"""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 	<md:FullModel rdf:about="sias_current">
 		<md:Model.description>NIS Strom (http://nis.ch/produkte#nisStrom) export</md:Model.description>
@@ -149,7 +149,7 @@ yadda yadda"""
     test ("Many-to-Many")
     {
         val xml =
-"""	<cim:Facility rdf:ID="STA196_asset">
+            """	<cim:Facility rdf:ID="STA196_asset">
 		<cim:IdentifiedObject.name>Kiental</cim:IdentifiedObject.name>
 		<cim:IdentifiedObject.aliasName>187674625:nis_el_station</cim:IdentifiedObject.aliasName>
 		<cim:IdentifiedObject.description>Transformer Station</cim:IdentifiedObject.description>
@@ -164,7 +164,7 @@ yadda yadda"""
         val result = CHIM.parse (parser)
         assert (result._1.size === 1)
         assert (result._2.length === 0)
-        val facility = result._1 ("STA196_asset").asInstanceOf[Facility]
+        val facility = result._1 ("STA196_asset").asInstanceOf [Facility]
         val asset = facility.AssetContainer.Asset
         assert (2 == asset.PowerSystemResources.length)
     }

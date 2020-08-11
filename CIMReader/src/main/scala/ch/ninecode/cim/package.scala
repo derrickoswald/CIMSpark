@@ -20,6 +20,7 @@ import org.apache.spark.sql.DataFrameWriter
  */
 package object cim
 {
+
     /**
      * Adds a method, `cim`, to DataFrameWriter that allows you to write CIM files using
      * the DataFileWriter
@@ -37,4 +38,5 @@ package object cim
     {
         def cim: String => DataFrame = reader.format ("ch.ninecode.cim").load
     }
+
 }

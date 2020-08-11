@@ -17,24 +17,24 @@ import ch.ninecode.cim.CIMSerializer
  *
  * Reference: IEC 61400-27-1:2015, 5.6.1.1.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject        [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param WindGenTurbineType1aIEC [[ch.ninecode.model.WindGenTurbineType1aIEC WindGenTurbineType1aIEC]] Wind turbine type 1A model with which this wind aerodynamic model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindAeroConstIEC
 (
     IdentifiedObject: IdentifiedObject = null,
     WindGenTurbineType1aIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -60,16 +60,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindAeroConstIEC.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindAeroConstIEC.fields (position), value)
+
         emitattr (0, WindGenTurbineType1aIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindAeroConstIEC rdf:ID=\"%s\">\n%s\t</cim:WindAeroConstIEC>".format (id, export_fields)
@@ -77,21 +83,21 @@ extends
 }
 
 object WindAeroConstIEC
-extends
-    CIMParseable[WindAeroConstIEC]
+    extends
+        CIMParseable[WindAeroConstIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "WindGenTurbineType1aIEC"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindGenTurbineType1aIEC", "WindGenTurbineType1aIEC", "1", "1")
     )
-    val WindGenTurbineType1aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindGenTurbineType1aIEC: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): WindAeroConstIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindAeroConstIEC (
             IdentifiedObject.parse (context),
             mask (WindGenTurbineType1aIEC (), 0)
@@ -118,7 +124,7 @@ object WindAeroConstIECSerializer extends CIMSerializer[WindAeroConstIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindAeroConstIEC]): WindAeroConstIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindAeroConstIEC (
             parent,
@@ -134,20 +140,20 @@ object WindAeroConstIECSerializer extends CIMSerializer[WindAeroConstIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.1.2.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param ka Aerodynamic gain (<i>k</i><i><sub>a</sub></i>).
- *        It is a type-dependent parameter.
- * @param thetaomega Initial pitch angle (<i>theta</i><i><sub>omega0</sub></i>).
- *        It is a case-dependent parameter.
+ * @param IdentifiedObject    [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ka                  Aerodynamic gain (<i>k</i><i><sub>a</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param thetaomega          Initial pitch angle (<i>theta</i><i><sub>omega0</sub></i>).
+ *                            It is a case-dependent parameter.
  * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind aerodynamic model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindAeroOneDimIEC
 (
@@ -156,8 +162,8 @@ final case class WindAeroOneDimIEC
     thetaomega: Double = 0.0,
     WindTurbineType3IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -183,19 +189,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindAeroOneDimIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindAeroOneDimIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindAeroOneDimIEC.fields (position), value)
+
         emitelem (0, ka)
         emitelem (1, thetaomega)
         emitattr (2, WindTurbineType3IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindAeroOneDimIEC rdf:ID=\"%s\">\n%s\t</cim:WindAeroOneDimIEC>".format (id, export_fields)
@@ -203,10 +216,10 @@ extends
 }
 
 object WindAeroOneDimIEC
-extends
-    CIMParseable[WindAeroOneDimIEC]
+    extends
+        CIMParseable[WindAeroOneDimIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ka",
         "thetaomega",
         "WindTurbineType3IEC"
@@ -214,14 +227,14 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1")
     )
-    val ka: Fielder = parse_element (element (cls, fields(0)))
-    val thetaomega: Fielder = parse_element (element (cls, fields(1)))
-    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val ka: Fielder = parse_element (element (cls, fields (0)))
+    val thetaomega: Fielder = parse_element (element (cls, fields (1)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): WindAeroOneDimIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindAeroOneDimIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (ka (), 0)),
@@ -252,7 +265,7 @@ object WindAeroOneDimIECSerializer extends CIMSerializer[WindAeroOneDimIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindAeroOneDimIEC]): WindAeroOneDimIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindAeroOneDimIEC (
             parent,
@@ -270,30 +283,30 @@ object WindAeroOneDimIECSerializer extends CIMSerializer[WindAeroOneDimIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.1.3.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dpomega Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).
- *        It is a type-dependent parameter.
- * @param dptheta Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
- *        It is a type-dependent parameter.
- * @param dpv1 Partial derivative (<i>dp</i><i><sub>v1</sub></i>).
- *        It is a type-dependent parameter.
- * @param omegazero Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>).
- *        It is a type-dependent parameter.
- * @param pavail Available aerodynamic power (<i>p</i><i><sub>avail</sub></i><i>)</i>.
- *        It is a case-dependent parameter.
- * @param thetav2 Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>).
- *        It is a type-dependent parameter.
- * @param thetazero Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
- *        It is a case-dependent parameter.
+ * @param IdentifiedObject    [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dpomega             Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param dptheta             Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param dpv1                Partial derivative (<i>dp</i><i><sub>v1</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param omegazero           Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param pavail              Available aerodynamic power (<i>p</i><i><sub>avail</sub></i><i>)</i>.
+ *                            It is a case-dependent parameter.
+ * @param thetav2             Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param thetazero           Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
+ *                            It is a case-dependent parameter.
  * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind aerodynamic model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindAeroTwoDimIEC
 (
@@ -307,8 +320,8 @@ final case class WindAeroTwoDimIEC
     thetazero: Double = 0.0,
     WindTurbineType3IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -334,14 +347,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindAeroTwoDimIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindAeroTwoDimIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindAeroTwoDimIEC.fields (position), value)
+
         emitelem (0, dpomega)
         emitelem (1, dptheta)
         emitelem (2, dpv1)
@@ -352,6 +371,7 @@ extends
         emitattr (7, WindTurbineType3IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindAeroTwoDimIEC rdf:ID=\"%s\">\n%s\t</cim:WindAeroTwoDimIEC>".format (id, export_fields)
@@ -359,10 +379,10 @@ extends
 }
 
 object WindAeroTwoDimIEC
-extends
-    CIMParseable[WindAeroTwoDimIEC]
+    extends
+        CIMParseable[WindAeroTwoDimIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dpomega",
         "dptheta",
         "dpv1",
@@ -375,19 +395,19 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1")
     )
-    val dpomega: Fielder = parse_element (element (cls, fields(0)))
-    val dptheta: Fielder = parse_element (element (cls, fields(1)))
-    val dpv1: Fielder = parse_element (element (cls, fields(2)))
-    val omegazero: Fielder = parse_element (element (cls, fields(3)))
-    val pavail: Fielder = parse_element (element (cls, fields(4)))
-    val thetav2: Fielder = parse_element (element (cls, fields(5)))
-    val thetazero: Fielder = parse_element (element (cls, fields(6)))
-    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val dpomega: Fielder = parse_element (element (cls, fields (0)))
+    val dptheta: Fielder = parse_element (element (cls, fields (1)))
+    val dpv1: Fielder = parse_element (element (cls, fields (2)))
+    val omegazero: Fielder = parse_element (element (cls, fields (3)))
+    val pavail: Fielder = parse_element (element (cls, fields (4)))
+    val thetav2: Fielder = parse_element (element (cls, fields (5)))
+    val thetazero: Fielder = parse_element (element (cls, fields (6)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields (7)))
 
     def parse (context: CIMContext): WindAeroTwoDimIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindAeroTwoDimIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (dpomega (), 0)),
@@ -428,7 +448,7 @@ object WindAeroTwoDimIECSerializer extends CIMSerializer[WindAeroTwoDimIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindAeroTwoDimIEC]): WindAeroTwoDimIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindAeroTwoDimIEC (
             parent,
@@ -452,35 +472,35 @@ object WindAeroTwoDimIECSerializer extends CIMSerializer[WindAeroTwoDimIEC]
  * The current limitation model combines the physical limits and the control limits.
  * Reference: IEC 61400-27-1:2015, 5.6.5.8.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param imax Maximum continuous current at the wind turbine terminals (<i>i</i><i><sub>max</sub></i>).
- *        It is a type-dependent parameter.
- * @param imaxdip Maximum current during voltage dip at the wind turbine terminals (<i>i</i><i><sub>maxdip</sub></i>).
- *        It is a project-dependent parameter.
- * @param kpqu Partial derivative of reactive current limit (<i>K</i><i><sub>pqu</sub></i>) versus voltage.
- *        It is a type-dependent parameter.
- * @param mdfslim Limitation of type 3 stator current (<i>M</i><i><sub>DFSLim</sub></i>). <i>M</i><i><sub>DFSLim</sub></i><sub> </sub>= 1 for wind turbines type 4.
- *        It is a type-dependent parameter.
- *        false= total current limitation (0 in the IEC model)
- *        true=stator current limitation (1 in the IEC model).
- * @param mqpri Prioritisation of Q control during UVRT (<i>M</i><i><sub>qpri</sub></i>).
- *        It is a project-dependent parameter.
- *        true = reactive power priority (1 in the IEC model)
- *        false = active power priority (0 in the IEC model).
- * @param tufiltcl Voltage measurement filter time constant (<i>T</i><i><sub>ufiltcl</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param upqumax Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><i><sub>pqumax</sub></i>).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject        [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param imax                    Maximum continuous current at the wind turbine terminals (<i>i</i><i><sub>max</sub></i>).
+ *                                It is a type-dependent parameter.
+ * @param imaxdip                 Maximum current during voltage dip at the wind turbine terminals (<i>i</i><i><sub>maxdip</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param kpqu                    Partial derivative of reactive current limit (<i>K</i><i><sub>pqu</sub></i>) versus voltage.
+ *                                It is a type-dependent parameter.
+ * @param mdfslim                 Limitation of type 3 stator current (<i>M</i><i><sub>DFSLim</sub></i>). <i>M</i><i><sub>DFSLim</sub></i><sub> </sub>= 1 for wind turbines type 4.
+ *                                It is a type-dependent parameter.
+ *                                false= total current limitation (0 in the IEC model)
+ *                                true=stator current limitation (1 in the IEC model).
+ * @param mqpri                   Prioritisation of Q control during UVRT (<i>M</i><i><sub>qpri</sub></i>).
+ *                                It is a project-dependent parameter.
+ *                                true = reactive power priority (1 in the IEC model)
+ *                                false = active power priority (0 in the IEC model).
+ * @param tufiltcl                Voltage measurement filter time constant (<i>T</i><i><sub>ufiltcl</sub></i>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
+ * @param upqumax                 Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><i><sub>pqumax</sub></i>).
+ *                                It is a type-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this current control limitation model.
- * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or type 4 model with which this wind control current limitation model is associated.
+ * @param WindTurbineType3or4IEC  [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or type 4 model with which this wind control current limitation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContCurrLimIEC
 (
@@ -495,8 +515,8 @@ final case class WindContCurrLimIEC
     WindDynamicsLookupTable: List[String] = null,
     WindTurbineType3or4IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -522,15 +542,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindContCurrLimIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContCurrLimIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContCurrLimIEC.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindContCurrLimIEC.fields (position), x))
+
         emitelem (0, imax)
         emitelem (1, imaxdip)
         emitelem (2, kpqu)
@@ -542,6 +569,7 @@ extends
         emitattr (8, WindTurbineType3or4IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindContCurrLimIEC rdf:ID=\"%s\">\n%s\t</cim:WindContCurrLimIEC>".format (id, export_fields)
@@ -549,10 +577,10 @@ extends
 }
 
 object WindContCurrLimIEC
-extends
-    CIMParseable[WindContCurrLimIEC]
+    extends
+        CIMParseable[WindContCurrLimIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "imax",
         "imaxdip",
         "kpqu",
@@ -567,20 +595,20 @@ extends
         CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
         CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
     )
-    val imax: Fielder = parse_element (element (cls, fields(0)))
-    val imaxdip: Fielder = parse_element (element (cls, fields(1)))
-    val kpqu: Fielder = parse_element (element (cls, fields(2)))
-    val mdfslim: Fielder = parse_element (element (cls, fields(3)))
-    val mqpri: Fielder = parse_element (element (cls, fields(4)))
-    val tufiltcl: Fielder = parse_element (element (cls, fields(5)))
-    val upqumax: Fielder = parse_element (element (cls, fields(6)))
-    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val imax: Fielder = parse_element (element (cls, fields (0)))
+    val imaxdip: Fielder = parse_element (element (cls, fields (1)))
+    val kpqu: Fielder = parse_element (element (cls, fields (2)))
+    val mdfslim: Fielder = parse_element (element (cls, fields (3)))
+    val mqpri: Fielder = parse_element (element (cls, fields (4)))
+    val tufiltcl: Fielder = parse_element (element (cls, fields (5)))
+    val upqumax: Fielder = parse_element (element (cls, fields (6)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields (8)))
 
     def parse (context: CIMContext): WindContCurrLimIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindContCurrLimIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (imax (), 0)),
@@ -623,7 +651,7 @@ object WindContCurrLimIECSerializer extends CIMSerializer[WindContCurrLimIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindContCurrLimIEC]): WindContCurrLimIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindContCurrLimIEC (
             parent,
@@ -647,65 +675,65 @@ object WindContCurrLimIECSerializer extends CIMSerializer[WindContCurrLimIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.4.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dpmax Maximum wind turbine power ramp rate (<i>dp</i><i><sub>max</sub></i>).
- *        It is a type-dependent parameter.
- * @param dprefmax Maximum ramp rate of wind turbine reference power (<i>dp</i><i><sub>refmax</sub></i>).
- *        It is a project-dependent parameter.
- * @param dprefmin Minimum ramp rate of wind turbine reference power (<i>dp</i><i><sub>refmin</sub></i>).
- *        It is a project-dependent parameter.
- * @param dthetamax Ramp limitation of torque, required in some grid codes (<i>dt</i><i><sub>max</sub></i>).
- *        It is a project-dependent parameter.
- * @param dthetamaxuvrt Limitation of torque rise rate during UVRT (<i>dtheta</i><i><sub>maxUVRT</sub></i>).
- *        It is a project-dependent parameter.
- * @param kdtd Gain for active drive train damping (<i>K</i><i><sub>DTD</sub></i>).
- *        It is a type-dependent parameter.
- * @param kip PI controller integration parameter (<i>K</i><sub>Ip</sub>).
- *        It is a type-dependent parameter.
- * @param kpp PI controller proportional gain (<i>K</i><sub>Pp</sub>).
- *        It is a type-dependent parameter.
- * @param mpuvrt Enable UVRT power control mode (<i>M</i><i><sub>pUVRT</sub></i><sub>)</sub>.
- *        It is a project-dependent parameter.
- *        true = voltage control (1 in the IEC model)
- *        false = reactive power control (0 in the IEC model).
- * @param omegadtd Active drive train damping frequency (<i>omega</i><i><sub>DTD</sub></i>).
- *        It can be calculated from two mass model parameters. It is a type-dependent parameter.
- * @param omegaoffset Offset to reference value that limits controller action during rotor speed changes (<i>omega</i><i><sub>offset</sub></i>).
- *        It is a case-dependent parameter.
- * @param pdtdmax Maximum active drive train damping power (<i>p</i><sub>DTDmax</sub>).
- *        It is a type-dependent parameter.
- * @param tdvs Time<sub> </sub>delay after deep voltage sags (<i>T</i><i><sub>DVS</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param thetaemin Minimum electrical generator torque (<i>t</i><sub>emin</sub>).
- *        It is a type-dependent parameter.
- * @param thetauscale Voltage scaling factor of reset-torque (<i>t</i><sub>uscale</sub>).
- *        It is a project-dependent parameter.
- * @param tomegafiltp3 Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltp3</sub>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param tomegaref Time constant in speed reference filter (<i>T</i><sub>omega,ref</sub>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param tpfiltp3 Filter time constant for power measurement (<i>T</i><sub>pfiltp3</sub>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param tpord Time constant in power order lag (<i>T</i><sub>pord</sub>).
- *        It is a type-dependent parameter.
- * @param tufiltp3 Filter time constant for voltage measurement (<i>T</i><sub>ufiltp3</sub>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param udvs Voltage limit for hold UVRT status after deep voltage sags (<i>u</i><i><sub>DVS</sub></i>).
- *        It is a project-dependent parameter.
- * @param updip Voltage dip threshold for P-control (<i>u</i><sub>Pdip</sub>).
- *        Part of turbine control, often different (e.g 0.8) from converter thresholds. It is a project-dependent parameter.
- * @param zeta Coefficient for active drive train damping (<i>zeta</i>).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject        [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dpmax                   Maximum wind turbine power ramp rate (<i>dp</i><i><sub>max</sub></i>).
+ *                                It is a type-dependent parameter.
+ * @param dprefmax                Maximum ramp rate of wind turbine reference power (<i>dp</i><i><sub>refmax</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param dprefmin                Minimum ramp rate of wind turbine reference power (<i>dp</i><i><sub>refmin</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param dthetamax               Ramp limitation of torque, required in some grid codes (<i>dt</i><i><sub>max</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param dthetamaxuvrt           Limitation of torque rise rate during UVRT (<i>dtheta</i><i><sub>maxUVRT</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param kdtd                    Gain for active drive train damping (<i>K</i><i><sub>DTD</sub></i>).
+ *                                It is a type-dependent parameter.
+ * @param kip                     PI controller integration parameter (<i>K</i><sub>Ip</sub>).
+ *                                It is a type-dependent parameter.
+ * @param kpp                     PI controller proportional gain (<i>K</i><sub>Pp</sub>).
+ *                                It is a type-dependent parameter.
+ * @param mpuvrt                  Enable UVRT power control mode (<i>M</i><i><sub>pUVRT</sub></i><sub>)</sub>.
+ *                                It is a project-dependent parameter.
+ *                                true = voltage control (1 in the IEC model)
+ *                                false = reactive power control (0 in the IEC model).
+ * @param omegadtd                Active drive train damping frequency (<i>omega</i><i><sub>DTD</sub></i>).
+ *                                It can be calculated from two mass model parameters. It is a type-dependent parameter.
+ * @param omegaoffset             Offset to reference value that limits controller action during rotor speed changes (<i>omega</i><i><sub>offset</sub></i>).
+ *                                It is a case-dependent parameter.
+ * @param pdtdmax                 Maximum active drive train damping power (<i>p</i><sub>DTDmax</sub>).
+ *                                It is a type-dependent parameter.
+ * @param tdvs                    Time<sub> </sub>delay after deep voltage sags (<i>T</i><i><sub>DVS</sub></i>) (&gt;= 0).
+ *                                It is a project-dependent parameter.
+ * @param thetaemin               Minimum electrical generator torque (<i>t</i><sub>emin</sub>).
+ *                                It is a type-dependent parameter.
+ * @param thetauscale             Voltage scaling factor of reset-torque (<i>t</i><sub>uscale</sub>).
+ *                                It is a project-dependent parameter.
+ * @param tomegafiltp3            Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltp3</sub>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
+ * @param tomegaref               Time constant in speed reference filter (<i>T</i><sub>omega,ref</sub>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
+ * @param tpfiltp3                Filter time constant for power measurement (<i>T</i><sub>pfiltp3</sub>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
+ * @param tpord                   Time constant in power order lag (<i>T</i><sub>pord</sub>).
+ *                                It is a type-dependent parameter.
+ * @param tufiltp3                Filter time constant for voltage measurement (<i>T</i><sub>ufiltp3</sub>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
+ * @param udvs                    Voltage limit for hold UVRT status after deep voltage sags (<i>u</i><i><sub>DVS</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param updip                   Voltage dip threshold for P-control (<i>u</i><sub>Pdip</sub>).
+ *                                Part of turbine control, often different (e.g 0.8) from converter thresholds. It is a project-dependent parameter.
+ * @param zeta                    Coefficient for active drive train damping (<i>zeta</i>).
+ *                                It is a type-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this P control type 3 model.
- * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind control P type 3 model is associated.
+ * @param WindTurbineType3IEC     [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind control P type 3 model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPType3IEC
 (
@@ -736,8 +764,8 @@ final case class WindContPType3IEC
     WindDynamicsLookupTable: List[String] = null,
     WindTurbineType3IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -763,15 +791,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindContPType3IEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContPType3IEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContPType3IEC.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindContPType3IEC.fields (position), x))
+
         emitelem (0, dpmax)
         emitelem (1, dprefmax)
         emitelem (2, dprefmin)
@@ -799,6 +834,7 @@ extends
         emitattr (24, WindTurbineType3IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindContPType3IEC rdf:ID=\"%s\">\n%s\t</cim:WindContPType3IEC>".format (id, export_fields)
@@ -806,10 +842,10 @@ extends
 }
 
 object WindContPType3IEC
-extends
-    CIMParseable[WindContPType3IEC]
+    extends
+        CIMParseable[WindContPType3IEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dpmax",
         "dprefmax",
         "dprefmin",
@@ -840,36 +876,36 @@ extends
         CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
         CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1")
     )
-    val dpmax: Fielder = parse_element (element (cls, fields(0)))
-    val dprefmax: Fielder = parse_element (element (cls, fields(1)))
-    val dprefmin: Fielder = parse_element (element (cls, fields(2)))
-    val dthetamax: Fielder = parse_element (element (cls, fields(3)))
-    val dthetamaxuvrt: Fielder = parse_element (element (cls, fields(4)))
-    val kdtd: Fielder = parse_element (element (cls, fields(5)))
-    val kip: Fielder = parse_element (element (cls, fields(6)))
-    val kpp: Fielder = parse_element (element (cls, fields(7)))
-    val mpuvrt: Fielder = parse_element (element (cls, fields(8)))
-    val omegadtd: Fielder = parse_element (element (cls, fields(9)))
-    val omegaoffset: Fielder = parse_element (element (cls, fields(10)))
-    val pdtdmax: Fielder = parse_element (element (cls, fields(11)))
-    val tdvs: Fielder = parse_element (element (cls, fields(12)))
-    val thetaemin: Fielder = parse_element (element (cls, fields(13)))
-    val thetauscale: Fielder = parse_element (element (cls, fields(14)))
-    val tomegafiltp3: Fielder = parse_element (element (cls, fields(15)))
-    val tomegaref: Fielder = parse_element (element (cls, fields(16)))
-    val tpfiltp3: Fielder = parse_element (element (cls, fields(17)))
-    val tpord: Fielder = parse_element (element (cls, fields(18)))
-    val tufiltp3: Fielder = parse_element (element (cls, fields(19)))
-    val udvs: Fielder = parse_element (element (cls, fields(20)))
-    val updip: Fielder = parse_element (element (cls, fields(21)))
-    val zeta: Fielder = parse_element (element (cls, fields(22)))
-    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(23)))
-    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(24)))
+    val dpmax: Fielder = parse_element (element (cls, fields (0)))
+    val dprefmax: Fielder = parse_element (element (cls, fields (1)))
+    val dprefmin: Fielder = parse_element (element (cls, fields (2)))
+    val dthetamax: Fielder = parse_element (element (cls, fields (3)))
+    val dthetamaxuvrt: Fielder = parse_element (element (cls, fields (4)))
+    val kdtd: Fielder = parse_element (element (cls, fields (5)))
+    val kip: Fielder = parse_element (element (cls, fields (6)))
+    val kpp: Fielder = parse_element (element (cls, fields (7)))
+    val mpuvrt: Fielder = parse_element (element (cls, fields (8)))
+    val omegadtd: Fielder = parse_element (element (cls, fields (9)))
+    val omegaoffset: Fielder = parse_element (element (cls, fields (10)))
+    val pdtdmax: Fielder = parse_element (element (cls, fields (11)))
+    val tdvs: Fielder = parse_element (element (cls, fields (12)))
+    val thetaemin: Fielder = parse_element (element (cls, fields (13)))
+    val thetauscale: Fielder = parse_element (element (cls, fields (14)))
+    val tomegafiltp3: Fielder = parse_element (element (cls, fields (15)))
+    val tomegaref: Fielder = parse_element (element (cls, fields (16)))
+    val tpfiltp3: Fielder = parse_element (element (cls, fields (17)))
+    val tpord: Fielder = parse_element (element (cls, fields (18)))
+    val tufiltp3: Fielder = parse_element (element (cls, fields (19)))
+    val udvs: Fielder = parse_element (element (cls, fields (20)))
+    val updip: Fielder = parse_element (element (cls, fields (21)))
+    val zeta: Fielder = parse_element (element (cls, fields (22)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields (23)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields (24)))
 
     def parse (context: CIMContext): WindContPType3IEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindContPType3IEC (
             IdentifiedObject.parse (context),
             toDouble (mask (dpmax (), 0)),
@@ -944,7 +980,7 @@ object WindContPType3IECSerializer extends CIMSerializer[WindContPType3IEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindContPType3IEC]): WindContPType3IEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindContPType3IEC (
             parent,
@@ -984,22 +1020,22 @@ object WindContPType3IECSerializer extends CIMSerializer[WindContPType3IEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.5.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dpmaxp4a Maximum wind turbine power ramp rate (<i>dp</i><i><sub>maxp4A</sub></i>).
- *        It is a project-dependent parameter.
- * @param tpordp4a Time constant in power order lag (<i>T</i><i><sub>pordp4A</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param tufiltp4a Voltage measurement filter time constant (<i>T</i><i><sub>ufiltp4A</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject     [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dpmaxp4a             Maximum wind turbine power ramp rate (<i>dp</i><i><sub>maxp4A</sub></i>).
+ *                             It is a project-dependent parameter.
+ * @param tpordp4a             Time constant in power order lag (<i>T</i><i><sub>pordp4A</sub></i>) (&gt;= 0).
+ *                             It is a type-dependent parameter.
+ * @param tufiltp4a            Voltage measurement filter time constant (<i>T</i><i><sub>ufiltp4A</sub></i>) (&gt;= 0).
+ *                             It is a type-dependent parameter.
  * @param WindTurbineType4aIEC [[ch.ninecode.model.WindTurbineType4aIEC WindTurbineType4aIEC]] Wind turbine type 4A model with which this wind control P type 4A model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPType4aIEC
 (
@@ -1009,8 +1045,8 @@ final case class WindContPType4aIEC
     tufiltp4a: Double = 0.0,
     WindTurbineType4aIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1036,20 +1072,27 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindContPType4aIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContPType4aIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContPType4aIEC.fields (position), value)
+
         emitelem (0, dpmaxp4a)
         emitelem (1, tpordp4a)
         emitelem (2, tufiltp4a)
         emitattr (3, WindTurbineType4aIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindContPType4aIEC rdf:ID=\"%s\">\n%s\t</cim:WindContPType4aIEC>".format (id, export_fields)
@@ -1057,10 +1100,10 @@ extends
 }
 
 object WindContPType4aIEC
-extends
-    CIMParseable[WindContPType4aIEC]
+    extends
+        CIMParseable[WindContPType4aIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dpmaxp4a",
         "tpordp4a",
         "tufiltp4a",
@@ -1069,15 +1112,15 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", "1", "1")
     )
-    val dpmaxp4a: Fielder = parse_element (element (cls, fields(0)))
-    val tpordp4a: Fielder = parse_element (element (cls, fields(1)))
-    val tufiltp4a: Fielder = parse_element (element (cls, fields(2)))
-    val WindTurbineType4aIEC: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val dpmaxp4a: Fielder = parse_element (element (cls, fields (0)))
+    val tpordp4a: Fielder = parse_element (element (cls, fields (1)))
+    val tufiltp4a: Fielder = parse_element (element (cls, fields (2)))
+    val WindTurbineType4aIEC: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): WindContPType4aIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindContPType4aIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (dpmaxp4a (), 0)),
@@ -1110,7 +1153,7 @@ object WindContPType4aIECSerializer extends CIMSerializer[WindContPType4aIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindContPType4aIEC]): WindContPType4aIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindContPType4aIEC (
             parent,
@@ -1129,24 +1172,24 @@ object WindContPType4aIECSerializer extends CIMSerializer[WindContPType4aIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.6.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dpmaxp4b Maximum wind turbine power ramp rate (<i>dp</i><i><sub>maxp4B</sub></i>).
- *        It is a project-dependent parameter.
- * @param tpaero Time constant in aerodynamic power response (<i>T</i><i><sub>paero</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param tpordp4b Time constant in power order lag (<i>T</i><i><sub>pordp4B</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param tufiltp4b Voltage measurement filter time constant (<i>T</i><i><sub>ufiltp4B</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject     [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dpmaxp4b             Maximum wind turbine power ramp rate (<i>dp</i><i><sub>maxp4B</sub></i>).
+ *                             It is a project-dependent parameter.
+ * @param tpaero               Time constant in aerodynamic power response (<i>T</i><i><sub>paero</sub></i>) (&gt;= 0).
+ *                             It is a type-dependent parameter.
+ * @param tpordp4b             Time constant in power order lag (<i>T</i><i><sub>pordp4B</sub></i>) (&gt;= 0).
+ *                             It is a type-dependent parameter.
+ * @param tufiltp4b            Voltage measurement filter time constant (<i>T</i><i><sub>ufiltp4B</sub></i>) (&gt;= 0).
+ *                             It is a type-dependent parameter.
  * @param WindTurbineType4bIEC [[ch.ninecode.model.WindTurbineType4bIEC WindTurbineType4bIEC]] Wind turbine type 4B model with which this wind control P type 4B model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPType4bIEC
 (
@@ -1157,8 +1200,8 @@ final case class WindContPType4bIEC
     tufiltp4b: Double = 0.0,
     WindTurbineType4bIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1184,14 +1227,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindContPType4bIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContPType4bIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContPType4bIEC.fields (position), value)
+
         emitelem (0, dpmaxp4b)
         emitelem (1, tpaero)
         emitelem (2, tpordp4b)
@@ -1199,6 +1248,7 @@ extends
         emitattr (4, WindTurbineType4bIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindContPType4bIEC rdf:ID=\"%s\">\n%s\t</cim:WindContPType4bIEC>".format (id, export_fields)
@@ -1206,10 +1256,10 @@ extends
 }
 
 object WindContPType4bIEC
-extends
-    CIMParseable[WindContPType4bIEC]
+    extends
+        CIMParseable[WindContPType4bIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dpmaxp4b",
         "tpaero",
         "tpordp4b",
@@ -1219,16 +1269,16 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "1", "1")
     )
-    val dpmaxp4b: Fielder = parse_element (element (cls, fields(0)))
-    val tpaero: Fielder = parse_element (element (cls, fields(1)))
-    val tpordp4b: Fielder = parse_element (element (cls, fields(2)))
-    val tufiltp4b: Fielder = parse_element (element (cls, fields(3)))
-    val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val dpmaxp4b: Fielder = parse_element (element (cls, fields (0)))
+    val tpaero: Fielder = parse_element (element (cls, fields (1)))
+    val tpordp4b: Fielder = parse_element (element (cls, fields (2)))
+    val tufiltp4b: Fielder = parse_element (element (cls, fields (3)))
+    val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields (4)))
 
     def parse (context: CIMContext): WindContPType4bIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindContPType4bIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (dpmaxp4b (), 0)),
@@ -1263,7 +1313,7 @@ object WindContPType4bIECSerializer extends CIMSerializer[WindContPType4bIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindContPType4bIEC]): WindContPType4bIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindContPType4bIEC (
             parent,
@@ -1283,36 +1333,36 @@ object WindContPType4bIECSerializer extends CIMSerializer[WindContPType4bIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.2.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dthetamax Maximum pitch positive ramp rate (<i>dtheta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.dthetamin).
- *        It is a type-dependent parameter. Unit = degrees / s.
- * @param dthetamin Maximum pitch negative ramp rate (<i>dtheta</i><i><sub>min</sub></i><i>)</i> (&lt; WindContPitchAngleIEC.dthetamax).
- *        It is a type-dependent parameter. Unit = degrees / s.
- * @param kic Power PI controller integration gain (<i>K</i><i><sub>Ic</sub></i>).
- *        It is a type-dependent parameter.
- * @param kiomega Speed PI controller integration gain (<i>K</i><i><sub>Iomega</sub></i>).
- *        It is a type-dependent parameter.
- * @param kpc Power PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>).
- *        It is a type-dependent parameter.
- * @param kpomega Speed PI controller proportional gain (<i>K</i><i><sub>Pomega</sub></i>).
- *        It is a type-dependent parameter.
- * @param kpx Pitch cross coupling gain (<i>K</i><i><sub>PX</sub></i>).
- *        It is a type-dependent parameter.
- * @param thetamax Maximum pitch angle (<i>theta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.thetamin).
- *        It is a type-dependent parameter.
- * @param thetamin Minimum pitch angle (<i>theta</i><i><sub>min</sub></i>) (&lt; WindContPitchAngleIEC.thetamax).
- *        It is a type-dependent parameter.
- * @param ttheta Pitch time constant (<i>ttheta</i>) (&gt;= 0).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject    [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dthetamax           Maximum pitch positive ramp rate (<i>dtheta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.dthetamin).
+ *                            It is a type-dependent parameter. Unit = degrees / s.
+ * @param dthetamin           Maximum pitch negative ramp rate (<i>dtheta</i><i><sub>min</sub></i><i>)</i> (&lt; WindContPitchAngleIEC.dthetamax).
+ *                            It is a type-dependent parameter. Unit = degrees / s.
+ * @param kic                 Power PI controller integration gain (<i>K</i><i><sub>Ic</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param kiomega             Speed PI controller integration gain (<i>K</i><i><sub>Iomega</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param kpc                 Power PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param kpomega             Speed PI controller proportional gain (<i>K</i><i><sub>Pomega</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param kpx                 Pitch cross coupling gain (<i>K</i><i><sub>PX</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param thetamax            Maximum pitch angle (<i>theta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.thetamin).
+ *                            It is a type-dependent parameter.
+ * @param thetamin            Minimum pitch angle (<i>theta</i><i><sub>min</sub></i>) (&lt; WindContPitchAngleIEC.thetamax).
+ *                            It is a type-dependent parameter.
+ * @param ttheta              Pitch time constant (<i>ttheta</i>) (&gt;= 0).
+ *                            It is a type-dependent parameter.
  * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this pitch control model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContPitchAngleIEC
 (
@@ -1329,8 +1379,8 @@ final case class WindContPitchAngleIEC
     ttheta: Double = 0.0,
     WindTurbineType3IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1356,14 +1406,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindContPitchAngleIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContPitchAngleIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContPitchAngleIEC.fields (position), value)
+
         emitelem (0, dthetamax)
         emitelem (1, dthetamin)
         emitelem (2, kic)
@@ -1377,6 +1433,7 @@ extends
         emitattr (10, WindTurbineType3IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindContPitchAngleIEC rdf:ID=\"%s\">\n%s\t</cim:WindContPitchAngleIEC>".format (id, export_fields)
@@ -1384,10 +1441,10 @@ extends
 }
 
 object WindContPitchAngleIEC
-extends
-    CIMParseable[WindContPitchAngleIEC]
+    extends
+        CIMParseable[WindContPitchAngleIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dthetamax",
         "dthetamin",
         "kic",
@@ -1403,22 +1460,22 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1")
     )
-    val dthetamax: Fielder = parse_element (element (cls, fields(0)))
-    val dthetamin: Fielder = parse_element (element (cls, fields(1)))
-    val kic: Fielder = parse_element (element (cls, fields(2)))
-    val kiomega: Fielder = parse_element (element (cls, fields(3)))
-    val kpc: Fielder = parse_element (element (cls, fields(4)))
-    val kpomega: Fielder = parse_element (element (cls, fields(5)))
-    val kpx: Fielder = parse_element (element (cls, fields(6)))
-    val thetamax: Fielder = parse_element (element (cls, fields(7)))
-    val thetamin: Fielder = parse_element (element (cls, fields(8)))
-    val ttheta: Fielder = parse_element (element (cls, fields(9)))
-    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val dthetamax: Fielder = parse_element (element (cls, fields (0)))
+    val dthetamin: Fielder = parse_element (element (cls, fields (1)))
+    val kic: Fielder = parse_element (element (cls, fields (2)))
+    val kiomega: Fielder = parse_element (element (cls, fields (3)))
+    val kpc: Fielder = parse_element (element (cls, fields (4)))
+    val kpomega: Fielder = parse_element (element (cls, fields (5)))
+    val kpx: Fielder = parse_element (element (cls, fields (6)))
+    val thetamax: Fielder = parse_element (element (cls, fields (7)))
+    val thetamin: Fielder = parse_element (element (cls, fields (8)))
+    val ttheta: Fielder = parse_element (element (cls, fields (9)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields (10)))
 
     def parse (context: CIMContext): WindContPitchAngleIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindContPitchAngleIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (dthetamax (), 0)),
@@ -1465,7 +1522,7 @@ object WindContPitchAngleIECSerializer extends CIMSerializer[WindContPitchAngleI
 
     def read (kryo: Kryo, input: Input, cls: Class[WindContPitchAngleIEC]): WindContPitchAngleIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindContPitchAngleIEC (
             parent,
@@ -1491,62 +1548,62 @@ object WindContPitchAngleIECSerializer extends CIMSerializer[WindContPitchAngleI
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.7.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param iqh1 Maximum reactive current injection during dip (<i>i</i><i><sub>qh1</sub></i>).
- *        It is a type-dependent parameter.
- * @param iqmax Maximum reactive current injection (<i>i</i><i><sub>qmax</sub></i>) (&gt; WindContQIEC.iqmin).
- *        It is a type-dependent parameter.
- * @param iqmin Minimum reactive current injection (<i>i</i><i><sub>qmin</sub></i>) (&lt; WindContQIEC.iqmax).
- *        It is a type-dependent parameter.
- * @param iqpost Post fault reactive current injection (<i>i</i><i><sub>qpost</sub></i>).
- *        It is a project-dependent parameter.
- * @param kiq Reactive power PI controller integration gain (<i>K</i><i><sub>I,q</sub></i>).
- *        It is a type-dependent parameter.
- * @param kiu Voltage PI controller integration gain (<i>K</i><i><sub>I,u</sub></i>).
- *        It is a type-dependent parameter.
- * @param kpq Reactive power PI controller proportional gain (<i>K</i><i><sub>P,q</sub></i>).
- *        It is a type-dependent parameter.
- * @param kpu Voltage PI controller proportional gain (<i>K</i><i><sub>P,u</sub></i>).
- *        It is a type-dependent parameter.
- * @param kqv Voltage scaling factor for UVRT current (<i>K</i><i><sub>qv</sub></i>).
- *        It is a project-dependent parameter.
- * @param rdroop Resistive component of voltage drop impedance (<i>r</i><i><sub>droop</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param tpfiltq Power measurement filter time constant (<i>T</i><i><sub>pfiltq</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param tpost Length of time period where post fault reactive power is injected (<i>T</i><i><sub>post</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param tqord Time constant in reactive power order lag (<i>T</i><i><sub>qord</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param tufiltq Voltage measurement filter time constant (<i>T</i><i><sub>ufiltq</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param udb1 Voltage deadband lower limit (<i>u</i><i><sub>db1</sub></i>).
- *        It is a type-dependent parameter.
- * @param udb2 Voltage deadband upper limit (<i>u</i><i><sub>db2</sub></i>).
- *        It is a type-dependent parameter.
- * @param umax Maximum voltage in voltage PI controller integral term (<i>u</i><i><sub>max</sub></i>) (&gt; WindContQIEC.umin).
- *        It is a type-dependent parameter.
- * @param umin Minimum voltage in voltage PI controller integral term (<i>u</i><i><sub>min</sub></i>) (&lt; WindContQIEC.umax).
- *        It is a type-dependent parameter.
- * @param uqdip Voltage threshold for UVRT detection in Q control (<i>u</i><i><sub>qdip</sub></i>).
- *        It is a type-dependent parameter.
- * @param uref0 User-defined bias in voltage reference (<i>u</i><i><sub>ref0</sub></i>).
- *        It is a case-dependent parameter.
- * @param windQcontrolModesType Types of general wind turbine Q control modes (<i>M</i><i><sub>qG</sub></i>).
- *        It is a project-dependent parameter.
+ * @param IdentifiedObject          [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param iqh1                      Maximum reactive current injection during dip (<i>i</i><i><sub>qh1</sub></i>).
+ *                                  It is a type-dependent parameter.
+ * @param iqmax                     Maximum reactive current injection (<i>i</i><i><sub>qmax</sub></i>) (&gt; WindContQIEC.iqmin).
+ *                                  It is a type-dependent parameter.
+ * @param iqmin                     Minimum reactive current injection (<i>i</i><i><sub>qmin</sub></i>) (&lt; WindContQIEC.iqmax).
+ *                                  It is a type-dependent parameter.
+ * @param iqpost                    Post fault reactive current injection (<i>i</i><i><sub>qpost</sub></i>).
+ *                                  It is a project-dependent parameter.
+ * @param kiq                       Reactive power PI controller integration gain (<i>K</i><i><sub>I,q</sub></i>).
+ *                                  It is a type-dependent parameter.
+ * @param kiu                       Voltage PI controller integration gain (<i>K</i><i><sub>I,u</sub></i>).
+ *                                  It is a type-dependent parameter.
+ * @param kpq                       Reactive power PI controller proportional gain (<i>K</i><i><sub>P,q</sub></i>).
+ *                                  It is a type-dependent parameter.
+ * @param kpu                       Voltage PI controller proportional gain (<i>K</i><i><sub>P,u</sub></i>).
+ *                                  It is a type-dependent parameter.
+ * @param kqv                       Voltage scaling factor for UVRT current (<i>K</i><i><sub>qv</sub></i>).
+ *                                  It is a project-dependent parameter.
+ * @param rdroop                    Resistive component of voltage drop impedance (<i>r</i><i><sub>droop</sub></i>) (&gt;= 0).
+ *                                  It is a project-dependent parameter.
+ * @param tpfiltq                   Power measurement filter time constant (<i>T</i><i><sub>pfiltq</sub></i>) (&gt;= 0).
+ *                                  It is a type-dependent parameter.
+ * @param tpost                     Length of time period where post fault reactive power is injected (<i>T</i><i><sub>post</sub></i>) (&gt;= 0).
+ *                                  It is a project-dependent parameter.
+ * @param tqord                     Time constant in reactive power order lag (<i>T</i><i><sub>qord</sub></i>) (&gt;= 0).
+ *                                  It is a type-dependent parameter.
+ * @param tufiltq                   Voltage measurement filter time constant (<i>T</i><i><sub>ufiltq</sub></i>) (&gt;= 0).
+ *                                  It is a type-dependent parameter.
+ * @param udb1                      Voltage deadband lower limit (<i>u</i><i><sub>db1</sub></i>).
+ *                                  It is a type-dependent parameter.
+ * @param udb2                      Voltage deadband upper limit (<i>u</i><i><sub>db2</sub></i>).
+ *                                  It is a type-dependent parameter.
+ * @param umax                      Maximum voltage in voltage PI controller integral term (<i>u</i><i><sub>max</sub></i>) (&gt; WindContQIEC.umin).
+ *                                  It is a type-dependent parameter.
+ * @param umin                      Minimum voltage in voltage PI controller integral term (<i>u</i><i><sub>min</sub></i>) (&lt; WindContQIEC.umax).
+ *                                  It is a type-dependent parameter.
+ * @param uqdip                     Voltage threshold for UVRT detection in Q control (<i>u</i><i><sub>qdip</sub></i>).
+ *                                  It is a type-dependent parameter.
+ * @param uref0                     User-defined bias in voltage reference (<i>u</i><i><sub>ref0</sub></i>).
+ *                                  It is a case-dependent parameter.
+ * @param windQcontrolModesType     Types of general wind turbine Q control modes (<i>M</i><i><sub>qG</sub></i>).
+ *                                  It is a project-dependent parameter.
  * @param windUVRTQcontrolModesType Types of UVRT Q control modes (<i>M</i><i><sub>qUVRT</sub></i>).
- *        It is a project-dependent parameter.
- * @param xdroop Inductive component of voltage drop impedance (<i>x</i><i><sub>droop</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or type 4 model with which this reactive control model is associated.
+ *                                  It is a project-dependent parameter.
+ * @param xdroop                    Inductive component of voltage drop impedance (<i>x</i><i><sub>droop</sub></i>) (&gt;= 0).
+ *                                  It is a project-dependent parameter.
+ * @param WindTurbineType3or4IEC    [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or type 4 model with which this reactive control model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContQIEC
 (
@@ -1576,8 +1633,8 @@ final case class WindContQIEC
     xdroop: Double = 0.0,
     WindTurbineType3or4IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1603,14 +1660,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindContQIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContQIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContQIEC.fields (position), value)
+
         emitelem (0, iqh1)
         emitelem (1, iqmax)
         emitelem (2, iqmin)
@@ -1637,6 +1700,7 @@ extends
         emitattr (23, WindTurbineType3or4IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindContQIEC rdf:ID=\"%s\">\n%s\t</cim:WindContQIEC>".format (id, export_fields)
@@ -1644,10 +1708,10 @@ extends
 }
 
 object WindContQIEC
-extends
-    CIMParseable[WindContQIEC]
+    extends
+        CIMParseable[WindContQIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "iqh1",
         "iqmax",
         "iqmin",
@@ -1676,35 +1740,35 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
     )
-    val iqh1: Fielder = parse_element (element (cls, fields(0)))
-    val iqmax: Fielder = parse_element (element (cls, fields(1)))
-    val iqmin: Fielder = parse_element (element (cls, fields(2)))
-    val iqpost: Fielder = parse_element (element (cls, fields(3)))
-    val kiq: Fielder = parse_element (element (cls, fields(4)))
-    val kiu: Fielder = parse_element (element (cls, fields(5)))
-    val kpq: Fielder = parse_element (element (cls, fields(6)))
-    val kpu: Fielder = parse_element (element (cls, fields(7)))
-    val kqv: Fielder = parse_element (element (cls, fields(8)))
-    val rdroop: Fielder = parse_element (element (cls, fields(9)))
-    val tpfiltq: Fielder = parse_element (element (cls, fields(10)))
-    val tpost: Fielder = parse_element (element (cls, fields(11)))
-    val tqord: Fielder = parse_element (element (cls, fields(12)))
-    val tufiltq: Fielder = parse_element (element (cls, fields(13)))
-    val udb1: Fielder = parse_element (element (cls, fields(14)))
-    val udb2: Fielder = parse_element (element (cls, fields(15)))
-    val umax: Fielder = parse_element (element (cls, fields(16)))
-    val umin: Fielder = parse_element (element (cls, fields(17)))
-    val uqdip: Fielder = parse_element (element (cls, fields(18)))
-    val uref0: Fielder = parse_element (element (cls, fields(19)))
-    val windQcontrolModesType: Fielder = parse_attribute (attribute (cls, fields(20)))
-    val windUVRTQcontrolModesType: Fielder = parse_attribute (attribute (cls, fields(21)))
-    val xdroop: Fielder = parse_element (element (cls, fields(22)))
-    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(23)))
+    val iqh1: Fielder = parse_element (element (cls, fields (0)))
+    val iqmax: Fielder = parse_element (element (cls, fields (1)))
+    val iqmin: Fielder = parse_element (element (cls, fields (2)))
+    val iqpost: Fielder = parse_element (element (cls, fields (3)))
+    val kiq: Fielder = parse_element (element (cls, fields (4)))
+    val kiu: Fielder = parse_element (element (cls, fields (5)))
+    val kpq: Fielder = parse_element (element (cls, fields (6)))
+    val kpu: Fielder = parse_element (element (cls, fields (7)))
+    val kqv: Fielder = parse_element (element (cls, fields (8)))
+    val rdroop: Fielder = parse_element (element (cls, fields (9)))
+    val tpfiltq: Fielder = parse_element (element (cls, fields (10)))
+    val tpost: Fielder = parse_element (element (cls, fields (11)))
+    val tqord: Fielder = parse_element (element (cls, fields (12)))
+    val tufiltq: Fielder = parse_element (element (cls, fields (13)))
+    val udb1: Fielder = parse_element (element (cls, fields (14)))
+    val udb2: Fielder = parse_element (element (cls, fields (15)))
+    val umax: Fielder = parse_element (element (cls, fields (16)))
+    val umin: Fielder = parse_element (element (cls, fields (17)))
+    val uqdip: Fielder = parse_element (element (cls, fields (18)))
+    val uref0: Fielder = parse_element (element (cls, fields (19)))
+    val windQcontrolModesType: Fielder = parse_attribute (attribute (cls, fields (20)))
+    val windUVRTQcontrolModesType: Fielder = parse_attribute (attribute (cls, fields (21)))
+    val xdroop: Fielder = parse_element (element (cls, fields (22)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields (23)))
 
     def parse (context: CIMContext): WindContQIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindContQIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (iqh1 (), 0)),
@@ -1777,7 +1841,7 @@ object WindContQIECSerializer extends CIMSerializer[WindContQIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindContQIEC]): WindContQIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindContQIEC (
             parent,
@@ -1816,20 +1880,20 @@ object WindContQIECSerializer extends CIMSerializer[WindContQIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.9.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param qmax Maximum reactive power (<i>q</i><i><sub>max</sub></i>) (&gt; WindContQLimIEC.qmin).
- *        It is a type-dependent parameter.
- * @param qmin Minimum reactive power (<i>q</i><i><sub>min</sub></i>) (&lt; WindContQLimIEC.qmax).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject       [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param qmax                   Maximum reactive power (<i>q</i><i><sub>max</sub></i>) (&gt; WindContQLimIEC.qmin).
+ *                               It is a type-dependent parameter.
+ * @param qmin                   Minimum reactive power (<i>q</i><i><sub>min</sub></i>) (&lt; WindContQLimIEC.qmax).
+ *                               It is a type-dependent parameter.
  * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or type 4 model with which this constant Q limitation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContQLimIEC
 (
@@ -1838,8 +1902,8 @@ final case class WindContQLimIEC
     qmin: Double = 0.0,
     WindTurbineType3or4IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1865,19 +1929,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindContQLimIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContQLimIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContQLimIEC.fields (position), value)
+
         emitelem (0, qmax)
         emitelem (1, qmin)
         emitattr (2, WindTurbineType3or4IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindContQLimIEC rdf:ID=\"%s\">\n%s\t</cim:WindContQLimIEC>".format (id, export_fields)
@@ -1885,10 +1956,10 @@ extends
 }
 
 object WindContQLimIEC
-extends
-    CIMParseable[WindContQLimIEC]
+    extends
+        CIMParseable[WindContQLimIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "qmax",
         "qmin",
         "WindTurbineType3or4IEC"
@@ -1896,14 +1967,14 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1")
     )
-    val qmax: Fielder = parse_element (element (cls, fields(0)))
-    val qmin: Fielder = parse_element (element (cls, fields(1)))
-    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val qmax: Fielder = parse_element (element (cls, fields (0)))
+    val qmin: Fielder = parse_element (element (cls, fields (1)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): WindContQLimIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindContQLimIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (qmax (), 0)),
@@ -1934,7 +2005,7 @@ object WindContQLimIECSerializer extends CIMSerializer[WindContQLimIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindContQLimIEC]): WindContQLimIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindContQLimIEC (
             parent,
@@ -1952,21 +2023,21 @@ object WindContQLimIECSerializer extends CIMSerializer[WindContQLimIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.10.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param tpfiltql Power measurement filter time constant for Q capacity (<i>T</i><i><sub>pfiltql</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param tufiltql Voltage measurement filter time constant for Q capacity (<i>T</i><i><sub>ufiltql</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject        [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param tpfiltql                Power measurement filter time constant for Q capacity (<i>T</i><i><sub>pfiltql</sub></i>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
+ * @param tufiltql                Voltage measurement filter time constant for Q capacity (<i>T</i><i><sub>ufiltql</sub></i>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this QP and QU limitation model.
- * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or type 4 model with which this QP and QU limitation model is associated.
+ * @param WindTurbineType3or4IEC  [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or type 4 model with which this QP and QU limitation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContQPQULimIEC
 (
@@ -1976,8 +2047,8 @@ final case class WindContQPQULimIEC
     WindDynamicsLookupTable: List[String] = null,
     WindTurbineType3or4IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2003,21 +2074,29 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindContQPQULimIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContQPQULimIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContQPQULimIEC.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindContQPQULimIEC.fields (position), x))
+
         emitelem (0, tpfiltql)
         emitelem (1, tufiltql)
         emitattrs (2, WindDynamicsLookupTable)
         emitattr (3, WindTurbineType3or4IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindContQPQULimIEC rdf:ID=\"%s\">\n%s\t</cim:WindContQPQULimIEC>".format (id, export_fields)
@@ -2025,10 +2104,10 @@ extends
 }
 
 object WindContQPQULimIEC
-extends
-    CIMParseable[WindContQPQULimIEC]
+    extends
+        CIMParseable[WindContQPQULimIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "tpfiltql",
         "tufiltql",
         "WindDynamicsLookupTable",
@@ -2038,15 +2117,15 @@ extends
         CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
         CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1")
     )
-    val tpfiltql: Fielder = parse_element (element (cls, fields(0)))
-    val tufiltql: Fielder = parse_element (element (cls, fields(1)))
-    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val tpfiltql: Fielder = parse_element (element (cls, fields (0)))
+    val tufiltql: Fielder = parse_element (element (cls, fields (1)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): WindContQPQULimIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindContQPQULimIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (tpfiltql (), 0)),
@@ -2079,7 +2158,7 @@ object WindContQPQULimIECSerializer extends CIMSerializer[WindContQPQULimIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindContQPQULimIEC]): WindContQPQULimIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindContQPQULimIEC (
             parent,
@@ -2098,33 +2177,33 @@ object WindContQPQULimIECSerializer extends CIMSerializer[WindContQPQULimIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.3.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param kirr Integral gain in rotor resistance PI controller (<i>K</i><i><sub>Irr</sub></i>).
- *        It is a type-dependent parameter.
- * @param komegafilt Filter gain for generator speed measurement (<i>K</i><i><sub>omegafilt</sub></i>).
- *        It is a type-dependent parameter.
- * @param kpfilt Filter gain for power measurement (<i>K</i><i><sub>pfilt</sub></i>).
- *        It is a type-dependent parameter.
- * @param kprr Proportional gain in rotor resistance PI controller (<i>K</i><i><sub>Prr</sub></i>).
- *        It is a type-dependent parameter.
- * @param rmax Maximum rotor resistance (<i>r</i><i><sub>max</sub></i>) (&gt; WindContRotorRIEC.rmin).
- *        It is a type-dependent parameter.
- * @param rmin Minimum rotor resistance (<i>r</i><i><sub>min</sub></i>) (&lt; WindContRotorRIEC.rmax).
- *        It is a type-dependent parameter.
- * @param tomegafiltrr Filter time constant for generator speed measurement (<i>T</i><i><sub>omegafiltrr</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param tpfiltrr Filter time constant for power measurement (<i>T</i><i><sub>pfiltrr</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject        [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param kirr                    Integral gain in rotor resistance PI controller (<i>K</i><i><sub>Irr</sub></i>).
+ *                                It is a type-dependent parameter.
+ * @param komegafilt              Filter gain for generator speed measurement (<i>K</i><i><sub>omegafilt</sub></i>).
+ *                                It is a type-dependent parameter.
+ * @param kpfilt                  Filter gain for power measurement (<i>K</i><i><sub>pfilt</sub></i>).
+ *                                It is a type-dependent parameter.
+ * @param kprr                    Proportional gain in rotor resistance PI controller (<i>K</i><i><sub>Prr</sub></i>).
+ *                                It is a type-dependent parameter.
+ * @param rmax                    Maximum rotor resistance (<i>r</i><i><sub>max</sub></i>) (&gt; WindContRotorRIEC.rmin).
+ *                                It is a type-dependent parameter.
+ * @param rmin                    Minimum rotor resistance (<i>r</i><i><sub>min</sub></i>) (&lt; WindContRotorRIEC.rmax).
+ *                                It is a type-dependent parameter.
+ * @param tomegafiltrr            Filter time constant for generator speed measurement (<i>T</i><i><sub>omegafiltrr</sub></i>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
+ * @param tpfiltrr                Filter time constant for power measurement (<i>T</i><i><sub>pfiltrr</sub></i>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this rotor resistance control model.
- * @param WindGenTurbineType2IEC [[ch.ninecode.model.WindGenTurbineType2IEC WindGenTurbineType2IEC]] Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.
+ * @param WindGenTurbineType2IEC  [[ch.ninecode.model.WindGenTurbineType2IEC WindGenTurbineType2IEC]] Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindContRotorRIEC
 (
@@ -2140,8 +2219,8 @@ final case class WindContRotorRIEC
     WindDynamicsLookupTable: List[String] = null,
     WindGenTurbineType2IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2167,15 +2246,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindContRotorRIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContRotorRIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContRotorRIEC.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindContRotorRIEC.fields (position), x))
+
         emitelem (0, kirr)
         emitelem (1, komegafilt)
         emitelem (2, kpfilt)
@@ -2188,6 +2274,7 @@ extends
         emitattr (9, WindGenTurbineType2IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindContRotorRIEC rdf:ID=\"%s\">\n%s\t</cim:WindContRotorRIEC>".format (id, export_fields)
@@ -2195,10 +2282,10 @@ extends
 }
 
 object WindContRotorRIEC
-extends
-    CIMParseable[WindContRotorRIEC]
+    extends
+        CIMParseable[WindContRotorRIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kirr",
         "komegafilt",
         "kpfilt",
@@ -2214,21 +2301,21 @@ extends
         CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
         CIMRelationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "1", "1")
     )
-    val kirr: Fielder = parse_element (element (cls, fields(0)))
-    val komegafilt: Fielder = parse_element (element (cls, fields(1)))
-    val kpfilt: Fielder = parse_element (element (cls, fields(2)))
-    val kprr: Fielder = parse_element (element (cls, fields(3)))
-    val rmax: Fielder = parse_element (element (cls, fields(4)))
-    val rmin: Fielder = parse_element (element (cls, fields(5)))
-    val tomegafiltrr: Fielder = parse_element (element (cls, fields(6)))
-    val tpfiltrr: Fielder = parse_element (element (cls, fields(7)))
-    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val kirr: Fielder = parse_element (element (cls, fields (0)))
+    val komegafilt: Fielder = parse_element (element (cls, fields (1)))
+    val kpfilt: Fielder = parse_element (element (cls, fields (2)))
+    val kprr: Fielder = parse_element (element (cls, fields (3)))
+    val rmax: Fielder = parse_element (element (cls, fields (4)))
+    val rmin: Fielder = parse_element (element (cls, fields (5)))
+    val tomegafiltrr: Fielder = parse_element (element (cls, fields (6)))
+    val tpfiltrr: Fielder = parse_element (element (cls, fields (7)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields (9)))
 
     def parse (context: CIMContext): WindContRotorRIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindContRotorRIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (kirr (), 0)),
@@ -2273,7 +2360,7 @@ object WindContRotorRIECSerializer extends CIMSerializer[WindContRotorRIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindContRotorRIEC]): WindContRotorRIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindContRotorRIEC (
             parent,
@@ -2296,28 +2383,28 @@ object WindContRotorRIECSerializer extends CIMSerializer[WindContRotorRIEC]
 /**
  * Look up table for the purpose of wind standard models.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param input Input value (<i>x</i>) for the lookup table function.
- * @param lookupTableFunctionType Type of the lookup table function.
- * @param output Output value (<i>y</i>) for the lookup table function.
- * @param sequence Sequence numbers of the pairs of the input (<i>x</i>) and the output (<i>y</i>) of the lookup table function.
- * @param WindContCurrLimIEC [[ch.ninecode.model.WindContCurrLimIEC WindContCurrLimIEC]] The current control limitation model with which this wind dynamics lookup table is associated.
- * @param WindContPType3IEC [[ch.ninecode.model.WindContPType3IEC WindContPType3IEC]] The P control type 3 model with which this wind dynamics lookup table is associated.
- * @param WindContQPQULimIEC [[ch.ninecode.model.WindContQPQULimIEC WindContQPQULimIEC]] The QP and QU limitation model with which this wind dynamics lookup table is associated.
- * @param WindContRotorRIEC [[ch.ninecode.model.WindContRotorRIEC WindContRotorRIEC]] The rotor resistance control model with which this wind dynamics lookup table is associated.
- * @param WindGenType3bIEC [[ch.ninecode.model.WindGenType3bIEC WindGenType3bIEC]] The generator type 3B model with which this wind dynamics lookup table is associated.
- * @param WindPitchContPowerIEC [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] The pitch control power model with which this wind dynamics lookup table is associated.
- * @param WindPlantFreqPcontrolIEC [[ch.ninecode.model.WindPlantFreqPcontrolIEC WindPlantFreqPcontrolIEC]] The frequency and active power wind plant control model with which this wind dynamics lookup table is associated.
+ * @param IdentifiedObject            [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param input                       Input value (<i>x</i>) for the lookup table function.
+ * @param lookupTableFunctionType     Type of the lookup table function.
+ * @param output                      Output value (<i>y</i>) for the lookup table function.
+ * @param sequence                    Sequence numbers of the pairs of the input (<i>x</i>) and the output (<i>y</i>) of the lookup table function.
+ * @param WindContCurrLimIEC          [[ch.ninecode.model.WindContCurrLimIEC WindContCurrLimIEC]] The current control limitation model with which this wind dynamics lookup table is associated.
+ * @param WindContPType3IEC           [[ch.ninecode.model.WindContPType3IEC WindContPType3IEC]] The P control type 3 model with which this wind dynamics lookup table is associated.
+ * @param WindContQPQULimIEC          [[ch.ninecode.model.WindContQPQULimIEC WindContQPQULimIEC]] The QP and QU limitation model with which this wind dynamics lookup table is associated.
+ * @param WindContRotorRIEC           [[ch.ninecode.model.WindContRotorRIEC WindContRotorRIEC]] The rotor resistance control model with which this wind dynamics lookup table is associated.
+ * @param WindGenType3bIEC            [[ch.ninecode.model.WindGenType3bIEC WindGenType3bIEC]] The generator type 3B model with which this wind dynamics lookup table is associated.
+ * @param WindPitchContPowerIEC       [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] The pitch control power model with which this wind dynamics lookup table is associated.
+ * @param WindPlantFreqPcontrolIEC    [[ch.ninecode.model.WindPlantFreqPcontrolIEC WindPlantFreqPcontrolIEC]] The frequency and active power wind plant control model with which this wind dynamics lookup table is associated.
  * @param WindPlantReactiveControlIEC [[ch.ninecode.model.WindPlantReactiveControlIEC WindPlantReactiveControlIEC]] The voltage and reactive power wind plant control model with which this wind dynamics lookup table is associated.
- * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] The grid protection model with which this wind dynamics lookup table is associated.
+ * @param WindProtectionIEC           [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] The grid protection model with which this wind dynamics lookup table is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindDynamicsLookupTable
 (
@@ -2336,8 +2423,8 @@ final case class WindDynamicsLookupTable
     WindPlantReactiveControlIEC: String = null,
     WindProtectionIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2363,14 +2450,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindDynamicsLookupTable.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindDynamicsLookupTable.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindDynamicsLookupTable.fields (position), value)
+
         emitelem (0, input)
         emitattr (1, lookupTableFunctionType)
         emitelem (2, output)
@@ -2386,6 +2479,7 @@ extends
         emitattr (12, WindProtectionIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindDynamicsLookupTable rdf:ID=\"%s\">\n%s\t</cim:WindDynamicsLookupTable>".format (id, export_fields)
@@ -2393,10 +2487,10 @@ extends
 }
 
 object WindDynamicsLookupTable
-extends
-    CIMParseable[WindDynamicsLookupTable]
+    extends
+        CIMParseable[WindDynamicsLookupTable]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "input",
         "lookupTableFunctionType",
         "output",
@@ -2422,24 +2516,24 @@ extends
         CIMRelationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "0..1", "1..*"),
         CIMRelationship ("WindProtectionIEC", "WindProtectionIEC", "0..1", "1..*")
     )
-    val input: Fielder = parse_element (element (cls, fields(0)))
-    val lookupTableFunctionType: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val output: Fielder = parse_element (element (cls, fields(2)))
-    val sequence: Fielder = parse_element (element (cls, fields(3)))
-    val WindContCurrLimIEC: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val WindContPType3IEC: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val WindContQPQULimIEC: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val WindContRotorRIEC: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val WindGenType3bIEC: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val WindPlantFreqPcontrolIEC: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val WindPlantReactiveControlIEC: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val input: Fielder = parse_element (element (cls, fields (0)))
+    val lookupTableFunctionType: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val output: Fielder = parse_element (element (cls, fields (2)))
+    val sequence: Fielder = parse_element (element (cls, fields (3)))
+    val WindContCurrLimIEC: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val WindContPType3IEC: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val WindContQPQULimIEC: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val WindContRotorRIEC: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val WindGenType3bIEC: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields (9)))
+    val WindPlantFreqPcontrolIEC: Fielder = parse_attribute (attribute (cls, fields (10)))
+    val WindPlantReactiveControlIEC: Fielder = parse_attribute (attribute (cls, fields (11)))
+    val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields (12)))
 
     def parse (context: CIMContext): WindDynamicsLookupTable =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindDynamicsLookupTable (
             IdentifiedObject.parse (context),
             toDouble (mask (input (), 0)),
@@ -2490,7 +2584,7 @@ object WindDynamicsLookupTableSerializer extends CIMSerializer[WindDynamicsLooku
 
     def read (kryo: Kryo, input: Input, cls: Class[WindDynamicsLookupTable]): WindDynamicsLookupTable =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindDynamicsLookupTable (
             parent,
@@ -2519,23 +2613,23 @@ object WindDynamicsLookupTableSerializer extends CIMSerializer[WindDynamicsLooku
  * Reference: IEC 61400-27-1:2015, 5.5.2.2.
  *
  * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
- * @param WindAeroConstIEC [[ch.ninecode.model.WindAeroConstIEC WindAeroConstIEC]] Wind aerodynamic model associated with this wind turbine type 1A model.
+ * @param WindAeroConstIEC       [[ch.ninecode.model.WindAeroConstIEC WindAeroConstIEC]] Wind aerodynamic model associated with this wind turbine type 1A model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenTurbineType1aIEC
 (
     WindTurbineType1or2IEC: WindTurbineType1or2IEC = null,
     WindAeroConstIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2561,16 +2655,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindGenTurbineType1aIEC.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenTurbineType1aIEC.fields (position), value)
+
         emitattr (0, WindAeroConstIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindGenTurbineType1aIEC rdf:ID=\"%s\">\n%s\t</cim:WindGenTurbineType1aIEC>".format (id, export_fields)
@@ -2578,21 +2678,21 @@ extends
 }
 
 object WindGenTurbineType1aIEC
-extends
-    CIMParseable[WindGenTurbineType1aIEC]
+    extends
+        CIMParseable[WindGenTurbineType1aIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "WindAeroConstIEC"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindAeroConstIEC", "WindAeroConstIEC", "1", "1")
     )
-    val WindAeroConstIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindAeroConstIEC: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): WindGenTurbineType1aIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindGenTurbineType1aIEC (
             WindTurbineType1or2IEC.parse (context),
             mask (WindAeroConstIEC (), 0)
@@ -2619,7 +2719,7 @@ object WindGenTurbineType1aIECSerializer extends CIMSerializer[WindGenTurbineTyp
 
     def read (kryo: Kryo, input: Input, cls: Class[WindGenTurbineType1aIEC]): WindGenTurbineType1aIEC =
     {
-        val parent = WindTurbineType1or2IECSerializer.read (kryo, input, classOf[WindTurbineType1or2IEC])
+        val parent = WindTurbineType1or2IECSerializer.read (kryo, input, classOf [WindTurbineType1or2IEC])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindGenTurbineType1aIEC (
             parent,
@@ -2636,23 +2736,23 @@ object WindGenTurbineType1aIECSerializer extends CIMSerializer[WindGenTurbineTyp
  * Reference: IEC 61400-27-1:2015, 5.5.2.3.
  *
  * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
- * @param WindPitchContPowerIEC [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] Pitch control power model associated with this wind turbine type 1B model.
+ * @param WindPitchContPowerIEC  [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] Pitch control power model associated with this wind turbine type 1B model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenTurbineType1bIEC
 (
     WindTurbineType1or2IEC: WindTurbineType1or2IEC = null,
     WindPitchContPowerIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2678,16 +2778,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindGenTurbineType1bIEC.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenTurbineType1bIEC.fields (position), value)
+
         emitattr (0, WindPitchContPowerIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindGenTurbineType1bIEC rdf:ID=\"%s\">\n%s\t</cim:WindGenTurbineType1bIEC>".format (id, export_fields)
@@ -2695,21 +2801,21 @@ extends
 }
 
 object WindGenTurbineType1bIEC
-extends
-    CIMParseable[WindGenTurbineType1bIEC]
+    extends
+        CIMParseable[WindGenTurbineType1bIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "WindPitchContPowerIEC"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1")
     )
-    val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): WindGenTurbineType1bIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindGenTurbineType1bIEC (
             WindTurbineType1or2IEC.parse (context),
             mask (WindPitchContPowerIEC (), 0)
@@ -2736,7 +2842,7 @@ object WindGenTurbineType1bIECSerializer extends CIMSerializer[WindGenTurbineTyp
 
     def read (kryo: Kryo, input: Input, cls: Class[WindGenTurbineType1bIEC]): WindGenTurbineType1bIEC =
     {
-        val parent = WindTurbineType1or2IECSerializer.read (kryo, input, classOf[WindTurbineType1or2IEC])
+        val parent = WindTurbineType1or2IECSerializer.read (kryo, input, classOf [WindTurbineType1or2IEC])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindGenTurbineType1bIEC (
             parent,
@@ -2753,16 +2859,16 @@ object WindGenTurbineType1bIECSerializer extends CIMSerializer[WindGenTurbineTyp
  * Reference: IEC 61400-27-1:2015, 5.5.3.
  *
  * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
- * @param WindContRotorRIEC [[ch.ninecode.model.WindContRotorRIEC WindContRotorRIEC]] Wind control rotor resistance model associated with wind turbine type 2 model.
- * @param WindPitchContPowerIEC [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] Pitch control power model associated with this wind turbine type 2 model.
+ * @param WindContRotorRIEC      [[ch.ninecode.model.WindContRotorRIEC WindContRotorRIEC]] Wind control rotor resistance model associated with wind turbine type 2 model.
+ * @param WindPitchContPowerIEC  [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] Pitch control power model associated with this wind turbine type 2 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenTurbineType2IEC
 (
@@ -2770,8 +2876,8 @@ final case class WindGenTurbineType2IEC
     WindContRotorRIEC: String = null,
     WindPitchContPowerIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2797,17 +2903,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindGenTurbineType2IEC.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenTurbineType2IEC.fields (position), value)
+
         emitattr (0, WindContRotorRIEC)
         emitattr (1, WindPitchContPowerIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindGenTurbineType2IEC rdf:ID=\"%s\">\n%s\t</cim:WindGenTurbineType2IEC>".format (id, export_fields)
@@ -2815,10 +2927,10 @@ extends
 }
 
 object WindGenTurbineType2IEC
-extends
-    CIMParseable[WindGenTurbineType2IEC]
+    extends
+        CIMParseable[WindGenTurbineType2IEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "WindContRotorRIEC",
         "WindPitchContPowerIEC"
     )
@@ -2826,13 +2938,13 @@ extends
         CIMRelationship ("WindContRotorRIEC", "WindContRotorRIEC", "1", "1"),
         CIMRelationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1")
     )
-    val WindContRotorRIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val WindContRotorRIEC: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): WindGenTurbineType2IEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindGenTurbineType2IEC (
             WindTurbineType1or2IEC.parse (context),
             mask (WindContRotorRIEC (), 0),
@@ -2861,7 +2973,7 @@ object WindGenTurbineType2IECSerializer extends CIMSerializer[WindGenTurbineType
 
     def read (kryo: Kryo, input: Input, cls: Class[WindGenTurbineType2IEC]): WindGenTurbineType2IEC =
     {
-        val parent = WindTurbineType1or2IECSerializer.read (kryo, input, classOf[WindTurbineType1or2IEC])
+        val parent = WindTurbineType1or2IECSerializer.read (kryo, input, classOf [WindTurbineType1or2IEC])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindGenTurbineType2IEC (
             parent,
@@ -2876,22 +2988,22 @@ object WindGenTurbineType2IECSerializer extends CIMSerializer[WindGenTurbineType
 /**
  * Parent class supporting relationships to IEC wind turbines type 3 generator models of IEC type 3A and 3B.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dipmax Maximum active current ramp rate (<i>di</i><i><sub>pmax</sub></i>).
- *        It is a project-dependent parameter.
- * @param diqmax Maximum reactive current ramp rate (<i>di</i><i><sub>qmax</sub></i>).
- *        It is a project-dependent parameter.
- * @param xs Electromagnetic transient reactance (<i>x</i><i><sub>S</sub></i>).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject    [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dipmax              Maximum active current ramp rate (<i>di</i><i><sub>pmax</sub></i>).
+ *                            It is a project-dependent parameter.
+ * @param diqmax              Maximum reactive current ramp rate (<i>di</i><i><sub>qmax</sub></i>).
+ *                            It is a project-dependent parameter.
+ * @param xs                  Electromagnetic transient reactance (<i>x</i><i><sub>S</sub></i>).
+ *                            It is a type-dependent parameter.
  * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind generator type 3 is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType3IEC
 (
@@ -2901,8 +3013,8 @@ final case class WindGenType3IEC
     xs: Double = 0.0,
     WindTurbineType3IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2928,20 +3040,27 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindGenType3IEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindGenType3IEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenType3IEC.fields (position), value)
+
         emitelem (0, dipmax)
         emitelem (1, diqmax)
         emitelem (2, xs)
         emitattr (3, WindTurbineType3IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindGenType3IEC rdf:ID=\"%s\">\n%s\t</cim:WindGenType3IEC>".format (id, export_fields)
@@ -2949,10 +3068,10 @@ extends
 }
 
 object WindGenType3IEC
-extends
-    CIMParseable[WindGenType3IEC]
+    extends
+        CIMParseable[WindGenType3IEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dipmax",
         "diqmax",
         "xs",
@@ -2961,15 +3080,15 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "0..1")
     )
-    val dipmax: Fielder = parse_element (element (cls, fields(0)))
-    val diqmax: Fielder = parse_element (element (cls, fields(1)))
-    val xs: Fielder = parse_element (element (cls, fields(2)))
-    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val dipmax: Fielder = parse_element (element (cls, fields (0)))
+    val diqmax: Fielder = parse_element (element (cls, fields (1)))
+    val xs: Fielder = parse_element (element (cls, fields (2)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): WindGenType3IEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindGenType3IEC (
             IdentifiedObject.parse (context),
             toDouble (mask (dipmax (), 0)),
@@ -3002,7 +3121,7 @@ object WindGenType3IECSerializer extends CIMSerializer[WindGenType3IEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindGenType3IEC]): WindGenType3IEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindGenType3IEC (
             parent,
@@ -3021,20 +3140,20 @@ object WindGenType3IECSerializer extends CIMSerializer[WindGenType3IEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.3.2.
  *
- * @param WindGenType3IEC [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
- * @param kpc Current PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>).
- *        It is a type-dependent parameter.
- * @param tic Current PI controller integration time constant (<i>T</i><i><sub>Ic</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
+ * @param WindGenType3IEC     [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
+ * @param kpc                 Current PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>).
+ *                            It is a type-dependent parameter.
+ * @param tic                 Current PI controller integration time constant (<i>T</i><i><sub>Ic</sub></i>) (&gt;= 0).
+ *                            It is a type-dependent parameter.
  * @param WindTurbineType4IEC [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Wind turbine type 4 model with which this wind generator type 3A model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType3aIEC
 (
@@ -3043,8 +3162,8 @@ final case class WindGenType3aIEC
     tic: Double = 0.0,
     WindTurbineType4IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3070,19 +3189,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindGenType3aIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindGenType3aIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenType3aIEC.fields (position), value)
+
         emitelem (0, kpc)
         emitelem (1, tic)
         emitattr (2, WindTurbineType4IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindGenType3aIEC rdf:ID=\"%s\">\n%s\t</cim:WindGenType3aIEC>".format (id, export_fields)
@@ -3090,10 +3216,10 @@ extends
 }
 
 object WindGenType3aIEC
-extends
-    CIMParseable[WindGenType3aIEC]
+    extends
+        CIMParseable[WindGenType3aIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kpc",
         "tic",
         "WindTurbineType4IEC"
@@ -3101,14 +3227,14 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindTurbineType4IEC", "WindTurbineType4IEC", "0..1", "0..1")
     )
-    val kpc: Fielder = parse_element (element (cls, fields(0)))
-    val tic: Fielder = parse_element (element (cls, fields(1)))
-    val WindTurbineType4IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val kpc: Fielder = parse_element (element (cls, fields (0)))
+    val tic: Fielder = parse_element (element (cls, fields (1)))
+    val WindTurbineType4IEC: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): WindGenType3aIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindGenType3aIEC (
             WindGenType3IEC.parse (context),
             toDouble (mask (kpc (), 0)),
@@ -3139,7 +3265,7 @@ object WindGenType3aIECSerializer extends CIMSerializer[WindGenType3aIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindGenType3aIEC]): WindGenType3aIEC =
     {
-        val parent = WindGenType3IECSerializer.read (kryo, input, classOf[WindGenType3IEC])
+        val parent = WindGenType3IECSerializer.read (kryo, input, classOf [WindGenType3IEC])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindGenType3aIEC (
             parent,
@@ -3157,24 +3283,24 @@ object WindGenType3aIECSerializer extends CIMSerializer[WindGenType3aIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.3.3.
  *
- * @param WindGenType3IEC [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
- * @param mwtcwp Crowbar control mode (<i>M</i><i><sub>WTcwp</sub></i>).
- *        It is a case-dependent parameter.
- *        true = 1 in the IEC model
- *        false = 0 in the IEC model.
- * @param tg Current generation time constant (<i>T</i><i><sub>g</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param two Time constant for crowbar washout filter (<i>T</i><i><sub>wo</sub></i>) (&gt;= 0).
- *        It is a case-dependent parameter.
+ * @param WindGenType3IEC         [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
+ * @param mwtcwp                  Crowbar control mode (<i>M</i><i><sub>WTcwp</sub></i>).
+ *                                It is a case-dependent parameter.
+ *                                true = 1 in the IEC model
+ *                                false = 0 in the IEC model.
+ * @param tg                      Current generation time constant (<i>T</i><i><sub>g</sub></i>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
+ * @param two                     Time constant for crowbar washout filter (<i>T</i><i><sub>wo</sub></i>) (&gt;= 0).
+ *                                It is a case-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this generator type 3B model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType3bIEC
 (
@@ -3184,8 +3310,8 @@ final case class WindGenType3bIEC
     two: Double = 0.0,
     WindDynamicsLookupTable: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3211,20 +3337,27 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindGenType3bIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindGenType3bIEC.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindGenType3bIEC.fields (position), x))
+
         emitelem (0, mwtcwp)
         emitelem (1, tg)
         emitelem (2, two)
         emitattrs (3, WindDynamicsLookupTable)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindGenType3bIEC rdf:ID=\"%s\">\n%s\t</cim:WindGenType3bIEC>".format (id, export_fields)
@@ -3232,10 +3365,10 @@ extends
 }
 
 object WindGenType3bIEC
-extends
-    CIMParseable[WindGenType3bIEC]
+    extends
+        CIMParseable[WindGenType3bIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "mwtcwp",
         "tg",
         "two",
@@ -3244,15 +3377,15 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1")
     )
-    val mwtcwp: Fielder = parse_element (element (cls, fields(0)))
-    val tg: Fielder = parse_element (element (cls, fields(1)))
-    val two: Fielder = parse_element (element (cls, fields(2)))
-    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val mwtcwp: Fielder = parse_element (element (cls, fields (0)))
+    val tg: Fielder = parse_element (element (cls, fields (1)))
+    val two: Fielder = parse_element (element (cls, fields (2)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): WindGenType3bIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindGenType3bIEC (
             WindGenType3IEC.parse (context),
             toBoolean (mask (mwtcwp (), 0)),
@@ -3285,7 +3418,7 @@ object WindGenType3bIECSerializer extends CIMSerializer[WindGenType3bIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindGenType3bIEC]): WindGenType3bIEC =
     {
-        val parent = WindGenType3IECSerializer.read (kryo, input, classOf[WindGenType3IEC])
+        val parent = WindGenType3IECSerializer.read (kryo, input, classOf [WindGenType3IEC])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindGenType3bIEC (
             parent,
@@ -3304,25 +3437,25 @@ object WindGenType3bIECSerializer extends CIMSerializer[WindGenType3bIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.3.4.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dipmax Maximum active current ramp rate (<i>di</i><i><sub>pmax</sub></i>).
- *        It is a project-dependent parameter.
- * @param diqmax Maximum reactive current ramp rate (<i>di</i><i><sub>qmax</sub></i>).
- *        It is a project-dependent parameter.
- * @param diqmin Minimum reactive current ramp rate (<i>di</i><i><sub>qmin</sub></i>).
- *        It is a project-dependent parameter.
- * @param tg Time constant (<i>T</i><i><sub>g</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject     [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dipmax               Maximum active current ramp rate (<i>di</i><i><sub>pmax</sub></i>).
+ *                             It is a project-dependent parameter.
+ * @param diqmax               Maximum reactive current ramp rate (<i>di</i><i><sub>qmax</sub></i>).
+ *                             It is a project-dependent parameter.
+ * @param diqmin               Minimum reactive current ramp rate (<i>di</i><i><sub>qmin</sub></i>).
+ *                             It is a project-dependent parameter.
+ * @param tg                   Time constant (<i>T</i><i><sub>g</sub></i>) (&gt;= 0).
+ *                             It is a type-dependent parameter.
  * @param WindTurbineType4aIEC [[ch.ninecode.model.WindTurbineType4aIEC WindTurbineType4aIEC]] Wind turbine type 4A model with which this wind generator type 4 model is associated.
  * @param WindTurbineType4bIEC [[ch.ninecode.model.WindTurbineType4bIEC WindTurbineType4bIEC]] Wind turbine type 4B model with which this wind generator type 4 model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindGenType4IEC
 (
@@ -3334,8 +3467,8 @@ final case class WindGenType4IEC
     WindTurbineType4aIEC: String = null,
     WindTurbineType4bIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3361,14 +3494,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindGenType4IEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindGenType4IEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenType4IEC.fields (position), value)
+
         emitelem (0, dipmax)
         emitelem (1, diqmax)
         emitelem (2, diqmin)
@@ -3377,6 +3516,7 @@ extends
         emitattr (5, WindTurbineType4bIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindGenType4IEC rdf:ID=\"%s\">\n%s\t</cim:WindGenType4IEC>".format (id, export_fields)
@@ -3384,10 +3524,10 @@ extends
 }
 
 object WindGenType4IEC
-extends
-    CIMParseable[WindGenType4IEC]
+    extends
+        CIMParseable[WindGenType4IEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dipmax",
         "diqmax",
         "diqmin",
@@ -3399,17 +3539,17 @@ extends
         CIMRelationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", "0..1", "0..1"),
         CIMRelationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "0..1")
     )
-    val dipmax: Fielder = parse_element (element (cls, fields(0)))
-    val diqmax: Fielder = parse_element (element (cls, fields(1)))
-    val diqmin: Fielder = parse_element (element (cls, fields(2)))
-    val tg: Fielder = parse_element (element (cls, fields(3)))
-    val WindTurbineType4aIEC: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val dipmax: Fielder = parse_element (element (cls, fields (0)))
+    val diqmax: Fielder = parse_element (element (cls, fields (1)))
+    val diqmin: Fielder = parse_element (element (cls, fields (2)))
+    val tg: Fielder = parse_element (element (cls, fields (3)))
+    val WindTurbineType4aIEC: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields (5)))
 
     def parse (context: CIMContext): WindGenType4IEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindGenType4IEC (
             IdentifiedObject.parse (context),
             toDouble (mask (dipmax (), 0)),
@@ -3446,7 +3586,7 @@ object WindGenType4IECSerializer extends CIMSerializer[WindGenType4IEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindGenType4IEC]): WindGenType4IEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindGenType4IEC (
             parent,
@@ -3467,26 +3607,26 @@ object WindGenType4IECSerializer extends CIMSerializer[WindGenType4IEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.2.1.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param cdrt Drive train damping (<i>c</i><i><sub>drt</sub></i><i>)</i>.
- *        It is a type-dependent parameter.
- * @param hgen Inertia constant of generator (<i>H</i><i><sub>gen</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param hwtr Inertia constant of wind turbine rotor (<i>H</i><i><sub>WTR</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param kdrt Drive train stiffness (<i>k</i><i><sub>drt</sub></i>).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject       [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param cdrt                   Drive train damping (<i>c</i><i><sub>drt</sub></i><i>)</i>.
+ *                               It is a type-dependent parameter.
+ * @param hgen                   Inertia constant of generator (<i>H</i><i><sub>gen</sub></i>) (&gt;= 0).
+ *                               It is a type-dependent parameter.
+ * @param hwtr                   Inertia constant of wind turbine rotor (<i>H</i><i><sub>WTR</sub></i>) (&gt;= 0).
+ *                               It is a type-dependent parameter.
+ * @param kdrt                   Drive train stiffness (<i>k</i><i><sub>drt</sub></i>).
+ *                               It is a type-dependent parameter.
  * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Wind generator type 1 or type 2 model with which this wind mechanical model is associated.
- * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind mechanical model is associated.
- * @param WindTurbineType4bIEC [[ch.ninecode.model.WindTurbineType4bIEC WindTurbineType4bIEC]] Wind turbine type 4B model with which this wind mechanical model is associated.
+ * @param WindTurbineType3IEC    [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind mechanical model is associated.
+ * @param WindTurbineType4bIEC   [[ch.ninecode.model.WindTurbineType4bIEC WindTurbineType4bIEC]] Wind turbine type 4B model with which this wind mechanical model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindMechIEC
 (
@@ -3499,8 +3639,8 @@ final case class WindMechIEC
     WindTurbineType3IEC: String = null,
     WindTurbineType4bIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3526,14 +3666,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindMechIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindMechIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindMechIEC.fields (position), value)
+
         emitelem (0, cdrt)
         emitelem (1, hgen)
         emitelem (2, hwtr)
@@ -3543,6 +3689,7 @@ extends
         emitattr (6, WindTurbineType4bIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindMechIEC rdf:ID=\"%s\">\n%s\t</cim:WindMechIEC>".format (id, export_fields)
@@ -3550,10 +3697,10 @@ extends
 }
 
 object WindMechIEC
-extends
-    CIMParseable[WindMechIEC]
+    extends
+        CIMParseable[WindMechIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "cdrt",
         "hgen",
         "hwtr",
@@ -3567,18 +3714,18 @@ extends
         CIMRelationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "1"),
         CIMRelationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "1")
     )
-    val cdrt: Fielder = parse_element (element (cls, fields(0)))
-    val hgen: Fielder = parse_element (element (cls, fields(1)))
-    val hwtr: Fielder = parse_element (element (cls, fields(2)))
-    val kdrt: Fielder = parse_element (element (cls, fields(3)))
-    val WindTurbineType1or2IEC: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val cdrt: Fielder = parse_element (element (cls, fields (0)))
+    val hgen: Fielder = parse_element (element (cls, fields (1)))
+    val hwtr: Fielder = parse_element (element (cls, fields (2)))
+    val kdrt: Fielder = parse_element (element (cls, fields (3)))
+    val WindTurbineType1or2IEC: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields (6)))
 
     def parse (context: CIMContext): WindMechIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindMechIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (cdrt (), 0)),
@@ -3617,7 +3764,7 @@ object WindMechIECSerializer extends CIMSerializer[WindMechIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindMechIEC]): WindMechIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindMechIEC (
             parent,
@@ -3639,32 +3786,32 @@ object WindMechIECSerializer extends CIMSerializer[WindMechIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.5.1.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dpmax Rate limit for increasing power (<i>dp</i><i><sub>max</sub></i>) (&gt; WindPitchContPowerIEC.dpmin).
- *        It is a type-dependent parameter.
- * @param dpmin Rate limit for decreasing power (<i>dp</i><i><sub>min</sub></i>) (&lt; WindPitchContPowerIEC.dpmax).
- *        It is a type-dependent parameter.
- * @param pmin Minimum power setting (<i>p</i><i><sub>min</sub></i>).
- *        It is a type-dependent parameter.
- * @param pset If <i>p</i><i><sub>init</sub></i><sub> </sub>&lt; <i>p</i><i><sub>set</sub></i><sub> </sub>then power will be ramped down to <i>p</i><i><sub>min</sub></i>.
- *        It is (<i>p</i><i><sub>set</sub></i>) in the IEC 61400-27-1:2015. It is a type-dependent parameter.
- * @param t1 Lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param tr Voltage measurement time constant (<i>T</i><i><sub>r</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param uuvrt Dip detection threshold (<i>u</i><i><sub>UVRT</sub></i>).
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject        [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dpmax                   Rate limit for increasing power (<i>dp</i><i><sub>max</sub></i>) (&gt; WindPitchContPowerIEC.dpmin).
+ *                                It is a type-dependent parameter.
+ * @param dpmin                   Rate limit for decreasing power (<i>dp</i><i><sub>min</sub></i>) (&lt; WindPitchContPowerIEC.dpmax).
+ *                                It is a type-dependent parameter.
+ * @param pmin                    Minimum power setting (<i>p</i><i><sub>min</sub></i>).
+ *                                It is a type-dependent parameter.
+ * @param pset                    If <i>p</i><i><sub>init</sub></i><sub> </sub>&lt; <i>p</i><i><sub>set</sub></i><sub> </sub>then power will be ramped down to <i>p</i><i><sub>min</sub></i>.
+ *                                It is (<i>p</i><i><sub>set</sub></i>) in the IEC 61400-27-1:2015. It is a type-dependent parameter.
+ * @param t1                      Lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
+ * @param tr                      Voltage measurement time constant (<i>T</i><i><sub>r</sub></i>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
+ * @param uuvrt                   Dip detection threshold (<i>u</i><i><sub>UVRT</sub></i>).
+ *                                It is a type-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this pitch control power model.
  * @param WindGenTurbineType1bIEC [[ch.ninecode.model.WindGenTurbineType1bIEC WindGenTurbineType1bIEC]] Wind turbine type 1B model with which this pitch control power model is associated.
- * @param WindGenTurbineType2IEC [[ch.ninecode.model.WindGenTurbineType2IEC WindGenTurbineType2IEC]] Wind turbine type 2 model with which this pitch control power model is associated.
+ * @param WindGenTurbineType2IEC  [[ch.ninecode.model.WindGenTurbineType2IEC WindGenTurbineType2IEC]] Wind turbine type 2 model with which this pitch control power model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPitchContPowerIEC
 (
@@ -3680,8 +3827,8 @@ final case class WindPitchContPowerIEC
     WindGenTurbineType1bIEC: String = null,
     WindGenTurbineType2IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3707,15 +3854,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindPitchContPowerIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPitchContPowerIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPitchContPowerIEC.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindPitchContPowerIEC.fields (position), x))
+
         emitelem (0, dpmax)
         emitelem (1, dpmin)
         emitelem (2, pmin)
@@ -3728,6 +3882,7 @@ extends
         emitattr (9, WindGenTurbineType2IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindPitchContPowerIEC rdf:ID=\"%s\">\n%s\t</cim:WindPitchContPowerIEC>".format (id, export_fields)
@@ -3735,10 +3890,10 @@ extends
 }
 
 object WindPitchContPowerIEC
-extends
-    CIMParseable[WindPitchContPowerIEC]
+    extends
+        CIMParseable[WindPitchContPowerIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dpmax",
         "dpmin",
         "pmin",
@@ -3755,21 +3910,21 @@ extends
         CIMRelationship ("WindGenTurbineType1bIEC", "WindGenTurbineType1bIEC", "0..1", "1"),
         CIMRelationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "0..1", "1")
     )
-    val dpmax: Fielder = parse_element (element (cls, fields(0)))
-    val dpmin: Fielder = parse_element (element (cls, fields(1)))
-    val pmin: Fielder = parse_element (element (cls, fields(2)))
-    val pset: Fielder = parse_element (element (cls, fields(3)))
-    val t1: Fielder = parse_element (element (cls, fields(4)))
-    val tr: Fielder = parse_element (element (cls, fields(5)))
-    val uuvrt: Fielder = parse_element (element (cls, fields(6)))
-    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val WindGenTurbineType1bIEC: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val dpmax: Fielder = parse_element (element (cls, fields (0)))
+    val dpmin: Fielder = parse_element (element (cls, fields (1)))
+    val pmin: Fielder = parse_element (element (cls, fields (2)))
+    val pset: Fielder = parse_element (element (cls, fields (3)))
+    val t1: Fielder = parse_element (element (cls, fields (4)))
+    val tr: Fielder = parse_element (element (cls, fields (5)))
+    val uuvrt: Fielder = parse_element (element (cls, fields (6)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val WindGenTurbineType1bIEC: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields (9)))
 
     def parse (context: CIMContext): WindPitchContPowerIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindPitchContPowerIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (dpmax (), 0)),
@@ -3814,7 +3969,7 @@ object WindPitchContPowerIECSerializer extends CIMSerializer[WindPitchContPowerI
 
     def read (kryo: Kryo, input: Input, cls: Class[WindPitchContPowerIEC]): WindPitchContPowerIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindPitchContPowerIEC (
             parent,
@@ -3837,17 +3992,17 @@ object WindPitchContPowerIECSerializer extends CIMSerializer[WindPitchContPowerI
 /**
  * Parent class supporting relationships to wind turbines type 3 and type 4 and wind plant IEC and user-defined wind plants including their control models.
  *
- * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
- * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] The remote signal with which this power plant is associated.
+ * @param DynamicsFunctionBlock       [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param RemoteInputSignal           [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] The remote signal with which this power plant is associated.
  * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] The wind turbine type 3 or type 4 associated with this wind plant.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantDynamics
 (
@@ -3855,8 +4010,8 @@ final case class WindPlantDynamics
     RemoteInputSignal: String = null,
     WindTurbineType3or4Dynamics: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3882,18 +4037,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindPlantDynamics.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantDynamics.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindPlantDynamics.fields (position), x))
+
         emitattr (0, RemoteInputSignal)
         emitattrs (1, WindTurbineType3or4Dynamics)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindPlantDynamics rdf:ID=\"%s\">\n%s\t</cim:WindPlantDynamics>".format (id, export_fields)
@@ -3901,10 +4063,10 @@ extends
 }
 
 object WindPlantDynamics
-extends
-    CIMParseable[WindPlantDynamics]
+    extends
+        CIMParseable[WindPlantDynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "RemoteInputSignal",
         "WindTurbineType3or4Dynamics"
     )
@@ -3912,13 +4074,13 @@ extends
         CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
         CIMRelationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "1..*", "0..1")
     )
-    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val WindTurbineType3or4Dynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val WindTurbineType3or4Dynamics: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): WindPlantDynamics =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindPlantDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (RemoteInputSignal (), 0),
@@ -3947,7 +4109,7 @@ object WindPlantDynamicsSerializer extends CIMSerializer[WindPlantDynamics]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindPlantDynamics]): WindPlantDynamics =
     {
-        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf [DynamicsFunctionBlock])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindPlantDynamics (
             parent,
@@ -3964,47 +4126,47 @@ object WindPlantDynamicsSerializer extends CIMSerializer[WindPlantDynamics]
  *
  * Reference: IEC 61400-27-1:2015, Annex D.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dprefmax Maximum ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dprefmin).
- *        It is a case-dependent parameter.
- * @param dprefmin Minimum (negative) ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dprefmax).
- *        It is a project-dependent parameter.
- * @param dpwprefmax Maximum positive ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dpwprefmin).
- *        It is a project-dependent parameter.
- * @param dpwprefmin Maximum negative ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dpwprefmax).
- *        It is a project-dependent parameter.
- * @param kiwpp Plant P controller integral gain (<i>K</i><i><sub>IWPp</sub></i>).
- *        It is a project-dependent parameter.
- * @param kiwppmax Maximum PI integrator term (<i>K</i><i><sub>IWPpmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.kiwppmin).
- *        It is a project-dependent parameter.
- * @param kiwppmin Minimum PI integrator term (<i>K</i><i><sub>IWPpmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.kiwppmax).
- *        It is a project-dependent parameter.
- * @param kpwpp Plant P controller proportional gain (<i>K</i><i><sub>PWPp</sub></i>).
- *        It is a project-dependent parameter.
- * @param kwppref Power reference gain (<i>K</i><i><sub>WPpref</sub></i>).
- *        It is a project-dependent parameter.
- * @param prefmax Maximum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.prefmin).
- *        It is a project-dependent parameter.
- * @param prefmin Minimum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.prefmax).
- *        It is a project-dependent parameter.
- * @param tpft Lead time constant in reference value transfer function (<i>T</i><i><sub>pft</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param tpfv Lag time constant in reference value transfer function (<i>T</i><i><sub>pfv</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param twpffiltp Filter time constant for frequency measurement (<i>T</i><i><sub>WPffiltp</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param twppfiltp Filter time constant for active power measurement (<i>T</i><i><sub>WPpfiltp</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
+ * @param IdentifiedObject        [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dprefmax                Maximum ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dprefmin).
+ *                                It is a case-dependent parameter.
+ * @param dprefmin                Minimum (negative) ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dprefmax).
+ *                                It is a project-dependent parameter.
+ * @param dpwprefmax              Maximum positive ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dpwprefmin).
+ *                                It is a project-dependent parameter.
+ * @param dpwprefmin              Maximum negative ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dpwprefmax).
+ *                                It is a project-dependent parameter.
+ * @param kiwpp                   Plant P controller integral gain (<i>K</i><i><sub>IWPp</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param kiwppmax                Maximum PI integrator term (<i>K</i><i><sub>IWPpmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.kiwppmin).
+ *                                It is a project-dependent parameter.
+ * @param kiwppmin                Minimum PI integrator term (<i>K</i><i><sub>IWPpmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.kiwppmax).
+ *                                It is a project-dependent parameter.
+ * @param kpwpp                   Plant P controller proportional gain (<i>K</i><i><sub>PWPp</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param kwppref                 Power reference gain (<i>K</i><i><sub>WPpref</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param prefmax                 Maximum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.prefmin).
+ *                                It is a project-dependent parameter.
+ * @param prefmin                 Minimum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.prefmax).
+ *                                It is a project-dependent parameter.
+ * @param tpft                    Lead time constant in reference value transfer function (<i>T</i><i><sub>pft</sub></i>) (&gt;= 0).
+ *                                It is a project-dependent parameter.
+ * @param tpfv                    Lag time constant in reference value transfer function (<i>T</i><i><sub>pfv</sub></i>) (&gt;= 0).
+ *                                It is a project-dependent parameter.
+ * @param twpffiltp               Filter time constant for frequency measurement (<i>T</i><i><sub>WPffiltp</sub></i>) (&gt;= 0).
+ *                                It is a project-dependent parameter.
+ * @param twppfiltp               Filter time constant for active power measurement (<i>T</i><i><sub>WPpfiltp</sub></i>) (&gt;= 0).
+ *                                It is a project-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this frequency and active power wind plant model.
- * @param WindPlantIEC [[ch.ninecode.model.WindPlantIEC WindPlantIEC]] Wind plant model with which this wind plant frequency and active power control is associated.
+ * @param WindPlantIEC            [[ch.ninecode.model.WindPlantIEC WindPlantIEC]] Wind plant model with which this wind plant frequency and active power control is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantFreqPcontrolIEC
 (
@@ -4027,8 +4189,8 @@ final case class WindPlantFreqPcontrolIEC
     WindDynamicsLookupTable: List[String] = null,
     WindPlantIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4054,15 +4216,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindPlantFreqPcontrolIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantFreqPcontrolIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantFreqPcontrolIEC.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindPlantFreqPcontrolIEC.fields (position), x))
+
         emitelem (0, dprefmax)
         emitelem (1, dprefmin)
         emitelem (2, dpwprefmax)
@@ -4082,6 +4251,7 @@ extends
         emitattr (16, WindPlantIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindPlantFreqPcontrolIEC rdf:ID=\"%s\">\n%s\t</cim:WindPlantFreqPcontrolIEC>".format (id, export_fields)
@@ -4089,10 +4259,10 @@ extends
 }
 
 object WindPlantFreqPcontrolIEC
-extends
-    CIMParseable[WindPlantFreqPcontrolIEC]
+    extends
+        CIMParseable[WindPlantFreqPcontrolIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dprefmax",
         "dprefmin",
         "dpwprefmax",
@@ -4115,28 +4285,28 @@ extends
         CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
         CIMRelationship ("WindPlantIEC", "WindPlantIEC", "1", "1")
     )
-    val dprefmax: Fielder = parse_element (element (cls, fields(0)))
-    val dprefmin: Fielder = parse_element (element (cls, fields(1)))
-    val dpwprefmax: Fielder = parse_element (element (cls, fields(2)))
-    val dpwprefmin: Fielder = parse_element (element (cls, fields(3)))
-    val kiwpp: Fielder = parse_element (element (cls, fields(4)))
-    val kiwppmax: Fielder = parse_element (element (cls, fields(5)))
-    val kiwppmin: Fielder = parse_element (element (cls, fields(6)))
-    val kpwpp: Fielder = parse_element (element (cls, fields(7)))
-    val kwppref: Fielder = parse_element (element (cls, fields(8)))
-    val prefmax: Fielder = parse_element (element (cls, fields(9)))
-    val prefmin: Fielder = parse_element (element (cls, fields(10)))
-    val tpft: Fielder = parse_element (element (cls, fields(11)))
-    val tpfv: Fielder = parse_element (element (cls, fields(12)))
-    val twpffiltp: Fielder = parse_element (element (cls, fields(13)))
-    val twppfiltp: Fielder = parse_element (element (cls, fields(14)))
-    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
-    val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields(16)))
+    val dprefmax: Fielder = parse_element (element (cls, fields (0)))
+    val dprefmin: Fielder = parse_element (element (cls, fields (1)))
+    val dpwprefmax: Fielder = parse_element (element (cls, fields (2)))
+    val dpwprefmin: Fielder = parse_element (element (cls, fields (3)))
+    val kiwpp: Fielder = parse_element (element (cls, fields (4)))
+    val kiwppmax: Fielder = parse_element (element (cls, fields (5)))
+    val kiwppmin: Fielder = parse_element (element (cls, fields (6)))
+    val kpwpp: Fielder = parse_element (element (cls, fields (7)))
+    val kwppref: Fielder = parse_element (element (cls, fields (8)))
+    val prefmax: Fielder = parse_element (element (cls, fields (9)))
+    val prefmin: Fielder = parse_element (element (cls, fields (10)))
+    val tpft: Fielder = parse_element (element (cls, fields (11)))
+    val tpfv: Fielder = parse_element (element (cls, fields (12)))
+    val twpffiltp: Fielder = parse_element (element (cls, fields (13)))
+    val twppfiltp: Fielder = parse_element (element (cls, fields (14)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields (15)))
+    val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields (16)))
 
     def parse (context: CIMContext): WindPlantFreqPcontrolIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindPlantFreqPcontrolIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (dprefmax (), 0)),
@@ -4195,7 +4365,7 @@ object WindPlantFreqPcontrolIECSerializer extends CIMSerializer[WindPlantFreqPco
 
     def read (kryo: Kryo, input: Input, cls: Class[WindPlantFreqPcontrolIEC]): WindPlantFreqPcontrolIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindPlantFreqPcontrolIEC (
             parent,
@@ -4227,17 +4397,17 @@ object WindPlantFreqPcontrolIECSerializer extends CIMSerializer[WindPlantFreqPco
  *
  * Reference: IEC 61400-27-1:2015, Annex D.
  *
- * @param WindPlantDynamics [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] Reference to the superclass object.
- * @param WindPlantFreqPcontrolIEC [[ch.ninecode.model.WindPlantFreqPcontrolIEC WindPlantFreqPcontrolIEC]] Wind plant frequency and active power control model associated with this wind plant.
+ * @param WindPlantDynamics           [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] Reference to the superclass object.
+ * @param WindPlantFreqPcontrolIEC    [[ch.ninecode.model.WindPlantFreqPcontrolIEC WindPlantFreqPcontrolIEC]] Wind plant frequency and active power control model associated with this wind plant.
  * @param WindPlantReactiveControlIEC [[ch.ninecode.model.WindPlantReactiveControlIEC WindPlantReactiveControlIEC]] Wind plant model with which this wind reactive control is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantIEC
 (
@@ -4245,8 +4415,8 @@ final case class WindPlantIEC
     WindPlantFreqPcontrolIEC: String = null,
     WindPlantReactiveControlIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4272,17 +4442,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindPlantIEC.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantIEC.fields (position), value)
+
         emitattr (0, WindPlantFreqPcontrolIEC)
         emitattr (1, WindPlantReactiveControlIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindPlantIEC rdf:ID=\"%s\">\n%s\t</cim:WindPlantIEC>".format (id, export_fields)
@@ -4290,10 +4466,10 @@ extends
 }
 
 object WindPlantIEC
-extends
-    CIMParseable[WindPlantIEC]
+    extends
+        CIMParseable[WindPlantIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "WindPlantFreqPcontrolIEC",
         "WindPlantReactiveControlIEC"
     )
@@ -4301,13 +4477,13 @@ extends
         CIMRelationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", "1", "1"),
         CIMRelationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "1", "1")
     )
-    val WindPlantFreqPcontrolIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val WindPlantReactiveControlIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val WindPlantFreqPcontrolIEC: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val WindPlantReactiveControlIEC: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): WindPlantIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindPlantIEC (
             WindPlantDynamics.parse (context),
             mask (WindPlantFreqPcontrolIEC (), 0),
@@ -4336,7 +4512,7 @@ object WindPlantIECSerializer extends CIMSerializer[WindPlantIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindPlantIEC]): WindPlantIEC =
     {
-        val parent = WindPlantDynamicsSerializer.read (kryo, input, classOf[WindPlantDynamics])
+        val parent = WindPlantDynamicsSerializer.read (kryo, input, classOf [WindPlantDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindPlantIEC (
             parent,
@@ -4353,53 +4529,53 @@ object WindPlantIECSerializer extends CIMSerializer[WindPlantIEC]
  *
  * Reference: IEC 61400-27-1:2015, Annex D.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dxrefmax Maximum positive ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><i><sub>refmax</sub></i>) (&gt; WindPlantReactiveControlIEC.dxrefmin).
- *        It is a project-dependent parameter.
- * @param dxrefmin Maximum negative ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><i><sub>refmin</sub></i>) (&lt; WindPlantReactiveControlIEC.dxrefmax).
- *        It is a project-dependent parameter.
- * @param kiwpx Plant Q controller integral gain (<i>K</i><i><sub>IWPx</sub></i>).
- *        It is a project-dependent parameter.
- * @param kiwpxmax Maximum reactive power/voltage reference from integration (<i>K</i><i><sub>IWPxmax</sub></i>) (&gt; WindPlantReactiveControlIEC.kiwpxmin).
- *        It is a project-dependent parameter.
- * @param kiwpxmin Minimum reactive power/voltage reference from integration (<i>K</i><i><sub>IWPxmin</sub></i>) (&lt; WindPlantReactiveControlIEC.kiwpxmax).
- *        It is a project-dependent parameter.
- * @param kpwpx Plant Q controller proportional gain (<i>K</i><i><sub>PWPx</sub></i>).
- *        It is a project-dependent parameter.
- * @param kwpqref Reactive power reference gain (<i>K</i><i><sub>WPqref</sub></i>).
- *        It is a project-dependent parameter.
- * @param kwpqu Plant voltage control droop (<i>K</i><i><sub>WPqu</sub></i>).
- *        It is a project-dependent parameter.
- * @param tuqfilt Filter time constant for voltage-dependent reactive power (<i>T</i><i><sub>uqfilt</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param twppfiltq Filter time constant for active power measurement (<i>T</i><i><sub>WPpfiltq</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param twpqfiltq Filter time constant for reactive power measurement (<i>T</i><i><sub>WPqfiltq</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param twpufiltq Filter time constant for voltage measurement (<i>T</i><i><sub>WPufiltq</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param txft Lead time constant in reference value transfer function (<i>T</i><i><sub>xft</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param txfv Lag time constant in reference value transfer function (<i>T</i><i><sub>xfv</sub></i>) (&gt;= 0).
- *        It is a project-dependent parameter.
- * @param uwpqdip Voltage threshold for UVRT detection in Q control (<i>u</i><i><sub>WPqdip</sub></i>).
- *        It is a project-dependent parameter.
+ * @param IdentifiedObject           [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dxrefmax                   Maximum positive ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><i><sub>refmax</sub></i>) (&gt; WindPlantReactiveControlIEC.dxrefmin).
+ *                                   It is a project-dependent parameter.
+ * @param dxrefmin                   Maximum negative ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><i><sub>refmin</sub></i>) (&lt; WindPlantReactiveControlIEC.dxrefmax).
+ *                                   It is a project-dependent parameter.
+ * @param kiwpx                      Plant Q controller integral gain (<i>K</i><i><sub>IWPx</sub></i>).
+ *                                   It is a project-dependent parameter.
+ * @param kiwpxmax                   Maximum reactive power/voltage reference from integration (<i>K</i><i><sub>IWPxmax</sub></i>) (&gt; WindPlantReactiveControlIEC.kiwpxmin).
+ *                                   It is a project-dependent parameter.
+ * @param kiwpxmin                   Minimum reactive power/voltage reference from integration (<i>K</i><i><sub>IWPxmin</sub></i>) (&lt; WindPlantReactiveControlIEC.kiwpxmax).
+ *                                   It is a project-dependent parameter.
+ * @param kpwpx                      Plant Q controller proportional gain (<i>K</i><i><sub>PWPx</sub></i>).
+ *                                   It is a project-dependent parameter.
+ * @param kwpqref                    Reactive power reference gain (<i>K</i><i><sub>WPqref</sub></i>).
+ *                                   It is a project-dependent parameter.
+ * @param kwpqu                      Plant voltage control droop (<i>K</i><i><sub>WPqu</sub></i>).
+ *                                   It is a project-dependent parameter.
+ * @param tuqfilt                    Filter time constant for voltage-dependent reactive power (<i>T</i><i><sub>uqfilt</sub></i>) (&gt;= 0).
+ *                                   It is a project-dependent parameter.
+ * @param twppfiltq                  Filter time constant for active power measurement (<i>T</i><i><sub>WPpfiltq</sub></i>) (&gt;= 0).
+ *                                   It is a project-dependent parameter.
+ * @param twpqfiltq                  Filter time constant for reactive power measurement (<i>T</i><i><sub>WPqfiltq</sub></i>) (&gt;= 0).
+ *                                   It is a project-dependent parameter.
+ * @param twpufiltq                  Filter time constant for voltage measurement (<i>T</i><i><sub>WPufiltq</sub></i>) (&gt;= 0).
+ *                                   It is a project-dependent parameter.
+ * @param txft                       Lead time constant in reference value transfer function (<i>T</i><i><sub>xft</sub></i>) (&gt;= 0).
+ *                                   It is a project-dependent parameter.
+ * @param txfv                       Lag time constant in reference value transfer function (<i>T</i><i><sub>xfv</sub></i>) (&gt;= 0).
+ *                                   It is a project-dependent parameter.
+ * @param uwpqdip                    Voltage threshold for UVRT detection in Q control (<i>u</i><i><sub>WPqdip</sub></i>).
+ *                                   It is a project-dependent parameter.
  * @param windPlantQcontrolModesType Reactive power/voltage controller mode (<i>M</i><i><sub>WPqmode</sub></i>).
- *        It is a case-dependent parameter.
- * @param xrefmax Maximum <i>x</i><sub>WTref</sub> (<i>q</i><i><sub>WTref</sub></i> or delta<i> u</i><i><sub>WTref</sub></i>) request from the plant controller (<i>x</i><i><sub>refmax</sub></i>) (&gt; WindPlantReactiveControlIEC.xrefmin).
- *        It is a case-dependent parameter.
- * @param xrefmin Minimum <i>x</i><i><sub>WTref</sub></i> (<i>q</i><i><sub>WTref</sub></i> or delta <i>u</i><i><sub>WTref</sub></i>) request from the plant controller (<i>x</i><i><sub>refmin</sub></i>) (&lt; WindPlantReactiveControlIEC.xrefmax).
- *        It is a project-dependent parameter.
- * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this voltage and reactive power wind plant model.
- * @param WindPlantIEC [[ch.ninecode.model.WindPlantIEC WindPlantIEC]] Wind plant reactive control model associated with this wind plant.
+ *                                   It is a case-dependent parameter.
+ * @param xrefmax                    Maximum <i>x</i><sub>WTref</sub> (<i>q</i><i><sub>WTref</sub></i> or delta<i> u</i><i><sub>WTref</sub></i>) request from the plant controller (<i>x</i><i><sub>refmax</sub></i>) (&gt; WindPlantReactiveControlIEC.xrefmin).
+ *                                   It is a case-dependent parameter.
+ * @param xrefmin                    Minimum <i>x</i><i><sub>WTref</sub></i> (<i>q</i><i><sub>WTref</sub></i> or delta <i>u</i><i><sub>WTref</sub></i>) request from the plant controller (<i>x</i><i><sub>refmin</sub></i>) (&lt; WindPlantReactiveControlIEC.xrefmax).
+ *                                   It is a project-dependent parameter.
+ * @param WindDynamicsLookupTable    [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this voltage and reactive power wind plant model.
+ * @param WindPlantIEC               [[ch.ninecode.model.WindPlantIEC WindPlantIEC]] Wind plant reactive control model associated with this wind plant.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindPlantReactiveControlIEC
 (
@@ -4425,8 +4601,8 @@ final case class WindPlantReactiveControlIEC
     WindDynamicsLookupTable: List[String] = null,
     WindPlantIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4452,15 +4628,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindPlantReactiveControlIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantReactiveControlIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantReactiveControlIEC.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindPlantReactiveControlIEC.fields (position), x))
+
         emitelem (0, dxrefmax)
         emitelem (1, dxrefmin)
         emitelem (2, kiwpx)
@@ -4483,6 +4666,7 @@ extends
         emitattr (19, WindPlantIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindPlantReactiveControlIEC rdf:ID=\"%s\">\n%s\t</cim:WindPlantReactiveControlIEC>".format (id, export_fields)
@@ -4490,10 +4674,10 @@ extends
 }
 
 object WindPlantReactiveControlIEC
-extends
-    CIMParseable[WindPlantReactiveControlIEC]
+    extends
+        CIMParseable[WindPlantReactiveControlIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dxrefmax",
         "dxrefmin",
         "kiwpx",
@@ -4519,31 +4703,31 @@ extends
         CIMRelationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
         CIMRelationship ("WindPlantIEC", "WindPlantIEC", "1", "1")
     )
-    val dxrefmax: Fielder = parse_element (element (cls, fields(0)))
-    val dxrefmin: Fielder = parse_element (element (cls, fields(1)))
-    val kiwpx: Fielder = parse_element (element (cls, fields(2)))
-    val kiwpxmax: Fielder = parse_element (element (cls, fields(3)))
-    val kiwpxmin: Fielder = parse_element (element (cls, fields(4)))
-    val kpwpx: Fielder = parse_element (element (cls, fields(5)))
-    val kwpqref: Fielder = parse_element (element (cls, fields(6)))
-    val kwpqu: Fielder = parse_element (element (cls, fields(7)))
-    val tuqfilt: Fielder = parse_element (element (cls, fields(8)))
-    val twppfiltq: Fielder = parse_element (element (cls, fields(9)))
-    val twpqfiltq: Fielder = parse_element (element (cls, fields(10)))
-    val twpufiltq: Fielder = parse_element (element (cls, fields(11)))
-    val txft: Fielder = parse_element (element (cls, fields(12)))
-    val txfv: Fielder = parse_element (element (cls, fields(13)))
-    val uwpqdip: Fielder = parse_element (element (cls, fields(14)))
-    val windPlantQcontrolModesType: Fielder = parse_attribute (attribute (cls, fields(15)))
-    val xrefmax: Fielder = parse_element (element (cls, fields(16)))
-    val xrefmin: Fielder = parse_element (element (cls, fields(17)))
-    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
-    val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields(19)))
+    val dxrefmax: Fielder = parse_element (element (cls, fields (0)))
+    val dxrefmin: Fielder = parse_element (element (cls, fields (1)))
+    val kiwpx: Fielder = parse_element (element (cls, fields (2)))
+    val kiwpxmax: Fielder = parse_element (element (cls, fields (3)))
+    val kiwpxmin: Fielder = parse_element (element (cls, fields (4)))
+    val kpwpx: Fielder = parse_element (element (cls, fields (5)))
+    val kwpqref: Fielder = parse_element (element (cls, fields (6)))
+    val kwpqu: Fielder = parse_element (element (cls, fields (7)))
+    val tuqfilt: Fielder = parse_element (element (cls, fields (8)))
+    val twppfiltq: Fielder = parse_element (element (cls, fields (9)))
+    val twpqfiltq: Fielder = parse_element (element (cls, fields (10)))
+    val twpufiltq: Fielder = parse_element (element (cls, fields (11)))
+    val txft: Fielder = parse_element (element (cls, fields (12)))
+    val txfv: Fielder = parse_element (element (cls, fields (13)))
+    val uwpqdip: Fielder = parse_element (element (cls, fields (14)))
+    val windPlantQcontrolModesType: Fielder = parse_attribute (attribute (cls, fields (15)))
+    val xrefmax: Fielder = parse_element (element (cls, fields (16)))
+    val xrefmin: Fielder = parse_element (element (cls, fields (17)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields (18)))
+    val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields (19)))
 
     def parse (context: CIMContext): WindPlantReactiveControlIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindPlantReactiveControlIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (dxrefmax (), 0)),
@@ -4608,7 +4792,7 @@ object WindPlantReactiveControlIECSerializer extends CIMSerializer[WindPlantReac
 
     def read (kryo: Kryo, input: Input, cls: Class[WindPlantReactiveControlIEC]): WindPlantReactiveControlIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindPlantReactiveControlIEC (
             parent,
@@ -4643,34 +4827,34 @@ object WindPlantReactiveControlIECSerializer extends CIMSerializer[WindPlantReac
  *
  * Reference: IEC 61400-27-1:2015, 5.6.6.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dfimax Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).
- *        It is a type-dependent parameter.
- * @param fover Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
- *        It is a project-dependent parameter.
- * @param funder Wind turbine under frequency protection activation threshold (<i>f</i><i><sub>under</sub></i>).
- *        It is a project-dependent parameter.
- * @param mzc Zero crossing measurement mode (<i>Mzc</i>).
- *        It is a type-dependent parameter.
- *        true = WT protection system uses zero crossings to detect frequency (1 in the IEC model)
- *        false = WT protection system does not use zero crossings to detect frequency (0 in the IEC model).
- * @param tfma Time interval of moving average window (<i>TfMA</i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param uover Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
- *        It is a project-dependent parameter.
- * @param uunder Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
- *        It is a project-dependent parameter.
+ * @param IdentifiedObject        [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dfimax                  Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).
+ *                                It is a type-dependent parameter.
+ * @param fover                   Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param funder                  Wind turbine under frequency protection activation threshold (<i>f</i><i><sub>under</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param mzc                     Zero crossing measurement mode (<i>Mzc</i>).
+ *                                It is a type-dependent parameter.
+ *                                true = WT protection system uses zero crossings to detect frequency (1 in the IEC model)
+ *                                false = WT protection system does not use zero crossings to detect frequency (0 in the IEC model).
+ * @param tfma                    Time interval of moving average window (<i>TfMA</i>) (&gt;= 0).
+ *                                It is a type-dependent parameter.
+ * @param uover                   Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
+ *                                It is a project-dependent parameter.
+ * @param uunder                  Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
+ *                                It is a project-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this grid protection model.
- * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Wind generator type 1 or type 2 model with which this wind turbine protection model is associated.
- * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or type 4 model with which this wind turbine protection model is associated.
+ * @param WindTurbineType1or2IEC  [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Wind generator type 1 or type 2 model with which this wind turbine protection model is associated.
+ * @param WindTurbineType3or4IEC  [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or type 4 model with which this wind turbine protection model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindProtectionIEC
 (
@@ -4686,8 +4870,8 @@ final case class WindProtectionIEC
     WindTurbineType1or2IEC: String = null,
     WindTurbineType3or4IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4713,15 +4897,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindProtectionIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindProtectionIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindProtectionIEC.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WindProtectionIEC.fields (position), x))
+
         emitelem (0, dfimax)
         emitelem (1, fover)
         emitelem (2, funder)
@@ -4734,6 +4925,7 @@ extends
         emitattr (9, WindTurbineType3or4IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindProtectionIEC rdf:ID=\"%s\">\n%s\t</cim:WindProtectionIEC>".format (id, export_fields)
@@ -4741,10 +4933,10 @@ extends
 }
 
 object WindProtectionIEC
-extends
-    CIMParseable[WindProtectionIEC]
+    extends
+        CIMParseable[WindProtectionIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dfimax",
         "fover",
         "funder",
@@ -4761,21 +4953,21 @@ extends
         CIMRelationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", "0..1", "1"),
         CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "1")
     )
-    val dfimax: Fielder = parse_element (element (cls, fields(0)))
-    val fover: Fielder = parse_element (element (cls, fields(1)))
-    val funder: Fielder = parse_element (element (cls, fields(2)))
-    val mzc: Fielder = parse_element (element (cls, fields(3)))
-    val tfma: Fielder = parse_element (element (cls, fields(4)))
-    val uover: Fielder = parse_element (element (cls, fields(5)))
-    val uunder: Fielder = parse_element (element (cls, fields(6)))
-    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val WindTurbineType1or2IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val dfimax: Fielder = parse_element (element (cls, fields (0)))
+    val fover: Fielder = parse_element (element (cls, fields (1)))
+    val funder: Fielder = parse_element (element (cls, fields (2)))
+    val mzc: Fielder = parse_element (element (cls, fields (3)))
+    val tfma: Fielder = parse_element (element (cls, fields (4)))
+    val uover: Fielder = parse_element (element (cls, fields (5)))
+    val uunder: Fielder = parse_element (element (cls, fields (6)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val WindTurbineType1or2IEC: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields (9)))
 
     def parse (context: CIMContext): WindProtectionIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindProtectionIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (dfimax (), 0)),
@@ -4820,7 +5012,7 @@ object WindProtectionIECSerializer extends CIMSerializer[WindProtectionIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindProtectionIEC]): WindProtectionIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindProtectionIEC (
             parent,
@@ -4845,22 +5037,22 @@ object WindProtectionIECSerializer extends CIMSerializer[WindProtectionIEC]
  *
  * Reference: IEC 61400-27-1:2015, 5.6.3.5.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param tpll Time constant for PLL first order filter model (<i>T</i><i><sub>PLL</sub></i>) (&gt;= 0).
- *        It is a type-dependent parameter.
- * @param upll1 Voltage below which the angle of the voltage is filtered and possibly also frozen (<i>u</i><i><sub>PLL1</sub></i>).
- *        It is a type-dependent parameter.
- * @param upll2 Voltage (<i>u</i><i><sub>PLL2</sub></i>) below which the angle of the voltage is frozen if <i>u</i><i><sub>PLL2</sub></i><sub> </sub>is smaller or equal to <i>u</i><i><sub>PLL1</sub></i> .
- *        It is a type-dependent parameter.
+ * @param IdentifiedObject       [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param tpll                   Time constant for PLL first order filter model (<i>T</i><i><sub>PLL</sub></i>) (&gt;= 0).
+ *                               It is a type-dependent parameter.
+ * @param upll1                  Voltage below which the angle of the voltage is filtered and possibly also frozen (<i>u</i><i><sub>PLL1</sub></i>).
+ *                               It is a type-dependent parameter.
+ * @param upll2                  Voltage (<i>u</i><i><sub>PLL2</sub></i>) below which the angle of the voltage is frozen if <i>u</i><i><sub>PLL2</sub></i><sub> </sub>is smaller or equal to <i>u</i><i><sub>PLL1</sub></i> .
+ *                               It is a type-dependent parameter.
  * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or type 4 model with which this reference frame rotation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindRefFrameRotIEC
 (
@@ -4870,8 +5062,8 @@ final case class WindRefFrameRotIEC
     upll2: Double = 0.0,
     WindTurbineType3or4IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4897,20 +5089,27 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindRefFrameRotIEC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindRefFrameRotIEC.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindRefFrameRotIEC.fields (position), value)
+
         emitelem (0, tpll)
         emitelem (1, upll1)
         emitelem (2, upll2)
         emitattr (3, WindTurbineType3or4IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindRefFrameRotIEC rdf:ID=\"%s\">\n%s\t</cim:WindRefFrameRotIEC>".format (id, export_fields)
@@ -4918,10 +5117,10 @@ extends
 }
 
 object WindRefFrameRotIEC
-extends
-    CIMParseable[WindRefFrameRotIEC]
+    extends
+        CIMParseable[WindRefFrameRotIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "tpll",
         "upll1",
         "upll2",
@@ -4930,15 +5129,15 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
     )
-    val tpll: Fielder = parse_element (element (cls, fields(0)))
-    val upll1: Fielder = parse_element (element (cls, fields(1)))
-    val upll2: Fielder = parse_element (element (cls, fields(2)))
-    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val tpll: Fielder = parse_element (element (cls, fields (0)))
+    val upll1: Fielder = parse_element (element (cls, fields (1)))
+    val upll2: Fielder = parse_element (element (cls, fields (2)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): WindRefFrameRotIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindRefFrameRotIEC (
             IdentifiedObject.parse (context),
             toDouble (mask (tpll (), 0)),
@@ -4971,7 +5170,7 @@ object WindRefFrameRotIECSerializer extends CIMSerializer[WindRefFrameRotIEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindRefFrameRotIEC]): WindRefFrameRotIEC =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindRefFrameRotIEC (
             parent,
@@ -4990,17 +5189,17 @@ object WindRefFrameRotIECSerializer extends CIMSerializer[WindRefFrameRotIEC]
  *
  * Generator model for wind turbine of type 1 or type 2 is a standard asynchronous generator model.
  *
- * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock       [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this wind generator type 1 or type 2 model is associated.
- * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this wind generator type 1 or type 2 model.
+ * @param RemoteInputSignal           [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this wind generator type 1 or type 2 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType1or2Dynamics
 (
@@ -5008,8 +5207,8 @@ final case class WindTurbineType1or2Dynamics
     AsynchronousMachineDynamics: String = null,
     RemoteInputSignal: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5035,17 +5234,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindTurbineType1or2Dynamics.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType1or2Dynamics.fields (position), value)
+
         emitattr (0, AsynchronousMachineDynamics)
         emitattr (1, RemoteInputSignal)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindTurbineType1or2Dynamics rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType1or2Dynamics>".format (id, export_fields)
@@ -5053,10 +5258,10 @@ extends
 }
 
 object WindTurbineType1or2Dynamics
-extends
-    CIMParseable[WindTurbineType1or2Dynamics]
+    extends
+        CIMParseable[WindTurbineType1or2Dynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "AsynchronousMachineDynamics",
         "RemoteInputSignal"
     )
@@ -5064,13 +5269,13 @@ extends
         CIMRelationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "1", "0..1"),
         CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
     )
-    val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): WindTurbineType1or2Dynamics =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindTurbineType1or2Dynamics (
             DynamicsFunctionBlock.parse (context),
             mask (AsynchronousMachineDynamics (), 0),
@@ -5099,7 +5304,7 @@ object WindTurbineType1or2DynamicsSerializer extends CIMSerializer[WindTurbineTy
 
     def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType1or2Dynamics]): WindTurbineType1or2Dynamics =
     {
-        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf [DynamicsFunctionBlock])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindTurbineType1or2Dynamics (
             parent,
@@ -5118,16 +5323,16 @@ object WindTurbineType1or2DynamicsSerializer extends CIMSerializer[WindTurbineTy
  * Reference: IEC 61400-27-1:2015, 5.5.2 and 5.5.3.
  *
  * @param WindTurbineType1or2Dynamics [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Reference to the superclass object.
- * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind generator type 1 or type 2 model.
- * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] Wind turbune protection model associated with this wind generator type 1 or type 2 model.
+ * @param WindMechIEC                 [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind generator type 1 or type 2 model.
+ * @param WindProtectionIEC           [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] Wind turbune protection model associated with this wind generator type 1 or type 2 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType1or2IEC
 (
@@ -5135,8 +5340,8 @@ final case class WindTurbineType1or2IEC
     WindMechIEC: String = null,
     WindProtectionIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5162,17 +5367,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindTurbineType1or2IEC.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType1or2IEC.fields (position), value)
+
         emitattr (0, WindMechIEC)
         emitattr (1, WindProtectionIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindTurbineType1or2IEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType1or2IEC>".format (id, export_fields)
@@ -5180,10 +5391,10 @@ extends
 }
 
 object WindTurbineType1or2IEC
-extends
-    CIMParseable[WindTurbineType1or2IEC]
+    extends
+        CIMParseable[WindTurbineType1or2IEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "WindMechIEC",
         "WindProtectionIEC"
     )
@@ -5191,13 +5402,13 @@ extends
         CIMRelationship ("WindMechIEC", "WindMechIEC", "1", "0..1"),
         CIMRelationship ("WindProtectionIEC", "WindProtectionIEC", "1", "0..1")
     )
-    val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): WindTurbineType1or2IEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindTurbineType1or2IEC (
             WindTurbineType1or2Dynamics.parse (context),
             mask (WindMechIEC (), 0),
@@ -5226,7 +5437,7 @@ object WindTurbineType1or2IECSerializer extends CIMSerializer[WindTurbineType1or
 
     def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType1or2IEC]): WindTurbineType1or2IEC =
     {
-        val parent = WindTurbineType1or2DynamicsSerializer.read (kryo, input, classOf[WindTurbineType1or2Dynamics])
+        val parent = WindTurbineType1or2DynamicsSerializer.read (kryo, input, classOf [WindTurbineType1or2Dynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindTurbineType1or2IEC (
             parent,
@@ -5242,20 +5453,20 @@ object WindTurbineType1or2IECSerializer extends CIMSerializer[WindTurbineType1or
  * Parent class supporting relationships to IEC wind turbines type 3 including their control models.
  *
  * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Reference to the superclass object.
- * @param WindAeroOneDimIEC [[ch.ninecode.model.WindAeroOneDimIEC WindAeroOneDimIEC]] Wind aerodynamic model associated with this wind generator type 3 model.
- * @param WindAeroTwoDimIEC [[ch.ninecode.model.WindAeroTwoDimIEC WindAeroTwoDimIEC]] Wind aerodynamic model associated with this wind turbine type 3 model.
- * @param WindContPType3IEC [[ch.ninecode.model.WindContPType3IEC WindContPType3IEC]] Wind control P type 3 model associated with this wind turbine type 3 model.
- * @param WindContPitchAngleIEC [[ch.ninecode.model.WindContPitchAngleIEC WindContPitchAngleIEC]] Wind control pitch angle model associated with this wind turbine type 3.
- * @param WindGenType3IEC [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Wind generator type 3 model associated with this wind turbine type 3 model.
- * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind turbine type 3 model.
+ * @param WindAeroOneDimIEC      [[ch.ninecode.model.WindAeroOneDimIEC WindAeroOneDimIEC]] Wind aerodynamic model associated with this wind generator type 3 model.
+ * @param WindAeroTwoDimIEC      [[ch.ninecode.model.WindAeroTwoDimIEC WindAeroTwoDimIEC]] Wind aerodynamic model associated with this wind turbine type 3 model.
+ * @param WindContPType3IEC      [[ch.ninecode.model.WindContPType3IEC WindContPType3IEC]] Wind control P type 3 model associated with this wind turbine type 3 model.
+ * @param WindContPitchAngleIEC  [[ch.ninecode.model.WindContPitchAngleIEC WindContPitchAngleIEC]] Wind control pitch angle model associated with this wind turbine type 3.
+ * @param WindGenType3IEC        [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Wind generator type 3 model associated with this wind turbine type 3 model.
+ * @param WindMechIEC            [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind turbine type 3 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType3IEC
 (
@@ -5267,8 +5478,8 @@ final case class WindTurbineType3IEC
     WindGenType3IEC: String = null,
     WindMechIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5294,13 +5505,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindTurbineType3IEC.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType3IEC.fields (position), value)
+
         emitattr (0, WindAeroOneDimIEC)
         emitattr (1, WindAeroTwoDimIEC)
         emitattr (2, WindContPType3IEC)
@@ -5309,6 +5525,7 @@ extends
         emitattr (5, WindMechIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindTurbineType3IEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType3IEC>".format (id, export_fields)
@@ -5316,10 +5533,10 @@ extends
 }
 
 object WindTurbineType3IEC
-extends
-    CIMParseable[WindTurbineType3IEC]
+    extends
+        CIMParseable[WindTurbineType3IEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "WindAeroOneDimIEC",
         "WindAeroTwoDimIEC",
         "WindContPType3IEC",
@@ -5335,17 +5552,17 @@ extends
         CIMRelationship ("WindGenType3IEC", "WindGenType3IEC", "0..1", "0..1"),
         CIMRelationship ("WindMechIEC", "WindMechIEC", "1", "0..1")
     )
-    val WindAeroOneDimIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val WindAeroTwoDimIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val WindContPType3IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val WindContPitchAngleIEC: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val WindGenType3IEC: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val WindAeroOneDimIEC: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val WindAeroTwoDimIEC: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val WindContPType3IEC: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val WindContPitchAngleIEC: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val WindGenType3IEC: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields (5)))
 
     def parse (context: CIMContext): WindTurbineType3IEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindTurbineType3IEC (
             WindTurbineType3or4IEC.parse (context),
             mask (WindAeroOneDimIEC (), 0),
@@ -5382,7 +5599,7 @@ object WindTurbineType3IECSerializer extends CIMSerializer[WindTurbineType3IEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType3IEC]): WindTurbineType3IEC =
     {
-        val parent = WindTurbineType3or4IECSerializer.read (kryo, input, classOf[WindTurbineType3or4IEC])
+        val parent = WindTurbineType3or4IECSerializer.read (kryo, input, classOf [WindTurbineType3or4IEC])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindTurbineType3IEC (
             parent,
@@ -5401,18 +5618,18 @@ object WindTurbineType3IECSerializer extends CIMSerializer[WindTurbineType3IEC]
 /**
  * Parent class supporting relationships to wind turbines type 3 and type 4 and wind plant including their control models.
  *
- * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock      [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param PowerElectronicsConnection [[ch.ninecode.model.PowerElectronicsConnection PowerElectronicsConnection]] The power electronics connection associated with this wind turbine type 3 or type 4 dynamics model.
- * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by these wind turbine type 3 or type 4 models.
- * @param WindPlantDynamics [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] The wind plant with which the wind turbines type 3 or type 4 are associated.
+ * @param RemoteInputSignal          [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by these wind turbine type 3 or type 4 models.
+ * @param WindPlantDynamics          [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] The wind plant with which the wind turbines type 3 or type 4 are associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType3or4Dynamics
 (
@@ -5421,8 +5638,8 @@ final case class WindTurbineType3or4Dynamics
     RemoteInputSignal: String = null,
     WindPlantDynamics: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5448,18 +5665,24 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindTurbineType3or4Dynamics.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType3or4Dynamics.fields (position), value)
+
         emitattr (0, PowerElectronicsConnection)
         emitattr (1, RemoteInputSignal)
         emitattr (2, WindPlantDynamics)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindTurbineType3or4Dynamics rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType3or4Dynamics>".format (id, export_fields)
@@ -5467,10 +5690,10 @@ extends
 }
 
 object WindTurbineType3or4Dynamics
-extends
-    CIMParseable[WindTurbineType3or4Dynamics]
+    extends
+        CIMParseable[WindTurbineType3or4Dynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "PowerElectronicsConnection",
         "RemoteInputSignal",
         "WindPlantDynamics"
@@ -5480,14 +5703,14 @@ extends
         CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
         CIMRelationship ("WindPlantDynamics", "WindPlantDynamics", "0..1", "1..*")
     )
-    val PowerElectronicsConnection: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val WindPlantDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val PowerElectronicsConnection: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val WindPlantDynamics: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): WindTurbineType3or4Dynamics =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindTurbineType3or4Dynamics (
             DynamicsFunctionBlock.parse (context),
             mask (PowerElectronicsConnection (), 0),
@@ -5518,7 +5741,7 @@ object WindTurbineType3or4DynamicsSerializer extends CIMSerializer[WindTurbineTy
 
     def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType3or4Dynamics]): WindTurbineType3or4Dynamics =
     {
-        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf [DynamicsFunctionBlock])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindTurbineType3or4Dynamics (
             parent,
@@ -5535,20 +5758,20 @@ object WindTurbineType3or4DynamicsSerializer extends CIMSerializer[WindTurbineTy
  * Parent class supporting relationships to IEC wind turbines type 3 and type 4 including their control models.
  *
  * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Reference to the superclass object.
- * @param WIndContQIEC [[ch.ninecode.model.WindContQIEC WindContQIEC]] Wind control Q model associated with this wind turbine type 3 or type 4 model.
- * @param WindContCurrLimIEC [[ch.ninecode.model.WindContCurrLimIEC WindContCurrLimIEC]] Wind control current limitation model associated with this wind turbine type 3 or type 4 model.
- * @param WindContQLimIEC [[ch.ninecode.model.WindContQLimIEC WindContQLimIEC]] Constant Q limitation model associated with this wind generator type 3 or type 4 model.
- * @param WindContQPQULimIEC [[ch.ninecode.model.WindContQPQULimIEC WindContQPQULimIEC]] QP and QU limitation model associated with this wind generator type 3 or type 4 model.
- * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] Wind turbune protection model associated with this wind generator type 3 or type 4 model.
- * @param WindRefFrameRotIEC [[ch.ninecode.model.WindRefFrameRotIEC WindRefFrameRotIEC]] Reference frame rotation model associated with this wind turbine type 3 or type 4 model.
+ * @param WIndContQIEC                [[ch.ninecode.model.WindContQIEC WindContQIEC]] Wind control Q model associated with this wind turbine type 3 or type 4 model.
+ * @param WindContCurrLimIEC          [[ch.ninecode.model.WindContCurrLimIEC WindContCurrLimIEC]] Wind control current limitation model associated with this wind turbine type 3 or type 4 model.
+ * @param WindContQLimIEC             [[ch.ninecode.model.WindContQLimIEC WindContQLimIEC]] Constant Q limitation model associated with this wind generator type 3 or type 4 model.
+ * @param WindContQPQULimIEC          [[ch.ninecode.model.WindContQPQULimIEC WindContQPQULimIEC]] QP and QU limitation model associated with this wind generator type 3 or type 4 model.
+ * @param WindProtectionIEC           [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] Wind turbune protection model associated with this wind generator type 3 or type 4 model.
+ * @param WindRefFrameRotIEC          [[ch.ninecode.model.WindRefFrameRotIEC WindRefFrameRotIEC]] Reference frame rotation model associated with this wind turbine type 3 or type 4 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType3or4IEC
 (
@@ -5560,8 +5783,8 @@ final case class WindTurbineType3or4IEC
     WindProtectionIEC: String = null,
     WindRefFrameRotIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5587,13 +5810,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindTurbineType3or4IEC.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType3or4IEC.fields (position), value)
+
         emitattr (0, WIndContQIEC)
         emitattr (1, WindContCurrLimIEC)
         emitattr (2, WindContQLimIEC)
@@ -5602,6 +5830,7 @@ extends
         emitattr (5, WindRefFrameRotIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindTurbineType3or4IEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType3or4IEC>".format (id, export_fields)
@@ -5609,10 +5838,10 @@ extends
 }
 
 object WindTurbineType3or4IEC
-extends
-    CIMParseable[WindTurbineType3or4IEC]
+    extends
+        CIMParseable[WindTurbineType3or4IEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "WIndContQIEC",
         "WindContCurrLimIEC",
         "WindContQLimIEC",
@@ -5628,17 +5857,17 @@ extends
         CIMRelationship ("WindProtectionIEC", "WindProtectionIEC", "1", "0..1"),
         CIMRelationship ("WindRefFrameRotIEC", "WindRefFrameRotIEC", "1", "1")
     )
-    val WIndContQIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val WindContCurrLimIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val WindContQLimIEC: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val WindContQPQULimIEC: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val WindRefFrameRotIEC: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val WIndContQIEC: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val WindContCurrLimIEC: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val WindContQLimIEC: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val WindContQPQULimIEC: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val WindRefFrameRotIEC: Fielder = parse_attribute (attribute (cls, fields (5)))
 
     def parse (context: CIMContext): WindTurbineType3or4IEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindTurbineType3or4IEC (
             WindTurbineType3or4Dynamics.parse (context),
             mask (WIndContQIEC (), 0),
@@ -5675,7 +5904,7 @@ object WindTurbineType3or4IECSerializer extends CIMSerializer[WindTurbineType3or
 
     def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType3or4IEC]): WindTurbineType3or4IEC =
     {
-        val parent = WindTurbineType3or4DynamicsSerializer.read (kryo, input, classOf[WindTurbineType3or4Dynamics])
+        val parent = WindTurbineType3or4DynamicsSerializer.read (kryo, input, classOf [WindTurbineType3or4Dynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindTurbineType3or4IEC (
             parent,
@@ -5695,23 +5924,23 @@ object WindTurbineType3or4IECSerializer extends CIMSerializer[WindTurbineType3or
  * Parent class supporting relationships to IEC wind turbines type 4 including their control models.
  *
  * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Reference to the superclass object.
- * @param WindGenType3aIEC [[ch.ninecode.model.WindGenType3aIEC WindGenType3aIEC]] Wind generator type 3A model associated with this wind turbine type 4 model.
+ * @param WindGenType3aIEC       [[ch.ninecode.model.WindGenType3aIEC WindGenType3aIEC]] Wind generator type 3A model associated with this wind turbine type 4 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType4IEC
 (
     WindTurbineType3or4IEC: WindTurbineType3or4IEC = null,
     WindGenType3aIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5737,16 +5966,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindTurbineType4IEC.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType4IEC.fields (position), value)
+
         emitattr (0, WindGenType3aIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindTurbineType4IEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType4IEC>".format (id, export_fields)
@@ -5754,21 +5989,21 @@ extends
 }
 
 object WindTurbineType4IEC
-extends
-    CIMParseable[WindTurbineType4IEC]
+    extends
+        CIMParseable[WindTurbineType4IEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "WindGenType3aIEC"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WindGenType3aIEC", "WindGenType3aIEC", "0..1", "0..1")
     )
-    val WindGenType3aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindGenType3aIEC: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): WindTurbineType4IEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindTurbineType4IEC (
             WindTurbineType3or4IEC.parse (context),
             mask (WindGenType3aIEC (), 0)
@@ -5795,7 +6030,7 @@ object WindTurbineType4IECSerializer extends CIMSerializer[WindTurbineType4IEC]
 
     def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType4IEC]): WindTurbineType4IEC =
     {
-        val parent = WindTurbineType3or4IECSerializer.read (kryo, input, classOf[WindTurbineType3or4IEC])
+        val parent = WindTurbineType3or4IECSerializer.read (kryo, input, classOf [WindTurbineType3or4IEC])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindTurbineType4IEC (
             parent,
@@ -5812,16 +6047,16 @@ object WindTurbineType4IECSerializer extends CIMSerializer[WindTurbineType4IEC]
  * Reference: IEC 61400-27-1:2015, 5.5.5.2.
  *
  * @param WindTurbineType4IEC [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Reference to the superclass object.
- * @param WindContPType4aIEC [[ch.ninecode.model.WindContPType4aIEC WindContPType4aIEC]] Wind control P type 4A model associated with this wind turbine type 4A model.
- * @param WindGenType4IEC [[ch.ninecode.model.WindGenType4IEC WindGenType4IEC]] Wind generator type 4 model associated with this wind turbine type 4A model.
+ * @param WindContPType4aIEC  [[ch.ninecode.model.WindContPType4aIEC WindContPType4aIEC]] Wind control P type 4A model associated with this wind turbine type 4A model.
+ * @param WindGenType4IEC     [[ch.ninecode.model.WindGenType4IEC WindGenType4IEC]] Wind generator type 4 model associated with this wind turbine type 4A model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType4aIEC
 (
@@ -5829,8 +6064,8 @@ final case class WindTurbineType4aIEC
     WindContPType4aIEC: String = null,
     WindGenType4IEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5856,17 +6091,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindTurbineType4aIEC.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType4aIEC.fields (position), value)
+
         emitattr (0, WindContPType4aIEC)
         emitattr (1, WindGenType4IEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindTurbineType4aIEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType4aIEC>".format (id, export_fields)
@@ -5874,10 +6115,10 @@ extends
 }
 
 object WindTurbineType4aIEC
-extends
-    CIMParseable[WindTurbineType4aIEC]
+    extends
+        CIMParseable[WindTurbineType4aIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "WindContPType4aIEC",
         "WindGenType4IEC"
     )
@@ -5885,13 +6126,13 @@ extends
         CIMRelationship ("WindContPType4aIEC", "WindContPType4aIEC", "1", "1"),
         CIMRelationship ("WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1")
     )
-    val WindContPType4aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val WindGenType4IEC: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val WindContPType4aIEC: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val WindGenType4IEC: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): WindTurbineType4aIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindTurbineType4aIEC (
             WindTurbineType4IEC.parse (context),
             mask (WindContPType4aIEC (), 0),
@@ -5920,7 +6161,7 @@ object WindTurbineType4aIECSerializer extends CIMSerializer[WindTurbineType4aIEC
 
     def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType4aIEC]): WindTurbineType4aIEC =
     {
-        val parent = WindTurbineType4IECSerializer.read (kryo, input, classOf[WindTurbineType4IEC])
+        val parent = WindTurbineType4IECSerializer.read (kryo, input, classOf [WindTurbineType4IEC])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindTurbineType4aIEC (
             parent,
@@ -5938,17 +6179,17 @@ object WindTurbineType4aIECSerializer extends CIMSerializer[WindTurbineType4aIEC
  * Reference: IEC 61400-27-1:2015, 5.5.5.3.
  *
  * @param WindTurbineType4IEC [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Reference to the superclass object.
- * @param WindContPType4bIEC [[ch.ninecode.model.WindContPType4bIEC WindContPType4bIEC]] Wind control P type 4B model associated with this wind turbine type 4B model.
- * @param WindGenType4IEC [[ch.ninecode.model.WindGenType4IEC WindGenType4IEC]] Wind generator type 4 model associated with this wind turbine type 4B model.
- * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind turbine type 4B model.
+ * @param WindContPType4bIEC  [[ch.ninecode.model.WindContPType4bIEC WindContPType4bIEC]] Wind control P type 4B model associated with this wind turbine type 4B model.
+ * @param WindGenType4IEC     [[ch.ninecode.model.WindGenType4IEC WindGenType4IEC]] Wind generator type 4 model associated with this wind turbine type 4B model.
+ * @param WindMechIEC         [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind turbine type 4B model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
-- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
-- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
-- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
-- type 4: wind turbines connected to the grid through a full size power converter.
-Models included in this package are according to IEC 61400-27-1:2015.
+ *            - type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+ *            - type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+ *            - type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+ *            - type 4: wind turbines connected to the grid through a full size power converter.
+ *              Models included in this package are according to IEC 61400-27-1:2015.
  */
 final case class WindTurbineType4bIEC
 (
@@ -5957,8 +6198,8 @@ final case class WindTurbineType4bIEC
     WindGenType4IEC: String = null,
     WindMechIEC: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5984,18 +6225,24 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindTurbineType4bIEC.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType4bIEC.fields (position), value)
+
         emitattr (0, WindContPType4bIEC)
         emitattr (1, WindGenType4IEC)
         emitattr (2, WindMechIEC)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindTurbineType4bIEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType4bIEC>".format (id, export_fields)
@@ -6003,10 +6250,10 @@ extends
 }
 
 object WindTurbineType4bIEC
-extends
-    CIMParseable[WindTurbineType4bIEC]
+    extends
+        CIMParseable[WindTurbineType4bIEC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "WindContPType4bIEC",
         "WindGenType4IEC",
         "WindMechIEC"
@@ -6016,14 +6263,14 @@ extends
         CIMRelationship ("WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1"),
         CIMRelationship ("WindMechIEC", "WindMechIEC", "1", "0..1")
     )
-    val WindContPType4bIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val WindGenType4IEC: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val WindContPType4bIEC: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val WindGenType4IEC: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): WindTurbineType4bIEC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WindTurbineType4bIEC (
             WindTurbineType4IEC.parse (context),
             mask (WindContPType4bIEC (), 0),
@@ -6054,7 +6301,7 @@ object WindTurbineType4bIECSerializer extends CIMSerializer[WindTurbineType4bIEC
 
     def read (kryo: Kryo, input: Input, cls: Class[WindTurbineType4bIEC]): WindTurbineType4bIEC =
     {
-        val parent = WindTurbineType4IECSerializer.read (kryo, input, classOf[WindTurbineType4IEC])
+        val parent = WindTurbineType4IECSerializer.read (kryo, input, classOf [WindTurbineType4IEC])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WindTurbineType4bIEC (
             parent,

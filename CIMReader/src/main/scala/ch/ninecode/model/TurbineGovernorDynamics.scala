@@ -15,14 +15,14 @@ import ch.ninecode.cim.CIMSerializer
 /**
  * Turbine-governor cross-compound function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock                  [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param HighPressureSynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] High-pressure synchronous machine with which this cross-compound turbine governor is associated.
- * @param LowPressureSynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Low-pressure synchronous machine with which this cross-compound turbine governor is associated.
+ * @param LowPressureSynchronousMachineDynamics  [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Low-pressure synchronous machine with which this cross-compound turbine governor is associated.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class CrossCompoundTurbineGovernorDynamics
 (
@@ -30,8 +30,8 @@ final case class CrossCompoundTurbineGovernorDynamics
     HighPressureSynchronousMachineDynamics: String = null,
     LowPressureSynchronousMachineDynamics: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -57,17 +57,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CrossCompoundTurbineGovernorDynamics.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CrossCompoundTurbineGovernorDynamics.fields (position), value)
+
         emitattr (0, HighPressureSynchronousMachineDynamics)
         emitattr (1, LowPressureSynchronousMachineDynamics)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:CrossCompoundTurbineGovernorDynamics rdf:ID=\"%s\">\n%s\t</cim:CrossCompoundTurbineGovernorDynamics>".format (id, export_fields)
@@ -75,10 +81,10 @@ extends
 }
 
 object CrossCompoundTurbineGovernorDynamics
-extends
-    CIMParseable[CrossCompoundTurbineGovernorDynamics]
+    extends
+        CIMParseable[CrossCompoundTurbineGovernorDynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "HighPressureSynchronousMachineDynamics",
         "LowPressureSynchronousMachineDynamics"
     )
@@ -86,13 +92,13 @@ extends
         CIMRelationship ("HighPressureSynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1"),
         CIMRelationship ("LowPressureSynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1")
     )
-    val HighPressureSynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val LowPressureSynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val HighPressureSynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val LowPressureSynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): CrossCompoundTurbineGovernorDynamics =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = CrossCompoundTurbineGovernorDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (HighPressureSynchronousMachineDynamics (), 0),
@@ -121,7 +127,7 @@ object CrossCompoundTurbineGovernorDynamicsSerializer extends CIMSerializer[Cros
 
     def read (kryo: Kryo, input: Input, cls: Class[CrossCompoundTurbineGovernorDynamics]): CrossCompoundTurbineGovernorDynamics =
     {
-        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf [DynamicsFunctionBlock])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = CrossCompoundTurbineGovernorDynamics (
             parent,
@@ -150,83 +156,83 @@ object CrossCompoundTurbineGovernorDynamicsSerializer extends CIMSerializer[Cros
  * Additional information on this model is available in the 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, 3.1.2.3 pages 3-4 (GGOV1).
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aset Acceleration limiter setpoint (<i>Aset</i>).
- *        Unit = PU / s.  Typical value = 0,01.
- * @param db Speed governor deadband in PU speed (<i>db</i>).
- *        In the majority of applications, it is recommended that this value be set to zero.  Typical value = 0.
- * @param dm Speed sensitivity coefficient (<i>Dm</i>).  <i>Dm</i> can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.
- *        If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical value = 0.
- * @param ka Acceleration limiter gain (<i>Ka</i>).
- *        Typical value = 10.
- * @param kdgov Governor derivative gain (<i>Kdgov</i>).
- *        Typical value = 0.
- * @param kigov Governor integral gain (<i>Kigov</i>).
- *        Typical value = 2.
- * @param kiload Load limiter integral gain for PI controller (<i>Kiload</i>).
- *        Typical value = 0,67.
- * @param kimw Power controller (reset) gain (<i>Kimw</i>).
- *        The default value of 0,01 corresponds to a reset time of 100 s.  A value of 0,001 corresponds to a relatively slow-acting load controller.  Typical value = 0,01.
- * @param kpgov Governor proportional gain (<i>Kpgov</i>).
- *        Typical value = 10.
- * @param kpload Load limiter proportional gain for PI controller (<i>Kpload</i>).
- *        Typical value = 2.
- * @param kturb Turbine gain (<i>Kturb</i>) (&gt; 0).
- *        Typical value = 1,5.
- * @param ldref Load limiter reference value (<i>Ldref</i>).
- *        Typical value = 1.
- * @param maxerr Maximum value for speed error signal (<i>maxerr</i>) (&gt; GovCT1.minerr).
- *        Typical value = 0,05.
- * @param minerr Minimum value for speed error signal (<i>minerr</i>) (&lt; GovCT1.maxerr).
- *        Typical value = -0,05.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param r Permanent droop (<i>R</i>).
- *        Typical value = 0,04.
- * @param rclose Minimum valve closing rate (<i>Rclose</i>).
- *        Unit = PU / s.  Typical value = -0,1.
- * @param rdown Maximum rate of load limit decrease (<i>Rdown</i>).
- *        Typical value = -99.
- * @param ropen Maximum valve opening rate (<i>Ropen</i>).
- *        Unit = PU / s.  Typical value = 0.10.
- * @param rselect Feedback signal for droop (<i>Rselect</i>).
- *        Typical value = electricalPower.
- * @param rup Maximum rate of load limit increase (<i>Rup</i>).
- *        Typical value = 99.
- * @param ta Acceleration limiter time constant (<i>Ta</i>) (&gt; 0).
- *        Typical value = 0,1.
- * @param tact Actuator time constant (<i>Tact</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param tb Turbine lag time constant (<i>Tb</i>) (&gt; 0).
- *        Typical value = 0,5.
- * @param tc Turbine lead time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tdgov Governor derivative controller time constant (<i>Tdgov</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param teng Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (<i>Teng</i>) (&gt;= 0).  <i>Teng</i> should be zero in all but special cases where this transport delay is of particular concern.
- *        Typical value = 0.
- * @param tfload Load-limiter time constant (<i>Tfload</i>) (&gt; 0).
- *        Typical value = 3.
- * @param tpelec Electrical power transducer time constant (<i>Tpelec</i>) (&gt; 0).
- *        Typical value = 1.
- * @param tsa Temperature detection lead time constant (<i>Tsa</i>) (&gt;= 0).
- *        Typical value = 4.
- * @param tsb Temperature detection lag time constant (<i>Tsb</i>) (&gt;= 0).
- *        Typical value = 5.
- * @param vmax Maximum valve position limit (<i>Vmax</i>) (&gt; GovCT1.vmin).
- *        Typical value = 1.
- * @param vmin Minimum valve position limit (<i>Vmin</i>) (&lt; GovCT1.vmax).
- *        Typical value = 0,15.
- * @param wfnl No load fuel flow (<i>Wfnl</i>).
- *        Typical value = 0,2.
- * @param wfspd Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (<i>Wfspd</i>).
- *        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
- *        false = fuel control system keeps fuel flow independent of engine speed.
- *        Typical value = true.
+ * @param aset                    Acceleration limiter setpoint (<i>Aset</i>).
+ *                                Unit = PU / s.  Typical value = 0,01.
+ * @param db                      Speed governor deadband in PU speed (<i>db</i>).
+ *                                In the majority of applications, it is recommended that this value be set to zero.  Typical value = 0.
+ * @param dm                      Speed sensitivity coefficient (<i>Dm</i>).  <i>Dm</i> can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.
+ *                                If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical value = 0.
+ * @param ka                      Acceleration limiter gain (<i>Ka</i>).
+ *                                Typical value = 10.
+ * @param kdgov                   Governor derivative gain (<i>Kdgov</i>).
+ *                                Typical value = 0.
+ * @param kigov                   Governor integral gain (<i>Kigov</i>).
+ *                                Typical value = 2.
+ * @param kiload                  Load limiter integral gain for PI controller (<i>Kiload</i>).
+ *                                Typical value = 0,67.
+ * @param kimw                    Power controller (reset) gain (<i>Kimw</i>).
+ *                                The default value of 0,01 corresponds to a reset time of 100 s.  A value of 0,001 corresponds to a relatively slow-acting load controller.  Typical value = 0,01.
+ * @param kpgov                   Governor proportional gain (<i>Kpgov</i>).
+ *                                Typical value = 10.
+ * @param kpload                  Load limiter proportional gain for PI controller (<i>Kpload</i>).
+ *                                Typical value = 2.
+ * @param kturb                   Turbine gain (<i>Kturb</i>) (&gt; 0).
+ *                                Typical value = 1,5.
+ * @param ldref                   Load limiter reference value (<i>Ldref</i>).
+ *                                Typical value = 1.
+ * @param maxerr                  Maximum value for speed error signal (<i>maxerr</i>) (&gt; GovCT1.minerr).
+ *                                Typical value = 0,05.
+ * @param minerr                  Minimum value for speed error signal (<i>minerr</i>) (&lt; GovCT1.maxerr).
+ *                                Typical value = -0,05.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param r                       Permanent droop (<i>R</i>).
+ *                                Typical value = 0,04.
+ * @param rclose                  Minimum valve closing rate (<i>Rclose</i>).
+ *                                Unit = PU / s.  Typical value = -0,1.
+ * @param rdown                   Maximum rate of load limit decrease (<i>Rdown</i>).
+ *                                Typical value = -99.
+ * @param ropen                   Maximum valve opening rate (<i>Ropen</i>).
+ *                                Unit = PU / s.  Typical value = 0.10.
+ * @param rselect                 Feedback signal for droop (<i>Rselect</i>).
+ *                                Typical value = electricalPower.
+ * @param rup                     Maximum rate of load limit increase (<i>Rup</i>).
+ *                                Typical value = 99.
+ * @param ta                      Acceleration limiter time constant (<i>Ta</i>) (&gt; 0).
+ *                                Typical value = 0,1.
+ * @param tact                    Actuator time constant (<i>Tact</i>) (&gt;= 0).
+ *                                Typical value = 0,5.
+ * @param tb                      Turbine lag time constant (<i>Tb</i>) (&gt; 0).
+ *                                Typical value = 0,5.
+ * @param tc                      Turbine lead time constant (<i>Tc</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param tdgov                   Governor derivative controller time constant (<i>Tdgov</i>) (&gt;= 0).
+ *                                Typical value = 1.
+ * @param teng                    Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (<i>Teng</i>) (&gt;= 0).  <i>Teng</i> should be zero in all but special cases where this transport delay is of particular concern.
+ *                                Typical value = 0.
+ * @param tfload                  Load-limiter time constant (<i>Tfload</i>) (&gt; 0).
+ *                                Typical value = 3.
+ * @param tpelec                  Electrical power transducer time constant (<i>Tpelec</i>) (&gt; 0).
+ *                                Typical value = 1.
+ * @param tsa                     Temperature detection lead time constant (<i>Tsa</i>) (&gt;= 0).
+ *                                Typical value = 4.
+ * @param tsb                     Temperature detection lag time constant (<i>Tsb</i>) (&gt;= 0).
+ *                                Typical value = 5.
+ * @param vmax                    Maximum valve position limit (<i>Vmax</i>) (&gt; GovCT1.vmin).
+ *                                Typical value = 1.
+ * @param vmin                    Minimum valve position limit (<i>Vmin</i>) (&lt; GovCT1.vmax).
+ *                                Typical value = 0,15.
+ * @param wfnl                    No load fuel flow (<i>Wfnl</i>).
+ *                                Typical value = 0,2.
+ * @param wfspd                   Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (<i>Wfspd</i>).
+ *                                true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
+ *                                false = fuel control system keeps fuel flow independent of engine speed.
+ *                                Typical value = true.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovCT1
 (
@@ -267,8 +273,8 @@ final case class GovCT1
     wfnl: Double = 0.0,
     wfspd: Boolean = false
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -294,14 +300,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovCT1.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovCT1.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GovCT1.fields (position), value)
+
         emitelem (0, aset)
         emitelem (1, db)
         emitelem (2, dm)
@@ -339,6 +351,7 @@ extends
         emitelem (34, wfspd)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovCT1 rdf:ID=\"%s\">\n%s\t</cim:GovCT1>".format (id, export_fields)
@@ -346,10 +359,10 @@ extends
 }
 
 object GovCT1
-extends
-    CIMParseable[GovCT1]
+    extends
+        CIMParseable[GovCT1]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "aset",
         "db",
         "dm",
@@ -386,46 +399,46 @@ extends
         "wfnl",
         "wfspd"
     )
-    val aset: Fielder = parse_element (element (cls, fields(0)))
-    val db: Fielder = parse_element (element (cls, fields(1)))
-    val dm: Fielder = parse_element (element (cls, fields(2)))
-    val ka: Fielder = parse_element (element (cls, fields(3)))
-    val kdgov: Fielder = parse_element (element (cls, fields(4)))
-    val kigov: Fielder = parse_element (element (cls, fields(5)))
-    val kiload: Fielder = parse_element (element (cls, fields(6)))
-    val kimw: Fielder = parse_element (element (cls, fields(7)))
-    val kpgov: Fielder = parse_element (element (cls, fields(8)))
-    val kpload: Fielder = parse_element (element (cls, fields(9)))
-    val kturb: Fielder = parse_element (element (cls, fields(10)))
-    val ldref: Fielder = parse_element (element (cls, fields(11)))
-    val maxerr: Fielder = parse_element (element (cls, fields(12)))
-    val minerr: Fielder = parse_element (element (cls, fields(13)))
-    val mwbase: Fielder = parse_element (element (cls, fields(14)))
-    val r: Fielder = parse_element (element (cls, fields(15)))
-    val rclose: Fielder = parse_element (element (cls, fields(16)))
-    val rdown: Fielder = parse_element (element (cls, fields(17)))
-    val ropen: Fielder = parse_element (element (cls, fields(18)))
-    val rselect: Fielder = parse_attribute (attribute (cls, fields(19)))
-    val rup: Fielder = parse_element (element (cls, fields(20)))
-    val ta: Fielder = parse_element (element (cls, fields(21)))
-    val tact: Fielder = parse_element (element (cls, fields(22)))
-    val tb: Fielder = parse_element (element (cls, fields(23)))
-    val tc: Fielder = parse_element (element (cls, fields(24)))
-    val tdgov: Fielder = parse_element (element (cls, fields(25)))
-    val teng: Fielder = parse_element (element (cls, fields(26)))
-    val tfload: Fielder = parse_element (element (cls, fields(27)))
-    val tpelec: Fielder = parse_element (element (cls, fields(28)))
-    val tsa: Fielder = parse_element (element (cls, fields(29)))
-    val tsb: Fielder = parse_element (element (cls, fields(30)))
-    val vmax: Fielder = parse_element (element (cls, fields(31)))
-    val vmin: Fielder = parse_element (element (cls, fields(32)))
-    val wfnl: Fielder = parse_element (element (cls, fields(33)))
-    val wfspd: Fielder = parse_element (element (cls, fields(34)))
+    val aset: Fielder = parse_element (element (cls, fields (0)))
+    val db: Fielder = parse_element (element (cls, fields (1)))
+    val dm: Fielder = parse_element (element (cls, fields (2)))
+    val ka: Fielder = parse_element (element (cls, fields (3)))
+    val kdgov: Fielder = parse_element (element (cls, fields (4)))
+    val kigov: Fielder = parse_element (element (cls, fields (5)))
+    val kiload: Fielder = parse_element (element (cls, fields (6)))
+    val kimw: Fielder = parse_element (element (cls, fields (7)))
+    val kpgov: Fielder = parse_element (element (cls, fields (8)))
+    val kpload: Fielder = parse_element (element (cls, fields (9)))
+    val kturb: Fielder = parse_element (element (cls, fields (10)))
+    val ldref: Fielder = parse_element (element (cls, fields (11)))
+    val maxerr: Fielder = parse_element (element (cls, fields (12)))
+    val minerr: Fielder = parse_element (element (cls, fields (13)))
+    val mwbase: Fielder = parse_element (element (cls, fields (14)))
+    val r: Fielder = parse_element (element (cls, fields (15)))
+    val rclose: Fielder = parse_element (element (cls, fields (16)))
+    val rdown: Fielder = parse_element (element (cls, fields (17)))
+    val ropen: Fielder = parse_element (element (cls, fields (18)))
+    val rselect: Fielder = parse_attribute (attribute (cls, fields (19)))
+    val rup: Fielder = parse_element (element (cls, fields (20)))
+    val ta: Fielder = parse_element (element (cls, fields (21)))
+    val tact: Fielder = parse_element (element (cls, fields (22)))
+    val tb: Fielder = parse_element (element (cls, fields (23)))
+    val tc: Fielder = parse_element (element (cls, fields (24)))
+    val tdgov: Fielder = parse_element (element (cls, fields (25)))
+    val teng: Fielder = parse_element (element (cls, fields (26)))
+    val tfload: Fielder = parse_element (element (cls, fields (27)))
+    val tpelec: Fielder = parse_element (element (cls, fields (28)))
+    val tsa: Fielder = parse_element (element (cls, fields (29)))
+    val tsb: Fielder = parse_element (element (cls, fields (30)))
+    val vmax: Fielder = parse_element (element (cls, fields (31)))
+    val vmin: Fielder = parse_element (element (cls, fields (32)))
+    val wfnl: Fielder = parse_element (element (cls, fields (33)))
+    val wfspd: Fielder = parse_element (element (cls, fields (34)))
 
     def parse (context: CIMContext): GovCT1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovCT1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aset (), 0)),
@@ -520,7 +533,7 @@ object GovCT1Serializer extends CIMSerializer[GovCT1]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovCT1]): GovCT1 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovCT1 (
             parent,
@@ -571,125 +584,125 @@ object GovCT1Serializer extends CIMSerializer[GovCT1]
  * This model is a modification of the GovCT1<b> </b>model in order to represent the frequency-dependent fuel flow limit of a specific gas turbine manufacturer.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aset Acceleration limiter setpoint (<i>Aset</i>).
- *        Unit = PU / s.  Typical value = 10.
- * @param db Speed governor deadband in PU speed (<i>db</i>).
- *        In the majority of applications, it is recommended that this value be set to zero.  Typical value = 0.
- * @param dm Speed sensitivity coefficient (<i>Dm</i>).  <i>Dm</i> can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.
- *        If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical value = 0.
- * @param flim1 Frequency threshold 1 (<i>Flim1</i>).
- *        Unit = Hz.  Typical value = 59.
- * @param flim10 Frequency threshold 10 (<i>Flim10</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param flim2 Frequency threshold 2 (<i>Flim2</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param flim3 Frequency threshold 3 (<i>Flim3</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param flim4 Frequency threshold 4 (<i>Flim4</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param flim5 Frequency threshold 5 (<i>Flim5</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param flim6 Frequency threshold 6 (<i>Flim6</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param flim7 Frequency threshold 7 (<i>Flim7</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param flim8 Frequency threshold 8 (<i>Flim8</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param flim9 Frequency threshold 9 (<i>Flim9</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param ka Acceleration limiter gain (<i>Ka</i>).
- *        Typical value = 10.
- * @param kdgov Governor derivative gain (<i>Kdgov</i>).
- *        Typical value = 0.
- * @param kigov Governor integral gain (<i>Kigov</i>).
- *        Typical value = 0,45.
- * @param kiload Load limiter integral gain for PI controller (<i>Kiload</i>).
- *        Typical value = 1.
- * @param kimw Power controller (reset) gain (<i>Kimw</i>).
- *        The default value of 0,01 corresponds to a reset time of 100 seconds.  A value of 0,001 corresponds to a relatively slow-acting load controller.  Typical value = 0.
- * @param kpgov Governor proportional gain (<i>Kpgov</i>).
- *        Typical value = 4.
- * @param kpload Load limiter proportional gain for PI controller (<i>Kpload</i>).
- *        Typical value = 1.
- * @param kturb Turbine gain (<i>Kturb</i>).
- *        Typical value = 1,9168.
- * @param ldref Load limiter reference value (<i>Ldref</i>).
- *        Typical value = 1.
- * @param maxerr Maximum value for speed error signal (<i>Maxerr</i>) (&gt; GovCT2.minerr).
- *        Typical value = 1.
- * @param minerr Minimum value for speed error signal (<i>Minerr</i>) (&lt; GovCT2.maxerr).
- *        Typical value = -1.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param plim1 Power limit 1 (<i>Plim1</i>).
- *        Typical value = 0,8325.
- * @param plim10 Power limit 10 (<i>Plim10</i>).
- *        Typical value = 0.
- * @param plim2 Power limit 2 (Plim2).
- *        Typical value = 0.
- * @param plim3 Power limit 3 (<i>Plim3</i>).
- *        Typical value = 0.
- * @param plim4 Power limit 4 (<i>Plim4</i>).
- *        Typical value = 0.
- * @param plim5 Power limit 5 (<i>Plim5</i>).
- *        Typical value = 0.
- * @param plim6 Power limit 6 (<i>Plim6</i>).
- *        Typical value = 0.
- * @param plim7 Power limit 7 (<i>Plim7</i>).
- *        Typical value = 0.
- * @param plim8 Power limit 8 (<i>Plim8</i>).
- *        Typical value = 0.
- * @param plim9 Power Limit 9 (<i>Plim9</i>).
- *        Typical value = 0.
- * @param prate Ramp rate for frequency-dependent power limit (<i>Prate</i>).
- *        Typical value = 0,017.
- * @param r Permanent droop (<i>R</i>).
- *        Typical value = 0,05.
- * @param rclose Minimum valve closing rate (<i>Rclose</i>).
- *        Unit = PU / s.  Typical value = -99.
- * @param rdown Maximum rate of load limit decrease (<i>Rdown</i>).
- *        Typical value = -99.
- * @param ropen Maximum valve opening rate (<i>Ropen</i>).
- *        Unit = PU / s.  Typical value = 99.
- * @param rselect Feedback signal for droop (<i>Rselect</i>).
- *        Typical value = electricalPower.
- * @param rup Maximum rate of load limit increase (<i>Rup</i>).
- *        Typical value = 99.
- * @param ta Acceleration limiter time constant (<i>Ta</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tact Actuator time constant (<i>Tact</i>) (&gt;= 0).
- *        Typical value = 0,4.
- * @param tb Turbine lag time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param tc Turbine lead time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tdgov Governor derivative controller time constant (<i>Tdgov</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param teng Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (<i>Teng</i>) (&gt;= 0).  <i>Teng</i> should be zero in all but special cases where this transport delay is of particular concern.
- *        Typical value = 0.
- * @param tfload Load limiter time constant (<i>Tfload</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param tpelec Electrical power transducer time constant (<i>Tpelec</i>) (&gt;= 0).
- *        Typical value = 2,5.
- * @param tsa Temperature detection lead time constant (<i>Tsa</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tsb Temperature detection lag time constant (<i>Tsb</i>) (&gt;= 0).
- *        Typical value = 50.
- * @param vmax Maximum valve position limit (<i>Vmax</i>) (&gt; GovCT2.vmin).
- *        Typical value = 1.
- * @param vmin Minimum valve position limit (<i>Vmin</i>) (&lt; GovCT2.vmax).
- *        Typical value = 0,175.
- * @param wfnl No load fuel flow (<i>Wfnl</i>).
- *        Typical value = 0,187.
- * @param wfspd Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (<i>Wfspd</i>).
- *        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
- *        false = fuel control system keeps fuel flow independent of engine speed.
- *        Typical value = false.
+ * @param aset                    Acceleration limiter setpoint (<i>Aset</i>).
+ *                                Unit = PU / s.  Typical value = 10.
+ * @param db                      Speed governor deadband in PU speed (<i>db</i>).
+ *                                In the majority of applications, it is recommended that this value be set to zero.  Typical value = 0.
+ * @param dm                      Speed sensitivity coefficient (<i>Dm</i>).  <i>Dm</i> can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.
+ *                                If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical value = 0.
+ * @param flim1                   Frequency threshold 1 (<i>Flim1</i>).
+ *                                Unit = Hz.  Typical value = 59.
+ * @param flim10                  Frequency threshold 10 (<i>Flim10</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param flim2                   Frequency threshold 2 (<i>Flim2</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param flim3                   Frequency threshold 3 (<i>Flim3</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param flim4                   Frequency threshold 4 (<i>Flim4</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param flim5                   Frequency threshold 5 (<i>Flim5</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param flim6                   Frequency threshold 6 (<i>Flim6</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param flim7                   Frequency threshold 7 (<i>Flim7</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param flim8                   Frequency threshold 8 (<i>Flim8</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param flim9                   Frequency threshold 9 (<i>Flim9</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param ka                      Acceleration limiter gain (<i>Ka</i>).
+ *                                Typical value = 10.
+ * @param kdgov                   Governor derivative gain (<i>Kdgov</i>).
+ *                                Typical value = 0.
+ * @param kigov                   Governor integral gain (<i>Kigov</i>).
+ *                                Typical value = 0,45.
+ * @param kiload                  Load limiter integral gain for PI controller (<i>Kiload</i>).
+ *                                Typical value = 1.
+ * @param kimw                    Power controller (reset) gain (<i>Kimw</i>).
+ *                                The default value of 0,01 corresponds to a reset time of 100 seconds.  A value of 0,001 corresponds to a relatively slow-acting load controller.  Typical value = 0.
+ * @param kpgov                   Governor proportional gain (<i>Kpgov</i>).
+ *                                Typical value = 4.
+ * @param kpload                  Load limiter proportional gain for PI controller (<i>Kpload</i>).
+ *                                Typical value = 1.
+ * @param kturb                   Turbine gain (<i>Kturb</i>).
+ *                                Typical value = 1,9168.
+ * @param ldref                   Load limiter reference value (<i>Ldref</i>).
+ *                                Typical value = 1.
+ * @param maxerr                  Maximum value for speed error signal (<i>Maxerr</i>) (&gt; GovCT2.minerr).
+ *                                Typical value = 1.
+ * @param minerr                  Minimum value for speed error signal (<i>Minerr</i>) (&lt; GovCT2.maxerr).
+ *                                Typical value = -1.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param plim1                   Power limit 1 (<i>Plim1</i>).
+ *                                Typical value = 0,8325.
+ * @param plim10                  Power limit 10 (<i>Plim10</i>).
+ *                                Typical value = 0.
+ * @param plim2                   Power limit 2 (Plim2).
+ *                                Typical value = 0.
+ * @param plim3                   Power limit 3 (<i>Plim3</i>).
+ *                                Typical value = 0.
+ * @param plim4                   Power limit 4 (<i>Plim4</i>).
+ *                                Typical value = 0.
+ * @param plim5                   Power limit 5 (<i>Plim5</i>).
+ *                                Typical value = 0.
+ * @param plim6                   Power limit 6 (<i>Plim6</i>).
+ *                                Typical value = 0.
+ * @param plim7                   Power limit 7 (<i>Plim7</i>).
+ *                                Typical value = 0.
+ * @param plim8                   Power limit 8 (<i>Plim8</i>).
+ *                                Typical value = 0.
+ * @param plim9                   Power Limit 9 (<i>Plim9</i>).
+ *                                Typical value = 0.
+ * @param prate                   Ramp rate for frequency-dependent power limit (<i>Prate</i>).
+ *                                Typical value = 0,017.
+ * @param r                       Permanent droop (<i>R</i>).
+ *                                Typical value = 0,05.
+ * @param rclose                  Minimum valve closing rate (<i>Rclose</i>).
+ *                                Unit = PU / s.  Typical value = -99.
+ * @param rdown                   Maximum rate of load limit decrease (<i>Rdown</i>).
+ *                                Typical value = -99.
+ * @param ropen                   Maximum valve opening rate (<i>Ropen</i>).
+ *                                Unit = PU / s.  Typical value = 99.
+ * @param rselect                 Feedback signal for droop (<i>Rselect</i>).
+ *                                Typical value = electricalPower.
+ * @param rup                     Maximum rate of load limit increase (<i>Rup</i>).
+ *                                Typical value = 99.
+ * @param ta                      Acceleration limiter time constant (<i>Ta</i>) (&gt;= 0).
+ *                                Typical value = 1.
+ * @param tact                    Actuator time constant (<i>Tact</i>) (&gt;= 0).
+ *                                Typical value = 0,4.
+ * @param tb                      Turbine lag time constant (<i>Tb</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param tc                      Turbine lead time constant (<i>Tc</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param tdgov                   Governor derivative controller time constant (<i>Tdgov</i>) (&gt;= 0).
+ *                                Typical value = 1.
+ * @param teng                    Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (<i>Teng</i>) (&gt;= 0).  <i>Teng</i> should be zero in all but special cases where this transport delay is of particular concern.
+ *                                Typical value = 0.
+ * @param tfload                  Load limiter time constant (<i>Tfload</i>) (&gt;= 0).
+ *                                Typical value = 3.
+ * @param tpelec                  Electrical power transducer time constant (<i>Tpelec</i>) (&gt;= 0).
+ *                                Typical value = 2,5.
+ * @param tsa                     Temperature detection lead time constant (<i>Tsa</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param tsb                     Temperature detection lag time constant (<i>Tsb</i>) (&gt;= 0).
+ *                                Typical value = 50.
+ * @param vmax                    Maximum valve position limit (<i>Vmax</i>) (&gt; GovCT2.vmin).
+ *                                Typical value = 1.
+ * @param vmin                    Minimum valve position limit (<i>Vmin</i>) (&lt; GovCT2.vmax).
+ *                                Typical value = 0,175.
+ * @param wfnl                    No load fuel flow (<i>Wfnl</i>).
+ *                                Typical value = 0,187.
+ * @param wfspd                   Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (<i>Wfspd</i>).
+ *                                true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
+ *                                false = fuel control system keeps fuel flow independent of engine speed.
+ *                                Typical value = false.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovCT2
 (
@@ -751,8 +764,8 @@ final case class GovCT2
     wfnl: Double = 0.0,
     wfspd: Boolean = false
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -778,14 +791,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovCT2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovCT2.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GovCT2.fields (position), value)
+
         emitelem (0, aset)
         emitelem (1, db)
         emitelem (2, dm)
@@ -844,6 +863,7 @@ extends
         emitelem (55, wfspd)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovCT2 rdf:ID=\"%s\">\n%s\t</cim:GovCT2>".format (id, export_fields)
@@ -851,10 +871,10 @@ extends
 }
 
 object GovCT2
-extends
-    CIMParseable[GovCT2]
+    extends
+        CIMParseable[GovCT2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "aset",
         "db",
         "dm",
@@ -912,67 +932,67 @@ extends
         "wfnl",
         "wfspd"
     )
-    val aset: Fielder = parse_element (element (cls, fields(0)))
-    val db: Fielder = parse_element (element (cls, fields(1)))
-    val dm: Fielder = parse_element (element (cls, fields(2)))
-    val flim1: Fielder = parse_element (element (cls, fields(3)))
-    val flim10: Fielder = parse_element (element (cls, fields(4)))
-    val flim2: Fielder = parse_element (element (cls, fields(5)))
-    val flim3: Fielder = parse_element (element (cls, fields(6)))
-    val flim4: Fielder = parse_element (element (cls, fields(7)))
-    val flim5: Fielder = parse_element (element (cls, fields(8)))
-    val flim6: Fielder = parse_element (element (cls, fields(9)))
-    val flim7: Fielder = parse_element (element (cls, fields(10)))
-    val flim8: Fielder = parse_element (element (cls, fields(11)))
-    val flim9: Fielder = parse_element (element (cls, fields(12)))
-    val ka: Fielder = parse_element (element (cls, fields(13)))
-    val kdgov: Fielder = parse_element (element (cls, fields(14)))
-    val kigov: Fielder = parse_element (element (cls, fields(15)))
-    val kiload: Fielder = parse_element (element (cls, fields(16)))
-    val kimw: Fielder = parse_element (element (cls, fields(17)))
-    val kpgov: Fielder = parse_element (element (cls, fields(18)))
-    val kpload: Fielder = parse_element (element (cls, fields(19)))
-    val kturb: Fielder = parse_element (element (cls, fields(20)))
-    val ldref: Fielder = parse_element (element (cls, fields(21)))
-    val maxerr: Fielder = parse_element (element (cls, fields(22)))
-    val minerr: Fielder = parse_element (element (cls, fields(23)))
-    val mwbase: Fielder = parse_element (element (cls, fields(24)))
-    val plim1: Fielder = parse_element (element (cls, fields(25)))
-    val plim10: Fielder = parse_element (element (cls, fields(26)))
-    val plim2: Fielder = parse_element (element (cls, fields(27)))
-    val plim3: Fielder = parse_element (element (cls, fields(28)))
-    val plim4: Fielder = parse_element (element (cls, fields(29)))
-    val plim5: Fielder = parse_element (element (cls, fields(30)))
-    val plim6: Fielder = parse_element (element (cls, fields(31)))
-    val plim7: Fielder = parse_element (element (cls, fields(32)))
-    val plim8: Fielder = parse_element (element (cls, fields(33)))
-    val plim9: Fielder = parse_element (element (cls, fields(34)))
-    val prate: Fielder = parse_element (element (cls, fields(35)))
-    val r: Fielder = parse_element (element (cls, fields(36)))
-    val rclose: Fielder = parse_element (element (cls, fields(37)))
-    val rdown: Fielder = parse_element (element (cls, fields(38)))
-    val ropen: Fielder = parse_element (element (cls, fields(39)))
-    val rselect: Fielder = parse_attribute (attribute (cls, fields(40)))
-    val rup: Fielder = parse_element (element (cls, fields(41)))
-    val ta: Fielder = parse_element (element (cls, fields(42)))
-    val tact: Fielder = parse_element (element (cls, fields(43)))
-    val tb: Fielder = parse_element (element (cls, fields(44)))
-    val tc: Fielder = parse_element (element (cls, fields(45)))
-    val tdgov: Fielder = parse_element (element (cls, fields(46)))
-    val teng: Fielder = parse_element (element (cls, fields(47)))
-    val tfload: Fielder = parse_element (element (cls, fields(48)))
-    val tpelec: Fielder = parse_element (element (cls, fields(49)))
-    val tsa: Fielder = parse_element (element (cls, fields(50)))
-    val tsb: Fielder = parse_element (element (cls, fields(51)))
-    val vmax: Fielder = parse_element (element (cls, fields(52)))
-    val vmin: Fielder = parse_element (element (cls, fields(53)))
-    val wfnl: Fielder = parse_element (element (cls, fields(54)))
-    val wfspd: Fielder = parse_element (element (cls, fields(55)))
+    val aset: Fielder = parse_element (element (cls, fields (0)))
+    val db: Fielder = parse_element (element (cls, fields (1)))
+    val dm: Fielder = parse_element (element (cls, fields (2)))
+    val flim1: Fielder = parse_element (element (cls, fields (3)))
+    val flim10: Fielder = parse_element (element (cls, fields (4)))
+    val flim2: Fielder = parse_element (element (cls, fields (5)))
+    val flim3: Fielder = parse_element (element (cls, fields (6)))
+    val flim4: Fielder = parse_element (element (cls, fields (7)))
+    val flim5: Fielder = parse_element (element (cls, fields (8)))
+    val flim6: Fielder = parse_element (element (cls, fields (9)))
+    val flim7: Fielder = parse_element (element (cls, fields (10)))
+    val flim8: Fielder = parse_element (element (cls, fields (11)))
+    val flim9: Fielder = parse_element (element (cls, fields (12)))
+    val ka: Fielder = parse_element (element (cls, fields (13)))
+    val kdgov: Fielder = parse_element (element (cls, fields (14)))
+    val kigov: Fielder = parse_element (element (cls, fields (15)))
+    val kiload: Fielder = parse_element (element (cls, fields (16)))
+    val kimw: Fielder = parse_element (element (cls, fields (17)))
+    val kpgov: Fielder = parse_element (element (cls, fields (18)))
+    val kpload: Fielder = parse_element (element (cls, fields (19)))
+    val kturb: Fielder = parse_element (element (cls, fields (20)))
+    val ldref: Fielder = parse_element (element (cls, fields (21)))
+    val maxerr: Fielder = parse_element (element (cls, fields (22)))
+    val minerr: Fielder = parse_element (element (cls, fields (23)))
+    val mwbase: Fielder = parse_element (element (cls, fields (24)))
+    val plim1: Fielder = parse_element (element (cls, fields (25)))
+    val plim10: Fielder = parse_element (element (cls, fields (26)))
+    val plim2: Fielder = parse_element (element (cls, fields (27)))
+    val plim3: Fielder = parse_element (element (cls, fields (28)))
+    val plim4: Fielder = parse_element (element (cls, fields (29)))
+    val plim5: Fielder = parse_element (element (cls, fields (30)))
+    val plim6: Fielder = parse_element (element (cls, fields (31)))
+    val plim7: Fielder = parse_element (element (cls, fields (32)))
+    val plim8: Fielder = parse_element (element (cls, fields (33)))
+    val plim9: Fielder = parse_element (element (cls, fields (34)))
+    val prate: Fielder = parse_element (element (cls, fields (35)))
+    val r: Fielder = parse_element (element (cls, fields (36)))
+    val rclose: Fielder = parse_element (element (cls, fields (37)))
+    val rdown: Fielder = parse_element (element (cls, fields (38)))
+    val ropen: Fielder = parse_element (element (cls, fields (39)))
+    val rselect: Fielder = parse_attribute (attribute (cls, fields (40)))
+    val rup: Fielder = parse_element (element (cls, fields (41)))
+    val ta: Fielder = parse_element (element (cls, fields (42)))
+    val tact: Fielder = parse_element (element (cls, fields (43)))
+    val tb: Fielder = parse_element (element (cls, fields (44)))
+    val tc: Fielder = parse_element (element (cls, fields (45)))
+    val tdgov: Fielder = parse_element (element (cls, fields (46)))
+    val teng: Fielder = parse_element (element (cls, fields (47)))
+    val tfload: Fielder = parse_element (element (cls, fields (48)))
+    val tpelec: Fielder = parse_element (element (cls, fields (49)))
+    val tsa: Fielder = parse_element (element (cls, fields (50)))
+    val tsb: Fielder = parse_element (element (cls, fields (51)))
+    val vmax: Fielder = parse_element (element (cls, fields (52)))
+    val vmin: Fielder = parse_element (element (cls, fields (53)))
+    val wfnl: Fielder = parse_element (element (cls, fields (54)))
+    val wfspd: Fielder = parse_element (element (cls, fields (55)))
 
     def parse (context: CIMContext): GovCT2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovCT2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aset (), 0)),
@@ -1109,7 +1129,7 @@ object GovCT2Serializer extends CIMSerializer[GovCT2]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovCT2]): GovCT2 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovCT2 (
             parent,
@@ -1179,31 +1199,31 @@ object GovCT2Serializer extends CIMSerializer[GovCT2]
  * Single shaft gas turbine.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param at Ambient temperature load limit (<i>Load Limit</i>).
- *        Typical value = 1.
- * @param dturb Turbine damping factor (<i>Dturb</i>).
- *        Typical value = 0,18.
- * @param kt Temperature limiter gain (<i>Kt</i>).
- *        Typical value = 3.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param r Permanent droop (<i>R</i>) (&gt;0).
- *        Typical value = 0,04.
- * @param t1 Governor mechanism time constant (<i>T1</i>) (&gt;= 0).  <i>T1</i> represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.
- *        Typical value = 0,5.
- * @param t2 Turbine power time constant (<i>T2</i>) (&gt;= 0).  <i>T2</i> represents delay due to internal energy storage of the gas turbine engine. <i>T2</i> can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of a free power turbine of an aero-derivative unit, for example.
- *        Typical value = 0,5.
- * @param t3 Turbine exhaust temperature time constant (<i>T3</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param vmax Maximum turbine power, PU of MWbase (<i>Vmax</i>) (&gt; GovGAST.vmin).
- *        Typical value = 1.
- * @param vmin Minimum turbine power, PU of MWbase (<i>Vmin</i>) (&lt; GovGAST.vmax).
- *        Typical value = 0.
+ * @param at                      Ambient temperature load limit (<i>Load Limit</i>).
+ *                                Typical value = 1.
+ * @param dturb                   Turbine damping factor (<i>Dturb</i>).
+ *                                Typical value = 0,18.
+ * @param kt                      Temperature limiter gain (<i>Kt</i>).
+ *                                Typical value = 3.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param r                       Permanent droop (<i>R</i>) (&gt;0).
+ *                                Typical value = 0,04.
+ * @param t1                      Governor mechanism time constant (<i>T1</i>) (&gt;= 0).  <i>T1</i> represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.
+ *                                Typical value = 0,5.
+ * @param t2                      Turbine power time constant (<i>T2</i>) (&gt;= 0).  <i>T2</i> represents delay due to internal energy storage of the gas turbine engine. <i>T2</i> can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of a free power turbine of an aero-derivative unit, for example.
+ *                                Typical value = 0,5.
+ * @param t3                      Turbine exhaust temperature time constant (<i>T3</i>) (&gt;= 0).
+ *                                Typical value = 3.
+ * @param vmax                    Maximum turbine power, PU of MWbase (<i>Vmax</i>) (&gt; GovGAST.vmin).
+ *                                Typical value = 1.
+ * @param vmin                    Minimum turbine power, PU of MWbase (<i>Vmin</i>) (&lt; GovGAST.vmax).
+ *                                Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovGAST
 (
@@ -1219,8 +1239,8 @@ final case class GovGAST
     vmax: Double = 0.0,
     vmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1246,13 +1266,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGAST.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST.fields (position), value)
+
         emitelem (0, at)
         emitelem (1, dturb)
         emitelem (2, kt)
@@ -1265,6 +1290,7 @@ extends
         emitelem (9, vmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovGAST rdf:ID=\"%s\">\n%s\t</cim:GovGAST>".format (id, export_fields)
@@ -1272,10 +1298,10 @@ extends
 }
 
 object GovGAST
-extends
-    CIMParseable[GovGAST]
+    extends
+        CIMParseable[GovGAST]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "at",
         "dturb",
         "kt",
@@ -1287,21 +1313,21 @@ extends
         "vmax",
         "vmin"
     )
-    val at: Fielder = parse_element (element (cls, fields(0)))
-    val dturb: Fielder = parse_element (element (cls, fields(1)))
-    val kt: Fielder = parse_element (element (cls, fields(2)))
-    val mwbase: Fielder = parse_element (element (cls, fields(3)))
-    val r: Fielder = parse_element (element (cls, fields(4)))
-    val t1: Fielder = parse_element (element (cls, fields(5)))
-    val t2: Fielder = parse_element (element (cls, fields(6)))
-    val t3: Fielder = parse_element (element (cls, fields(7)))
-    val vmax: Fielder = parse_element (element (cls, fields(8)))
-    val vmin: Fielder = parse_element (element (cls, fields(9)))
+    val at: Fielder = parse_element (element (cls, fields (0)))
+    val dturb: Fielder = parse_element (element (cls, fields (1)))
+    val kt: Fielder = parse_element (element (cls, fields (2)))
+    val mwbase: Fielder = parse_element (element (cls, fields (3)))
+    val r: Fielder = parse_element (element (cls, fields (4)))
+    val t1: Fielder = parse_element (element (cls, fields (5)))
+    val t2: Fielder = parse_element (element (cls, fields (6)))
+    val t3: Fielder = parse_element (element (cls, fields (7)))
+    val vmax: Fielder = parse_element (element (cls, fields (8)))
+    val vmin: Fielder = parse_element (element (cls, fields (9)))
 
     def parse (context: CIMContext): GovGAST =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovGAST (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -1346,7 +1372,7 @@ object GovGASTSerializer extends CIMSerializer[GovGAST]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovGAST]): GovGAST =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovGAST (
             parent,
@@ -1370,79 +1396,79 @@ object GovGASTSerializer extends CIMSerializer[GovGAST]
  * Modified single shaft gas turbine.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param a Turbine power time constant numerator scale factor (<i>a</i>).
- *        Typical value = 0,8.
- * @param b Turbine power time constant denominator scale factor (<i>b</i>) (&gt;0).
- *        Typical value = 1.
- * @param db1 Intentional dead-band width (<i>db1</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param db2 Unintentional dead-band (<i>db2</i>).
- *        Unit = MW.  Typical value = 0.
- * @param eps Intentional db hysteresis (<i>eps</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param fidle Fuel flow at zero power output (<i>Fidle</i>).
- *        Typical value = 0,18.
- * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
- *        Typical value = 0.
- * @param gv2 Nonlinear gain point 2,PU gv (<i>Gv2</i>).
- *        Typical value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
- *        Typical value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
- *        Typical value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
- *        Typical value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
- *        Typical value = 0.
- * @param ka Governor gain (<i>Ka</i>).
- *        Typical value = 0.
- * @param kt Temperature limiter gain (<i>Kt</i>).
- *        Typical value = 3.
- * @param lmax Ambient temperature load limit (<i>Lmax</i>).  <i>Lmax</i> is the turbine power output corresponding to the limiting exhaust gas temperature.
- *        Typical value = 1.
- * @param loadinc Valve position change allowed at fast rate (<i>Loadinc</i>).
- *        Typical value = 0,05.
- * @param ltrate Maximum long term fuel valve opening rate (<i>Ltrate</i>).
- *        Typical value = 0,02.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
- *        Typical value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
- *        Typical value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
- *        Typical value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
- *        Typical value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
- *        Typical value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
- *        Typical value = 0.
- * @param r Permanent droop (<i>R</i>) (&gt;0).
- *        Typical value = 0,04.
- * @param rmax Maximum fuel valve opening rate (<i>Rmax</i>).
- *        Unit = PU / s.  Typical value = 1.
- * @param t1 Governor mechanism time constant (<i>T1</i>) (&gt;= 0).  <i>T1</i> represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.
- *        Typical value = 0,5.
- * @param t2 Turbine power time constant (<i>T2</i>) (&gt;= 0). <i>T2</i> represents delay due to internal energy storage of the gas turbine engine. <i>T2</i> can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of the free power turbine of an aero-derivative unit, for example.
- *        Typical value = 0,5.
- * @param t3 Turbine exhaust temperature time constant (<i>T3</i>) (&gt;= 0).  <i>T3</i> represents delay in the exhaust temperature and load limiting system.
- *        Typical value = 3.
- * @param t4 Governor lead time constant (<i>T4</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param t5 Governor lag time constant (<i>T5</i>) (&gt;= 0).
- *        If = 0, entire gain and lead-lag block is bypassed.  Typical value = 0.
- * @param tltr Valve position averaging time constant (<i>Tltr</i>) (&gt;= 0).
- *        Typical value = 10.
- * @param vmax Maximum turbine power, PU of MWbase (<i>Vmax</i>) (&gt; GovGAST1.vmin).
- *        Typical value = 1.
- * @param vmin Minimum turbine power, PU of MWbase (<i>Vmin</i>) (&lt; GovGAST1.vmax).
- *        Typical value = 0.
+ * @param a                       Turbine power time constant numerator scale factor (<i>a</i>).
+ *                                Typical value = 0,8.
+ * @param b                       Turbine power time constant denominator scale factor (<i>b</i>) (&gt;0).
+ *                                Typical value = 1.
+ * @param db1                     Intentional dead-band width (<i>db1</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param db2                     Unintentional dead-band (<i>db2</i>).
+ *                                Unit = MW.  Typical value = 0.
+ * @param eps                     Intentional db hysteresis (<i>eps</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param fidle                   Fuel flow at zero power output (<i>Fidle</i>).
+ *                                Typical value = 0,18.
+ * @param gv1                     Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *                                Typical value = 0.
+ * @param gv2                     Nonlinear gain point 2,PU gv (<i>Gv2</i>).
+ *                                Typical value = 0.
+ * @param gv3                     Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *                                Typical value = 0.
+ * @param gv4                     Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *                                Typical value = 0.
+ * @param gv5                     Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *                                Typical value = 0.
+ * @param gv6                     Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *                                Typical value = 0.
+ * @param ka                      Governor gain (<i>Ka</i>).
+ *                                Typical value = 0.
+ * @param kt                      Temperature limiter gain (<i>Kt</i>).
+ *                                Typical value = 3.
+ * @param lmax                    Ambient temperature load limit (<i>Lmax</i>).  <i>Lmax</i> is the turbine power output corresponding to the limiting exhaust gas temperature.
+ *                                Typical value = 1.
+ * @param loadinc                 Valve position change allowed at fast rate (<i>Loadinc</i>).
+ *                                Typical value = 0,05.
+ * @param ltrate                  Maximum long term fuel valve opening rate (<i>Ltrate</i>).
+ *                                Typical value = 0,02.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pgv1                    Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *                                Typical value = 0.
+ * @param pgv2                    Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *                                Typical value = 0.
+ * @param pgv3                    Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *                                Typical value = 0.
+ * @param pgv4                    Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *                                Typical value = 0.
+ * @param pgv5                    Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *                                Typical value = 0.
+ * @param pgv6                    Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *                                Typical value = 0.
+ * @param r                       Permanent droop (<i>R</i>) (&gt;0).
+ *                                Typical value = 0,04.
+ * @param rmax                    Maximum fuel valve opening rate (<i>Rmax</i>).
+ *                                Unit = PU / s.  Typical value = 1.
+ * @param t1                      Governor mechanism time constant (<i>T1</i>) (&gt;= 0).  <i>T1</i> represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.
+ *                                Typical value = 0,5.
+ * @param t2                      Turbine power time constant (<i>T2</i>) (&gt;= 0). <i>T2</i> represents delay due to internal energy storage of the gas turbine engine. <i>T2</i> can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of the free power turbine of an aero-derivative unit, for example.
+ *                                Typical value = 0,5.
+ * @param t3                      Turbine exhaust temperature time constant (<i>T3</i>) (&gt;= 0).  <i>T3</i> represents delay in the exhaust temperature and load limiting system.
+ *                                Typical value = 3.
+ * @param t4                      Governor lead time constant (<i>T4</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param t5                      Governor lag time constant (<i>T5</i>) (&gt;= 0).
+ *                                If = 0, entire gain and lead-lag block is bypassed.  Typical value = 0.
+ * @param tltr                    Valve position averaging time constant (<i>Tltr</i>) (&gt;= 0).
+ *                                Typical value = 10.
+ * @param vmax                    Maximum turbine power, PU of MWbase (<i>Vmax</i>) (&gt; GovGAST1.vmin).
+ *                                Typical value = 1.
+ * @param vmin                    Minimum turbine power, PU of MWbase (<i>Vmin</i>) (&lt; GovGAST1.vmax).
+ *                                Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovGAST1
 (
@@ -1482,8 +1508,8 @@ final case class GovGAST1
     vmax: Double = 0.0,
     vmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1509,13 +1535,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGAST1.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST1.fields (position), value)
+
         emitelem (0, a)
         emitelem (1, b)
         emitelem (2, db1)
@@ -1552,6 +1583,7 @@ extends
         emitelem (33, vmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovGAST1 rdf:ID=\"%s\">\n%s\t</cim:GovGAST1>".format (id, export_fields)
@@ -1559,10 +1591,10 @@ extends
 }
 
 object GovGAST1
-extends
-    CIMParseable[GovGAST1]
+    extends
+        CIMParseable[GovGAST1]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "a",
         "b",
         "db1",
@@ -1598,45 +1630,45 @@ extends
         "vmax",
         "vmin"
     )
-    val a: Fielder = parse_element (element (cls, fields(0)))
-    val b: Fielder = parse_element (element (cls, fields(1)))
-    val db1: Fielder = parse_element (element (cls, fields(2)))
-    val db2: Fielder = parse_element (element (cls, fields(3)))
-    val eps: Fielder = parse_element (element (cls, fields(4)))
-    val fidle: Fielder = parse_element (element (cls, fields(5)))
-    val gv1: Fielder = parse_element (element (cls, fields(6)))
-    val gv2: Fielder = parse_element (element (cls, fields(7)))
-    val gv3: Fielder = parse_element (element (cls, fields(8)))
-    val gv4: Fielder = parse_element (element (cls, fields(9)))
-    val gv5: Fielder = parse_element (element (cls, fields(10)))
-    val gv6: Fielder = parse_element (element (cls, fields(11)))
-    val ka: Fielder = parse_element (element (cls, fields(12)))
-    val kt: Fielder = parse_element (element (cls, fields(13)))
-    val lmax: Fielder = parse_element (element (cls, fields(14)))
-    val loadinc: Fielder = parse_element (element (cls, fields(15)))
-    val ltrate: Fielder = parse_element (element (cls, fields(16)))
-    val mwbase: Fielder = parse_element (element (cls, fields(17)))
-    val pgv1: Fielder = parse_element (element (cls, fields(18)))
-    val pgv2: Fielder = parse_element (element (cls, fields(19)))
-    val pgv3: Fielder = parse_element (element (cls, fields(20)))
-    val pgv4: Fielder = parse_element (element (cls, fields(21)))
-    val pgv5: Fielder = parse_element (element (cls, fields(22)))
-    val pgv6: Fielder = parse_element (element (cls, fields(23)))
-    val r: Fielder = parse_element (element (cls, fields(24)))
-    val rmax: Fielder = parse_element (element (cls, fields(25)))
-    val t1: Fielder = parse_element (element (cls, fields(26)))
-    val t2: Fielder = parse_element (element (cls, fields(27)))
-    val t3: Fielder = parse_element (element (cls, fields(28)))
-    val t4: Fielder = parse_element (element (cls, fields(29)))
-    val t5: Fielder = parse_element (element (cls, fields(30)))
-    val tltr: Fielder = parse_element (element (cls, fields(31)))
-    val vmax: Fielder = parse_element (element (cls, fields(32)))
-    val vmin: Fielder = parse_element (element (cls, fields(33)))
+    val a: Fielder = parse_element (element (cls, fields (0)))
+    val b: Fielder = parse_element (element (cls, fields (1)))
+    val db1: Fielder = parse_element (element (cls, fields (2)))
+    val db2: Fielder = parse_element (element (cls, fields (3)))
+    val eps: Fielder = parse_element (element (cls, fields (4)))
+    val fidle: Fielder = parse_element (element (cls, fields (5)))
+    val gv1: Fielder = parse_element (element (cls, fields (6)))
+    val gv2: Fielder = parse_element (element (cls, fields (7)))
+    val gv3: Fielder = parse_element (element (cls, fields (8)))
+    val gv4: Fielder = parse_element (element (cls, fields (9)))
+    val gv5: Fielder = parse_element (element (cls, fields (10)))
+    val gv6: Fielder = parse_element (element (cls, fields (11)))
+    val ka: Fielder = parse_element (element (cls, fields (12)))
+    val kt: Fielder = parse_element (element (cls, fields (13)))
+    val lmax: Fielder = parse_element (element (cls, fields (14)))
+    val loadinc: Fielder = parse_element (element (cls, fields (15)))
+    val ltrate: Fielder = parse_element (element (cls, fields (16)))
+    val mwbase: Fielder = parse_element (element (cls, fields (17)))
+    val pgv1: Fielder = parse_element (element (cls, fields (18)))
+    val pgv2: Fielder = parse_element (element (cls, fields (19)))
+    val pgv3: Fielder = parse_element (element (cls, fields (20)))
+    val pgv4: Fielder = parse_element (element (cls, fields (21)))
+    val pgv5: Fielder = parse_element (element (cls, fields (22)))
+    val pgv6: Fielder = parse_element (element (cls, fields (23)))
+    val r: Fielder = parse_element (element (cls, fields (24)))
+    val rmax: Fielder = parse_element (element (cls, fields (25)))
+    val t1: Fielder = parse_element (element (cls, fields (26)))
+    val t2: Fielder = parse_element (element (cls, fields (27)))
+    val t3: Fielder = parse_element (element (cls, fields (28)))
+    val t4: Fielder = parse_element (element (cls, fields (29)))
+    val t5: Fielder = parse_element (element (cls, fields (30)))
+    val tltr: Fielder = parse_element (element (cls, fields (31)))
+    val vmax: Fielder = parse_element (element (cls, fields (32)))
+    val vmin: Fielder = parse_element (element (cls, fields (33)))
 
     def parse (context: CIMContext): GovGAST1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovGAST1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (a (), 0)),
@@ -1729,7 +1761,7 @@ object GovGAST1Serializer extends CIMSerializer[GovGAST1]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovGAST1]): GovGAST1 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovGAST1 (
             parent,
@@ -1777,52 +1809,52 @@ object GovGAST1Serializer extends CIMSerializer[GovGAST1]
  * Gas turbine.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param a Valve positioner (<i>A</i>).
- * @param af1 Exhaust temperature parameter (<i>Af1</i>).
- *        Unit = PU temperature.  Based on temperature in degrees C.
- * @param af2 Coefficient equal to 0,5(1-speed) (<i>Af2</i>).
- * @param b Valve positioner (<i>B</i>).
- * @param bf1 (<i>Bf1</i>).  <i>Bf1</i> = <i>E</i>(1 - <i>W</i>) where <i>E</i> (speed sensitivity coefficient) is 0,55 to 0,65 x <i>Tr</i>.
- *        Unit = PU temperature.  Based on temperature in degrees C.
- * @param bf2 Turbine torque coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (<i>Bf2</i>).
- * @param c Valve positioner (<i>C</i>).
- * @param cf2 Coefficient defining fuel flow where power output is 0% (<i>Cf2</i>).
- *        Synchronous but no output.  Typically 0,23 x K<sub>hhv</sub> (23% fuel flow).
- * @param ecr Combustion reaction time delay (<i>Ecr</i>) (&gt;= 0).
- * @param etd Turbine and exhaust delay (<i>Etd</i>) (&gt;= 0).
- * @param k3 Ratio of fuel adjustment (<i>K3</i>).
- * @param k4 Gain of radiation shield (<i>K4</i>).
- * @param k5 Gain of radiation shield (<i>K5</i>).
- * @param k6 Minimum fuel flow (<i>K6</i>).
- * @param kf Fuel system feedback (<i>Kf</i>).
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param t Fuel control time constant (<i>T</i>) (&gt;= 0).
- * @param t3 Radiation shield time constant (<i>T3</i>) (&gt;= 0).
- * @param t4 Thermocouple time constant (<i>T4</i>) (&gt;= 0).
- * @param t5 Temperature control time constant (<i>T5</i>) (&gt;= 0).
- * @param tc Temperature control (<i>Tc</i>).
- *        Unit = °F or °C depending on parameters <i>Af1</i> and <i>Bf1</i>.
- * @param tcd Compressor discharge time constant (<i>Tcd</i>) (&gt;= 0).
- * @param tf Fuel system time constant (<i>Tf</i>) (&gt;= 0).
- * @param tmax Maximum turbine limit (<i>Tmax</i>) (&gt; GovGAST2.tmin).
- * @param tmin Minimum turbine limit (<i>Tmin</i>) (&lt; GovGAST2.tmax).
- * @param tr Rated temperature (<i>Tr</i>).
- *        Unit = °C depending on parameters<i> Af1 </i>and <i>Bf1</i>.
- * @param trate Turbine rating (<i>Trate</i>).
- *        Unit = MW.
- * @param tt Temperature controller integration rate (<i>Tt</i>) (&gt;= 0).
- * @param w Governor gain (1/droop) on turbine rating (<i>W</i>).
- * @param x Governor lead time constant (<i>X</i>) (&gt;= 0).
- * @param y Governor lag time constant (<i>Y</i>) (&gt; 0).
- * @param z Governor mode (<i>Z</i>).
- *        1 = droop
- *        0 = isochronous.
+ * @param a                       Valve positioner (<i>A</i>).
+ * @param af1                     Exhaust temperature parameter (<i>Af1</i>).
+ *                                Unit = PU temperature.  Based on temperature in degrees C.
+ * @param af2                     Coefficient equal to 0,5(1-speed) (<i>Af2</i>).
+ * @param b                       Valve positioner (<i>B</i>).
+ * @param bf1                     (<i>Bf1</i>).  <i>Bf1</i> = <i>E</i>(1 - <i>W</i>) where <i>E</i> (speed sensitivity coefficient) is 0,55 to 0,65 x <i>Tr</i>.
+ *                                Unit = PU temperature.  Based on temperature in degrees C.
+ * @param bf2                     Turbine torque coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (<i>Bf2</i>).
+ * @param c                       Valve positioner (<i>C</i>).
+ * @param cf2                     Coefficient defining fuel flow where power output is 0% (<i>Cf2</i>).
+ *                                Synchronous but no output.  Typically 0,23 x K<sub>hhv</sub> (23% fuel flow).
+ * @param ecr                     Combustion reaction time delay (<i>Ecr</i>) (&gt;= 0).
+ * @param etd                     Turbine and exhaust delay (<i>Etd</i>) (&gt;= 0).
+ * @param k3                      Ratio of fuel adjustment (<i>K3</i>).
+ * @param k4                      Gain of radiation shield (<i>K4</i>).
+ * @param k5                      Gain of radiation shield (<i>K5</i>).
+ * @param k6                      Minimum fuel flow (<i>K6</i>).
+ * @param kf                      Fuel system feedback (<i>Kf</i>).
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param t                       Fuel control time constant (<i>T</i>) (&gt;= 0).
+ * @param t3                      Radiation shield time constant (<i>T3</i>) (&gt;= 0).
+ * @param t4                      Thermocouple time constant (<i>T4</i>) (&gt;= 0).
+ * @param t5                      Temperature control time constant (<i>T5</i>) (&gt;= 0).
+ * @param tc                      Temperature control (<i>Tc</i>).
+ *                                Unit = °F or °C depending on parameters <i>Af1</i> and <i>Bf1</i>.
+ * @param tcd                     Compressor discharge time constant (<i>Tcd</i>) (&gt;= 0).
+ * @param tf                      Fuel system time constant (<i>Tf</i>) (&gt;= 0).
+ * @param tmax                    Maximum turbine limit (<i>Tmax</i>) (&gt; GovGAST2.tmin).
+ * @param tmin                    Minimum turbine limit (<i>Tmin</i>) (&lt; GovGAST2.tmax).
+ * @param tr                      Rated temperature (<i>Tr</i>).
+ *                                Unit = °C depending on parameters<i> Af1 </i>and <i>Bf1</i>.
+ * @param trate                   Turbine rating (<i>Trate</i>).
+ *                                Unit = MW.
+ * @param tt                      Temperature controller integration rate (<i>Tt</i>) (&gt;= 0).
+ * @param w                       Governor gain (1/droop) on turbine rating (<i>W</i>).
+ * @param x                       Governor lead time constant (<i>X</i>) (&gt;= 0).
+ * @param y                       Governor lag time constant (<i>Y</i>) (&gt; 0).
+ * @param z                       Governor mode (<i>Z</i>).
+ *                                1 = droop
+ *                                0 = isochronous.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovGAST2
 (
@@ -1860,8 +1892,8 @@ final case class GovGAST2
     y: Double = 0.0,
     z: Int = 0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1887,13 +1919,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGAST2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST2.fields (position), value)
+
         emitelem (0, a)
         emitelem (1, af1)
         emitelem (2, af2)
@@ -1928,6 +1965,7 @@ extends
         emitelem (31, z)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovGAST2 rdf:ID=\"%s\">\n%s\t</cim:GovGAST2>".format (id, export_fields)
@@ -1935,10 +1973,10 @@ extends
 }
 
 object GovGAST2
-extends
-    CIMParseable[GovGAST2]
+    extends
+        CIMParseable[GovGAST2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "a",
         "af1",
         "af2",
@@ -1972,43 +2010,43 @@ extends
         "y",
         "z"
     )
-    val a: Fielder = parse_element (element (cls, fields(0)))
-    val af1: Fielder = parse_element (element (cls, fields(1)))
-    val af2: Fielder = parse_element (element (cls, fields(2)))
-    val b: Fielder = parse_element (element (cls, fields(3)))
-    val bf1: Fielder = parse_element (element (cls, fields(4)))
-    val bf2: Fielder = parse_element (element (cls, fields(5)))
-    val c: Fielder = parse_element (element (cls, fields(6)))
-    val cf2: Fielder = parse_element (element (cls, fields(7)))
-    val ecr: Fielder = parse_element (element (cls, fields(8)))
-    val etd: Fielder = parse_element (element (cls, fields(9)))
-    val k3: Fielder = parse_element (element (cls, fields(10)))
-    val k4: Fielder = parse_element (element (cls, fields(11)))
-    val k5: Fielder = parse_element (element (cls, fields(12)))
-    val k6: Fielder = parse_element (element (cls, fields(13)))
-    val kf: Fielder = parse_element (element (cls, fields(14)))
-    val mwbase: Fielder = parse_element (element (cls, fields(15)))
-    val t: Fielder = parse_element (element (cls, fields(16)))
-    val t3: Fielder = parse_element (element (cls, fields(17)))
-    val t4: Fielder = parse_element (element (cls, fields(18)))
-    val t5: Fielder = parse_element (element (cls, fields(19)))
-    val tc: Fielder = parse_element (element (cls, fields(20)))
-    val tcd: Fielder = parse_element (element (cls, fields(21)))
-    val tf: Fielder = parse_element (element (cls, fields(22)))
-    val tmax: Fielder = parse_element (element (cls, fields(23)))
-    val tmin: Fielder = parse_element (element (cls, fields(24)))
-    val tr: Fielder = parse_element (element (cls, fields(25)))
-    val trate: Fielder = parse_element (element (cls, fields(26)))
-    val tt: Fielder = parse_element (element (cls, fields(27)))
-    val w: Fielder = parse_element (element (cls, fields(28)))
-    val x: Fielder = parse_element (element (cls, fields(29)))
-    val y: Fielder = parse_element (element (cls, fields(30)))
-    val z: Fielder = parse_element (element (cls, fields(31)))
+    val a: Fielder = parse_element (element (cls, fields (0)))
+    val af1: Fielder = parse_element (element (cls, fields (1)))
+    val af2: Fielder = parse_element (element (cls, fields (2)))
+    val b: Fielder = parse_element (element (cls, fields (3)))
+    val bf1: Fielder = parse_element (element (cls, fields (4)))
+    val bf2: Fielder = parse_element (element (cls, fields (5)))
+    val c: Fielder = parse_element (element (cls, fields (6)))
+    val cf2: Fielder = parse_element (element (cls, fields (7)))
+    val ecr: Fielder = parse_element (element (cls, fields (8)))
+    val etd: Fielder = parse_element (element (cls, fields (9)))
+    val k3: Fielder = parse_element (element (cls, fields (10)))
+    val k4: Fielder = parse_element (element (cls, fields (11)))
+    val k5: Fielder = parse_element (element (cls, fields (12)))
+    val k6: Fielder = parse_element (element (cls, fields (13)))
+    val kf: Fielder = parse_element (element (cls, fields (14)))
+    val mwbase: Fielder = parse_element (element (cls, fields (15)))
+    val t: Fielder = parse_element (element (cls, fields (16)))
+    val t3: Fielder = parse_element (element (cls, fields (17)))
+    val t4: Fielder = parse_element (element (cls, fields (18)))
+    val t5: Fielder = parse_element (element (cls, fields (19)))
+    val tc: Fielder = parse_element (element (cls, fields (20)))
+    val tcd: Fielder = parse_element (element (cls, fields (21)))
+    val tf: Fielder = parse_element (element (cls, fields (22)))
+    val tmax: Fielder = parse_element (element (cls, fields (23)))
+    val tmin: Fielder = parse_element (element (cls, fields (24)))
+    val tr: Fielder = parse_element (element (cls, fields (25)))
+    val trate: Fielder = parse_element (element (cls, fields (26)))
+    val tt: Fielder = parse_element (element (cls, fields (27)))
+    val w: Fielder = parse_element (element (cls, fields (28)))
+    val x: Fielder = parse_element (element (cls, fields (29)))
+    val y: Fielder = parse_element (element (cls, fields (30)))
+    val z: Fielder = parse_element (element (cls, fields (31)))
 
     def parse (context: CIMContext): GovGAST2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovGAST2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (a (), 0)),
@@ -2097,7 +2135,7 @@ object GovGAST2Serializer extends CIMSerializer[GovGAST2]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovGAST2]): GovGAST2 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovGAST2 (
             parent,
@@ -2143,53 +2181,53 @@ object GovGAST2Serializer extends CIMSerializer[GovGAST2]
  * Generic turbogas with acceleration and temperature controller.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param bca Acceleration limit set-point (<i>Bca</i>).
- *        Unit = 1/s.  Typical value = 0,01.
- * @param bp Droop (<i>bp</i>).
- *        Typical value = 0,05.
- * @param dtc Exhaust temperature variation due to fuel flow increasing from 0 to 1 PU (<i>deltaTc</i>).
- *        Typical value = 390.
- * @param ka Minimum fuel flow (<i>Ka</i>).
- *        Typical value = 0,23.
- * @param kac Fuel system feedback (<i>K</i><i><sub>AC</sub></i>).
- *        Typical value = 0.
- * @param kca Acceleration control integral gain (<i>Kca</i>).
- *        Unit = 1/s.  Typical value = 100.
- * @param ksi Gain of radiation shield (<i>Ksi</i>).
- *        Typical value = 0,8.
- * @param ky Coefficient of transfer function of fuel valve positioner (<i>Ky</i>).
- *        Typical value = 1.
- * @param mnef Fuel flow maximum negative error value (<i>MNef</i>).
- *        Typical value = -0,05.
- * @param mxef Fuel flow maximum positive error value (<i>MXef</i>).
- *        Typical value = 0,05.
- * @param rcmn Minimum fuel flow (<i>RCMN</i>).
- *        Typical value = -0,1.
- * @param rcmx Maximum fuel flow (<i>RCMX</i>).
- *        Typical value = 1.
- * @param tac Fuel control time constant (<i>Tac</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param tc Compressor discharge volume time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0,2.
- * @param td Temperature controller derivative gain (<i>Td</i>) (&gt;= 0).
- *        Typical value = 3,3.
- * @param tfen Turbine rated exhaust temperature correspondent to Pm=1 PU (<i>Tfen</i>).
- *        Typical value = 540.
- * @param tg Time constant of speed governor (<i>Tg</i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param tsi Time constant of radiation shield (<i>Tsi</i>) (&gt;= 0).
- *        Typical value = 15.
- * @param tt Temperature controller integration rate (<i>Tt</i>).
- *        Typical value = 250.
- * @param ttc Time constant of thermocouple (<i>Ttc</i>) (&gt;= 0).
- *        Typical value = 2,5.
- * @param ty Time constant of fuel valve positioner (<i>Ty</i>) (&gt;= 0).
- *        Typical value = 0,2.
+ * @param bca                     Acceleration limit set-point (<i>Bca</i>).
+ *                                Unit = 1/s.  Typical value = 0,01.
+ * @param bp                      Droop (<i>bp</i>).
+ *                                Typical value = 0,05.
+ * @param dtc                     Exhaust temperature variation due to fuel flow increasing from 0 to 1 PU (<i>deltaTc</i>).
+ *                                Typical value = 390.
+ * @param ka                      Minimum fuel flow (<i>Ka</i>).
+ *                                Typical value = 0,23.
+ * @param kac                     Fuel system feedback (<i>K</i><i><sub>AC</sub></i>).
+ *                                Typical value = 0.
+ * @param kca                     Acceleration control integral gain (<i>Kca</i>).
+ *                                Unit = 1/s.  Typical value = 100.
+ * @param ksi                     Gain of radiation shield (<i>Ksi</i>).
+ *                                Typical value = 0,8.
+ * @param ky                      Coefficient of transfer function of fuel valve positioner (<i>Ky</i>).
+ *                                Typical value = 1.
+ * @param mnef                    Fuel flow maximum negative error value (<i>MNef</i>).
+ *                                Typical value = -0,05.
+ * @param mxef                    Fuel flow maximum positive error value (<i>MXef</i>).
+ *                                Typical value = 0,05.
+ * @param rcmn                    Minimum fuel flow (<i>RCMN</i>).
+ *                                Typical value = -0,1.
+ * @param rcmx                    Maximum fuel flow (<i>RCMX</i>).
+ *                                Typical value = 1.
+ * @param tac                     Fuel control time constant (<i>Tac</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param tc                      Compressor discharge volume time constant (<i>Tc</i>) (&gt;= 0).
+ *                                Typical value = 0,2.
+ * @param td                      Temperature controller derivative gain (<i>Td</i>) (&gt;= 0).
+ *                                Typical value = 3,3.
+ * @param tfen                    Turbine rated exhaust temperature correspondent to Pm=1 PU (<i>Tfen</i>).
+ *                                Typical value = 540.
+ * @param tg                      Time constant of speed governor (<i>Tg</i>) (&gt;= 0).
+ *                                Typical value = 0,05.
+ * @param tsi                     Time constant of radiation shield (<i>Tsi</i>) (&gt;= 0).
+ *                                Typical value = 15.
+ * @param tt                      Temperature controller integration rate (<i>Tt</i>).
+ *                                Typical value = 250.
+ * @param ttc                     Time constant of thermocouple (<i>Ttc</i>) (&gt;= 0).
+ *                                Typical value = 2,5.
+ * @param ty                      Time constant of fuel valve positioner (<i>Ty</i>) (&gt;= 0).
+ *                                Typical value = 0,2.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovGAST3
 (
@@ -2216,8 +2254,8 @@ final case class GovGAST3
     ttc: Double = 0.0,
     ty: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2243,13 +2281,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGAST3.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST3.fields (position), value)
+
         emitelem (0, bca)
         emitelem (1, bp)
         emitelem (2, dtc)
@@ -2273,6 +2316,7 @@ extends
         emitelem (20, ty)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovGAST3 rdf:ID=\"%s\">\n%s\t</cim:GovGAST3>".format (id, export_fields)
@@ -2280,10 +2324,10 @@ extends
 }
 
 object GovGAST3
-extends
-    CIMParseable[GovGAST3]
+    extends
+        CIMParseable[GovGAST3]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "bca",
         "bp",
         "dtc",
@@ -2306,32 +2350,32 @@ extends
         "ttc",
         "ty"
     )
-    val bca: Fielder = parse_element (element (cls, fields(0)))
-    val bp: Fielder = parse_element (element (cls, fields(1)))
-    val dtc: Fielder = parse_element (element (cls, fields(2)))
-    val ka: Fielder = parse_element (element (cls, fields(3)))
-    val kac: Fielder = parse_element (element (cls, fields(4)))
-    val kca: Fielder = parse_element (element (cls, fields(5)))
-    val ksi: Fielder = parse_element (element (cls, fields(6)))
-    val ky: Fielder = parse_element (element (cls, fields(7)))
-    val mnef: Fielder = parse_element (element (cls, fields(8)))
-    val mxef: Fielder = parse_element (element (cls, fields(9)))
-    val rcmn: Fielder = parse_element (element (cls, fields(10)))
-    val rcmx: Fielder = parse_element (element (cls, fields(11)))
-    val tac: Fielder = parse_element (element (cls, fields(12)))
-    val tc: Fielder = parse_element (element (cls, fields(13)))
-    val td: Fielder = parse_element (element (cls, fields(14)))
-    val tfen: Fielder = parse_element (element (cls, fields(15)))
-    val tg: Fielder = parse_element (element (cls, fields(16)))
-    val tsi: Fielder = parse_element (element (cls, fields(17)))
-    val tt: Fielder = parse_element (element (cls, fields(18)))
-    val ttc: Fielder = parse_element (element (cls, fields(19)))
-    val ty: Fielder = parse_element (element (cls, fields(20)))
+    val bca: Fielder = parse_element (element (cls, fields (0)))
+    val bp: Fielder = parse_element (element (cls, fields (1)))
+    val dtc: Fielder = parse_element (element (cls, fields (2)))
+    val ka: Fielder = parse_element (element (cls, fields (3)))
+    val kac: Fielder = parse_element (element (cls, fields (4)))
+    val kca: Fielder = parse_element (element (cls, fields (5)))
+    val ksi: Fielder = parse_element (element (cls, fields (6)))
+    val ky: Fielder = parse_element (element (cls, fields (7)))
+    val mnef: Fielder = parse_element (element (cls, fields (8)))
+    val mxef: Fielder = parse_element (element (cls, fields (9)))
+    val rcmn: Fielder = parse_element (element (cls, fields (10)))
+    val rcmx: Fielder = parse_element (element (cls, fields (11)))
+    val tac: Fielder = parse_element (element (cls, fields (12)))
+    val tc: Fielder = parse_element (element (cls, fields (13)))
+    val td: Fielder = parse_element (element (cls, fields (14)))
+    val tfen: Fielder = parse_element (element (cls, fields (15)))
+    val tg: Fielder = parse_element (element (cls, fields (16)))
+    val tsi: Fielder = parse_element (element (cls, fields (17)))
+    val tt: Fielder = parse_element (element (cls, fields (18)))
+    val ttc: Fielder = parse_element (element (cls, fields (19)))
+    val ty: Fielder = parse_element (element (cls, fields (20)))
 
     def parse (context: CIMContext): GovGAST3 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovGAST3 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (bca (), 0)),
@@ -2398,7 +2442,7 @@ object GovGAST3Serializer extends CIMSerializer[GovGAST3]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovGAST3]): GovGAST3 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovGAST3 (
             parent,
@@ -2433,33 +2477,33 @@ object GovGAST3Serializer extends CIMSerializer[GovGAST3]
  * Generic turbogas.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param bp Droop (<i>b</i><i><sub>p</sub></i>).
- *        Typical value = 0,05.
- * @param ktm Compressor gain (<i>Ktm</i>).
- *        Typical value = 0.
- * @param mnef Fuel flow maximum negative error value (<i>MNef</i>).
- *        Typical value = -0,05.
- * @param mxef Fuel flow maximum positive error value (<i>MXef</i>).
- *        Typical value = 0,05.
- * @param rymn Minimum valve opening (<i>RYMN</i>).
- *        Typical value = 0.
- * @param rymx Maximum valve opening (<i>RYMX</i>).
- *        Typical value = 1,1.
- * @param ta Maximum gate opening velocity (<i>TA</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param tc Maximum gate closing velocity (<i>TC</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param tcm Fuel control time constant (<i>Tcm</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param tm Compressor discharge volume time constant (<i>Tm</i>) (&gt;= 0).
- *        Typical value = 0,2.
- * @param ty Time constant of fuel valve positioner (<i>Ty</i>) (&gt;= 0).
- *        Typical value = 0,1.
+ * @param bp                      Droop (<i>b</i><i><sub>p</sub></i>).
+ *                                Typical value = 0,05.
+ * @param ktm                     Compressor gain (<i>Ktm</i>).
+ *                                Typical value = 0.
+ * @param mnef                    Fuel flow maximum negative error value (<i>MNef</i>).
+ *                                Typical value = -0,05.
+ * @param mxef                    Fuel flow maximum positive error value (<i>MXef</i>).
+ *                                Typical value = 0,05.
+ * @param rymn                    Minimum valve opening (<i>RYMN</i>).
+ *                                Typical value = 0.
+ * @param rymx                    Maximum valve opening (<i>RYMX</i>).
+ *                                Typical value = 1,1.
+ * @param ta                      Maximum gate opening velocity (<i>TA</i>) (&gt;= 0).
+ *                                Typical value = 3.
+ * @param tc                      Maximum gate closing velocity (<i>TC</i>) (&gt;= 0).
+ *                                Typical value = 0,5.
+ * @param tcm                     Fuel control time constant (<i>Tcm</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param tm                      Compressor discharge volume time constant (<i>Tm</i>) (&gt;= 0).
+ *                                Typical value = 0,2.
+ * @param ty                      Time constant of fuel valve positioner (<i>Ty</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovGAST4
 (
@@ -2476,8 +2520,8 @@ final case class GovGAST4
     tm: Double = 0.0,
     ty: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2503,13 +2547,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGAST4.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST4.fields (position), value)
+
         emitelem (0, bp)
         emitelem (1, ktm)
         emitelem (2, mnef)
@@ -2523,6 +2572,7 @@ extends
         emitelem (10, ty)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovGAST4 rdf:ID=\"%s\">\n%s\t</cim:GovGAST4>".format (id, export_fields)
@@ -2530,10 +2580,10 @@ extends
 }
 
 object GovGAST4
-extends
-    CIMParseable[GovGAST4]
+    extends
+        CIMParseable[GovGAST4]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "bp",
         "ktm",
         "mnef",
@@ -2546,22 +2596,22 @@ extends
         "tm",
         "ty"
     )
-    val bp: Fielder = parse_element (element (cls, fields(0)))
-    val ktm: Fielder = parse_element (element (cls, fields(1)))
-    val mnef: Fielder = parse_element (element (cls, fields(2)))
-    val mxef: Fielder = parse_element (element (cls, fields(3)))
-    val rymn: Fielder = parse_element (element (cls, fields(4)))
-    val rymx: Fielder = parse_element (element (cls, fields(5)))
-    val ta: Fielder = parse_element (element (cls, fields(6)))
-    val tc: Fielder = parse_element (element (cls, fields(7)))
-    val tcm: Fielder = parse_element (element (cls, fields(8)))
-    val tm: Fielder = parse_element (element (cls, fields(9)))
-    val ty: Fielder = parse_element (element (cls, fields(10)))
+    val bp: Fielder = parse_element (element (cls, fields (0)))
+    val ktm: Fielder = parse_element (element (cls, fields (1)))
+    val mnef: Fielder = parse_element (element (cls, fields (2)))
+    val mxef: Fielder = parse_element (element (cls, fields (3)))
+    val rymn: Fielder = parse_element (element (cls, fields (4)))
+    val rymx: Fielder = parse_element (element (cls, fields (5)))
+    val ta: Fielder = parse_element (element (cls, fields (6)))
+    val tc: Fielder = parse_element (element (cls, fields (7)))
+    val tcm: Fielder = parse_element (element (cls, fields (8)))
+    val tm: Fielder = parse_element (element (cls, fields (9)))
+    val ty: Fielder = parse_element (element (cls, fields (10)))
 
     def parse (context: CIMContext): GovGAST4 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovGAST4 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (bp (), 0)),
@@ -2608,7 +2658,7 @@ object GovGAST4Serializer extends CIMSerializer[GovGAST4]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovGAST4]): GovGAST4 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovGAST4 (
             parent,
@@ -2636,47 +2686,47 @@ object GovGAST4Serializer extends CIMSerializer[GovGAST4]
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param a Valve positioner (<i>A</i>).
- * @param af1 Exhaust temperature parameter (<i>Af1</i>).
- * @param af2 Coefficient equal to 0,5(1-speed) (<i>Af2</i>).
- * @param b Valve positioner (<i>B</i>).
- * @param bf1 (<i>Bf1</i>).  <i>Bf1</i> = <i>E</i>(1-<i>w</i>) where <i>E</i> (speed sensitivity coefficient) is 0,55 to 0,65 x <i>Tr</i>.
- * @param bf2 Turbine torque coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (<i>Bf2</i>).
- * @param c Valve positioner (<i>C</i>).
- * @param cf2 Coefficient defining fuel flow where power output is 0 % (<i>Cf2</i>).
- *        Synchronous but no output.  Typically 0,23 x K<sub>hhv </sub>(23 % fuel flow).
- * @param ecr Combustion reaction time delay (<i>Ecr</i>) (&gt;= 0).
- * @param etd Turbine and exhaust delay (<i>Etd</i>) (&gt;= 0).
- * @param k3 Ratio of fuel adjustment (<i>K3</i>).
- * @param k4 Gain of radiation shield (<i>K4</i>).
- * @param k5 Gain of radiation shield (<i>K5</i>).
- * @param k6 Minimum fuel flow (<i>K6</i>).
- * @param kd Drop governor gain (<i>Kd</i>).
- * @param kdroop (<i>Kdroop</i>) (&gt;= 0).
- * @param kf Fuel system feedback (<i>Kf</i>).
- * @param ki Isochronous Governor Gain (<i>Ki</i>).
- * @param kp PID proportional gain (<i>Kp</i>).
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param t Fuel control time constant (<i>T</i>) (&gt;= 0).
- * @param t3 Radiation shield time constant (<i>T3</i>) (&gt;= 0).
- * @param t4 Thermocouple time constant (<i>T4</i>) (&gt;= 0).
- * @param t5 Temperature control time constant (<i>T5</i>) (&gt;= 0).
- * @param tc Temperature control (<i>Tc</i>).
- * @param tcd Compressor discharge time constant (<i>Tcd</i>) (&gt;= 0).
- * @param td Power transducer time constant (<i>Td</i>) (&gt;= 0).
- * @param tf Fuel system time constant (<i>Tf</i>) (&gt;= 0).
- * @param tmax Maximum Turbine limit (<i>Tmax</i>) (&gt; GovGASTWD.tmin).
- * @param tmin Minimum turbine limit (<i>Tmin</i>) (&lt; GovGASTWD.tmax).
- * @param tr Rated temperature (<i>Tr</i>).
- * @param trate Turbine rating (<i>Trate</i>).
- *        Unit = MW.
- * @param tt Temperature controller integration rate (<i>Tt</i>) (&gt;= 0).
+ * @param a                       Valve positioner (<i>A</i>).
+ * @param af1                     Exhaust temperature parameter (<i>Af1</i>).
+ * @param af2                     Coefficient equal to 0,5(1-speed) (<i>Af2</i>).
+ * @param b                       Valve positioner (<i>B</i>).
+ * @param bf1                     (<i>Bf1</i>).  <i>Bf1</i> = <i>E</i>(1-<i>w</i>) where <i>E</i> (speed sensitivity coefficient) is 0,55 to 0,65 x <i>Tr</i>.
+ * @param bf2                     Turbine torque coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (<i>Bf2</i>).
+ * @param c                       Valve positioner (<i>C</i>).
+ * @param cf2                     Coefficient defining fuel flow where power output is 0 % (<i>Cf2</i>).
+ *                                Synchronous but no output.  Typically 0,23 x K<sub>hhv </sub>(23 % fuel flow).
+ * @param ecr                     Combustion reaction time delay (<i>Ecr</i>) (&gt;= 0).
+ * @param etd                     Turbine and exhaust delay (<i>Etd</i>) (&gt;= 0).
+ * @param k3                      Ratio of fuel adjustment (<i>K3</i>).
+ * @param k4                      Gain of radiation shield (<i>K4</i>).
+ * @param k5                      Gain of radiation shield (<i>K5</i>).
+ * @param k6                      Minimum fuel flow (<i>K6</i>).
+ * @param kd                      Drop governor gain (<i>Kd</i>).
+ * @param kdroop                  (<i>Kdroop</i>) (&gt;= 0).
+ * @param kf                      Fuel system feedback (<i>Kf</i>).
+ * @param ki                      Isochronous Governor Gain (<i>Ki</i>).
+ * @param kp                      PID proportional gain (<i>Kp</i>).
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param t                       Fuel control time constant (<i>T</i>) (&gt;= 0).
+ * @param t3                      Radiation shield time constant (<i>T3</i>) (&gt;= 0).
+ * @param t4                      Thermocouple time constant (<i>T4</i>) (&gt;= 0).
+ * @param t5                      Temperature control time constant (<i>T5</i>) (&gt;= 0).
+ * @param tc                      Temperature control (<i>Tc</i>).
+ * @param tcd                     Compressor discharge time constant (<i>Tcd</i>) (&gt;= 0).
+ * @param td                      Power transducer time constant (<i>Td</i>) (&gt;= 0).
+ * @param tf                      Fuel system time constant (<i>Tf</i>) (&gt;= 0).
+ * @param tmax                    Maximum Turbine limit (<i>Tmax</i>) (&gt; GovGASTWD.tmin).
+ * @param tmin                    Minimum turbine limit (<i>Tmin</i>) (&lt; GovGASTWD.tmax).
+ * @param tr                      Rated temperature (<i>Tr</i>).
+ * @param trate                   Turbine rating (<i>Trate</i>).
+ *                                Unit = MW.
+ * @param tt                      Temperature controller integration rate (<i>Tt</i>) (&gt;= 0).
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovGASTWD
 (
@@ -2715,8 +2765,8 @@ final case class GovGASTWD
     trate: Double = 0.0,
     tt: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2742,13 +2792,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGASTWD.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGASTWD.fields (position), value)
+
         emitelem (0, a)
         emitelem (1, af1)
         emitelem (2, af2)
@@ -2784,6 +2839,7 @@ extends
         emitelem (32, tt)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovGASTWD rdf:ID=\"%s\">\n%s\t</cim:GovGASTWD>".format (id, export_fields)
@@ -2791,10 +2847,10 @@ extends
 }
 
 object GovGASTWD
-extends
-    CIMParseable[GovGASTWD]
+    extends
+        CIMParseable[GovGASTWD]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "a",
         "af1",
         "af2",
@@ -2829,44 +2885,44 @@ extends
         "trate",
         "tt"
     )
-    val a: Fielder = parse_element (element (cls, fields(0)))
-    val af1: Fielder = parse_element (element (cls, fields(1)))
-    val af2: Fielder = parse_element (element (cls, fields(2)))
-    val b: Fielder = parse_element (element (cls, fields(3)))
-    val bf1: Fielder = parse_element (element (cls, fields(4)))
-    val bf2: Fielder = parse_element (element (cls, fields(5)))
-    val c: Fielder = parse_element (element (cls, fields(6)))
-    val cf2: Fielder = parse_element (element (cls, fields(7)))
-    val ecr: Fielder = parse_element (element (cls, fields(8)))
-    val etd: Fielder = parse_element (element (cls, fields(9)))
-    val k3: Fielder = parse_element (element (cls, fields(10)))
-    val k4: Fielder = parse_element (element (cls, fields(11)))
-    val k5: Fielder = parse_element (element (cls, fields(12)))
-    val k6: Fielder = parse_element (element (cls, fields(13)))
-    val kd: Fielder = parse_element (element (cls, fields(14)))
-    val kdroop: Fielder = parse_element (element (cls, fields(15)))
-    val kf: Fielder = parse_element (element (cls, fields(16)))
-    val ki: Fielder = parse_element (element (cls, fields(17)))
-    val kp: Fielder = parse_element (element (cls, fields(18)))
-    val mwbase: Fielder = parse_element (element (cls, fields(19)))
-    val t: Fielder = parse_element (element (cls, fields(20)))
-    val t3: Fielder = parse_element (element (cls, fields(21)))
-    val t4: Fielder = parse_element (element (cls, fields(22)))
-    val t5: Fielder = parse_element (element (cls, fields(23)))
-    val tc: Fielder = parse_element (element (cls, fields(24)))
-    val tcd: Fielder = parse_element (element (cls, fields(25)))
-    val td: Fielder = parse_element (element (cls, fields(26)))
-    val tf: Fielder = parse_element (element (cls, fields(27)))
-    val tmax: Fielder = parse_element (element (cls, fields(28)))
-    val tmin: Fielder = parse_element (element (cls, fields(29)))
-    val tr: Fielder = parse_element (element (cls, fields(30)))
-    val trate: Fielder = parse_element (element (cls, fields(31)))
-    val tt: Fielder = parse_element (element (cls, fields(32)))
+    val a: Fielder = parse_element (element (cls, fields (0)))
+    val af1: Fielder = parse_element (element (cls, fields (1)))
+    val af2: Fielder = parse_element (element (cls, fields (2)))
+    val b: Fielder = parse_element (element (cls, fields (3)))
+    val bf1: Fielder = parse_element (element (cls, fields (4)))
+    val bf2: Fielder = parse_element (element (cls, fields (5)))
+    val c: Fielder = parse_element (element (cls, fields (6)))
+    val cf2: Fielder = parse_element (element (cls, fields (7)))
+    val ecr: Fielder = parse_element (element (cls, fields (8)))
+    val etd: Fielder = parse_element (element (cls, fields (9)))
+    val k3: Fielder = parse_element (element (cls, fields (10)))
+    val k4: Fielder = parse_element (element (cls, fields (11)))
+    val k5: Fielder = parse_element (element (cls, fields (12)))
+    val k6: Fielder = parse_element (element (cls, fields (13)))
+    val kd: Fielder = parse_element (element (cls, fields (14)))
+    val kdroop: Fielder = parse_element (element (cls, fields (15)))
+    val kf: Fielder = parse_element (element (cls, fields (16)))
+    val ki: Fielder = parse_element (element (cls, fields (17)))
+    val kp: Fielder = parse_element (element (cls, fields (18)))
+    val mwbase: Fielder = parse_element (element (cls, fields (19)))
+    val t: Fielder = parse_element (element (cls, fields (20)))
+    val t3: Fielder = parse_element (element (cls, fields (21)))
+    val t4: Fielder = parse_element (element (cls, fields (22)))
+    val t5: Fielder = parse_element (element (cls, fields (23)))
+    val tc: Fielder = parse_element (element (cls, fields (24)))
+    val tcd: Fielder = parse_element (element (cls, fields (25)))
+    val td: Fielder = parse_element (element (cls, fields (26)))
+    val tf: Fielder = parse_element (element (cls, fields (27)))
+    val tmax: Fielder = parse_element (element (cls, fields (28)))
+    val tmin: Fielder = parse_element (element (cls, fields (29)))
+    val tr: Fielder = parse_element (element (cls, fields (30)))
+    val trate: Fielder = parse_element (element (cls, fields (31)))
+    val tt: Fielder = parse_element (element (cls, fields (32)))
 
     def parse (context: CIMContext): GovGASTWD =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovGASTWD (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (a (), 0)),
@@ -2957,7 +3013,7 @@ object GovGASTWDSerializer extends CIMSerializer[GovGASTWD]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovGASTWD]): GovGASTWD =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovGASTWD (
             parent,
@@ -3004,39 +3060,39 @@ object GovGASTWDSerializer extends CIMSerializer[GovGASTWD]
  * Basic hydro turbine governor.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param at Turbine gain (<i>At</i>) (&gt; 0).
- *        Typical value = 1,2.
- * @param dturb Turbine damping factor (<i>Dturb</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param gmax Maximum gate opening (<i>Gmax</i>) (&gt; 0 and &gt; GovHydro.gmin).
- *        Typical value = 1.
- * @param gmin Minimum gate opening (<i>Gmin</i>) (&gt;= 0 and &lt; GovHydro1.gmax).
- *        Typical value = 0.
- * @param hdam Turbine nominal head (<i>hdam</i>).
- *        Typical value = 1.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param qnl No-load flow at nominal head (<i>qnl</i>) (&gt;= 0).
- *        Typical value = 0,08.
- * @param rperm Permanent droop (<i>R</i>) (&gt; 0).
- *        Typical value = 0,04.
- * @param rtemp Temporary droop (<i>r</i>) (&gt; GovHydro1.rperm).
- *        Typical value = 0,3.
- * @param tf Filter time constant (<i>Tf</i>) (&gt; 0).
- *        Typical value = 0,05.
- * @param tg Gate servo time constant (<i>Tg</i>) (&gt; 0).
- *        Typical value = 0,5.
- * @param tr Washout time constant (<i>Tr</i>) (&gt; 0).
- *        Typical value = 5.
- * @param tw Water inertia time constant (<i>Tw</i>) (&gt; 0).
- *        Typical value = 1.
- * @param velm Maximum gate velocity (<i>Vlem</i>) (&gt; 0).
- *        Typical value = 0,2.
+ * @param at                      Turbine gain (<i>At</i>) (&gt; 0).
+ *                                Typical value = 1,2.
+ * @param dturb                   Turbine damping factor (<i>Dturb</i>) (&gt;= 0).
+ *                                Typical value = 0,5.
+ * @param gmax                    Maximum gate opening (<i>Gmax</i>) (&gt; 0 and &gt; GovHydro.gmin).
+ *                                Typical value = 1.
+ * @param gmin                    Minimum gate opening (<i>Gmin</i>) (&gt;= 0 and &lt; GovHydro1.gmax).
+ *                                Typical value = 0.
+ * @param hdam                    Turbine nominal head (<i>hdam</i>).
+ *                                Typical value = 1.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param qnl                     No-load flow at nominal head (<i>qnl</i>) (&gt;= 0).
+ *                                Typical value = 0,08.
+ * @param rperm                   Permanent droop (<i>R</i>) (&gt; 0).
+ *                                Typical value = 0,04.
+ * @param rtemp                   Temporary droop (<i>r</i>) (&gt; GovHydro1.rperm).
+ *                                Typical value = 0,3.
+ * @param tf                      Filter time constant (<i>Tf</i>) (&gt; 0).
+ *                                Typical value = 0,05.
+ * @param tg                      Gate servo time constant (<i>Tg</i>) (&gt; 0).
+ *                                Typical value = 0,5.
+ * @param tr                      Washout time constant (<i>Tr</i>) (&gt; 0).
+ *                                Typical value = 5.
+ * @param tw                      Water inertia time constant (<i>Tw</i>) (&gt; 0).
+ *                                Typical value = 1.
+ * @param velm                    Maximum gate velocity (<i>Vlem</i>) (&gt; 0).
+ *                                Typical value = 0,2.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydro1
 (
@@ -3056,8 +3112,8 @@ final case class GovHydro1
     tw: Double = 0.0,
     velm: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3083,13 +3139,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydro1.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro1.fields (position), value)
+
         emitelem (0, at)
         emitelem (1, dturb)
         emitelem (2, gmax)
@@ -3106,6 +3167,7 @@ extends
         emitelem (13, velm)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydro1 rdf:ID=\"%s\">\n%s\t</cim:GovHydro1>".format (id, export_fields)
@@ -3113,10 +3175,10 @@ extends
 }
 
 object GovHydro1
-extends
-    CIMParseable[GovHydro1]
+    extends
+        CIMParseable[GovHydro1]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "at",
         "dturb",
         "gmax",
@@ -3132,25 +3194,25 @@ extends
         "tw",
         "velm"
     )
-    val at: Fielder = parse_element (element (cls, fields(0)))
-    val dturb: Fielder = parse_element (element (cls, fields(1)))
-    val gmax: Fielder = parse_element (element (cls, fields(2)))
-    val gmin: Fielder = parse_element (element (cls, fields(3)))
-    val hdam: Fielder = parse_element (element (cls, fields(4)))
-    val mwbase: Fielder = parse_element (element (cls, fields(5)))
-    val qnl: Fielder = parse_element (element (cls, fields(6)))
-    val rperm: Fielder = parse_element (element (cls, fields(7)))
-    val rtemp: Fielder = parse_element (element (cls, fields(8)))
-    val tf: Fielder = parse_element (element (cls, fields(9)))
-    val tg: Fielder = parse_element (element (cls, fields(10)))
-    val tr: Fielder = parse_element (element (cls, fields(11)))
-    val tw: Fielder = parse_element (element (cls, fields(12)))
-    val velm: Fielder = parse_element (element (cls, fields(13)))
+    val at: Fielder = parse_element (element (cls, fields (0)))
+    val dturb: Fielder = parse_element (element (cls, fields (1)))
+    val gmax: Fielder = parse_element (element (cls, fields (2)))
+    val gmin: Fielder = parse_element (element (cls, fields (3)))
+    val hdam: Fielder = parse_element (element (cls, fields (4)))
+    val mwbase: Fielder = parse_element (element (cls, fields (5)))
+    val qnl: Fielder = parse_element (element (cls, fields (6)))
+    val rperm: Fielder = parse_element (element (cls, fields (7)))
+    val rtemp: Fielder = parse_element (element (cls, fields (8)))
+    val tf: Fielder = parse_element (element (cls, fields (9)))
+    val tg: Fielder = parse_element (element (cls, fields (10)))
+    val tr: Fielder = parse_element (element (cls, fields (11)))
+    val tw: Fielder = parse_element (element (cls, fields (12)))
+    val velm: Fielder = parse_element (element (cls, fields (13)))
 
     def parse (context: CIMContext): GovHydro1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovHydro1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -3203,7 +3265,7 @@ object GovHydro1Serializer extends CIMSerializer[GovHydro1]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydro1]): GovHydro1 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydro1 (
             parent,
@@ -3231,69 +3293,69 @@ object GovHydro1Serializer extends CIMSerializer[GovHydro1]
  * IEEE hydro turbine governor with straightforward penstock configuration and hydraulic-dashpot governor.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aturb Turbine numerator multiplier (<i>Aturb</i>).
- *        Typical value = -1.
- * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (&gt; 0).
- *        Typical value = 0,5.
- * @param db1 Intentional deadband width (<i>db1</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param db2 Unintentional deadband (<i>db2</i>).
- *        Unit = MW.  Typical value = 0.
- * @param eps Intentional db hysteresis (<i>eps</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
- *        Typical value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
- *        Typical value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
- *        Typical value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
- *        Typical value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
- *        Typical value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
- *        Typical value = 0.
- * @param kturb Turbine gain (<i>Kturb</i>).
- *        Typical value = 1.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
- *        Typical value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
- *        Typical value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
- *        Typical value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (P<i>gv4</i>).
- *        Typical value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
- *        Typical value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
- *        Typical value = 0.
- * @param pmax Maximum gate opening (<i>Pmax</i>) (&gt; GovHydro2.pmin).
- *        Typical value = 1.
- * @param pmin Minimum gate opening (<i>Pmin</i>) (&lt; GovHydro2.pmax).
- *        Typical value = 0.
- * @param rperm Permanent droop (<i>Rperm</i>).
- *        Typical value = 0,05.
- * @param rtemp Temporary droop (<i>Rtemp</i>).
- *        Typical value = 0,5.
- * @param tg Gate servo time constant (<i>Tg</i>) (&gt; 0).
- *        Typical value = 0,5.
- * @param tp Pilot servo valve time constant (<i>Tp</i>) (&gt;= 0).
- *        Typical value = 0,03.
- * @param tr Dashpot time constant (<i>Tr</i>) (&gt;= 0).
- *        Typical value = 12.
- * @param tw Water inertia time constant (<i>Tw</i>) (&gt;= 0).
- *        Typical value = 2.
- * @param uc Maximum gate closing velocity (<i>Uc</i>) (&lt; 0).
- *        Unit = PU / s.   Typical value = -0,1.
- * @param uo Maximum gate opening velocity (<i>Uo</i>).
- *        Unit = PU / s.  Typical value = 0,1.
+ * @param aturb                   Turbine numerator multiplier (<i>Aturb</i>).
+ *                                Typical value = -1.
+ * @param bturb                   Turbine denominator multiplier (<i>Bturb</i>) (&gt; 0).
+ *                                Typical value = 0,5.
+ * @param db1                     Intentional deadband width (<i>db1</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param db2                     Unintentional deadband (<i>db2</i>).
+ *                                Unit = MW.  Typical value = 0.
+ * @param eps                     Intentional db hysteresis (<i>eps</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param gv1                     Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *                                Typical value = 0.
+ * @param gv2                     Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *                                Typical value = 0.
+ * @param gv3                     Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *                                Typical value = 0.
+ * @param gv4                     Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *                                Typical value = 0.
+ * @param gv5                     Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *                                Typical value = 0.
+ * @param gv6                     Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *                                Typical value = 0.
+ * @param kturb                   Turbine gain (<i>Kturb</i>).
+ *                                Typical value = 1.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pgv1                    Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *                                Typical value = 0.
+ * @param pgv2                    Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *                                Typical value = 0.
+ * @param pgv3                    Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *                                Typical value = 0.
+ * @param pgv4                    Nonlinear gain point 4, PU power (P<i>gv4</i>).
+ *                                Typical value = 0.
+ * @param pgv5                    Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *                                Typical value = 0.
+ * @param pgv6                    Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *                                Typical value = 0.
+ * @param pmax                    Maximum gate opening (<i>Pmax</i>) (&gt; GovHydro2.pmin).
+ *                                Typical value = 1.
+ * @param pmin                    Minimum gate opening (<i>Pmin</i>) (&lt; GovHydro2.pmax).
+ *                                Typical value = 0.
+ * @param rperm                   Permanent droop (<i>Rperm</i>).
+ *                                Typical value = 0,05.
+ * @param rtemp                   Temporary droop (<i>Rtemp</i>).
+ *                                Typical value = 0,5.
+ * @param tg                      Gate servo time constant (<i>Tg</i>) (&gt; 0).
+ *                                Typical value = 0,5.
+ * @param tp                      Pilot servo valve time constant (<i>Tp</i>) (&gt;= 0).
+ *                                Typical value = 0,03.
+ * @param tr                      Dashpot time constant (<i>Tr</i>) (&gt;= 0).
+ *                                Typical value = 12.
+ * @param tw                      Water inertia time constant (<i>Tw</i>) (&gt;= 0).
+ *                                Typical value = 2.
+ * @param uc                      Maximum gate closing velocity (<i>Uc</i>) (&lt; 0).
+ *                                Unit = PU / s.   Typical value = -0,1.
+ * @param uo                      Maximum gate opening velocity (<i>Uo</i>).
+ *                                Unit = PU / s.  Typical value = 0,1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydro2
 (
@@ -3328,8 +3390,8 @@ final case class GovHydro2
     uc: Double = 0.0,
     uo: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3355,13 +3417,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydro2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro2.fields (position), value)
+
         emitelem (0, aturb)
         emitelem (1, bturb)
         emitelem (2, db1)
@@ -3393,6 +3460,7 @@ extends
         emitelem (28, uo)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydro2 rdf:ID=\"%s\">\n%s\t</cim:GovHydro2>".format (id, export_fields)
@@ -3400,10 +3468,10 @@ extends
 }
 
 object GovHydro2
-extends
-    CIMParseable[GovHydro2]
+    extends
+        CIMParseable[GovHydro2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "aturb",
         "bturb",
         "db1",
@@ -3434,40 +3502,40 @@ extends
         "uc",
         "uo"
     )
-    val aturb: Fielder = parse_element (element (cls, fields(0)))
-    val bturb: Fielder = parse_element (element (cls, fields(1)))
-    val db1: Fielder = parse_element (element (cls, fields(2)))
-    val db2: Fielder = parse_element (element (cls, fields(3)))
-    val eps: Fielder = parse_element (element (cls, fields(4)))
-    val gv1: Fielder = parse_element (element (cls, fields(5)))
-    val gv2: Fielder = parse_element (element (cls, fields(6)))
-    val gv3: Fielder = parse_element (element (cls, fields(7)))
-    val gv4: Fielder = parse_element (element (cls, fields(8)))
-    val gv5: Fielder = parse_element (element (cls, fields(9)))
-    val gv6: Fielder = parse_element (element (cls, fields(10)))
-    val kturb: Fielder = parse_element (element (cls, fields(11)))
-    val mwbase: Fielder = parse_element (element (cls, fields(12)))
-    val pgv1: Fielder = parse_element (element (cls, fields(13)))
-    val pgv2: Fielder = parse_element (element (cls, fields(14)))
-    val pgv3: Fielder = parse_element (element (cls, fields(15)))
-    val pgv4: Fielder = parse_element (element (cls, fields(16)))
-    val pgv5: Fielder = parse_element (element (cls, fields(17)))
-    val pgv6: Fielder = parse_element (element (cls, fields(18)))
-    val pmax: Fielder = parse_element (element (cls, fields(19)))
-    val pmin: Fielder = parse_element (element (cls, fields(20)))
-    val rperm: Fielder = parse_element (element (cls, fields(21)))
-    val rtemp: Fielder = parse_element (element (cls, fields(22)))
-    val tg: Fielder = parse_element (element (cls, fields(23)))
-    val tp: Fielder = parse_element (element (cls, fields(24)))
-    val tr: Fielder = parse_element (element (cls, fields(25)))
-    val tw: Fielder = parse_element (element (cls, fields(26)))
-    val uc: Fielder = parse_element (element (cls, fields(27)))
-    val uo: Fielder = parse_element (element (cls, fields(28)))
+    val aturb: Fielder = parse_element (element (cls, fields (0)))
+    val bturb: Fielder = parse_element (element (cls, fields (1)))
+    val db1: Fielder = parse_element (element (cls, fields (2)))
+    val db2: Fielder = parse_element (element (cls, fields (3)))
+    val eps: Fielder = parse_element (element (cls, fields (4)))
+    val gv1: Fielder = parse_element (element (cls, fields (5)))
+    val gv2: Fielder = parse_element (element (cls, fields (6)))
+    val gv3: Fielder = parse_element (element (cls, fields (7)))
+    val gv4: Fielder = parse_element (element (cls, fields (8)))
+    val gv5: Fielder = parse_element (element (cls, fields (9)))
+    val gv6: Fielder = parse_element (element (cls, fields (10)))
+    val kturb: Fielder = parse_element (element (cls, fields (11)))
+    val mwbase: Fielder = parse_element (element (cls, fields (12)))
+    val pgv1: Fielder = parse_element (element (cls, fields (13)))
+    val pgv2: Fielder = parse_element (element (cls, fields (14)))
+    val pgv3: Fielder = parse_element (element (cls, fields (15)))
+    val pgv4: Fielder = parse_element (element (cls, fields (16)))
+    val pgv5: Fielder = parse_element (element (cls, fields (17)))
+    val pgv6: Fielder = parse_element (element (cls, fields (18)))
+    val pmax: Fielder = parse_element (element (cls, fields (19)))
+    val pmin: Fielder = parse_element (element (cls, fields (20)))
+    val rperm: Fielder = parse_element (element (cls, fields (21)))
+    val rtemp: Fielder = parse_element (element (cls, fields (22)))
+    val tg: Fielder = parse_element (element (cls, fields (23)))
+    val tp: Fielder = parse_element (element (cls, fields (24)))
+    val tr: Fielder = parse_element (element (cls, fields (25)))
+    val tw: Fielder = parse_element (element (cls, fields (26)))
+    val uc: Fielder = parse_element (element (cls, fields (27)))
+    val uo: Fielder = parse_element (element (cls, fields (28)))
 
     def parse (context: CIMContext): GovHydro2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovHydro2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -3550,7 +3618,7 @@ object GovHydro2Serializer extends CIMSerializer[GovHydro2]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydro2]): GovHydro2 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydro2 (
             parent,
@@ -3595,85 +3663,85 @@ object GovHydro2Serializer extends CIMSerializer[GovHydro2]
  * This model differs from that defined in the IEEE modelling guideline paper in that the limits on gate position and velocity do not permit "wind up" of the upstream signals.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param at Turbine gain (<i>At</i>) (&gt;0).
- *        Typical value = 1,2.
- * @param db1 Intentional dead-band width (<i>db1</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param db2 Unintentional dead-band (<i>db2</i>).
- *        Unit = MW.  Typical value = 0.
- * @param dturb Turbine damping factor (<i>Dturb</i>).
- *        Typical value = 0,2.
- * @param eps Intentional db hysteresis (<i>eps</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param governorControl Governor control flag (<i>Cflag</i>).
- *        true = PID control is active
- *        false = double derivative control is active.
- *        Typical value = true.
- * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
- *        Typical value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
- *        Typical value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
- *        Typical value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
- *        Typical value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
- *        Typical value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
- *        Typical value = 0.
- * @param h0 Turbine nominal head (<i>H0</i>).
- *        Typical value = 1.
- * @param k1 Derivative gain (<i>K1</i>).
- *        Typical value = 0,01.
- * @param k2 Double derivative gain, if <i>Cflag</i> = -1 (<i>K2</i>).
- *        Typical value = 2,5.
- * @param kg Gate servo gain (<i>Kg</i>).
- *        Typical value = 2.
- * @param ki Integral gain (<i>Ki</i>).
- *        Typical value = 0,5.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
- *        Typical value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
- *        Typical value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
- *        Typical value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
- *        Typical value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
- *        Typical value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
- *        Typical value = 0.
- * @param pmax Maximum gate opening, PU of MWbase (<i>Pmax</i>) (&gt; GovHydro3.pmin).
- *        Typical value = 1.
- * @param pmin Minimum gate opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&lt; GovHydro3.pmax).
- *        Typical value = 0.
- * @param qnl No-load turbine flow at nominal head (<i>Qnl</i>).
- *        Typical value = 0,08.
- * @param relec Steady-state droop, PU, for electrical power feedback (<i>Relec</i>).
- *        Typical value = 0,05.
- * @param rgate Steady-state droop, PU, for governor output feedback (<i>Rgate</i>).
- *        Typical value = 0.
- * @param td Input filter time constant (<i>Td</i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param tf Washout time constant (<i>Tf</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param tp Gate servo time constant (<i>Tp</i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param tt Power feedback time constant (<i>Tt</i>) (&gt;= 0).
- *        Typical value = 0,2.
- * @param tw Water inertia time constant (<i>Tw</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 1.
- * @param velcl Maximum gate closing velocity (<i>Velcl</i>).
- *        Unit = PU / s.  Typical value = -0,2.
- * @param velop Maximum gate opening velocity (<i>Velop</i>).
- *        Unit = PU / s. Typical value = 0,2.
+ * @param at                      Turbine gain (<i>At</i>) (&gt;0).
+ *                                Typical value = 1,2.
+ * @param db1                     Intentional dead-band width (<i>db1</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param db2                     Unintentional dead-band (<i>db2</i>).
+ *                                Unit = MW.  Typical value = 0.
+ * @param dturb                   Turbine damping factor (<i>Dturb</i>).
+ *                                Typical value = 0,2.
+ * @param eps                     Intentional db hysteresis (<i>eps</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param governorControl         Governor control flag (<i>Cflag</i>).
+ *                                true = PID control is active
+ *                                false = double derivative control is active.
+ *                                Typical value = true.
+ * @param gv1                     Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *                                Typical value = 0.
+ * @param gv2                     Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *                                Typical value = 0.
+ * @param gv3                     Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *                                Typical value = 0.
+ * @param gv4                     Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *                                Typical value = 0.
+ * @param gv5                     Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *                                Typical value = 0.
+ * @param gv6                     Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *                                Typical value = 0.
+ * @param h0                      Turbine nominal head (<i>H0</i>).
+ *                                Typical value = 1.
+ * @param k1                      Derivative gain (<i>K1</i>).
+ *                                Typical value = 0,01.
+ * @param k2                      Double derivative gain, if <i>Cflag</i> = -1 (<i>K2</i>).
+ *                                Typical value = 2,5.
+ * @param kg                      Gate servo gain (<i>Kg</i>).
+ *                                Typical value = 2.
+ * @param ki                      Integral gain (<i>Ki</i>).
+ *                                Typical value = 0,5.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pgv1                    Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *                                Typical value = 0.
+ * @param pgv2                    Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *                                Typical value = 0.
+ * @param pgv3                    Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *                                Typical value = 0.
+ * @param pgv4                    Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *                                Typical value = 0.
+ * @param pgv5                    Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *                                Typical value = 0.
+ * @param pgv6                    Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *                                Typical value = 0.
+ * @param pmax                    Maximum gate opening, PU of MWbase (<i>Pmax</i>) (&gt; GovHydro3.pmin).
+ *                                Typical value = 1.
+ * @param pmin                    Minimum gate opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&lt; GovHydro3.pmax).
+ *                                Typical value = 0.
+ * @param qnl                     No-load turbine flow at nominal head (<i>Qnl</i>).
+ *                                Typical value = 0,08.
+ * @param relec                   Steady-state droop, PU, for electrical power feedback (<i>Relec</i>).
+ *                                Typical value = 0,05.
+ * @param rgate                   Steady-state droop, PU, for governor output feedback (<i>Rgate</i>).
+ *                                Typical value = 0.
+ * @param td                      Input filter time constant (<i>Td</i>) (&gt;= 0).
+ *                                Typical value = 0,05.
+ * @param tf                      Washout time constant (<i>Tf</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param tp                      Gate servo time constant (<i>Tp</i>) (&gt;= 0).
+ *                                Typical value = 0,05.
+ * @param tt                      Power feedback time constant (<i>Tt</i>) (&gt;= 0).
+ *                                Typical value = 0,2.
+ * @param tw                      Water inertia time constant (<i>Tw</i>) (&gt;= 0).
+ *                                If = 0, block is bypassed.  Typical value = 1.
+ * @param velcl                   Maximum gate closing velocity (<i>Velcl</i>).
+ *                                Unit = PU / s.  Typical value = -0,2.
+ * @param velop                   Maximum gate opening velocity (<i>Velop</i>).
+ *                                Unit = PU / s. Typical value = 0,2.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydro3
 (
@@ -3715,8 +3783,8 @@ final case class GovHydro3
     velcl: Double = 0.0,
     velop: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3742,13 +3810,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydro3.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro3.fields (position), value)
+
         emitelem (0, at)
         emitelem (1, db1)
         emitelem (2, db2)
@@ -3787,6 +3860,7 @@ extends
         emitelem (35, velop)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydro3 rdf:ID=\"%s\">\n%s\t</cim:GovHydro3>".format (id, export_fields)
@@ -3794,10 +3868,10 @@ extends
 }
 
 object GovHydro3
-extends
-    CIMParseable[GovHydro3]
+    extends
+        CIMParseable[GovHydro3]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "at",
         "db1",
         "db2",
@@ -3835,47 +3909,47 @@ extends
         "velcl",
         "velop"
     )
-    val at: Fielder = parse_element (element (cls, fields(0)))
-    val db1: Fielder = parse_element (element (cls, fields(1)))
-    val db2: Fielder = parse_element (element (cls, fields(2)))
-    val dturb: Fielder = parse_element (element (cls, fields(3)))
-    val eps: Fielder = parse_element (element (cls, fields(4)))
-    val governorControl: Fielder = parse_element (element (cls, fields(5)))
-    val gv1: Fielder = parse_element (element (cls, fields(6)))
-    val gv2: Fielder = parse_element (element (cls, fields(7)))
-    val gv3: Fielder = parse_element (element (cls, fields(8)))
-    val gv4: Fielder = parse_element (element (cls, fields(9)))
-    val gv5: Fielder = parse_element (element (cls, fields(10)))
-    val gv6: Fielder = parse_element (element (cls, fields(11)))
-    val h0: Fielder = parse_element (element (cls, fields(12)))
-    val k1: Fielder = parse_element (element (cls, fields(13)))
-    val k2: Fielder = parse_element (element (cls, fields(14)))
-    val kg: Fielder = parse_element (element (cls, fields(15)))
-    val ki: Fielder = parse_element (element (cls, fields(16)))
-    val mwbase: Fielder = parse_element (element (cls, fields(17)))
-    val pgv1: Fielder = parse_element (element (cls, fields(18)))
-    val pgv2: Fielder = parse_element (element (cls, fields(19)))
-    val pgv3: Fielder = parse_element (element (cls, fields(20)))
-    val pgv4: Fielder = parse_element (element (cls, fields(21)))
-    val pgv5: Fielder = parse_element (element (cls, fields(22)))
-    val pgv6: Fielder = parse_element (element (cls, fields(23)))
-    val pmax: Fielder = parse_element (element (cls, fields(24)))
-    val pmin: Fielder = parse_element (element (cls, fields(25)))
-    val qnl: Fielder = parse_element (element (cls, fields(26)))
-    val relec: Fielder = parse_element (element (cls, fields(27)))
-    val rgate: Fielder = parse_element (element (cls, fields(28)))
-    val td: Fielder = parse_element (element (cls, fields(29)))
-    val tf: Fielder = parse_element (element (cls, fields(30)))
-    val tp: Fielder = parse_element (element (cls, fields(31)))
-    val tt: Fielder = parse_element (element (cls, fields(32)))
-    val tw: Fielder = parse_element (element (cls, fields(33)))
-    val velcl: Fielder = parse_element (element (cls, fields(34)))
-    val velop: Fielder = parse_element (element (cls, fields(35)))
+    val at: Fielder = parse_element (element (cls, fields (0)))
+    val db1: Fielder = parse_element (element (cls, fields (1)))
+    val db2: Fielder = parse_element (element (cls, fields (2)))
+    val dturb: Fielder = parse_element (element (cls, fields (3)))
+    val eps: Fielder = parse_element (element (cls, fields (4)))
+    val governorControl: Fielder = parse_element (element (cls, fields (5)))
+    val gv1: Fielder = parse_element (element (cls, fields (6)))
+    val gv2: Fielder = parse_element (element (cls, fields (7)))
+    val gv3: Fielder = parse_element (element (cls, fields (8)))
+    val gv4: Fielder = parse_element (element (cls, fields (9)))
+    val gv5: Fielder = parse_element (element (cls, fields (10)))
+    val gv6: Fielder = parse_element (element (cls, fields (11)))
+    val h0: Fielder = parse_element (element (cls, fields (12)))
+    val k1: Fielder = parse_element (element (cls, fields (13)))
+    val k2: Fielder = parse_element (element (cls, fields (14)))
+    val kg: Fielder = parse_element (element (cls, fields (15)))
+    val ki: Fielder = parse_element (element (cls, fields (16)))
+    val mwbase: Fielder = parse_element (element (cls, fields (17)))
+    val pgv1: Fielder = parse_element (element (cls, fields (18)))
+    val pgv2: Fielder = parse_element (element (cls, fields (19)))
+    val pgv3: Fielder = parse_element (element (cls, fields (20)))
+    val pgv4: Fielder = parse_element (element (cls, fields (21)))
+    val pgv5: Fielder = parse_element (element (cls, fields (22)))
+    val pgv6: Fielder = parse_element (element (cls, fields (23)))
+    val pmax: Fielder = parse_element (element (cls, fields (24)))
+    val pmin: Fielder = parse_element (element (cls, fields (25)))
+    val qnl: Fielder = parse_element (element (cls, fields (26)))
+    val relec: Fielder = parse_element (element (cls, fields (27)))
+    val rgate: Fielder = parse_element (element (cls, fields (28)))
+    val td: Fielder = parse_element (element (cls, fields (29)))
+    val tf: Fielder = parse_element (element (cls, fields (30)))
+    val tp: Fielder = parse_element (element (cls, fields (31)))
+    val tt: Fielder = parse_element (element (cls, fields (32)))
+    val tw: Fielder = parse_element (element (cls, fields (33)))
+    val velcl: Fielder = parse_element (element (cls, fields (34)))
+    val velop: Fielder = parse_element (element (cls, fields (35)))
 
     def parse (context: CIMContext): GovHydro3 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovHydro3 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -3972,7 +4046,7 @@ object GovHydro3Serializer extends CIMSerializer[GovHydro3]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydro3]): GovHydro3 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydro3 (
             parent,
@@ -4024,88 +4098,88 @@ object GovHydro3Serializer extends CIMSerializer[GovHydro3]
  * Represents plants with straight-forward penstock configurations and hydraulic governors of the traditional 'dashpot' type.  This model can be used to represent simple, Francis/Pelton or Kaplan turbines.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param at Turbine gain (<i>At</i>).
- *        Typical value = 1,2.
- * @param bgv0 Kaplan blade servo point 0 (<i>Bgv0</i>) (= 0 for simple, = 0 for Francis/Pelton).
- *        Typical value for Kaplan = 0.
- * @param bgv1 Kaplan blade servo point 1 (<i>Bgv1</i>) (= 0 for simple, = 0 for Francis/Pelton).
- *        Typical value for Kaplan = 0.
- * @param bgv2 Kaplan blade servo point 2 (<i>Bgv2</i>) (= 0 for simple, = 0 for Francis/Pelton).
- *        Typical value for Kaplan = 0,1.
- * @param bgv3 Kaplan blade servo point 3 (<i>Bgv3</i>) (= 0 for simple, = 0 for Francis/Pelton).
- *        Typical value for Kaplan = 0,667.
- * @param bgv4 Kaplan blade servo point 4 (<i>Bgv4</i>) (= 0 for simple, = 0 for Francis/Pelton).
- *        Typical value for Kaplan = 0,9.
- * @param bgv5 Kaplan blade servo point 5 (<i>Bgv5</i>) (= 0 for simple, = 0 for Francis/Pelton).
- *        Typical value for Kaplan = 1.
- * @param bmax Maximum blade adjustment factor (<i>Bmax</i>)  (= 0 for simple, = 0 for Francis/Pelton).
- *        Typical value for Kaplan = 1,1276.
- * @param db1 Intentional deadband width (<i>db1</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param db2 Unintentional dead-band (<i>db2</i>).
- *        Unit = MW.  Typical value = 0.
- * @param dturb Turbine damping factor (<i>Dturb</i>).
- *        Unit = delta P (PU of <i>MWbase</i>) / delta speed (PU).  Typical value for simple = 0,5, Francis/Pelton = 1,1, Kaplan = 1,1.
- * @param eps Intentional db hysteresis (<i>eps</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param gmax Maximum gate opening, PU of <i>MWbase</i> (<i>Gmax</i>) (&gt; GovHydro4.gmin).
- *        Typical value = 1.
- * @param gmin Minimum gate opening, PU of <i>MWbase</i> (<i>Gmin</i>) (&lt; GovHydro4.gmax).
- *        Typical value = 0.
- * @param gv0 Nonlinear gain point 0, PU gv (<i>Gv0</i>) (= 0 for simple).
- *        Typical for Francis/Pelton = 0,1, Kaplan = 0,1.
- * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>) (= 0 for simple, &gt; GovHydro4.gv0 for Francis/Pelton and Kaplan).
- *        Typical value for Francis/Pelton = 0,4, Kaplan = 0,4.
- * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>) (= 0 for simple, &gt; GovHydro4.gv1 for Francis/Pelton and Kaplan).
- *        Typical value for Francis/Pelton = 0,5, Kaplan = 0,5.
- * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>)  (= 0 for simple, &gt; GovHydro4.gv2 for Francis/Pelton and Kaplan).
- *        Typical value for Francis/Pelton = 0,7, Kaplan = 0,7.
- * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>)  (= 0 for simple, &gt; GovHydro4.gv3 for Francis/Pelton and Kaplan).
- *        Typical value for  Francis/Pelton = 0,8, Kaplan = 0,8.
- * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>)  (= 0 for simple, &lt; 1 and &gt; GovHydro4.gv4 for Francis/Pelton and Kaplan).
- *        Typical value for Francis/Pelton = 0,9, Kaplan = 0,9.
- * @param hdam Head available at dam (<i>hdam</i>).
- *        Typical value = 1.
- * @param model The kind of model being represented (simple, Francis/Pelton or Kaplan).
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pgv0 Nonlinear gain point 0, PU power (<i>Pgv0</i>) (= 0 for simple).
- *        Typical value = 0.
- * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>) (= 0 for simple).
- *        Typical value for Francis/Pelton = 0,42, Kaplan = 0,35.
- * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>) (= 0 for simple).
- *        Typical value for Francis/Pelton = 0,56, Kaplan = 0,468.
- * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>) (= 0 for simple).
- *        Typical value for Francis/Pelton = 0,8, Kaplan = 0,796.
- * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>) (= 0 for simple).
- *        Typical value for Francis/Pelton = 0,9, Kaplan = 0,917.
- * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>) (= 0 for simple).
- *        Typical value for Francis/Pelton = 0,97, Kaplan = 0,99.
- * @param qnl No-load flow at nominal head (<i>Qnl</i>).
- *        Typical value for simple = 0,08, Francis/Pelton = 0, Kaplan = 0.
- * @param rperm Permanent droop (<i>Rperm</i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param rtemp Temporary droop (<i>Rtemp</i>) (&gt;= 0).
- *        Typical value = 0,3.
- * @param tblade Blade servo time constant (<i>Tblade</i>) (&gt;= 0).
- *        Typical value = 100.
- * @param tg Gate servo time constant (<i>Tg</i>) (&gt; 0).
- *        Typical value = 0,5.
- * @param tp Pilot servo time constant (<i>Tp</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param tr Dashpot time constant (<i>Tr</i>) (&gt;= 0).
- *        Typical value = 5.
- * @param tw Water inertia time constant (<i>Tw</i>) (&gt; 0).
- *        Typical value = 1.
- * @param uc Max gate closing velocity (<i>Uc</i>).
- *        Typical value = 0,2.
- * @param uo Max gate opening velocity (<i>Uo</i>).
- *        Typical value = 0,2.
+ * @param at                      Turbine gain (<i>At</i>).
+ *                                Typical value = 1,2.
+ * @param bgv0                    Kaplan blade servo point 0 (<i>Bgv0</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *                                Typical value for Kaplan = 0.
+ * @param bgv1                    Kaplan blade servo point 1 (<i>Bgv1</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *                                Typical value for Kaplan = 0.
+ * @param bgv2                    Kaplan blade servo point 2 (<i>Bgv2</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *                                Typical value for Kaplan = 0,1.
+ * @param bgv3                    Kaplan blade servo point 3 (<i>Bgv3</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *                                Typical value for Kaplan = 0,667.
+ * @param bgv4                    Kaplan blade servo point 4 (<i>Bgv4</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *                                Typical value for Kaplan = 0,9.
+ * @param bgv5                    Kaplan blade servo point 5 (<i>Bgv5</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *                                Typical value for Kaplan = 1.
+ * @param bmax                    Maximum blade adjustment factor (<i>Bmax</i>)  (= 0 for simple, = 0 for Francis/Pelton).
+ *                                Typical value for Kaplan = 1,1276.
+ * @param db1                     Intentional deadband width (<i>db1</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param db2                     Unintentional dead-band (<i>db2</i>).
+ *                                Unit = MW.  Typical value = 0.
+ * @param dturb                   Turbine damping factor (<i>Dturb</i>).
+ *                                Unit = delta P (PU of <i>MWbase</i>) / delta speed (PU).  Typical value for simple = 0,5, Francis/Pelton = 1,1, Kaplan = 1,1.
+ * @param eps                     Intentional db hysteresis (<i>eps</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param gmax                    Maximum gate opening, PU of <i>MWbase</i> (<i>Gmax</i>) (&gt; GovHydro4.gmin).
+ *                                Typical value = 1.
+ * @param gmin                    Minimum gate opening, PU of <i>MWbase</i> (<i>Gmin</i>) (&lt; GovHydro4.gmax).
+ *                                Typical value = 0.
+ * @param gv0                     Nonlinear gain point 0, PU gv (<i>Gv0</i>) (= 0 for simple).
+ *                                Typical for Francis/Pelton = 0,1, Kaplan = 0,1.
+ * @param gv1                     Nonlinear gain point 1, PU gv (<i>Gv1</i>) (= 0 for simple, &gt; GovHydro4.gv0 for Francis/Pelton and Kaplan).
+ *                                Typical value for Francis/Pelton = 0,4, Kaplan = 0,4.
+ * @param gv2                     Nonlinear gain point 2, PU gv (<i>Gv2</i>) (= 0 for simple, &gt; GovHydro4.gv1 for Francis/Pelton and Kaplan).
+ *                                Typical value for Francis/Pelton = 0,5, Kaplan = 0,5.
+ * @param gv3                     Nonlinear gain point 3, PU gv (<i>Gv3</i>)  (= 0 for simple, &gt; GovHydro4.gv2 for Francis/Pelton and Kaplan).
+ *                                Typical value for Francis/Pelton = 0,7, Kaplan = 0,7.
+ * @param gv4                     Nonlinear gain point 4, PU gv (<i>Gv4</i>)  (= 0 for simple, &gt; GovHydro4.gv3 for Francis/Pelton and Kaplan).
+ *                                Typical value for  Francis/Pelton = 0,8, Kaplan = 0,8.
+ * @param gv5                     Nonlinear gain point 5, PU gv (<i>Gv5</i>)  (= 0 for simple, &lt; 1 and &gt; GovHydro4.gv4 for Francis/Pelton and Kaplan).
+ *                                Typical value for Francis/Pelton = 0,9, Kaplan = 0,9.
+ * @param hdam                    Head available at dam (<i>hdam</i>).
+ *                                Typical value = 1.
+ * @param model                   The kind of model being represented (simple, Francis/Pelton or Kaplan).
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pgv0                    Nonlinear gain point 0, PU power (<i>Pgv0</i>) (= 0 for simple).
+ *                                Typical value = 0.
+ * @param pgv1                    Nonlinear gain point 1, PU power (<i>Pgv1</i>) (= 0 for simple).
+ *                                Typical value for Francis/Pelton = 0,42, Kaplan = 0,35.
+ * @param pgv2                    Nonlinear gain point 2, PU power (<i>Pgv2</i>) (= 0 for simple).
+ *                                Typical value for Francis/Pelton = 0,56, Kaplan = 0,468.
+ * @param pgv3                    Nonlinear gain point 3, PU power (<i>Pgv3</i>) (= 0 for simple).
+ *                                Typical value for Francis/Pelton = 0,8, Kaplan = 0,796.
+ * @param pgv4                    Nonlinear gain point 4, PU power (<i>Pgv4</i>) (= 0 for simple).
+ *                                Typical value for Francis/Pelton = 0,9, Kaplan = 0,917.
+ * @param pgv5                    Nonlinear gain point 5, PU power (<i>Pgv5</i>) (= 0 for simple).
+ *                                Typical value for Francis/Pelton = 0,97, Kaplan = 0,99.
+ * @param qnl                     No-load flow at nominal head (<i>Qnl</i>).
+ *                                Typical value for simple = 0,08, Francis/Pelton = 0, Kaplan = 0.
+ * @param rperm                   Permanent droop (<i>Rperm</i>) (&gt;= 0).
+ *                                Typical value = 0,05.
+ * @param rtemp                   Temporary droop (<i>Rtemp</i>) (&gt;= 0).
+ *                                Typical value = 0,3.
+ * @param tblade                  Blade servo time constant (<i>Tblade</i>) (&gt;= 0).
+ *                                Typical value = 100.
+ * @param tg                      Gate servo time constant (<i>Tg</i>) (&gt; 0).
+ *                                Typical value = 0,5.
+ * @param tp                      Pilot servo time constant (<i>Tp</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param tr                      Dashpot time constant (<i>Tr</i>) (&gt;= 0).
+ *                                Typical value = 5.
+ * @param tw                      Water inertia time constant (<i>Tw</i>) (&gt; 0).
+ *                                Typical value = 1.
+ * @param uc                      Max gate closing velocity (<i>Uc</i>).
+ *                                Typical value = 0,2.
+ * @param uo                      Max gate opening velocity (<i>Uo</i>).
+ *                                Typical value = 0,2.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydro4
 (
@@ -4150,8 +4224,8 @@ final case class GovHydro4
     uc: Double = 0.0,
     uo: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4177,14 +4251,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydro4.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro4.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GovHydro4.fields (position), value)
+
         emitelem (0, at)
         emitelem (1, bgv0)
         emitelem (2, bgv1)
@@ -4226,6 +4306,7 @@ extends
         emitelem (38, uo)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydro4 rdf:ID=\"%s\">\n%s\t</cim:GovHydro4>".format (id, export_fields)
@@ -4233,10 +4314,10 @@ extends
 }
 
 object GovHydro4
-extends
-    CIMParseable[GovHydro4]
+    extends
+        CIMParseable[GovHydro4]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "at",
         "bgv0",
         "bgv1",
@@ -4277,50 +4358,50 @@ extends
         "uc",
         "uo"
     )
-    val at: Fielder = parse_element (element (cls, fields(0)))
-    val bgv0: Fielder = parse_element (element (cls, fields(1)))
-    val bgv1: Fielder = parse_element (element (cls, fields(2)))
-    val bgv2: Fielder = parse_element (element (cls, fields(3)))
-    val bgv3: Fielder = parse_element (element (cls, fields(4)))
-    val bgv4: Fielder = parse_element (element (cls, fields(5)))
-    val bgv5: Fielder = parse_element (element (cls, fields(6)))
-    val bmax: Fielder = parse_element (element (cls, fields(7)))
-    val db1: Fielder = parse_element (element (cls, fields(8)))
-    val db2: Fielder = parse_element (element (cls, fields(9)))
-    val dturb: Fielder = parse_element (element (cls, fields(10)))
-    val eps: Fielder = parse_element (element (cls, fields(11)))
-    val gmax: Fielder = parse_element (element (cls, fields(12)))
-    val gmin: Fielder = parse_element (element (cls, fields(13)))
-    val gv0: Fielder = parse_element (element (cls, fields(14)))
-    val gv1: Fielder = parse_element (element (cls, fields(15)))
-    val gv2: Fielder = parse_element (element (cls, fields(16)))
-    val gv3: Fielder = parse_element (element (cls, fields(17)))
-    val gv4: Fielder = parse_element (element (cls, fields(18)))
-    val gv5: Fielder = parse_element (element (cls, fields(19)))
-    val hdam: Fielder = parse_element (element (cls, fields(20)))
-    val model: Fielder = parse_attribute (attribute (cls, fields(21)))
-    val mwbase: Fielder = parse_element (element (cls, fields(22)))
-    val pgv0: Fielder = parse_element (element (cls, fields(23)))
-    val pgv1: Fielder = parse_element (element (cls, fields(24)))
-    val pgv2: Fielder = parse_element (element (cls, fields(25)))
-    val pgv3: Fielder = parse_element (element (cls, fields(26)))
-    val pgv4: Fielder = parse_element (element (cls, fields(27)))
-    val pgv5: Fielder = parse_element (element (cls, fields(28)))
-    val qnl: Fielder = parse_element (element (cls, fields(29)))
-    val rperm: Fielder = parse_element (element (cls, fields(30)))
-    val rtemp: Fielder = parse_element (element (cls, fields(31)))
-    val tblade: Fielder = parse_element (element (cls, fields(32)))
-    val tg: Fielder = parse_element (element (cls, fields(33)))
-    val tp: Fielder = parse_element (element (cls, fields(34)))
-    val tr: Fielder = parse_element (element (cls, fields(35)))
-    val tw: Fielder = parse_element (element (cls, fields(36)))
-    val uc: Fielder = parse_element (element (cls, fields(37)))
-    val uo: Fielder = parse_element (element (cls, fields(38)))
+    val at: Fielder = parse_element (element (cls, fields (0)))
+    val bgv0: Fielder = parse_element (element (cls, fields (1)))
+    val bgv1: Fielder = parse_element (element (cls, fields (2)))
+    val bgv2: Fielder = parse_element (element (cls, fields (3)))
+    val bgv3: Fielder = parse_element (element (cls, fields (4)))
+    val bgv4: Fielder = parse_element (element (cls, fields (5)))
+    val bgv5: Fielder = parse_element (element (cls, fields (6)))
+    val bmax: Fielder = parse_element (element (cls, fields (7)))
+    val db1: Fielder = parse_element (element (cls, fields (8)))
+    val db2: Fielder = parse_element (element (cls, fields (9)))
+    val dturb: Fielder = parse_element (element (cls, fields (10)))
+    val eps: Fielder = parse_element (element (cls, fields (11)))
+    val gmax: Fielder = parse_element (element (cls, fields (12)))
+    val gmin: Fielder = parse_element (element (cls, fields (13)))
+    val gv0: Fielder = parse_element (element (cls, fields (14)))
+    val gv1: Fielder = parse_element (element (cls, fields (15)))
+    val gv2: Fielder = parse_element (element (cls, fields (16)))
+    val gv3: Fielder = parse_element (element (cls, fields (17)))
+    val gv4: Fielder = parse_element (element (cls, fields (18)))
+    val gv5: Fielder = parse_element (element (cls, fields (19)))
+    val hdam: Fielder = parse_element (element (cls, fields (20)))
+    val model: Fielder = parse_attribute (attribute (cls, fields (21)))
+    val mwbase: Fielder = parse_element (element (cls, fields (22)))
+    val pgv0: Fielder = parse_element (element (cls, fields (23)))
+    val pgv1: Fielder = parse_element (element (cls, fields (24)))
+    val pgv2: Fielder = parse_element (element (cls, fields (25)))
+    val pgv3: Fielder = parse_element (element (cls, fields (26)))
+    val pgv4: Fielder = parse_element (element (cls, fields (27)))
+    val pgv5: Fielder = parse_element (element (cls, fields (28)))
+    val qnl: Fielder = parse_element (element (cls, fields (29)))
+    val rperm: Fielder = parse_element (element (cls, fields (30)))
+    val rtemp: Fielder = parse_element (element (cls, fields (31)))
+    val tblade: Fielder = parse_element (element (cls, fields (32)))
+    val tg: Fielder = parse_element (element (cls, fields (33)))
+    val tp: Fielder = parse_element (element (cls, fields (34)))
+    val tr: Fielder = parse_element (element (cls, fields (35)))
+    val tw: Fielder = parse_element (element (cls, fields (36)))
+    val uc: Fielder = parse_element (element (cls, fields (37)))
+    val uo: Fielder = parse_element (element (cls, fields (38)))
 
     def parse (context: CIMContext): GovHydro4 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovHydro4 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -4423,7 +4504,7 @@ object GovHydro4Serializer extends CIMSerializer[GovHydro4]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydro4]): GovHydro4 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydro4 (
             parent,
@@ -4476,85 +4557,85 @@ object GovHydro4Serializer extends CIMSerializer[GovHydro4]
  * Double derivative hydro governor and turbine.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aturb Turbine numerator multiplier (<i>Aturb</i>) (see parameter detail 3).
- *        Typical value = -1.
- * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (see parameter detail 3).
- *        Typical value = 0,5.
- * @param db1 Intentional dead-band width (<i>db1</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param db2 Unintentional dead-band (<i>db2</i>).
- *        Unit = MW.  Typical value = 0.
- * @param eps Intentional db hysteresis (<i>eps</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param gmax Maximum gate opening (<i>Gmax</i>) (&gt; GovHydroDD.gmin).
- *        Typical value = 0.
- * @param gmin Minimum gate opening (<i>Gmin</i>) (&lt; GovHydroDD.gmax).
- *        Typical value = 0.
- * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
- *        Typical value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
- *        Typical value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
- *        Typical value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
- *        Typical value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
- *        Typical value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
- *        Typical value = 0.
- * @param inputSignal Input signal switch (<i>Flag</i>).
- *        true = <i>Pe</i> input is used
- *        false = feedback is received from <i>CV</i>.
- *        <i>Flag</i> is normally dependent on <i>Tt</i>.
- *        If <i>Tt</i> is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
- *        Typical value = true.
- * @param k1 Single derivative gain (<i>K1</i>).
- *        Typical value = 3,6.
- * @param k2 Double derivative gain (<i>K2</i>).
- *        Typical value = 0,2.
- * @param kg Gate servo gain (<i>Kg</i>).
- *        Typical value = 3.
- * @param ki Integral gain (<i>Ki</i>).
- *        Typical value = 1.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt;0).
- *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
- *        Typical value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
- *        Typical value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
- *        Typical value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
- *        Typical value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
- *        Typical value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
- *        Typical value = 0.
- * @param pmax Maximum gate opening, PU of <i>MWbase</i> (<i>Pmax</i>) (&gt; GovHydroDD.pmin).
- *        Typical value = 1.
- * @param pmin Minimum gate opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&gt; GovHydroDD.pmax).
- *        Typical value = 0.
- * @param r Steady state droop (<i>R</i>).
- *        Typical value = 0,05.
- * @param td Input filter time constant (<i>Td</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0.
- * @param tf Washout time constant (<i>Tf</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param tp Gate servo time constant (<i>Tp</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0,35.
- * @param tt Power feedback time constant (<i>Tt</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0,02.
- * @param tturb Turbine time constant (<i>Tturb</i>)  (&gt;= 0).
- *        See parameter detail 3.  Typical value = 0,8.
- * @param velcl Maximum gate closing velocity (<i>Velcl</i>).
- *        Unit = PU / s.  Typical value = -0,14.
- * @param velop Maximum gate opening velocity (<i>Velop</i>).
- *        Unit = PU / s.  Typical value = 0,09.
+ * @param aturb                   Turbine numerator multiplier (<i>Aturb</i>) (see parameter detail 3).
+ *                                Typical value = -1.
+ * @param bturb                   Turbine denominator multiplier (<i>Bturb</i>) (see parameter detail 3).
+ *                                Typical value = 0,5.
+ * @param db1                     Intentional dead-band width (<i>db1</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param db2                     Unintentional dead-band (<i>db2</i>).
+ *                                Unit = MW.  Typical value = 0.
+ * @param eps                     Intentional db hysteresis (<i>eps</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param gmax                    Maximum gate opening (<i>Gmax</i>) (&gt; GovHydroDD.gmin).
+ *                                Typical value = 0.
+ * @param gmin                    Minimum gate opening (<i>Gmin</i>) (&lt; GovHydroDD.gmax).
+ *                                Typical value = 0.
+ * @param gv1                     Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *                                Typical value = 0.
+ * @param gv2                     Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *                                Typical value = 0.
+ * @param gv3                     Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *                                Typical value = 0.
+ * @param gv4                     Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *                                Typical value = 0.
+ * @param gv5                     Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *                                Typical value = 0.
+ * @param gv6                     Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *                                Typical value = 0.
+ * @param inputSignal             Input signal switch (<i>Flag</i>).
+ *                                true = <i>Pe</i> input is used
+ *                                false = feedback is received from <i>CV</i>.
+ *                                <i>Flag</i> is normally dependent on <i>Tt</i>.
+ *                                If <i>Tt</i> is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
+ *                                Typical value = true.
+ * @param k1                      Single derivative gain (<i>K1</i>).
+ *                                Typical value = 3,6.
+ * @param k2                      Double derivative gain (<i>K2</i>).
+ *                                Typical value = 0,2.
+ * @param kg                      Gate servo gain (<i>Kg</i>).
+ *                                Typical value = 3.
+ * @param ki                      Integral gain (<i>Ki</i>).
+ *                                Typical value = 1.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt;0).
+ *                                Unit = MW.
+ * @param pgv1                    Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *                                Typical value = 0.
+ * @param pgv2                    Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *                                Typical value = 0.
+ * @param pgv3                    Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *                                Typical value = 0.
+ * @param pgv4                    Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *                                Typical value = 0.
+ * @param pgv5                    Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *                                Typical value = 0.
+ * @param pgv6                    Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *                                Typical value = 0.
+ * @param pmax                    Maximum gate opening, PU of <i>MWbase</i> (<i>Pmax</i>) (&gt; GovHydroDD.pmin).
+ *                                Typical value = 1.
+ * @param pmin                    Minimum gate opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&gt; GovHydroDD.pmax).
+ *                                Typical value = 0.
+ * @param r                       Steady state droop (<i>R</i>).
+ *                                Typical value = 0,05.
+ * @param td                      Input filter time constant (<i>Td</i>) (&gt;= 0).
+ *                                If = 0, block is bypassed.  Typical value = 0.
+ * @param tf                      Washout time constant (<i>Tf</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param tp                      Gate servo time constant (<i>Tp</i>) (&gt;= 0).
+ *                                If = 0, block is bypassed.  Typical value = 0,35.
+ * @param tt                      Power feedback time constant (<i>Tt</i>) (&gt;= 0).
+ *                                If = 0, block is bypassed.  Typical value = 0,02.
+ * @param tturb                   Turbine time constant (<i>Tturb</i>)  (&gt;= 0).
+ *                                See parameter detail 3.  Typical value = 0,8.
+ * @param velcl                   Maximum gate closing velocity (<i>Velcl</i>).
+ *                                Unit = PU / s.  Typical value = -0,14.
+ * @param velop                   Maximum gate opening velocity (<i>Velop</i>).
+ *                                Unit = PU / s.  Typical value = 0,09.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydroDD
 (
@@ -4595,8 +4676,8 @@ final case class GovHydroDD
     velcl: Double = 0.0,
     velop: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4622,13 +4703,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroDD.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroDD.fields (position), value)
+
         emitelem (0, aturb)
         emitelem (1, bturb)
         emitelem (2, db1)
@@ -4666,6 +4752,7 @@ extends
         emitelem (34, velop)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydroDD rdf:ID=\"%s\">\n%s\t</cim:GovHydroDD>".format (id, export_fields)
@@ -4673,10 +4760,10 @@ extends
 }
 
 object GovHydroDD
-extends
-    CIMParseable[GovHydroDD]
+    extends
+        CIMParseable[GovHydroDD]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "aturb",
         "bturb",
         "db1",
@@ -4713,46 +4800,46 @@ extends
         "velcl",
         "velop"
     )
-    val aturb: Fielder = parse_element (element (cls, fields(0)))
-    val bturb: Fielder = parse_element (element (cls, fields(1)))
-    val db1: Fielder = parse_element (element (cls, fields(2)))
-    val db2: Fielder = parse_element (element (cls, fields(3)))
-    val eps: Fielder = parse_element (element (cls, fields(4)))
-    val gmax: Fielder = parse_element (element (cls, fields(5)))
-    val gmin: Fielder = parse_element (element (cls, fields(6)))
-    val gv1: Fielder = parse_element (element (cls, fields(7)))
-    val gv2: Fielder = parse_element (element (cls, fields(8)))
-    val gv3: Fielder = parse_element (element (cls, fields(9)))
-    val gv4: Fielder = parse_element (element (cls, fields(10)))
-    val gv5: Fielder = parse_element (element (cls, fields(11)))
-    val gv6: Fielder = parse_element (element (cls, fields(12)))
-    val inputSignal: Fielder = parse_element (element (cls, fields(13)))
-    val k1: Fielder = parse_element (element (cls, fields(14)))
-    val k2: Fielder = parse_element (element (cls, fields(15)))
-    val kg: Fielder = parse_element (element (cls, fields(16)))
-    val ki: Fielder = parse_element (element (cls, fields(17)))
-    val mwbase: Fielder = parse_element (element (cls, fields(18)))
-    val pgv1: Fielder = parse_element (element (cls, fields(19)))
-    val pgv2: Fielder = parse_element (element (cls, fields(20)))
-    val pgv3: Fielder = parse_element (element (cls, fields(21)))
-    val pgv4: Fielder = parse_element (element (cls, fields(22)))
-    val pgv5: Fielder = parse_element (element (cls, fields(23)))
-    val pgv6: Fielder = parse_element (element (cls, fields(24)))
-    val pmax: Fielder = parse_element (element (cls, fields(25)))
-    val pmin: Fielder = parse_element (element (cls, fields(26)))
-    val r: Fielder = parse_element (element (cls, fields(27)))
-    val td: Fielder = parse_element (element (cls, fields(28)))
-    val tf: Fielder = parse_element (element (cls, fields(29)))
-    val tp: Fielder = parse_element (element (cls, fields(30)))
-    val tt: Fielder = parse_element (element (cls, fields(31)))
-    val tturb: Fielder = parse_element (element (cls, fields(32)))
-    val velcl: Fielder = parse_element (element (cls, fields(33)))
-    val velop: Fielder = parse_element (element (cls, fields(34)))
+    val aturb: Fielder = parse_element (element (cls, fields (0)))
+    val bturb: Fielder = parse_element (element (cls, fields (1)))
+    val db1: Fielder = parse_element (element (cls, fields (2)))
+    val db2: Fielder = parse_element (element (cls, fields (3)))
+    val eps: Fielder = parse_element (element (cls, fields (4)))
+    val gmax: Fielder = parse_element (element (cls, fields (5)))
+    val gmin: Fielder = parse_element (element (cls, fields (6)))
+    val gv1: Fielder = parse_element (element (cls, fields (7)))
+    val gv2: Fielder = parse_element (element (cls, fields (8)))
+    val gv3: Fielder = parse_element (element (cls, fields (9)))
+    val gv4: Fielder = parse_element (element (cls, fields (10)))
+    val gv5: Fielder = parse_element (element (cls, fields (11)))
+    val gv6: Fielder = parse_element (element (cls, fields (12)))
+    val inputSignal: Fielder = parse_element (element (cls, fields (13)))
+    val k1: Fielder = parse_element (element (cls, fields (14)))
+    val k2: Fielder = parse_element (element (cls, fields (15)))
+    val kg: Fielder = parse_element (element (cls, fields (16)))
+    val ki: Fielder = parse_element (element (cls, fields (17)))
+    val mwbase: Fielder = parse_element (element (cls, fields (18)))
+    val pgv1: Fielder = parse_element (element (cls, fields (19)))
+    val pgv2: Fielder = parse_element (element (cls, fields (20)))
+    val pgv3: Fielder = parse_element (element (cls, fields (21)))
+    val pgv4: Fielder = parse_element (element (cls, fields (22)))
+    val pgv5: Fielder = parse_element (element (cls, fields (23)))
+    val pgv6: Fielder = parse_element (element (cls, fields (24)))
+    val pmax: Fielder = parse_element (element (cls, fields (25)))
+    val pmin: Fielder = parse_element (element (cls, fields (26)))
+    val r: Fielder = parse_element (element (cls, fields (27)))
+    val td: Fielder = parse_element (element (cls, fields (28)))
+    val tf: Fielder = parse_element (element (cls, fields (29)))
+    val tp: Fielder = parse_element (element (cls, fields (30)))
+    val tt: Fielder = parse_element (element (cls, fields (31)))
+    val tturb: Fielder = parse_element (element (cls, fields (32)))
+    val velcl: Fielder = parse_element (element (cls, fields (33)))
+    val velop: Fielder = parse_element (element (cls, fields (34)))
 
     def parse (context: CIMContext): GovHydroDD =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovHydroDD (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -4847,7 +4934,7 @@ object GovHydroDDSerializer extends CIMSerializer[GovHydroDD]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydroDD]): GovHydroDD =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydroDD (
             parent,
@@ -4898,68 +4985,68 @@ object GovHydroDDSerializer extends CIMSerializer[GovHydroDD]
  * This model can be used to represent three types of governors.
  * A schematic of the hydraulic system of detailed hydro unit models, such as Francis and Pelton, is provided in the DetailedHydroModelHydraulicSystem diagram.
  *
- * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param am Opening section <i>S</i><i><sub>EFF</sub></i> at the maximum efficiency (<i>Am</i>).
- *        Typical value = 0,7.
- * @param av0 Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
- *        Unit = m<sup>2</sup>. Typical value = 30.
- * @param av1 Area of the compensation tank (<i>A</i><i><sub>V1</sub></i>).
- *        Unit = m<sup>2</sup>. Typical value = 700.
- * @param bp Droop (<i>Bp</i>).
- *        Typical value = 0,05.
- * @param db1 Intentional dead-band width (<i>DB1</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param etamax Maximum efficiency (<i>EtaMax</i>).
- *        Typical value = 1,05.
- * @param governorControl Governor control flag (<i>Cflag</i>).
- *        Typical value = mechanicHydrolicTachoAccelerator.
- * @param h1 Head of compensation chamber water level with respect to the level of penstock (<i>H</i><i><sub>1</sub></i>).
- *        Unit = km.  Typical value = 0,004.
- * @param h2 Head of surge tank water level with respect to the level of penstock (<i>H</i><i><sub>2</sub></i>).
- *        Unit = km.  Typical value = 0,040.
- * @param hn Rated hydraulic head (<i>H</i><i><sub>n</sub></i>).
- *        Unit = km.  Typical value = 0,250.
- * @param kc Penstock loss coefficient (due to friction) (<i>Kc</i>).
- *        Typical value = 0,025.
- * @param kg Water tunnel and surge chamber loss coefficient (due to friction) (<i>Kg</i>).
- *        Typical value = 0,025.
- * @param kt Washout gain (<i>Kt</i>).
- *        Typical value = 0,25.
- * @param qc0 No-load turbine flow at nominal head (<i>Qc0</i>).
- *        Typical value = 0,1.
- * @param qn Rated flow (<i>Q</i><i><sub>n</sub></i>).
- *        Unit = m<sup>3</sup>/s. Typical value = 250.
- * @param ta Derivative gain (<i>Ta</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param td Washout time constant (<i>Td</i>) (&gt;= 0).
- *        Typical value = 6.
- * @param ts Gate servo time constant (<i>Ts</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param twnc Water inertia time constant (<i>Twnc</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param twng Water tunnel and surge chamber inertia time constant (<i>Twng</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param tx Derivative feedback gain (<i>Tx</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param va Maximum gate opening velocity (<i>Va</i>).
- *        Unit = PU / s.  Typical value = 0,06.
- * @param valvmax Maximum gate opening (<i>ValvMax</i>) (&gt; GovHydroFrancis.valvmin).
- *        Typical value = 1,1.
- * @param valvmin Minimum gate opening (<i>ValvMin</i>) (&lt; GovHydroFrancis.valvmax).
- *        Typical value = 0.
- * @param vc Maximum gate closing velocity (<i>Vc</i>).
- *        Unit = PU / s.  Typical value = -0,06.
+ * @param TurbineGovernorDynamics           [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param am                                Opening section <i>S</i><i><sub>EFF</sub></i> at the maximum efficiency (<i>Am</i>).
+ *                                          Typical value = 0,7.
+ * @param av0                               Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
+ *                                          Unit = m<sup>2</sup>. Typical value = 30.
+ * @param av1                               Area of the compensation tank (<i>A</i><i><sub>V1</sub></i>).
+ *                                          Unit = m<sup>2</sup>. Typical value = 700.
+ * @param bp                                Droop (<i>Bp</i>).
+ *                                          Typical value = 0,05.
+ * @param db1                               Intentional dead-band width (<i>DB1</i>).
+ *                                          Unit = Hz.  Typical value = 0.
+ * @param etamax                            Maximum efficiency (<i>EtaMax</i>).
+ *                                          Typical value = 1,05.
+ * @param governorControl                   Governor control flag (<i>Cflag</i>).
+ *                                          Typical value = mechanicHydrolicTachoAccelerator.
+ * @param h1                                Head of compensation chamber water level with respect to the level of penstock (<i>H</i><i><sub>1</sub></i>).
+ *                                          Unit = km.  Typical value = 0,004.
+ * @param h2                                Head of surge tank water level with respect to the level of penstock (<i>H</i><i><sub>2</sub></i>).
+ *                                          Unit = km.  Typical value = 0,040.
+ * @param hn                                Rated hydraulic head (<i>H</i><i><sub>n</sub></i>).
+ *                                          Unit = km.  Typical value = 0,250.
+ * @param kc                                Penstock loss coefficient (due to friction) (<i>Kc</i>).
+ *                                          Typical value = 0,025.
+ * @param kg                                Water tunnel and surge chamber loss coefficient (due to friction) (<i>Kg</i>).
+ *                                          Typical value = 0,025.
+ * @param kt                                Washout gain (<i>Kt</i>).
+ *                                          Typical value = 0,25.
+ * @param qc0                               No-load turbine flow at nominal head (<i>Qc0</i>).
+ *                                          Typical value = 0,1.
+ * @param qn                                Rated flow (<i>Q</i><i><sub>n</sub></i>).
+ *                                          Unit = m<sup>3</sup>/s. Typical value = 250.
+ * @param ta                                Derivative gain (<i>Ta</i>) (&gt;= 0).
+ *                                          Typical value = 3.
+ * @param td                                Washout time constant (<i>Td</i>) (&gt;= 0).
+ *                                          Typical value = 6.
+ * @param ts                                Gate servo time constant (<i>Ts</i>) (&gt;= 0).
+ *                                          Typical value = 0,5.
+ * @param twnc                              Water inertia time constant (<i>Twnc</i>) (&gt;= 0).
+ *                                          Typical value = 1.
+ * @param twng                              Water tunnel and surge chamber inertia time constant (<i>Twng</i>) (&gt;= 0).
+ *                                          Typical value = 3.
+ * @param tx                                Derivative feedback gain (<i>Tx</i>) (&gt;= 0).
+ *                                          Typical value = 1.
+ * @param va                                Maximum gate opening velocity (<i>Va</i>).
+ *                                          Unit = PU / s.  Typical value = 0,06.
+ * @param valvmax                           Maximum gate opening (<i>ValvMax</i>) (&gt; GovHydroFrancis.valvmin).
+ *                                          Typical value = 1,1.
+ * @param valvmin                           Minimum gate opening (<i>ValvMin</i>) (&lt; GovHydroFrancis.valvmax).
+ *                                          Typical value = 0.
+ * @param vc                                Maximum gate closing velocity (<i>Vc</i>).
+ *                                          Unit = PU / s.  Typical value = -0,06.
  * @param waterTunnelSurgeChamberSimulation Water tunnel and surge chamber simulation (<i>Tflag</i>).
- *        true = enable of water tunnel and surge chamber simulation
- *        false = inhibit of water tunnel and surge chamber simulation.
- *        Typical value = false.
- * @param zsfc Head of upper water level with respect to the level of penstock (<i>Zsfc</i>).
- *        Unit = km.  Typical value = 0,025.
+ *                                          true = enable of water tunnel and surge chamber simulation
+ *                                          false = inhibit of water tunnel and surge chamber simulation.
+ *                                          Typical value = false.
+ * @param zsfc                              Head of upper water level with respect to the level of penstock (<i>Zsfc</i>).
+ *                                          Unit = km.  Typical value = 0,025.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydroFrancis
 (
@@ -4992,8 +5079,8 @@ final case class GovHydroFrancis
     waterTunnelSurgeChamberSimulation: Boolean = false,
     zsfc: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5019,14 +5106,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroFrancis.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroFrancis.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GovHydroFrancis.fields (position), value)
+
         emitelem (0, am)
         emitelem (1, av0)
         emitelem (2, av1)
@@ -5056,6 +5149,7 @@ extends
         emitelem (26, zsfc)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydroFrancis rdf:ID=\"%s\">\n%s\t</cim:GovHydroFrancis>".format (id, export_fields)
@@ -5063,10 +5157,10 @@ extends
 }
 
 object GovHydroFrancis
-extends
-    CIMParseable[GovHydroFrancis]
+    extends
+        CIMParseable[GovHydroFrancis]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "am",
         "av0",
         "av1",
@@ -5095,38 +5189,38 @@ extends
         "waterTunnelSurgeChamberSimulation",
         "zsfc"
     )
-    val am: Fielder = parse_element (element (cls, fields(0)))
-    val av0: Fielder = parse_element (element (cls, fields(1)))
-    val av1: Fielder = parse_element (element (cls, fields(2)))
-    val bp: Fielder = parse_element (element (cls, fields(3)))
-    val db1: Fielder = parse_element (element (cls, fields(4)))
-    val etamax: Fielder = parse_element (element (cls, fields(5)))
-    val governorControl: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val h1: Fielder = parse_element (element (cls, fields(7)))
-    val h2: Fielder = parse_element (element (cls, fields(8)))
-    val hn: Fielder = parse_element (element (cls, fields(9)))
-    val kc: Fielder = parse_element (element (cls, fields(10)))
-    val kg: Fielder = parse_element (element (cls, fields(11)))
-    val kt: Fielder = parse_element (element (cls, fields(12)))
-    val qc0: Fielder = parse_element (element (cls, fields(13)))
-    val qn: Fielder = parse_element (element (cls, fields(14)))
-    val ta: Fielder = parse_element (element (cls, fields(15)))
-    val td: Fielder = parse_element (element (cls, fields(16)))
-    val ts: Fielder = parse_element (element (cls, fields(17)))
-    val twnc: Fielder = parse_element (element (cls, fields(18)))
-    val twng: Fielder = parse_element (element (cls, fields(19)))
-    val tx: Fielder = parse_element (element (cls, fields(20)))
-    val va: Fielder = parse_element (element (cls, fields(21)))
-    val valvmax: Fielder = parse_element (element (cls, fields(22)))
-    val valvmin: Fielder = parse_element (element (cls, fields(23)))
-    val vc: Fielder = parse_element (element (cls, fields(24)))
-    val waterTunnelSurgeChamberSimulation: Fielder = parse_element (element (cls, fields(25)))
-    val zsfc: Fielder = parse_element (element (cls, fields(26)))
+    val am: Fielder = parse_element (element (cls, fields (0)))
+    val av0: Fielder = parse_element (element (cls, fields (1)))
+    val av1: Fielder = parse_element (element (cls, fields (2)))
+    val bp: Fielder = parse_element (element (cls, fields (3)))
+    val db1: Fielder = parse_element (element (cls, fields (4)))
+    val etamax: Fielder = parse_element (element (cls, fields (5)))
+    val governorControl: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val h1: Fielder = parse_element (element (cls, fields (7)))
+    val h2: Fielder = parse_element (element (cls, fields (8)))
+    val hn: Fielder = parse_element (element (cls, fields (9)))
+    val kc: Fielder = parse_element (element (cls, fields (10)))
+    val kg: Fielder = parse_element (element (cls, fields (11)))
+    val kt: Fielder = parse_element (element (cls, fields (12)))
+    val qc0: Fielder = parse_element (element (cls, fields (13)))
+    val qn: Fielder = parse_element (element (cls, fields (14)))
+    val ta: Fielder = parse_element (element (cls, fields (15)))
+    val td: Fielder = parse_element (element (cls, fields (16)))
+    val ts: Fielder = parse_element (element (cls, fields (17)))
+    val twnc: Fielder = parse_element (element (cls, fields (18)))
+    val twng: Fielder = parse_element (element (cls, fields (19)))
+    val tx: Fielder = parse_element (element (cls, fields (20)))
+    val va: Fielder = parse_element (element (cls, fields (21)))
+    val valvmax: Fielder = parse_element (element (cls, fields (22)))
+    val valvmin: Fielder = parse_element (element (cls, fields (23)))
+    val vc: Fielder = parse_element (element (cls, fields (24)))
+    val waterTunnelSurgeChamberSimulation: Fielder = parse_element (element (cls, fields (25)))
+    val zsfc: Fielder = parse_element (element (cls, fields (26)))
 
     def parse (context: CIMContext): GovHydroFrancis =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovHydroFrancis (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (am (), 0)),
@@ -5205,7 +5299,7 @@ object GovHydroFrancisSerializer extends CIMSerializer[GovHydroFrancis]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydroFrancis]): GovHydroFrancis =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydroFrancis (
             parent,
@@ -5249,23 +5343,23 @@ object GovHydroFrancisSerializer extends CIMSerializer[GovHydroFrancis]
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems, November/December 1973, Volume PAS-92, Number 6, <i><u>Dynamic Models for Steam and Hydro Turbines in Power System Studies</u></i>, page 1904.</font>
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param k Governor gain (<i>K)</i>.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pmax Gate maximum (<i>Pmax</i>) (&gt; GovHydroIEEE0.pmin).
- * @param pmin Gate minimum (<i>Pmin</i>) (&lt; GovHydroIEEE.pmax).
- * @param t1 Governor lag time constant (<i>T1</i>) (&gt;= 0).
- *        Typical value = 0,25.
- * @param t2 Governor lead time constant (<i>T2)</i> (&gt;= 0).
- *        Typical value = 0.
- * @param t3 Gate actuator time constant (<i>T3</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t4 Water starting time (<i>T4</i>) (&gt;= 0).
+ * @param k                       Governor gain (<i>K)</i>.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pmax                    Gate maximum (<i>Pmax</i>) (&gt; GovHydroIEEE0.pmin).
+ * @param pmin                    Gate minimum (<i>Pmin</i>) (&lt; GovHydroIEEE.pmax).
+ * @param t1                      Governor lag time constant (<i>T1</i>) (&gt;= 0).
+ *                                Typical value = 0,25.
+ * @param t2                      Governor lead time constant (<i>T2)</i> (&gt;= 0).
+ *                                Typical value = 0.
+ * @param t3                      Gate actuator time constant (<i>T3</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param t4                      Water starting time (<i>T4</i>) (&gt;= 0).
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydroIEEE0
 (
@@ -5279,8 +5373,8 @@ final case class GovHydroIEEE0
     t3: Double = 0.0,
     t4: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5306,13 +5400,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroIEEE0.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroIEEE0.fields (position), value)
+
         emitelem (0, k)
         emitelem (1, mwbase)
         emitelem (2, pmax)
@@ -5323,6 +5422,7 @@ extends
         emitelem (7, t4)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydroIEEE0 rdf:ID=\"%s\">\n%s\t</cim:GovHydroIEEE0>".format (id, export_fields)
@@ -5330,10 +5430,10 @@ extends
 }
 
 object GovHydroIEEE0
-extends
-    CIMParseable[GovHydroIEEE0]
+    extends
+        CIMParseable[GovHydroIEEE0]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "k",
         "mwbase",
         "pmax",
@@ -5343,19 +5443,19 @@ extends
         "t3",
         "t4"
     )
-    val k: Fielder = parse_element (element (cls, fields(0)))
-    val mwbase: Fielder = parse_element (element (cls, fields(1)))
-    val pmax: Fielder = parse_element (element (cls, fields(2)))
-    val pmin: Fielder = parse_element (element (cls, fields(3)))
-    val t1: Fielder = parse_element (element (cls, fields(4)))
-    val t2: Fielder = parse_element (element (cls, fields(5)))
-    val t3: Fielder = parse_element (element (cls, fields(6)))
-    val t4: Fielder = parse_element (element (cls, fields(7)))
+    val k: Fielder = parse_element (element (cls, fields (0)))
+    val mwbase: Fielder = parse_element (element (cls, fields (1)))
+    val pmax: Fielder = parse_element (element (cls, fields (2)))
+    val pmin: Fielder = parse_element (element (cls, fields (3)))
+    val t1: Fielder = parse_element (element (cls, fields (4)))
+    val t2: Fielder = parse_element (element (cls, fields (5)))
+    val t3: Fielder = parse_element (element (cls, fields (6)))
+    val t4: Fielder = parse_element (element (cls, fields (7)))
 
     def parse (context: CIMContext): GovHydroIEEE0 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovHydroIEEE0 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (k (), 0)),
@@ -5396,7 +5496,7 @@ object GovHydroIEEE0Serializer extends CIMSerializer[GovHydroIEEE0]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydroIEEE0]): GovHydroIEEE0 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydroIEEE0 (
             parent,
@@ -5420,63 +5520,63 @@ object GovHydroIEEE0Serializer extends CIMSerializer[GovHydroIEEE0]
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems, November/December 1973, Volume PAS-92, Number 6, <i><u>Dynamic Models for Steam and Hydro Turbines in Power System Studies</u></i>, page 1904.</font>
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aturb Turbine numerator multiplier (<i>Aturb</i>).
- *        Typical value = -1.
- * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (&gt; 0).
- *        Typical value = 0,5.
- * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
- *        Typical value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
- *        Typical value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
- *        Typical value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
- *        Typical value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
- *        Typical value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
- *        Typical value = 0.
- * @param kturb Turbine gain (<i>Kturb</i>).
- *        Typical value = 1.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
- *        Typical value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
- *        Typical value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
- *        Typical value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
- *        Typical value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
- *        Typical value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
- *        Typical value = 0.
- * @param pmax Maximum gate opening (<i>Pmax</i>) (&gt; GovHydroIEEE2.pmin).
- *        Typical value = 1.
- * @param pmin Minimum gate opening (<i>Pmin</i>) (&lt;GovHydroIEEE2.pmax).
- *        Typical value = 0.
- * @param rperm Permanent droop (<i>Rperm</i>).
- *        Typical value = 0,05.
- * @param rtemp Temporary droop (<i>Rtemp</i>).
- *        Typical value = 0,5.
- * @param tg Gate servo time constant (<i>Tg</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param tp Pilot servo valve time constant (<i>Tp</i>) (&gt;= 0).
- *        Typical value = 0,03.
- * @param tr Dashpot time constant (<i>Tr</i>) (&gt;= 0).
- *        Typical value = 12.
- * @param tw Water inertia time constant (<i>Tw</i>) (&gt;= 0).
- *        Typical value = 2.
- * @param uc Maximum gate closing velocity (<i>Uc</i>) (&lt;0).
- *        Typical value = -0,1.
- * @param uo Maximum gate opening velocity (<i>Uo</i>).
- *        Unit = PU / s.  Typical value = 0,1.
+ * @param aturb                   Turbine numerator multiplier (<i>Aturb</i>).
+ *                                Typical value = -1.
+ * @param bturb                   Turbine denominator multiplier (<i>Bturb</i>) (&gt; 0).
+ *                                Typical value = 0,5.
+ * @param gv1                     Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *                                Typical value = 0.
+ * @param gv2                     Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *                                Typical value = 0.
+ * @param gv3                     Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *                                Typical value = 0.
+ * @param gv4                     Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *                                Typical value = 0.
+ * @param gv5                     Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *                                Typical value = 0.
+ * @param gv6                     Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *                                Typical value = 0.
+ * @param kturb                   Turbine gain (<i>Kturb</i>).
+ *                                Typical value = 1.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pgv1                    Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *                                Typical value = 0.
+ * @param pgv2                    Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *                                Typical value = 0.
+ * @param pgv3                    Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *                                Typical value = 0.
+ * @param pgv4                    Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *                                Typical value = 0.
+ * @param pgv5                    Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *                                Typical value = 0.
+ * @param pgv6                    Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *                                Typical value = 0.
+ * @param pmax                    Maximum gate opening (<i>Pmax</i>) (&gt; GovHydroIEEE2.pmin).
+ *                                Typical value = 1.
+ * @param pmin                    Minimum gate opening (<i>Pmin</i>) (&lt;GovHydroIEEE2.pmax).
+ *                                Typical value = 0.
+ * @param rperm                   Permanent droop (<i>Rperm</i>).
+ *                                Typical value = 0,05.
+ * @param rtemp                   Temporary droop (<i>Rtemp</i>).
+ *                                Typical value = 0,5.
+ * @param tg                      Gate servo time constant (<i>Tg</i>) (&gt;= 0).
+ *                                Typical value = 0,5.
+ * @param tp                      Pilot servo valve time constant (<i>Tp</i>) (&gt;= 0).
+ *                                Typical value = 0,03.
+ * @param tr                      Dashpot time constant (<i>Tr</i>) (&gt;= 0).
+ *                                Typical value = 12.
+ * @param tw                      Water inertia time constant (<i>Tw</i>) (&gt;= 0).
+ *                                Typical value = 2.
+ * @param uc                      Maximum gate closing velocity (<i>Uc</i>) (&lt;0).
+ *                                Typical value = -0,1.
+ * @param uo                      Maximum gate opening velocity (<i>Uo</i>).
+ *                                Unit = PU / s.  Typical value = 0,1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydroIEEE2
 (
@@ -5508,8 +5608,8 @@ final case class GovHydroIEEE2
     uc: Double = 0.0,
     uo: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5535,13 +5635,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroIEEE2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroIEEE2.fields (position), value)
+
         emitelem (0, aturb)
         emitelem (1, bturb)
         emitelem (2, gv1)
@@ -5570,6 +5675,7 @@ extends
         emitelem (25, uo)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydroIEEE2 rdf:ID=\"%s\">\n%s\t</cim:GovHydroIEEE2>".format (id, export_fields)
@@ -5577,10 +5683,10 @@ extends
 }
 
 object GovHydroIEEE2
-extends
-    CIMParseable[GovHydroIEEE2]
+    extends
+        CIMParseable[GovHydroIEEE2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "aturb",
         "bturb",
         "gv1",
@@ -5608,37 +5714,37 @@ extends
         "uc",
         "uo"
     )
-    val aturb: Fielder = parse_element (element (cls, fields(0)))
-    val bturb: Fielder = parse_element (element (cls, fields(1)))
-    val gv1: Fielder = parse_element (element (cls, fields(2)))
-    val gv2: Fielder = parse_element (element (cls, fields(3)))
-    val gv3: Fielder = parse_element (element (cls, fields(4)))
-    val gv4: Fielder = parse_element (element (cls, fields(5)))
-    val gv5: Fielder = parse_element (element (cls, fields(6)))
-    val gv6: Fielder = parse_element (element (cls, fields(7)))
-    val kturb: Fielder = parse_element (element (cls, fields(8)))
-    val mwbase: Fielder = parse_element (element (cls, fields(9)))
-    val pgv1: Fielder = parse_element (element (cls, fields(10)))
-    val pgv2: Fielder = parse_element (element (cls, fields(11)))
-    val pgv3: Fielder = parse_element (element (cls, fields(12)))
-    val pgv4: Fielder = parse_element (element (cls, fields(13)))
-    val pgv5: Fielder = parse_element (element (cls, fields(14)))
-    val pgv6: Fielder = parse_element (element (cls, fields(15)))
-    val pmax: Fielder = parse_element (element (cls, fields(16)))
-    val pmin: Fielder = parse_element (element (cls, fields(17)))
-    val rperm: Fielder = parse_element (element (cls, fields(18)))
-    val rtemp: Fielder = parse_element (element (cls, fields(19)))
-    val tg: Fielder = parse_element (element (cls, fields(20)))
-    val tp: Fielder = parse_element (element (cls, fields(21)))
-    val tr: Fielder = parse_element (element (cls, fields(22)))
-    val tw: Fielder = parse_element (element (cls, fields(23)))
-    val uc: Fielder = parse_element (element (cls, fields(24)))
-    val uo: Fielder = parse_element (element (cls, fields(25)))
+    val aturb: Fielder = parse_element (element (cls, fields (0)))
+    val bturb: Fielder = parse_element (element (cls, fields (1)))
+    val gv1: Fielder = parse_element (element (cls, fields (2)))
+    val gv2: Fielder = parse_element (element (cls, fields (3)))
+    val gv3: Fielder = parse_element (element (cls, fields (4)))
+    val gv4: Fielder = parse_element (element (cls, fields (5)))
+    val gv5: Fielder = parse_element (element (cls, fields (6)))
+    val gv6: Fielder = parse_element (element (cls, fields (7)))
+    val kturb: Fielder = parse_element (element (cls, fields (8)))
+    val mwbase: Fielder = parse_element (element (cls, fields (9)))
+    val pgv1: Fielder = parse_element (element (cls, fields (10)))
+    val pgv2: Fielder = parse_element (element (cls, fields (11)))
+    val pgv3: Fielder = parse_element (element (cls, fields (12)))
+    val pgv4: Fielder = parse_element (element (cls, fields (13)))
+    val pgv5: Fielder = parse_element (element (cls, fields (14)))
+    val pgv6: Fielder = parse_element (element (cls, fields (15)))
+    val pmax: Fielder = parse_element (element (cls, fields (16)))
+    val pmin: Fielder = parse_element (element (cls, fields (17)))
+    val rperm: Fielder = parse_element (element (cls, fields (18)))
+    val rtemp: Fielder = parse_element (element (cls, fields (19)))
+    val tg: Fielder = parse_element (element (cls, fields (20)))
+    val tp: Fielder = parse_element (element (cls, fields (21)))
+    val tr: Fielder = parse_element (element (cls, fields (22)))
+    val tw: Fielder = parse_element (element (cls, fields (23)))
+    val uc: Fielder = parse_element (element (cls, fields (24)))
+    val uo: Fielder = parse_element (element (cls, fields (25)))
 
     def parse (context: CIMContext): GovHydroIEEE2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovHydroIEEE2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -5715,7 +5821,7 @@ object GovHydroIEEE2Serializer extends CIMSerializer[GovHydroIEEE2]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydroIEEE2]): GovHydroIEEE2 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydroIEEE2 (
             parent,
@@ -5755,81 +5861,81 @@ object GovHydroIEEE2Serializer extends CIMSerializer[GovHydroIEEE2]
  * PID governor and turbine.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aturb Turbine numerator multiplier (<i>Aturb</i>) (see parameter detail 3).
- *        Typical value -1.
- * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (see parameter detail 3).
- *        Typical value = 0,5.
- * @param db1 Intentional dead-band width (<i>db1</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param db2 Unintentional dead-band (<i>db2</i>).
- *        Unit = MW.  Typical value = 0.
- * @param eps Intentional db hysteresis (<i>eps</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
- *        Typical value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
- *        Typical value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
- *        Typical value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
- *        Typical value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
- *        Typical value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
- *        Typical value = 0.
- * @param inputSignal Input signal switch (<i>Flag</i>).
- *        true = <i>Pe</i> input is used
- *        false = feedback is received from <i>CV</i>.
- *        <i>Flag</i> is normally dependent on <i>Tt</i>.
- *        If <i>Tt </i>is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
- *        Typical value = true.
- * @param kd Derivative gain (<i>Kd</i>).
- *        Typical value = 1,11.
- * @param kg Gate servo gain (<i>Kg</i>).
- *        Typical value = 2,5.
- * @param ki Integral gain (<i>Ki</i>).
- *        Typical value = 0,36.
- * @param kp Proportional gain (<i>Kp</i>).
- *        Typical value = 0,1.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
- *        Typical value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
- *        Typical value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
- *        Typical value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
- *        Typical value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
- *        Typical value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
- *        Typical value = 0.
- * @param pmax Maximum gate opening, PU of MWbase (<i>Pmax</i>) (&gt; GovHydroPID.pmin).
- *        Typical value = 1.
- * @param pmin Minimum gate opening, PU of MWbase (<i>Pmin</i>) (&lt; GovHydroPID.pmax).
- *        Typical value = 0.
- * @param r Steady state droop (<i>R</i>).
- *        Typical value = 0,05.
- * @param td Input filter time constant (<i>Td</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0.
- * @param tf Washout time constant (<i>Tf</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param tp Gate servo time constant (<i>Tp</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0,35.
- * @param tt Power feedback time constant (<i>Tt</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0,02.
- * @param tturb Turbine time constant (<i>Tturb</i>) (&gt;= 0).
- *        See Parameter detail 3.  Typical value = 0,8.
- * @param velcl Maximum gate closing velocity (<i>Velcl</i>).
- *        Unit = PU / s.  Typical value = -0,14.
- * @param velop Maximum gate opening velocity (<i>Velop</i>).
- *        Unit = PU / s.  Typical value = 0,09.
+ * @param aturb                   Turbine numerator multiplier (<i>Aturb</i>) (see parameter detail 3).
+ *                                Typical value -1.
+ * @param bturb                   Turbine denominator multiplier (<i>Bturb</i>) (see parameter detail 3).
+ *                                Typical value = 0,5.
+ * @param db1                     Intentional dead-band width (<i>db1</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param db2                     Unintentional dead-band (<i>db2</i>).
+ *                                Unit = MW.  Typical value = 0.
+ * @param eps                     Intentional db hysteresis (<i>eps</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param gv1                     Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *                                Typical value = 0.
+ * @param gv2                     Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *                                Typical value = 0.
+ * @param gv3                     Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *                                Typical value = 0.
+ * @param gv4                     Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *                                Typical value = 0.
+ * @param gv5                     Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *                                Typical value = 0.
+ * @param gv6                     Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *                                Typical value = 0.
+ * @param inputSignal             Input signal switch (<i>Flag</i>).
+ *                                true = <i>Pe</i> input is used
+ *                                false = feedback is received from <i>CV</i>.
+ *                                <i>Flag</i> is normally dependent on <i>Tt</i>.
+ *                                If <i>Tt </i>is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
+ *                                Typical value = true.
+ * @param kd                      Derivative gain (<i>Kd</i>).
+ *                                Typical value = 1,11.
+ * @param kg                      Gate servo gain (<i>Kg</i>).
+ *                                Typical value = 2,5.
+ * @param ki                      Integral gain (<i>Ki</i>).
+ *                                Typical value = 0,36.
+ * @param kp                      Proportional gain (<i>Kp</i>).
+ *                                Typical value = 0,1.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pgv1                    Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *                                Typical value = 0.
+ * @param pgv2                    Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *                                Typical value = 0.
+ * @param pgv3                    Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *                                Typical value = 0.
+ * @param pgv4                    Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *                                Typical value = 0.
+ * @param pgv5                    Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *                                Typical value = 0.
+ * @param pgv6                    Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *                                Typical value = 0.
+ * @param pmax                    Maximum gate opening, PU of MWbase (<i>Pmax</i>) (&gt; GovHydroPID.pmin).
+ *                                Typical value = 1.
+ * @param pmin                    Minimum gate opening, PU of MWbase (<i>Pmin</i>) (&lt; GovHydroPID.pmax).
+ *                                Typical value = 0.
+ * @param r                       Steady state droop (<i>R</i>).
+ *                                Typical value = 0,05.
+ * @param td                      Input filter time constant (<i>Td</i>) (&gt;= 0).
+ *                                If = 0, block is bypassed.  Typical value = 0.
+ * @param tf                      Washout time constant (<i>Tf</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param tp                      Gate servo time constant (<i>Tp</i>) (&gt;= 0).
+ *                                If = 0, block is bypassed.  Typical value = 0,35.
+ * @param tt                      Power feedback time constant (<i>Tt</i>) (&gt;= 0).
+ *                                If = 0, block is bypassed.  Typical value = 0,02.
+ * @param tturb                   Turbine time constant (<i>Tturb</i>) (&gt;= 0).
+ *                                See Parameter detail 3.  Typical value = 0,8.
+ * @param velcl                   Maximum gate closing velocity (<i>Velcl</i>).
+ *                                Unit = PU / s.  Typical value = -0,14.
+ * @param velop                   Maximum gate opening velocity (<i>Velop</i>).
+ *                                Unit = PU / s.  Typical value = 0,09.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydroPID
 (
@@ -5868,8 +5974,8 @@ final case class GovHydroPID
     velcl: Double = 0.0,
     velop: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5895,13 +6001,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroPID.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroPID.fields (position), value)
+
         emitelem (0, aturb)
         emitelem (1, bturb)
         emitelem (2, db1)
@@ -5937,6 +6048,7 @@ extends
         emitelem (32, velop)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydroPID rdf:ID=\"%s\">\n%s\t</cim:GovHydroPID>".format (id, export_fields)
@@ -5944,10 +6056,10 @@ extends
 }
 
 object GovHydroPID
-extends
-    CIMParseable[GovHydroPID]
+    extends
+        CIMParseable[GovHydroPID]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "aturb",
         "bturb",
         "db1",
@@ -5982,44 +6094,44 @@ extends
         "velcl",
         "velop"
     )
-    val aturb: Fielder = parse_element (element (cls, fields(0)))
-    val bturb: Fielder = parse_element (element (cls, fields(1)))
-    val db1: Fielder = parse_element (element (cls, fields(2)))
-    val db2: Fielder = parse_element (element (cls, fields(3)))
-    val eps: Fielder = parse_element (element (cls, fields(4)))
-    val gv1: Fielder = parse_element (element (cls, fields(5)))
-    val gv2: Fielder = parse_element (element (cls, fields(6)))
-    val gv3: Fielder = parse_element (element (cls, fields(7)))
-    val gv4: Fielder = parse_element (element (cls, fields(8)))
-    val gv5: Fielder = parse_element (element (cls, fields(9)))
-    val gv6: Fielder = parse_element (element (cls, fields(10)))
-    val inputSignal: Fielder = parse_element (element (cls, fields(11)))
-    val kd: Fielder = parse_element (element (cls, fields(12)))
-    val kg: Fielder = parse_element (element (cls, fields(13)))
-    val ki: Fielder = parse_element (element (cls, fields(14)))
-    val kp: Fielder = parse_element (element (cls, fields(15)))
-    val mwbase: Fielder = parse_element (element (cls, fields(16)))
-    val pgv1: Fielder = parse_element (element (cls, fields(17)))
-    val pgv2: Fielder = parse_element (element (cls, fields(18)))
-    val pgv3: Fielder = parse_element (element (cls, fields(19)))
-    val pgv4: Fielder = parse_element (element (cls, fields(20)))
-    val pgv5: Fielder = parse_element (element (cls, fields(21)))
-    val pgv6: Fielder = parse_element (element (cls, fields(22)))
-    val pmax: Fielder = parse_element (element (cls, fields(23)))
-    val pmin: Fielder = parse_element (element (cls, fields(24)))
-    val r: Fielder = parse_element (element (cls, fields(25)))
-    val td: Fielder = parse_element (element (cls, fields(26)))
-    val tf: Fielder = parse_element (element (cls, fields(27)))
-    val tp: Fielder = parse_element (element (cls, fields(28)))
-    val tt: Fielder = parse_element (element (cls, fields(29)))
-    val tturb: Fielder = parse_element (element (cls, fields(30)))
-    val velcl: Fielder = parse_element (element (cls, fields(31)))
-    val velop: Fielder = parse_element (element (cls, fields(32)))
+    val aturb: Fielder = parse_element (element (cls, fields (0)))
+    val bturb: Fielder = parse_element (element (cls, fields (1)))
+    val db1: Fielder = parse_element (element (cls, fields (2)))
+    val db2: Fielder = parse_element (element (cls, fields (3)))
+    val eps: Fielder = parse_element (element (cls, fields (4)))
+    val gv1: Fielder = parse_element (element (cls, fields (5)))
+    val gv2: Fielder = parse_element (element (cls, fields (6)))
+    val gv3: Fielder = parse_element (element (cls, fields (7)))
+    val gv4: Fielder = parse_element (element (cls, fields (8)))
+    val gv5: Fielder = parse_element (element (cls, fields (9)))
+    val gv6: Fielder = parse_element (element (cls, fields (10)))
+    val inputSignal: Fielder = parse_element (element (cls, fields (11)))
+    val kd: Fielder = parse_element (element (cls, fields (12)))
+    val kg: Fielder = parse_element (element (cls, fields (13)))
+    val ki: Fielder = parse_element (element (cls, fields (14)))
+    val kp: Fielder = parse_element (element (cls, fields (15)))
+    val mwbase: Fielder = parse_element (element (cls, fields (16)))
+    val pgv1: Fielder = parse_element (element (cls, fields (17)))
+    val pgv2: Fielder = parse_element (element (cls, fields (18)))
+    val pgv3: Fielder = parse_element (element (cls, fields (19)))
+    val pgv4: Fielder = parse_element (element (cls, fields (20)))
+    val pgv5: Fielder = parse_element (element (cls, fields (21)))
+    val pgv6: Fielder = parse_element (element (cls, fields (22)))
+    val pmax: Fielder = parse_element (element (cls, fields (23)))
+    val pmin: Fielder = parse_element (element (cls, fields (24)))
+    val r: Fielder = parse_element (element (cls, fields (25)))
+    val td: Fielder = parse_element (element (cls, fields (26)))
+    val tf: Fielder = parse_element (element (cls, fields (27)))
+    val tp: Fielder = parse_element (element (cls, fields (28)))
+    val tt: Fielder = parse_element (element (cls, fields (29)))
+    val tturb: Fielder = parse_element (element (cls, fields (30)))
+    val velcl: Fielder = parse_element (element (cls, fields (31)))
+    val velop: Fielder = parse_element (element (cls, fields (32)))
 
     def parse (context: CIMContext): GovHydroPID =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovHydroPID (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -6110,7 +6222,7 @@ object GovHydroPIDSerializer extends CIMSerializer[GovHydroPID]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydroPID]): GovHydroPID =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydroPID (
             parent,
@@ -6160,55 +6272,55 @@ object GovHydroPIDSerializer extends CIMSerializer[GovHydroPID]
  * [Footnote: Woodward electronic governors are an example of suitable products available commercially. This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param atw Factor multiplying <i>Tw</i> (<i>Atw</i>).
- *        Typical value = 0.
- * @param d Turbine damping factor (<i>D</i>).
- *        Unit = delta P / delta speed.  Typical value = 0.
- * @param feedbackSignal Feedback signal type flag (<i>Flag</i>).
- *        true = use gate position feedback signal
- *        false = use Pe.
- * @param g0 Gate opening at speed no load (<i>G0</i>).
- *        Typical value = 0.
- * @param g1 Intermediate gate opening (<i>G1</i>).
- *        Typical value = 0.
- * @param g2 Intermediate gate opening (<i>G2</i>).
- *        Typical value = 0.
- * @param gmax Maximum gate opening (<i>Gmax</i>) (&gt; GovHydroPID2.gmin).
- *        Typical value = 0.
- * @param gmin Minimum gate opening (<i>Gmin</i>) (&gt; GovHydroPID2.gmax).
- *        Typical value = 0.
- * @param kd Derivative gain (<i>Kd</i>).
- *        Typical value = 0.
- * @param ki Reset gain (<i>Ki</i>).
- *        Unit = PU/s.  Typical value = 0.
- * @param kp Proportional gain (<i>Kp</i>).
- *        Typical value = 0.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt;0).
- *        Unit = MW.
- * @param p1 Power at gate opening <i>G1</i> (<i>P1</i>).
- *        Typical value = 0.
- * @param p2 Power at gate opening G2 (<i>P2</i>).
- *        Typical value = 0.
- * @param p3 Power at full opened gate (<i>P3</i>).
- *        Typical value = 0.
- * @param rperm Permanent drop (<i>Rperm</i>).
- *        Typical value = 0.
- * @param ta Controller time constant (<i>Ta</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tb Gate servo time constant (<i>Tb</i>) (&gt; 0).
- * @param treg Speed detector time constant (<i>Treg</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tw Water inertia time constant (<i>Tw</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param velmax Maximum gate opening velocity (<i>Velmax</i>) (&lt; GovHydroPID2.velmin).
- *        Unit = PU / s.  Typical value = 0.
- * @param velmin Maximum gate closing velocity (<i>Velmin</i>) (&gt; GovHydroPID2.velmax).
- *        Unit = PU / s.  Typical value = 0.
+ * @param atw                     Factor multiplying <i>Tw</i> (<i>Atw</i>).
+ *                                Typical value = 0.
+ * @param d                       Turbine damping factor (<i>D</i>).
+ *                                Unit = delta P / delta speed.  Typical value = 0.
+ * @param feedbackSignal          Feedback signal type flag (<i>Flag</i>).
+ *                                true = use gate position feedback signal
+ *                                false = use Pe.
+ * @param g0                      Gate opening at speed no load (<i>G0</i>).
+ *                                Typical value = 0.
+ * @param g1                      Intermediate gate opening (<i>G1</i>).
+ *                                Typical value = 0.
+ * @param g2                      Intermediate gate opening (<i>G2</i>).
+ *                                Typical value = 0.
+ * @param gmax                    Maximum gate opening (<i>Gmax</i>) (&gt; GovHydroPID2.gmin).
+ *                                Typical value = 0.
+ * @param gmin                    Minimum gate opening (<i>Gmin</i>) (&gt; GovHydroPID2.gmax).
+ *                                Typical value = 0.
+ * @param kd                      Derivative gain (<i>Kd</i>).
+ *                                Typical value = 0.
+ * @param ki                      Reset gain (<i>Ki</i>).
+ *                                Unit = PU/s.  Typical value = 0.
+ * @param kp                      Proportional gain (<i>Kp</i>).
+ *                                Typical value = 0.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt;0).
+ *                                Unit = MW.
+ * @param p1                      Power at gate opening <i>G1</i> (<i>P1</i>).
+ *                                Typical value = 0.
+ * @param p2                      Power at gate opening G2 (<i>P2</i>).
+ *                                Typical value = 0.
+ * @param p3                      Power at full opened gate (<i>P3</i>).
+ *                                Typical value = 0.
+ * @param rperm                   Permanent drop (<i>Rperm</i>).
+ *                                Typical value = 0.
+ * @param ta                      Controller time constant (<i>Ta</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param tb                      Gate servo time constant (<i>Tb</i>) (&gt; 0).
+ * @param treg                    Speed detector time constant (<i>Treg</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param tw                      Water inertia time constant (<i>Tw</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param velmax                  Maximum gate opening velocity (<i>Velmax</i>) (&lt; GovHydroPID2.velmin).
+ *                                Unit = PU / s.  Typical value = 0.
+ * @param velmin                  Maximum gate closing velocity (<i>Velmin</i>) (&gt; GovHydroPID2.velmax).
+ *                                Unit = PU / s.  Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydroPID2
 (
@@ -6236,8 +6348,8 @@ final case class GovHydroPID2
     velmax: Double = 0.0,
     velmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -6263,13 +6375,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroPID2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroPID2.fields (position), value)
+
         emitelem (0, atw)
         emitelem (1, d)
         emitelem (2, feedbackSignal)
@@ -6294,6 +6411,7 @@ extends
         emitelem (21, velmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydroPID2 rdf:ID=\"%s\">\n%s\t</cim:GovHydroPID2>".format (id, export_fields)
@@ -6301,10 +6419,10 @@ extends
 }
 
 object GovHydroPID2
-extends
-    CIMParseable[GovHydroPID2]
+    extends
+        CIMParseable[GovHydroPID2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "atw",
         "d",
         "feedbackSignal",
@@ -6328,33 +6446,33 @@ extends
         "velmax",
         "velmin"
     )
-    val atw: Fielder = parse_element (element (cls, fields(0)))
-    val d: Fielder = parse_element (element (cls, fields(1)))
-    val feedbackSignal: Fielder = parse_element (element (cls, fields(2)))
-    val g0: Fielder = parse_element (element (cls, fields(3)))
-    val g1: Fielder = parse_element (element (cls, fields(4)))
-    val g2: Fielder = parse_element (element (cls, fields(5)))
-    val gmax: Fielder = parse_element (element (cls, fields(6)))
-    val gmin: Fielder = parse_element (element (cls, fields(7)))
-    val kd: Fielder = parse_element (element (cls, fields(8)))
-    val ki: Fielder = parse_element (element (cls, fields(9)))
-    val kp: Fielder = parse_element (element (cls, fields(10)))
-    val mwbase: Fielder = parse_element (element (cls, fields(11)))
-    val p1: Fielder = parse_element (element (cls, fields(12)))
-    val p2: Fielder = parse_element (element (cls, fields(13)))
-    val p3: Fielder = parse_element (element (cls, fields(14)))
-    val rperm: Fielder = parse_element (element (cls, fields(15)))
-    val ta: Fielder = parse_element (element (cls, fields(16)))
-    val tb: Fielder = parse_element (element (cls, fields(17)))
-    val treg: Fielder = parse_element (element (cls, fields(18)))
-    val tw: Fielder = parse_element (element (cls, fields(19)))
-    val velmax: Fielder = parse_element (element (cls, fields(20)))
-    val velmin: Fielder = parse_element (element (cls, fields(21)))
+    val atw: Fielder = parse_element (element (cls, fields (0)))
+    val d: Fielder = parse_element (element (cls, fields (1)))
+    val feedbackSignal: Fielder = parse_element (element (cls, fields (2)))
+    val g0: Fielder = parse_element (element (cls, fields (3)))
+    val g1: Fielder = parse_element (element (cls, fields (4)))
+    val g2: Fielder = parse_element (element (cls, fields (5)))
+    val gmax: Fielder = parse_element (element (cls, fields (6)))
+    val gmin: Fielder = parse_element (element (cls, fields (7)))
+    val kd: Fielder = parse_element (element (cls, fields (8)))
+    val ki: Fielder = parse_element (element (cls, fields (9)))
+    val kp: Fielder = parse_element (element (cls, fields (10)))
+    val mwbase: Fielder = parse_element (element (cls, fields (11)))
+    val p1: Fielder = parse_element (element (cls, fields (12)))
+    val p2: Fielder = parse_element (element (cls, fields (13)))
+    val p3: Fielder = parse_element (element (cls, fields (14)))
+    val rperm: Fielder = parse_element (element (cls, fields (15)))
+    val ta: Fielder = parse_element (element (cls, fields (16)))
+    val tb: Fielder = parse_element (element (cls, fields (17)))
+    val treg: Fielder = parse_element (element (cls, fields (18)))
+    val tw: Fielder = parse_element (element (cls, fields (19)))
+    val velmax: Fielder = parse_element (element (cls, fields (20)))
+    val velmin: Fielder = parse_element (element (cls, fields (21)))
 
     def parse (context: CIMContext): GovHydroPID2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovHydroPID2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (atw (), 0)),
@@ -6423,7 +6541,7 @@ object GovHydroPID2Serializer extends CIMSerializer[GovHydroPID2]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydroPID2]): GovHydroPID2 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydroPID2 (
             parent,
@@ -6461,75 +6579,75 @@ object GovHydroPID2Serializer extends CIMSerializer[GovHydroPID2]
  * This model can be used to represent the dynamic related to water tunnel and surge chamber.
  * The DetailedHydroModelHydraulicSystem diagram, located under the GovHydroFrancis class, provides a schematic of the hydraulic system of detailed hydro unit models, such as Francis and Pelton.
  *
- * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param av0 Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
- *        Unit = m<sup>2</sup>. Typical value = 30.
- * @param av1 Area of the compensation tank (<i>A</i><i><sub>V1</sub></i>).
- *        Unit = m<sup>2</sup>. Typical value = 700.
- * @param bp Droop (<i>bp</i>).
- *        Typical value = 0,05.
- * @param db1 Intentional dead-band width (<i>DB1</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param db2 Intentional dead-band width of valve opening error (<i>DB2</i>).
- *        Unit = Hz.  Typical value = 0,01.
- * @param h1 Head of compensation chamber water level with respect to the level of penstock (<i>H</i><i><sub>1</sub></i>).
- *        Unit = km.  Typical value = 0,004.
- * @param h2 Head of surge tank water level with respect to the level of penstock (<i>H</i><i><sub>2</sub></i>).
- *        Unit = km.  Typical value = 0,040.
- * @param hn Rated hydraulic head (<i>H</i><i><sub>n</sub></i>).
- *        Unit = km.  Typical value = 0,250.
- * @param kc Penstock loss coefficient (due to friction) (<i>Kc</i>).
- *        Typical value = 0,025.
- * @param kg Water tunnel and surge chamber loss coefficient (due to friction) (<i>Kg</i>).
- *        Typical value = 0,025.
- * @param qc0 No-load turbine flow at nominal head (<i>Qc0</i>).
- *        Typical value = 0,05.
- * @param qn Rated flow (<i>Q</i><i><sub>n</sub></i>).
- *        Unit = m<sup>3</sup>/s. Typical value = 250.
- * @param simplifiedPelton Simplified Pelton model simulation (<i>Sflag</i>).
- *        true = enable of simplified Pelton model simulation
- *        false = enable of complete Pelton model simulation (non-linear gain).
- *        Typical value = true.
- * @param staticCompensating Static compensating characteristic (<i>Cflag</i>).
- *        It should be true if simplifiedPelton = false.
- *        true = enable of static compensating characteristic
- *        false = inhibit of static compensating characteristic.
- *        Typical value = false.
- * @param ta Derivative gain (accelerometer time constant) (<i>Ta</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param ts Gate servo time constant (<i>Ts</i>) (&gt;= 0).
- *        Typical value = 0,15.
- * @param tv Servomotor integrator time constant (<i>Tv</i>) (&gt;= 0).
- *        Typical value = 0,3.
- * @param twnc Water inertia time constant (<i>Twnc</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param twng Water tunnel and surge chamber inertia time constant (<i>Twng</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param tx Electronic integrator time constant (<i>Tx</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param va Maximum gate opening velocity (<i>Va</i>).
- *        Unit = PU / s.  Typical value = 0,06.
- * @param valvmax Maximum gate opening (<i>ValvMax</i>) (&gt; GovHydroPelton.valvmin).
- *        Typical value = 1,1.
- * @param valvmin Minimum gate opening (<i>ValvMin</i>) (&lt; GovHydroPelton.valvmax).
- *        Typical value = 0.
- * @param vav Maximum servomotor valve opening velocity (<i>Vav</i>).
- *        Typical value = 0,1.
- * @param vc Maximum gate closing velocity (<i>Vc</i>).
- *        Unit = PU / s.  Typical value = -0,06.
- * @param vcv Maximum servomotor valve closing velocity (<i>Vcv</i>).
- *        Typical value = -0,1.
+ * @param TurbineGovernorDynamics           [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param av0                               Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
+ *                                          Unit = m<sup>2</sup>. Typical value = 30.
+ * @param av1                               Area of the compensation tank (<i>A</i><i><sub>V1</sub></i>).
+ *                                          Unit = m<sup>2</sup>. Typical value = 700.
+ * @param bp                                Droop (<i>bp</i>).
+ *                                          Typical value = 0,05.
+ * @param db1                               Intentional dead-band width (<i>DB1</i>).
+ *                                          Unit = Hz.  Typical value = 0.
+ * @param db2                               Intentional dead-band width of valve opening error (<i>DB2</i>).
+ *                                          Unit = Hz.  Typical value = 0,01.
+ * @param h1                                Head of compensation chamber water level with respect to the level of penstock (<i>H</i><i><sub>1</sub></i>).
+ *                                          Unit = km.  Typical value = 0,004.
+ * @param h2                                Head of surge tank water level with respect to the level of penstock (<i>H</i><i><sub>2</sub></i>).
+ *                                          Unit = km.  Typical value = 0,040.
+ * @param hn                                Rated hydraulic head (<i>H</i><i><sub>n</sub></i>).
+ *                                          Unit = km.  Typical value = 0,250.
+ * @param kc                                Penstock loss coefficient (due to friction) (<i>Kc</i>).
+ *                                          Typical value = 0,025.
+ * @param kg                                Water tunnel and surge chamber loss coefficient (due to friction) (<i>Kg</i>).
+ *                                          Typical value = 0,025.
+ * @param qc0                               No-load turbine flow at nominal head (<i>Qc0</i>).
+ *                                          Typical value = 0,05.
+ * @param qn                                Rated flow (<i>Q</i><i><sub>n</sub></i>).
+ *                                          Unit = m<sup>3</sup>/s. Typical value = 250.
+ * @param simplifiedPelton                  Simplified Pelton model simulation (<i>Sflag</i>).
+ *                                          true = enable of simplified Pelton model simulation
+ *                                          false = enable of complete Pelton model simulation (non-linear gain).
+ *                                          Typical value = true.
+ * @param staticCompensating                Static compensating characteristic (<i>Cflag</i>).
+ *                                          It should be true if simplifiedPelton = false.
+ *                                          true = enable of static compensating characteristic
+ *                                          false = inhibit of static compensating characteristic.
+ *                                          Typical value = false.
+ * @param ta                                Derivative gain (accelerometer time constant) (<i>Ta</i>) (&gt;= 0).
+ *                                          Typical value = 3.
+ * @param ts                                Gate servo time constant (<i>Ts</i>) (&gt;= 0).
+ *                                          Typical value = 0,15.
+ * @param tv                                Servomotor integrator time constant (<i>Tv</i>) (&gt;= 0).
+ *                                          Typical value = 0,3.
+ * @param twnc                              Water inertia time constant (<i>Twnc</i>) (&gt;= 0).
+ *                                          Typical value = 1.
+ * @param twng                              Water tunnel and surge chamber inertia time constant (<i>Twng</i>) (&gt;= 0).
+ *                                          Typical value = 3.
+ * @param tx                                Electronic integrator time constant (<i>Tx</i>) (&gt;= 0).
+ *                                          Typical value = 0,5.
+ * @param va                                Maximum gate opening velocity (<i>Va</i>).
+ *                                          Unit = PU / s.  Typical value = 0,06.
+ * @param valvmax                           Maximum gate opening (<i>ValvMax</i>) (&gt; GovHydroPelton.valvmin).
+ *                                          Typical value = 1,1.
+ * @param valvmin                           Minimum gate opening (<i>ValvMin</i>) (&lt; GovHydroPelton.valvmax).
+ *                                          Typical value = 0.
+ * @param vav                               Maximum servomotor valve opening velocity (<i>Vav</i>).
+ *                                          Typical value = 0,1.
+ * @param vc                                Maximum gate closing velocity (<i>Vc</i>).
+ *                                          Unit = PU / s.  Typical value = -0,06.
+ * @param vcv                               Maximum servomotor valve closing velocity (<i>Vcv</i>).
+ *                                          Typical value = -0,1.
  * @param waterTunnelSurgeChamberSimulation Water tunnel and surge chamber simulation (<i>Tflag</i>).
- *        true = enable of water tunnel and surge chamber simulation
- *        false = inhibit of water tunnel and surge chamber simulation.
- *        Typical value = false.
- * @param zsfc Head of upper water level with respect to the level of penstock (<i>Zsfc</i>).
- *        Unit = km.  Typical value = 0,025.
+ *                                          true = enable of water tunnel and surge chamber simulation
+ *                                          false = inhibit of water tunnel and surge chamber simulation.
+ *                                          Typical value = false.
+ * @param zsfc                              Head of upper water level with respect to the level of penstock (<i>Zsfc</i>).
+ *                                          Unit = km.  Typical value = 0,025.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydroPelton
 (
@@ -6563,8 +6681,8 @@ final case class GovHydroPelton
     waterTunnelSurgeChamberSimulation: Boolean = false,
     zsfc: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -6590,13 +6708,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroPelton.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroPelton.fields (position), value)
+
         emitelem (0, av0)
         emitelem (1, av1)
         emitelem (2, bp)
@@ -6627,6 +6750,7 @@ extends
         emitelem (27, zsfc)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydroPelton rdf:ID=\"%s\">\n%s\t</cim:GovHydroPelton>".format (id, export_fields)
@@ -6634,10 +6758,10 @@ extends
 }
 
 object GovHydroPelton
-extends
-    CIMParseable[GovHydroPelton]
+    extends
+        CIMParseable[GovHydroPelton]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "av0",
         "av1",
         "bp",
@@ -6667,39 +6791,39 @@ extends
         "waterTunnelSurgeChamberSimulation",
         "zsfc"
     )
-    val av0: Fielder = parse_element (element (cls, fields(0)))
-    val av1: Fielder = parse_element (element (cls, fields(1)))
-    val bp: Fielder = parse_element (element (cls, fields(2)))
-    val db1: Fielder = parse_element (element (cls, fields(3)))
-    val db2: Fielder = parse_element (element (cls, fields(4)))
-    val h1: Fielder = parse_element (element (cls, fields(5)))
-    val h2: Fielder = parse_element (element (cls, fields(6)))
-    val hn: Fielder = parse_element (element (cls, fields(7)))
-    val kc: Fielder = parse_element (element (cls, fields(8)))
-    val kg: Fielder = parse_element (element (cls, fields(9)))
-    val qc0: Fielder = parse_element (element (cls, fields(10)))
-    val qn: Fielder = parse_element (element (cls, fields(11)))
-    val simplifiedPelton: Fielder = parse_element (element (cls, fields(12)))
-    val staticCompensating: Fielder = parse_element (element (cls, fields(13)))
-    val ta: Fielder = parse_element (element (cls, fields(14)))
-    val ts: Fielder = parse_element (element (cls, fields(15)))
-    val tv: Fielder = parse_element (element (cls, fields(16)))
-    val twnc: Fielder = parse_element (element (cls, fields(17)))
-    val twng: Fielder = parse_element (element (cls, fields(18)))
-    val tx: Fielder = parse_element (element (cls, fields(19)))
-    val va: Fielder = parse_element (element (cls, fields(20)))
-    val valvmax: Fielder = parse_element (element (cls, fields(21)))
-    val valvmin: Fielder = parse_element (element (cls, fields(22)))
-    val vav: Fielder = parse_element (element (cls, fields(23)))
-    val vc: Fielder = parse_element (element (cls, fields(24)))
-    val vcv: Fielder = parse_element (element (cls, fields(25)))
-    val waterTunnelSurgeChamberSimulation: Fielder = parse_element (element (cls, fields(26)))
-    val zsfc: Fielder = parse_element (element (cls, fields(27)))
+    val av0: Fielder = parse_element (element (cls, fields (0)))
+    val av1: Fielder = parse_element (element (cls, fields (1)))
+    val bp: Fielder = parse_element (element (cls, fields (2)))
+    val db1: Fielder = parse_element (element (cls, fields (3)))
+    val db2: Fielder = parse_element (element (cls, fields (4)))
+    val h1: Fielder = parse_element (element (cls, fields (5)))
+    val h2: Fielder = parse_element (element (cls, fields (6)))
+    val hn: Fielder = parse_element (element (cls, fields (7)))
+    val kc: Fielder = parse_element (element (cls, fields (8)))
+    val kg: Fielder = parse_element (element (cls, fields (9)))
+    val qc0: Fielder = parse_element (element (cls, fields (10)))
+    val qn: Fielder = parse_element (element (cls, fields (11)))
+    val simplifiedPelton: Fielder = parse_element (element (cls, fields (12)))
+    val staticCompensating: Fielder = parse_element (element (cls, fields (13)))
+    val ta: Fielder = parse_element (element (cls, fields (14)))
+    val ts: Fielder = parse_element (element (cls, fields (15)))
+    val tv: Fielder = parse_element (element (cls, fields (16)))
+    val twnc: Fielder = parse_element (element (cls, fields (17)))
+    val twng: Fielder = parse_element (element (cls, fields (18)))
+    val tx: Fielder = parse_element (element (cls, fields (19)))
+    val va: Fielder = parse_element (element (cls, fields (20)))
+    val valvmax: Fielder = parse_element (element (cls, fields (21)))
+    val valvmin: Fielder = parse_element (element (cls, fields (22)))
+    val vav: Fielder = parse_element (element (cls, fields (23)))
+    val vc: Fielder = parse_element (element (cls, fields (24)))
+    val vcv: Fielder = parse_element (element (cls, fields (25)))
+    val waterTunnelSurgeChamberSimulation: Fielder = parse_element (element (cls, fields (26)))
+    val zsfc: Fielder = parse_element (element (cls, fields (27)))
 
     def parse (context: CIMContext): GovHydroPelton =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovHydroPelton (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (av0 (), 0)),
@@ -6780,7 +6904,7 @@ object GovHydroPeltonSerializer extends CIMSerializer[GovHydroPelton]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydroPelton]): GovHydroPelton =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydroPelton (
             parent,
@@ -6822,99 +6946,99 @@ object GovHydroPeltonSerializer extends CIMSerializer[GovHydroPelton]
  * Fourth order lead-lag governor and hydro turbine.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param at Turbine gain (<i>At</i>).
- *        Typical value = 1,2.
- * @param db1 Intentional dead-band width (<i>db1</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param db2 Unintentional dead-band (<i>db2</i>).
- *        Unit = MW.  Typical value = 0.
- * @param dturb Turbine damping factor (<i>Dturb</i>).
- *        Typical value = 0,2.
- * @param eps Intentional db hysteresis (<i>eps</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param gmax Maximum governor output (<i>Gmax</i>) (&gt; GovHydroR.gmin).
- *        Typical value = 1,05.
- * @param gmin Minimum governor output (<i>Gmin</i>) (&lt; GovHydroR.gmax).
- *        Typical value = -0,05.
- * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
- *        Typical value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
- *        Typical value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
- *        Typical value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
- *        Typical value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
- *        Typical value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
- *        Typical value = 0.
- * @param h0 Turbine nominal head (<i>H0</i>).
- *        Typical value = 1.
- * @param inputSignal Input signal switch (<i>Flag</i>).
- *        true = <i>Pe</i> input is used
- *        false = feedback is received from <i>CV</i>.
- *        <i>Flag</i> is normally dependent on <i>Tt</i>.
- *        If <i>Tt </i>is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
- *        Typical value = true.
- * @param kg Gate servo gain (<i>Kg</i>).
- *        Typical value = 2.
- * @param ki Integral gain (<i>Ki</i>).
- *        Typical value = 0,5.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
- *        Typical value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
- *        Typical value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
- *        Typical value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
- *        Typical value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
- *        Typical value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
- *        Typical value = 0.
- * @param pmax Maximum gate opening, PU of <i>MWbase</i> (<i>Pmax</i>) (&gt; GovHydroR.pmin).
- *        Typical value = 1.
- * @param pmin Minimum gate opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&lt; GovHydroR.pmax).
- *        Typical value = 0.
- * @param qnl No-load turbine flow at nominal head (<i>Qnl</i>).
- *        Typical value = 0,08.
- * @param r Steady-state droop (<i>R</i>).
- *        Typical value = 0,05.
- * @param t1 Lead time constant 1 (<i>T1</i>) (&gt;= 0).
- *        Typical value = 1,5.
- * @param t2 Lag time constant 1 (<i>T2</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t3 Lead time constant 2 (<i>T3</i>) (&gt;= 0).
- *        Typical value = 1,5.
- * @param t4 Lag time constant 2 (<i>T4</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t5 Lead time constant 3 (<i>T5</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param t6 Lag time constant 3 (<i>T6</i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param t7 Lead time constant 4 (<i>T7</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param t8 Lag time constant 4 (<i>T8</i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param td Input filter time constant (<i>Td</i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param tp Gate servo time constant (<i>Tp</i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param tt Power feedback time constant (<i>Tt</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tw Water inertia time constant (<i>Tw</i>) (&gt; 0).
- *        Typical value = 1.
- * @param velcl Maximum gate closing velocity (<i>Velcl</i>).
- *        Unit = PU / s.  Typical value = -0,2.
- * @param velop Maximum gate opening velocity (<i>Velop</i>).
- *        Unit = PU / s.  Typical value = 0,2.
+ * @param at                      Turbine gain (<i>At</i>).
+ *                                Typical value = 1,2.
+ * @param db1                     Intentional dead-band width (<i>db1</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param db2                     Unintentional dead-band (<i>db2</i>).
+ *                                Unit = MW.  Typical value = 0.
+ * @param dturb                   Turbine damping factor (<i>Dturb</i>).
+ *                                Typical value = 0,2.
+ * @param eps                     Intentional db hysteresis (<i>eps</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param gmax                    Maximum governor output (<i>Gmax</i>) (&gt; GovHydroR.gmin).
+ *                                Typical value = 1,05.
+ * @param gmin                    Minimum governor output (<i>Gmin</i>) (&lt; GovHydroR.gmax).
+ *                                Typical value = -0,05.
+ * @param gv1                     Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *                                Typical value = 0.
+ * @param gv2                     Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *                                Typical value = 0.
+ * @param gv3                     Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *                                Typical value = 0.
+ * @param gv4                     Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *                                Typical value = 0.
+ * @param gv5                     Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *                                Typical value = 0.
+ * @param gv6                     Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *                                Typical value = 0.
+ * @param h0                      Turbine nominal head (<i>H0</i>).
+ *                                Typical value = 1.
+ * @param inputSignal             Input signal switch (<i>Flag</i>).
+ *                                true = <i>Pe</i> input is used
+ *                                false = feedback is received from <i>CV</i>.
+ *                                <i>Flag</i> is normally dependent on <i>Tt</i>.
+ *                                If <i>Tt </i>is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
+ *                                Typical value = true.
+ * @param kg                      Gate servo gain (<i>Kg</i>).
+ *                                Typical value = 2.
+ * @param ki                      Integral gain (<i>Ki</i>).
+ *                                Typical value = 0,5.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pgv1                    Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *                                Typical value = 0.
+ * @param pgv2                    Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *                                Typical value = 0.
+ * @param pgv3                    Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *                                Typical value = 0.
+ * @param pgv4                    Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *                                Typical value = 0.
+ * @param pgv5                    Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *                                Typical value = 0.
+ * @param pgv6                    Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *                                Typical value = 0.
+ * @param pmax                    Maximum gate opening, PU of <i>MWbase</i> (<i>Pmax</i>) (&gt; GovHydroR.pmin).
+ *                                Typical value = 1.
+ * @param pmin                    Minimum gate opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&lt; GovHydroR.pmax).
+ *                                Typical value = 0.
+ * @param qnl                     No-load turbine flow at nominal head (<i>Qnl</i>).
+ *                                Typical value = 0,08.
+ * @param r                       Steady-state droop (<i>R</i>).
+ *                                Typical value = 0,05.
+ * @param t1                      Lead time constant 1 (<i>T1</i>) (&gt;= 0).
+ *                                Typical value = 1,5.
+ * @param t2                      Lag time constant 1 (<i>T2</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param t3                      Lead time constant 2 (<i>T3</i>) (&gt;= 0).
+ *                                Typical value = 1,5.
+ * @param t4                      Lag time constant 2 (<i>T4</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param t5                      Lead time constant 3 (<i>T5</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param t6                      Lag time constant 3 (<i>T6</i>) (&gt;= 0).
+ *                                Typical value = 0,05.
+ * @param t7                      Lead time constant 4 (<i>T7</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param t8                      Lag time constant 4 (<i>T8</i>) (&gt;= 0).
+ *                                Typical value = 0,05.
+ * @param td                      Input filter time constant (<i>Td</i>) (&gt;= 0).
+ *                                Typical value = 0,05.
+ * @param tp                      Gate servo time constant (<i>Tp</i>) (&gt;= 0).
+ *                                Typical value = 0,05.
+ * @param tt                      Power feedback time constant (<i>Tt</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param tw                      Water inertia time constant (<i>Tw</i>) (&gt; 0).
+ *                                Typical value = 1.
+ * @param velcl                   Maximum gate closing velocity (<i>Velcl</i>).
+ *                                Unit = PU / s.  Typical value = -0,2.
+ * @param velop                   Maximum gate opening velocity (<i>Velop</i>).
+ *                                Unit = PU / s.  Typical value = 0,2.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydroR
 (
@@ -6962,8 +7086,8 @@ final case class GovHydroR
     velcl: Double = 0.0,
     velop: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -6989,13 +7113,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroR.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroR.fields (position), value)
+
         emitelem (0, at)
         emitelem (1, db1)
         emitelem (2, db2)
@@ -7040,6 +7169,7 @@ extends
         emitelem (41, velop)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydroR rdf:ID=\"%s\">\n%s\t</cim:GovHydroR>".format (id, export_fields)
@@ -7047,10 +7177,10 @@ extends
 }
 
 object GovHydroR
-extends
-    CIMParseable[GovHydroR]
+    extends
+        CIMParseable[GovHydroR]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "at",
         "db1",
         "db2",
@@ -7094,53 +7224,53 @@ extends
         "velcl",
         "velop"
     )
-    val at: Fielder = parse_element (element (cls, fields(0)))
-    val db1: Fielder = parse_element (element (cls, fields(1)))
-    val db2: Fielder = parse_element (element (cls, fields(2)))
-    val dturb: Fielder = parse_element (element (cls, fields(3)))
-    val eps: Fielder = parse_element (element (cls, fields(4)))
-    val gmax: Fielder = parse_element (element (cls, fields(5)))
-    val gmin: Fielder = parse_element (element (cls, fields(6)))
-    val gv1: Fielder = parse_element (element (cls, fields(7)))
-    val gv2: Fielder = parse_element (element (cls, fields(8)))
-    val gv3: Fielder = parse_element (element (cls, fields(9)))
-    val gv4: Fielder = parse_element (element (cls, fields(10)))
-    val gv5: Fielder = parse_element (element (cls, fields(11)))
-    val gv6: Fielder = parse_element (element (cls, fields(12)))
-    val h0: Fielder = parse_element (element (cls, fields(13)))
-    val inputSignal: Fielder = parse_element (element (cls, fields(14)))
-    val kg: Fielder = parse_element (element (cls, fields(15)))
-    val ki: Fielder = parse_element (element (cls, fields(16)))
-    val mwbase: Fielder = parse_element (element (cls, fields(17)))
-    val pgv1: Fielder = parse_element (element (cls, fields(18)))
-    val pgv2: Fielder = parse_element (element (cls, fields(19)))
-    val pgv3: Fielder = parse_element (element (cls, fields(20)))
-    val pgv4: Fielder = parse_element (element (cls, fields(21)))
-    val pgv5: Fielder = parse_element (element (cls, fields(22)))
-    val pgv6: Fielder = parse_element (element (cls, fields(23)))
-    val pmax: Fielder = parse_element (element (cls, fields(24)))
-    val pmin: Fielder = parse_element (element (cls, fields(25)))
-    val qnl: Fielder = parse_element (element (cls, fields(26)))
-    val r: Fielder = parse_element (element (cls, fields(27)))
-    val t1: Fielder = parse_element (element (cls, fields(28)))
-    val t2: Fielder = parse_element (element (cls, fields(29)))
-    val t3: Fielder = parse_element (element (cls, fields(30)))
-    val t4: Fielder = parse_element (element (cls, fields(31)))
-    val t5: Fielder = parse_element (element (cls, fields(32)))
-    val t6: Fielder = parse_element (element (cls, fields(33)))
-    val t7: Fielder = parse_element (element (cls, fields(34)))
-    val t8: Fielder = parse_element (element (cls, fields(35)))
-    val td: Fielder = parse_element (element (cls, fields(36)))
-    val tp: Fielder = parse_element (element (cls, fields(37)))
-    val tt: Fielder = parse_element (element (cls, fields(38)))
-    val tw: Fielder = parse_element (element (cls, fields(39)))
-    val velcl: Fielder = parse_element (element (cls, fields(40)))
-    val velop: Fielder = parse_element (element (cls, fields(41)))
+    val at: Fielder = parse_element (element (cls, fields (0)))
+    val db1: Fielder = parse_element (element (cls, fields (1)))
+    val db2: Fielder = parse_element (element (cls, fields (2)))
+    val dturb: Fielder = parse_element (element (cls, fields (3)))
+    val eps: Fielder = parse_element (element (cls, fields (4)))
+    val gmax: Fielder = parse_element (element (cls, fields (5)))
+    val gmin: Fielder = parse_element (element (cls, fields (6)))
+    val gv1: Fielder = parse_element (element (cls, fields (7)))
+    val gv2: Fielder = parse_element (element (cls, fields (8)))
+    val gv3: Fielder = parse_element (element (cls, fields (9)))
+    val gv4: Fielder = parse_element (element (cls, fields (10)))
+    val gv5: Fielder = parse_element (element (cls, fields (11)))
+    val gv6: Fielder = parse_element (element (cls, fields (12)))
+    val h0: Fielder = parse_element (element (cls, fields (13)))
+    val inputSignal: Fielder = parse_element (element (cls, fields (14)))
+    val kg: Fielder = parse_element (element (cls, fields (15)))
+    val ki: Fielder = parse_element (element (cls, fields (16)))
+    val mwbase: Fielder = parse_element (element (cls, fields (17)))
+    val pgv1: Fielder = parse_element (element (cls, fields (18)))
+    val pgv2: Fielder = parse_element (element (cls, fields (19)))
+    val pgv3: Fielder = parse_element (element (cls, fields (20)))
+    val pgv4: Fielder = parse_element (element (cls, fields (21)))
+    val pgv5: Fielder = parse_element (element (cls, fields (22)))
+    val pgv6: Fielder = parse_element (element (cls, fields (23)))
+    val pmax: Fielder = parse_element (element (cls, fields (24)))
+    val pmin: Fielder = parse_element (element (cls, fields (25)))
+    val qnl: Fielder = parse_element (element (cls, fields (26)))
+    val r: Fielder = parse_element (element (cls, fields (27)))
+    val t1: Fielder = parse_element (element (cls, fields (28)))
+    val t2: Fielder = parse_element (element (cls, fields (29)))
+    val t3: Fielder = parse_element (element (cls, fields (30)))
+    val t4: Fielder = parse_element (element (cls, fields (31)))
+    val t5: Fielder = parse_element (element (cls, fields (32)))
+    val t6: Fielder = parse_element (element (cls, fields (33)))
+    val t7: Fielder = parse_element (element (cls, fields (34)))
+    val t8: Fielder = parse_element (element (cls, fields (35)))
+    val td: Fielder = parse_element (element (cls, fields (36)))
+    val tp: Fielder = parse_element (element (cls, fields (37)))
+    val tt: Fielder = parse_element (element (cls, fields (38)))
+    val tw: Fielder = parse_element (element (cls, fields (39)))
+    val velcl: Fielder = parse_element (element (cls, fields (40)))
+    val velop: Fielder = parse_element (element (cls, fields (41)))
 
     def parse (context: CIMContext): GovHydroR =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovHydroR (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -7249,7 +7379,7 @@ object GovHydroRSerializer extends CIMSerializer[GovHydroR]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydroR]): GovHydroR =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydroR (
             parent,
@@ -7308,99 +7438,99 @@ object GovHydroRSerializer extends CIMSerializer[GovHydroR]
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param db Speed deadband (<i>db</i>).
- * @param dicn Value to allow the integral controller to advance beyond the gate limits (<i>Dicn</i>).
- * @param dpv Value to allow the pilot valve controller to advance beyond the gate limits (<i>Dpv</i>).
- * @param dturb Turbine damping factor (<i>Dturb</i>).
- *        Unit = delta P (PU of <i>MWbase</i>) / delta speed (PU).
- * @param feedbackSignal Feedback signal selection (<i>Sw</i>).
- *        true = PID output (if <i>R-Perm-Gate </i>= droop and <i>R-Perm-Pe </i>= 0)
- *        false = electrical power (if <i>R-Perm-Gate </i>= 0 and <i>R-Perm-Pe </i>= droop) or
- *        false = gate position (if R<i>-Perm-Gate </i>= droop and <i>R-Perm-Pe </i>= 0).
- *        Typical value = false.
- * @param fl1 Flowgate 1 (<i>Fl1</i>).
- *        Flow value for gate position point 1 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param fl2 Flowgate 2 (<i>Fl2</i>).
- *        Flow value for gate position point 2 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param fl3 Flowgate 3 (<i>Fl3</i>).
- *        Flow value for gate position point 3 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param fl4 Flowgate 4 (<i>Fl4</i>).
- *        Flow value for gate position point 4 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param fl5 Flowgate 5 (<i>Fl5</i>).
- *        Flow value for gate position point 5 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param fp1 Flow P1 (<i>Fp1</i>).
- *        Turbine flow value for point 1 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp10 Flow P10 (<i>Fp10</i>).
- *        Turbine flow value for point 10 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp2 Flow P2 (<i>Fp2</i>).
- *        Turbine flow value for point 2 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp3 Flow P3 (<i>Fp3</i>).
- *        Turbine flow value for point 3 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp4 Flow P4 (<i>Fp4</i>).
- *        Turbine flow value for point 4 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp5 Flow P5 (<i>Fp5</i>).
- *        Turbine flow value for point 5 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp6 Flow P6 (<i>Fp6</i>).
- *        Turbine flow value for point 6 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp7 Flow P7 (<i>Fp7</i>).
- *        Turbine flow value for point 7 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp8 Flow P8 (<i>Fp8</i>).
- *        Turbine flow value for point 8 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp9 Flow P9 (<i>Fp9</i>).
- *        Turbine flow value for point 9 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param gmax Maximum gate position (<i>Gmax</i>) (&gt; GovHydroWEH.gmin).
- * @param gmin Minimum gate position (<i>Gmin</i>) (&lt; GovHydroWEH.gmax).
- * @param gtmxcl Maximum gate closing rate (<i>Gtmxcl</i>).
- * @param gtmxop Maximum gate opening rate (<i>Gtmxop</i>).
- * @param gv1 Gate 1 (<i>Gv1</i>).
- *        Gate Position value for point 1 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param gv2 Gate 2 (<i>Gv2</i>).
- *        Gate Position value for point 2 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param gv3 Gate 3 (<i>Gv3</i>).
- *        Gate Position value for point 3 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param gv4 Gate 4 (<i>Gv4</i>).
- *        Gate Position value for point 4 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param gv5 Gate 5 (<i>Gv5</i>).
- *        Gate Position value for point 5 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param kd Derivative controller derivative gain (<i>Kd</i>).
- * @param ki Derivative controller Integral gain (<i>Ki</i>).
- * @param kp Derivative control gain (<i>Kp</i>).
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pmss1 Pmss flow P1 (<i>Pmss1</i>).
- *        Mechanical power output for turbine flow point 1 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss10 Pmss flow P10 (<i>Pmss10</i>).
- *        Mechanical power output for turbine flow point 10 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss2 Pmss flow P2 (<i>Pmss2</i>).
- *        Mechanical power output for turbine flow point 2 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss3 Pmss flow P3 (<i>Pmss3</i>).
- *        Mechanical power output for turbine flow point 3 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss4 Pmss flow P4 (<i>Pmss4</i>).
- *        Mechanical power output for turbine flow point 4 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss5 Pmss flow P5 (<i>Pmss5</i>).
- *        Mechanical power output for turbine flow point 5 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss6 Pmss flow P6 (<i>Pmss6</i>).
- *        Mechanical power output for turbine flow point 6 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss7 Pmss flow P7 (<i>Pmss7</i>).
- *        Mechanical power output for turbine flow point 7 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss8 Pmss flow P8 (<i>Pmss8</i>).
- *        Mechanical power output for turbine flow point 8 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss9 Pmss flow P9 (<i>Pmss9</i>).
- *        Mechanical power output for turbine flow point 9 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
- * @param rpg Permanent droop for governor output feedback (<i>R-Perm-Gate</i>).
- * @param rpp Permanent droop for electrical power feedback (<i>R-Perm-Pe</i>).
- * @param td Derivative controller time constant (<i>Td</i>) (&gt;= 0).
- *        Limits the derivative characteristic beyond a breakdown frequency to avoid amplification of high-frequency noise.
- * @param tdv Distributive valve time lag time constant (<i>Tdv</i>) (&gt;= 0).
- * @param tg Value to allow the distribution valve controller to advance beyond the gate movement rate limit (<i>Tg</i>) (&gt;= 0).
- * @param tp Pilot valve time lag time constant (<i>Tp</i>) (&gt;= 0).
- * @param tpe Electrical power droop time constant (<i>Tpe</i>) (&gt;= 0).
- * @param tw Water inertia time constant (<i>Tw</i>) (&gt; 0).
+ * @param db                      Speed deadband (<i>db</i>).
+ * @param dicn                    Value to allow the integral controller to advance beyond the gate limits (<i>Dicn</i>).
+ * @param dpv                     Value to allow the pilot valve controller to advance beyond the gate limits (<i>Dpv</i>).
+ * @param dturb                   Turbine damping factor (<i>Dturb</i>).
+ *                                Unit = delta P (PU of <i>MWbase</i>) / delta speed (PU).
+ * @param feedbackSignal          Feedback signal selection (<i>Sw</i>).
+ *                                true = PID output (if <i>R-Perm-Gate </i>= droop and <i>R-Perm-Pe </i>= 0)
+ *                                false = electrical power (if <i>R-Perm-Gate </i>= 0 and <i>R-Perm-Pe </i>= droop) or
+ *                                false = gate position (if R<i>-Perm-Gate </i>= droop and <i>R-Perm-Pe </i>= 0).
+ *                                Typical value = false.
+ * @param fl1                     Flowgate 1 (<i>Fl1</i>).
+ *                                Flow value for gate position point 1 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param fl2                     Flowgate 2 (<i>Fl2</i>).
+ *                                Flow value for gate position point 2 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param fl3                     Flowgate 3 (<i>Fl3</i>).
+ *                                Flow value for gate position point 3 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param fl4                     Flowgate 4 (<i>Fl4</i>).
+ *                                Flow value for gate position point 4 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param fl5                     Flowgate 5 (<i>Fl5</i>).
+ *                                Flow value for gate position point 5 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param fp1                     Flow P1 (<i>Fp1</i>).
+ *                                Turbine flow value for point 1 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp10                    Flow P10 (<i>Fp10</i>).
+ *                                Turbine flow value for point 10 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp2                     Flow P2 (<i>Fp2</i>).
+ *                                Turbine flow value for point 2 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp3                     Flow P3 (<i>Fp3</i>).
+ *                                Turbine flow value for point 3 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp4                     Flow P4 (<i>Fp4</i>).
+ *                                Turbine flow value for point 4 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp5                     Flow P5 (<i>Fp5</i>).
+ *                                Turbine flow value for point 5 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp6                     Flow P6 (<i>Fp6</i>).
+ *                                Turbine flow value for point 6 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp7                     Flow P7 (<i>Fp7</i>).
+ *                                Turbine flow value for point 7 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp8                     Flow P8 (<i>Fp8</i>).
+ *                                Turbine flow value for point 8 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp9                     Flow P9 (<i>Fp9</i>).
+ *                                Turbine flow value for point 9 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param gmax                    Maximum gate position (<i>Gmax</i>) (&gt; GovHydroWEH.gmin).
+ * @param gmin                    Minimum gate position (<i>Gmin</i>) (&lt; GovHydroWEH.gmax).
+ * @param gtmxcl                  Maximum gate closing rate (<i>Gtmxcl</i>).
+ * @param gtmxop                  Maximum gate opening rate (<i>Gtmxop</i>).
+ * @param gv1                     Gate 1 (<i>Gv1</i>).
+ *                                Gate Position value for point 1 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param gv2                     Gate 2 (<i>Gv2</i>).
+ *                                Gate Position value for point 2 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param gv3                     Gate 3 (<i>Gv3</i>).
+ *                                Gate Position value for point 3 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param gv4                     Gate 4 (<i>Gv4</i>).
+ *                                Gate Position value for point 4 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param gv5                     Gate 5 (<i>Gv5</i>).
+ *                                Gate Position value for point 5 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
+ * @param kd                      Derivative controller derivative gain (<i>Kd</i>).
+ * @param ki                      Derivative controller Integral gain (<i>Ki</i>).
+ * @param kp                      Derivative control gain (<i>Kp</i>).
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pmss1                   Pmss flow P1 (<i>Pmss1</i>).
+ *                                Mechanical power output for turbine flow point 1 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss10                  Pmss flow P10 (<i>Pmss10</i>).
+ *                                Mechanical power output for turbine flow point 10 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss2                   Pmss flow P2 (<i>Pmss2</i>).
+ *                                Mechanical power output for turbine flow point 2 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss3                   Pmss flow P3 (<i>Pmss3</i>).
+ *                                Mechanical power output for turbine flow point 3 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss4                   Pmss flow P4 (<i>Pmss4</i>).
+ *                                Mechanical power output for turbine flow point 4 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss5                   Pmss flow P5 (<i>Pmss5</i>).
+ *                                Mechanical power output for turbine flow point 5 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss6                   Pmss flow P6 (<i>Pmss6</i>).
+ *                                Mechanical power output for turbine flow point 6 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss7                   Pmss flow P7 (<i>Pmss7</i>).
+ *                                Mechanical power output for turbine flow point 7 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss8                   Pmss flow P8 (<i>Pmss8</i>).
+ *                                Mechanical power output for turbine flow point 8 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss9                   Pmss flow P9 (<i>Pmss9</i>).
+ *                                Mechanical power output for turbine flow point 9 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param rpg                     Permanent droop for governor output feedback (<i>R-Perm-Gate</i>).
+ * @param rpp                     Permanent droop for electrical power feedback (<i>R-Perm-Pe</i>).
+ * @param td                      Derivative controller time constant (<i>Td</i>) (&gt;= 0).
+ *                                Limits the derivative characteristic beyond a breakdown frequency to avoid amplification of high-frequency noise.
+ * @param tdv                     Distributive valve time lag time constant (<i>Tdv</i>) (&gt;= 0).
+ * @param tg                      Value to allow the distribution valve controller to advance beyond the gate movement rate limit (<i>Tg</i>) (&gt;= 0).
+ * @param tp                      Pilot valve time lag time constant (<i>Tp</i>) (&gt;= 0).
+ * @param tpe                     Electrical power droop time constant (<i>Tpe</i>) (&gt;= 0).
+ * @param tw                      Water inertia time constant (<i>Tw</i>) (&gt; 0).
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydroWEH
 (
@@ -7457,8 +7587,8 @@ final case class GovHydroWEH
     tpe: Double = 0.0,
     tw: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -7484,13 +7614,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroWEH.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroWEH.fields (position), value)
+
         emitelem (0, db)
         emitelem (1, dicn)
         emitelem (2, dpv)
@@ -7544,6 +7679,7 @@ extends
         emitelem (50, tw)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydroWEH rdf:ID=\"%s\">\n%s\t</cim:GovHydroWEH>".format (id, export_fields)
@@ -7551,10 +7687,10 @@ extends
 }
 
 object GovHydroWEH
-extends
-    CIMParseable[GovHydroWEH]
+    extends
+        CIMParseable[GovHydroWEH]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "db",
         "dicn",
         "dpv",
@@ -7607,62 +7743,62 @@ extends
         "tpe",
         "tw"
     )
-    val db: Fielder = parse_element (element (cls, fields(0)))
-    val dicn: Fielder = parse_element (element (cls, fields(1)))
-    val dpv: Fielder = parse_element (element (cls, fields(2)))
-    val dturb: Fielder = parse_element (element (cls, fields(3)))
-    val feedbackSignal: Fielder = parse_element (element (cls, fields(4)))
-    val fl1: Fielder = parse_element (element (cls, fields(5)))
-    val fl2: Fielder = parse_element (element (cls, fields(6)))
-    val fl3: Fielder = parse_element (element (cls, fields(7)))
-    val fl4: Fielder = parse_element (element (cls, fields(8)))
-    val fl5: Fielder = parse_element (element (cls, fields(9)))
-    val fp1: Fielder = parse_element (element (cls, fields(10)))
-    val fp10: Fielder = parse_element (element (cls, fields(11)))
-    val fp2: Fielder = parse_element (element (cls, fields(12)))
-    val fp3: Fielder = parse_element (element (cls, fields(13)))
-    val fp4: Fielder = parse_element (element (cls, fields(14)))
-    val fp5: Fielder = parse_element (element (cls, fields(15)))
-    val fp6: Fielder = parse_element (element (cls, fields(16)))
-    val fp7: Fielder = parse_element (element (cls, fields(17)))
-    val fp8: Fielder = parse_element (element (cls, fields(18)))
-    val fp9: Fielder = parse_element (element (cls, fields(19)))
-    val gmax: Fielder = parse_element (element (cls, fields(20)))
-    val gmin: Fielder = parse_element (element (cls, fields(21)))
-    val gtmxcl: Fielder = parse_element (element (cls, fields(22)))
-    val gtmxop: Fielder = parse_element (element (cls, fields(23)))
-    val gv1: Fielder = parse_element (element (cls, fields(24)))
-    val gv2: Fielder = parse_element (element (cls, fields(25)))
-    val gv3: Fielder = parse_element (element (cls, fields(26)))
-    val gv4: Fielder = parse_element (element (cls, fields(27)))
-    val gv5: Fielder = parse_element (element (cls, fields(28)))
-    val kd: Fielder = parse_element (element (cls, fields(29)))
-    val ki: Fielder = parse_element (element (cls, fields(30)))
-    val kp: Fielder = parse_element (element (cls, fields(31)))
-    val mwbase: Fielder = parse_element (element (cls, fields(32)))
-    val pmss1: Fielder = parse_element (element (cls, fields(33)))
-    val pmss10: Fielder = parse_element (element (cls, fields(34)))
-    val pmss2: Fielder = parse_element (element (cls, fields(35)))
-    val pmss3: Fielder = parse_element (element (cls, fields(36)))
-    val pmss4: Fielder = parse_element (element (cls, fields(37)))
-    val pmss5: Fielder = parse_element (element (cls, fields(38)))
-    val pmss6: Fielder = parse_element (element (cls, fields(39)))
-    val pmss7: Fielder = parse_element (element (cls, fields(40)))
-    val pmss8: Fielder = parse_element (element (cls, fields(41)))
-    val pmss9: Fielder = parse_element (element (cls, fields(42)))
-    val rpg: Fielder = parse_element (element (cls, fields(43)))
-    val rpp: Fielder = parse_element (element (cls, fields(44)))
-    val td: Fielder = parse_element (element (cls, fields(45)))
-    val tdv: Fielder = parse_element (element (cls, fields(46)))
-    val tg: Fielder = parse_element (element (cls, fields(47)))
-    val tp: Fielder = parse_element (element (cls, fields(48)))
-    val tpe: Fielder = parse_element (element (cls, fields(49)))
-    val tw: Fielder = parse_element (element (cls, fields(50)))
+    val db: Fielder = parse_element (element (cls, fields (0)))
+    val dicn: Fielder = parse_element (element (cls, fields (1)))
+    val dpv: Fielder = parse_element (element (cls, fields (2)))
+    val dturb: Fielder = parse_element (element (cls, fields (3)))
+    val feedbackSignal: Fielder = parse_element (element (cls, fields (4)))
+    val fl1: Fielder = parse_element (element (cls, fields (5)))
+    val fl2: Fielder = parse_element (element (cls, fields (6)))
+    val fl3: Fielder = parse_element (element (cls, fields (7)))
+    val fl4: Fielder = parse_element (element (cls, fields (8)))
+    val fl5: Fielder = parse_element (element (cls, fields (9)))
+    val fp1: Fielder = parse_element (element (cls, fields (10)))
+    val fp10: Fielder = parse_element (element (cls, fields (11)))
+    val fp2: Fielder = parse_element (element (cls, fields (12)))
+    val fp3: Fielder = parse_element (element (cls, fields (13)))
+    val fp4: Fielder = parse_element (element (cls, fields (14)))
+    val fp5: Fielder = parse_element (element (cls, fields (15)))
+    val fp6: Fielder = parse_element (element (cls, fields (16)))
+    val fp7: Fielder = parse_element (element (cls, fields (17)))
+    val fp8: Fielder = parse_element (element (cls, fields (18)))
+    val fp9: Fielder = parse_element (element (cls, fields (19)))
+    val gmax: Fielder = parse_element (element (cls, fields (20)))
+    val gmin: Fielder = parse_element (element (cls, fields (21)))
+    val gtmxcl: Fielder = parse_element (element (cls, fields (22)))
+    val gtmxop: Fielder = parse_element (element (cls, fields (23)))
+    val gv1: Fielder = parse_element (element (cls, fields (24)))
+    val gv2: Fielder = parse_element (element (cls, fields (25)))
+    val gv3: Fielder = parse_element (element (cls, fields (26)))
+    val gv4: Fielder = parse_element (element (cls, fields (27)))
+    val gv5: Fielder = parse_element (element (cls, fields (28)))
+    val kd: Fielder = parse_element (element (cls, fields (29)))
+    val ki: Fielder = parse_element (element (cls, fields (30)))
+    val kp: Fielder = parse_element (element (cls, fields (31)))
+    val mwbase: Fielder = parse_element (element (cls, fields (32)))
+    val pmss1: Fielder = parse_element (element (cls, fields (33)))
+    val pmss10: Fielder = parse_element (element (cls, fields (34)))
+    val pmss2: Fielder = parse_element (element (cls, fields (35)))
+    val pmss3: Fielder = parse_element (element (cls, fields (36)))
+    val pmss4: Fielder = parse_element (element (cls, fields (37)))
+    val pmss5: Fielder = parse_element (element (cls, fields (38)))
+    val pmss6: Fielder = parse_element (element (cls, fields (39)))
+    val pmss7: Fielder = parse_element (element (cls, fields (40)))
+    val pmss8: Fielder = parse_element (element (cls, fields (41)))
+    val pmss9: Fielder = parse_element (element (cls, fields (42)))
+    val rpg: Fielder = parse_element (element (cls, fields (43)))
+    val rpp: Fielder = parse_element (element (cls, fields (44)))
+    val td: Fielder = parse_element (element (cls, fields (45)))
+    val tdv: Fielder = parse_element (element (cls, fields (46)))
+    val tg: Fielder = parse_element (element (cls, fields (47)))
+    val tp: Fielder = parse_element (element (cls, fields (48)))
+    val tpe: Fielder = parse_element (element (cls, fields (49)))
+    val tw: Fielder = parse_element (element (cls, fields (50)))
 
     def parse (context: CIMContext): GovHydroWEH =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovHydroWEH (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (db (), 0)),
@@ -7789,7 +7925,7 @@ object GovHydroWEHSerializer extends CIMSerializer[GovHydroWEH]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydroWEH]): GovHydroWEH =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydroWEH (
             parent,
@@ -7857,43 +7993,43 @@ object GovHydroWEHSerializer extends CIMSerializer[GovHydroWEH]
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param d Turbine damping factor (<i>D</i>).
- *        Unit = delta P / delta speed.
- * @param gatmax Gate opening limit maximum (<i>Gatmax</i>) (&gt; GovHydroWPID.gatmin).
- * @param gatmin Gate opening limit minimum (<i>Gatmin</i>) (&lt; GovHydroWPID.gatmax).
- * @param gv1 Gate position 1 (<i>Gv1</i>).
- * @param gv2 Gate position 2 (<i>Gv2</i>).
- * @param gv3 Gate position 3 (<i>Gv3</i>) (= 1,0).
- * @param kd Derivative gain (<i>Kd</i>).
- *        Typical value = 1,11.
- * @param ki Reset gain (<i>Ki</i>).
- *        Typical value = 0,36.
- * @param kp Proportional gain (<i>Kp</i>).
- *        Typical value = 0,1.
- * @param mwbase Base for power values  (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pgv1 Output at <i>Gv1</i> PU of <i>MWbase</i> (<i>Pgv1</i>).
- * @param pgv2 Output at <i>Gv2</i> PU of <i>MWbase</i> (<i>Pgv2</i>).
- * @param pgv3 Output at <i>Gv3</i> PU of <i>MWbase</i> (<i>Pgv3</i>).
- * @param pmax Maximum power output (<i>Pmax</i>) (&gt; GovHydroWPID.pmin).
- * @param pmin Minimum power output (<i>Pmin</i>) (&lt; GovHydroWPID.pmax).
- * @param reg Permanent drop (<i>Reg</i>).
- * @param ta Controller time constant (<i>Ta</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tb Gate servo time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param treg Speed detector time constant (<i>Treg</i>) (&gt;= 0).
- * @param tw Water inertia time constant (<i>Tw</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param velmax Maximum gate opening velocity (<i>Velmax</i>) (&gt; GovHydroWPID.velmin).
- *        Unit = PU / s.  Typical value = 0.
- * @param velmin Maximum gate closing velocity (<i>Velmin</i>) (&lt; GovHydroWPID.velmax).
- *        Unit = PU / s.  Typical value = 0.
+ * @param d                       Turbine damping factor (<i>D</i>).
+ *                                Unit = delta P / delta speed.
+ * @param gatmax                  Gate opening limit maximum (<i>Gatmax</i>) (&gt; GovHydroWPID.gatmin).
+ * @param gatmin                  Gate opening limit minimum (<i>Gatmin</i>) (&lt; GovHydroWPID.gatmax).
+ * @param gv1                     Gate position 1 (<i>Gv1</i>).
+ * @param gv2                     Gate position 2 (<i>Gv2</i>).
+ * @param gv3                     Gate position 3 (<i>Gv3</i>) (= 1,0).
+ * @param kd                      Derivative gain (<i>Kd</i>).
+ *                                Typical value = 1,11.
+ * @param ki                      Reset gain (<i>Ki</i>).
+ *                                Typical value = 0,36.
+ * @param kp                      Proportional gain (<i>Kp</i>).
+ *                                Typical value = 0,1.
+ * @param mwbase                  Base for power values  (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pgv1                    Output at <i>Gv1</i> PU of <i>MWbase</i> (<i>Pgv1</i>).
+ * @param pgv2                    Output at <i>Gv2</i> PU of <i>MWbase</i> (<i>Pgv2</i>).
+ * @param pgv3                    Output at <i>Gv3</i> PU of <i>MWbase</i> (<i>Pgv3</i>).
+ * @param pmax                    Maximum power output (<i>Pmax</i>) (&gt; GovHydroWPID.pmin).
+ * @param pmin                    Minimum power output (<i>Pmin</i>) (&lt; GovHydroWPID.pmax).
+ * @param reg                     Permanent drop (<i>Reg</i>).
+ * @param ta                      Controller time constant (<i>Ta</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param tb                      Gate servo time constant (<i>Tb</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param treg                    Speed detector time constant (<i>Treg</i>) (&gt;= 0).
+ * @param tw                      Water inertia time constant (<i>Tw</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param velmax                  Maximum gate opening velocity (<i>Velmax</i>) (&gt; GovHydroWPID.velmin).
+ *                                Unit = PU / s.  Typical value = 0.
+ * @param velmin                  Maximum gate closing velocity (<i>Velmin</i>) (&lt; GovHydroWPID.velmax).
+ *                                Unit = PU / s.  Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovHydroWPID
 (
@@ -7921,8 +8057,8 @@ final case class GovHydroWPID
     velmax: Double = 0.0,
     velmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -7948,13 +8084,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroWPID.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroWPID.fields (position), value)
+
         emitelem (0, d)
         emitelem (1, gatmax)
         emitelem (2, gatmin)
@@ -7979,6 +8120,7 @@ extends
         emitelem (21, velmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovHydroWPID rdf:ID=\"%s\">\n%s\t</cim:GovHydroWPID>".format (id, export_fields)
@@ -7986,10 +8128,10 @@ extends
 }
 
 object GovHydroWPID
-extends
-    CIMParseable[GovHydroWPID]
+    extends
+        CIMParseable[GovHydroWPID]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "d",
         "gatmax",
         "gatmin",
@@ -8013,33 +8155,33 @@ extends
         "velmax",
         "velmin"
     )
-    val d: Fielder = parse_element (element (cls, fields(0)))
-    val gatmax: Fielder = parse_element (element (cls, fields(1)))
-    val gatmin: Fielder = parse_element (element (cls, fields(2)))
-    val gv1: Fielder = parse_element (element (cls, fields(3)))
-    val gv2: Fielder = parse_element (element (cls, fields(4)))
-    val gv3: Fielder = parse_element (element (cls, fields(5)))
-    val kd: Fielder = parse_element (element (cls, fields(6)))
-    val ki: Fielder = parse_element (element (cls, fields(7)))
-    val kp: Fielder = parse_element (element (cls, fields(8)))
-    val mwbase: Fielder = parse_element (element (cls, fields(9)))
-    val pgv1: Fielder = parse_element (element (cls, fields(10)))
-    val pgv2: Fielder = parse_element (element (cls, fields(11)))
-    val pgv3: Fielder = parse_element (element (cls, fields(12)))
-    val pmax: Fielder = parse_element (element (cls, fields(13)))
-    val pmin: Fielder = parse_element (element (cls, fields(14)))
-    val reg: Fielder = parse_element (element (cls, fields(15)))
-    val ta: Fielder = parse_element (element (cls, fields(16)))
-    val tb: Fielder = parse_element (element (cls, fields(17)))
-    val treg: Fielder = parse_element (element (cls, fields(18)))
-    val tw: Fielder = parse_element (element (cls, fields(19)))
-    val velmax: Fielder = parse_element (element (cls, fields(20)))
-    val velmin: Fielder = parse_element (element (cls, fields(21)))
+    val d: Fielder = parse_element (element (cls, fields (0)))
+    val gatmax: Fielder = parse_element (element (cls, fields (1)))
+    val gatmin: Fielder = parse_element (element (cls, fields (2)))
+    val gv1: Fielder = parse_element (element (cls, fields (3)))
+    val gv2: Fielder = parse_element (element (cls, fields (4)))
+    val gv3: Fielder = parse_element (element (cls, fields (5)))
+    val kd: Fielder = parse_element (element (cls, fields (6)))
+    val ki: Fielder = parse_element (element (cls, fields (7)))
+    val kp: Fielder = parse_element (element (cls, fields (8)))
+    val mwbase: Fielder = parse_element (element (cls, fields (9)))
+    val pgv1: Fielder = parse_element (element (cls, fields (10)))
+    val pgv2: Fielder = parse_element (element (cls, fields (11)))
+    val pgv3: Fielder = parse_element (element (cls, fields (12)))
+    val pmax: Fielder = parse_element (element (cls, fields (13)))
+    val pmin: Fielder = parse_element (element (cls, fields (14)))
+    val reg: Fielder = parse_element (element (cls, fields (15)))
+    val ta: Fielder = parse_element (element (cls, fields (16)))
+    val tb: Fielder = parse_element (element (cls, fields (17)))
+    val treg: Fielder = parse_element (element (cls, fields (18)))
+    val tw: Fielder = parse_element (element (cls, fields (19)))
+    val velmax: Fielder = parse_element (element (cls, fields (20)))
+    val velmin: Fielder = parse_element (element (cls, fields (21)))
 
     def parse (context: CIMContext): GovHydroWPID =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovHydroWPID (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (d (), 0)),
@@ -8108,7 +8250,7 @@ object GovHydroWPIDSerializer extends CIMSerializer[GovHydroWPID]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovHydroWPID]): GovHydroWPID =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovHydroWPID (
             parent,
@@ -8144,27 +8286,27 @@ object GovHydroWPIDSerializer extends CIMSerializer[GovHydroWPID]
  * A simplified steam turbine governor.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param dt Turbine damping coefficient (<i>Dt</i>).
- *        Unit = delta P / delta speed. Typical value = 0.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param r Permanent droop (<i>R</i>).
- *        Typical value = 0,05.
- * @param t1 Steam bowl time constant (<i>T1</i>) (&gt; 0).
- *        Typical value = 0,5.
- * @param t2 Numerator time constant of <i>T2</i>/<i>T3</i> block (<i>T2</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param t3 Reheater time constant (<i>T3</i>) (&gt; 0).
- *        Typical value = 10.
- * @param vmax Maximum valve position, PU of <i>mwcap</i> (<i>Vmax</i>) (&gt; GovSteam0.vmin).
- *        Typical value = 1.
- * @param vmin Minimum valve position, PU of <i>mwcap</i> (<i>Vmin</i>) (&lt; GovSteam0.vmax).
- *        Typical value = 0.
+ * @param dt                      Turbine damping coefficient (<i>Dt</i>).
+ *                                Unit = delta P / delta speed. Typical value = 0.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param r                       Permanent droop (<i>R</i>).
+ *                                Typical value = 0,05.
+ * @param t1                      Steam bowl time constant (<i>T1</i>) (&gt; 0).
+ *                                Typical value = 0,5.
+ * @param t2                      Numerator time constant of <i>T2</i>/<i>T3</i> block (<i>T2</i>) (&gt;= 0).
+ *                                Typical value = 3.
+ * @param t3                      Reheater time constant (<i>T3</i>) (&gt; 0).
+ *                                Typical value = 10.
+ * @param vmax                    Maximum valve position, PU of <i>mwcap</i> (<i>Vmax</i>) (&gt; GovSteam0.vmin).
+ *                                Typical value = 1.
+ * @param vmin                    Minimum valve position, PU of <i>mwcap</i> (<i>Vmin</i>) (&lt; GovSteam0.vmax).
+ *                                Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovSteam0
 (
@@ -8178,8 +8320,8 @@ final case class GovSteam0
     vmax: Double = 0.0,
     vmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -8205,13 +8347,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteam0.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteam0.fields (position), value)
+
         emitelem (0, dt)
         emitelem (1, mwbase)
         emitelem (2, r)
@@ -8222,6 +8369,7 @@ extends
         emitelem (7, vmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovSteam0 rdf:ID=\"%s\">\n%s\t</cim:GovSteam0>".format (id, export_fields)
@@ -8229,10 +8377,10 @@ extends
 }
 
 object GovSteam0
-extends
-    CIMParseable[GovSteam0]
+    extends
+        CIMParseable[GovSteam0]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dt",
         "mwbase",
         "r",
@@ -8242,19 +8390,19 @@ extends
         "vmax",
         "vmin"
     )
-    val dt: Fielder = parse_element (element (cls, fields(0)))
-    val mwbase: Fielder = parse_element (element (cls, fields(1)))
-    val r: Fielder = parse_element (element (cls, fields(2)))
-    val t1: Fielder = parse_element (element (cls, fields(3)))
-    val t2: Fielder = parse_element (element (cls, fields(4)))
-    val t3: Fielder = parse_element (element (cls, fields(5)))
-    val vmax: Fielder = parse_element (element (cls, fields(6)))
-    val vmin: Fielder = parse_element (element (cls, fields(7)))
+    val dt: Fielder = parse_element (element (cls, fields (0)))
+    val mwbase: Fielder = parse_element (element (cls, fields (1)))
+    val r: Fielder = parse_element (element (cls, fields (2)))
+    val t1: Fielder = parse_element (element (cls, fields (3)))
+    val t2: Fielder = parse_element (element (cls, fields (4)))
+    val t3: Fielder = parse_element (element (cls, fields (5)))
+    val vmax: Fielder = parse_element (element (cls, fields (6)))
+    val vmin: Fielder = parse_element (element (cls, fields (7)))
 
     def parse (context: CIMContext): GovSteam0 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovSteam0 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (dt (), 0)),
@@ -8295,7 +8443,7 @@ object GovSteam0Serializer extends CIMSerializer[GovSteam0]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovSteam0]): GovSteam0 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovSteam0 (
             parent,
@@ -8317,95 +8465,95 @@ object GovSteam0Serializer extends CIMSerializer[GovSteam0]
  * Steam turbine governor, based on the GovSteamIEEE1 (with optional deadband and nonlinear valve gain added).
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param db1 Intentional deadband width (<i>db1</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param db2 Unintentional deadband (<i>db2</i>).
- *        Unit = MW.  Typical value = 0.
- * @param eps Intentional db hysteresis (<i>eps</i>).
- *        Unit = Hz.  Typical value = 0.
- * @param gv1 Nonlinear gain valve position point 1 (<i>GV1</i>).
- *        Typical value = 0.
- * @param gv2 Nonlinear gain valve position point 2 (<i>GV2</i>).
- *        Typical value = 0,4.
- * @param gv3 Nonlinear gain valve position point 3 (<i>GV3</i>).
- *        Typical value = 0,5.
- * @param gv4 Nonlinear gain valve position point 4 (<i>GV4</i>).
- *        Typical value = 0,6.
- * @param gv5 Nonlinear gain valve position point 5 (<i>GV5</i>).
- *        Typical value = 1.
- * @param gv6 Nonlinear gain valve position point 6 (<i>GV6</i>).
- *        Typical value = 0.
- * @param k Governor gain (reciprocal of droop) (<i>K</i>) (&gt; 0).
- *        Typical value = 25.
- * @param k1 Fraction of HP shaft power after first boiler pass (<i>K1</i>).
- *        Typical value = 0,2.
- * @param k2 Fraction of LP shaft power after first boiler pass (<i>K2</i>).
- *        Typical value = 0.
- * @param k3 Fraction of HP shaft power after second boiler pass (<i>K3</i>).
- *        Typical value = 0,3.
- * @param k4 Fraction of LP shaft power after second boiler pass (<i>K4</i>).
- *        Typical value = 0.
- * @param k5 Fraction of HP shaft power after third boiler pass (<i>K5</i>).
- *        Typical value = 0,5.
- * @param k6 Fraction of LP shaft power after third boiler pass (<i>K6</i>).
- *        Typical value = 0.
- * @param k7 Fraction of HP shaft power after fourth boiler pass (<i>K7</i>).
- *        Typical value = 0.
- * @param k8 Fraction of LP shaft power after fourth boiler pass (<i>K8</i>).
- *        Typical value = 0.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pgv1 Nonlinear gain power value point 1 (<i>Pgv1</i>).
- *        Typical value = 0.
- * @param pgv2 Nonlinear gain power value point 2 (<i>Pgv2</i>).
- *        Typical value = 0,75.
- * @param pgv3 Nonlinear gain power value point 3 (<i>Pgv3</i>).
- *        Typical value = 0,91.
- * @param pgv4 Nonlinear gain power value point 4 (<i>Pgv4</i>).
- *        Typical value = 0,98.
- * @param pgv5 Nonlinear gain power value point 5 (<i>Pgv5</i>).
- *        Typical value = 1.
- * @param pgv6 Nonlinear gain power value point 6 (<i>Pgv6</i>).
- *        Typical value = 0.
- * @param pmax Maximum valve opening (<i>Pmax</i>) (&gt; GovSteam1.pmin).
- *        Typical value = 1.
- * @param pmin Minimum valve opening (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteam1.pmax).
- *        Typical value = 0.
- * @param sdb1 Intentional deadband indicator.
- *        true = intentional deadband is applied
- *        false = intentional deadband is not applied.
- *        Typical value = true.
- * @param sdb2 Unintentional deadband location.
- *        true = intentional deadband is applied before point "A"
- *        false = intentional deadband is applied after point "A".
- *        Typical value = true.
- * @param t1 Governor lag time constant (<i>T1</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param t2 Governor lead time constant (<i>T2</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param t3 Valve positioner time constant (<i>T3) </i>(&gt; 0).
- *        Typical value = 0,1.
- * @param t4 Inlet piping/steam bowl time constant (<i>T4</i>) (&gt;= 0).
- *        Typical value = 0,3.
- * @param t5 Time constant of second boiler pass (<i>T5</i>) (&gt;= 0).
- *        Typical value = 5.
- * @param t6 Time constant of third boiler pass (<i>T6</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param t7 Time constant of fourth boiler pass (<i>T7</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param uc Maximum valve closing velocity (<i>Uc</i>) (&lt; 0).
- *        Unit = PU / s.  Typical value = -10.
- * @param uo Maximum valve opening velocity (<i>Uo</i>) (&gt; 0).
- *        Unit = PU / s.  Typical value = 1.
- * @param valve Nonlinear valve characteristic.
- *        true = nonlinear valve characteristic is used
- *        false = nonlinear valve characteristic is not used.
- *        Typical value = true.
+ * @param db1                     Intentional deadband width (<i>db1</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param db2                     Unintentional deadband (<i>db2</i>).
+ *                                Unit = MW.  Typical value = 0.
+ * @param eps                     Intentional db hysteresis (<i>eps</i>).
+ *                                Unit = Hz.  Typical value = 0.
+ * @param gv1                     Nonlinear gain valve position point 1 (<i>GV1</i>).
+ *                                Typical value = 0.
+ * @param gv2                     Nonlinear gain valve position point 2 (<i>GV2</i>).
+ *                                Typical value = 0,4.
+ * @param gv3                     Nonlinear gain valve position point 3 (<i>GV3</i>).
+ *                                Typical value = 0,5.
+ * @param gv4                     Nonlinear gain valve position point 4 (<i>GV4</i>).
+ *                                Typical value = 0,6.
+ * @param gv5                     Nonlinear gain valve position point 5 (<i>GV5</i>).
+ *                                Typical value = 1.
+ * @param gv6                     Nonlinear gain valve position point 6 (<i>GV6</i>).
+ *                                Typical value = 0.
+ * @param k                       Governor gain (reciprocal of droop) (<i>K</i>) (&gt; 0).
+ *                                Typical value = 25.
+ * @param k1                      Fraction of HP shaft power after first boiler pass (<i>K1</i>).
+ *                                Typical value = 0,2.
+ * @param k2                      Fraction of LP shaft power after first boiler pass (<i>K2</i>).
+ *                                Typical value = 0.
+ * @param k3                      Fraction of HP shaft power after second boiler pass (<i>K3</i>).
+ *                                Typical value = 0,3.
+ * @param k4                      Fraction of LP shaft power after second boiler pass (<i>K4</i>).
+ *                                Typical value = 0.
+ * @param k5                      Fraction of HP shaft power after third boiler pass (<i>K5</i>).
+ *                                Typical value = 0,5.
+ * @param k6                      Fraction of LP shaft power after third boiler pass (<i>K6</i>).
+ *                                Typical value = 0.
+ * @param k7                      Fraction of HP shaft power after fourth boiler pass (<i>K7</i>).
+ *                                Typical value = 0.
+ * @param k8                      Fraction of LP shaft power after fourth boiler pass (<i>K8</i>).
+ *                                Typical value = 0.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pgv1                    Nonlinear gain power value point 1 (<i>Pgv1</i>).
+ *                                Typical value = 0.
+ * @param pgv2                    Nonlinear gain power value point 2 (<i>Pgv2</i>).
+ *                                Typical value = 0,75.
+ * @param pgv3                    Nonlinear gain power value point 3 (<i>Pgv3</i>).
+ *                                Typical value = 0,91.
+ * @param pgv4                    Nonlinear gain power value point 4 (<i>Pgv4</i>).
+ *                                Typical value = 0,98.
+ * @param pgv5                    Nonlinear gain power value point 5 (<i>Pgv5</i>).
+ *                                Typical value = 1.
+ * @param pgv6                    Nonlinear gain power value point 6 (<i>Pgv6</i>).
+ *                                Typical value = 0.
+ * @param pmax                    Maximum valve opening (<i>Pmax</i>) (&gt; GovSteam1.pmin).
+ *                                Typical value = 1.
+ * @param pmin                    Minimum valve opening (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteam1.pmax).
+ *                                Typical value = 0.
+ * @param sdb1                    Intentional deadband indicator.
+ *                                true = intentional deadband is applied
+ *                                false = intentional deadband is not applied.
+ *                                Typical value = true.
+ * @param sdb2                    Unintentional deadband location.
+ *                                true = intentional deadband is applied before point "A"
+ *                                false = intentional deadband is applied after point "A".
+ *                                Typical value = true.
+ * @param t1                      Governor lag time constant (<i>T1</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param t2                      Governor lead time constant (<i>T2</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param t3                      Valve positioner time constant (<i>T3) </i>(&gt; 0).
+ *                                Typical value = 0,1.
+ * @param t4                      Inlet piping/steam bowl time constant (<i>T4</i>) (&gt;= 0).
+ *                                Typical value = 0,3.
+ * @param t5                      Time constant of second boiler pass (<i>T5</i>) (&gt;= 0).
+ *                                Typical value = 5.
+ * @param t6                      Time constant of third boiler pass (<i>T6</i>) (&gt;= 0).
+ *                                Typical value = 0,5.
+ * @param t7                      Time constant of fourth boiler pass (<i>T7</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param uc                      Maximum valve closing velocity (<i>Uc</i>) (&lt; 0).
+ *                                Unit = PU / s.  Typical value = -10.
+ * @param uo                      Maximum valve opening velocity (<i>Uo</i>) (&gt; 0).
+ *                                Unit = PU / s.  Typical value = 1.
+ * @param valve                   Nonlinear valve characteristic.
+ *                                true = nonlinear valve characteristic is used
+ *                                false = nonlinear valve characteristic is not used.
+ *                                Typical value = true.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovSteam1
 (
@@ -8450,8 +8598,8 @@ final case class GovSteam1
     uo: Double = 0.0,
     valve: Boolean = false
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -8477,13 +8625,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteam1.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteam1.fields (position), value)
+
         emitelem (0, db1)
         emitelem (1, db2)
         emitelem (2, eps)
@@ -8525,6 +8678,7 @@ extends
         emitelem (38, valve)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovSteam1 rdf:ID=\"%s\">\n%s\t</cim:GovSteam1>".format (id, export_fields)
@@ -8532,10 +8686,10 @@ extends
 }
 
 object GovSteam1
-extends
-    CIMParseable[GovSteam1]
+    extends
+        CIMParseable[GovSteam1]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "db1",
         "db2",
         "eps",
@@ -8576,50 +8730,50 @@ extends
         "uo",
         "valve"
     )
-    val db1: Fielder = parse_element (element (cls, fields(0)))
-    val db2: Fielder = parse_element (element (cls, fields(1)))
-    val eps: Fielder = parse_element (element (cls, fields(2)))
-    val gv1: Fielder = parse_element (element (cls, fields(3)))
-    val gv2: Fielder = parse_element (element (cls, fields(4)))
-    val gv3: Fielder = parse_element (element (cls, fields(5)))
-    val gv4: Fielder = parse_element (element (cls, fields(6)))
-    val gv5: Fielder = parse_element (element (cls, fields(7)))
-    val gv6: Fielder = parse_element (element (cls, fields(8)))
-    val k: Fielder = parse_element (element (cls, fields(9)))
-    val k1: Fielder = parse_element (element (cls, fields(10)))
-    val k2: Fielder = parse_element (element (cls, fields(11)))
-    val k3: Fielder = parse_element (element (cls, fields(12)))
-    val k4: Fielder = parse_element (element (cls, fields(13)))
-    val k5: Fielder = parse_element (element (cls, fields(14)))
-    val k6: Fielder = parse_element (element (cls, fields(15)))
-    val k7: Fielder = parse_element (element (cls, fields(16)))
-    val k8: Fielder = parse_element (element (cls, fields(17)))
-    val mwbase: Fielder = parse_element (element (cls, fields(18)))
-    val pgv1: Fielder = parse_element (element (cls, fields(19)))
-    val pgv2: Fielder = parse_element (element (cls, fields(20)))
-    val pgv3: Fielder = parse_element (element (cls, fields(21)))
-    val pgv4: Fielder = parse_element (element (cls, fields(22)))
-    val pgv5: Fielder = parse_element (element (cls, fields(23)))
-    val pgv6: Fielder = parse_element (element (cls, fields(24)))
-    val pmax: Fielder = parse_element (element (cls, fields(25)))
-    val pmin: Fielder = parse_element (element (cls, fields(26)))
-    val sdb1: Fielder = parse_element (element (cls, fields(27)))
-    val sdb2: Fielder = parse_element (element (cls, fields(28)))
-    val t1: Fielder = parse_element (element (cls, fields(29)))
-    val t2: Fielder = parse_element (element (cls, fields(30)))
-    val t3: Fielder = parse_element (element (cls, fields(31)))
-    val t4: Fielder = parse_element (element (cls, fields(32)))
-    val t5: Fielder = parse_element (element (cls, fields(33)))
-    val t6: Fielder = parse_element (element (cls, fields(34)))
-    val t7: Fielder = parse_element (element (cls, fields(35)))
-    val uc: Fielder = parse_element (element (cls, fields(36)))
-    val uo: Fielder = parse_element (element (cls, fields(37)))
-    val valve: Fielder = parse_element (element (cls, fields(38)))
+    val db1: Fielder = parse_element (element (cls, fields (0)))
+    val db2: Fielder = parse_element (element (cls, fields (1)))
+    val eps: Fielder = parse_element (element (cls, fields (2)))
+    val gv1: Fielder = parse_element (element (cls, fields (3)))
+    val gv2: Fielder = parse_element (element (cls, fields (4)))
+    val gv3: Fielder = parse_element (element (cls, fields (5)))
+    val gv4: Fielder = parse_element (element (cls, fields (6)))
+    val gv5: Fielder = parse_element (element (cls, fields (7)))
+    val gv6: Fielder = parse_element (element (cls, fields (8)))
+    val k: Fielder = parse_element (element (cls, fields (9)))
+    val k1: Fielder = parse_element (element (cls, fields (10)))
+    val k2: Fielder = parse_element (element (cls, fields (11)))
+    val k3: Fielder = parse_element (element (cls, fields (12)))
+    val k4: Fielder = parse_element (element (cls, fields (13)))
+    val k5: Fielder = parse_element (element (cls, fields (14)))
+    val k6: Fielder = parse_element (element (cls, fields (15)))
+    val k7: Fielder = parse_element (element (cls, fields (16)))
+    val k8: Fielder = parse_element (element (cls, fields (17)))
+    val mwbase: Fielder = parse_element (element (cls, fields (18)))
+    val pgv1: Fielder = parse_element (element (cls, fields (19)))
+    val pgv2: Fielder = parse_element (element (cls, fields (20)))
+    val pgv3: Fielder = parse_element (element (cls, fields (21)))
+    val pgv4: Fielder = parse_element (element (cls, fields (22)))
+    val pgv5: Fielder = parse_element (element (cls, fields (23)))
+    val pgv6: Fielder = parse_element (element (cls, fields (24)))
+    val pmax: Fielder = parse_element (element (cls, fields (25)))
+    val pmin: Fielder = parse_element (element (cls, fields (26)))
+    val sdb1: Fielder = parse_element (element (cls, fields (27)))
+    val sdb2: Fielder = parse_element (element (cls, fields (28)))
+    val t1: Fielder = parse_element (element (cls, fields (29)))
+    val t2: Fielder = parse_element (element (cls, fields (30)))
+    val t3: Fielder = parse_element (element (cls, fields (31)))
+    val t4: Fielder = parse_element (element (cls, fields (32)))
+    val t5: Fielder = parse_element (element (cls, fields (33)))
+    val t6: Fielder = parse_element (element (cls, fields (34)))
+    val t7: Fielder = parse_element (element (cls, fields (35)))
+    val uc: Fielder = parse_element (element (cls, fields (36)))
+    val uo: Fielder = parse_element (element (cls, fields (37)))
+    val valve: Fielder = parse_element (element (cls, fields (38)))
 
     def parse (context: CIMContext): GovSteam1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovSteam1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (db1 (), 0)),
@@ -8722,7 +8876,7 @@ object GovSteam1Serializer extends CIMSerializer[GovSteam1]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovSteam1]): GovSteam1 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovSteam1 (
             parent,
@@ -8775,27 +8929,27 @@ object GovSteam1Serializer extends CIMSerializer[GovSteam1]
  * Simplified governor.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param dbf Frequency deadband (<i>DBF</i>).
- *        Typical value = 0.
- * @param k Governor gain (reciprocal of droop) (<i>K</i>).
- *        Typical value = 20.
- * @param mnef Fuel flow maximum negative error value (<i>MN</i><i><sub>EF</sub></i>).
- *        Typical value = -1.
- * @param mxef Fuel flow maximum positive error value (<i>MX</i><i><sub>EF</sub></i>).
- *        Typical value = 1.
- * @param pmax Maximum fuel flow (<i>P</i><i><sub>MAX</sub></i>) (&gt; GovSteam2.pmin).
- *        Typical value = 1.
- * @param pmin Minimum fuel flow (<i>P</i><i><sub>MIN</sub></i>) (&lt; GovSteam2.pmax).
- *        Typical value = 0.
- * @param t1 Governor lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt; 0).
- *        Typical value = 0,45.
- * @param t2 Governor lead time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
- *        Typical value = 0.
+ * @param dbf                     Frequency deadband (<i>DBF</i>).
+ *                                Typical value = 0.
+ * @param k                       Governor gain (reciprocal of droop) (<i>K</i>).
+ *                                Typical value = 20.
+ * @param mnef                    Fuel flow maximum negative error value (<i>MN</i><i><sub>EF</sub></i>).
+ *                                Typical value = -1.
+ * @param mxef                    Fuel flow maximum positive error value (<i>MX</i><i><sub>EF</sub></i>).
+ *                                Typical value = 1.
+ * @param pmax                    Maximum fuel flow (<i>P</i><i><sub>MAX</sub></i>) (&gt; GovSteam2.pmin).
+ *                                Typical value = 1.
+ * @param pmin                    Minimum fuel flow (<i>P</i><i><sub>MIN</sub></i>) (&lt; GovSteam2.pmax).
+ *                                Typical value = 0.
+ * @param t1                      Governor lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt; 0).
+ *                                Typical value = 0,45.
+ * @param t2                      Governor lead time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *                                Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovSteam2
 (
@@ -8809,8 +8963,8 @@ final case class GovSteam2
     t1: Double = 0.0,
     t2: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -8836,13 +8990,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteam2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteam2.fields (position), value)
+
         emitelem (0, dbf)
         emitelem (1, k)
         emitelem (2, mnef)
@@ -8853,6 +9012,7 @@ extends
         emitelem (7, t2)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovSteam2 rdf:ID=\"%s\">\n%s\t</cim:GovSteam2>".format (id, export_fields)
@@ -8860,10 +9020,10 @@ extends
 }
 
 object GovSteam2
-extends
-    CIMParseable[GovSteam2]
+    extends
+        CIMParseable[GovSteam2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dbf",
         "k",
         "mnef",
@@ -8873,19 +9033,19 @@ extends
         "t1",
         "t2"
     )
-    val dbf: Fielder = parse_element (element (cls, fields(0)))
-    val k: Fielder = parse_element (element (cls, fields(1)))
-    val mnef: Fielder = parse_element (element (cls, fields(2)))
-    val mxef: Fielder = parse_element (element (cls, fields(3)))
-    val pmax: Fielder = parse_element (element (cls, fields(4)))
-    val pmin: Fielder = parse_element (element (cls, fields(5)))
-    val t1: Fielder = parse_element (element (cls, fields(6)))
-    val t2: Fielder = parse_element (element (cls, fields(7)))
+    val dbf: Fielder = parse_element (element (cls, fields (0)))
+    val k: Fielder = parse_element (element (cls, fields (1)))
+    val mnef: Fielder = parse_element (element (cls, fields (2)))
+    val mxef: Fielder = parse_element (element (cls, fields (3)))
+    val pmax: Fielder = parse_element (element (cls, fields (4)))
+    val pmin: Fielder = parse_element (element (cls, fields (5)))
+    val t1: Fielder = parse_element (element (cls, fields (6)))
+    val t2: Fielder = parse_element (element (cls, fields (7)))
 
     def parse (context: CIMContext): GovSteam2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovSteam2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (dbf (), 0)),
@@ -8926,7 +9086,7 @@ object GovSteam2Serializer extends CIMSerializer[GovSteam2]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovSteam2]): GovSteam2 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovSteam2 (
             parent,
@@ -8948,47 +9108,47 @@ object GovSteam2Serializer extends CIMSerializer[GovSteam2]
  * European governor model.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param fcut Frequency deadband (<i>f</i><i><sub>cut</sub></i>) (&gt;= 0).
- *        Typical value = 0,002.
- * @param k2 Gain (<i>K2</i>).
- *        Typical value = 0,75.
- * @param k3 Gain (<i>K3</i>).
- *        Typical value = 0,5.
- * @param kd Gain (<i>Kd</i>).
- *        Typical value = 1,0.
- * @param kg Gain (<i>Kg</i>).
- *        Typical value = 1,0.
- * @param kls Gain (<i>Kls</i>) (&gt; 0).
- *        Typical value = 0,1.
- * @param kp Gain (<i>Kp</i>).
- *        Typical value = 1,0.
- * @param ks Gain (<i>Ks</i>).
- *        Typical value = 21,0.
- * @param peflag Electric power input selection (Peflag).
- *        true = electric power input
- *        false = feedback signal.
- *        Typical value = false.
- * @param pmax High power limit (<i>Pmax</i>) (&gt; GovSteamBB.pmin).
- *        Typical value = 1,0.
- * @param pmin Low power limit (<i>Pmin</i>) (&lt; GovSteamBB.pmax).
- *        Typical value = 0.
- * @param t1 Time constant (<i>T1</i>).
- *        Typical value = 0,05.
- * @param t4 Time constant (<i>T4</i>).
- *        Typical value = 0,15.
- * @param t5 Time constant (<i>T5</i>).
- *        Typical value = 12,0.
- * @param t6 Time constant (<i>T6</i>).
- *        Typical value = 0,75.
- * @param td Time constant (<i>Td</i>) (&gt; 0).
- *        Typical value = 1,0.
- * @param tn Time constant (<i>Tn</i>) (&gt; 0).
- *        Typical value = 1,0.
+ * @param fcut                    Frequency deadband (<i>f</i><i><sub>cut</sub></i>) (&gt;= 0).
+ *                                Typical value = 0,002.
+ * @param k2                      Gain (<i>K2</i>).
+ *                                Typical value = 0,75.
+ * @param k3                      Gain (<i>K3</i>).
+ *                                Typical value = 0,5.
+ * @param kd                      Gain (<i>Kd</i>).
+ *                                Typical value = 1,0.
+ * @param kg                      Gain (<i>Kg</i>).
+ *                                Typical value = 1,0.
+ * @param kls                     Gain (<i>Kls</i>) (&gt; 0).
+ *                                Typical value = 0,1.
+ * @param kp                      Gain (<i>Kp</i>).
+ *                                Typical value = 1,0.
+ * @param ks                      Gain (<i>Ks</i>).
+ *                                Typical value = 21,0.
+ * @param peflag                  Electric power input selection (Peflag).
+ *                                true = electric power input
+ *                                false = feedback signal.
+ *                                Typical value = false.
+ * @param pmax                    High power limit (<i>Pmax</i>) (&gt; GovSteamBB.pmin).
+ *                                Typical value = 1,0.
+ * @param pmin                    Low power limit (<i>Pmin</i>) (&lt; GovSteamBB.pmax).
+ *                                Typical value = 0.
+ * @param t1                      Time constant (<i>T1</i>).
+ *                                Typical value = 0,05.
+ * @param t4                      Time constant (<i>T4</i>).
+ *                                Typical value = 0,15.
+ * @param t5                      Time constant (<i>T5</i>).
+ *                                Typical value = 12,0.
+ * @param t6                      Time constant (<i>T6</i>).
+ *                                Typical value = 0,75.
+ * @param td                      Time constant (<i>Td</i>) (&gt; 0).
+ *                                Typical value = 1,0.
+ * @param tn                      Time constant (<i>Tn</i>) (&gt; 0).
+ *                                Typical value = 1,0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovSteamBB
 (
@@ -9011,8 +9171,8 @@ final case class GovSteamBB
     td: Double = 0.0,
     tn: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -9038,13 +9198,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamBB.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamBB.fields (position), value)
+
         emitelem (0, fcut)
         emitelem (1, k2)
         emitelem (2, k3)
@@ -9064,6 +9229,7 @@ extends
         emitelem (16, tn)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovSteamBB rdf:ID=\"%s\">\n%s\t</cim:GovSteamBB>".format (id, export_fields)
@@ -9071,10 +9237,10 @@ extends
 }
 
 object GovSteamBB
-extends
-    CIMParseable[GovSteamBB]
+    extends
+        CIMParseable[GovSteamBB]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "fcut",
         "k2",
         "k3",
@@ -9093,28 +9259,28 @@ extends
         "td",
         "tn"
     )
-    val fcut: Fielder = parse_element (element (cls, fields(0)))
-    val k2: Fielder = parse_element (element (cls, fields(1)))
-    val k3: Fielder = parse_element (element (cls, fields(2)))
-    val kd: Fielder = parse_element (element (cls, fields(3)))
-    val kg: Fielder = parse_element (element (cls, fields(4)))
-    val kls: Fielder = parse_element (element (cls, fields(5)))
-    val kp: Fielder = parse_element (element (cls, fields(6)))
-    val ks: Fielder = parse_element (element (cls, fields(7)))
-    val peflag: Fielder = parse_element (element (cls, fields(8)))
-    val pmax: Fielder = parse_element (element (cls, fields(9)))
-    val pmin: Fielder = parse_element (element (cls, fields(10)))
-    val t1: Fielder = parse_element (element (cls, fields(11)))
-    val t4: Fielder = parse_element (element (cls, fields(12)))
-    val t5: Fielder = parse_element (element (cls, fields(13)))
-    val t6: Fielder = parse_element (element (cls, fields(14)))
-    val td: Fielder = parse_element (element (cls, fields(15)))
-    val tn: Fielder = parse_element (element (cls, fields(16)))
+    val fcut: Fielder = parse_element (element (cls, fields (0)))
+    val k2: Fielder = parse_element (element (cls, fields (1)))
+    val k3: Fielder = parse_element (element (cls, fields (2)))
+    val kd: Fielder = parse_element (element (cls, fields (3)))
+    val kg: Fielder = parse_element (element (cls, fields (4)))
+    val kls: Fielder = parse_element (element (cls, fields (5)))
+    val kp: Fielder = parse_element (element (cls, fields (6)))
+    val ks: Fielder = parse_element (element (cls, fields (7)))
+    val peflag: Fielder = parse_element (element (cls, fields (8)))
+    val pmax: Fielder = parse_element (element (cls, fields (9)))
+    val pmin: Fielder = parse_element (element (cls, fields (10)))
+    val t1: Fielder = parse_element (element (cls, fields (11)))
+    val t4: Fielder = parse_element (element (cls, fields (12)))
+    val t5: Fielder = parse_element (element (cls, fields (13)))
+    val t6: Fielder = parse_element (element (cls, fields (14)))
+    val td: Fielder = parse_element (element (cls, fields (15)))
+    val tn: Fielder = parse_element (element (cls, fields (16)))
 
     def parse (context: CIMContext): GovSteamBB =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovSteamBB (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (fcut (), 0)),
@@ -9173,7 +9339,7 @@ object GovSteamBBSerializer extends CIMSerializer[GovSteamBB]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovSteamBB]): GovSteamBB =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovSteamBB (
             parent,
@@ -9206,45 +9372,45 @@ object GovSteamBBSerializer extends CIMSerializer[GovSteamBB]
  * Unlike tandem compound units, cross compound units are not on the same shaft.
  *
  * @param CrossCompoundTurbineGovernorDynamics [[ch.ninecode.model.CrossCompoundTurbineGovernorDynamics CrossCompoundTurbineGovernorDynamics]] Reference to the superclass object.
- * @param dhp HP damping factor (<i>Dhp</i>).
- *        Typical value = 0.
- * @param dlp LP damping factor (<i>Dlp</i>).
- *        Typical value = 0.
- * @param fhp Fraction of HP power ahead of reheater (<i>Fhp</i>).
- *        Typical value = 0,3.
- * @param flp Fraction of LP power ahead of reheater (<i>Flp</i>).
- *        Typical value = 0,7.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pmaxhp Maximum HP value position (<i>Pmaxhp</i>).
- *        Typical value = 1.
- * @param pmaxlp Maximum LP value position (<i>Pmaxlp</i>).
- *        Typical value = 1.
- * @param rhp HP governor droop (<i>Rhp</i>) (&gt; 0).
- *        Typical value = 0,05.
- * @param rlp LP governor droop (<i>Rlp</i>) (&gt; 0).
- *        Typical value = 0,05.
- * @param t1hp HP governor time constant (<i>T1hp</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t1lp LP governor time constant (<i>T1lp</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t3hp HP turbine time constant (<i>T3hp</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t3lp LP turbine time constant (<i>T3lp</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t4hp HP turbine time constant (<i>T4hp</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t4lp LP turbine time constant (<i>T4lp</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t5hp HP reheater time constant (<i>T5hp</i>) (&gt;= 0).
- *        Typical value = 10.
- * @param t5lp LP reheater time constant (<i>T5lp</i>) (&gt;= 0).
- *        Typical value = 10.
+ * @param dhp                                  HP damping factor (<i>Dhp</i>).
+ *                                             Typical value = 0.
+ * @param dlp                                  LP damping factor (<i>Dlp</i>).
+ *                                             Typical value = 0.
+ * @param fhp                                  Fraction of HP power ahead of reheater (<i>Fhp</i>).
+ *                                             Typical value = 0,3.
+ * @param flp                                  Fraction of LP power ahead of reheater (<i>Flp</i>).
+ *                                             Typical value = 0,7.
+ * @param mwbase                               Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                             Unit = MW.
+ * @param pmaxhp                               Maximum HP value position (<i>Pmaxhp</i>).
+ *                                             Typical value = 1.
+ * @param pmaxlp                               Maximum LP value position (<i>Pmaxlp</i>).
+ *                                             Typical value = 1.
+ * @param rhp                                  HP governor droop (<i>Rhp</i>) (&gt; 0).
+ *                                             Typical value = 0,05.
+ * @param rlp                                  LP governor droop (<i>Rlp</i>) (&gt; 0).
+ *                                             Typical value = 0,05.
+ * @param t1hp                                 HP governor time constant (<i>T1hp</i>) (&gt;= 0).
+ *                                             Typical value = 0,1.
+ * @param t1lp                                 LP governor time constant (<i>T1lp</i>) (&gt;= 0).
+ *                                             Typical value = 0,1.
+ * @param t3hp                                 HP turbine time constant (<i>T3hp</i>) (&gt;= 0).
+ *                                             Typical value = 0,1.
+ * @param t3lp                                 LP turbine time constant (<i>T3lp</i>) (&gt;= 0).
+ *                                             Typical value = 0,1.
+ * @param t4hp                                 HP turbine time constant (<i>T4hp</i>) (&gt;= 0).
+ *                                             Typical value = 0,1.
+ * @param t4lp                                 LP turbine time constant (<i>T4lp</i>) (&gt;= 0).
+ *                                             Typical value = 0,1.
+ * @param t5hp                                 HP reheater time constant (<i>T5hp</i>) (&gt;= 0).
+ *                                             Typical value = 10.
+ * @param t5lp                                 LP reheater time constant (<i>T5lp</i>) (&gt;= 0).
+ *                                             Typical value = 10.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovSteamCC
 (
@@ -9267,8 +9433,8 @@ final case class GovSteamCC
     t5hp: Double = 0.0,
     t5lp: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -9294,13 +9460,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamCC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamCC.fields (position), value)
+
         emitelem (0, dhp)
         emitelem (1, dlp)
         emitelem (2, fhp)
@@ -9320,6 +9491,7 @@ extends
         emitelem (16, t5lp)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovSteamCC rdf:ID=\"%s\">\n%s\t</cim:GovSteamCC>".format (id, export_fields)
@@ -9327,10 +9499,10 @@ extends
 }
 
 object GovSteamCC
-extends
-    CIMParseable[GovSteamCC]
+    extends
+        CIMParseable[GovSteamCC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dhp",
         "dlp",
         "fhp",
@@ -9349,28 +9521,28 @@ extends
         "t5hp",
         "t5lp"
     )
-    val dhp: Fielder = parse_element (element (cls, fields(0)))
-    val dlp: Fielder = parse_element (element (cls, fields(1)))
-    val fhp: Fielder = parse_element (element (cls, fields(2)))
-    val flp: Fielder = parse_element (element (cls, fields(3)))
-    val mwbase: Fielder = parse_element (element (cls, fields(4)))
-    val pmaxhp: Fielder = parse_element (element (cls, fields(5)))
-    val pmaxlp: Fielder = parse_element (element (cls, fields(6)))
-    val rhp: Fielder = parse_element (element (cls, fields(7)))
-    val rlp: Fielder = parse_element (element (cls, fields(8)))
-    val t1hp: Fielder = parse_element (element (cls, fields(9)))
-    val t1lp: Fielder = parse_element (element (cls, fields(10)))
-    val t3hp: Fielder = parse_element (element (cls, fields(11)))
-    val t3lp: Fielder = parse_element (element (cls, fields(12)))
-    val t4hp: Fielder = parse_element (element (cls, fields(13)))
-    val t4lp: Fielder = parse_element (element (cls, fields(14)))
-    val t5hp: Fielder = parse_element (element (cls, fields(15)))
-    val t5lp: Fielder = parse_element (element (cls, fields(16)))
+    val dhp: Fielder = parse_element (element (cls, fields (0)))
+    val dlp: Fielder = parse_element (element (cls, fields (1)))
+    val fhp: Fielder = parse_element (element (cls, fields (2)))
+    val flp: Fielder = parse_element (element (cls, fields (3)))
+    val mwbase: Fielder = parse_element (element (cls, fields (4)))
+    val pmaxhp: Fielder = parse_element (element (cls, fields (5)))
+    val pmaxlp: Fielder = parse_element (element (cls, fields (6)))
+    val rhp: Fielder = parse_element (element (cls, fields (7)))
+    val rlp: Fielder = parse_element (element (cls, fields (8)))
+    val t1hp: Fielder = parse_element (element (cls, fields (9)))
+    val t1lp: Fielder = parse_element (element (cls, fields (10)))
+    val t3hp: Fielder = parse_element (element (cls, fields (11)))
+    val t3lp: Fielder = parse_element (element (cls, fields (12)))
+    val t4hp: Fielder = parse_element (element (cls, fields (13)))
+    val t4lp: Fielder = parse_element (element (cls, fields (14)))
+    val t5hp: Fielder = parse_element (element (cls, fields (15)))
+    val t5lp: Fielder = parse_element (element (cls, fields (16)))
 
     def parse (context: CIMContext): GovSteamCC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovSteamCC (
             CrossCompoundTurbineGovernorDynamics.parse (context),
             toDouble (mask (dhp (), 0)),
@@ -9429,7 +9601,7 @@ object GovSteamCCSerializer extends CIMSerializer[GovSteamCC]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovSteamCC]): GovSteamCC =
     {
-        val parent = CrossCompoundTurbineGovernorDynamicsSerializer.read (kryo, input, classOf[CrossCompoundTurbineGovernorDynamics])
+        val parent = CrossCompoundTurbineGovernorDynamicsSerializer.read (kryo, input, classOf [CrossCompoundTurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovSteamCC (
             parent,
@@ -9460,81 +9632,81 @@ object GovSteamCCSerializer extends CIMSerializer[GovSteamCC]
  * Simplified boiler and steam turbine with PID governor.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param chc Control valves rate closing limit (<i>Chc</i>).
- *        Unit = PU / s.  Typical value = -3,3.
- * @param cho Control valves rate opening limit (<i>Cho</i>).
- *        Unit = PU / s.  Typical value = 0,17.
- * @param cic Intercept valves rate closing limit (<i>Cic</i>).
- *        Typical value = -2,2.
- * @param cio Intercept valves rate opening limit (<i>Cio</i>).
- *        Typical value = 0,123.
- * @param db1 Deadband of the frequency corrector (<i>db1</i>).
- *        Typical value = 0.
- * @param db2 Deadband of the speed governor (<i>db2</i>).
- *        Typical value = 0,0004.
- * @param hhpmax Maximum control valve position (<i>Hhpmax</i>).
- *        Typical value = 1.
- * @param ke Gain of the power controller (<i>Ke</i>).
- *        Typical value = 0,65.
- * @param kfcor Gain of the frequency corrector (<i>Kfcor</i>).
- *        Typical value = 20.
- * @param khp Fraction of total turbine output generated by HP part (<i>Khp</i>).
- *        Typical value = 0,277.
- * @param klp Fraction of total turbine output generated by HP part (<i>Klp</i>).
- *        Typical value = 0,723.
- * @param komegacor Gain of the speed governor (<i>Kwcor</i>).
- *        Typical value = 20.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pmax Maximal active power of the turbine (<i>Pmax</i>).
- *        Typical value = 1.
- * @param prhmax Maximum low pressure limit (<i>Prhmax</i>).
- *        Typical value = 1,4.
- * @param simx Intercept valves transfer limit (<i>Simx</i>).
- *        Typical value = 0,425.
- * @param tb Boiler time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 100.
- * @param tdp Derivative time constant of the power controller (<i>Tdp</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param ten Electro hydraulic transducer (<i>Ten</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param tf Frequency transducer time constant (<i>Tf</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tfp Time constant of the power controller (<i>Tfp</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param thp High pressure (HP) time constant of the turbine (<i>Thp</i>) (&gt;= 0).
- *        Typical value = 0,31.
- * @param tip Integral time constant of the power controller (<i>Tip</i>) (&gt;= 0).
- *        Typical value = 2.
- * @param tlp Low pressure (LP) time constant of the turbine (<i>Tlp</i>) (&gt;= 0).
- *        Typical value = 0,45.
- * @param tp Power transducer time constant (<i>Tp</i>) (&gt;= 0).
- *        Typical value = 0,07.
- * @param trh Reheater  time constant of the turbine (<i>Trh</i>) (&gt;= 0).
- *        Typical value = 8.
- * @param tvhp Control valves servo time constant (<i>Tvhp</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param tvip Intercept valves servo time constant (<i>Tvip</i>) (&gt;= 0).
- *        Typical value = 0,15.
- * @param tw Speed transducer time constant (<i>Tw</i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param wfmax Upper limit for frequency correction (<i>Wfmax</i>) (&gt; GovSteamEU.wfmin).
- *        Typical value = 0,05.
- * @param wfmin Lower limit for frequency correction (<i>Wfmin</i>) (&lt; GovSteamEU.wfmax).
- *        Typical value = -0,05.
- * @param wmax1 Emergency speed control lower limit (<i>wmax1</i>).
- *        Typical value = 1,025.
- * @param wmax2 Emergency speed control upper limit (<i>wmax2</i>).
- *        Typical value = 1,05.
- * @param wwmax Upper limit for the speed governor (<i>Wwmax</i>) (&gt; GovSteamEU.wwmin).
- *        Typical value = 0,1.
- * @param wwmin Lower limit for the speed governor frequency correction (<i>Wwmin</i>) (&lt; GovSteamEU.wwmax).
- *        Typical value = -1.
+ * @param chc                     Control valves rate closing limit (<i>Chc</i>).
+ *                                Unit = PU / s.  Typical value = -3,3.
+ * @param cho                     Control valves rate opening limit (<i>Cho</i>).
+ *                                Unit = PU / s.  Typical value = 0,17.
+ * @param cic                     Intercept valves rate closing limit (<i>Cic</i>).
+ *                                Typical value = -2,2.
+ * @param cio                     Intercept valves rate opening limit (<i>Cio</i>).
+ *                                Typical value = 0,123.
+ * @param db1                     Deadband of the frequency corrector (<i>db1</i>).
+ *                                Typical value = 0.
+ * @param db2                     Deadband of the speed governor (<i>db2</i>).
+ *                                Typical value = 0,0004.
+ * @param hhpmax                  Maximum control valve position (<i>Hhpmax</i>).
+ *                                Typical value = 1.
+ * @param ke                      Gain of the power controller (<i>Ke</i>).
+ *                                Typical value = 0,65.
+ * @param kfcor                   Gain of the frequency corrector (<i>Kfcor</i>).
+ *                                Typical value = 20.
+ * @param khp                     Fraction of total turbine output generated by HP part (<i>Khp</i>).
+ *                                Typical value = 0,277.
+ * @param klp                     Fraction of total turbine output generated by HP part (<i>Klp</i>).
+ *                                Typical value = 0,723.
+ * @param komegacor               Gain of the speed governor (<i>Kwcor</i>).
+ *                                Typical value = 20.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pmax                    Maximal active power of the turbine (<i>Pmax</i>).
+ *                                Typical value = 1.
+ * @param prhmax                  Maximum low pressure limit (<i>Prhmax</i>).
+ *                                Typical value = 1,4.
+ * @param simx                    Intercept valves transfer limit (<i>Simx</i>).
+ *                                Typical value = 0,425.
+ * @param tb                      Boiler time constant (<i>Tb</i>) (&gt;= 0).
+ *                                Typical value = 100.
+ * @param tdp                     Derivative time constant of the power controller (<i>Tdp</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param ten                     Electro hydraulic transducer (<i>Ten</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param tf                      Frequency transducer time constant (<i>Tf</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param tfp                     Time constant of the power controller (<i>Tfp</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param thp                     High pressure (HP) time constant of the turbine (<i>Thp</i>) (&gt;= 0).
+ *                                Typical value = 0,31.
+ * @param tip                     Integral time constant of the power controller (<i>Tip</i>) (&gt;= 0).
+ *                                Typical value = 2.
+ * @param tlp                     Low pressure (LP) time constant of the turbine (<i>Tlp</i>) (&gt;= 0).
+ *                                Typical value = 0,45.
+ * @param tp                      Power transducer time constant (<i>Tp</i>) (&gt;= 0).
+ *                                Typical value = 0,07.
+ * @param trh                     Reheater  time constant of the turbine (<i>Trh</i>) (&gt;= 0).
+ *                                Typical value = 8.
+ * @param tvhp                    Control valves servo time constant (<i>Tvhp</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param tvip                    Intercept valves servo time constant (<i>Tvip</i>) (&gt;= 0).
+ *                                Typical value = 0,15.
+ * @param tw                      Speed transducer time constant (<i>Tw</i>) (&gt;= 0).
+ *                                Typical value = 0,02.
+ * @param wfmax                   Upper limit for frequency correction (<i>Wfmax</i>) (&gt; GovSteamEU.wfmin).
+ *                                Typical value = 0,05.
+ * @param wfmin                   Lower limit for frequency correction (<i>Wfmin</i>) (&lt; GovSteamEU.wfmax).
+ *                                Typical value = -0,05.
+ * @param wmax1                   Emergency speed control lower limit (<i>wmax1</i>).
+ *                                Typical value = 1,025.
+ * @param wmax2                   Emergency speed control upper limit (<i>wmax2</i>).
+ *                                Typical value = 1,05.
+ * @param wwmax                   Upper limit for the speed governor (<i>Wwmax</i>) (&gt; GovSteamEU.wwmin).
+ *                                Typical value = 0,1.
+ * @param wwmin                   Lower limit for the speed governor frequency correction (<i>Wwmin</i>) (&lt; GovSteamEU.wwmax).
+ *                                Typical value = -1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovSteamEU
 (
@@ -9575,8 +9747,8 @@ final case class GovSteamEU
     wwmax: Double = 0.0,
     wwmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -9602,13 +9774,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamEU.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamEU.fields (position), value)
+
         emitelem (0, chc)
         emitelem (1, cho)
         emitelem (2, cic)
@@ -9646,6 +9823,7 @@ extends
         emitelem (34, wwmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovSteamEU rdf:ID=\"%s\">\n%s\t</cim:GovSteamEU>".format (id, export_fields)
@@ -9653,10 +9831,10 @@ extends
 }
 
 object GovSteamEU
-extends
-    CIMParseable[GovSteamEU]
+    extends
+        CIMParseable[GovSteamEU]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "chc",
         "cho",
         "cic",
@@ -9693,46 +9871,46 @@ extends
         "wwmax",
         "wwmin"
     )
-    val chc: Fielder = parse_element (element (cls, fields(0)))
-    val cho: Fielder = parse_element (element (cls, fields(1)))
-    val cic: Fielder = parse_element (element (cls, fields(2)))
-    val cio: Fielder = parse_element (element (cls, fields(3)))
-    val db1: Fielder = parse_element (element (cls, fields(4)))
-    val db2: Fielder = parse_element (element (cls, fields(5)))
-    val hhpmax: Fielder = parse_element (element (cls, fields(6)))
-    val ke: Fielder = parse_element (element (cls, fields(7)))
-    val kfcor: Fielder = parse_element (element (cls, fields(8)))
-    val khp: Fielder = parse_element (element (cls, fields(9)))
-    val klp: Fielder = parse_element (element (cls, fields(10)))
-    val komegacor: Fielder = parse_element (element (cls, fields(11)))
-    val mwbase: Fielder = parse_element (element (cls, fields(12)))
-    val pmax: Fielder = parse_element (element (cls, fields(13)))
-    val prhmax: Fielder = parse_element (element (cls, fields(14)))
-    val simx: Fielder = parse_element (element (cls, fields(15)))
-    val tb: Fielder = parse_element (element (cls, fields(16)))
-    val tdp: Fielder = parse_element (element (cls, fields(17)))
-    val ten: Fielder = parse_element (element (cls, fields(18)))
-    val tf: Fielder = parse_element (element (cls, fields(19)))
-    val tfp: Fielder = parse_element (element (cls, fields(20)))
-    val thp: Fielder = parse_element (element (cls, fields(21)))
-    val tip: Fielder = parse_element (element (cls, fields(22)))
-    val tlp: Fielder = parse_element (element (cls, fields(23)))
-    val tp: Fielder = parse_element (element (cls, fields(24)))
-    val trh: Fielder = parse_element (element (cls, fields(25)))
-    val tvhp: Fielder = parse_element (element (cls, fields(26)))
-    val tvip: Fielder = parse_element (element (cls, fields(27)))
-    val tw: Fielder = parse_element (element (cls, fields(28)))
-    val wfmax: Fielder = parse_element (element (cls, fields(29)))
-    val wfmin: Fielder = parse_element (element (cls, fields(30)))
-    val wmax1: Fielder = parse_element (element (cls, fields(31)))
-    val wmax2: Fielder = parse_element (element (cls, fields(32)))
-    val wwmax: Fielder = parse_element (element (cls, fields(33)))
-    val wwmin: Fielder = parse_element (element (cls, fields(34)))
+    val chc: Fielder = parse_element (element (cls, fields (0)))
+    val cho: Fielder = parse_element (element (cls, fields (1)))
+    val cic: Fielder = parse_element (element (cls, fields (2)))
+    val cio: Fielder = parse_element (element (cls, fields (3)))
+    val db1: Fielder = parse_element (element (cls, fields (4)))
+    val db2: Fielder = parse_element (element (cls, fields (5)))
+    val hhpmax: Fielder = parse_element (element (cls, fields (6)))
+    val ke: Fielder = parse_element (element (cls, fields (7)))
+    val kfcor: Fielder = parse_element (element (cls, fields (8)))
+    val khp: Fielder = parse_element (element (cls, fields (9)))
+    val klp: Fielder = parse_element (element (cls, fields (10)))
+    val komegacor: Fielder = parse_element (element (cls, fields (11)))
+    val mwbase: Fielder = parse_element (element (cls, fields (12)))
+    val pmax: Fielder = parse_element (element (cls, fields (13)))
+    val prhmax: Fielder = parse_element (element (cls, fields (14)))
+    val simx: Fielder = parse_element (element (cls, fields (15)))
+    val tb: Fielder = parse_element (element (cls, fields (16)))
+    val tdp: Fielder = parse_element (element (cls, fields (17)))
+    val ten: Fielder = parse_element (element (cls, fields (18)))
+    val tf: Fielder = parse_element (element (cls, fields (19)))
+    val tfp: Fielder = parse_element (element (cls, fields (20)))
+    val thp: Fielder = parse_element (element (cls, fields (21)))
+    val tip: Fielder = parse_element (element (cls, fields (22)))
+    val tlp: Fielder = parse_element (element (cls, fields (23)))
+    val tp: Fielder = parse_element (element (cls, fields (24)))
+    val trh: Fielder = parse_element (element (cls, fields (25)))
+    val tvhp: Fielder = parse_element (element (cls, fields (26)))
+    val tvip: Fielder = parse_element (element (cls, fields (27)))
+    val tw: Fielder = parse_element (element (cls, fields (28)))
+    val wfmax: Fielder = parse_element (element (cls, fields (29)))
+    val wfmin: Fielder = parse_element (element (cls, fields (30)))
+    val wmax1: Fielder = parse_element (element (cls, fields (31)))
+    val wmax2: Fielder = parse_element (element (cls, fields (32)))
+    val wwmax: Fielder = parse_element (element (cls, fields (33)))
+    val wwmin: Fielder = parse_element (element (cls, fields (34)))
 
     def parse (context: CIMContext): GovSteamEU =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovSteamEU (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (chc (), 0)),
@@ -9827,7 +10005,7 @@ object GovSteamEUSerializer extends CIMSerializer[GovSteamEU]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovSteamEU]): GovSteamEU =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovSteamEU (
             parent,
@@ -9876,24 +10054,24 @@ object GovSteamEUSerializer extends CIMSerializer[GovSteamEU]
  * Steam turbine governor with reheat time constants and modelling of the effects of fast valve closing to reduce mechanical power.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param dt (<i>Dt</i>).
- * @param k Fraction of the turbine power developed by turbine sections not involved in fast valving (<i>K</i>).
- * @param mwbase Alternate base used instead of machine base in equipment model if necessary (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param r (<i>R</i>).
- * @param t1 Governor time constant (<i>T1</i>) (&gt;= 0).
- * @param t3 Reheater time constant (<i>T3</i>) (&gt;= 0).
- * @param ta Time after initial time for valve to close (<i>Ta</i>) (&gt;= 0).
- * @param tb Time after initial time for valve to begin opening (<i>Tb</i>) (&gt;= 0).
- * @param tc Time after initial time for valve to become fully open (<i>Tc</i>) (&gt;= 0).
- * @param tt Time constant with which power falls off after intercept valve closure (<i>Tt</i>) (&gt;= 0).
- * @param vmax (<i>Vmax</i>) (&gt; GovSteamFV2.vmin).
- * @param vmin (<i>Vmin</i>) (&lt; GovSteamFV2.vmax).
+ * @param dt                      (<i>Dt</i>).
+ * @param k                       Fraction of the turbine power developed by turbine sections not involved in fast valving (<i>K</i>).
+ * @param mwbase                  Alternate base used instead of machine base in equipment model if necessary (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param r                       (<i>R</i>).
+ * @param t1                      Governor time constant (<i>T1</i>) (&gt;= 0).
+ * @param t3                      Reheater time constant (<i>T3</i>) (&gt;= 0).
+ * @param ta                      Time after initial time for valve to close (<i>Ta</i>) (&gt;= 0).
+ * @param tb                      Time after initial time for valve to begin opening (<i>Tb</i>) (&gt;= 0).
+ * @param tc                      Time after initial time for valve to become fully open (<i>Tc</i>) (&gt;= 0).
+ * @param tt                      Time constant with which power falls off after intercept valve closure (<i>Tt</i>) (&gt;= 0).
+ * @param vmax                    (<i>Vmax</i>) (&gt; GovSteamFV2.vmin).
+ * @param vmin                    (<i>Vmin</i>) (&lt; GovSteamFV2.vmax).
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovSteamFV2
 (
@@ -9911,8 +10089,8 @@ final case class GovSteamFV2
     vmax: Double = 0.0,
     vmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -9938,13 +10116,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamFV2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamFV2.fields (position), value)
+
         emitelem (0, dt)
         emitelem (1, k)
         emitelem (2, mwbase)
@@ -9959,6 +10142,7 @@ extends
         emitelem (11, vmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovSteamFV2 rdf:ID=\"%s\">\n%s\t</cim:GovSteamFV2>".format (id, export_fields)
@@ -9966,10 +10150,10 @@ extends
 }
 
 object GovSteamFV2
-extends
-    CIMParseable[GovSteamFV2]
+    extends
+        CIMParseable[GovSteamFV2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dt",
         "k",
         "mwbase",
@@ -9983,23 +10167,23 @@ extends
         "vmax",
         "vmin"
     )
-    val dt: Fielder = parse_element (element (cls, fields(0)))
-    val k: Fielder = parse_element (element (cls, fields(1)))
-    val mwbase: Fielder = parse_element (element (cls, fields(2)))
-    val r: Fielder = parse_element (element (cls, fields(3)))
-    val t1: Fielder = parse_element (element (cls, fields(4)))
-    val t3: Fielder = parse_element (element (cls, fields(5)))
-    val ta: Fielder = parse_element (element (cls, fields(6)))
-    val tb: Fielder = parse_element (element (cls, fields(7)))
-    val tc: Fielder = parse_element (element (cls, fields(8)))
-    val tt: Fielder = parse_element (element (cls, fields(9)))
-    val vmax: Fielder = parse_element (element (cls, fields(10)))
-    val vmin: Fielder = parse_element (element (cls, fields(11)))
+    val dt: Fielder = parse_element (element (cls, fields (0)))
+    val k: Fielder = parse_element (element (cls, fields (1)))
+    val mwbase: Fielder = parse_element (element (cls, fields (2)))
+    val r: Fielder = parse_element (element (cls, fields (3)))
+    val t1: Fielder = parse_element (element (cls, fields (4)))
+    val t3: Fielder = parse_element (element (cls, fields (5)))
+    val ta: Fielder = parse_element (element (cls, fields (6)))
+    val tb: Fielder = parse_element (element (cls, fields (7)))
+    val tc: Fielder = parse_element (element (cls, fields (8)))
+    val tt: Fielder = parse_element (element (cls, fields (9)))
+    val vmax: Fielder = parse_element (element (cls, fields (10)))
+    val vmin: Fielder = parse_element (element (cls, fields (11)))
 
     def parse (context: CIMContext): GovSteamFV2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovSteamFV2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (dt (), 0)),
@@ -10048,7 +10232,7 @@ object GovSteamFV2Serializer extends CIMSerializer[GovSteamFV2]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovSteamFV2]): GovSteamFV2 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovSteamFV2 (
             parent,
@@ -10074,73 +10258,73 @@ object GovSteamFV2Serializer extends CIMSerializer[GovSteamFV2]
  * Simplified GovSteamIEEE1 steam turbine governor with Prmax limit and fast valving.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param gv1 Nonlinear gain valve position point 1 (<i>GV1</i>).
- *        Typical value = 0.
- * @param gv2 Nonlinear gain valve position point 2 (<i>GV2</i>).
- *        Typical value = 0,4.
- * @param gv3 Nonlinear gain valve position point 3 (<i>GV3</i>).
- *        Typical value = 0,5.
- * @param gv4 Nonlinear gain valve position point 4 (<i>GV4</i>).
- *        Typical value = 0,6.
- * @param gv5 Nonlinear gain valve position point 5 (<i>GV5</i>).
- *        Typical value = 1.
- * @param gv6 Nonlinear gain valve position point 6 (<i>GV6</i>).
- *        Typical value = 0.
- * @param k Governor gain, (reciprocal of droop) (<i>K</i>).
- *        Typical value = 20.
- * @param k1 Fraction of turbine power developed after first boiler pass (<i>K1</i>).
- *        Typical value = 0,2.
- * @param k2 Fraction of turbine power developed after second boiler pass (<i>K2</i>).
- *        Typical value = 0,2.
- * @param k3 Fraction of hp turbine power developed after crossover or third boiler pass (<i>K3</i>).
- *        Typical value = 0,6.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pgv1 Nonlinear gain power value point 1 (<i>Pgv1</i>).
- *        Typical value = 0.
- * @param pgv2 Nonlinear gain power value point 2 (<i>Pgv2</i>).
- *        Typical value = 0,75.
- * @param pgv3 Nonlinear gain power value point 3 (<i>Pgv3</i>).
- *        Typical value = 0,91.
- * @param pgv4 Nonlinear gain power value point 4 (<i>Pgv4</i>).
- *        Typical value = 0,98.
- * @param pgv5 Nonlinear gain power value point 5 (<i>Pgv5</i>).
- *        Typical value = 1.
- * @param pgv6 Nonlinear gain power value point 6 (<i>Pgv6</i>).
- *        Typical value = 0.
- * @param pmax Maximum valve opening, PU of <i>MWbase</i> (<i>Pmax</i>) (&gt; GovSteamFV3.pmin).
- *        Typical value = 1.
- * @param pmin Minimum valve opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&lt; GovSteamFV3.pmax).
- *        Typical value = 0.
- * @param prmax Max. pressure in reheater (<i>Prmax</i>).
- *        Typical value = 1.
- * @param t1 Governor lead time constant (<i>T1</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param t2 Governor lag time constant (<i>T2</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param t3 Valve positioner time constant (<i>T3</i>) (&gt; 0).
- *        Typical value = 0.
- * @param t4 Inlet piping/steam bowl time constant (<i>T4</i>) (&gt;= 0).
- *        Typical value = 0,2.
- * @param t5 Time constant of second boiler pass (i.e. reheater) (<i>T5</i>) (&gt; 0 if fast valving is used, otherwise &gt;= 0).
- *        Typical value = 0,5.
- * @param t6 Time constant of crossover or third boiler pass (<i>T6</i>) (&gt;= 0).
- *        Typical value = 10.
- * @param ta Time to close intercept valve (IV) (<i>Ta</i>) (&gt;= 0).
- *        Typical value = 0,97.
- * @param tb Time until IV starts to reopen (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 0,98.
- * @param tc Time until IV is fully open (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0,99.
- * @param uc Maximum valve closing velocity (<i>Uc</i>).
- *        Unit = PU / s.  Typical value = -1.
- * @param uo Maximum valve opening velocity (<i>Uo</i>).
- *        Unit = PU / s.  Typical value = 0,1.
+ * @param gv1                     Nonlinear gain valve position point 1 (<i>GV1</i>).
+ *                                Typical value = 0.
+ * @param gv2                     Nonlinear gain valve position point 2 (<i>GV2</i>).
+ *                                Typical value = 0,4.
+ * @param gv3                     Nonlinear gain valve position point 3 (<i>GV3</i>).
+ *                                Typical value = 0,5.
+ * @param gv4                     Nonlinear gain valve position point 4 (<i>GV4</i>).
+ *                                Typical value = 0,6.
+ * @param gv5                     Nonlinear gain valve position point 5 (<i>GV5</i>).
+ *                                Typical value = 1.
+ * @param gv6                     Nonlinear gain valve position point 6 (<i>GV6</i>).
+ *                                Typical value = 0.
+ * @param k                       Governor gain, (reciprocal of droop) (<i>K</i>).
+ *                                Typical value = 20.
+ * @param k1                      Fraction of turbine power developed after first boiler pass (<i>K1</i>).
+ *                                Typical value = 0,2.
+ * @param k2                      Fraction of turbine power developed after second boiler pass (<i>K2</i>).
+ *                                Typical value = 0,2.
+ * @param k3                      Fraction of hp turbine power developed after crossover or third boiler pass (<i>K3</i>).
+ *                                Typical value = 0,6.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pgv1                    Nonlinear gain power value point 1 (<i>Pgv1</i>).
+ *                                Typical value = 0.
+ * @param pgv2                    Nonlinear gain power value point 2 (<i>Pgv2</i>).
+ *                                Typical value = 0,75.
+ * @param pgv3                    Nonlinear gain power value point 3 (<i>Pgv3</i>).
+ *                                Typical value = 0,91.
+ * @param pgv4                    Nonlinear gain power value point 4 (<i>Pgv4</i>).
+ *                                Typical value = 0,98.
+ * @param pgv5                    Nonlinear gain power value point 5 (<i>Pgv5</i>).
+ *                                Typical value = 1.
+ * @param pgv6                    Nonlinear gain power value point 6 (<i>Pgv6</i>).
+ *                                Typical value = 0.
+ * @param pmax                    Maximum valve opening, PU of <i>MWbase</i> (<i>Pmax</i>) (&gt; GovSteamFV3.pmin).
+ *                                Typical value = 1.
+ * @param pmin                    Minimum valve opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&lt; GovSteamFV3.pmax).
+ *                                Typical value = 0.
+ * @param prmax                   Max. pressure in reheater (<i>Prmax</i>).
+ *                                Typical value = 1.
+ * @param t1                      Governor lead time constant (<i>T1</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param t2                      Governor lag time constant (<i>T2</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param t3                      Valve positioner time constant (<i>T3</i>) (&gt; 0).
+ *                                Typical value = 0.
+ * @param t4                      Inlet piping/steam bowl time constant (<i>T4</i>) (&gt;= 0).
+ *                                Typical value = 0,2.
+ * @param t5                      Time constant of second boiler pass (i.e. reheater) (<i>T5</i>) (&gt; 0 if fast valving is used, otherwise &gt;= 0).
+ *                                Typical value = 0,5.
+ * @param t6                      Time constant of crossover or third boiler pass (<i>T6</i>) (&gt;= 0).
+ *                                Typical value = 10.
+ * @param ta                      Time to close intercept valve (IV) (<i>Ta</i>) (&gt;= 0).
+ *                                Typical value = 0,97.
+ * @param tb                      Time until IV starts to reopen (<i>Tb</i>) (&gt;= 0).
+ *                                Typical value = 0,98.
+ * @param tc                      Time until IV is fully open (<i>Tc</i>) (&gt;= 0).
+ *                                Typical value = 0,99.
+ * @param uc                      Maximum valve closing velocity (<i>Uc</i>).
+ *                                Unit = PU / s.  Typical value = -1.
+ * @param uo                      Maximum valve opening velocity (<i>Uo</i>).
+ *                                Unit = PU / s.  Typical value = 0,1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovSteamFV3
 (
@@ -10177,8 +10361,8 @@ final case class GovSteamFV3
     uc: Double = 0.0,
     uo: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -10204,13 +10388,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamFV3.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamFV3.fields (position), value)
+
         emitelem (0, gv1)
         emitelem (1, gv2)
         emitelem (2, gv3)
@@ -10244,6 +10433,7 @@ extends
         emitelem (30, uo)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovSteamFV3 rdf:ID=\"%s\">\n%s\t</cim:GovSteamFV3>".format (id, export_fields)
@@ -10251,10 +10441,10 @@ extends
 }
 
 object GovSteamFV3
-extends
-    CIMParseable[GovSteamFV3]
+    extends
+        CIMParseable[GovSteamFV3]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "gv1",
         "gv2",
         "gv3",
@@ -10287,42 +10477,42 @@ extends
         "uc",
         "uo"
     )
-    val gv1: Fielder = parse_element (element (cls, fields(0)))
-    val gv2: Fielder = parse_element (element (cls, fields(1)))
-    val gv3: Fielder = parse_element (element (cls, fields(2)))
-    val gv4: Fielder = parse_element (element (cls, fields(3)))
-    val gv5: Fielder = parse_element (element (cls, fields(4)))
-    val gv6: Fielder = parse_element (element (cls, fields(5)))
-    val k: Fielder = parse_element (element (cls, fields(6)))
-    val k1: Fielder = parse_element (element (cls, fields(7)))
-    val k2: Fielder = parse_element (element (cls, fields(8)))
-    val k3: Fielder = parse_element (element (cls, fields(9)))
-    val mwbase: Fielder = parse_element (element (cls, fields(10)))
-    val pgv1: Fielder = parse_element (element (cls, fields(11)))
-    val pgv2: Fielder = parse_element (element (cls, fields(12)))
-    val pgv3: Fielder = parse_element (element (cls, fields(13)))
-    val pgv4: Fielder = parse_element (element (cls, fields(14)))
-    val pgv5: Fielder = parse_element (element (cls, fields(15)))
-    val pgv6: Fielder = parse_element (element (cls, fields(16)))
-    val pmax: Fielder = parse_element (element (cls, fields(17)))
-    val pmin: Fielder = parse_element (element (cls, fields(18)))
-    val prmax: Fielder = parse_element (element (cls, fields(19)))
-    val t1: Fielder = parse_element (element (cls, fields(20)))
-    val t2: Fielder = parse_element (element (cls, fields(21)))
-    val t3: Fielder = parse_element (element (cls, fields(22)))
-    val t4: Fielder = parse_element (element (cls, fields(23)))
-    val t5: Fielder = parse_element (element (cls, fields(24)))
-    val t6: Fielder = parse_element (element (cls, fields(25)))
-    val ta: Fielder = parse_element (element (cls, fields(26)))
-    val tb: Fielder = parse_element (element (cls, fields(27)))
-    val tc: Fielder = parse_element (element (cls, fields(28)))
-    val uc: Fielder = parse_element (element (cls, fields(29)))
-    val uo: Fielder = parse_element (element (cls, fields(30)))
+    val gv1: Fielder = parse_element (element (cls, fields (0)))
+    val gv2: Fielder = parse_element (element (cls, fields (1)))
+    val gv3: Fielder = parse_element (element (cls, fields (2)))
+    val gv4: Fielder = parse_element (element (cls, fields (3)))
+    val gv5: Fielder = parse_element (element (cls, fields (4)))
+    val gv6: Fielder = parse_element (element (cls, fields (5)))
+    val k: Fielder = parse_element (element (cls, fields (6)))
+    val k1: Fielder = parse_element (element (cls, fields (7)))
+    val k2: Fielder = parse_element (element (cls, fields (8)))
+    val k3: Fielder = parse_element (element (cls, fields (9)))
+    val mwbase: Fielder = parse_element (element (cls, fields (10)))
+    val pgv1: Fielder = parse_element (element (cls, fields (11)))
+    val pgv2: Fielder = parse_element (element (cls, fields (12)))
+    val pgv3: Fielder = parse_element (element (cls, fields (13)))
+    val pgv4: Fielder = parse_element (element (cls, fields (14)))
+    val pgv5: Fielder = parse_element (element (cls, fields (15)))
+    val pgv6: Fielder = parse_element (element (cls, fields (16)))
+    val pmax: Fielder = parse_element (element (cls, fields (17)))
+    val pmin: Fielder = parse_element (element (cls, fields (18)))
+    val prmax: Fielder = parse_element (element (cls, fields (19)))
+    val t1: Fielder = parse_element (element (cls, fields (20)))
+    val t2: Fielder = parse_element (element (cls, fields (21)))
+    val t3: Fielder = parse_element (element (cls, fields (22)))
+    val t4: Fielder = parse_element (element (cls, fields (23)))
+    val t5: Fielder = parse_element (element (cls, fields (24)))
+    val t6: Fielder = parse_element (element (cls, fields (25)))
+    val ta: Fielder = parse_element (element (cls, fields (26)))
+    val tb: Fielder = parse_element (element (cls, fields (27)))
+    val tc: Fielder = parse_element (element (cls, fields (28)))
+    val uc: Fielder = parse_element (element (cls, fields (29)))
+    val uo: Fielder = parse_element (element (cls, fields (30)))
 
     def parse (context: CIMContext): GovSteamFV3 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovSteamFV3 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (gv1 (), 0)),
@@ -10409,7 +10599,7 @@ object GovSteamFV3Serializer extends CIMSerializer[GovSteamFV3]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovSteamFV3]): GovSteamFV3 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovSteamFV3 (
             parent,
@@ -10454,113 +10644,113 @@ object GovSteamFV3Serializer extends CIMSerializer[GovSteamFV3]
  * Detailed electro-hydraulic governor for steam unit.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param cpsmn Minimum value of pressure regulator output (<i>Cpsmn</i>).
- *        Typical value = -1.
- * @param cpsmx Maximum value of pressure regulator output (<i>Cpsmx</i>).
- *        Typical value = 1.
- * @param crmn Minimum value of regulator set-point (<i>Crmn</i>).
- *        Typical value = 0.
- * @param crmx Maximum value of regulator set-point (<i>Crmx</i>).
- *        Typical value = 1,2.
- * @param kdc Derivative gain of pressure regulator (<i>Kdc</i>).
- *        Typical value = 1.
- * @param kf1 Frequency bias (reciprocal of droop) (<i>Kf1</i>).
- *        Typical value = 20.
- * @param kf3 Frequency control (reciprocal of droop) (<i>Kf3</i>).
- *        Typical value = 20.
- * @param khp Fraction  of total turbine output generated by HP part (<i>Khp</i>).
- *        Typical value = 0,35.
- * @param kic Integral gain of pressure regulator (<i>Kic</i>).
- *        Typical value = 0,0033.
- * @param kip Integral gain of pressure feedback regulator (<i>Kip</i>).
- *        Typical value = 0,5.
- * @param kit Integral gain of electro-hydraulic regulator (<i>Kit</i>).
- *        Typical value = 0,04.
- * @param kmp1 First gain coefficient of  intercept valves characteristic (<i>Kmp1</i>).
- *        Typical value = 0,5.
- * @param kmp2 Second gain coefficient of intercept valves characteristic (<i>Kmp2</i>).
- *        Typical value = 3,5.
- * @param kpc Proportional gain of pressure regulator (<i>Kpc</i>).
- *        Typical value = 0,5.
- * @param kpp Proportional gain of pressure feedback regulator (<i>Kpp</i>).
- *        Typical value = 1.
- * @param kpt Proportional gain of electro-hydraulic regulator (<i>Kpt</i>).
- *        Typical value = 0,3.
- * @param krc Maximum variation of fuel flow (<i>Krc</i>).
- *        Typical value = 0,05.
- * @param ksh Pressure loss due to flow friction in the boiler tubes (<i>Ksh</i>).
- *        Typical value = 0,08.
- * @param lpi Maximum negative power error (<i>Lpi</i>).
- *        Typical value = -0,15.
- * @param lps Maximum positive power error (<i>Lps</i>).
- *        Typical value = 0,03.
- * @param mnef Lower limit for frequency correction (<i>MN</i><i><sub>EF</sub></i>).
- *        Typical value = -0,05.
- * @param mxef Upper limit for frequency correction (<i>MX</i><i><sub>EF</sub></i>).
- *        Typical value = 0,05.
- * @param pr1 First value of pressure set point static characteristic (<i>Pr1</i>).
- *        Typical value = 0,2.
- * @param pr2 Second value of pressure set point static characteristic, corresponding to <i>Ps0</i> = 1,0 PU (<i>Pr2</i>).
- *        Typical value = 0,75.
- * @param psmn Minimum value of pressure set point static characteristic (<i>Psmn</i>).
- *        Typical value = 1.
- * @param rsmimn Minimum value of integral regulator (<i>Rsmimn</i>).
- *        Typical value = 0.
- * @param rsmimx Maximum value of integral regulator (<i>Rsmimx</i>).
- *        Typical value = 1,1.
- * @param rvgmn Minimum value of integral regulator (<i>Rvgmn</i>).
- *        Typical value = 0.
- * @param rvgmx Maximum value of integral regulator (<i>Rvgmx</i>).
- *        Typical value = 1,2.
- * @param srmn Minimum valve opening (<i>Srmn</i>).
- *        Typical value = 0.
- * @param srmx Maximum valve opening (<i>Srmx</i>).
- *        Typical value = 1,1.
- * @param srsmp Intercept valves characteristic discontinuity point (<i>Srsmp</i>).
- *        Typical value = 0,43.
- * @param svmn Maximum regulator gate closing velocity (<i>Svmn</i>).
- *        Typical value = -0,0333.
- * @param svmx Maximum regulator gate opening velocity (<i>Svmx</i>).
- *        Typical value = 0,0333.
- * @param ta Control valves rate opening time (<i>Ta</i>) (&gt;= 0).
- *        Typical value = 0,8.
- * @param tam Intercept valves rate opening time (<i>Tam</i>) (&gt;= 0).
- *        Typical value = 0,8.
- * @param tc Control valves rate closing time (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param tcm Intercept valves rate closing time (<i>Tcm</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param tdc Derivative time constant of pressure regulator (<i>Tdc</i>) (&gt;= 0).
- *        Typical value = 90.
- * @param tf1 Time constant of fuel regulation (<i>Tf1</i>) (&gt;= 0).
- *        Typical value = 10.
- * @param tf2 Time constant of steam chest (<i>Tf2</i>) (&gt;= 0).
- *        Typical value = 10.
- * @param thp High pressure (HP) time constant of the turbine (<i>Thp</i>) (&gt;= 0).
- *        Typical value = 0,15.
- * @param tmp Low pressure (LP) time constant of the turbine (<i>Tmp</i>) (&gt;= 0).
- *        Typical value = 0,4.
- * @param trh Reheater  time constant of the turbine (<i>Trh</i>) (&gt;= 0).
- *        Typical value = 10.
- * @param tv Boiler time constant (<i>Tv</i>) (&gt;= 0).
- *        Typical value = 60.
- * @param ty Control valves servo time constant (<i>Ty</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param y Coefficient of linearized equations of turbine (Stodola formulation) (<i>Y</i>).
- *        Typical value = 0,13.
- * @param yhpmn Minimum control valve position (<i>Yhpmn</i>).
- *        Typical value = 0.
- * @param yhpmx Maximum control valve position (<i>Yhpmx</i>).
- *        Typical value = 1,1.
- * @param ympmn Minimum intercept valve position (<i>Ympmn</i>).
- *        Typical value = 0.
- * @param ympmx Maximum intercept valve position (<i>Ympmx</i>).
- *        Typical value = 1,1.
+ * @param cpsmn                   Minimum value of pressure regulator output (<i>Cpsmn</i>).
+ *                                Typical value = -1.
+ * @param cpsmx                   Maximum value of pressure regulator output (<i>Cpsmx</i>).
+ *                                Typical value = 1.
+ * @param crmn                    Minimum value of regulator set-point (<i>Crmn</i>).
+ *                                Typical value = 0.
+ * @param crmx                    Maximum value of regulator set-point (<i>Crmx</i>).
+ *                                Typical value = 1,2.
+ * @param kdc                     Derivative gain of pressure regulator (<i>Kdc</i>).
+ *                                Typical value = 1.
+ * @param kf1                     Frequency bias (reciprocal of droop) (<i>Kf1</i>).
+ *                                Typical value = 20.
+ * @param kf3                     Frequency control (reciprocal of droop) (<i>Kf3</i>).
+ *                                Typical value = 20.
+ * @param khp                     Fraction  of total turbine output generated by HP part (<i>Khp</i>).
+ *                                Typical value = 0,35.
+ * @param kic                     Integral gain of pressure regulator (<i>Kic</i>).
+ *                                Typical value = 0,0033.
+ * @param kip                     Integral gain of pressure feedback regulator (<i>Kip</i>).
+ *                                Typical value = 0,5.
+ * @param kit                     Integral gain of electro-hydraulic regulator (<i>Kit</i>).
+ *                                Typical value = 0,04.
+ * @param kmp1                    First gain coefficient of  intercept valves characteristic (<i>Kmp1</i>).
+ *                                Typical value = 0,5.
+ * @param kmp2                    Second gain coefficient of intercept valves characteristic (<i>Kmp2</i>).
+ *                                Typical value = 3,5.
+ * @param kpc                     Proportional gain of pressure regulator (<i>Kpc</i>).
+ *                                Typical value = 0,5.
+ * @param kpp                     Proportional gain of pressure feedback regulator (<i>Kpp</i>).
+ *                                Typical value = 1.
+ * @param kpt                     Proportional gain of electro-hydraulic regulator (<i>Kpt</i>).
+ *                                Typical value = 0,3.
+ * @param krc                     Maximum variation of fuel flow (<i>Krc</i>).
+ *                                Typical value = 0,05.
+ * @param ksh                     Pressure loss due to flow friction in the boiler tubes (<i>Ksh</i>).
+ *                                Typical value = 0,08.
+ * @param lpi                     Maximum negative power error (<i>Lpi</i>).
+ *                                Typical value = -0,15.
+ * @param lps                     Maximum positive power error (<i>Lps</i>).
+ *                                Typical value = 0,03.
+ * @param mnef                    Lower limit for frequency correction (<i>MN</i><i><sub>EF</sub></i>).
+ *                                Typical value = -0,05.
+ * @param mxef                    Upper limit for frequency correction (<i>MX</i><i><sub>EF</sub></i>).
+ *                                Typical value = 0,05.
+ * @param pr1                     First value of pressure set point static characteristic (<i>Pr1</i>).
+ *                                Typical value = 0,2.
+ * @param pr2                     Second value of pressure set point static characteristic, corresponding to <i>Ps0</i> = 1,0 PU (<i>Pr2</i>).
+ *                                Typical value = 0,75.
+ * @param psmn                    Minimum value of pressure set point static characteristic (<i>Psmn</i>).
+ *                                Typical value = 1.
+ * @param rsmimn                  Minimum value of integral regulator (<i>Rsmimn</i>).
+ *                                Typical value = 0.
+ * @param rsmimx                  Maximum value of integral regulator (<i>Rsmimx</i>).
+ *                                Typical value = 1,1.
+ * @param rvgmn                   Minimum value of integral regulator (<i>Rvgmn</i>).
+ *                                Typical value = 0.
+ * @param rvgmx                   Maximum value of integral regulator (<i>Rvgmx</i>).
+ *                                Typical value = 1,2.
+ * @param srmn                    Minimum valve opening (<i>Srmn</i>).
+ *                                Typical value = 0.
+ * @param srmx                    Maximum valve opening (<i>Srmx</i>).
+ *                                Typical value = 1,1.
+ * @param srsmp                   Intercept valves characteristic discontinuity point (<i>Srsmp</i>).
+ *                                Typical value = 0,43.
+ * @param svmn                    Maximum regulator gate closing velocity (<i>Svmn</i>).
+ *                                Typical value = -0,0333.
+ * @param svmx                    Maximum regulator gate opening velocity (<i>Svmx</i>).
+ *                                Typical value = 0,0333.
+ * @param ta                      Control valves rate opening time (<i>Ta</i>) (&gt;= 0).
+ *                                Typical value = 0,8.
+ * @param tam                     Intercept valves rate opening time (<i>Tam</i>) (&gt;= 0).
+ *                                Typical value = 0,8.
+ * @param tc                      Control valves rate closing time (<i>Tc</i>) (&gt;= 0).
+ *                                Typical value = 0,5.
+ * @param tcm                     Intercept valves rate closing time (<i>Tcm</i>) (&gt;= 0).
+ *                                Typical value = 0,5.
+ * @param tdc                     Derivative time constant of pressure regulator (<i>Tdc</i>) (&gt;= 0).
+ *                                Typical value = 90.
+ * @param tf1                     Time constant of fuel regulation (<i>Tf1</i>) (&gt;= 0).
+ *                                Typical value = 10.
+ * @param tf2                     Time constant of steam chest (<i>Tf2</i>) (&gt;= 0).
+ *                                Typical value = 10.
+ * @param thp                     High pressure (HP) time constant of the turbine (<i>Thp</i>) (&gt;= 0).
+ *                                Typical value = 0,15.
+ * @param tmp                     Low pressure (LP) time constant of the turbine (<i>Tmp</i>) (&gt;= 0).
+ *                                Typical value = 0,4.
+ * @param trh                     Reheater  time constant of the turbine (<i>Trh</i>) (&gt;= 0).
+ *                                Typical value = 10.
+ * @param tv                      Boiler time constant (<i>Tv</i>) (&gt;= 0).
+ *                                Typical value = 60.
+ * @param ty                      Control valves servo time constant (<i>Ty</i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param y                       Coefficient of linearized equations of turbine (Stodola formulation) (<i>Y</i>).
+ *                                Typical value = 0,13.
+ * @param yhpmn                   Minimum control valve position (<i>Yhpmn</i>).
+ *                                Typical value = 0.
+ * @param yhpmx                   Maximum control valve position (<i>Yhpmx</i>).
+ *                                Typical value = 1,1.
+ * @param ympmn                   Minimum intercept valve position (<i>Ympmn</i>).
+ *                                Typical value = 0.
+ * @param ympmx                   Maximum intercept valve position (<i>Ympmx</i>).
+ *                                Typical value = 1,1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovSteamFV4
 (
@@ -10617,8 +10807,8 @@ final case class GovSteamFV4
     ympmn: Double = 0.0,
     ympmx: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -10644,13 +10834,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamFV4.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamFV4.fields (position), value)
+
         emitelem (0, cpsmn)
         emitelem (1, cpsmx)
         emitelem (2, crmn)
@@ -10704,6 +10899,7 @@ extends
         emitelem (50, ympmx)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovSteamFV4 rdf:ID=\"%s\">\n%s\t</cim:GovSteamFV4>".format (id, export_fields)
@@ -10711,10 +10907,10 @@ extends
 }
 
 object GovSteamFV4
-extends
-    CIMParseable[GovSteamFV4]
+    extends
+        CIMParseable[GovSteamFV4]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "cpsmn",
         "cpsmx",
         "crmn",
@@ -10767,62 +10963,62 @@ extends
         "ympmn",
         "ympmx"
     )
-    val cpsmn: Fielder = parse_element (element (cls, fields(0)))
-    val cpsmx: Fielder = parse_element (element (cls, fields(1)))
-    val crmn: Fielder = parse_element (element (cls, fields(2)))
-    val crmx: Fielder = parse_element (element (cls, fields(3)))
-    val kdc: Fielder = parse_element (element (cls, fields(4)))
-    val kf1: Fielder = parse_element (element (cls, fields(5)))
-    val kf3: Fielder = parse_element (element (cls, fields(6)))
-    val khp: Fielder = parse_element (element (cls, fields(7)))
-    val kic: Fielder = parse_element (element (cls, fields(8)))
-    val kip: Fielder = parse_element (element (cls, fields(9)))
-    val kit: Fielder = parse_element (element (cls, fields(10)))
-    val kmp1: Fielder = parse_element (element (cls, fields(11)))
-    val kmp2: Fielder = parse_element (element (cls, fields(12)))
-    val kpc: Fielder = parse_element (element (cls, fields(13)))
-    val kpp: Fielder = parse_element (element (cls, fields(14)))
-    val kpt: Fielder = parse_element (element (cls, fields(15)))
-    val krc: Fielder = parse_element (element (cls, fields(16)))
-    val ksh: Fielder = parse_element (element (cls, fields(17)))
-    val lpi: Fielder = parse_element (element (cls, fields(18)))
-    val lps: Fielder = parse_element (element (cls, fields(19)))
-    val mnef: Fielder = parse_element (element (cls, fields(20)))
-    val mxef: Fielder = parse_element (element (cls, fields(21)))
-    val pr1: Fielder = parse_element (element (cls, fields(22)))
-    val pr2: Fielder = parse_element (element (cls, fields(23)))
-    val psmn: Fielder = parse_element (element (cls, fields(24)))
-    val rsmimn: Fielder = parse_element (element (cls, fields(25)))
-    val rsmimx: Fielder = parse_element (element (cls, fields(26)))
-    val rvgmn: Fielder = parse_element (element (cls, fields(27)))
-    val rvgmx: Fielder = parse_element (element (cls, fields(28)))
-    val srmn: Fielder = parse_element (element (cls, fields(29)))
-    val srmx: Fielder = parse_element (element (cls, fields(30)))
-    val srsmp: Fielder = parse_element (element (cls, fields(31)))
-    val svmn: Fielder = parse_element (element (cls, fields(32)))
-    val svmx: Fielder = parse_element (element (cls, fields(33)))
-    val ta: Fielder = parse_element (element (cls, fields(34)))
-    val tam: Fielder = parse_element (element (cls, fields(35)))
-    val tc: Fielder = parse_element (element (cls, fields(36)))
-    val tcm: Fielder = parse_element (element (cls, fields(37)))
-    val tdc: Fielder = parse_element (element (cls, fields(38)))
-    val tf1: Fielder = parse_element (element (cls, fields(39)))
-    val tf2: Fielder = parse_element (element (cls, fields(40)))
-    val thp: Fielder = parse_element (element (cls, fields(41)))
-    val tmp: Fielder = parse_element (element (cls, fields(42)))
-    val trh: Fielder = parse_element (element (cls, fields(43)))
-    val tv: Fielder = parse_element (element (cls, fields(44)))
-    val ty: Fielder = parse_element (element (cls, fields(45)))
-    val y: Fielder = parse_element (element (cls, fields(46)))
-    val yhpmn: Fielder = parse_element (element (cls, fields(47)))
-    val yhpmx: Fielder = parse_element (element (cls, fields(48)))
-    val ympmn: Fielder = parse_element (element (cls, fields(49)))
-    val ympmx: Fielder = parse_element (element (cls, fields(50)))
+    val cpsmn: Fielder = parse_element (element (cls, fields (0)))
+    val cpsmx: Fielder = parse_element (element (cls, fields (1)))
+    val crmn: Fielder = parse_element (element (cls, fields (2)))
+    val crmx: Fielder = parse_element (element (cls, fields (3)))
+    val kdc: Fielder = parse_element (element (cls, fields (4)))
+    val kf1: Fielder = parse_element (element (cls, fields (5)))
+    val kf3: Fielder = parse_element (element (cls, fields (6)))
+    val khp: Fielder = parse_element (element (cls, fields (7)))
+    val kic: Fielder = parse_element (element (cls, fields (8)))
+    val kip: Fielder = parse_element (element (cls, fields (9)))
+    val kit: Fielder = parse_element (element (cls, fields (10)))
+    val kmp1: Fielder = parse_element (element (cls, fields (11)))
+    val kmp2: Fielder = parse_element (element (cls, fields (12)))
+    val kpc: Fielder = parse_element (element (cls, fields (13)))
+    val kpp: Fielder = parse_element (element (cls, fields (14)))
+    val kpt: Fielder = parse_element (element (cls, fields (15)))
+    val krc: Fielder = parse_element (element (cls, fields (16)))
+    val ksh: Fielder = parse_element (element (cls, fields (17)))
+    val lpi: Fielder = parse_element (element (cls, fields (18)))
+    val lps: Fielder = parse_element (element (cls, fields (19)))
+    val mnef: Fielder = parse_element (element (cls, fields (20)))
+    val mxef: Fielder = parse_element (element (cls, fields (21)))
+    val pr1: Fielder = parse_element (element (cls, fields (22)))
+    val pr2: Fielder = parse_element (element (cls, fields (23)))
+    val psmn: Fielder = parse_element (element (cls, fields (24)))
+    val rsmimn: Fielder = parse_element (element (cls, fields (25)))
+    val rsmimx: Fielder = parse_element (element (cls, fields (26)))
+    val rvgmn: Fielder = parse_element (element (cls, fields (27)))
+    val rvgmx: Fielder = parse_element (element (cls, fields (28)))
+    val srmn: Fielder = parse_element (element (cls, fields (29)))
+    val srmx: Fielder = parse_element (element (cls, fields (30)))
+    val srsmp: Fielder = parse_element (element (cls, fields (31)))
+    val svmn: Fielder = parse_element (element (cls, fields (32)))
+    val svmx: Fielder = parse_element (element (cls, fields (33)))
+    val ta: Fielder = parse_element (element (cls, fields (34)))
+    val tam: Fielder = parse_element (element (cls, fields (35)))
+    val tc: Fielder = parse_element (element (cls, fields (36)))
+    val tcm: Fielder = parse_element (element (cls, fields (37)))
+    val tdc: Fielder = parse_element (element (cls, fields (38)))
+    val tf1: Fielder = parse_element (element (cls, fields (39)))
+    val tf2: Fielder = parse_element (element (cls, fields (40)))
+    val thp: Fielder = parse_element (element (cls, fields (41)))
+    val tmp: Fielder = parse_element (element (cls, fields (42)))
+    val trh: Fielder = parse_element (element (cls, fields (43)))
+    val tv: Fielder = parse_element (element (cls, fields (44)))
+    val ty: Fielder = parse_element (element (cls, fields (45)))
+    val y: Fielder = parse_element (element (cls, fields (46)))
+    val yhpmn: Fielder = parse_element (element (cls, fields (47)))
+    val yhpmx: Fielder = parse_element (element (cls, fields (48)))
+    val ympmn: Fielder = parse_element (element (cls, fields (49)))
+    val ympmx: Fielder = parse_element (element (cls, fields (50)))
 
     def parse (context: CIMContext): GovSteamFV4 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = GovSteamFV4 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (cpsmn (), 0)),
@@ -10949,7 +11145,7 @@ object GovSteamFV4Serializer extends CIMSerializer[GovSteamFV4]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovSteamFV4]): GovSteamFV4 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovSteamFV4 (
             parent,
@@ -11016,52 +11212,52 @@ object GovSteamFV4Serializer extends CIMSerializer[GovSteamFV4]
  * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems, November/December 1973, Volume PAS-92, Number 6, <i><u>Dynamic Models for Steam and Hydro Turbines in Power System Studies</u></i>, page 1904.</font>
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param k Governor gain (reciprocal of droop) (<i>K</i>) (&gt; 0).
- *        Typical value = 25.
- * @param k1 Fraction of HP shaft power after first boiler pass (<i>K1</i>).
- *        Typical value = 0,2.
- * @param k2 Fraction of LP shaft power after first boiler pass (<i>K2</i>).
- *        Typical value = 0.
- * @param k3 Fraction of HP shaft power after second boiler pass (<i>K3</i>).
- *        Typical value = 0,3.
- * @param k4 Fraction of LP shaft power after second boiler pass (<i>K4</i>).
- *        Typical value = 0.
- * @param k5 Fraction of HP shaft power after third boiler pass (<i>K5</i>).
- *        Typical value = 0,5.
- * @param k6 Fraction of LP shaft power after third boiler pass (<i>K6</i>).
- *        Typical value = 0.
- * @param k7 Fraction of HP shaft power after fourth boiler pass (<i>K7</i>).
- *        Typical value = 0.
- * @param k8 Fraction of LP shaft power after fourth boiler pass (<i>K8</i>).
- *        Typical value = 0.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0)<i>. </i>Unit = MW.
- * @param pmax Maximum valve opening (<i>Pmax</i>) (&gt; GovSteamIEEE1.pmin).
- *        Typical value = 1.
- * @param pmin Minimum valve opening (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteamIEEE1.pmax).
- *        Typical value = 0.
- * @param t1 Governor lag time constant (<i>T1</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param t2 Governor lead time constant (<i>T2</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param t3 Valve positioner time constant (<i>T3</i>) (&gt; 0).
- *        Typical value = 0,1.
- * @param t4 Inlet piping/steam bowl time constant (<i>T4</i>) (&gt;= 0).
- *        Typical value = 0,3.
- * @param t5 Time constant of second boiler pass (<i>T5</i>) (&gt;= 0).
- *        Typical value = 5.
- * @param t6 Time constant of third boiler pass (<i>T6</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param t7 Time constant of fourth boiler pass (<i>T7</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param uc Maximum valve closing velocity (<i>Uc</i>) (&lt; 0).
- *        Unit = PU / s.  Typical value = -10.
- * @param uo Maximum valve opening velocity (<i>Uo</i>) (&gt; 0).
- *        Unit = PU / s.  Typical value = 1.
+ * @param k                       Governor gain (reciprocal of droop) (<i>K</i>) (&gt; 0).
+ *                                Typical value = 25.
+ * @param k1                      Fraction of HP shaft power after first boiler pass (<i>K1</i>).
+ *                                Typical value = 0,2.
+ * @param k2                      Fraction of LP shaft power after first boiler pass (<i>K2</i>).
+ *                                Typical value = 0.
+ * @param k3                      Fraction of HP shaft power after second boiler pass (<i>K3</i>).
+ *                                Typical value = 0,3.
+ * @param k4                      Fraction of LP shaft power after second boiler pass (<i>K4</i>).
+ *                                Typical value = 0.
+ * @param k5                      Fraction of HP shaft power after third boiler pass (<i>K5</i>).
+ *                                Typical value = 0,5.
+ * @param k6                      Fraction of LP shaft power after third boiler pass (<i>K6</i>).
+ *                                Typical value = 0.
+ * @param k7                      Fraction of HP shaft power after fourth boiler pass (<i>K7</i>).
+ *                                Typical value = 0.
+ * @param k8                      Fraction of LP shaft power after fourth boiler pass (<i>K8</i>).
+ *                                Typical value = 0.
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0)<i>. </i>Unit = MW.
+ * @param pmax                    Maximum valve opening (<i>Pmax</i>) (&gt; GovSteamIEEE1.pmin).
+ *                                Typical value = 1.
+ * @param pmin                    Minimum valve opening (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteamIEEE1.pmax).
+ *                                Typical value = 0.
+ * @param t1                      Governor lag time constant (<i>T1</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param t2                      Governor lead time constant (<i>T2</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param t3                      Valve positioner time constant (<i>T3</i>) (&gt; 0).
+ *                                Typical value = 0,1.
+ * @param t4                      Inlet piping/steam bowl time constant (<i>T4</i>) (&gt;= 0).
+ *                                Typical value = 0,3.
+ * @param t5                      Time constant of second boiler pass (<i>T5</i>) (&gt;= 0).
+ *                                Typical value = 5.
+ * @param t6                      Time constant of third boiler pass (<i>T6</i>) (&gt;= 0).
+ *                                Typical value = 0,5.
+ * @param t7                      Time constant of fourth boiler pass (<i>T7</i>) (&gt;= 0).
+ *                                Typical value = 0.
+ * @param uc                      Maximum valve closing velocity (<i>Uc</i>) (&lt; 0).
+ *                                Unit = PU / s.  Typical value = -10.
+ * @param uo                      Maximum valve opening velocity (<i>Uo</i>) (&gt; 0).
+ *                                Unit = PU / s.  Typical value = 1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovSteamIEEE1
 (
@@ -11088,8 +11284,8 @@ final case class GovSteamIEEE1
     uc: Double = 0.0,
     uo: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -11115,13 +11311,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamIEEE1.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamIEEE1.fields (position), value)
+
         emitelem (0, k)
         emitelem (1, k1)
         emitelem (2, k2)
@@ -11145,6 +11346,7 @@ extends
         emitelem (20, uo)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovSteamIEEE1 rdf:ID=\"%s\">\n%s\t</cim:GovSteamIEEE1>".format (id, export_fields)
@@ -11152,10 +11354,10 @@ extends
 }
 
 object GovSteamIEEE1
-extends
-    CIMParseable[GovSteamIEEE1]
+    extends
+        CIMParseable[GovSteamIEEE1]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "k",
         "k1",
         "k2",
@@ -11178,32 +11380,32 @@ extends
         "uc",
         "uo"
     )
-    val k: Fielder = parse_element (element (cls, fields(0)))
-    val k1: Fielder = parse_element (element (cls, fields(1)))
-    val k2: Fielder = parse_element (element (cls, fields(2)))
-    val k3: Fielder = parse_element (element (cls, fields(3)))
-    val k4: Fielder = parse_element (element (cls, fields(4)))
-    val k5: Fielder = parse_element (element (cls, fields(5)))
-    val k6: Fielder = parse_element (element (cls, fields(6)))
-    val k7: Fielder = parse_element (element (cls, fields(7)))
-    val k8: Fielder = parse_element (element (cls, fields(8)))
-    val mwbase: Fielder = parse_element (element (cls, fields(9)))
-    val pmax: Fielder = parse_element (element (cls, fields(10)))
-    val pmin: Fielder = parse_element (element (cls, fields(11)))
-    val t1: Fielder = parse_element (element (cls, fields(12)))
-    val t2: Fielder = parse_element (element (cls, fields(13)))
-    val t3: Fielder = parse_element (element (cls, fields(14)))
-    val t4: Fielder = parse_element (element (cls, fields(15)))
-    val t5: Fielder = parse_element (element (cls, fields(16)))
-    val t6: Fielder = parse_element (element (cls, fields(17)))
-    val t7: Fielder = parse_element (element (cls, fields(18)))
-    val uc: Fielder = parse_element (element (cls, fields(19)))
-    val uo: Fielder = parse_element (element (cls, fields(20)))
+    val k: Fielder = parse_element (element (cls, fields (0)))
+    val k1: Fielder = parse_element (element (cls, fields (1)))
+    val k2: Fielder = parse_element (element (cls, fields (2)))
+    val k3: Fielder = parse_element (element (cls, fields (3)))
+    val k4: Fielder = parse_element (element (cls, fields (4)))
+    val k5: Fielder = parse_element (element (cls, fields (5)))
+    val k6: Fielder = parse_element (element (cls, fields (6)))
+    val k7: Fielder = parse_element (element (cls, fields (7)))
+    val k8: Fielder = parse_element (element (cls, fields (8)))
+    val mwbase: Fielder = parse_element (element (cls, fields (9)))
+    val pmax: Fielder = parse_element (element (cls, fields (10)))
+    val pmin: Fielder = parse_element (element (cls, fields (11)))
+    val t1: Fielder = parse_element (element (cls, fields (12)))
+    val t2: Fielder = parse_element (element (cls, fields (13)))
+    val t3: Fielder = parse_element (element (cls, fields (14)))
+    val t4: Fielder = parse_element (element (cls, fields (15)))
+    val t5: Fielder = parse_element (element (cls, fields (16)))
+    val t6: Fielder = parse_element (element (cls, fields (17)))
+    val t7: Fielder = parse_element (element (cls, fields (18)))
+    val uc: Fielder = parse_element (element (cls, fields (19)))
+    val uo: Fielder = parse_element (element (cls, fields (20)))
 
     def parse (context: CIMContext): GovSteamIEEE1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovSteamIEEE1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (k (), 0)),
@@ -11270,7 +11472,7 @@ object GovSteamIEEE1Serializer extends CIMSerializer[GovSteamIEEE1]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovSteamIEEE1]): GovSteamIEEE1 =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovSteamIEEE1 (
             parent,
@@ -11305,24 +11507,24 @@ object GovSteamIEEE1Serializer extends CIMSerializer[GovSteamIEEE1]
  * Simplified steam turbine governor.
  *
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param k1 One / PU regulation (<i>K1</i>).
- * @param k2 Fraction (<i>K2</i>).
- * @param k3 Fraction (<i>K3</i>).
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pmax Upper power limit (<i>Pmax</i>) (&gt; GovSteamSGO.pmin).
- * @param pmin Lower power limit (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteamSGO.pmax).
- * @param t1 Controller lag (<i>T1</i>) (&gt;= 0).
- * @param t2 Controller lead compensation (<i>T2</i>) (&gt;= 0).
- * @param t3 Governor lag (<i>T3</i>) (&gt; 0).
- * @param t4 Delay due to steam inlet volumes associated with steam chest and inlet piping (<i>T4</i>) (&gt;= 0).
- * @param t5 Reheater delay including hot and cold leads (<i>T5</i>) (&gt;= 0).
- * @param t6 Delay due to IP-LP turbine, crossover pipes and LP end hoods (<i>T6</i>) (&gt;= 0).
+ * @param k1                      One / PU regulation (<i>K1</i>).
+ * @param k2                      Fraction (<i>K2</i>).
+ * @param k3                      Fraction (<i>K3</i>).
+ * @param mwbase                  Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                Unit = MW.
+ * @param pmax                    Upper power limit (<i>Pmax</i>) (&gt; GovSteamSGO.pmin).
+ * @param pmin                    Lower power limit (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteamSGO.pmax).
+ * @param t1                      Controller lag (<i>T1</i>) (&gt;= 0).
+ * @param t2                      Controller lead compensation (<i>T2</i>) (&gt;= 0).
+ * @param t3                      Governor lag (<i>T3</i>) (&gt; 0).
+ * @param t4                      Delay due to steam inlet volumes associated with steam chest and inlet piping (<i>T4</i>) (&gt;= 0).
+ * @param t5                      Reheater delay including hot and cold leads (<i>T5</i>) (&gt;= 0).
+ * @param t6                      Delay due to IP-LP turbine, crossover pipes and LP end hoods (<i>T6</i>) (&gt;= 0).
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class GovSteamSGO
 (
@@ -11340,8 +11542,8 @@ final case class GovSteamSGO
     t5: Double = 0.0,
     t6: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -11367,13 +11569,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamSGO.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamSGO.fields (position), value)
+
         emitelem (0, k1)
         emitelem (1, k2)
         emitelem (2, k3)
@@ -11388,6 +11595,7 @@ extends
         emitelem (11, t6)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GovSteamSGO rdf:ID=\"%s\">\n%s\t</cim:GovSteamSGO>".format (id, export_fields)
@@ -11395,10 +11603,10 @@ extends
 }
 
 object GovSteamSGO
-extends
-    CIMParseable[GovSteamSGO]
+    extends
+        CIMParseable[GovSteamSGO]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "k1",
         "k2",
         "k3",
@@ -11412,23 +11620,23 @@ extends
         "t5",
         "t6"
     )
-    val k1: Fielder = parse_element (element (cls, fields(0)))
-    val k2: Fielder = parse_element (element (cls, fields(1)))
-    val k3: Fielder = parse_element (element (cls, fields(2)))
-    val mwbase: Fielder = parse_element (element (cls, fields(3)))
-    val pmax: Fielder = parse_element (element (cls, fields(4)))
-    val pmin: Fielder = parse_element (element (cls, fields(5)))
-    val t1: Fielder = parse_element (element (cls, fields(6)))
-    val t2: Fielder = parse_element (element (cls, fields(7)))
-    val t3: Fielder = parse_element (element (cls, fields(8)))
-    val t4: Fielder = parse_element (element (cls, fields(9)))
-    val t5: Fielder = parse_element (element (cls, fields(10)))
-    val t6: Fielder = parse_element (element (cls, fields(11)))
+    val k1: Fielder = parse_element (element (cls, fields (0)))
+    val k2: Fielder = parse_element (element (cls, fields (1)))
+    val k3: Fielder = parse_element (element (cls, fields (2)))
+    val mwbase: Fielder = parse_element (element (cls, fields (3)))
+    val pmax: Fielder = parse_element (element (cls, fields (4)))
+    val pmin: Fielder = parse_element (element (cls, fields (5)))
+    val t1: Fielder = parse_element (element (cls, fields (6)))
+    val t2: Fielder = parse_element (element (cls, fields (7)))
+    val t3: Fielder = parse_element (element (cls, fields (8)))
+    val t4: Fielder = parse_element (element (cls, fields (9)))
+    val t5: Fielder = parse_element (element (cls, fields (10)))
+    val t6: Fielder = parse_element (element (cls, fields (11)))
 
     def parse (context: CIMContext): GovSteamSGO =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = GovSteamSGO (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (k1 (), 0)),
@@ -11477,7 +11685,7 @@ object GovSteamSGOSerializer extends CIMSerializer[GovSteamSGO]
 
     def read (kryo: Kryo, input: Input, cls: Class[GovSteamSGO]): GovSteamSGO =
     {
-        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf[TurbineGovernorDynamics])
+        val parent = TurbineGovernorDynamicsSerializer.read (kryo, input, classOf [TurbineGovernorDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GovSteamSGO (
             parent,
@@ -11502,17 +11710,17 @@ object GovSteamSGOSerializer extends CIMSerializer[GovSteamSGO]
 /**
  * Turbine-governor function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
- * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this turbine-governor model is associated.
- *        TurbineGovernorDynamics shall have either an association to SynchronousMachineDynamics or to AsynchronousMachineDynamics.
- * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine model with which this turbine-governor model is associated.
- *        TurbineGovernorDynamics shall have either an association to SynchronousMachineDynamics or to AsynchronousMachineDynamics.
+ * @param DynamicsFunctionBlock         [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param AsynchronousMachineDynamics   [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this turbine-governor model is associated.
+ *                                      TurbineGovernorDynamics shall have either an association to SynchronousMachineDynamics or to AsynchronousMachineDynamics.
+ * @param SynchronousMachineDynamics    [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine model with which this turbine-governor model is associated.
+ *                                      TurbineGovernorDynamics shall have either an association to SynchronousMachineDynamics or to AsynchronousMachineDynamics.
  * @param TurbineLoadControllerDynamics [[ch.ninecode.model.TurbineLoadControllerDynamics TurbineLoadControllerDynamics]] Turbine load controller providing input to this turbine-governor.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
+ *            Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+ *            A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 final case class TurbineGovernorDynamics
 (
@@ -11521,8 +11729,8 @@ final case class TurbineGovernorDynamics
     SynchronousMachineDynamics: String = null,
     TurbineLoadControllerDynamics: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -11548,18 +11756,24 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TurbineGovernorDynamics.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TurbineGovernorDynamics.fields (position), value)
+
         emitattr (0, AsynchronousMachineDynamics)
         emitattr (1, SynchronousMachineDynamics)
         emitattr (2, TurbineLoadControllerDynamics)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:TurbineGovernorDynamics rdf:ID=\"%s\">\n%s\t</cim:TurbineGovernorDynamics>".format (id, export_fields)
@@ -11567,10 +11781,10 @@ extends
 }
 
 object TurbineGovernorDynamics
-extends
-    CIMParseable[TurbineGovernorDynamics]
+    extends
+        CIMParseable[TurbineGovernorDynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "AsynchronousMachineDynamics",
         "SynchronousMachineDynamics",
         "TurbineLoadControllerDynamics"
@@ -11580,14 +11794,14 @@ extends
         CIMRelationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..1", "0..*"),
         CIMRelationship ("TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", "0..1", "1")
     )
-    val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val TurbineLoadControllerDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val TurbineLoadControllerDynamics: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): TurbineGovernorDynamics =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = TurbineGovernorDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (AsynchronousMachineDynamics (), 0),
@@ -11618,7 +11832,7 @@ object TurbineGovernorDynamicsSerializer extends CIMSerializer[TurbineGovernorDy
 
     def read (kryo: Kryo, input: Input, cls: Class[TurbineGovernorDynamics]): TurbineGovernorDynamics =
     {
-        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf [DynamicsFunctionBlock])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TurbineGovernorDynamics (
             parent,

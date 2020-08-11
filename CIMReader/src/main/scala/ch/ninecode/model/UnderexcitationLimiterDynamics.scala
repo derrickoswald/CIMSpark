@@ -18,20 +18,20 @@ import ch.ninecode.cim.CIMSerializer
  * This model can be derived from UnderexcLimIEEE2.  The limit characteristic (look –up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
  *
  * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
- * @param kui Gain Under excitation limiter (<i>K</i><i><sub>UI</sub></i>).
- *        Typical value = 0,1.
- * @param p0 Segment P initial point (<i>P</i><i><sub>0</sub></i>).
- *        Typical value = 0.
- * @param p1 Segment P end point (<i>P</i><i><sub>1</sub></i>).
- *        Typical value = 1.
- * @param q0 Segment Q initial point (<i>Q</i><i><sub>0</sub></i>).
- *        Typical value = -0,31.
- * @param q1 Segment Q end point (<i>Q</i><i><sub>1</sub></i>).
- *        Typical value = -0,1.
- * @param vuimax Maximum error signal (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLim2Simplified.vuimin).
- *        Typical value = 1.
- * @param vuimin Minimum error signal (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLim2Simplified.vuimax).
- *        Typical value = 0.
+ * @param kui                            Gain Under excitation limiter (<i>K</i><i><sub>UI</sub></i>).
+ *                                       Typical value = 0,1.
+ * @param p0                             Segment P initial point (<i>P</i><i><sub>0</sub></i>).
+ *                                       Typical value = 0.
+ * @param p1                             Segment P end point (<i>P</i><i><sub>1</sub></i>).
+ *                                       Typical value = 1.
+ * @param q0                             Segment Q initial point (<i>Q</i><i><sub>0</sub></i>).
+ *                                       Typical value = -0,31.
+ * @param q1                             Segment Q end point (<i>Q</i><i><sub>1</sub></i>).
+ *                                       Typical value = -0,1.
+ * @param vuimax                         Maximum error signal (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLim2Simplified.vuimin).
+ *                                       Typical value = 1.
+ * @param vuimin                         Minimum error signal (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLim2Simplified.vuimax).
+ *                                       Typical value = 0.
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
@@ -47,8 +47,8 @@ final case class UnderexcLim2Simplified
     vuimax: Double = 0.0,
     vuimin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -74,13 +74,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UnderexcLim2Simplified.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcLim2Simplified.fields (position), value)
+
         emitelem (0, kui)
         emitelem (1, p0)
         emitelem (2, p1)
@@ -90,6 +95,7 @@ extends
         emitelem (6, vuimin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:UnderexcLim2Simplified rdf:ID=\"%s\">\n%s\t</cim:UnderexcLim2Simplified>".format (id, export_fields)
@@ -97,10 +103,10 @@ extends
 }
 
 object UnderexcLim2Simplified
-extends
-    CIMParseable[UnderexcLim2Simplified]
+    extends
+        CIMParseable[UnderexcLim2Simplified]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kui",
         "p0",
         "p1",
@@ -109,18 +115,18 @@ extends
         "vuimax",
         "vuimin"
     )
-    val kui: Fielder = parse_element (element (cls, fields(0)))
-    val p0: Fielder = parse_element (element (cls, fields(1)))
-    val p1: Fielder = parse_element (element (cls, fields(2)))
-    val q0: Fielder = parse_element (element (cls, fields(3)))
-    val q1: Fielder = parse_element (element (cls, fields(4)))
-    val vuimax: Fielder = parse_element (element (cls, fields(5)))
-    val vuimin: Fielder = parse_element (element (cls, fields(6)))
+    val kui: Fielder = parse_element (element (cls, fields (0)))
+    val p0: Fielder = parse_element (element (cls, fields (1)))
+    val p1: Fielder = parse_element (element (cls, fields (2)))
+    val q0: Fielder = parse_element (element (cls, fields (3)))
+    val q1: Fielder = parse_element (element (cls, fields (4)))
+    val vuimax: Fielder = parse_element (element (cls, fields (5)))
+    val vuimin: Fielder = parse_element (element (cls, fields (6)))
 
     def parse (context: CIMContext): UnderexcLim2Simplified =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = UnderexcLim2Simplified (
             UnderexcitationLimiterDynamics.parse (context),
             toDouble (mask (kui (), 0)),
@@ -159,7 +165,7 @@ object UnderexcLim2SimplifiedSerializer extends CIMSerializer[UnderexcLim2Simpli
 
     def read (kryo: Kryo, input: Input, cls: Class[UnderexcLim2Simplified]): UnderexcLim2Simplified =
     {
-        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[UnderexcitationLimiterDynamics])
+        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf [UnderexcitationLimiterDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = UnderexcLim2Simplified (
             parent,
@@ -182,34 +188,34 @@ object UnderexcLim2SimplifiedSerializer extends CIMSerializer[UnderexcLim2Simpli
  * Reference: IEEE UEL1 421.5-2005, 10.1.
  *
  * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
- * @param kuc UEL centre setting (<i>K</i><i><sub>UC</sub></i>).
- *        Typical value = 1,38.
- * @param kuf UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).
- *        Typical value = 3,3.
- * @param kui UEL integral gain (<i>K</i><i><sub>UI</sub></i>).
- *        Typical value = 0.
- * @param kul UEL proportional gain (<i>K</i><i><sub>UL</sub></i>).
- *        Typical value = 100.
- * @param kur UEL radius setting (<i>K</i><i><sub>UR</sub></i>).
- *        Typical value = 1,95.
- * @param tu1 UEL lead time constant (<i>T</i><i><sub>U1</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tu2 UEL lag time constant (<i>T</i><i><sub>U2</sub></i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param tu3 UEL lead time constant (<i>T</i><i><sub>U3</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tu4 UEL lag time constant (<i>T</i><i><sub>U4</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param vucmax UEL maximum limit for operating point phasor magnitude (<i>V</i><i><sub>UCMAX</sub></i>).
- *        Typical value = 5,8.
- * @param vuimax UEL integrator output maximum limit (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLimIEEE1.vuimin).
- * @param vuimin UEL integrator output minimum limit (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLimIEEE1.vuimax).
- * @param vulmax UEL output maximum limit (<i>V</i><i><sub>ULMAX</sub></i>) (&gt; UnderexcLimIEEE1.vulmin).
- *        Typical value = 18.
- * @param vulmin UEL output minimum limit (<i>V</i><i><sub>ULMIN</sub></i>) (&lt; UnderexcLimIEEE1.vulmax).
- *        Typical value = -18.
- * @param vurmax UEL maximum limit for radius phasor magnitude (<i>V</i><i><sub>URMAX</sub></i>).
- *        Typical value = 5,8.
+ * @param kuc                            UEL centre setting (<i>K</i><i><sub>UC</sub></i>).
+ *                                       Typical value = 1,38.
+ * @param kuf                            UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).
+ *                                       Typical value = 3,3.
+ * @param kui                            UEL integral gain (<i>K</i><i><sub>UI</sub></i>).
+ *                                       Typical value = 0.
+ * @param kul                            UEL proportional gain (<i>K</i><i><sub>UL</sub></i>).
+ *                                       Typical value = 100.
+ * @param kur                            UEL radius setting (<i>K</i><i><sub>UR</sub></i>).
+ *                                       Typical value = 1,95.
+ * @param tu1                            UEL lead time constant (<i>T</i><i><sub>U1</sub></i>) (&gt;= 0).
+ *                                       Typical value = 0.
+ * @param tu2                            UEL lag time constant (<i>T</i><i><sub>U2</sub></i>) (&gt;= 0).
+ *                                       Typical value = 0,05.
+ * @param tu3                            UEL lead time constant (<i>T</i><i><sub>U3</sub></i>) (&gt;= 0).
+ *                                       Typical value = 0.
+ * @param tu4                            UEL lag time constant (<i>T</i><i><sub>U4</sub></i>) (&gt;= 0).
+ *                                       Typical value = 0.
+ * @param vucmax                         UEL maximum limit for operating point phasor magnitude (<i>V</i><i><sub>UCMAX</sub></i>).
+ *                                       Typical value = 5,8.
+ * @param vuimax                         UEL integrator output maximum limit (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLimIEEE1.vuimin).
+ * @param vuimin                         UEL integrator output minimum limit (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLimIEEE1.vuimax).
+ * @param vulmax                         UEL output maximum limit (<i>V</i><i><sub>ULMAX</sub></i>) (&gt; UnderexcLimIEEE1.vulmin).
+ *                                       Typical value = 18.
+ * @param vulmin                         UEL output minimum limit (<i>V</i><i><sub>ULMIN</sub></i>) (&lt; UnderexcLimIEEE1.vulmax).
+ *                                       Typical value = -18.
+ * @param vurmax                         UEL maximum limit for radius phasor magnitude (<i>V</i><i><sub>URMAX</sub></i>).
+ *                                       Typical value = 5,8.
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
@@ -233,8 +239,8 @@ final case class UnderexcLimIEEE1
     vulmin: Double = 0.0,
     vurmax: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -260,13 +266,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UnderexcLimIEEE1.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcLimIEEE1.fields (position), value)
+
         emitelem (0, kuc)
         emitelem (1, kuf)
         emitelem (2, kui)
@@ -284,6 +295,7 @@ extends
         emitelem (14, vurmax)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:UnderexcLimIEEE1 rdf:ID=\"%s\">\n%s\t</cim:UnderexcLimIEEE1>".format (id, export_fields)
@@ -291,10 +303,10 @@ extends
 }
 
 object UnderexcLimIEEE1
-extends
-    CIMParseable[UnderexcLimIEEE1]
+    extends
+        CIMParseable[UnderexcLimIEEE1]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kuc",
         "kuf",
         "kui",
@@ -311,26 +323,26 @@ extends
         "vulmin",
         "vurmax"
     )
-    val kuc: Fielder = parse_element (element (cls, fields(0)))
-    val kuf: Fielder = parse_element (element (cls, fields(1)))
-    val kui: Fielder = parse_element (element (cls, fields(2)))
-    val kul: Fielder = parse_element (element (cls, fields(3)))
-    val kur: Fielder = parse_element (element (cls, fields(4)))
-    val tu1: Fielder = parse_element (element (cls, fields(5)))
-    val tu2: Fielder = parse_element (element (cls, fields(6)))
-    val tu3: Fielder = parse_element (element (cls, fields(7)))
-    val tu4: Fielder = parse_element (element (cls, fields(8)))
-    val vucmax: Fielder = parse_element (element (cls, fields(9)))
-    val vuimax: Fielder = parse_element (element (cls, fields(10)))
-    val vuimin: Fielder = parse_element (element (cls, fields(11)))
-    val vulmax: Fielder = parse_element (element (cls, fields(12)))
-    val vulmin: Fielder = parse_element (element (cls, fields(13)))
-    val vurmax: Fielder = parse_element (element (cls, fields(14)))
+    val kuc: Fielder = parse_element (element (cls, fields (0)))
+    val kuf: Fielder = parse_element (element (cls, fields (1)))
+    val kui: Fielder = parse_element (element (cls, fields (2)))
+    val kul: Fielder = parse_element (element (cls, fields (3)))
+    val kur: Fielder = parse_element (element (cls, fields (4)))
+    val tu1: Fielder = parse_element (element (cls, fields (5)))
+    val tu2: Fielder = parse_element (element (cls, fields (6)))
+    val tu3: Fielder = parse_element (element (cls, fields (7)))
+    val tu4: Fielder = parse_element (element (cls, fields (8)))
+    val vucmax: Fielder = parse_element (element (cls, fields (9)))
+    val vuimax: Fielder = parse_element (element (cls, fields (10)))
+    val vuimin: Fielder = parse_element (element (cls, fields (11)))
+    val vulmax: Fielder = parse_element (element (cls, fields (12)))
+    val vulmin: Fielder = parse_element (element (cls, fields (13)))
+    val vurmax: Fielder = parse_element (element (cls, fields (14)))
 
     def parse (context: CIMContext): UnderexcLimIEEE1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = UnderexcLimIEEE1 (
             UnderexcitationLimiterDynamics.parse (context),
             toDouble (mask (kuc (), 0)),
@@ -385,7 +397,7 @@ object UnderexcLimIEEE1Serializer extends CIMSerializer[UnderexcLimIEEE1]
 
     def read (kryo: Kryo, input: Input, cls: Class[UnderexcLimIEEE1]): UnderexcLimIEEE1 =
     {
-        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[UnderexcitationLimiterDynamics])
+        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf [UnderexcitationLimiterDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = UnderexcLimIEEE1 (
             parent,
@@ -416,74 +428,74 @@ object UnderexcLimIEEE1Serializer extends CIMSerializer[UnderexcLimIEEE1]
  * Reference: IEEE UEL2 421.5-2005, 10.2  (limit characteristic lookup table shown in Figure 10.4 (p 32)).
  *
  * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
- * @param k1 UEL terminal voltage exponent applied to real power input to UEL limit look-up table (<i>k1</i>).
- *        Typical value = 2.
- * @param k2 UEL terminal voltage exponent applied to reactive power output from UEL limit look-up table (<i>k2</i>).
- *        Typical value = 2.
- * @param kfb Gain associated with optional integrator feedback input signal to UEL (<i>K</i><i><sub>FB</sub></i>).
- *        Typical value = 0.
- * @param kuf UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).
- *        Typical value = 0.
- * @param kui UEL integral gain (<i>K</i><i><sub>UI</sub></i>).
- *        Typical value = 0,5.
- * @param kul UEL proportional gain (<i>K</i><i><sub>UL</sub></i>).
- *        Typical value = 0,8.
- * @param p0 Real power values for endpoints (<i>P</i><i><sub>0</sub></i>).
- *        Typical value = 0.
- * @param p1 Real power values for endpoints (<i>P</i><i><sub>1</sub></i>).
- *        Typical value = 0,3.
- * @param p10 Real power values for endpoints (<i>P</i><i><sub>10</sub></i>).
- * @param p2 Real power values for endpoints (<i>P</i><i><sub>2</sub></i>).
- *        Typical value = 0,6.
- * @param p3 Real power values for endpoints (<i>P</i><i><sub>3</sub></i>).
- *        Typical value = 0,9.
- * @param p4 Real power values for endpoints (<i>P</i><i><sub>4</sub></i>).
- *        Typical value = 1,02.
- * @param p5 Real power values for endpoints (<i>P</i><i><sub>5</sub></i>).
- * @param p6 Real power values for endpoints (<i>P</i><i><sub>6</sub></i>).
- * @param p7 Real power values for endpoints (<i>P</i><i><sub>7</sub></i>).
- * @param p8 Real power values for endpoints (<i>P</i><i><sub>8</sub></i>).
- * @param p9 Real power values for endpoints (<i>P</i><i><sub>9</sub></i>).
- * @param q0 Reactive power values for endpoints (<i>Q</i><i><sub>0</sub></i>).
- *        Typical value = -0,31.
- * @param q1 Reactive power values for endpoints (<i>Q</i><i><sub>1</sub></i>).
- *        Typical value = -0,31.
- * @param q10 Reactive power values for endpoints (<i>Q</i><i><sub>10</sub></i>).
- * @param q2 Reactive power values for endpoints (<i>Q</i><i><sub>2</sub></i>).
- *        Typical value = -0,28.
- * @param q3 Reactive power values for endpoints (<i>Q</i><i><sub>3</sub></i>).
- *        Typical value = -0,21.
- * @param q4 Reactive power values for endpoints (<i>Q</i><i><sub>4</sub></i>).
- *        Typical value = 0.
- * @param q5 Reactive power values for endpoints (<i>Q</i><i><sub>5</sub></i>).
- * @param q6 Reactive power values for endpoints (<i>Q</i><i><sub>6</sub></i>).
- * @param q7 Reactive power values for endpoints (<i>Q</i><i><sub>7</sub></i>).
- * @param q8 Reactive power values for endpoints (<i>Q</i><i><sub>8</sub></i>).
- * @param q9 Reactive power values for endpoints (<i>Q</i><i><sub>9</sub></i>).
- * @param tu1 UEL lead time constant (<i>T</i><i><sub>U1</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tu2 UEL lag time constant (<i>T</i><i><sub>U2</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tu3 UEL lead time constant (<i>T</i><i><sub>U3</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tu4 UEL lag time constant (<i>T</i><i><sub>U4</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tul Time constant associated with optional integrator feedback input signal to UEL (<i>T</i><i><sub>UL</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tup Real power filter time constant (<i>T</i><i><sub>UP</sub></i>) (&gt;= 0).
- *        Typical value = 5.
- * @param tuq Reactive power filter time constant (<i>T</i><i><sub>UQ</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tuv Voltage filter time constant (<i>T</i><i><sub>UV</sub></i>) (&gt;= 0).
- *        Typical value = 5.
- * @param vuimax UEL integrator output maximum limit (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLimIEEE2.vuimin).
- *        Typical value = 0,25.
- * @param vuimin UEL integrator output minimum limit (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLimIEEE2.vuimax).
- *        Typical value = 0.
- * @param vulmax UEL output maximum limit (<i>V</i><i><sub>ULMAX</sub></i>) (&gt; UnderexcLimIEEE2.vulmin).
- *        Typical value = 0,25.
- * @param vulmin UEL output minimum limit (<i>V</i><i><sub>ULMIN</sub></i>) (&lt; UnderexcLimIEEE2.vulmax).
- *        Typical value = 0.
+ * @param k1                             UEL terminal voltage exponent applied to real power input to UEL limit look-up table (<i>k1</i>).
+ *                                       Typical value = 2.
+ * @param k2                             UEL terminal voltage exponent applied to reactive power output from UEL limit look-up table (<i>k2</i>).
+ *                                       Typical value = 2.
+ * @param kfb                            Gain associated with optional integrator feedback input signal to UEL (<i>K</i><i><sub>FB</sub></i>).
+ *                                       Typical value = 0.
+ * @param kuf                            UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).
+ *                                       Typical value = 0.
+ * @param kui                            UEL integral gain (<i>K</i><i><sub>UI</sub></i>).
+ *                                       Typical value = 0,5.
+ * @param kul                            UEL proportional gain (<i>K</i><i><sub>UL</sub></i>).
+ *                                       Typical value = 0,8.
+ * @param p0                             Real power values for endpoints (<i>P</i><i><sub>0</sub></i>).
+ *                                       Typical value = 0.
+ * @param p1                             Real power values for endpoints (<i>P</i><i><sub>1</sub></i>).
+ *                                       Typical value = 0,3.
+ * @param p10                            Real power values for endpoints (<i>P</i><i><sub>10</sub></i>).
+ * @param p2                             Real power values for endpoints (<i>P</i><i><sub>2</sub></i>).
+ *                                       Typical value = 0,6.
+ * @param p3                             Real power values for endpoints (<i>P</i><i><sub>3</sub></i>).
+ *                                       Typical value = 0,9.
+ * @param p4                             Real power values for endpoints (<i>P</i><i><sub>4</sub></i>).
+ *                                       Typical value = 1,02.
+ * @param p5                             Real power values for endpoints (<i>P</i><i><sub>5</sub></i>).
+ * @param p6                             Real power values for endpoints (<i>P</i><i><sub>6</sub></i>).
+ * @param p7                             Real power values for endpoints (<i>P</i><i><sub>7</sub></i>).
+ * @param p8                             Real power values for endpoints (<i>P</i><i><sub>8</sub></i>).
+ * @param p9                             Real power values for endpoints (<i>P</i><i><sub>9</sub></i>).
+ * @param q0                             Reactive power values for endpoints (<i>Q</i><i><sub>0</sub></i>).
+ *                                       Typical value = -0,31.
+ * @param q1                             Reactive power values for endpoints (<i>Q</i><i><sub>1</sub></i>).
+ *                                       Typical value = -0,31.
+ * @param q10                            Reactive power values for endpoints (<i>Q</i><i><sub>10</sub></i>).
+ * @param q2                             Reactive power values for endpoints (<i>Q</i><i><sub>2</sub></i>).
+ *                                       Typical value = -0,28.
+ * @param q3                             Reactive power values for endpoints (<i>Q</i><i><sub>3</sub></i>).
+ *                                       Typical value = -0,21.
+ * @param q4                             Reactive power values for endpoints (<i>Q</i><i><sub>4</sub></i>).
+ *                                       Typical value = 0.
+ * @param q5                             Reactive power values for endpoints (<i>Q</i><i><sub>5</sub></i>).
+ * @param q6                             Reactive power values for endpoints (<i>Q</i><i><sub>6</sub></i>).
+ * @param q7                             Reactive power values for endpoints (<i>Q</i><i><sub>7</sub></i>).
+ * @param q8                             Reactive power values for endpoints (<i>Q</i><i><sub>8</sub></i>).
+ * @param q9                             Reactive power values for endpoints (<i>Q</i><i><sub>9</sub></i>).
+ * @param tu1                            UEL lead time constant (<i>T</i><i><sub>U1</sub></i>) (&gt;= 0).
+ *                                       Typical value = 0.
+ * @param tu2                            UEL lag time constant (<i>T</i><i><sub>U2</sub></i>) (&gt;= 0).
+ *                                       Typical value = 0.
+ * @param tu3                            UEL lead time constant (<i>T</i><i><sub>U3</sub></i>) (&gt;= 0).
+ *                                       Typical value = 0.
+ * @param tu4                            UEL lag time constant (<i>T</i><i><sub>U4</sub></i>) (&gt;= 0).
+ *                                       Typical value = 0.
+ * @param tul                            Time constant associated with optional integrator feedback input signal to UEL (<i>T</i><i><sub>UL</sub></i>) (&gt;= 0).
+ *                                       Typical value = 0.
+ * @param tup                            Real power filter time constant (<i>T</i><i><sub>UP</sub></i>) (&gt;= 0).
+ *                                       Typical value = 5.
+ * @param tuq                            Reactive power filter time constant (<i>T</i><i><sub>UQ</sub></i>) (&gt;= 0).
+ *                                       Typical value = 0.
+ * @param tuv                            Voltage filter time constant (<i>T</i><i><sub>UV</sub></i>) (&gt;= 0).
+ *                                       Typical value = 5.
+ * @param vuimax                         UEL integrator output maximum limit (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLimIEEE2.vuimin).
+ *                                       Typical value = 0,25.
+ * @param vuimin                         UEL integrator output minimum limit (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLimIEEE2.vuimax).
+ *                                       Typical value = 0.
+ * @param vulmax                         UEL output maximum limit (<i>V</i><i><sub>ULMAX</sub></i>) (&gt; UnderexcLimIEEE2.vulmin).
+ *                                       Typical value = 0,25.
+ * @param vulmin                         UEL output minimum limit (<i>V</i><i><sub>ULMIN</sub></i>) (&lt; UnderexcLimIEEE2.vulmax).
+ *                                       Typical value = 0.
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
@@ -532,8 +544,8 @@ final case class UnderexcLimIEEE2
     vulmax: Double = 0.0,
     vulmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -559,13 +571,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UnderexcLimIEEE2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcLimIEEE2.fields (position), value)
+
         emitelem (0, k1)
         emitelem (1, k2)
         emitelem (2, kfb)
@@ -608,6 +625,7 @@ extends
         emitelem (39, vulmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:UnderexcLimIEEE2 rdf:ID=\"%s\">\n%s\t</cim:UnderexcLimIEEE2>".format (id, export_fields)
@@ -615,10 +633,10 @@ extends
 }
 
 object UnderexcLimIEEE2
-extends
-    CIMParseable[UnderexcLimIEEE2]
+    extends
+        CIMParseable[UnderexcLimIEEE2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "k1",
         "k2",
         "kfb",
@@ -660,51 +678,51 @@ extends
         "vulmax",
         "vulmin"
     )
-    val k1: Fielder = parse_element (element (cls, fields(0)))
-    val k2: Fielder = parse_element (element (cls, fields(1)))
-    val kfb: Fielder = parse_element (element (cls, fields(2)))
-    val kuf: Fielder = parse_element (element (cls, fields(3)))
-    val kui: Fielder = parse_element (element (cls, fields(4)))
-    val kul: Fielder = parse_element (element (cls, fields(5)))
-    val p0: Fielder = parse_element (element (cls, fields(6)))
-    val p1: Fielder = parse_element (element (cls, fields(7)))
-    val p10: Fielder = parse_element (element (cls, fields(8)))
-    val p2: Fielder = parse_element (element (cls, fields(9)))
-    val p3: Fielder = parse_element (element (cls, fields(10)))
-    val p4: Fielder = parse_element (element (cls, fields(11)))
-    val p5: Fielder = parse_element (element (cls, fields(12)))
-    val p6: Fielder = parse_element (element (cls, fields(13)))
-    val p7: Fielder = parse_element (element (cls, fields(14)))
-    val p8: Fielder = parse_element (element (cls, fields(15)))
-    val p9: Fielder = parse_element (element (cls, fields(16)))
-    val q0: Fielder = parse_element (element (cls, fields(17)))
-    val q1: Fielder = parse_element (element (cls, fields(18)))
-    val q10: Fielder = parse_element (element (cls, fields(19)))
-    val q2: Fielder = parse_element (element (cls, fields(20)))
-    val q3: Fielder = parse_element (element (cls, fields(21)))
-    val q4: Fielder = parse_element (element (cls, fields(22)))
-    val q5: Fielder = parse_element (element (cls, fields(23)))
-    val q6: Fielder = parse_element (element (cls, fields(24)))
-    val q7: Fielder = parse_element (element (cls, fields(25)))
-    val q8: Fielder = parse_element (element (cls, fields(26)))
-    val q9: Fielder = parse_element (element (cls, fields(27)))
-    val tu1: Fielder = parse_element (element (cls, fields(28)))
-    val tu2: Fielder = parse_element (element (cls, fields(29)))
-    val tu3: Fielder = parse_element (element (cls, fields(30)))
-    val tu4: Fielder = parse_element (element (cls, fields(31)))
-    val tul: Fielder = parse_element (element (cls, fields(32)))
-    val tup: Fielder = parse_element (element (cls, fields(33)))
-    val tuq: Fielder = parse_element (element (cls, fields(34)))
-    val tuv: Fielder = parse_element (element (cls, fields(35)))
-    val vuimax: Fielder = parse_element (element (cls, fields(36)))
-    val vuimin: Fielder = parse_element (element (cls, fields(37)))
-    val vulmax: Fielder = parse_element (element (cls, fields(38)))
-    val vulmin: Fielder = parse_element (element (cls, fields(39)))
+    val k1: Fielder = parse_element (element (cls, fields (0)))
+    val k2: Fielder = parse_element (element (cls, fields (1)))
+    val kfb: Fielder = parse_element (element (cls, fields (2)))
+    val kuf: Fielder = parse_element (element (cls, fields (3)))
+    val kui: Fielder = parse_element (element (cls, fields (4)))
+    val kul: Fielder = parse_element (element (cls, fields (5)))
+    val p0: Fielder = parse_element (element (cls, fields (6)))
+    val p1: Fielder = parse_element (element (cls, fields (7)))
+    val p10: Fielder = parse_element (element (cls, fields (8)))
+    val p2: Fielder = parse_element (element (cls, fields (9)))
+    val p3: Fielder = parse_element (element (cls, fields (10)))
+    val p4: Fielder = parse_element (element (cls, fields (11)))
+    val p5: Fielder = parse_element (element (cls, fields (12)))
+    val p6: Fielder = parse_element (element (cls, fields (13)))
+    val p7: Fielder = parse_element (element (cls, fields (14)))
+    val p8: Fielder = parse_element (element (cls, fields (15)))
+    val p9: Fielder = parse_element (element (cls, fields (16)))
+    val q0: Fielder = parse_element (element (cls, fields (17)))
+    val q1: Fielder = parse_element (element (cls, fields (18)))
+    val q10: Fielder = parse_element (element (cls, fields (19)))
+    val q2: Fielder = parse_element (element (cls, fields (20)))
+    val q3: Fielder = parse_element (element (cls, fields (21)))
+    val q4: Fielder = parse_element (element (cls, fields (22)))
+    val q5: Fielder = parse_element (element (cls, fields (23)))
+    val q6: Fielder = parse_element (element (cls, fields (24)))
+    val q7: Fielder = parse_element (element (cls, fields (25)))
+    val q8: Fielder = parse_element (element (cls, fields (26)))
+    val q9: Fielder = parse_element (element (cls, fields (27)))
+    val tu1: Fielder = parse_element (element (cls, fields (28)))
+    val tu2: Fielder = parse_element (element (cls, fields (29)))
+    val tu3: Fielder = parse_element (element (cls, fields (30)))
+    val tu4: Fielder = parse_element (element (cls, fields (31)))
+    val tul: Fielder = parse_element (element (cls, fields (32)))
+    val tup: Fielder = parse_element (element (cls, fields (33)))
+    val tuq: Fielder = parse_element (element (cls, fields (34)))
+    val tuv: Fielder = parse_element (element (cls, fields (35)))
+    val vuimax: Fielder = parse_element (element (cls, fields (36)))
+    val vuimin: Fielder = parse_element (element (cls, fields (37)))
+    val vulmax: Fielder = parse_element (element (cls, fields (38)))
+    val vulmin: Fielder = parse_element (element (cls, fields (39)))
 
     def parse (context: CIMContext): UnderexcLimIEEE2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = UnderexcLimIEEE2 (
             UnderexcitationLimiterDynamics.parse (context),
             toDouble (mask (k1 (), 0)),
@@ -809,7 +827,7 @@ object UnderexcLimIEEE2Serializer extends CIMSerializer[UnderexcLimIEEE2]
 
     def read (kryo: Kryo, input: Input, cls: Class[UnderexcLimIEEE2]): UnderexcLimIEEE2 =
     {
-        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[UnderexcitationLimiterDynamics])
+        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf [UnderexcitationLimiterDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = UnderexcLimIEEE2 (
             parent,
@@ -863,12 +881,12 @@ object UnderexcLimIEEE2Serializer extends CIMSerializer[UnderexcLimIEEE2]
  * <font color="#0f0f0f">Allis-Chalmers minimum excitation limiter.</font>
  *
  * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
- * @param k Minimum excitation limit slope (<i>K</i>) (&gt; 0).
- * @param kf2 Differential gain (<i>K</i><i><sub>F2</sub></i>).
- * @param km Minimum excitation limit gain (<i>K</i><i><sub>M</sub></i>).
- * @param melmax Minimum excitation limit value (<i>MELMAX</i>).
- * @param tf2 Differential time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
- * @param tm Minimum excitation limit time constant (<i>T</i><i><sub>M</sub></i>) (&gt;= 0).
+ * @param k                              Minimum excitation limit slope (<i>K</i>) (&gt; 0).
+ * @param kf2                            Differential gain (<i>K</i><i><sub>F2</sub></i>).
+ * @param km                             Minimum excitation limit gain (<i>K</i><i><sub>M</sub></i>).
+ * @param melmax                         Minimum excitation limit value (<i>MELMAX</i>).
+ * @param tf2                            Differential time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
+ * @param tm                             Minimum excitation limit time constant (<i>T</i><i><sub>M</sub></i>) (&gt;= 0).
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
@@ -883,8 +901,8 @@ final case class UnderexcLimX1
     tf2: Double = 0.0,
     tm: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -910,13 +928,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UnderexcLimX1.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcLimX1.fields (position), value)
+
         emitelem (0, k)
         emitelem (1, kf2)
         emitelem (2, km)
@@ -925,6 +948,7 @@ extends
         emitelem (5, tm)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:UnderexcLimX1 rdf:ID=\"%s\">\n%s\t</cim:UnderexcLimX1>".format (id, export_fields)
@@ -932,10 +956,10 @@ extends
 }
 
 object UnderexcLimX1
-extends
-    CIMParseable[UnderexcLimX1]
+    extends
+        CIMParseable[UnderexcLimX1]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "k",
         "kf2",
         "km",
@@ -943,17 +967,17 @@ extends
         "tf2",
         "tm"
     )
-    val k: Fielder = parse_element (element (cls, fields(0)))
-    val kf2: Fielder = parse_element (element (cls, fields(1)))
-    val km: Fielder = parse_element (element (cls, fields(2)))
-    val melmax: Fielder = parse_element (element (cls, fields(3)))
-    val tf2: Fielder = parse_element (element (cls, fields(4)))
-    val tm: Fielder = parse_element (element (cls, fields(5)))
+    val k: Fielder = parse_element (element (cls, fields (0)))
+    val kf2: Fielder = parse_element (element (cls, fields (1)))
+    val km: Fielder = parse_element (element (cls, fields (2)))
+    val melmax: Fielder = parse_element (element (cls, fields (3)))
+    val tf2: Fielder = parse_element (element (cls, fields (4)))
+    val tm: Fielder = parse_element (element (cls, fields (5)))
 
     def parse (context: CIMContext): UnderexcLimX1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = UnderexcLimX1 (
             UnderexcitationLimiterDynamics.parse (context),
             toDouble (mask (k (), 0)),
@@ -990,7 +1014,7 @@ object UnderexcLimX1Serializer extends CIMSerializer[UnderexcLimX1]
 
     def read (kryo: Kryo, input: Input, cls: Class[UnderexcLimX1]): UnderexcLimX1 =
     {
-        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[UnderexcitationLimiterDynamics])
+        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf [UnderexcitationLimiterDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = UnderexcLimX1 (
             parent,
@@ -1010,13 +1034,13 @@ object UnderexcLimX1Serializer extends CIMSerializer[UnderexcLimX1]
  * <font color="#0f0f0f">Westinghouse minimum excitation limiter.</font>
  *
  * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
- * @param kf2 Differential gain (<i>K</i><i><sub>F2</sub></i>).
- * @param km Minimum excitation limit gain (<i>K</i><i><sub>M</sub></i>).
- * @param melmax Minimum excitation limit value (<i>MELMAX</i>).
- * @param qo Excitation centre setting (<i>Q</i><i><sub>O</sub></i>).
- * @param r Excitation radius (<i>R</i>).
- * @param tf2 Differential time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
- * @param tm Minimum excitation limit time constant (<i>T</i><i><sub>M</sub></i>) (&gt;= 0).
+ * @param kf2                            Differential gain (<i>K</i><i><sub>F2</sub></i>).
+ * @param km                             Minimum excitation limit gain (<i>K</i><i><sub>M</sub></i>).
+ * @param melmax                         Minimum excitation limit value (<i>MELMAX</i>).
+ * @param qo                             Excitation centre setting (<i>Q</i><i><sub>O</sub></i>).
+ * @param r                              Excitation radius (<i>R</i>).
+ * @param tf2                            Differential time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
+ * @param tm                             Minimum excitation limit time constant (<i>T</i><i><sub>M</sub></i>) (&gt;= 0).
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
@@ -1032,8 +1056,8 @@ final case class UnderexcLimX2
     tf2: Double = 0.0,
     tm: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1059,13 +1083,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UnderexcLimX2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcLimX2.fields (position), value)
+
         emitelem (0, kf2)
         emitelem (1, km)
         emitelem (2, melmax)
@@ -1075,6 +1104,7 @@ extends
         emitelem (6, tm)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:UnderexcLimX2 rdf:ID=\"%s\">\n%s\t</cim:UnderexcLimX2>".format (id, export_fields)
@@ -1082,10 +1112,10 @@ extends
 }
 
 object UnderexcLimX2
-extends
-    CIMParseable[UnderexcLimX2]
+    extends
+        CIMParseable[UnderexcLimX2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kf2",
         "km",
         "melmax",
@@ -1094,18 +1124,18 @@ extends
         "tf2",
         "tm"
     )
-    val kf2: Fielder = parse_element (element (cls, fields(0)))
-    val km: Fielder = parse_element (element (cls, fields(1)))
-    val melmax: Fielder = parse_element (element (cls, fields(2)))
-    val qo: Fielder = parse_element (element (cls, fields(3)))
-    val r: Fielder = parse_element (element (cls, fields(4)))
-    val tf2: Fielder = parse_element (element (cls, fields(5)))
-    val tm: Fielder = parse_element (element (cls, fields(6)))
+    val kf2: Fielder = parse_element (element (cls, fields (0)))
+    val km: Fielder = parse_element (element (cls, fields (1)))
+    val melmax: Fielder = parse_element (element (cls, fields (2)))
+    val qo: Fielder = parse_element (element (cls, fields (3)))
+    val r: Fielder = parse_element (element (cls, fields (4)))
+    val tf2: Fielder = parse_element (element (cls, fields (5)))
+    val tm: Fielder = parse_element (element (cls, fields (6)))
 
     def parse (context: CIMContext): UnderexcLimX2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = UnderexcLimX2 (
             UnderexcitationLimiterDynamics.parse (context),
             toDouble (mask (kf2 (), 0)),
@@ -1144,7 +1174,7 @@ object UnderexcLimX2Serializer extends CIMSerializer[UnderexcLimX2]
 
     def read (kryo: Kryo, input: Input, cls: Class[UnderexcLimX2]): UnderexcLimX2 =
     {
-        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf[UnderexcitationLimiterDynamics])
+        val parent = UnderexcitationLimiterDynamicsSerializer.read (kryo, input, classOf [UnderexcitationLimiterDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = UnderexcLimX2 (
             parent,
@@ -1164,9 +1194,9 @@ object UnderexcLimX2Serializer extends CIMSerializer[UnderexcLimX2]
 /**
  * Underexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock    [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this underexcitation limiter model is associated.
- * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this underexcitation limiter model.
+ * @param RemoteInputSignal        [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this underexcitation limiter model.
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
@@ -1177,8 +1207,8 @@ final case class UnderexcitationLimiterDynamics
     ExcitationSystemDynamics: String = null,
     RemoteInputSignal: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1204,17 +1234,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UnderexcitationLimiterDynamics.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (UnderexcitationLimiterDynamics.fields (position), value)
+
         emitattr (0, ExcitationSystemDynamics)
         emitattr (1, RemoteInputSignal)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:UnderexcitationLimiterDynamics rdf:ID=\"%s\">\n%s\t</cim:UnderexcitationLimiterDynamics>".format (id, export_fields)
@@ -1222,10 +1258,10 @@ extends
 }
 
 object UnderexcitationLimiterDynamics
-extends
-    CIMParseable[UnderexcitationLimiterDynamics]
+    extends
+        CIMParseable[UnderexcitationLimiterDynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ExcitationSystemDynamics",
         "RemoteInputSignal"
     )
@@ -1233,13 +1269,13 @@ extends
         CIMRelationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
         CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
     )
-    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): UnderexcitationLimiterDynamics =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = UnderexcitationLimiterDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (ExcitationSystemDynamics (), 0),
@@ -1268,7 +1304,7 @@ object UnderexcitationLimiterDynamicsSerializer extends CIMSerializer[Underexcit
 
     def read (kryo: Kryo, input: Input, cls: Class[UnderexcitationLimiterDynamics]): UnderexcitationLimiterDynamics =
     {
-        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf [DynamicsFunctionBlock])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = UnderexcitationLimiterDynamics (
             parent,

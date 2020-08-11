@@ -38,18 +38,18 @@ class CIMSerializeSuite extends FixtureAnyFunSuite with BeforeAndAfter with Unzi
         val _ = new File (s"$FILE_DEPOT$FILENAME.rdf").delete
     }
 
-//    def toBytes (buffer: java.nio.ByteBuffer): String =
-//    {
-//        buffer.array.map (b => if (b >= 32 && b <= 126) b.asInstanceOf[Char].toString else s" ${b.toHexString} ").mkString ("")
-//    }
+    //    def toBytes (buffer: java.nio.ByteBuffer): String =
+    //    {
+    //        buffer.array.map (b => if (b >= 32 && b <= 126) b.asInstanceOf[Char].toString else s" ${b.toHexString} ").mkString ("")
+    //    }
 
-    def check[T <: Element: ClassTag](t: T)(implicit serializer: SerializerInstance): Int =
+    def check[T <: Element : ClassTag] (t: T)(implicit serializer: SerializerInstance): Int =
     {
         val buffer = serializer.serialize (t)
         val bytes = buffer.remaining
         // info (s"$bytes bytes", None)
         // info (s"${toBytes (buffer)}", None)
-        val o = serializer.deserialize[T] (buffer)
+        val o = serializer.deserialize[T](buffer)
         assert (o.bitfields.sameElements (t.bitfields))
         assert (o === t)
         bytes

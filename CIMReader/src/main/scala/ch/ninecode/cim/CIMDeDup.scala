@@ -32,7 +32,7 @@ import ch.ninecode.model._
  * Warnings are generated if the deleted elements are not identical to
  * the elements that are retained.
  *
- * @param spark The Spark session this class is running in.
+ * @param spark   The Spark session this class is running in.
  * @param storage The storage level to cache the resultant RDD.
  */
 class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER) extends CIMRDD with Serializable
@@ -50,13 +50,13 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
      * It logs a warning if the elements are not equal.
      *
      * @param element The "primary" element.
-     * @param others The "other" elements, although this choice of primary and other is arbitrary.
+     * @param others  The "other" elements, although this choice of primary and other is arbitrary.
      */
     def check (element: Element, others: Iterable[Element]): Unit =
     {
         others match
         {
-            case e::t =>
+            case e :: t =>
                 if (element != e)
                     log.warn (s"element ${element.id} has a non-identical duplicate")
                 check (element, t)
@@ -100,7 +100,7 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
         log.info ("eliminating duplicates")
 
         // get the elements RDD
-        val elements = getOrElse[Element]("Elements")
+        val elements = getOrElse [Element]("Elements")
 
         // deduplicate
         val new_elements = elements.keyBy (_.id).groupByKey ().values.map (deduplicate)

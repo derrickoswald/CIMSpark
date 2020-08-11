@@ -8,9 +8,11 @@ import java.io.IOException
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 
-trait Unzip {
+trait Unzip
+{
 
-    trait Using {
+    trait Using
+    {
         def using[T <: AutoCloseable, R] (resource: T)(block: T => R): R =
         {
             try
@@ -60,12 +62,14 @@ trait Unzip {
         {
             @SuppressWarnings (Array ("org.wartremover.warts.Var", "org.wartremover.warts.Null"))
             var entry: ZipEntry = _
+
             override def hasNext: Boolean =
             {
                 if (null == entry)
                     entry = zip.getNextEntry
                 null != entry
             }
+
             @SuppressWarnings (Array ("org.wartremover.warts.Null"))
             override def next (): ZipEntry =
             {
@@ -112,12 +116,13 @@ trait Unzip {
          * we need to guard against a -1 return in next(),
          * which leads to one extra 0 byte write at the end.
          *
-         * @param zip the zip stream opened at the entry
+         * @param zip   the zip stream opened at the entry
          * @param bytes an array to store the entry bytes in
          */
         case class Bytes (zip: ZipInputStream, bytes: Array[Byte]) extends Iterator[Int]
         {
             override def hasNext: Boolean = 0 != zip.available ()
+
             override def next (): Int =
             {
                 val n = zip.read (bytes)
@@ -144,4 +149,5 @@ trait Unzip {
             }
         }
     }
+
 }

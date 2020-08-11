@@ -3,8 +3,8 @@ package ch.ninecode.cim
 /**
  * Relation description between CIM classes.
  *
- * @param field the name of the field in this CIM class holding the reference to the other class
- * @param clazz the class name of the other class
+ * @param field            the name of the field in this CIM class holding the reference to the other class
+ * @param clazz            the class name of the other class
  * @param this_cardinality the cardinality of this side of the relation
  * @param mate_cardinality the cardinality on the other side of the relation
  */

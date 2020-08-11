@@ -16,57 +16,57 @@ import ch.ninecode.cim.CIMSerializer
  * Modified IEEE AC1A alternator-supplied rectifier excitation system with different rate feedback source.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param hvlvgates Indicates if both HV gate and LV gate are active (<i>HVLVgates</i>).
- *        true = gates are used
- *        false = gates are not used.
- *        Typical value = true.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 400.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
- *        Typical value = 0,2.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
- *        Typical value = 0,38.
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
- *        Typical value = 0,03.
- * @param kf1 Coefficient to allow different usage of the model (<i>Kf1</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param kf2 Coefficient to allow different usage of the model (<i>Kf2</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,03.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
- *        Typical value = 0,02.
- * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>T</i><i><sub>c</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
- *        Typical value = 0,8.
- * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
- *        Typical value = 1.
- * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>amax</sub></i>) (&gt; 0).
- *        Typical value = 14,5.
- * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>amin</sub></i>) (&lt; 0).
- *        Typical value = -14,5.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve1</i>) (&gt; 0).
- *        Typical value = 4,18.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve2</i>) (&gt; 0).
- *        Typical value = 3,14.
- * @param vrmax Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 6,03.
- * @param vrmin Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
- *        Typical value = -5,43.
+ * @param hvlvgates                Indicates if both HV gate and LV gate are active (<i>HVLVgates</i>).
+ *                                 true = gates are used
+ *                                 false = gates are not used.
+ *                                 Typical value = true.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 400.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *                                 Typical value = 0,2.
+ * @param kd                       Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+ *                                 Typical value = 0,38.
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
+ *                                 Typical value = 0,03.
+ * @param kf1                      Coefficient to allow different usage of the model (<i>Kf1</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param kf2                      Coefficient to allow different usage of the model (<i>Kf2</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param ks                       Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,03.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *                                 Typical value = 0,02.
+ * @param tb                       Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>T</i><i><sub>c</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 0,8.
+ * @param tf                       Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vamax                    Maximum voltage regulator output (<i>V</i><i><sub>amax</sub></i>) (&gt; 0).
+ *                                 Typical value = 14,5.
+ * @param vamin                    Minimum voltage regulator output (<i>V</i><i><sub>amin</sub></i>) (&lt; 0).
+ *                                 Typical value = -14,5.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve1</i>) (&gt; 0).
+ *                                 Typical value = 4,18.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve2</i>) (&gt; 0).
+ *                                 Typical value = 3,14.
+ * @param vrmax                    Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 6,03.
+ * @param vrmin                    Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value = -5,43.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAC1A
 (
@@ -94,8 +94,8 @@ final case class ExcAC1A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -121,13 +121,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAC1A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC1A.fields (position), value)
+
         emitelem (0, hvlvgates)
         emitelem (1, ka)
         emitelem (2, kc)
@@ -152,6 +157,7 @@ extends
         emitelem (21, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAC1A rdf:ID=\"%s\">\n%s\t</cim:ExcAC1A>".format (id, export_fields)
@@ -159,10 +165,10 @@ extends
 }
 
 object ExcAC1A
-extends
-    CIMParseable[ExcAC1A]
+    extends
+        CIMParseable[ExcAC1A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "hvlvgates",
         "ka",
         "kc",
@@ -186,33 +192,33 @@ extends
         "vrmax",
         "vrmin"
     )
-    val hvlvgates: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val kc: Fielder = parse_element (element (cls, fields(2)))
-    val kd: Fielder = parse_element (element (cls, fields(3)))
-    val ke: Fielder = parse_element (element (cls, fields(4)))
-    val kf: Fielder = parse_element (element (cls, fields(5)))
-    val kf1: Fielder = parse_element (element (cls, fields(6)))
-    val kf2: Fielder = parse_element (element (cls, fields(7)))
-    val ks: Fielder = parse_element (element (cls, fields(8)))
-    val seve1: Fielder = parse_element (element (cls, fields(9)))
-    val seve2: Fielder = parse_element (element (cls, fields(10)))
-    val ta: Fielder = parse_element (element (cls, fields(11)))
-    val tb: Fielder = parse_element (element (cls, fields(12)))
-    val tc: Fielder = parse_element (element (cls, fields(13)))
-    val te: Fielder = parse_element (element (cls, fields(14)))
-    val tf: Fielder = parse_element (element (cls, fields(15)))
-    val vamax: Fielder = parse_element (element (cls, fields(16)))
-    val vamin: Fielder = parse_element (element (cls, fields(17)))
-    val ve1: Fielder = parse_element (element (cls, fields(18)))
-    val ve2: Fielder = parse_element (element (cls, fields(19)))
-    val vrmax: Fielder = parse_element (element (cls, fields(20)))
-    val vrmin: Fielder = parse_element (element (cls, fields(21)))
+    val hvlvgates: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val kc: Fielder = parse_element (element (cls, fields (2)))
+    val kd: Fielder = parse_element (element (cls, fields (3)))
+    val ke: Fielder = parse_element (element (cls, fields (4)))
+    val kf: Fielder = parse_element (element (cls, fields (5)))
+    val kf1: Fielder = parse_element (element (cls, fields (6)))
+    val kf2: Fielder = parse_element (element (cls, fields (7)))
+    val ks: Fielder = parse_element (element (cls, fields (8)))
+    val seve1: Fielder = parse_element (element (cls, fields (9)))
+    val seve2: Fielder = parse_element (element (cls, fields (10)))
+    val ta: Fielder = parse_element (element (cls, fields (11)))
+    val tb: Fielder = parse_element (element (cls, fields (12)))
+    val tc: Fielder = parse_element (element (cls, fields (13)))
+    val te: Fielder = parse_element (element (cls, fields (14)))
+    val tf: Fielder = parse_element (element (cls, fields (15)))
+    val vamax: Fielder = parse_element (element (cls, fields (16)))
+    val vamin: Fielder = parse_element (element (cls, fields (17)))
+    val ve1: Fielder = parse_element (element (cls, fields (18)))
+    val ve2: Fielder = parse_element (element (cls, fields (19)))
+    val vrmax: Fielder = parse_element (element (cls, fields (20)))
+    val vrmin: Fielder = parse_element (element (cls, fields (21)))
 
     def parse (context: CIMContext): ExcAC1A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAC1A (
             ExcitationSystemDynamics.parse (context),
             toBoolean (mask (hvlvgates (), 0)),
@@ -281,7 +287,7 @@ object ExcAC1ASerializer extends CIMSerializer[ExcAC1A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAC1A]): ExcAC1A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAC1A (
             parent,
@@ -317,71 +323,71 @@ object ExcAC1ASerializer extends CIMSerializer[ExcAC1A]
  * Modified IEEE AC2A alternator-supplied rectifier excitation system with different field current limit.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param hvgate Indicates if HV gate is active (<i>HVgate</i>).
- *        true = gate is used
- *        false = gate is not used.
- *        Typical value = true.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 400.
- * @param kb Second stage regulator gain (<i>Kb</i>) (&gt; 0).
- *        Exciter field current controller gain.  Typical value = 25.
- * @param kb1 Second stage regulator gain (<i>Kb1</i>).
- *        It is exciter field current controller gain used as alternative to <i>Kb</i> to represent a variant of the ExcAC2A model.  Typical value = 25.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
- *        Typical value = 0,28.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
- *        Typical value = 0,35.
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
- *        Typical value = 0,03.
- * @param kh Exciter field current feedback gain (<i>Kh</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param kl Exciter field current limiter gain (<i>Kl</i>).
- *        Typical value = 10.
- * @param kl1 Coefficient to allow different usage of the model (<i>Kl1</i>).
- *        Typical value = 1.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param lvgate Indicates if LV gate is active (<i>LVgate</i>).
- *        true = gate is used
- *        false = gate is not used.
- *        Typical value = true.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,037.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,012.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
- *        Typical value = 0,02.
- * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
- *        Typical value = 0,6.
- * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
- *        Typical value = 1.
- * @param vamax Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
- *        Typical value = 8.
- * @param vamin Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
- *        Typical value = -8.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
- *        Typical value = 4,4.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
- *        Typical value = 3,3.
- * @param vfemax Exciter field current limit reference (<i>Vfemax</i>) (&gt;= 0).
- *        Typical value = 4,4.
- * @param vlr Maximum exciter field current (<i>Vlr</i>) (&gt; 0).
- *        Typical value = 4,4.
- * @param vrmax Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 105.
- * @param vrmin Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
- *        Typical value = -95.
+ * @param hvgate                   Indicates if HV gate is active (<i>HVgate</i>).
+ *                                 true = gate is used
+ *                                 false = gate is not used.
+ *                                 Typical value = true.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 400.
+ * @param kb                       Second stage regulator gain (<i>Kb</i>) (&gt; 0).
+ *                                 Exciter field current controller gain.  Typical value = 25.
+ * @param kb1                      Second stage regulator gain (<i>Kb1</i>).
+ *                                 It is exciter field current controller gain used as alternative to <i>Kb</i> to represent a variant of the ExcAC2A model.  Typical value = 25.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *                                 Typical value = 0,28.
+ * @param kd                       Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+ *                                 Typical value = 0,35.
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
+ *                                 Typical value = 0,03.
+ * @param kh                       Exciter field current feedback gain (<i>Kh</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param kl                       Exciter field current limiter gain (<i>Kl</i>).
+ *                                 Typical value = 10.
+ * @param kl1                      Coefficient to allow different usage of the model (<i>Kl1</i>).
+ *                                 Typical value = 1.
+ * @param ks                       Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param lvgate                   Indicates if LV gate is active (<i>LVgate</i>).
+ *                                 true = gate is used
+ *                                 false = gate is not used.
+ *                                 Typical value = true.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,037.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,012.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *                                 Typical value = 0,02.
+ * @param tb                       Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 0,6.
+ * @param tf                       Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vamax                    Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+ *                                 Typical value = 8.
+ * @param vamin                    Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+ *                                 Typical value = -8.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,4.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,3.
+ * @param vfemax                   Exciter field current limit reference (<i>Vfemax</i>) (&gt;= 0).
+ *                                 Typical value = 4,4.
+ * @param vlr                      Maximum exciter field current (<i>Vlr</i>) (&gt; 0).
+ *                                 Typical value = 4,4.
+ * @param vrmax                    Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 105.
+ * @param vrmin                    Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value = -95.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAC2A
 (
@@ -415,8 +421,8 @@ final case class ExcAC2A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -442,13 +448,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAC2A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC2A.fields (position), value)
+
         emitelem (0, hvgate)
         emitelem (1, ka)
         emitelem (2, kb)
@@ -479,6 +490,7 @@ extends
         emitelem (27, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAC2A rdf:ID=\"%s\">\n%s\t</cim:ExcAC2A>".format (id, export_fields)
@@ -486,10 +498,10 @@ extends
 }
 
 object ExcAC2A
-extends
-    CIMParseable[ExcAC2A]
+    extends
+        CIMParseable[ExcAC2A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "hvgate",
         "ka",
         "kb",
@@ -519,39 +531,39 @@ extends
         "vrmax",
         "vrmin"
     )
-    val hvgate: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val kb: Fielder = parse_element (element (cls, fields(2)))
-    val kb1: Fielder = parse_element (element (cls, fields(3)))
-    val kc: Fielder = parse_element (element (cls, fields(4)))
-    val kd: Fielder = parse_element (element (cls, fields(5)))
-    val ke: Fielder = parse_element (element (cls, fields(6)))
-    val kf: Fielder = parse_element (element (cls, fields(7)))
-    val kh: Fielder = parse_element (element (cls, fields(8)))
-    val kl: Fielder = parse_element (element (cls, fields(9)))
-    val kl1: Fielder = parse_element (element (cls, fields(10)))
-    val ks: Fielder = parse_element (element (cls, fields(11)))
-    val lvgate: Fielder = parse_element (element (cls, fields(12)))
-    val seve1: Fielder = parse_element (element (cls, fields(13)))
-    val seve2: Fielder = parse_element (element (cls, fields(14)))
-    val ta: Fielder = parse_element (element (cls, fields(15)))
-    val tb: Fielder = parse_element (element (cls, fields(16)))
-    val tc: Fielder = parse_element (element (cls, fields(17)))
-    val te: Fielder = parse_element (element (cls, fields(18)))
-    val tf: Fielder = parse_element (element (cls, fields(19)))
-    val vamax: Fielder = parse_element (element (cls, fields(20)))
-    val vamin: Fielder = parse_element (element (cls, fields(21)))
-    val ve1: Fielder = parse_element (element (cls, fields(22)))
-    val ve2: Fielder = parse_element (element (cls, fields(23)))
-    val vfemax: Fielder = parse_element (element (cls, fields(24)))
-    val vlr: Fielder = parse_element (element (cls, fields(25)))
-    val vrmax: Fielder = parse_element (element (cls, fields(26)))
-    val vrmin: Fielder = parse_element (element (cls, fields(27)))
+    val hvgate: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val kb: Fielder = parse_element (element (cls, fields (2)))
+    val kb1: Fielder = parse_element (element (cls, fields (3)))
+    val kc: Fielder = parse_element (element (cls, fields (4)))
+    val kd: Fielder = parse_element (element (cls, fields (5)))
+    val ke: Fielder = parse_element (element (cls, fields (6)))
+    val kf: Fielder = parse_element (element (cls, fields (7)))
+    val kh: Fielder = parse_element (element (cls, fields (8)))
+    val kl: Fielder = parse_element (element (cls, fields (9)))
+    val kl1: Fielder = parse_element (element (cls, fields (10)))
+    val ks: Fielder = parse_element (element (cls, fields (11)))
+    val lvgate: Fielder = parse_element (element (cls, fields (12)))
+    val seve1: Fielder = parse_element (element (cls, fields (13)))
+    val seve2: Fielder = parse_element (element (cls, fields (14)))
+    val ta: Fielder = parse_element (element (cls, fields (15)))
+    val tb: Fielder = parse_element (element (cls, fields (16)))
+    val tc: Fielder = parse_element (element (cls, fields (17)))
+    val te: Fielder = parse_element (element (cls, fields (18)))
+    val tf: Fielder = parse_element (element (cls, fields (19)))
+    val vamax: Fielder = parse_element (element (cls, fields (20)))
+    val vamin: Fielder = parse_element (element (cls, fields (21)))
+    val ve1: Fielder = parse_element (element (cls, fields (22)))
+    val ve2: Fielder = parse_element (element (cls, fields (23)))
+    val vfemax: Fielder = parse_element (element (cls, fields (24)))
+    val vlr: Fielder = parse_element (element (cls, fields (25)))
+    val vrmax: Fielder = parse_element (element (cls, fields (26)))
+    val vrmin: Fielder = parse_element (element (cls, fields (27)))
 
     def parse (context: CIMContext): ExcAC2A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAC2A (
             ExcitationSystemDynamics.parse (context),
             toBoolean (mask (hvgate (), 0)),
@@ -632,7 +644,7 @@ object ExcAC2ASerializer extends CIMSerializer[ExcAC2A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAC2A]): ExcAC2A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAC2A (
             parent,
@@ -674,63 +686,63 @@ object ExcAC2ASerializer extends CIMSerializer[ExcAC2A]
  * Modified IEEE AC3A alternator-supplied rectifier excitation system with different field current limit.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdn Value of <i>Efd </i>at which feedback gain changes (<i>Efdn</i>) (&gt; 0).
- *        Typical value = 2,36.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 45,62.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
- *        Typical value = 0,104.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
- *        Typical value = 0,499.
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
- *        Typical value = 0,143.
- * @param kf1 Coefficient to allow different usage of the model (<i>Kf1</i>).
- *        Typical value = 1.
- * @param kf2 Coefficient to allow different usage of the model (<i>Kf2</i>).
- *        Typical value = 0.
- * @param klv Gain used in the minimum field voltage limiter loop (<i>Klv</i>).
- *        Typical value = 0,194.
- * @param kn Excitation control system stabilizer gain (<i>Kn</i>) (&gt;= 0).
- *        Typical value =0,05.
- * @param kr Constant associated with regulator and alternator field power supply (<i>Kr</i>) (&gt; 0).
- *        Typical value =3,77.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
- *        Typical value = 0.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 1,143.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
- *        Typical value = 0,013.
- * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
- *        Typical value = 1,17.
- * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
- *        Typical value = 1.
- * @param vamax Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
- *        Typical value = 1.
- * @param vamin Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
- *        Typical value = -0,95.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
- *        Typical value = 6.24.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
- *        Typical value = 4,68.
- * @param vemin Minimum exciter voltage output (<i>Vemin</i>) (&lt;= 0).
- *        Typical value = 0.
- * @param vfemax Exciter field current limit reference (<i>Vfemax</i>) (&gt;= 0).
- *        Typical value = 16.
- * @param vlv Field voltage used in the minimum field voltage limiter loop (<i>Vlv</i>).
- *        Typical value = 0,79.
+ * @param efdn                     Value of <i>Efd </i>at which feedback gain changes (<i>Efdn</i>) (&gt; 0).
+ *                                 Typical value = 2,36.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 45,62.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *                                 Typical value = 0,104.
+ * @param kd                       Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+ *                                 Typical value = 0,499.
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
+ *                                 Typical value = 0,143.
+ * @param kf1                      Coefficient to allow different usage of the model (<i>Kf1</i>).
+ *                                 Typical value = 1.
+ * @param kf2                      Coefficient to allow different usage of the model (<i>Kf2</i>).
+ *                                 Typical value = 0.
+ * @param klv                      Gain used in the minimum field voltage limiter loop (<i>Klv</i>).
+ *                                 Typical value = 0,194.
+ * @param kn                       Excitation control system stabilizer gain (<i>Kn</i>) (&gt;= 0).
+ *                                 Typical value =0,05.
+ * @param kr                       Constant associated with regulator and alternator field power supply (<i>Kr</i>) (&gt; 0).
+ *                                 Typical value =3,77.
+ * @param ks                       Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *                                 Typical value = 0.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 1,143.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *                                 Typical value = 0,013.
+ * @param tb                       Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 1,17.
+ * @param tf                       Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vamax                    Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vamin                    Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+ *                                 Typical value = -0,95.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+ *                                 Typical value = 6.24.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,68.
+ * @param vemin                    Minimum exciter voltage output (<i>Vemin</i>) (&lt;= 0).
+ *                                 Typical value = 0.
+ * @param vfemax                   Exciter field current limit reference (<i>Vfemax</i>) (&gt;= 0).
+ *                                 Typical value = 16.
+ * @param vlv                      Field voltage used in the minimum field voltage limiter loop (<i>Vlv</i>).
+ *                                 Typical value = 0,79.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAC3A
 (
@@ -762,8 +774,8 @@ final case class ExcAC3A
     vfemax: Double = 0.0,
     vlv: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -789,13 +801,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAC3A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC3A.fields (position), value)
+
         emitelem (0, efdn)
         emitelem (1, ka)
         emitelem (2, kc)
@@ -824,6 +841,7 @@ extends
         emitelem (25, vlv)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAC3A rdf:ID=\"%s\">\n%s\t</cim:ExcAC3A>".format (id, export_fields)
@@ -831,10 +849,10 @@ extends
 }
 
 object ExcAC3A
-extends
-    CIMParseable[ExcAC3A]
+    extends
+        CIMParseable[ExcAC3A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efdn",
         "ka",
         "kc",
@@ -862,37 +880,37 @@ extends
         "vfemax",
         "vlv"
     )
-    val efdn: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val kc: Fielder = parse_element (element (cls, fields(2)))
-    val kd: Fielder = parse_element (element (cls, fields(3)))
-    val ke: Fielder = parse_element (element (cls, fields(4)))
-    val kf: Fielder = parse_element (element (cls, fields(5)))
-    val kf1: Fielder = parse_element (element (cls, fields(6)))
-    val kf2: Fielder = parse_element (element (cls, fields(7)))
-    val klv: Fielder = parse_element (element (cls, fields(8)))
-    val kn: Fielder = parse_element (element (cls, fields(9)))
-    val kr: Fielder = parse_element (element (cls, fields(10)))
-    val ks: Fielder = parse_element (element (cls, fields(11)))
-    val seve1: Fielder = parse_element (element (cls, fields(12)))
-    val seve2: Fielder = parse_element (element (cls, fields(13)))
-    val ta: Fielder = parse_element (element (cls, fields(14)))
-    val tb: Fielder = parse_element (element (cls, fields(15)))
-    val tc: Fielder = parse_element (element (cls, fields(16)))
-    val te: Fielder = parse_element (element (cls, fields(17)))
-    val tf: Fielder = parse_element (element (cls, fields(18)))
-    val vamax: Fielder = parse_element (element (cls, fields(19)))
-    val vamin: Fielder = parse_element (element (cls, fields(20)))
-    val ve1: Fielder = parse_element (element (cls, fields(21)))
-    val ve2: Fielder = parse_element (element (cls, fields(22)))
-    val vemin: Fielder = parse_element (element (cls, fields(23)))
-    val vfemax: Fielder = parse_element (element (cls, fields(24)))
-    val vlv: Fielder = parse_element (element (cls, fields(25)))
+    val efdn: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val kc: Fielder = parse_element (element (cls, fields (2)))
+    val kd: Fielder = parse_element (element (cls, fields (3)))
+    val ke: Fielder = parse_element (element (cls, fields (4)))
+    val kf: Fielder = parse_element (element (cls, fields (5)))
+    val kf1: Fielder = parse_element (element (cls, fields (6)))
+    val kf2: Fielder = parse_element (element (cls, fields (7)))
+    val klv: Fielder = parse_element (element (cls, fields (8)))
+    val kn: Fielder = parse_element (element (cls, fields (9)))
+    val kr: Fielder = parse_element (element (cls, fields (10)))
+    val ks: Fielder = parse_element (element (cls, fields (11)))
+    val seve1: Fielder = parse_element (element (cls, fields (12)))
+    val seve2: Fielder = parse_element (element (cls, fields (13)))
+    val ta: Fielder = parse_element (element (cls, fields (14)))
+    val tb: Fielder = parse_element (element (cls, fields (15)))
+    val tc: Fielder = parse_element (element (cls, fields (16)))
+    val te: Fielder = parse_element (element (cls, fields (17)))
+    val tf: Fielder = parse_element (element (cls, fields (18)))
+    val vamax: Fielder = parse_element (element (cls, fields (19)))
+    val vamin: Fielder = parse_element (element (cls, fields (20)))
+    val ve1: Fielder = parse_element (element (cls, fields (21)))
+    val ve2: Fielder = parse_element (element (cls, fields (22)))
+    val vemin: Fielder = parse_element (element (cls, fields (23)))
+    val vfemax: Fielder = parse_element (element (cls, fields (24)))
+    val vlv: Fielder = parse_element (element (cls, fields (25)))
 
     def parse (context: CIMContext): ExcAC3A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAC3A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efdn (), 0)),
@@ -969,7 +987,7 @@ object ExcAC3ASerializer extends CIMSerializer[ExcAC3A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAC3A]): ExcAC3A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAC3A (
             parent,
@@ -1009,29 +1027,29 @@ object ExcAC3ASerializer extends CIMSerializer[ExcAC3A]
  * Modified IEEE AC4A alternator-supplied rectifier excitation system with different minimum controller output.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 200.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
- *        Typical value = 0,015.
- * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 10.
- * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param vimax Maximum voltage regulator input limit (<i>Vimax</i>)  (&gt; 0).
- *        Typical value = 10.
- * @param vimin Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
- *        Typical value = -10.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 5,64.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
- *        Typical value = -4,53.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 200.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *                                 Typical value = 0,015.
+ * @param tb                       Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 10.
+ * @param tc                       Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param vimax                    Maximum voltage regulator input limit (<i>Vimax</i>)  (&gt; 0).
+ *                                 Typical value = 10.
+ * @param vimin                    Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
+ *                                 Typical value = -10.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 5,64.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value = -4,53.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAC4A
 (
@@ -1046,8 +1064,8 @@ final case class ExcAC4A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1073,13 +1091,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAC4A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC4A.fields (position), value)
+
         emitelem (0, ka)
         emitelem (1, kc)
         emitelem (2, ta)
@@ -1091,6 +1114,7 @@ extends
         emitelem (8, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAC4A rdf:ID=\"%s\">\n%s\t</cim:ExcAC4A>".format (id, export_fields)
@@ -1098,10 +1122,10 @@ extends
 }
 
 object ExcAC4A
-extends
-    CIMParseable[ExcAC4A]
+    extends
+        CIMParseable[ExcAC4A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ka",
         "kc",
         "ta",
@@ -1112,20 +1136,20 @@ extends
         "vrmax",
         "vrmin"
     )
-    val ka: Fielder = parse_element (element (cls, fields(0)))
-    val kc: Fielder = parse_element (element (cls, fields(1)))
-    val ta: Fielder = parse_element (element (cls, fields(2)))
-    val tb: Fielder = parse_element (element (cls, fields(3)))
-    val tc: Fielder = parse_element (element (cls, fields(4)))
-    val vimax: Fielder = parse_element (element (cls, fields(5)))
-    val vimin: Fielder = parse_element (element (cls, fields(6)))
-    val vrmax: Fielder = parse_element (element (cls, fields(7)))
-    val vrmin: Fielder = parse_element (element (cls, fields(8)))
+    val ka: Fielder = parse_element (element (cls, fields (0)))
+    val kc: Fielder = parse_element (element (cls, fields (1)))
+    val ta: Fielder = parse_element (element (cls, fields (2)))
+    val tb: Fielder = parse_element (element (cls, fields (3)))
+    val tc: Fielder = parse_element (element (cls, fields (4)))
+    val vimax: Fielder = parse_element (element (cls, fields (5)))
+    val vimin: Fielder = parse_element (element (cls, fields (6)))
+    val vrmax: Fielder = parse_element (element (cls, fields (7)))
+    val vrmin: Fielder = parse_element (element (cls, fields (8)))
 
     def parse (context: CIMContext): ExcAC4A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAC4A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ka (), 0)),
@@ -1168,7 +1192,7 @@ object ExcAC4ASerializer extends CIMSerializer[ExcAC4A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAC4A]): ExcAC4A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAC4A (
             parent,
@@ -1191,47 +1215,47 @@ object ExcAC4ASerializer extends CIMSerializer[ExcAC4A]
  * Modified IEEE AC5A alternator-supplied rectifier excitation system with different minimum controller output.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param a Coefficient to allow different usage of the model (<i>a</i>).
- *        Typical value = 1.
- * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd1</i>) (&gt; 0).
- *        Typical value = 5,6.
- * @param efd2 Exciter voltage at which exciter saturation is defined (<i>Efd2</i>) (&gt; 0).
- *        Typical value = 4,2.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 400.
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
- *        Typical value = 0,03.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
- *        Typical value = 0.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Efd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,86.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Efd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
- *        Typical value = 0,02.
- * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
- *        Typical value = 0,8.
- * @param tf1 Excitation control system stabilizer time constant (<i>Tf1</i>) (&gt; 0).
- *        Typical value  = 1.
- * @param tf2 Excitation control system stabilizer time constant (<i>Tf2</i>) (&gt;= 0).
- *        Typical value = 0,8.
- * @param tf3 Excitation control system stabilizer time constant (<i>Tf3</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 7,3.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
- *        Typical value =-7,3.
+ * @param a                        Coefficient to allow different usage of the model (<i>a</i>).
+ *                                 Typical value = 1.
+ * @param efd1                     Exciter voltage at which exciter saturation is defined (<i>Efd1</i>) (&gt; 0).
+ *                                 Typical value = 5,6.
+ * @param efd2                     Exciter voltage at which exciter saturation is defined (<i>Efd2</i>) (&gt; 0).
+ *                                 Typical value = 4,2.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 400.
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
+ *                                 Typical value = 0,03.
+ * @param ks                       Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *                                 Typical value = 0.
+ * @param seefd1                   Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Efd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,86.
+ * @param seefd2                   Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Efd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,5.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *                                 Typical value = 0,02.
+ * @param tb                       Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 0,8.
+ * @param tf1                      Excitation control system stabilizer time constant (<i>Tf1</i>) (&gt; 0).
+ *                                 Typical value  = 1.
+ * @param tf2                      Excitation control system stabilizer time constant (<i>Tf2</i>) (&gt;= 0).
+ *                                 Typical value = 0,8.
+ * @param tf3                      Excitation control system stabilizer time constant (<i>Tf3</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 7,3.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value =-7,3.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAC5A
 (
@@ -1255,8 +1279,8 @@ final case class ExcAC5A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1282,13 +1306,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAC5A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC5A.fields (position), value)
+
         emitelem (0, a)
         emitelem (1, efd1)
         emitelem (2, efd2)
@@ -1309,6 +1338,7 @@ extends
         emitelem (17, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAC5A rdf:ID=\"%s\">\n%s\t</cim:ExcAC5A>".format (id, export_fields)
@@ -1316,10 +1346,10 @@ extends
 }
 
 object ExcAC5A
-extends
-    CIMParseable[ExcAC5A]
+    extends
+        CIMParseable[ExcAC5A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "a",
         "efd1",
         "efd2",
@@ -1339,29 +1369,29 @@ extends
         "vrmax",
         "vrmin"
     )
-    val a: Fielder = parse_element (element (cls, fields(0)))
-    val efd1: Fielder = parse_element (element (cls, fields(1)))
-    val efd2: Fielder = parse_element (element (cls, fields(2)))
-    val ka: Fielder = parse_element (element (cls, fields(3)))
-    val ke: Fielder = parse_element (element (cls, fields(4)))
-    val kf: Fielder = parse_element (element (cls, fields(5)))
-    val ks: Fielder = parse_element (element (cls, fields(6)))
-    val seefd1: Fielder = parse_element (element (cls, fields(7)))
-    val seefd2: Fielder = parse_element (element (cls, fields(8)))
-    val ta: Fielder = parse_element (element (cls, fields(9)))
-    val tb: Fielder = parse_element (element (cls, fields(10)))
-    val tc: Fielder = parse_element (element (cls, fields(11)))
-    val te: Fielder = parse_element (element (cls, fields(12)))
-    val tf1: Fielder = parse_element (element (cls, fields(13)))
-    val tf2: Fielder = parse_element (element (cls, fields(14)))
-    val tf3: Fielder = parse_element (element (cls, fields(15)))
-    val vrmax: Fielder = parse_element (element (cls, fields(16)))
-    val vrmin: Fielder = parse_element (element (cls, fields(17)))
+    val a: Fielder = parse_element (element (cls, fields (0)))
+    val efd1: Fielder = parse_element (element (cls, fields (1)))
+    val efd2: Fielder = parse_element (element (cls, fields (2)))
+    val ka: Fielder = parse_element (element (cls, fields (3)))
+    val ke: Fielder = parse_element (element (cls, fields (4)))
+    val kf: Fielder = parse_element (element (cls, fields (5)))
+    val ks: Fielder = parse_element (element (cls, fields (6)))
+    val seefd1: Fielder = parse_element (element (cls, fields (7)))
+    val seefd2: Fielder = parse_element (element (cls, fields (8)))
+    val ta: Fielder = parse_element (element (cls, fields (9)))
+    val tb: Fielder = parse_element (element (cls, fields (10)))
+    val tc: Fielder = parse_element (element (cls, fields (11)))
+    val te: Fielder = parse_element (element (cls, fields (12)))
+    val tf1: Fielder = parse_element (element (cls, fields (13)))
+    val tf2: Fielder = parse_element (element (cls, fields (14)))
+    val tf3: Fielder = parse_element (element (cls, fields (15)))
+    val vrmax: Fielder = parse_element (element (cls, fields (16)))
+    val vrmin: Fielder = parse_element (element (cls, fields (17)))
 
     def parse (context: CIMContext): ExcAC5A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAC5A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (a (), 0)),
@@ -1422,7 +1452,7 @@ object ExcAC5ASerializer extends CIMSerializer[ExcAC5A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAC5A]): ExcAC5A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAC5A (
             parent,
@@ -1454,57 +1484,57 @@ object ExcAC5ASerializer extends CIMSerializer[ExcAC5A]
  * Modified IEEE AC6A alternator-supplied rectifier excitation system with speed input.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 536.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
- *        Typical value = 0,173.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
- *        Typical value = 1,91.
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- *        Typical value = 1,6.
- * @param kh Exciter field current limiter gain (<i>Kh</i>) (&gt;= 0).
- *        Typical value = 92.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
- *        Typical value = 0.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,214.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,044.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
- *        Typical value = 0,086.
- * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 9.
- * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
- *        Typical value = 1.
- * @param th Exciter field current limiter time constant (<i>Th</i>) (&gt; 0).
- *        Typical value = 0,08.
- * @param tj Exciter field current limiter time constant (<i>Tj</i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param tk Voltage regulator time constant (<i>Tk</i>) (&gt;= 0).
- *        Typical value = 0,18.
- * @param vamax Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
- *        Typical value = 75.
- * @param vamin Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
- *        Typical value = -75.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
- *        Typical value = 7,4.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
- *        Typical value = 5,55.
- * @param vfelim Exciter field current limit reference (<i>Vfelim</i>) (&gt; 0).
- *        Typical value = 19.
- * @param vhmax Maximum field current limiter signal reference (<i>Vhmax</i>) (&gt; 0).
- *        Typical value = 75.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 44.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
- *        Typical value = -36.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 536.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *                                 Typical value = 0,173.
+ * @param kd                       Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+ *                                 Typical value = 1,91.
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ *                                 Typical value = 1,6.
+ * @param kh                       Exciter field current limiter gain (<i>Kh</i>) (&gt;= 0).
+ *                                 Typical value = 92.
+ * @param ks                       Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *                                 Typical value = 0.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,214.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,044.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+ *                                 Typical value = 0,086.
+ * @param tb                       Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 9.
+ * @param tc                       Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 3.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param th                       Exciter field current limiter time constant (<i>Th</i>) (&gt; 0).
+ *                                 Typical value = 0,08.
+ * @param tj                       Exciter field current limiter time constant (<i>Tj</i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param tk                       Voltage regulator time constant (<i>Tk</i>) (&gt;= 0).
+ *                                 Typical value = 0,18.
+ * @param vamax                    Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+ *                                 Typical value = 75.
+ * @param vamin                    Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+ *                                 Typical value = -75.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+ *                                 Typical value = 7,4.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+ *                                 Typical value = 5,55.
+ * @param vfelim                   Exciter field current limit reference (<i>Vfelim</i>) (&gt; 0).
+ *                                 Typical value = 19.
+ * @param vhmax                    Maximum field current limiter signal reference (<i>Vhmax</i>) (&gt; 0).
+ *                                 Typical value = 75.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 44.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value = -36.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAC6A
 (
@@ -1533,8 +1563,8 @@ final case class ExcAC6A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1560,13 +1590,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAC6A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC6A.fields (position), value)
+
         emitelem (0, ka)
         emitelem (1, kc)
         emitelem (2, kd)
@@ -1592,6 +1627,7 @@ extends
         emitelem (22, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAC6A rdf:ID=\"%s\">\n%s\t</cim:ExcAC6A>".format (id, export_fields)
@@ -1599,10 +1635,10 @@ extends
 }
 
 object ExcAC6A
-extends
-    CIMParseable[ExcAC6A]
+    extends
+        CIMParseable[ExcAC6A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ka",
         "kc",
         "kd",
@@ -1627,34 +1663,34 @@ extends
         "vrmax",
         "vrmin"
     )
-    val ka: Fielder = parse_element (element (cls, fields(0)))
-    val kc: Fielder = parse_element (element (cls, fields(1)))
-    val kd: Fielder = parse_element (element (cls, fields(2)))
-    val ke: Fielder = parse_element (element (cls, fields(3)))
-    val kh: Fielder = parse_element (element (cls, fields(4)))
-    val ks: Fielder = parse_element (element (cls, fields(5)))
-    val seve1: Fielder = parse_element (element (cls, fields(6)))
-    val seve2: Fielder = parse_element (element (cls, fields(7)))
-    val ta: Fielder = parse_element (element (cls, fields(8)))
-    val tb: Fielder = parse_element (element (cls, fields(9)))
-    val tc: Fielder = parse_element (element (cls, fields(10)))
-    val te: Fielder = parse_element (element (cls, fields(11)))
-    val th: Fielder = parse_element (element (cls, fields(12)))
-    val tj: Fielder = parse_element (element (cls, fields(13)))
-    val tk: Fielder = parse_element (element (cls, fields(14)))
-    val vamax: Fielder = parse_element (element (cls, fields(15)))
-    val vamin: Fielder = parse_element (element (cls, fields(16)))
-    val ve1: Fielder = parse_element (element (cls, fields(17)))
-    val ve2: Fielder = parse_element (element (cls, fields(18)))
-    val vfelim: Fielder = parse_element (element (cls, fields(19)))
-    val vhmax: Fielder = parse_element (element (cls, fields(20)))
-    val vrmax: Fielder = parse_element (element (cls, fields(21)))
-    val vrmin: Fielder = parse_element (element (cls, fields(22)))
+    val ka: Fielder = parse_element (element (cls, fields (0)))
+    val kc: Fielder = parse_element (element (cls, fields (1)))
+    val kd: Fielder = parse_element (element (cls, fields (2)))
+    val ke: Fielder = parse_element (element (cls, fields (3)))
+    val kh: Fielder = parse_element (element (cls, fields (4)))
+    val ks: Fielder = parse_element (element (cls, fields (5)))
+    val seve1: Fielder = parse_element (element (cls, fields (6)))
+    val seve2: Fielder = parse_element (element (cls, fields (7)))
+    val ta: Fielder = parse_element (element (cls, fields (8)))
+    val tb: Fielder = parse_element (element (cls, fields (9)))
+    val tc: Fielder = parse_element (element (cls, fields (10)))
+    val te: Fielder = parse_element (element (cls, fields (11)))
+    val th: Fielder = parse_element (element (cls, fields (12)))
+    val tj: Fielder = parse_element (element (cls, fields (13)))
+    val tk: Fielder = parse_element (element (cls, fields (14)))
+    val vamax: Fielder = parse_element (element (cls, fields (15)))
+    val vamin: Fielder = parse_element (element (cls, fields (16)))
+    val ve1: Fielder = parse_element (element (cls, fields (17)))
+    val ve2: Fielder = parse_element (element (cls, fields (18)))
+    val vfelim: Fielder = parse_element (element (cls, fields (19)))
+    val vhmax: Fielder = parse_element (element (cls, fields (20)))
+    val vrmax: Fielder = parse_element (element (cls, fields (21)))
+    val vrmin: Fielder = parse_element (element (cls, fields (22)))
 
     def parse (context: CIMContext): ExcAC6A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAC6A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ka (), 0)),
@@ -1725,7 +1761,7 @@ object ExcAC6ASerializer extends CIMSerializer[ExcAC6A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAC6A]): ExcAC6A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAC6A (
             parent,
@@ -1762,72 +1798,72 @@ object ExcAC6ASerializer extends CIMSerializer[ExcAC6A]
  * Modified IEEE AC8B alternator-supplied rectifier excitation system with speed input and input limiter.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param inlim Input limiter indicator.
- *        true = input limiter <i>Vimax</i> and <i>Vimin</i> is considered
- *        false = input limiter <i>Vimax </i>and <i>Vimin</i> is not considered.
- *        Typical value = true.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 1.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
- *        Typical value = 0,55.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
- *        Typical value = 1,1.
- * @param kdr Voltage regulator derivative gain (<i>Kdr</i>) (&gt;= 0).
- *        Typical value = 10.
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- *        Typical value = 1.
- * @param kir Voltage regulator integral gain (<i>Kir</i>) (&gt;= 0).
- *        Typical value = 5.
- * @param kpr Voltage regulator proportional gain (<i>Kpr</i>) (&gt; 0 if ExcAC8B.kir = 0).
- *        Typical value = 80.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
- *        Typical value = 0.
- * @param pidlim PID limiter indicator.
- *        true = input limiter <i>Vpidmax</i> and <i>Vpidmin</i> is considered
- *        false = input limiter <i>Vpidmax</i> and <i>Vpidmin</i> is not considered.
- *        Typical value = true.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,3.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tdr Lag time constant (<i>Tdr</i>) (&gt; 0 if ExcAC8B.kdr &gt; 0).
- *        Typical value = 0,1.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
- *        Typical value = 1,2.
- * @param telim Selector for the limiter on the block (<i>1/sTe</i>).
- *        See diagram for meaning of true and false.
- *        Typical value = false.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
- *        Typical value = 6,5.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
- *        Typical value = 9.
- * @param vemin Minimum exciter voltage output (<i>Vemin</i>) (&lt;= 0).
- *        Typical value = 0.
- * @param vfemax Exciter field current limit reference (<i>Vfemax</i>).
- *        Typical value = 6.
- * @param vimax Input signal maximum (<i>Vimax</i>) (&gt; ExcAC8B.vimin).
- *        Typical value = 35.
- * @param vimin Input signal minimum (<i>Vimin</i>) (&lt; ExcAC8B.vimax).
- *        Typical value = -10.
- * @param vpidmax PID maximum controller output (<i>Vpidmax</i>) (&gt; ExcAC8B.vpidmin).
- *        Typical value = 35.
- * @param vpidmin PID minimum controller output (<i>Vpidmin</i>) (&lt; ExcAC8B.vpidmax).
- *        Typical value = -10.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 35.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
- *        Typical value = 0.
- * @param vtmult Multiply by generator's terminal voltage indicator.
- *        true =the limits <i>Vrmax</i> and <i>Vrmin</i> are multiplied by the generator’s terminal voltage to represent a thyristor power stage fed from the generator terminals
- *        false = limits are not multiplied by generator's terminal voltage.
- *        Typical value = false.
+ * @param inlim                    Input limiter indicator.
+ *                                 true = input limiter <i>Vimax</i> and <i>Vimin</i> is considered
+ *                                 false = input limiter <i>Vimax </i>and <i>Vimin</i> is not considered.
+ *                                 Typical value = true.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *                                 Typical value = 0,55.
+ * @param kd                       Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+ *                                 Typical value = 1,1.
+ * @param kdr                      Voltage regulator derivative gain (<i>Kdr</i>) (&gt;= 0).
+ *                                 Typical value = 10.
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ *                                 Typical value = 1.
+ * @param kir                      Voltage regulator integral gain (<i>Kir</i>) (&gt;= 0).
+ *                                 Typical value = 5.
+ * @param kpr                      Voltage regulator proportional gain (<i>Kpr</i>) (&gt; 0 if ExcAC8B.kir = 0).
+ *                                 Typical value = 80.
+ * @param ks                       Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *                                 Typical value = 0.
+ * @param pidlim                   PID limiter indicator.
+ *                                 true = input limiter <i>Vpidmax</i> and <i>Vpidmin</i> is considered
+ *                                 false = input limiter <i>Vpidmax</i> and <i>Vpidmin</i> is not considered.
+ *                                 Typical value = true.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,3.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 3.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tdr                      Lag time constant (<i>Tdr</i>) (&gt; 0 if ExcAC8B.kdr &gt; 0).
+ *                                 Typical value = 0,1.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 1,2.
+ * @param telim                    Selector for the limiter on the block (<i>1/sTe</i>).
+ *                                 See diagram for meaning of true and false.
+ *                                 Typical value = false.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+ *                                 Typical value = 6,5.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+ *                                 Typical value = 9.
+ * @param vemin                    Minimum exciter voltage output (<i>Vemin</i>) (&lt;= 0).
+ *                                 Typical value = 0.
+ * @param vfemax                   Exciter field current limit reference (<i>Vfemax</i>).
+ *                                 Typical value = 6.
+ * @param vimax                    Input signal maximum (<i>Vimax</i>) (&gt; ExcAC8B.vimin).
+ *                                 Typical value = 35.
+ * @param vimin                    Input signal minimum (<i>Vimin</i>) (&lt; ExcAC8B.vimax).
+ *                                 Typical value = -10.
+ * @param vpidmax                  PID maximum controller output (<i>Vpidmax</i>) (&gt; ExcAC8B.vpidmin).
+ *                                 Typical value = 35.
+ * @param vpidmin                  PID minimum controller output (<i>Vpidmin</i>) (&lt; ExcAC8B.vpidmax).
+ *                                 Typical value = -10.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 35.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value = 0.
+ * @param vtmult                   Multiply by generator's terminal voltage indicator.
+ *                                 true =the limits <i>Vrmax</i> and <i>Vrmin</i> are multiplied by the generator’s terminal voltage to represent a thyristor power stage fed from the generator terminals
+ *                                 false = limits are not multiplied by generator's terminal voltage.
+ *                                 Typical value = false.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAC8B
 (
@@ -1860,8 +1896,8 @@ final case class ExcAC8B
     vrmin: Double = 0.0,
     vtmult: Boolean = false
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1887,13 +1923,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAC8B.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC8B.fields (position), value)
+
         emitelem (0, inlim)
         emitelem (1, ka)
         emitelem (2, kc)
@@ -1923,6 +1964,7 @@ extends
         emitelem (26, vtmult)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAC8B rdf:ID=\"%s\">\n%s\t</cim:ExcAC8B>".format (id, export_fields)
@@ -1930,10 +1972,10 @@ extends
 }
 
 object ExcAC8B
-extends
-    CIMParseable[ExcAC8B]
+    extends
+        CIMParseable[ExcAC8B]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "inlim",
         "ka",
         "kc",
@@ -1962,38 +2004,38 @@ extends
         "vrmin",
         "vtmult"
     )
-    val inlim: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val kc: Fielder = parse_element (element (cls, fields(2)))
-    val kd: Fielder = parse_element (element (cls, fields(3)))
-    val kdr: Fielder = parse_element (element (cls, fields(4)))
-    val ke: Fielder = parse_element (element (cls, fields(5)))
-    val kir: Fielder = parse_element (element (cls, fields(6)))
-    val kpr: Fielder = parse_element (element (cls, fields(7)))
-    val ks: Fielder = parse_element (element (cls, fields(8)))
-    val pidlim: Fielder = parse_element (element (cls, fields(9)))
-    val seve1: Fielder = parse_element (element (cls, fields(10)))
-    val seve2: Fielder = parse_element (element (cls, fields(11)))
-    val ta: Fielder = parse_element (element (cls, fields(12)))
-    val tdr: Fielder = parse_element (element (cls, fields(13)))
-    val te: Fielder = parse_element (element (cls, fields(14)))
-    val telim: Fielder = parse_element (element (cls, fields(15)))
-    val ve1: Fielder = parse_element (element (cls, fields(16)))
-    val ve2: Fielder = parse_element (element (cls, fields(17)))
-    val vemin: Fielder = parse_element (element (cls, fields(18)))
-    val vfemax: Fielder = parse_element (element (cls, fields(19)))
-    val vimax: Fielder = parse_element (element (cls, fields(20)))
-    val vimin: Fielder = parse_element (element (cls, fields(21)))
-    val vpidmax: Fielder = parse_element (element (cls, fields(22)))
-    val vpidmin: Fielder = parse_element (element (cls, fields(23)))
-    val vrmax: Fielder = parse_element (element (cls, fields(24)))
-    val vrmin: Fielder = parse_element (element (cls, fields(25)))
-    val vtmult: Fielder = parse_element (element (cls, fields(26)))
+    val inlim: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val kc: Fielder = parse_element (element (cls, fields (2)))
+    val kd: Fielder = parse_element (element (cls, fields (3)))
+    val kdr: Fielder = parse_element (element (cls, fields (4)))
+    val ke: Fielder = parse_element (element (cls, fields (5)))
+    val kir: Fielder = parse_element (element (cls, fields (6)))
+    val kpr: Fielder = parse_element (element (cls, fields (7)))
+    val ks: Fielder = parse_element (element (cls, fields (8)))
+    val pidlim: Fielder = parse_element (element (cls, fields (9)))
+    val seve1: Fielder = parse_element (element (cls, fields (10)))
+    val seve2: Fielder = parse_element (element (cls, fields (11)))
+    val ta: Fielder = parse_element (element (cls, fields (12)))
+    val tdr: Fielder = parse_element (element (cls, fields (13)))
+    val te: Fielder = parse_element (element (cls, fields (14)))
+    val telim: Fielder = parse_element (element (cls, fields (15)))
+    val ve1: Fielder = parse_element (element (cls, fields (16)))
+    val ve2: Fielder = parse_element (element (cls, fields (17)))
+    val vemin: Fielder = parse_element (element (cls, fields (18)))
+    val vfemax: Fielder = parse_element (element (cls, fields (19)))
+    val vimax: Fielder = parse_element (element (cls, fields (20)))
+    val vimin: Fielder = parse_element (element (cls, fields (21)))
+    val vpidmax: Fielder = parse_element (element (cls, fields (22)))
+    val vpidmin: Fielder = parse_element (element (cls, fields (23)))
+    val vrmax: Fielder = parse_element (element (cls, fields (24)))
+    val vrmin: Fielder = parse_element (element (cls, fields (25)))
+    val vtmult: Fielder = parse_element (element (cls, fields (26)))
 
     def parse (context: CIMContext): ExcAC8B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAC8B (
             ExcitationSystemDynamics.parse (context),
             toBoolean (mask (inlim (), 0)),
@@ -2072,7 +2114,7 @@ object ExcAC8BSerializer extends CIMSerializer[ExcAC8B]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAC8B]): ExcAC8B =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAC8B (
             parent,
@@ -2115,45 +2157,45 @@ object ExcAC8BSerializer extends CIMSerializer[ExcAC8B]
  * It represents static field voltage or excitation current feedback excitation system.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param blint Governor control flag (<i>BLINT</i>).
- *        0 = lead-lag regulator
- *        1 = proportional integral regulator.
- *        Typical value = 0.
- * @param ifmn Minimum exciter current (<i>I</i><i><sub>FMN</sub></i>).
- *        Typical value = -5,2.
- * @param ifmx Maximum exciter current (<i>I</i><i><sub>FMX</sub></i>).
- *        Typical value = 6,5.
- * @param k2 Exciter gain (<i>K</i><i><sub>2</sub></i>).
- *        Typical value = 20.
- * @param k3 AVR gain (<i>K</i><i><sub>3</sub></i>).
- *        Typical value = 1000.
- * @param kce Ceiling factor (<i>K</i><i><sub>CE</sub></i>).
- *        Typical value = 1.
- * @param krvecc Feedback enabling (<i>K</i><i><sub>RVECC</sub></i>).
- *        0 = open loop control
- *        1 = closed loop control.
- *        Typical value = 1.
- * @param kvfif Rate feedback signal flag (<i>K</i><i><sub>VFIF</sub></i>).
- *        0 = output voltage of the exciter
- *        1 = exciter field current.
- *        Typical value = 0.
- * @param t1 Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
- *        Typical value = 20.
- * @param t2 Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param t3 Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
- *        Typical value = 1,6.
- * @param tb Exciter time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 0,04.
- * @param vrmn Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
- *        Typical value = -5,2.
- * @param vrmx Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
- *        Typical value = 6,5.
+ * @param blint                    Governor control flag (<i>BLINT</i>).
+ *                                 0 = lead-lag regulator
+ *                                 1 = proportional integral regulator.
+ *                                 Typical value = 0.
+ * @param ifmn                     Minimum exciter current (<i>I</i><i><sub>FMN</sub></i>).
+ *                                 Typical value = -5,2.
+ * @param ifmx                     Maximum exciter current (<i>I</i><i><sub>FMX</sub></i>).
+ *                                 Typical value = 6,5.
+ * @param k2                       Exciter gain (<i>K</i><i><sub>2</sub></i>).
+ *                                 Typical value = 20.
+ * @param k3                       AVR gain (<i>K</i><i><sub>3</sub></i>).
+ *                                 Typical value = 1000.
+ * @param kce                      Ceiling factor (<i>K</i><i><sub>CE</sub></i>).
+ *                                 Typical value = 1.
+ * @param krvecc                   Feedback enabling (<i>K</i><i><sub>RVECC</sub></i>).
+ *                                 0 = open loop control
+ *                                 1 = closed loop control.
+ *                                 Typical value = 1.
+ * @param kvfif                    Rate feedback signal flag (<i>K</i><i><sub>VFIF</sub></i>).
+ *                                 0 = output voltage of the exciter
+ *                                 1 = exciter field current.
+ *                                 Typical value = 0.
+ * @param t1                       Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 20.
+ * @param t2                       Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,05.
+ * @param t3                       Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1,6.
+ * @param tb                       Exciter time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,04.
+ * @param vrmn                     Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+ *                                 Typical value = -5,2.
+ * @param vrmx                     Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+ *                                 Typical value = 6,5.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcANS
 (
@@ -2173,8 +2215,8 @@ final case class ExcANS
     vrmn: Double = 0.0,
     vrmx: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2200,13 +2242,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcANS.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcANS.fields (position), value)
+
         emitelem (0, blint)
         emitelem (1, ifmn)
         emitelem (2, ifmx)
@@ -2223,6 +2270,7 @@ extends
         emitelem (13, vrmx)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcANS rdf:ID=\"%s\">\n%s\t</cim:ExcANS>".format (id, export_fields)
@@ -2230,10 +2278,10 @@ extends
 }
 
 object ExcANS
-extends
-    CIMParseable[ExcANS]
+    extends
+        CIMParseable[ExcANS]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "blint",
         "ifmn",
         "ifmx",
@@ -2249,25 +2297,25 @@ extends
         "vrmn",
         "vrmx"
     )
-    val blint: Fielder = parse_element (element (cls, fields(0)))
-    val ifmn: Fielder = parse_element (element (cls, fields(1)))
-    val ifmx: Fielder = parse_element (element (cls, fields(2)))
-    val k2: Fielder = parse_element (element (cls, fields(3)))
-    val k3: Fielder = parse_element (element (cls, fields(4)))
-    val kce: Fielder = parse_element (element (cls, fields(5)))
-    val krvecc: Fielder = parse_element (element (cls, fields(6)))
-    val kvfif: Fielder = parse_element (element (cls, fields(7)))
-    val t1: Fielder = parse_element (element (cls, fields(8)))
-    val t2: Fielder = parse_element (element (cls, fields(9)))
-    val t3: Fielder = parse_element (element (cls, fields(10)))
-    val tb: Fielder = parse_element (element (cls, fields(11)))
-    val vrmn: Fielder = parse_element (element (cls, fields(12)))
-    val vrmx: Fielder = parse_element (element (cls, fields(13)))
+    val blint: Fielder = parse_element (element (cls, fields (0)))
+    val ifmn: Fielder = parse_element (element (cls, fields (1)))
+    val ifmx: Fielder = parse_element (element (cls, fields (2)))
+    val k2: Fielder = parse_element (element (cls, fields (3)))
+    val k3: Fielder = parse_element (element (cls, fields (4)))
+    val kce: Fielder = parse_element (element (cls, fields (5)))
+    val krvecc: Fielder = parse_element (element (cls, fields (6)))
+    val kvfif: Fielder = parse_element (element (cls, fields (7)))
+    val t1: Fielder = parse_element (element (cls, fields (8)))
+    val t2: Fielder = parse_element (element (cls, fields (9)))
+    val t3: Fielder = parse_element (element (cls, fields (10)))
+    val tb: Fielder = parse_element (element (cls, fields (11)))
+    val vrmn: Fielder = parse_element (element (cls, fields (12)))
+    val vrmx: Fielder = parse_element (element (cls, fields (13)))
 
     def parse (context: CIMContext): ExcANS =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcANS (
             ExcitationSystemDynamics.parse (context),
             toInteger (mask (blint (), 0)),
@@ -2320,7 +2368,7 @@ object ExcANSSerializer extends CIMSerializer[ExcANS]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcANS]): ExcANS =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcANS (
             parent,
@@ -2350,35 +2398,35 @@ object ExcANSSerializer extends CIMSerializer[ExcANS]
  * It represents an exciter dynamo and electromechanical regulator.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
- *        Typical value = 4.18.
- * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
- *        Typical value = 3,14.
- * @param ka AVR gain (<i>K</i><i><sub>A</sub></i>).
- *        Typical value = 500.
- * @param kf Rate feedback gain (<i>K</i><i><sub>F</sub></i>).
- *        Typical value = 0,12.
- * @param se1 Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>S[E</i><i><sub>1</sub></i><i>]</i>).
- *        Typical value = 0,1.
- * @param se2 Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>S[E</i><i><sub>2</sub></i><i>]</i>).
- *        Typical value = 0,03.
- * @param ta AVR time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
- *        Typical value = 0,2.
- * @param tb AVR time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tf Rate feedback time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param vrmn Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
- *        Typical value = -6.
- * @param vrmx Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
- *        Typical value = 7.
+ * @param e1                       Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+ *                                 Typical value = 4.18.
+ * @param e2                       Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+ *                                 Typical value = 3,14.
+ * @param ka                       AVR gain (<i>K</i><i><sub>A</sub></i>).
+ *                                 Typical value = 500.
+ * @param kf                       Rate feedback gain (<i>K</i><i><sub>F</sub></i>).
+ *                                 Typical value = 0,12.
+ * @param se1                      Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>S[E</i><i><sub>1</sub></i><i>]</i>).
+ *                                 Typical value = 0,1.
+ * @param se2                      Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>S[E</i><i><sub>2</sub></i><i>]</i>).
+ *                                 Typical value = 0,03.
+ * @param ta                       AVR time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,2.
+ * @param tb                       AVR time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tf                       Rate feedback time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param vrmn                     Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+ *                                 Typical value = -6.
+ * @param vrmx                     Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+ *                                 Typical value = 7.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAVR1
 (
@@ -2396,8 +2444,8 @@ final case class ExcAVR1
     vrmn: Double = 0.0,
     vrmx: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2423,13 +2471,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAVR1.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR1.fields (position), value)
+
         emitelem (0, e1)
         emitelem (1, e2)
         emitelem (2, ka)
@@ -2444,6 +2497,7 @@ extends
         emitelem (11, vrmx)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAVR1 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR1>".format (id, export_fields)
@@ -2451,10 +2505,10 @@ extends
 }
 
 object ExcAVR1
-extends
-    CIMParseable[ExcAVR1]
+    extends
+        CIMParseable[ExcAVR1]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "e1",
         "e2",
         "ka",
@@ -2468,23 +2522,23 @@ extends
         "vrmn",
         "vrmx"
     )
-    val e1: Fielder = parse_element (element (cls, fields(0)))
-    val e2: Fielder = parse_element (element (cls, fields(1)))
-    val ka: Fielder = parse_element (element (cls, fields(2)))
-    val kf: Fielder = parse_element (element (cls, fields(3)))
-    val se1: Fielder = parse_element (element (cls, fields(4)))
-    val se2: Fielder = parse_element (element (cls, fields(5)))
-    val ta: Fielder = parse_element (element (cls, fields(6)))
-    val tb: Fielder = parse_element (element (cls, fields(7)))
-    val te: Fielder = parse_element (element (cls, fields(8)))
-    val tf: Fielder = parse_element (element (cls, fields(9)))
-    val vrmn: Fielder = parse_element (element (cls, fields(10)))
-    val vrmx: Fielder = parse_element (element (cls, fields(11)))
+    val e1: Fielder = parse_element (element (cls, fields (0)))
+    val e2: Fielder = parse_element (element (cls, fields (1)))
+    val ka: Fielder = parse_element (element (cls, fields (2)))
+    val kf: Fielder = parse_element (element (cls, fields (3)))
+    val se1: Fielder = parse_element (element (cls, fields (4)))
+    val se2: Fielder = parse_element (element (cls, fields (5)))
+    val ta: Fielder = parse_element (element (cls, fields (6)))
+    val tb: Fielder = parse_element (element (cls, fields (7)))
+    val te: Fielder = parse_element (element (cls, fields (8)))
+    val tf: Fielder = parse_element (element (cls, fields (9)))
+    val vrmn: Fielder = parse_element (element (cls, fields (10)))
+    val vrmx: Fielder = parse_element (element (cls, fields (11)))
 
     def parse (context: CIMContext): ExcAVR1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAVR1 (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (e1 (), 0)),
@@ -2533,7 +2587,7 @@ object ExcAVR1Serializer extends CIMSerializer[ExcAVR1]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAVR1]): ExcAVR1 =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAVR1 (
             parent,
@@ -2561,37 +2615,37 @@ object ExcAVR1Serializer extends CIMSerializer[ExcAVR1]
  * It represents an alternator and rotating diodes and electromechanic voltage regulators.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
- *        Typical value = 4,18.
- * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
- *        Typical value = 3,14.
- * @param ka AVR gain (<i>K</i><i><sub>A</sub></i>).
- *        Typical value = 500.
- * @param kf Rate feedback gain (<i>K</i><i><sub>F</sub></i>).
- *        Typical value = 0,12.
- * @param se1 Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>S[E</i><i><sub>1</sub></i><i>]</i>).
- *        Typical value = 0.1.
- * @param se2 Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>S[E</i><i><sub>2</sub></i><i>]</i>).
- *        Typical value = 0,03.
- * @param ta AVR time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param tb AVR time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tf1 Rate feedback time constant (<i>T</i><i><sub>F1</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tf2 Rate feedback time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param vrmn Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
- *        Typical value = -6.
- * @param vrmx Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
- *        Typical value = 7.
+ * @param e1                       Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+ *                                 Typical value = 4,18.
+ * @param e2                       Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+ *                                 Typical value = 3,14.
+ * @param ka                       AVR gain (<i>K</i><i><sub>A</sub></i>).
+ *                                 Typical value = 500.
+ * @param kf                       Rate feedback gain (<i>K</i><i><sub>F</sub></i>).
+ *                                 Typical value = 0,12.
+ * @param se1                      Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>S[E</i><i><sub>1</sub></i><i>]</i>).
+ *                                 Typical value = 0.1.
+ * @param se2                      Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>S[E</i><i><sub>2</sub></i><i>]</i>).
+ *                                 Typical value = 0,03.
+ * @param ta                       AVR time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param tb                       AVR time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tf1                      Rate feedback time constant (<i>T</i><i><sub>F1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tf2                      Rate feedback time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param vrmn                     Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+ *                                 Typical value = -6.
+ * @param vrmx                     Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+ *                                 Typical value = 7.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAVR2
 (
@@ -2610,8 +2664,8 @@ final case class ExcAVR2
     vrmn: Double = 0.0,
     vrmx: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2637,13 +2691,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAVR2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR2.fields (position), value)
+
         emitelem (0, e1)
         emitelem (1, e2)
         emitelem (2, ka)
@@ -2659,6 +2718,7 @@ extends
         emitelem (12, vrmx)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAVR2 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR2>".format (id, export_fields)
@@ -2666,10 +2726,10 @@ extends
 }
 
 object ExcAVR2
-extends
-    CIMParseable[ExcAVR2]
+    extends
+        CIMParseable[ExcAVR2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "e1",
         "e2",
         "ka",
@@ -2684,24 +2744,24 @@ extends
         "vrmn",
         "vrmx"
     )
-    val e1: Fielder = parse_element (element (cls, fields(0)))
-    val e2: Fielder = parse_element (element (cls, fields(1)))
-    val ka: Fielder = parse_element (element (cls, fields(2)))
-    val kf: Fielder = parse_element (element (cls, fields(3)))
-    val se1: Fielder = parse_element (element (cls, fields(4)))
-    val se2: Fielder = parse_element (element (cls, fields(5)))
-    val ta: Fielder = parse_element (element (cls, fields(6)))
-    val tb: Fielder = parse_element (element (cls, fields(7)))
-    val te: Fielder = parse_element (element (cls, fields(8)))
-    val tf1: Fielder = parse_element (element (cls, fields(9)))
-    val tf2: Fielder = parse_element (element (cls, fields(10)))
-    val vrmn: Fielder = parse_element (element (cls, fields(11)))
-    val vrmx: Fielder = parse_element (element (cls, fields(12)))
+    val e1: Fielder = parse_element (element (cls, fields (0)))
+    val e2: Fielder = parse_element (element (cls, fields (1)))
+    val ka: Fielder = parse_element (element (cls, fields (2)))
+    val kf: Fielder = parse_element (element (cls, fields (3)))
+    val se1: Fielder = parse_element (element (cls, fields (4)))
+    val se2: Fielder = parse_element (element (cls, fields (5)))
+    val ta: Fielder = parse_element (element (cls, fields (6)))
+    val tb: Fielder = parse_element (element (cls, fields (7)))
+    val te: Fielder = parse_element (element (cls, fields (8)))
+    val tf1: Fielder = parse_element (element (cls, fields (9)))
+    val tf2: Fielder = parse_element (element (cls, fields (10)))
+    val vrmn: Fielder = parse_element (element (cls, fields (11)))
+    val vrmx: Fielder = parse_element (element (cls, fields (12)))
 
     def parse (context: CIMContext): ExcAVR2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAVR2 (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (e1 (), 0)),
@@ -2752,7 +2812,7 @@ object ExcAVR2Serializer extends CIMSerializer[ExcAVR2]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAVR2]): ExcAVR2 =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAVR2 (
             parent,
@@ -2781,35 +2841,35 @@ object ExcAVR2Serializer extends CIMSerializer[ExcAVR2]
  * It represents an exciter dynamo and electric regulator.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
- *        Typical value = 4,18.
- * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
- *        Typical value = 3,14.
- * @param ka AVR gain (<i>K</i><i><sub>A</sub></i>).
- *        Typical value = 100.
- * @param se1 Saturation factor at <i>E</i><i><sub>1</sub></i><i> </i>(<i>S[E</i><i><sub>1</sub></i><i>]</i>).
- *        Typical value = 0,1.
- * @param se2 Saturation factor at <i>E</i><i><sub>2</sub></i><i> </i>(<i>S[E</i><i><sub>2</sub></i><i>]</i>).
- *        Typical value = 0,03.
- * @param t1 AVR time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
- *        Typical value = 20.
- * @param t2 AVR time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
- *        Typical value = 1,6.
- * @param t3 AVR time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
- *        Typical value = 0,66.
- * @param t4 AVR time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
- *        Typical value = 0,07.
- * @param te Exciter time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param vrmn Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
- *        Typical value = -7,5.
- * @param vrmx Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
- *        Typical value = 7,5.
+ * @param e1                       Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+ *                                 Typical value = 4,18.
+ * @param e2                       Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+ *                                 Typical value = 3,14.
+ * @param ka                       AVR gain (<i>K</i><i><sub>A</sub></i>).
+ *                                 Typical value = 100.
+ * @param se1                      Saturation factor at <i>E</i><i><sub>1</sub></i><i> </i>(<i>S[E</i><i><sub>1</sub></i><i>]</i>).
+ *                                 Typical value = 0,1.
+ * @param se2                      Saturation factor at <i>E</i><i><sub>2</sub></i><i> </i>(<i>S[E</i><i><sub>2</sub></i><i>]</i>).
+ *                                 Typical value = 0,03.
+ * @param t1                       AVR time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 20.
+ * @param t2                       AVR time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1,6.
+ * @param t3                       AVR time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,66.
+ * @param t4                       AVR time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,07.
+ * @param te                       Exciter time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param vrmn                     Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+ *                                 Typical value = -7,5.
+ * @param vrmx                     Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+ *                                 Typical value = 7,5.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAVR3
 (
@@ -2827,8 +2887,8 @@ final case class ExcAVR3
     vrmn: Double = 0.0,
     vrmx: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2854,13 +2914,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAVR3.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR3.fields (position), value)
+
         emitelem (0, e1)
         emitelem (1, e2)
         emitelem (2, ka)
@@ -2875,6 +2940,7 @@ extends
         emitelem (11, vrmx)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAVR3 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR3>".format (id, export_fields)
@@ -2882,10 +2948,10 @@ extends
 }
 
 object ExcAVR3
-extends
-    CIMParseable[ExcAVR3]
+    extends
+        CIMParseable[ExcAVR3]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "e1",
         "e2",
         "ka",
@@ -2899,23 +2965,23 @@ extends
         "vrmn",
         "vrmx"
     )
-    val e1: Fielder = parse_element (element (cls, fields(0)))
-    val e2: Fielder = parse_element (element (cls, fields(1)))
-    val ka: Fielder = parse_element (element (cls, fields(2)))
-    val se1: Fielder = parse_element (element (cls, fields(3)))
-    val se2: Fielder = parse_element (element (cls, fields(4)))
-    val t1: Fielder = parse_element (element (cls, fields(5)))
-    val t2: Fielder = parse_element (element (cls, fields(6)))
-    val t3: Fielder = parse_element (element (cls, fields(7)))
-    val t4: Fielder = parse_element (element (cls, fields(8)))
-    val te: Fielder = parse_element (element (cls, fields(9)))
-    val vrmn: Fielder = parse_element (element (cls, fields(10)))
-    val vrmx: Fielder = parse_element (element (cls, fields(11)))
+    val e1: Fielder = parse_element (element (cls, fields (0)))
+    val e2: Fielder = parse_element (element (cls, fields (1)))
+    val ka: Fielder = parse_element (element (cls, fields (2)))
+    val se1: Fielder = parse_element (element (cls, fields (3)))
+    val se2: Fielder = parse_element (element (cls, fields (4)))
+    val t1: Fielder = parse_element (element (cls, fields (5)))
+    val t2: Fielder = parse_element (element (cls, fields (6)))
+    val t3: Fielder = parse_element (element (cls, fields (7)))
+    val t4: Fielder = parse_element (element (cls, fields (8)))
+    val te: Fielder = parse_element (element (cls, fields (9)))
+    val vrmn: Fielder = parse_element (element (cls, fields (10)))
+    val vrmx: Fielder = parse_element (element (cls, fields (11)))
 
     def parse (context: CIMContext): ExcAVR3 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAVR3 (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (e1 (), 0)),
@@ -2964,7 +3030,7 @@ object ExcAVR3Serializer extends CIMSerializer[ExcAVR3]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAVR3]): ExcAVR3 =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAVR3 (
             parent,
@@ -2992,41 +3058,41 @@ object ExcAVR3Serializer extends CIMSerializer[ExcAVR3]
  * It represents a static exciter and electric voltage regulator.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param imul AVR output voltage dependency selector (<i>I</i><i><sub>MUL</sub></i>).
- *        true = selector is connected
- *        false = selector is not connected.
- *        Typical value = true.
- * @param ka AVR gain (<i>K</i><i><sub>A</sub></i>).
- *        Typical value = 300.
- * @param ke Exciter gain (<i>K</i><i><sub>E</sub></i><i>)</i>.
- *        Typical value = 1.
- * @param kif Exciter internal reactance (<i>K</i><i><sub>IF</sub></i>).
- *        Typical value = 0.
- * @param t1 AVR time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
- *        Typical value = 4,8.
- * @param t1if Exciter current feedback time constant (<i>T</i><i><sub>1IF</sub></i>) (&gt;= 0).
- *        Typical value = 60.
- * @param t2 AVR time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
- *        Typical value = 1,5.
- * @param t3 AVR time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param t4 AVR time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tif Exciter current feedback time constant (<i>T</i><i><sub>IF</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param vfmn Minimum exciter output (<i>V</i><i><sub>FMN</sub></i>).
- *        Typical value = 0.
- * @param vfmx Maximum exciter output (<i>V</i><i><sub>FMX</sub></i>).
- *        Typical value = 5.
- * @param vrmn Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
- *        Typical value = 0.
- * @param vrmx Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
- *        Typical value = 5.
+ * @param imul                     AVR output voltage dependency selector (<i>I</i><i><sub>MUL</sub></i>).
+ *                                 true = selector is connected
+ *                                 false = selector is not connected.
+ *                                 Typical value = true.
+ * @param ka                       AVR gain (<i>K</i><i><sub>A</sub></i>).
+ *                                 Typical value = 300.
+ * @param ke                       Exciter gain (<i>K</i><i><sub>E</sub></i><i>)</i>.
+ *                                 Typical value = 1.
+ * @param kif                      Exciter internal reactance (<i>K</i><i><sub>IF</sub></i>).
+ *                                 Typical value = 0.
+ * @param t1                       AVR time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 4,8.
+ * @param t1if                     Exciter current feedback time constant (<i>T</i><i><sub>1IF</sub></i>) (&gt;= 0).
+ *                                 Typical value = 60.
+ * @param t2                       AVR time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1,5.
+ * @param t3                       AVR time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param t4                       AVR time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tif                      Exciter current feedback time constant (<i>T</i><i><sub>IF</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param vfmn                     Minimum exciter output (<i>V</i><i><sub>FMN</sub></i>).
+ *                                 Typical value = 0.
+ * @param vfmx                     Maximum exciter output (<i>V</i><i><sub>FMX</sub></i>).
+ *                                 Typical value = 5.
+ * @param vrmn                     Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+ *                                 Typical value = 0.
+ * @param vrmx                     Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+ *                                 Typical value = 5.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAVR4
 (
@@ -3046,8 +3112,8 @@ final case class ExcAVR4
     vrmn: Double = 0.0,
     vrmx: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3073,13 +3139,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAVR4.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR4.fields (position), value)
+
         emitelem (0, imul)
         emitelem (1, ka)
         emitelem (2, ke)
@@ -3096,6 +3167,7 @@ extends
         emitelem (13, vrmx)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAVR4 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR4>".format (id, export_fields)
@@ -3103,10 +3175,10 @@ extends
 }
 
 object ExcAVR4
-extends
-    CIMParseable[ExcAVR4]
+    extends
+        CIMParseable[ExcAVR4]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "imul",
         "ka",
         "ke",
@@ -3122,25 +3194,25 @@ extends
         "vrmn",
         "vrmx"
     )
-    val imul: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val ke: Fielder = parse_element (element (cls, fields(2)))
-    val kif: Fielder = parse_element (element (cls, fields(3)))
-    val t1: Fielder = parse_element (element (cls, fields(4)))
-    val t1if: Fielder = parse_element (element (cls, fields(5)))
-    val t2: Fielder = parse_element (element (cls, fields(6)))
-    val t3: Fielder = parse_element (element (cls, fields(7)))
-    val t4: Fielder = parse_element (element (cls, fields(8)))
-    val tif: Fielder = parse_element (element (cls, fields(9)))
-    val vfmn: Fielder = parse_element (element (cls, fields(10)))
-    val vfmx: Fielder = parse_element (element (cls, fields(11)))
-    val vrmn: Fielder = parse_element (element (cls, fields(12)))
-    val vrmx: Fielder = parse_element (element (cls, fields(13)))
+    val imul: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val ke: Fielder = parse_element (element (cls, fields (2)))
+    val kif: Fielder = parse_element (element (cls, fields (3)))
+    val t1: Fielder = parse_element (element (cls, fields (4)))
+    val t1if: Fielder = parse_element (element (cls, fields (5)))
+    val t2: Fielder = parse_element (element (cls, fields (6)))
+    val t3: Fielder = parse_element (element (cls, fields (7)))
+    val t4: Fielder = parse_element (element (cls, fields (8)))
+    val tif: Fielder = parse_element (element (cls, fields (9)))
+    val vfmn: Fielder = parse_element (element (cls, fields (10)))
+    val vfmx: Fielder = parse_element (element (cls, fields (11)))
+    val vrmn: Fielder = parse_element (element (cls, fields (12)))
+    val vrmx: Fielder = parse_element (element (cls, fields (13)))
 
     def parse (context: CIMContext): ExcAVR4 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAVR4 (
             ExcitationSystemDynamics.parse (context),
             toBoolean (mask (imul (), 0)),
@@ -3193,7 +3265,7 @@ object ExcAVR4Serializer extends CIMSerializer[ExcAVR4]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAVR4]): ExcAVR4 =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAVR4 (
             parent,
@@ -3223,14 +3295,14 @@ object ExcAVR4Serializer extends CIMSerializer[ExcAVR4]
  * This model can be used as a very simple representation of manual voltage control.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Gain (<i>Ka</i>).
- * @param rex Effective output resistance (<i>Rex</i>). <i>Rex</i> represents the effective output resistance seen by the excitation system.
- * @param ta Time constant (<i>Ta</i>) (&gt;= 0).
+ * @param ka                       Gain (<i>Ka</i>).
+ * @param rex                      Effective output resistance (<i>Rex</i>). <i>Rex</i> represents the effective output resistance seen by the excitation system.
+ * @param ta                       Time constant (<i>Ta</i>) (&gt;= 0).
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAVR5
 (
@@ -3239,8 +3311,8 @@ final case class ExcAVR5
     rex: Double = 0.0,
     ta: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3266,18 +3338,24 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAVR5.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR5.fields (position), value)
+
         emitelem (0, ka)
         emitelem (1, rex)
         emitelem (2, ta)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAVR5 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR5>".format (id, export_fields)
@@ -3285,22 +3363,22 @@ extends
 }
 
 object ExcAVR5
-extends
-    CIMParseable[ExcAVR5]
+    extends
+        CIMParseable[ExcAVR5]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ka",
         "rex",
         "ta"
     )
-    val ka: Fielder = parse_element (element (cls, fields(0)))
-    val rex: Fielder = parse_element (element (cls, fields(1)))
-    val ta: Fielder = parse_element (element (cls, fields(2)))
+    val ka: Fielder = parse_element (element (cls, fields (0)))
+    val rex: Fielder = parse_element (element (cls, fields (1)))
+    val ta: Fielder = parse_element (element (cls, fields (2)))
 
     def parse (context: CIMContext): ExcAVR5 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAVR5 (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ka (), 0)),
@@ -3331,7 +3409,7 @@ object ExcAVR5Serializer extends CIMSerializer[ExcAVR5]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAVR5]): ExcAVR5 =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAVR5 (
             parent,
@@ -3348,53 +3426,53 @@ object ExcAVR5Serializer extends CIMSerializer[ExcAVR5]
  * IVO excitation system.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param a1 Lead coefficient (<i>A</i><i><sub>1</sub></i>).
- *        Typical value = 0,5.
- * @param a2 Lag coefficient (<i>A</i><i><sub>2</sub></i>).
- *        Typical value = 0,5.
- * @param a3 Lead coefficient (<i>A</i><i><sub>3</sub></i>).
- *        Typical value = 0,5.
- * @param a4 Lag coefficient (<i>A</i><i><sub>4</sub></i>).
- *        Typical value = 0,5.
- * @param a5 Lead coefficient (<i>A</i><i><sub>5</sub></i>).
- *        Typical value = 0,5.
- * @param a6 Lag coefficient (<i>A</i><i><sub>6</sub></i>).
- *        Typical value = 0,5.
- * @param k1 Gain (<i>K</i><i><sub>1</sub></i>).
- *        Typical value = 1.
- * @param k3 Gain (<i>K</i><i><sub>3</sub></i>).
- *        Typical value = 3.
- * @param k5 Gain (<i>K</i><i><sub>5</sub></i>).
- *        Typical value = 1.
- * @param t1 Lead time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param t2 Lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t3 Lead time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t4 Lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t5 Lead time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param t6 Lag time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param vmax1 Lead-lag maximum limit (<i>Vmax1</i>) (&gt; ExcAVR7.vmin1).
- *        Typical value = 5.
- * @param vmax3 Lead-lag maximum limit (<i>Vmax3</i>) (&gt; ExcAVR7.vmin3).
- *        Typical value = 5.
- * @param vmax5 Lead-lag maximum limit (<i>Vmax5</i>) (&gt; ExcAVR7.vmin5).
- *        Typical value = 5.
- * @param vmin1 Lead-lag minimum limit (<i>Vmin1</i>) (&lt; ExcAVR7.vmax1).
- *        Typical value = -5.
- * @param vmin3 Lead-lag minimum limit (<i>Vmin3</i>) (&lt; ExcAVR7.vmax3).
- *        Typical value = -5.
- * @param vmin5 Lead-lag minimum limit (<i>Vmin5</i>) (&lt; ExcAVR7.vmax5).
- *        Typical value = -2.
+ * @param a1                       Lead coefficient (<i>A</i><i><sub>1</sub></i>).
+ *                                 Typical value = 0,5.
+ * @param a2                       Lag coefficient (<i>A</i><i><sub>2</sub></i>).
+ *                                 Typical value = 0,5.
+ * @param a3                       Lead coefficient (<i>A</i><i><sub>3</sub></i>).
+ *                                 Typical value = 0,5.
+ * @param a4                       Lag coefficient (<i>A</i><i><sub>4</sub></i>).
+ *                                 Typical value = 0,5.
+ * @param a5                       Lead coefficient (<i>A</i><i><sub>5</sub></i>).
+ *                                 Typical value = 0,5.
+ * @param a6                       Lag coefficient (<i>A</i><i><sub>6</sub></i>).
+ *                                 Typical value = 0,5.
+ * @param k1                       Gain (<i>K</i><i><sub>1</sub></i>).
+ *                                 Typical value = 1.
+ * @param k3                       Gain (<i>K</i><i><sub>3</sub></i>).
+ *                                 Typical value = 3.
+ * @param k5                       Gain (<i>K</i><i><sub>5</sub></i>).
+ *                                 Typical value = 1.
+ * @param t1                       Lead time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,05.
+ * @param t2                       Lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param t3                       Lead time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param t4                       Lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param t5                       Lead time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param t6                       Lag time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param vmax1                    Lead-lag maximum limit (<i>Vmax1</i>) (&gt; ExcAVR7.vmin1).
+ *                                 Typical value = 5.
+ * @param vmax3                    Lead-lag maximum limit (<i>Vmax3</i>) (&gt; ExcAVR7.vmin3).
+ *                                 Typical value = 5.
+ * @param vmax5                    Lead-lag maximum limit (<i>Vmax5</i>) (&gt; ExcAVR7.vmin5).
+ *                                 Typical value = 5.
+ * @param vmin1                    Lead-lag minimum limit (<i>Vmin1</i>) (&lt; ExcAVR7.vmax1).
+ *                                 Typical value = -5.
+ * @param vmin3                    Lead-lag minimum limit (<i>Vmin3</i>) (&lt; ExcAVR7.vmax3).
+ *                                 Typical value = -5.
+ * @param vmin5                    Lead-lag minimum limit (<i>Vmin5</i>) (&lt; ExcAVR7.vmax5).
+ *                                 Typical value = -2.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcAVR7
 (
@@ -3421,8 +3499,8 @@ final case class ExcAVR7
     vmin3: Double = 0.0,
     vmin5: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3448,13 +3526,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcAVR7.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR7.fields (position), value)
+
         emitelem (0, a1)
         emitelem (1, a2)
         emitelem (2, a3)
@@ -3478,6 +3561,7 @@ extends
         emitelem (20, vmin5)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcAVR7 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR7>".format (id, export_fields)
@@ -3485,10 +3569,10 @@ extends
 }
 
 object ExcAVR7
-extends
-    CIMParseable[ExcAVR7]
+    extends
+        CIMParseable[ExcAVR7]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "a1",
         "a2",
         "a3",
@@ -3511,32 +3595,32 @@ extends
         "vmin3",
         "vmin5"
     )
-    val a1: Fielder = parse_element (element (cls, fields(0)))
-    val a2: Fielder = parse_element (element (cls, fields(1)))
-    val a3: Fielder = parse_element (element (cls, fields(2)))
-    val a4: Fielder = parse_element (element (cls, fields(3)))
-    val a5: Fielder = parse_element (element (cls, fields(4)))
-    val a6: Fielder = parse_element (element (cls, fields(5)))
-    val k1: Fielder = parse_element (element (cls, fields(6)))
-    val k3: Fielder = parse_element (element (cls, fields(7)))
-    val k5: Fielder = parse_element (element (cls, fields(8)))
-    val t1: Fielder = parse_element (element (cls, fields(9)))
-    val t2: Fielder = parse_element (element (cls, fields(10)))
-    val t3: Fielder = parse_element (element (cls, fields(11)))
-    val t4: Fielder = parse_element (element (cls, fields(12)))
-    val t5: Fielder = parse_element (element (cls, fields(13)))
-    val t6: Fielder = parse_element (element (cls, fields(14)))
-    val vmax1: Fielder = parse_element (element (cls, fields(15)))
-    val vmax3: Fielder = parse_element (element (cls, fields(16)))
-    val vmax5: Fielder = parse_element (element (cls, fields(17)))
-    val vmin1: Fielder = parse_element (element (cls, fields(18)))
-    val vmin3: Fielder = parse_element (element (cls, fields(19)))
-    val vmin5: Fielder = parse_element (element (cls, fields(20)))
+    val a1: Fielder = parse_element (element (cls, fields (0)))
+    val a2: Fielder = parse_element (element (cls, fields (1)))
+    val a3: Fielder = parse_element (element (cls, fields (2)))
+    val a4: Fielder = parse_element (element (cls, fields (3)))
+    val a5: Fielder = parse_element (element (cls, fields (4)))
+    val a6: Fielder = parse_element (element (cls, fields (5)))
+    val k1: Fielder = parse_element (element (cls, fields (6)))
+    val k3: Fielder = parse_element (element (cls, fields (7)))
+    val k5: Fielder = parse_element (element (cls, fields (8)))
+    val t1: Fielder = parse_element (element (cls, fields (9)))
+    val t2: Fielder = parse_element (element (cls, fields (10)))
+    val t3: Fielder = parse_element (element (cls, fields (11)))
+    val t4: Fielder = parse_element (element (cls, fields (12)))
+    val t5: Fielder = parse_element (element (cls, fields (13)))
+    val t6: Fielder = parse_element (element (cls, fields (14)))
+    val vmax1: Fielder = parse_element (element (cls, fields (15)))
+    val vmax3: Fielder = parse_element (element (cls, fields (16)))
+    val vmax5: Fielder = parse_element (element (cls, fields (17)))
+    val vmin1: Fielder = parse_element (element (cls, fields (18)))
+    val vmin3: Fielder = parse_element (element (cls, fields (19)))
+    val vmin5: Fielder = parse_element (element (cls, fields (20)))
 
     def parse (context: CIMContext): ExcAVR7 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcAVR7 (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (a1 (), 0)),
@@ -3603,7 +3687,7 @@ object ExcAVR7Serializer extends CIMSerializer[ExcAVR7]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcAVR7]): ExcAVR7 =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcAVR7 (
             parent,
@@ -3640,35 +3724,35 @@ object ExcAVR7Serializer extends CIMSerializer[ExcAVR7]
  * This model represents a static excitation system in which a gated thyristor bridge fed by a transformer at the main generator terminals feeds the main generator directly.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Maximum open circuit exciter voltage (<i>Efdmax</i>) (&gt; ExcBBC.efdmin).
- *        Typical value = 5.
- * @param efdmin Minimum open circuit exciter voltage (<i>Efdmin</i>) (&lt; ExcBBC.efdmax).
- *        Typical value = -5.
- * @param k Steady state gain (<i>K</i>) (not = 0).
- *        Typical value = 300.
- * @param switch Supplementary signal routing selector (<i>switch</i>).
- *        true = <i>Vs</i> connected to 3rd summing point
- *        false =  <i>Vs</i> connected to 1st summing point (see diagram).
- *        Typical value = false.
- * @param t1 Controller time constant (<i>T1</i>) (&gt;= 0).
- *        Typical value = 6.
- * @param t2 Controller time constant (<i>T2</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param t3 Lead/lag time constant (<i>T3</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0,05.
- * @param t4 Lead/lag time constant (<i>T4</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0,01.
- * @param vrmax Maximum control element output (<i>Vrmax</i>) (&gt; ExcBBC.vrmin).
- *        Typical value = 5.
- * @param vrmin Minimum control element output (<i>Vrmin</i>) (&lt; ExcBBC.vrmax).
- *        Typical value = -5.
- * @param xe Effective excitation transformer reactance (<i>Xe</i>) (&gt;= 0).  <i>Xe</i> models the regulation of the transformer/rectifier unit.
- *        Typical value = 0,05.
+ * @param efdmax                   Maximum open circuit exciter voltage (<i>Efdmax</i>) (&gt; ExcBBC.efdmin).
+ *                                 Typical value = 5.
+ * @param efdmin                   Minimum open circuit exciter voltage (<i>Efdmin</i>) (&lt; ExcBBC.efdmax).
+ *                                 Typical value = -5.
+ * @param k                        Steady state gain (<i>K</i>) (not = 0).
+ *                                 Typical value = 300.
+ * @param switch                   Supplementary signal routing selector (<i>switch</i>).
+ *                                 true = <i>Vs</i> connected to 3rd summing point
+ *                                 false =  <i>Vs</i> connected to 1st summing point (see diagram).
+ *                                 Typical value = false.
+ * @param t1                       Controller time constant (<i>T1</i>) (&gt;= 0).
+ *                                 Typical value = 6.
+ * @param t2                       Controller time constant (<i>T2</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param t3                       Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+ *                                 If = 0, block is bypassed.  Typical value = 0,05.
+ * @param t4                       Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+ *                                 If = 0, block is bypassed.  Typical value = 0,01.
+ * @param vrmax                    Maximum control element output (<i>Vrmax</i>) (&gt; ExcBBC.vrmin).
+ *                                 Typical value = 5.
+ * @param vrmin                    Minimum control element output (<i>Vrmin</i>) (&lt; ExcBBC.vrmax).
+ *                                 Typical value = -5.
+ * @param xe                       Effective excitation transformer reactance (<i>Xe</i>) (&gt;= 0).  <i>Xe</i> models the regulation of the transformer/rectifier unit.
+ *                                 Typical value = 0,05.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcBBC
 (
@@ -3685,8 +3769,8 @@ final case class ExcBBC
     vrmin: Double = 0.0,
     xe: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3712,13 +3796,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcBBC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcBBC.fields (position), value)
+
         emitelem (0, efdmax)
         emitelem (1, efdmin)
         emitelem (2, k)
@@ -3732,6 +3821,7 @@ extends
         emitelem (10, xe)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcBBC rdf:ID=\"%s\">\n%s\t</cim:ExcBBC>".format (id, export_fields)
@@ -3739,10 +3829,10 @@ extends
 }
 
 object ExcBBC
-extends
-    CIMParseable[ExcBBC]
+    extends
+        CIMParseable[ExcBBC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efdmax",
         "efdmin",
         "k",
@@ -3755,22 +3845,22 @@ extends
         "vrmin",
         "xe"
     )
-    val efdmax: Fielder = parse_element (element (cls, fields(0)))
-    val efdmin: Fielder = parse_element (element (cls, fields(1)))
-    val k: Fielder = parse_element (element (cls, fields(2)))
-    val `switch`: Fielder = parse_element (element (cls, fields(3)))
-    val t1: Fielder = parse_element (element (cls, fields(4)))
-    val t2: Fielder = parse_element (element (cls, fields(5)))
-    val t3: Fielder = parse_element (element (cls, fields(6)))
-    val t4: Fielder = parse_element (element (cls, fields(7)))
-    val vrmax: Fielder = parse_element (element (cls, fields(8)))
-    val vrmin: Fielder = parse_element (element (cls, fields(9)))
-    val xe: Fielder = parse_element (element (cls, fields(10)))
+    val efdmax: Fielder = parse_element (element (cls, fields (0)))
+    val efdmin: Fielder = parse_element (element (cls, fields (1)))
+    val k: Fielder = parse_element (element (cls, fields (2)))
+    val `switch`: Fielder = parse_element (element (cls, fields (3)))
+    val t1: Fielder = parse_element (element (cls, fields (4)))
+    val t2: Fielder = parse_element (element (cls, fields (5)))
+    val t3: Fielder = parse_element (element (cls, fields (6)))
+    val t4: Fielder = parse_element (element (cls, fields (7)))
+    val vrmax: Fielder = parse_element (element (cls, fields (8)))
+    val vrmin: Fielder = parse_element (element (cls, fields (9)))
+    val xe: Fielder = parse_element (element (cls, fields (10)))
 
     def parse (context: CIMContext): ExcBBC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcBBC (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efdmax (), 0)),
@@ -3817,7 +3907,7 @@ object ExcBBCSerializer extends CIMSerializer[ExcBBC]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcBBC]): ExcBBC =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcBBC (
             parent,
@@ -3842,21 +3932,21 @@ object ExcBBCSerializer extends CIMSerializer[ExcBBC]
  * Czech proportion/integral exciter.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Exciter output maximum limit (<i>Efdmax</i>) (&gt; ExcCZ.efdmin).
- * @param efdmin Exciter output minimum limit (<i>Efdmin</i>) (&lt; ExcCZ.efdmax).
- * @param ka Regulator gain (<i>Ka</i>).
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- * @param kp Regulator proportional gain (<i>Kp</i>).
- * @param ta Regulator time constant (<i>Ta</i>) (&gt;= 0).
- * @param tc Regulator integral time constant (<i>Tc</i>) (&gt;= 0).
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt;= 0).
- * @param vrmax Voltage regulator maximum limit (<i>Vrmax</i>) (&gt; ExcCZ.vrmin).
- * @param vrmin Voltage regulator minimum limit (<i>Vrmin</i>) (&lt; ExcCZ.vrmax).
+ * @param efdmax                   Exciter output maximum limit (<i>Efdmax</i>) (&gt; ExcCZ.efdmin).
+ * @param efdmin                   Exciter output minimum limit (<i>Efdmin</i>) (&lt; ExcCZ.efdmax).
+ * @param ka                       Regulator gain (<i>Ka</i>).
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ * @param kp                       Regulator proportional gain (<i>Kp</i>).
+ * @param ta                       Regulator time constant (<i>Ta</i>) (&gt;= 0).
+ * @param tc                       Regulator integral time constant (<i>Tc</i>) (&gt;= 0).
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt;= 0).
+ * @param vrmax                    Voltage regulator maximum limit (<i>Vrmax</i>) (&gt; ExcCZ.vrmin).
+ * @param vrmin                    Voltage regulator minimum limit (<i>Vrmin</i>) (&lt; ExcCZ.vrmax).
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcCZ
 (
@@ -3872,8 +3962,8 @@ final case class ExcCZ
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3899,13 +3989,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcCZ.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcCZ.fields (position), value)
+
         emitelem (0, efdmax)
         emitelem (1, efdmin)
         emitelem (2, ka)
@@ -3918,6 +4013,7 @@ extends
         emitelem (9, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcCZ rdf:ID=\"%s\">\n%s\t</cim:ExcCZ>".format (id, export_fields)
@@ -3925,10 +4021,10 @@ extends
 }
 
 object ExcCZ
-extends
-    CIMParseable[ExcCZ]
+    extends
+        CIMParseable[ExcCZ]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efdmax",
         "efdmin",
         "ka",
@@ -3940,21 +4036,21 @@ extends
         "vrmax",
         "vrmin"
     )
-    val efdmax: Fielder = parse_element (element (cls, fields(0)))
-    val efdmin: Fielder = parse_element (element (cls, fields(1)))
-    val ka: Fielder = parse_element (element (cls, fields(2)))
-    val ke: Fielder = parse_element (element (cls, fields(3)))
-    val kp: Fielder = parse_element (element (cls, fields(4)))
-    val ta: Fielder = parse_element (element (cls, fields(5)))
-    val tc: Fielder = parse_element (element (cls, fields(6)))
-    val te: Fielder = parse_element (element (cls, fields(7)))
-    val vrmax: Fielder = parse_element (element (cls, fields(8)))
-    val vrmin: Fielder = parse_element (element (cls, fields(9)))
+    val efdmax: Fielder = parse_element (element (cls, fields (0)))
+    val efdmin: Fielder = parse_element (element (cls, fields (1)))
+    val ka: Fielder = parse_element (element (cls, fields (2)))
+    val ke: Fielder = parse_element (element (cls, fields (3)))
+    val kp: Fielder = parse_element (element (cls, fields (4)))
+    val ta: Fielder = parse_element (element (cls, fields (5)))
+    val tc: Fielder = parse_element (element (cls, fields (6)))
+    val te: Fielder = parse_element (element (cls, fields (7)))
+    val vrmax: Fielder = parse_element (element (cls, fields (8)))
+    val vrmin: Fielder = parse_element (element (cls, fields (9)))
 
     def parse (context: CIMContext): ExcCZ =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcCZ (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efdmax (), 0)),
@@ -3999,7 +4095,7 @@ object ExcCZSerializer extends CIMSerializer[ExcCZ]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcCZ]): ExcCZ =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcCZ (
             parent,
@@ -4023,50 +4119,50 @@ object ExcCZSerializer extends CIMSerializer[ExcCZ]
  * Modified IEEE DC1A direct current commutator exciter with speed input and without underexcitation limiters (UEL) inputs.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
- *        Typical value = 3,1.
- * @param efd2 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
- *        Typical value = 2,3.
- * @param efdmax Maximum voltage exciter output limiter (<i>Efdmax</i>) (&gt; ExcDC1A.efdmin).
- *        Typical value = 99.
- * @param efdmin Minimum voltage exciter output limiter (<i>Efdmin</i>) (&lt; ExcDC1A.edfmax).
- *        Typical value = -99.
- * @param exclim (<i>exclim</i>).
- *        IEEE standard is ambiguous about lower limit on exciter output.
- *        true = a lower limit of zero is applied to integrator output
- *        false = a lower limit of zero is not applied to integrator output.
- *        Typical value = true.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 46.
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- *        Typical value = 0.
- * @param kf Excitation control system stabilizer gain (<i>Kf</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
- *        Typical value = 0.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Eefd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,33.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Eefd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
- *        Typical value = 0,06.
- * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
- *        Typical value = 0,46.
- * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
- *        Typical value = 1.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; ExcDC1A.vrmin).
- *        Typical value = 1.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0 and &lt; ExcDC1A.vrmax).
- *        Typical value = -0,9.
+ * @param efd1                     Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,1.
+ * @param efd2                     Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
+ *                                 Typical value = 2,3.
+ * @param efdmax                   Maximum voltage exciter output limiter (<i>Efdmax</i>) (&gt; ExcDC1A.efdmin).
+ *                                 Typical value = 99.
+ * @param efdmin                   Minimum voltage exciter output limiter (<i>Efdmin</i>) (&lt; ExcDC1A.edfmax).
+ *                                 Typical value = -99.
+ * @param exclim                   (<i>exclim</i>).
+ *                                 IEEE standard is ambiguous about lower limit on exciter output.
+ *                                 true = a lower limit of zero is applied to integrator output
+ *                                 false = a lower limit of zero is not applied to integrator output.
+ *                                 Typical value = true.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 46.
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ *                                 Typical value = 0.
+ * @param kf                       Excitation control system stabilizer gain (<i>Kf</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param ks                       Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *                                 Typical value = 0.
+ * @param seefd1                   Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Eefd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,33.
+ * @param seefd2                   Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Eefd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *                                 Typical value = 0,06.
+ * @param tb                       Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 0,46.
+ * @param tf                       Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; ExcDC1A.vrmin).
+ *                                 Typical value = 1.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0 and &lt; ExcDC1A.vrmax).
+ *                                 Typical value = -0,9.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcDC1A
 (
@@ -4090,8 +4186,8 @@ final case class ExcDC1A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4117,13 +4213,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcDC1A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcDC1A.fields (position), value)
+
         emitelem (0, efd1)
         emitelem (1, efd2)
         emitelem (2, efdmax)
@@ -4144,6 +4245,7 @@ extends
         emitelem (17, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcDC1A rdf:ID=\"%s\">\n%s\t</cim:ExcDC1A>".format (id, export_fields)
@@ -4151,10 +4253,10 @@ extends
 }
 
 object ExcDC1A
-extends
-    CIMParseable[ExcDC1A]
+    extends
+        CIMParseable[ExcDC1A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efd1",
         "efd2",
         "efdmax",
@@ -4174,29 +4276,29 @@ extends
         "vrmax",
         "vrmin"
     )
-    val efd1: Fielder = parse_element (element (cls, fields(0)))
-    val efd2: Fielder = parse_element (element (cls, fields(1)))
-    val efdmax: Fielder = parse_element (element (cls, fields(2)))
-    val efdmin: Fielder = parse_element (element (cls, fields(3)))
-    val exclim: Fielder = parse_element (element (cls, fields(4)))
-    val ka: Fielder = parse_element (element (cls, fields(5)))
-    val ke: Fielder = parse_element (element (cls, fields(6)))
-    val kf: Fielder = parse_element (element (cls, fields(7)))
-    val ks: Fielder = parse_element (element (cls, fields(8)))
-    val seefd1: Fielder = parse_element (element (cls, fields(9)))
-    val seefd2: Fielder = parse_element (element (cls, fields(10)))
-    val ta: Fielder = parse_element (element (cls, fields(11)))
-    val tb: Fielder = parse_element (element (cls, fields(12)))
-    val tc: Fielder = parse_element (element (cls, fields(13)))
-    val te: Fielder = parse_element (element (cls, fields(14)))
-    val tf: Fielder = parse_element (element (cls, fields(15)))
-    val vrmax: Fielder = parse_element (element (cls, fields(16)))
-    val vrmin: Fielder = parse_element (element (cls, fields(17)))
+    val efd1: Fielder = parse_element (element (cls, fields (0)))
+    val efd2: Fielder = parse_element (element (cls, fields (1)))
+    val efdmax: Fielder = parse_element (element (cls, fields (2)))
+    val efdmin: Fielder = parse_element (element (cls, fields (3)))
+    val exclim: Fielder = parse_element (element (cls, fields (4)))
+    val ka: Fielder = parse_element (element (cls, fields (5)))
+    val ke: Fielder = parse_element (element (cls, fields (6)))
+    val kf: Fielder = parse_element (element (cls, fields (7)))
+    val ks: Fielder = parse_element (element (cls, fields (8)))
+    val seefd1: Fielder = parse_element (element (cls, fields (9)))
+    val seefd2: Fielder = parse_element (element (cls, fields (10)))
+    val ta: Fielder = parse_element (element (cls, fields (11)))
+    val tb: Fielder = parse_element (element (cls, fields (12)))
+    val tc: Fielder = parse_element (element (cls, fields (13)))
+    val te: Fielder = parse_element (element (cls, fields (14)))
+    val tf: Fielder = parse_element (element (cls, fields (15)))
+    val vrmax: Fielder = parse_element (element (cls, fields (16)))
+    val vrmin: Fielder = parse_element (element (cls, fields (17)))
 
     def parse (context: CIMContext): ExcDC1A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcDC1A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efd1 (), 0)),
@@ -4257,7 +4359,7 @@ object ExcDC1ASerializer extends CIMSerializer[ExcDC1A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcDC1A]): ExcDC1A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcDC1A (
             parent,
@@ -4291,52 +4393,52 @@ object ExcDC1ASerializer extends CIMSerializer[ExcDC1A]
  * DC type 2 excitation system model with added speed multiplier, added lead-lag, and voltage-dependent limits.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
- *        Typical value = 3,05.
- * @param efd2 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
- *        Typical value = 2,29.
- * @param exclim (<i>exclim</i>).
- *        IEEE standard is ambiguous about lower limit on exciter output.
- *        true = a lower limit of zero is applied to integrator output
- *        false = a lower limit of zero is not applied to integrator output.
- *        Typical value = true.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 300.
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- *        If <i>Ke</i> is entered as zero, the model calculates an effective value of <i>Ke</i> such that the initial condition value of <i>Vr</i> is zero. The zero value of <i>Ke</i> is not changed.  If <i>Ke</i> is entered as non-zero, its value is used directly, without change.  Typical value = 1.
- * @param kf Excitation control system stabilizer gain (<i>Kf</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
- *        Typical value = 0.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Efd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,279.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Efd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,117.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
- *        Typical value = 0,01.
- * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
- *        Typical value = 1,33.
- * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
- *        Typical value = 0,675.
- * @param tf1 Excitation control system stabilizer time constant (<i>Tf1</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; ExcDC2A.vrmin).
- *        Typical value = 4,95.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0 and &lt; ExcDC2A.vrmax).
- *        Typical value = -4,9.
- * @param vtlim (<i>Vtlim</i>).
- *        true = limiter at the block (<i>Ka / [1 + sTa]</i>) is dependent on <i>Vt </i>
- *        false = limiter at the block is not dependent on <i>Vt</i>.
- *        Typical value = true.
+ * @param efd1                     Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,05.
+ * @param efd2                     Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
+ *                                 Typical value = 2,29.
+ * @param exclim                   (<i>exclim</i>).
+ *                                 IEEE standard is ambiguous about lower limit on exciter output.
+ *                                 true = a lower limit of zero is applied to integrator output
+ *                                 false = a lower limit of zero is not applied to integrator output.
+ *                                 Typical value = true.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 300.
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ *                                 If <i>Ke</i> is entered as zero, the model calculates an effective value of <i>Ke</i> such that the initial condition value of <i>Vr</i> is zero. The zero value of <i>Ke</i> is not changed.  If <i>Ke</i> is entered as non-zero, its value is used directly, without change.  Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gain (<i>Kf</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param ks                       Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *                                 Typical value = 0.
+ * @param seefd1                   Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Efd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,279.
+ * @param seefd2                   Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Efd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,117.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *                                 Typical value = 0,01.
+ * @param tb                       Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 1,33.
+ * @param tf                       Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
+ *                                 Typical value = 0,675.
+ * @param tf1                      Excitation control system stabilizer time constant (<i>Tf1</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; ExcDC2A.vrmin).
+ *                                 Typical value = 4,95.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0 and &lt; ExcDC2A.vrmax).
+ *                                 Typical value = -4,9.
+ * @param vtlim                    (<i>Vtlim</i>).
+ *                                 true = limiter at the block (<i>Ka / [1 + sTa]</i>) is dependent on <i>Vt </i>
+ *                                 false = limiter at the block is not dependent on <i>Vt</i>.
+ *                                 Typical value = true.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcDC2A
 (
@@ -4360,8 +4462,8 @@ final case class ExcDC2A
     vrmin: Double = 0.0,
     vtlim: Boolean = false
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4387,13 +4489,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcDC2A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcDC2A.fields (position), value)
+
         emitelem (0, efd1)
         emitelem (1, efd2)
         emitelem (2, exclim)
@@ -4414,6 +4521,7 @@ extends
         emitelem (17, vtlim)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcDC2A rdf:ID=\"%s\">\n%s\t</cim:ExcDC2A>".format (id, export_fields)
@@ -4421,10 +4529,10 @@ extends
 }
 
 object ExcDC2A
-extends
-    CIMParseable[ExcDC2A]
+    extends
+        CIMParseable[ExcDC2A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efd1",
         "efd2",
         "exclim",
@@ -4444,29 +4552,29 @@ extends
         "vrmin",
         "vtlim"
     )
-    val efd1: Fielder = parse_element (element (cls, fields(0)))
-    val efd2: Fielder = parse_element (element (cls, fields(1)))
-    val exclim: Fielder = parse_element (element (cls, fields(2)))
-    val ka: Fielder = parse_element (element (cls, fields(3)))
-    val ke: Fielder = parse_element (element (cls, fields(4)))
-    val kf: Fielder = parse_element (element (cls, fields(5)))
-    val ks: Fielder = parse_element (element (cls, fields(6)))
-    val seefd1: Fielder = parse_element (element (cls, fields(7)))
-    val seefd2: Fielder = parse_element (element (cls, fields(8)))
-    val ta: Fielder = parse_element (element (cls, fields(9)))
-    val tb: Fielder = parse_element (element (cls, fields(10)))
-    val tc: Fielder = parse_element (element (cls, fields(11)))
-    val te: Fielder = parse_element (element (cls, fields(12)))
-    val tf: Fielder = parse_element (element (cls, fields(13)))
-    val tf1: Fielder = parse_element (element (cls, fields(14)))
-    val vrmax: Fielder = parse_element (element (cls, fields(15)))
-    val vrmin: Fielder = parse_element (element (cls, fields(16)))
-    val vtlim: Fielder = parse_element (element (cls, fields(17)))
+    val efd1: Fielder = parse_element (element (cls, fields (0)))
+    val efd2: Fielder = parse_element (element (cls, fields (1)))
+    val exclim: Fielder = parse_element (element (cls, fields (2)))
+    val ka: Fielder = parse_element (element (cls, fields (3)))
+    val ke: Fielder = parse_element (element (cls, fields (4)))
+    val kf: Fielder = parse_element (element (cls, fields (5)))
+    val ks: Fielder = parse_element (element (cls, fields (6)))
+    val seefd1: Fielder = parse_element (element (cls, fields (7)))
+    val seefd2: Fielder = parse_element (element (cls, fields (8)))
+    val ta: Fielder = parse_element (element (cls, fields (9)))
+    val tb: Fielder = parse_element (element (cls, fields (10)))
+    val tc: Fielder = parse_element (element (cls, fields (11)))
+    val te: Fielder = parse_element (element (cls, fields (12)))
+    val tf: Fielder = parse_element (element (cls, fields (13)))
+    val tf1: Fielder = parse_element (element (cls, fields (14)))
+    val vrmax: Fielder = parse_element (element (cls, fields (15)))
+    val vrmin: Fielder = parse_element (element (cls, fields (16)))
+    val vtlim: Fielder = parse_element (element (cls, fields (17)))
 
     def parse (context: CIMContext): ExcDC2A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcDC2A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efd1 (), 0)),
@@ -4527,7 +4635,7 @@ object ExcDC2ASerializer extends CIMSerializer[ExcDC2A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcDC2A]): ExcDC2A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcDC2A (
             parent,
@@ -4561,48 +4669,48 @@ object ExcDC2ASerializer extends CIMSerializer[ExcDC2A]
  * DC old type 4.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
- *        Typical value = 2,6.
- * @param efd2 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
- *        Typical value = 3,45.
- * @param efdlim (<i>Efdlim</i>).
- *        true = exciter output limiter is active
- *        false = exciter output limiter not active.
- *        Typical value = true.
- * @param efdmax Maximum voltage exciter output limiter (<i>Efdmax</i>) (&gt; ExcDC3A.efdmin).
- *        Typical value = 99.
- * @param efdmin Minimum voltage exciter output limiter (<i>Efdmin</i>) (&lt; ExcDC3A.efdmax).
- *        Typical value = -99.
- * @param exclim (<i>exclim</i>).
- *        IEEE standard is ambiguous about lower limit on exciter output.
- *        true = a lower limit of zero is applied to integrator output
- *        false = a lower limit of zero not applied to integrator output.
- *        Typical value = true.
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- *        Typical value = 1.
- * @param kr Deadband (<i>Kr</i>).
- *        Typical value = 0.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
- *        Typical value = 0.
- * @param kv Fast raise/lower contact setting (<i>Kv</i>) (&gt; 0).
- *        Typical value = 0,05.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Efd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Efd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,35.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
- *        Typical value = 1,83.
- * @param trh Rheostat travel time (<i>Trh</i>) (&gt; 0).
- *        Typical value = 20.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 5.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt;= 0).
- *        Typical value = 0.
+ * @param efd1                     Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
+ *                                 Typical value = 2,6.
+ * @param efd2                     Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,45.
+ * @param efdlim                   (<i>Efdlim</i>).
+ *                                 true = exciter output limiter is active
+ *                                 false = exciter output limiter not active.
+ *                                 Typical value = true.
+ * @param efdmax                   Maximum voltage exciter output limiter (<i>Efdmax</i>) (&gt; ExcDC3A.efdmin).
+ *                                 Typical value = 99.
+ * @param efdmin                   Minimum voltage exciter output limiter (<i>Efdmin</i>) (&lt; ExcDC3A.efdmax).
+ *                                 Typical value = -99.
+ * @param exclim                   (<i>exclim</i>).
+ *                                 IEEE standard is ambiguous about lower limit on exciter output.
+ *                                 true = a lower limit of zero is applied to integrator output
+ *                                 false = a lower limit of zero not applied to integrator output.
+ *                                 Typical value = true.
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ *                                 Typical value = 1.
+ * @param kr                       Deadband (<i>Kr</i>).
+ *                                 Typical value = 0.
+ * @param ks                       Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *                                 Typical value = 0.
+ * @param kv                       Fast raise/lower contact setting (<i>Kv</i>) (&gt; 0).
+ *                                 Typical value = 0,05.
+ * @param seefd1                   Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Efd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param seefd2                   Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Efd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,35.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 1,83.
+ * @param trh                      Rheostat travel time (<i>Trh</i>) (&gt; 0).
+ *                                 Typical value = 20.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 5.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt;= 0).
+ *                                 Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcDC3A
 (
@@ -4624,8 +4732,8 @@ final case class ExcDC3A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4651,13 +4759,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcDC3A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcDC3A.fields (position), value)
+
         emitelem (0, efd1)
         emitelem (1, efd2)
         emitelem (2, efdlim)
@@ -4676,6 +4789,7 @@ extends
         emitelem (15, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcDC3A rdf:ID=\"%s\">\n%s\t</cim:ExcDC3A>".format (id, export_fields)
@@ -4683,10 +4797,10 @@ extends
 }
 
 object ExcDC3A
-extends
-    CIMParseable[ExcDC3A]
+    extends
+        CIMParseable[ExcDC3A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efd1",
         "efd2",
         "efdlim",
@@ -4704,27 +4818,27 @@ extends
         "vrmax",
         "vrmin"
     )
-    val efd1: Fielder = parse_element (element (cls, fields(0)))
-    val efd2: Fielder = parse_element (element (cls, fields(1)))
-    val efdlim: Fielder = parse_element (element (cls, fields(2)))
-    val efdmax: Fielder = parse_element (element (cls, fields(3)))
-    val efdmin: Fielder = parse_element (element (cls, fields(4)))
-    val exclim: Fielder = parse_element (element (cls, fields(5)))
-    val ke: Fielder = parse_element (element (cls, fields(6)))
-    val kr: Fielder = parse_element (element (cls, fields(7)))
-    val ks: Fielder = parse_element (element (cls, fields(8)))
-    val kv: Fielder = parse_element (element (cls, fields(9)))
-    val seefd1: Fielder = parse_element (element (cls, fields(10)))
-    val seefd2: Fielder = parse_element (element (cls, fields(11)))
-    val te: Fielder = parse_element (element (cls, fields(12)))
-    val trh: Fielder = parse_element (element (cls, fields(13)))
-    val vrmax: Fielder = parse_element (element (cls, fields(14)))
-    val vrmin: Fielder = parse_element (element (cls, fields(15)))
+    val efd1: Fielder = parse_element (element (cls, fields (0)))
+    val efd2: Fielder = parse_element (element (cls, fields (1)))
+    val efdlim: Fielder = parse_element (element (cls, fields (2)))
+    val efdmax: Fielder = parse_element (element (cls, fields (3)))
+    val efdmin: Fielder = parse_element (element (cls, fields (4)))
+    val exclim: Fielder = parse_element (element (cls, fields (5)))
+    val ke: Fielder = parse_element (element (cls, fields (6)))
+    val kr: Fielder = parse_element (element (cls, fields (7)))
+    val ks: Fielder = parse_element (element (cls, fields (8)))
+    val kv: Fielder = parse_element (element (cls, fields (9)))
+    val seefd1: Fielder = parse_element (element (cls, fields (10)))
+    val seefd2: Fielder = parse_element (element (cls, fields (11)))
+    val te: Fielder = parse_element (element (cls, fields (12)))
+    val trh: Fielder = parse_element (element (cls, fields (13)))
+    val vrmax: Fielder = parse_element (element (cls, fields (14)))
+    val vrmin: Fielder = parse_element (element (cls, fields (15)))
 
     def parse (context: CIMContext): ExcDC3A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcDC3A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efd1 (), 0)),
@@ -4781,7 +4895,7 @@ object ExcDC3ASerializer extends CIMSerializer[ExcDC3A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcDC3A]): ExcDC3A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcDC3A (
             parent,
@@ -4811,43 +4925,43 @@ object ExcDC3ASerializer extends CIMSerializer[ExcDC3A]
  * Modified old IEEE type 3 excitation system.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param exclim (<i>exclim</i>).
- *        true = lower limit of zero is applied to integrator output
- *        false = lower limit of zero not applied to integrator output.
- *        Typical value = true.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 300.
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gain (<i>Kf</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param ki Potential circuit gain coefficient (<i>Ki</i>) (&gt;= 0).
- *        Typical value = 4,83.
- * @param kp Potential circuit gain coefficient (<i>Kp</i>) (&gt;= 0).
- *        Typical value = 4,37.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
- *        Typical value = 0,01.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
- *        Typical value = 1,83.
- * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
- *        Typical value = 0,675.
- * @param vb1max Available exciter voltage limiter (<i>Vb1max</i>) (&gt; 0).
- *        Typical value = 11,63.
- * @param vblim Vb limiter indicator.
- *        true = exciter <i>Vbmax</i> limiter is active
- *        false = <i>Vb1max</i> is active.
- *        Typical value = true.
- * @param vbmax Available exciter voltage limiter (<i>Vbmax</i>) (&gt; 0).
- *        Typical value = 11,63.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; ExcDC3A1.vrmin).
- *        Typical value = 5.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0 and &lt; ExcDC3A1.vrmax).
- *        Typical value = 0.
+ * @param exclim                   (<i>exclim</i>).
+ *                                 true = lower limit of zero is applied to integrator output
+ *                                 false = lower limit of zero not applied to integrator output.
+ *                                 Typical value = true.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 300.
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gain (<i>Kf</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param ki                       Potential circuit gain coefficient (<i>Ki</i>) (&gt;= 0).
+ *                                 Typical value = 4,83.
+ * @param kp                       Potential circuit gain coefficient (<i>Kp</i>) (&gt;= 0).
+ *                                 Typical value = 4,37.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *                                 Typical value = 0,01.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 1,83.
+ * @param tf                       Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
+ *                                 Typical value = 0,675.
+ * @param vb1max                   Available exciter voltage limiter (<i>Vb1max</i>) (&gt; 0).
+ *                                 Typical value = 11,63.
+ * @param vblim                    Vb limiter indicator.
+ *                                 true = exciter <i>Vbmax</i> limiter is active
+ *                                 false = <i>Vb1max</i> is active.
+ *                                 Typical value = true.
+ * @param vbmax                    Available exciter voltage limiter (<i>Vbmax</i>) (&gt; 0).
+ *                                 Typical value = 11,63.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; ExcDC3A1.vrmin).
+ *                                 Typical value = 5.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0 and &lt; ExcDC3A1.vrmax).
+ *                                 Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcDC3A1
 (
@@ -4867,8 +4981,8 @@ final case class ExcDC3A1
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4894,13 +5008,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcDC3A1.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcDC3A1.fields (position), value)
+
         emitelem (0, exclim)
         emitelem (1, ka)
         emitelem (2, ke)
@@ -4917,6 +5036,7 @@ extends
         emitelem (13, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcDC3A1 rdf:ID=\"%s\">\n%s\t</cim:ExcDC3A1>".format (id, export_fields)
@@ -4924,10 +5044,10 @@ extends
 }
 
 object ExcDC3A1
-extends
-    CIMParseable[ExcDC3A1]
+    extends
+        CIMParseable[ExcDC3A1]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "exclim",
         "ka",
         "ke",
@@ -4943,25 +5063,25 @@ extends
         "vrmax",
         "vrmin"
     )
-    val exclim: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val ke: Fielder = parse_element (element (cls, fields(2)))
-    val kf: Fielder = parse_element (element (cls, fields(3)))
-    val ki: Fielder = parse_element (element (cls, fields(4)))
-    val kp: Fielder = parse_element (element (cls, fields(5)))
-    val ta: Fielder = parse_element (element (cls, fields(6)))
-    val te: Fielder = parse_element (element (cls, fields(7)))
-    val tf: Fielder = parse_element (element (cls, fields(8)))
-    val vb1max: Fielder = parse_element (element (cls, fields(9)))
-    val vblim: Fielder = parse_element (element (cls, fields(10)))
-    val vbmax: Fielder = parse_element (element (cls, fields(11)))
-    val vrmax: Fielder = parse_element (element (cls, fields(12)))
-    val vrmin: Fielder = parse_element (element (cls, fields(13)))
+    val exclim: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val ke: Fielder = parse_element (element (cls, fields (2)))
+    val kf: Fielder = parse_element (element (cls, fields (3)))
+    val ki: Fielder = parse_element (element (cls, fields (4)))
+    val kp: Fielder = parse_element (element (cls, fields (5)))
+    val ta: Fielder = parse_element (element (cls, fields (6)))
+    val te: Fielder = parse_element (element (cls, fields (7)))
+    val tf: Fielder = parse_element (element (cls, fields (8)))
+    val vb1max: Fielder = parse_element (element (cls, fields (9)))
+    val vblim: Fielder = parse_element (element (cls, fields (10)))
+    val vbmax: Fielder = parse_element (element (cls, fields (11)))
+    val vrmax: Fielder = parse_element (element (cls, fields (12)))
+    val vrmin: Fielder = parse_element (element (cls, fields (13)))
 
     def parse (context: CIMContext): ExcDC3A1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcDC3A1 (
             ExcitationSystemDynamics.parse (context),
             toBoolean (mask (exclim (), 0)),
@@ -5014,7 +5134,7 @@ object ExcDC3A1Serializer extends CIMSerializer[ExcDC3A1]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcDC3A1]): ExcDC3A1 =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcDC3A1 (
             parent,
@@ -5044,41 +5164,41 @@ object ExcDC3A1Serializer extends CIMSerializer[ExcDC3A1]
  * This model represents an all-static excitation system. A PI voltage controller establishes a desired field current set point for a proportional current controller. The integrator of the PI controller has a follow-up input to match its signal to the present field current.  A power system stabilizer with power input is included in the model.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param dpnf Controller follow up deadband (<i>Dpnf</i>).
- *        Typical value = 0.
- * @param efmax Maximum open circuit excitation voltage (<i>Efmax</i>) (&gt; ExcELIN1.efmin).
- *        Typical value = 5.
- * @param efmin Minimum open circuit excitation voltage (<i>Efmin</i>) (&lt; ExcELIN1.efmax).
- *        Typical value = -5.
- * @param ks1 Stabilizer gain 1 (<i>Ks1</i>).
- *        Typical value = 0.
- * @param ks2 Stabilizer gain 2 (<i>Ks2</i>).
- *        Typical value = 0.
- * @param smax Stabilizer limit output (<i>smax</i>).
- *        Typical value = 0,1.
- * @param tfi Current transducer time constant (<i>Tfi</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tnu Controller reset time constant (<i>Tnu</i>) (&gt;= 0).
- *        Typical value = 2.
- * @param ts1 Stabilizer phase lag time constant (<i>Ts1</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param ts2 Stabilizer filter time constant (<i>Ts2</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tsw Stabilizer parameters (<i>Tsw</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param vpi Current controller gain (<i>Vpi</i>).
- *        Typical value = 12,45.
- * @param vpnf Controller follow up gain (<i>Vpnf</i>).
- *        Typical value = 2.
- * @param vpu Voltage controller proportional gain (<i>Vpu</i>).
- *        Typical value = 34,5.
- * @param xe Excitation transformer effective reactance (<i>Xe</i>) (&gt;= 0).  <i>Xe</i> represents the regulation of the transformer/rectifier unit.
- *        Typical value = 0,06.
+ * @param dpnf                     Controller follow up deadband (<i>Dpnf</i>).
+ *                                 Typical value = 0.
+ * @param efmax                    Maximum open circuit excitation voltage (<i>Efmax</i>) (&gt; ExcELIN1.efmin).
+ *                                 Typical value = 5.
+ * @param efmin                    Minimum open circuit excitation voltage (<i>Efmin</i>) (&lt; ExcELIN1.efmax).
+ *                                 Typical value = -5.
+ * @param ks1                      Stabilizer gain 1 (<i>Ks1</i>).
+ *                                 Typical value = 0.
+ * @param ks2                      Stabilizer gain 2 (<i>Ks2</i>).
+ *                                 Typical value = 0.
+ * @param smax                     Stabilizer limit output (<i>smax</i>).
+ *                                 Typical value = 0,1.
+ * @param tfi                      Current transducer time constant (<i>Tfi</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tnu                      Controller reset time constant (<i>Tnu</i>) (&gt;= 0).
+ *                                 Typical value = 2.
+ * @param ts1                      Stabilizer phase lag time constant (<i>Ts1</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param ts2                      Stabilizer filter time constant (<i>Ts2</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tsw                      Stabilizer parameters (<i>Tsw</i>) (&gt;= 0).
+ *                                 Typical value = 3.
+ * @param vpi                      Current controller gain (<i>Vpi</i>).
+ *                                 Typical value = 12,45.
+ * @param vpnf                     Controller follow up gain (<i>Vpnf</i>).
+ *                                 Typical value = 2.
+ * @param vpu                      Voltage controller proportional gain (<i>Vpu</i>).
+ *                                 Typical value = 34,5.
+ * @param xe                       Excitation transformer effective reactance (<i>Xe</i>) (&gt;= 0).  <i>Xe</i> represents the regulation of the transformer/rectifier unit.
+ *                                 Typical value = 0,06.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcELIN1
 (
@@ -5099,8 +5219,8 @@ final case class ExcELIN1
     vpu: Double = 0.0,
     xe: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5126,13 +5246,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcELIN1.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcELIN1.fields (position), value)
+
         emitelem (0, dpnf)
         emitelem (1, efmax)
         emitelem (2, efmin)
@@ -5150,6 +5275,7 @@ extends
         emitelem (14, xe)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcELIN1 rdf:ID=\"%s\">\n%s\t</cim:ExcELIN1>".format (id, export_fields)
@@ -5157,10 +5283,10 @@ extends
 }
 
 object ExcELIN1
-extends
-    CIMParseable[ExcELIN1]
+    extends
+        CIMParseable[ExcELIN1]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dpnf",
         "efmax",
         "efmin",
@@ -5177,26 +5303,26 @@ extends
         "vpu",
         "xe"
     )
-    val dpnf: Fielder = parse_element (element (cls, fields(0)))
-    val efmax: Fielder = parse_element (element (cls, fields(1)))
-    val efmin: Fielder = parse_element (element (cls, fields(2)))
-    val ks1: Fielder = parse_element (element (cls, fields(3)))
-    val ks2: Fielder = parse_element (element (cls, fields(4)))
-    val smax: Fielder = parse_element (element (cls, fields(5)))
-    val tfi: Fielder = parse_element (element (cls, fields(6)))
-    val tnu: Fielder = parse_element (element (cls, fields(7)))
-    val ts1: Fielder = parse_element (element (cls, fields(8)))
-    val ts2: Fielder = parse_element (element (cls, fields(9)))
-    val tsw: Fielder = parse_element (element (cls, fields(10)))
-    val vpi: Fielder = parse_element (element (cls, fields(11)))
-    val vpnf: Fielder = parse_element (element (cls, fields(12)))
-    val vpu: Fielder = parse_element (element (cls, fields(13)))
-    val xe: Fielder = parse_element (element (cls, fields(14)))
+    val dpnf: Fielder = parse_element (element (cls, fields (0)))
+    val efmax: Fielder = parse_element (element (cls, fields (1)))
+    val efmin: Fielder = parse_element (element (cls, fields (2)))
+    val ks1: Fielder = parse_element (element (cls, fields (3)))
+    val ks2: Fielder = parse_element (element (cls, fields (4)))
+    val smax: Fielder = parse_element (element (cls, fields (5)))
+    val tfi: Fielder = parse_element (element (cls, fields (6)))
+    val tnu: Fielder = parse_element (element (cls, fields (7)))
+    val ts1: Fielder = parse_element (element (cls, fields (8)))
+    val ts2: Fielder = parse_element (element (cls, fields (9)))
+    val tsw: Fielder = parse_element (element (cls, fields (10)))
+    val vpi: Fielder = parse_element (element (cls, fields (11)))
+    val vpnf: Fielder = parse_element (element (cls, fields (12)))
+    val vpu: Fielder = parse_element (element (cls, fields (13)))
+    val xe: Fielder = parse_element (element (cls, fields (14)))
 
     def parse (context: CIMContext): ExcELIN1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcELIN1 (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (dpnf (), 0)),
@@ -5251,7 +5377,7 @@ object ExcELIN1Serializer extends CIMSerializer[ExcELIN1]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcELIN1]): ExcELIN1 =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcELIN1 (
             parent,
@@ -5282,65 +5408,65 @@ object ExcELIN1Serializer extends CIMSerializer[ExcELIN1]
  * This model represents an all-static excitation system. A PI voltage controller establishes a desired field current set point for a proportional current controller. The integrator of the PI controller has a follow-up input to match its signal to the present field current.  Power system stabilizer models used in conjunction with this excitation system model: PssELIN2, PssIEEE2B, Pss2B.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdbas Gain (<i>Efdbas</i>).
- *        Typical value = 0,1.
- * @param iefmax Limiter (<i>I</i><i><sub>efmax</sub></i>) (&gt; ExcELIN2.iefmin).
- *        Typical value = 1.
- * @param iefmax2 Minimum open circuit excitation voltage (<i>I</i><i><sub>efmax2</sub></i>).
- *        Typical value = -5.
- * @param iefmin Limiter (<i>I</i><i><sub>efmin</sub></i>) (&lt; ExcELIN2.iefmax).
- *        Typical value = 1.
- * @param k1 Voltage regulator input gain (<i>K1</i>).
- *        Typical value = 0.
- * @param k1ec Voltage regulator input limit (<i>K1ec</i>).
- *        Typical value = 2.
- * @param k2 Gain (<i>K2</i>).
- *        Typical value = 5.
- * @param k3 Gain (<i>K3</i>).
- *        Typical value = 0,1.
- * @param k4 Gain (<i>K4</i>).
- *        Typical value = 0.
- * @param kd1 Voltage controller derivative gain (<i>Kd1</i>).
- *        Typical value = 34,5.
- * @param ke2 Gain (<i>Ke2</i>).
- *        Typical value = 0,1.
- * @param ketb Gain (<i>Ketb</i>).
- *        Typical value = 0,06.
- * @param pid1max Controller follow up gain (<i>PID1max</i>).
- *        Typical value = 2.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tb1 Voltage controller derivative washout time constant (<i>Tb1</i>) (&gt;= 0).
- *        Typical value = 12,45.
- * @param te Time constant (<i>Te</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te2 Time Constant (<i>T</i><i><sub>e2</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param ti1 Controller follow up deadband (<i>Ti1</i>).
- *        Typical value = 0.
- * @param ti3 Time constant (<i>T</i><i><sub>i3</sub></i>) (&gt;= 0).
- *        Typical value = 3.
- * @param ti4 Time constant (<i>T</i><i><sub>i4</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tr4 Time constant (<i>T</i><i><sub>r4</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param upmax Limiter (<i>Upmax</i>) (&gt; ExcELIN2.upmin).
- *        Typical value = 3.
- * @param upmin Limiter (<i>Upmin</i>) (&lt; ExcELIN2.upmax).
- *        Typical value = 0.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
- *        Typical value = 3.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
- *        Typical value = 0.
- * @param xp Excitation transformer effective reactance (<i>Xp</i>).
- *        Typical value = 1.
+ * @param efdbas                   Gain (<i>Efdbas</i>).
+ *                                 Typical value = 0,1.
+ * @param iefmax                   Limiter (<i>I</i><i><sub>efmax</sub></i>) (&gt; ExcELIN2.iefmin).
+ *                                 Typical value = 1.
+ * @param iefmax2                  Minimum open circuit excitation voltage (<i>I</i><i><sub>efmax2</sub></i>).
+ *                                 Typical value = -5.
+ * @param iefmin                   Limiter (<i>I</i><i><sub>efmin</sub></i>) (&lt; ExcELIN2.iefmax).
+ *                                 Typical value = 1.
+ * @param k1                       Voltage regulator input gain (<i>K1</i>).
+ *                                 Typical value = 0.
+ * @param k1ec                     Voltage regulator input limit (<i>K1ec</i>).
+ *                                 Typical value = 2.
+ * @param k2                       Gain (<i>K2</i>).
+ *                                 Typical value = 5.
+ * @param k3                       Gain (<i>K3</i>).
+ *                                 Typical value = 0,1.
+ * @param k4                       Gain (<i>K4</i>).
+ *                                 Typical value = 0.
+ * @param kd1                      Voltage controller derivative gain (<i>Kd1</i>).
+ *                                 Typical value = 34,5.
+ * @param ke2                      Gain (<i>Ke2</i>).
+ *                                 Typical value = 0,1.
+ * @param ketb                     Gain (<i>Ketb</i>).
+ *                                 Typical value = 0,06.
+ * @param pid1max                  Controller follow up gain (<i>PID1max</i>).
+ *                                 Typical value = 2.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tb1                      Voltage controller derivative washout time constant (<i>Tb1</i>) (&gt;= 0).
+ *                                 Typical value = 12,45.
+ * @param te                       Time constant (<i>Te</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te2                      Time Constant (<i>T</i><i><sub>e2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param ti1                      Controller follow up deadband (<i>Ti1</i>).
+ *                                 Typical value = 0.
+ * @param ti3                      Time constant (<i>T</i><i><sub>i3</sub></i>) (&gt;= 0).
+ *                                 Typical value = 3.
+ * @param ti4                      Time constant (<i>T</i><i><sub>i4</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tr4                      Time constant (<i>T</i><i><sub>r4</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param upmax                    Limiter (<i>Upmax</i>) (&gt; ExcELIN2.upmin).
+ *                                 Typical value = 3.
+ * @param upmin                    Limiter (<i>Upmin</i>) (&lt; ExcELIN2.upmax).
+ *                                 Typical value = 0.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+ *                                 Typical value = 3.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+ *                                 Typical value = 0.
+ * @param xp                       Excitation transformer effective reactance (<i>Xp</i>).
+ *                                 Typical value = 1.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcELIN2
 (
@@ -5373,8 +5499,8 @@ final case class ExcELIN2
     ve2: Double = 0.0,
     xp: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5400,13 +5526,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcELIN2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcELIN2.fields (position), value)
+
         emitelem (0, efdbas)
         emitelem (1, iefmax)
         emitelem (2, iefmax2)
@@ -5436,6 +5567,7 @@ extends
         emitelem (26, xp)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcELIN2 rdf:ID=\"%s\">\n%s\t</cim:ExcELIN2>".format (id, export_fields)
@@ -5443,10 +5575,10 @@ extends
 }
 
 object ExcELIN2
-extends
-    CIMParseable[ExcELIN2]
+    extends
+        CIMParseable[ExcELIN2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efdbas",
         "iefmax",
         "iefmax2",
@@ -5475,38 +5607,38 @@ extends
         "ve2",
         "xp"
     )
-    val efdbas: Fielder = parse_element (element (cls, fields(0)))
-    val iefmax: Fielder = parse_element (element (cls, fields(1)))
-    val iefmax2: Fielder = parse_element (element (cls, fields(2)))
-    val iefmin: Fielder = parse_element (element (cls, fields(3)))
-    val k1: Fielder = parse_element (element (cls, fields(4)))
-    val k1ec: Fielder = parse_element (element (cls, fields(5)))
-    val k2: Fielder = parse_element (element (cls, fields(6)))
-    val k3: Fielder = parse_element (element (cls, fields(7)))
-    val k4: Fielder = parse_element (element (cls, fields(8)))
-    val kd1: Fielder = parse_element (element (cls, fields(9)))
-    val ke2: Fielder = parse_element (element (cls, fields(10)))
-    val ketb: Fielder = parse_element (element (cls, fields(11)))
-    val pid1max: Fielder = parse_element (element (cls, fields(12)))
-    val seve1: Fielder = parse_element (element (cls, fields(13)))
-    val seve2: Fielder = parse_element (element (cls, fields(14)))
-    val tb1: Fielder = parse_element (element (cls, fields(15)))
-    val te: Fielder = parse_element (element (cls, fields(16)))
-    val te2: Fielder = parse_element (element (cls, fields(17)))
-    val ti1: Fielder = parse_element (element (cls, fields(18)))
-    val ti3: Fielder = parse_element (element (cls, fields(19)))
-    val ti4: Fielder = parse_element (element (cls, fields(20)))
-    val tr4: Fielder = parse_element (element (cls, fields(21)))
-    val upmax: Fielder = parse_element (element (cls, fields(22)))
-    val upmin: Fielder = parse_element (element (cls, fields(23)))
-    val ve1: Fielder = parse_element (element (cls, fields(24)))
-    val ve2: Fielder = parse_element (element (cls, fields(25)))
-    val xp: Fielder = parse_element (element (cls, fields(26)))
+    val efdbas: Fielder = parse_element (element (cls, fields (0)))
+    val iefmax: Fielder = parse_element (element (cls, fields (1)))
+    val iefmax2: Fielder = parse_element (element (cls, fields (2)))
+    val iefmin: Fielder = parse_element (element (cls, fields (3)))
+    val k1: Fielder = parse_element (element (cls, fields (4)))
+    val k1ec: Fielder = parse_element (element (cls, fields (5)))
+    val k2: Fielder = parse_element (element (cls, fields (6)))
+    val k3: Fielder = parse_element (element (cls, fields (7)))
+    val k4: Fielder = parse_element (element (cls, fields (8)))
+    val kd1: Fielder = parse_element (element (cls, fields (9)))
+    val ke2: Fielder = parse_element (element (cls, fields (10)))
+    val ketb: Fielder = parse_element (element (cls, fields (11)))
+    val pid1max: Fielder = parse_element (element (cls, fields (12)))
+    val seve1: Fielder = parse_element (element (cls, fields (13)))
+    val seve2: Fielder = parse_element (element (cls, fields (14)))
+    val tb1: Fielder = parse_element (element (cls, fields (15)))
+    val te: Fielder = parse_element (element (cls, fields (16)))
+    val te2: Fielder = parse_element (element (cls, fields (17)))
+    val ti1: Fielder = parse_element (element (cls, fields (18)))
+    val ti3: Fielder = parse_element (element (cls, fields (19)))
+    val ti4: Fielder = parse_element (element (cls, fields (20)))
+    val tr4: Fielder = parse_element (element (cls, fields (21)))
+    val upmax: Fielder = parse_element (element (cls, fields (22)))
+    val upmin: Fielder = parse_element (element (cls, fields (23)))
+    val ve1: Fielder = parse_element (element (cls, fields (24)))
+    val ve2: Fielder = parse_element (element (cls, fields (25)))
+    val xp: Fielder = parse_element (element (cls, fields (26)))
 
     def parse (context: CIMContext): ExcELIN2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcELIN2 (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efdbas (), 0)),
@@ -5585,7 +5717,7 @@ object ExcELIN2Serializer extends CIMSerializer[ExcELIN2]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcELIN2]): ExcELIN2 =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcELIN2 (
             parent,
@@ -5626,35 +5758,35 @@ object ExcELIN2Serializer extends CIMSerializer[ExcELIN2]
  * Hungarian excitation system, with built-in voltage transducer.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ae Major loop PI tag gain factor (<i>Ae</i>).
- *        Typical value = 3.
- * @param ai Minor loop PI tag gain factor (<i>Ai</i>).
- *        Typical value = 22.
- * @param atr AVR constant (<i>Atr</i>).
- *        Typical value = 2,19.
- * @param emax Field voltage control signal upper limit on AVR base (<i>Emax</i>) (&gt; ExcHU.emin).
- *        Typical value = 0,996.
- * @param emin Field voltage control signal lower limit on AVR base (<i>Emin</i>) (&lt; ExcHU.emax).
- *        Typical value = -0,866.
- * @param imax Major loop PI tag output signal upper limit (<i>Imax</i>) (&gt; ExcHU.imin).
- *        Typical value = 2,19.
- * @param imin Major loop PI tag output signal lower limit (<i>Imin</i>) (&lt; ExcHU.imax).
- *        Typical value = 0,1.
- * @param ke Voltage base conversion constant (<i>Ke</i>).
- *        Typical value = 4,666.
- * @param ki Current base conversion constant (<i>Ki</i>).
- *        Typical value = 0,21428.
- * @param te Major loop PI tag integration time constant (<i>Te</i>) (&gt;= 0).
- *        Typical value = 0,154.
- * @param ti Minor loop PI control tag integration time constant (<i>Ti</i>) (&gt;= 0).
- *        Typical value = 0,01333.
- * @param tr Filter time constant (<i>Tr</i>) (&gt;= 0).
- *        If a voltage compensator is used in conjunction with this excitation system model, <i>Tr </i>should be set to 0.  Typical value = 0,01.
+ * @param ae                       Major loop PI tag gain factor (<i>Ae</i>).
+ *                                 Typical value = 3.
+ * @param ai                       Minor loop PI tag gain factor (<i>Ai</i>).
+ *                                 Typical value = 22.
+ * @param atr                      AVR constant (<i>Atr</i>).
+ *                                 Typical value = 2,19.
+ * @param emax                     Field voltage control signal upper limit on AVR base (<i>Emax</i>) (&gt; ExcHU.emin).
+ *                                 Typical value = 0,996.
+ * @param emin                     Field voltage control signal lower limit on AVR base (<i>Emin</i>) (&lt; ExcHU.emax).
+ *                                 Typical value = -0,866.
+ * @param imax                     Major loop PI tag output signal upper limit (<i>Imax</i>) (&gt; ExcHU.imin).
+ *                                 Typical value = 2,19.
+ * @param imin                     Major loop PI tag output signal lower limit (<i>Imin</i>) (&lt; ExcHU.imax).
+ *                                 Typical value = 0,1.
+ * @param ke                       Voltage base conversion constant (<i>Ke</i>).
+ *                                 Typical value = 4,666.
+ * @param ki                       Current base conversion constant (<i>Ki</i>).
+ *                                 Typical value = 0,21428.
+ * @param te                       Major loop PI tag integration time constant (<i>Te</i>) (&gt;= 0).
+ *                                 Typical value = 0,154.
+ * @param ti                       Minor loop PI control tag integration time constant (<i>Ti</i>) (&gt;= 0).
+ *                                 Typical value = 0,01333.
+ * @param tr                       Filter time constant (<i>Tr</i>) (&gt;= 0).
+ *                                 If a voltage compensator is used in conjunction with this excitation system model, <i>Tr </i>should be set to 0.  Typical value = 0,01.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcHU
 (
@@ -5672,8 +5804,8 @@ final case class ExcHU
     ti: Double = 0.0,
     tr: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5699,13 +5831,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcHU.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcHU.fields (position), value)
+
         emitelem (0, ae)
         emitelem (1, ai)
         emitelem (2, atr)
@@ -5720,6 +5857,7 @@ extends
         emitelem (11, tr)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcHU rdf:ID=\"%s\">\n%s\t</cim:ExcHU>".format (id, export_fields)
@@ -5727,10 +5865,10 @@ extends
 }
 
 object ExcHU
-extends
-    CIMParseable[ExcHU]
+    extends
+        CIMParseable[ExcHU]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ae",
         "ai",
         "atr",
@@ -5744,23 +5882,23 @@ extends
         "ti",
         "tr"
     )
-    val ae: Fielder = parse_element (element (cls, fields(0)))
-    val ai: Fielder = parse_element (element (cls, fields(1)))
-    val atr: Fielder = parse_element (element (cls, fields(2)))
-    val emax: Fielder = parse_element (element (cls, fields(3)))
-    val emin: Fielder = parse_element (element (cls, fields(4)))
-    val imax: Fielder = parse_element (element (cls, fields(5)))
-    val imin: Fielder = parse_element (element (cls, fields(6)))
-    val ke: Fielder = parse_element (element (cls, fields(7)))
-    val ki: Fielder = parse_element (element (cls, fields(8)))
-    val te: Fielder = parse_element (element (cls, fields(9)))
-    val ti: Fielder = parse_element (element (cls, fields(10)))
-    val tr: Fielder = parse_element (element (cls, fields(11)))
+    val ae: Fielder = parse_element (element (cls, fields (0)))
+    val ai: Fielder = parse_element (element (cls, fields (1)))
+    val atr: Fielder = parse_element (element (cls, fields (2)))
+    val emax: Fielder = parse_element (element (cls, fields (3)))
+    val emin: Fielder = parse_element (element (cls, fields (4)))
+    val imax: Fielder = parse_element (element (cls, fields (5)))
+    val imin: Fielder = parse_element (element (cls, fields (6)))
+    val ke: Fielder = parse_element (element (cls, fields (7)))
+    val ki: Fielder = parse_element (element (cls, fields (8)))
+    val te: Fielder = parse_element (element (cls, fields (9)))
+    val ti: Fielder = parse_element (element (cls, fields (10)))
+    val tr: Fielder = parse_element (element (cls, fields (11)))
 
     def parse (context: CIMContext): ExcHU =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcHU (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ae (), 0)),
@@ -5809,7 +5947,7 @@ object ExcHUSerializer extends CIMSerializer[ExcHU]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcHU]): ExcHU =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcHU (
             parent,
@@ -5838,47 +5976,47 @@ object ExcHUSerializer extends CIMSerializer[ExcHU]
  * Reference: IEEE 421.5-2005, 6.1.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 400.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0,2.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
- *        Typical value = 0,38.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 0,03.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,03.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 0,02.
- * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 0,8.
- * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
- *        Typical value = 14,5.
- * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
- *        Typical value = -14,5.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
- *        Typical value = 4,18.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
- *        Typical value = 3,14.
- * @param vrmax Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 6,03.
- * @param vrmin Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -5,43.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 400.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,2.
+ * @param kd                       Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,38.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,03.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,03.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,02.
+ * @param tb                       Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,8.
+ * @param tf                       Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vamax                    Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 14,5.
+ * @param vamin                    Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -14,5.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,18.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,14.
+ * @param vrmax                    Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 6,03.
+ * @param vrmin                    Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -5,43.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEAC1A
 (
@@ -5902,8 +6040,8 @@ final case class ExcIEEEAC1A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5929,13 +6067,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEAC1A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC1A.fields (position), value)
+
         emitelem (0, ka)
         emitelem (1, kc)
         emitelem (2, kd)
@@ -5956,6 +6099,7 @@ extends
         emitelem (17, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEAC1A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC1A>".format (id, export_fields)
@@ -5963,10 +6107,10 @@ extends
 }
 
 object ExcIEEEAC1A
-extends
-    CIMParseable[ExcIEEEAC1A]
+    extends
+        CIMParseable[ExcIEEEAC1A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ka",
         "kc",
         "kd",
@@ -5986,29 +6130,29 @@ extends
         "vrmax",
         "vrmin"
     )
-    val ka: Fielder = parse_element (element (cls, fields(0)))
-    val kc: Fielder = parse_element (element (cls, fields(1)))
-    val kd: Fielder = parse_element (element (cls, fields(2)))
-    val ke: Fielder = parse_element (element (cls, fields(3)))
-    val kf: Fielder = parse_element (element (cls, fields(4)))
-    val seve1: Fielder = parse_element (element (cls, fields(5)))
-    val seve2: Fielder = parse_element (element (cls, fields(6)))
-    val ta: Fielder = parse_element (element (cls, fields(7)))
-    val tb: Fielder = parse_element (element (cls, fields(8)))
-    val tc: Fielder = parse_element (element (cls, fields(9)))
-    val te: Fielder = parse_element (element (cls, fields(10)))
-    val tf: Fielder = parse_element (element (cls, fields(11)))
-    val vamax: Fielder = parse_element (element (cls, fields(12)))
-    val vamin: Fielder = parse_element (element (cls, fields(13)))
-    val ve1: Fielder = parse_element (element (cls, fields(14)))
-    val ve2: Fielder = parse_element (element (cls, fields(15)))
-    val vrmax: Fielder = parse_element (element (cls, fields(16)))
-    val vrmin: Fielder = parse_element (element (cls, fields(17)))
+    val ka: Fielder = parse_element (element (cls, fields (0)))
+    val kc: Fielder = parse_element (element (cls, fields (1)))
+    val kd: Fielder = parse_element (element (cls, fields (2)))
+    val ke: Fielder = parse_element (element (cls, fields (3)))
+    val kf: Fielder = parse_element (element (cls, fields (4)))
+    val seve1: Fielder = parse_element (element (cls, fields (5)))
+    val seve2: Fielder = parse_element (element (cls, fields (6)))
+    val ta: Fielder = parse_element (element (cls, fields (7)))
+    val tb: Fielder = parse_element (element (cls, fields (8)))
+    val tc: Fielder = parse_element (element (cls, fields (9)))
+    val te: Fielder = parse_element (element (cls, fields (10)))
+    val tf: Fielder = parse_element (element (cls, fields (11)))
+    val vamax: Fielder = parse_element (element (cls, fields (12)))
+    val vamin: Fielder = parse_element (element (cls, fields (13)))
+    val ve1: Fielder = parse_element (element (cls, fields (14)))
+    val ve2: Fielder = parse_element (element (cls, fields (15)))
+    val vrmax: Fielder = parse_element (element (cls, fields (16)))
+    val vrmin: Fielder = parse_element (element (cls, fields (17)))
 
     def parse (context: CIMContext): ExcIEEEAC1A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEAC1A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ka (), 0)),
@@ -6069,7 +6213,7 @@ object ExcIEEEAC1ASerializer extends CIMSerializer[ExcIEEEAC1A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC1A]): ExcIEEEAC1A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEAC1A (
             parent,
@@ -6104,53 +6248,53 @@ object ExcIEEEAC1ASerializer extends CIMSerializer[ExcIEEEAC1A]
  * Reference: IEEE 421.5-2005, 6.2.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 400.
- * @param kb Second stage regulator gain (<i>K</i><i><sub>B</sub></i>) (&gt; 0).
- *        Typical value = 25.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0,28.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
- *        Typical value = 0,35.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 0,03.
- * @param kh Exciter field current feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,037.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,012.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 0,02.
- * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 0,6.
- * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
- *        Typical value = 8.
- * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
- *        Typical value = -8.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
- *        Typical value = 4,4.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
- *        Typical value = 3,3.
- * @param vfemax Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>) (&gt; 0).
- *        Typical value = 4,4.
- * @param vrmax Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 105.
- * @param vrmin Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -95.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 400.
+ * @param kb                       Second stage regulator gain (<i>K</i><i><sub>B</sub></i>) (&gt; 0).
+ *                                 Typical value = 25.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,28.
+ * @param kd                       Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,35.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,03.
+ * @param kh                       Exciter field current feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,037.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,012.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,02.
+ * @param tb                       Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,6.
+ * @param tf                       Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vamax                    Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 8.
+ * @param vamin                    Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -8.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,4.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,3.
+ * @param vfemax                   Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,4.
+ * @param vrmax                    Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 105.
+ * @param vrmin                    Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -95.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEAC2A
 (
@@ -6177,8 +6321,8 @@ final case class ExcIEEEAC2A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -6204,13 +6348,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEAC2A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC2A.fields (position), value)
+
         emitelem (0, ka)
         emitelem (1, kb)
         emitelem (2, kc)
@@ -6234,6 +6383,7 @@ extends
         emitelem (20, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEAC2A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC2A>".format (id, export_fields)
@@ -6241,10 +6391,10 @@ extends
 }
 
 object ExcIEEEAC2A
-extends
-    CIMParseable[ExcIEEEAC2A]
+    extends
+        CIMParseable[ExcIEEEAC2A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ka",
         "kb",
         "kc",
@@ -6267,32 +6417,32 @@ extends
         "vrmax",
         "vrmin"
     )
-    val ka: Fielder = parse_element (element (cls, fields(0)))
-    val kb: Fielder = parse_element (element (cls, fields(1)))
-    val kc: Fielder = parse_element (element (cls, fields(2)))
-    val kd: Fielder = parse_element (element (cls, fields(3)))
-    val ke: Fielder = parse_element (element (cls, fields(4)))
-    val kf: Fielder = parse_element (element (cls, fields(5)))
-    val kh: Fielder = parse_element (element (cls, fields(6)))
-    val seve1: Fielder = parse_element (element (cls, fields(7)))
-    val seve2: Fielder = parse_element (element (cls, fields(8)))
-    val ta: Fielder = parse_element (element (cls, fields(9)))
-    val tb: Fielder = parse_element (element (cls, fields(10)))
-    val tc: Fielder = parse_element (element (cls, fields(11)))
-    val te: Fielder = parse_element (element (cls, fields(12)))
-    val tf: Fielder = parse_element (element (cls, fields(13)))
-    val vamax: Fielder = parse_element (element (cls, fields(14)))
-    val vamin: Fielder = parse_element (element (cls, fields(15)))
-    val ve1: Fielder = parse_element (element (cls, fields(16)))
-    val ve2: Fielder = parse_element (element (cls, fields(17)))
-    val vfemax: Fielder = parse_element (element (cls, fields(18)))
-    val vrmax: Fielder = parse_element (element (cls, fields(19)))
-    val vrmin: Fielder = parse_element (element (cls, fields(20)))
+    val ka: Fielder = parse_element (element (cls, fields (0)))
+    val kb: Fielder = parse_element (element (cls, fields (1)))
+    val kc: Fielder = parse_element (element (cls, fields (2)))
+    val kd: Fielder = parse_element (element (cls, fields (3)))
+    val ke: Fielder = parse_element (element (cls, fields (4)))
+    val kf: Fielder = parse_element (element (cls, fields (5)))
+    val kh: Fielder = parse_element (element (cls, fields (6)))
+    val seve1: Fielder = parse_element (element (cls, fields (7)))
+    val seve2: Fielder = parse_element (element (cls, fields (8)))
+    val ta: Fielder = parse_element (element (cls, fields (9)))
+    val tb: Fielder = parse_element (element (cls, fields (10)))
+    val tc: Fielder = parse_element (element (cls, fields (11)))
+    val te: Fielder = parse_element (element (cls, fields (12)))
+    val tf: Fielder = parse_element (element (cls, fields (13)))
+    val vamax: Fielder = parse_element (element (cls, fields (14)))
+    val vamin: Fielder = parse_element (element (cls, fields (15)))
+    val ve1: Fielder = parse_element (element (cls, fields (16)))
+    val ve2: Fielder = parse_element (element (cls, fields (17)))
+    val vfemax: Fielder = parse_element (element (cls, fields (18)))
+    val vrmax: Fielder = parse_element (element (cls, fields (19)))
+    val vrmin: Fielder = parse_element (element (cls, fields (20)))
 
     def parse (context: CIMContext): ExcIEEEAC2A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEAC2A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ka (), 0)),
@@ -6359,7 +6509,7 @@ object ExcIEEEAC2ASerializer extends CIMSerializer[ExcIEEEAC2A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC2A]): ExcIEEEAC2A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEAC2A (
             parent,
@@ -6397,53 +6547,53 @@ object ExcIEEEAC2ASerializer extends CIMSerializer[ExcIEEEAC2A]
  * Reference: IEEE 421.5-2005, 6.3.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdn Value of <i>Efd </i>at which feedback gain changes (<i>E</i><i><sub>FDN</sub></i>) (&gt; 0).
- *        Typical value = 2,36.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 45,62.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0,104.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
- *        Typical value = 0,499.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 0,143.
- * @param kn Excitation control system stabilizer gain (<i>K</i><i><sub>N</sub></i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param kr Constant associated with regulator and alternator field power supply (<i>K</i><i><sub>R</sub></i>) (&gt; 0).
- *        Typical value = 3,77.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 1,143.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 0,013.
- * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 1,17.
- * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
- *        Typical value = -0,95.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
- *        Typical value = 6,24.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
- *        Typical value = 4,68.
- * @param vemin Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
- *        Typical value = 0.
- * @param vfemax Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>) (&gt;= 0).
- *        Typical value = 16.
+ * @param efdn                     Value of <i>Efd </i>at which feedback gain changes (<i>E</i><i><sub>FDN</sub></i>) (&gt; 0).
+ *                                 Typical value = 2,36.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 45,62.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,104.
+ * @param kd                       Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,499.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,143.
+ * @param kn                       Excitation control system stabilizer gain (<i>K</i><i><sub>N</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,05.
+ * @param kr                       Constant associated with regulator and alternator field power supply (<i>K</i><i><sub>R</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,77.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 1,143.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,013.
+ * @param tb                       Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 1,17.
+ * @param tf                       Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vamax                    Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vamin                    Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -0,95.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *                                 Typical value = 6,24.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,68.
+ * @param vemin                    Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
+ *                                 Typical value = 0.
+ * @param vfemax                   Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>) (&gt;= 0).
+ *                                 Typical value = 16.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEAC3A
 (
@@ -6470,8 +6620,8 @@ final case class ExcIEEEAC3A
     vemin: Double = 0.0,
     vfemax: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -6497,13 +6647,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEAC3A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC3A.fields (position), value)
+
         emitelem (0, efdn)
         emitelem (1, ka)
         emitelem (2, kc)
@@ -6527,6 +6682,7 @@ extends
         emitelem (20, vfemax)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEAC3A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC3A>".format (id, export_fields)
@@ -6534,10 +6690,10 @@ extends
 }
 
 object ExcIEEEAC3A
-extends
-    CIMParseable[ExcIEEEAC3A]
+    extends
+        CIMParseable[ExcIEEEAC3A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efdn",
         "ka",
         "kc",
@@ -6560,32 +6716,32 @@ extends
         "vemin",
         "vfemax"
     )
-    val efdn: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val kc: Fielder = parse_element (element (cls, fields(2)))
-    val kd: Fielder = parse_element (element (cls, fields(3)))
-    val ke: Fielder = parse_element (element (cls, fields(4)))
-    val kf: Fielder = parse_element (element (cls, fields(5)))
-    val kn: Fielder = parse_element (element (cls, fields(6)))
-    val kr: Fielder = parse_element (element (cls, fields(7)))
-    val seve1: Fielder = parse_element (element (cls, fields(8)))
-    val seve2: Fielder = parse_element (element (cls, fields(9)))
-    val ta: Fielder = parse_element (element (cls, fields(10)))
-    val tb: Fielder = parse_element (element (cls, fields(11)))
-    val tc: Fielder = parse_element (element (cls, fields(12)))
-    val te: Fielder = parse_element (element (cls, fields(13)))
-    val tf: Fielder = parse_element (element (cls, fields(14)))
-    val vamax: Fielder = parse_element (element (cls, fields(15)))
-    val vamin: Fielder = parse_element (element (cls, fields(16)))
-    val ve1: Fielder = parse_element (element (cls, fields(17)))
-    val ve2: Fielder = parse_element (element (cls, fields(18)))
-    val vemin: Fielder = parse_element (element (cls, fields(19)))
-    val vfemax: Fielder = parse_element (element (cls, fields(20)))
+    val efdn: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val kc: Fielder = parse_element (element (cls, fields (2)))
+    val kd: Fielder = parse_element (element (cls, fields (3)))
+    val ke: Fielder = parse_element (element (cls, fields (4)))
+    val kf: Fielder = parse_element (element (cls, fields (5)))
+    val kn: Fielder = parse_element (element (cls, fields (6)))
+    val kr: Fielder = parse_element (element (cls, fields (7)))
+    val seve1: Fielder = parse_element (element (cls, fields (8)))
+    val seve2: Fielder = parse_element (element (cls, fields (9)))
+    val ta: Fielder = parse_element (element (cls, fields (10)))
+    val tb: Fielder = parse_element (element (cls, fields (11)))
+    val tc: Fielder = parse_element (element (cls, fields (12)))
+    val te: Fielder = parse_element (element (cls, fields (13)))
+    val tf: Fielder = parse_element (element (cls, fields (14)))
+    val vamax: Fielder = parse_element (element (cls, fields (15)))
+    val vamin: Fielder = parse_element (element (cls, fields (16)))
+    val ve1: Fielder = parse_element (element (cls, fields (17)))
+    val ve2: Fielder = parse_element (element (cls, fields (18)))
+    val vemin: Fielder = parse_element (element (cls, fields (19)))
+    val vfemax: Fielder = parse_element (element (cls, fields (20)))
 
     def parse (context: CIMContext): ExcIEEEAC3A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEAC3A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efdn (), 0)),
@@ -6652,7 +6808,7 @@ object ExcIEEEAC3ASerializer extends CIMSerializer[ExcIEEEAC3A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC3A]): ExcIEEEAC3A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEAC3A (
             parent,
@@ -6690,29 +6846,29 @@ object ExcIEEEAC3ASerializer extends CIMSerializer[ExcIEEEAC3A]
  * Reference: IEEE 421.5-2005, 6.4.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 200.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 0,015.
- * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 10.
- * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param vimax Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
- *        Typical value = 10.
- * @param vimin Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
- *        Typical value = -10.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 5,64.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -4,53.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 200.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,015.
+ * @param tb                       Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 10.
+ * @param tc                       Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param vimax                    Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 10.
+ * @param vimin                    Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -10.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 5,64.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -4,53.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEAC4A
 (
@@ -6727,8 +6883,8 @@ final case class ExcIEEEAC4A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -6754,13 +6910,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEAC4A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC4A.fields (position), value)
+
         emitelem (0, ka)
         emitelem (1, kc)
         emitelem (2, ta)
@@ -6772,6 +6933,7 @@ extends
         emitelem (8, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEAC4A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC4A>".format (id, export_fields)
@@ -6779,10 +6941,10 @@ extends
 }
 
 object ExcIEEEAC4A
-extends
-    CIMParseable[ExcIEEEAC4A]
+    extends
+        CIMParseable[ExcIEEEAC4A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ka",
         "kc",
         "ta",
@@ -6793,20 +6955,20 @@ extends
         "vrmax",
         "vrmin"
     )
-    val ka: Fielder = parse_element (element (cls, fields(0)))
-    val kc: Fielder = parse_element (element (cls, fields(1)))
-    val ta: Fielder = parse_element (element (cls, fields(2)))
-    val tb: Fielder = parse_element (element (cls, fields(3)))
-    val tc: Fielder = parse_element (element (cls, fields(4)))
-    val vimax: Fielder = parse_element (element (cls, fields(5)))
-    val vimin: Fielder = parse_element (element (cls, fields(6)))
-    val vrmax: Fielder = parse_element (element (cls, fields(7)))
-    val vrmin: Fielder = parse_element (element (cls, fields(8)))
+    val ka: Fielder = parse_element (element (cls, fields (0)))
+    val kc: Fielder = parse_element (element (cls, fields (1)))
+    val ta: Fielder = parse_element (element (cls, fields (2)))
+    val tb: Fielder = parse_element (element (cls, fields (3)))
+    val tc: Fielder = parse_element (element (cls, fields (4)))
+    val vimax: Fielder = parse_element (element (cls, fields (5)))
+    val vimin: Fielder = parse_element (element (cls, fields (6)))
+    val vrmax: Fielder = parse_element (element (cls, fields (7)))
+    val vrmin: Fielder = parse_element (element (cls, fields (8)))
 
     def parse (context: CIMContext): ExcIEEEAC4A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEAC4A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ka (), 0)),
@@ -6849,7 +7011,7 @@ object ExcIEEEAC4ASerializer extends CIMSerializer[ExcIEEEAC4A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC4A]): ExcIEEEAC4A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEAC4A (
             parent,
@@ -6875,39 +7037,39 @@ object ExcIEEEAC4ASerializer extends CIMSerializer[ExcIEEEAC4A]
  * Reference: IEEE 421.5-2005, 6.5.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
- *        Typical value = 5,6.
- * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
- *        Typical value = 4,2.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 400.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 0,03.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,86.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 0,02.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 0,8.
- * @param tf1 Excitation control system stabilizer time constant (<i>T</i><i><sub>F1</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param tf2 Excitation control system stabilizer time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tf3 Excitation control system stabilizer time constant (<i>T</i><i><sub>F3</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 7,3.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -7,3.
+ * @param efd1                     Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+ *                                 Typical value = 5,6.
+ * @param efd2                     Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,2.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 400.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,03.
+ * @param seefd1                   Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,86.
+ * @param seefd2                   Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,5.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,02.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,8.
+ * @param tf1                      Excitation control system stabilizer time constant (<i>T</i><i><sub>F1</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param tf2                      Excitation control system stabilizer time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tf3                      Excitation control system stabilizer time constant (<i>T</i><i><sub>F3</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 7,3.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -7,3.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEAC5A
 (
@@ -6927,8 +7089,8 @@ final case class ExcIEEEAC5A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -6954,13 +7116,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEAC5A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC5A.fields (position), value)
+
         emitelem (0, efd1)
         emitelem (1, efd2)
         emitelem (2, ka)
@@ -6977,6 +7144,7 @@ extends
         emitelem (13, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEAC5A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC5A>".format (id, export_fields)
@@ -6984,10 +7152,10 @@ extends
 }
 
 object ExcIEEEAC5A
-extends
-    CIMParseable[ExcIEEEAC5A]
+    extends
+        CIMParseable[ExcIEEEAC5A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efd1",
         "efd2",
         "ka",
@@ -7003,25 +7171,25 @@ extends
         "vrmax",
         "vrmin"
     )
-    val efd1: Fielder = parse_element (element (cls, fields(0)))
-    val efd2: Fielder = parse_element (element (cls, fields(1)))
-    val ka: Fielder = parse_element (element (cls, fields(2)))
-    val ke: Fielder = parse_element (element (cls, fields(3)))
-    val kf: Fielder = parse_element (element (cls, fields(4)))
-    val seefd1: Fielder = parse_element (element (cls, fields(5)))
-    val seefd2: Fielder = parse_element (element (cls, fields(6)))
-    val ta: Fielder = parse_element (element (cls, fields(7)))
-    val te: Fielder = parse_element (element (cls, fields(8)))
-    val tf1: Fielder = parse_element (element (cls, fields(9)))
-    val tf2: Fielder = parse_element (element (cls, fields(10)))
-    val tf3: Fielder = parse_element (element (cls, fields(11)))
-    val vrmax: Fielder = parse_element (element (cls, fields(12)))
-    val vrmin: Fielder = parse_element (element (cls, fields(13)))
+    val efd1: Fielder = parse_element (element (cls, fields (0)))
+    val efd2: Fielder = parse_element (element (cls, fields (1)))
+    val ka: Fielder = parse_element (element (cls, fields (2)))
+    val ke: Fielder = parse_element (element (cls, fields (3)))
+    val kf: Fielder = parse_element (element (cls, fields (4)))
+    val seefd1: Fielder = parse_element (element (cls, fields (5)))
+    val seefd2: Fielder = parse_element (element (cls, fields (6)))
+    val ta: Fielder = parse_element (element (cls, fields (7)))
+    val te: Fielder = parse_element (element (cls, fields (8)))
+    val tf1: Fielder = parse_element (element (cls, fields (9)))
+    val tf2: Fielder = parse_element (element (cls, fields (10)))
+    val tf3: Fielder = parse_element (element (cls, fields (11)))
+    val vrmax: Fielder = parse_element (element (cls, fields (12)))
+    val vrmin: Fielder = parse_element (element (cls, fields (13)))
 
     def parse (context: CIMContext): ExcIEEEAC5A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEAC5A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efd1 (), 0)),
@@ -7074,7 +7242,7 @@ object ExcIEEEAC5ASerializer extends CIMSerializer[ExcIEEEAC5A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC5A]): ExcIEEEAC5A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEAC5A (
             parent,
@@ -7105,55 +7273,55 @@ object ExcIEEEAC5ASerializer extends CIMSerializer[ExcIEEEAC5A]
  * Reference: IEEE 421.5-2005, 6.6.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 536.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0,173.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
- *        Typical value = 1,91.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
- *        Typical value = 1,6.
- * @param kh Exciter field current limiter gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
- *        Typical value = 92.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>])</i> (&gt;= 0).
- *        Typical value = 0,214.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,044.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
- *        Typical value = 0,086.
- * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 9.
- * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 3.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param th Exciter field current limiter time constant (<i>T</i><i><sub>H</sub></i>) (&gt; 0).
- *        Typical value = 0,08.
- * @param tj Exciter field current limiter time constant (<i>T</i><i><sub>J</sub></i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param tk Voltage regulator time constant (<i>T</i><i><sub>K</sub></i>) (&gt;= 0).
- *        Typical value = 0,18.
- * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
- *        Typical value = 75.
- * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>) (&lt; 0).
- *        Typical value = -75.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
- *        Typical value = 7,4.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
- *        Typical value = 5,55.
- * @param vfelim Exciter field current limit reference (<i>V</i><i><sub>FELIM</sub></i>) (&gt; 0).
- *        Typical value = 19.
- * @param vhmax Maximum field current limiter signal reference (<i>V</i><i><sub>HMAX</sub></i>) (&gt; 0).
- *        Typical value = 75.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 44.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -36.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 536.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,173.
+ * @param kd                       Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1,91.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *                                 Typical value = 1,6.
+ * @param kh                       Exciter field current limiter gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
+ *                                 Typical value = 92.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>])</i> (&gt;= 0).
+ *                                 Typical value = 0,214.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,044.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,086.
+ * @param tb                       Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 9.
+ * @param tc                       Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 3.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param th                       Exciter field current limiter time constant (<i>T</i><i><sub>H</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,08.
+ * @param tj                       Exciter field current limiter time constant (<i>T</i><i><sub>J</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param tk                       Voltage regulator time constant (<i>T</i><i><sub>K</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,18.
+ * @param vamax                    Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 75.
+ * @param vamin                    Minimum voltage regulator output (V<sub>AMIN</sub>) (&lt; 0).
+ *                                 Typical value = -75.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *                                 Typical value = 7,4.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *                                 Typical value = 5,55.
+ * @param vfelim                   Exciter field current limit reference (<i>V</i><i><sub>FELIM</sub></i>) (&gt; 0).
+ *                                 Typical value = 19.
+ * @param vhmax                    Maximum field current limiter signal reference (<i>V</i><i><sub>HMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 75.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 44.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -36.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEAC6A
 (
@@ -7181,8 +7349,8 @@ final case class ExcIEEEAC6A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -7208,13 +7376,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEAC6A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC6A.fields (position), value)
+
         emitelem (0, ka)
         emitelem (1, kc)
         emitelem (2, kd)
@@ -7239,6 +7412,7 @@ extends
         emitelem (21, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEAC6A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC6A>".format (id, export_fields)
@@ -7246,10 +7420,10 @@ extends
 }
 
 object ExcIEEEAC6A
-extends
-    CIMParseable[ExcIEEEAC6A]
+    extends
+        CIMParseable[ExcIEEEAC6A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ka",
         "kc",
         "kd",
@@ -7273,33 +7447,33 @@ extends
         "vrmax",
         "vrmin"
     )
-    val ka: Fielder = parse_element (element (cls, fields(0)))
-    val kc: Fielder = parse_element (element (cls, fields(1)))
-    val kd: Fielder = parse_element (element (cls, fields(2)))
-    val ke: Fielder = parse_element (element (cls, fields(3)))
-    val kh: Fielder = parse_element (element (cls, fields(4)))
-    val seve1: Fielder = parse_element (element (cls, fields(5)))
-    val seve2: Fielder = parse_element (element (cls, fields(6)))
-    val ta: Fielder = parse_element (element (cls, fields(7)))
-    val tb: Fielder = parse_element (element (cls, fields(8)))
-    val tc: Fielder = parse_element (element (cls, fields(9)))
-    val te: Fielder = parse_element (element (cls, fields(10)))
-    val th: Fielder = parse_element (element (cls, fields(11)))
-    val tj: Fielder = parse_element (element (cls, fields(12)))
-    val tk: Fielder = parse_element (element (cls, fields(13)))
-    val vamax: Fielder = parse_element (element (cls, fields(14)))
-    val vamin: Fielder = parse_element (element (cls, fields(15)))
-    val ve1: Fielder = parse_element (element (cls, fields(16)))
-    val ve2: Fielder = parse_element (element (cls, fields(17)))
-    val vfelim: Fielder = parse_element (element (cls, fields(18)))
-    val vhmax: Fielder = parse_element (element (cls, fields(19)))
-    val vrmax: Fielder = parse_element (element (cls, fields(20)))
-    val vrmin: Fielder = parse_element (element (cls, fields(21)))
+    val ka: Fielder = parse_element (element (cls, fields (0)))
+    val kc: Fielder = parse_element (element (cls, fields (1)))
+    val kd: Fielder = parse_element (element (cls, fields (2)))
+    val ke: Fielder = parse_element (element (cls, fields (3)))
+    val kh: Fielder = parse_element (element (cls, fields (4)))
+    val seve1: Fielder = parse_element (element (cls, fields (5)))
+    val seve2: Fielder = parse_element (element (cls, fields (6)))
+    val ta: Fielder = parse_element (element (cls, fields (7)))
+    val tb: Fielder = parse_element (element (cls, fields (8)))
+    val tc: Fielder = parse_element (element (cls, fields (9)))
+    val te: Fielder = parse_element (element (cls, fields (10)))
+    val th: Fielder = parse_element (element (cls, fields (11)))
+    val tj: Fielder = parse_element (element (cls, fields (12)))
+    val tk: Fielder = parse_element (element (cls, fields (13)))
+    val vamax: Fielder = parse_element (element (cls, fields (14)))
+    val vamin: Fielder = parse_element (element (cls, fields (15)))
+    val ve1: Fielder = parse_element (element (cls, fields (16)))
+    val ve2: Fielder = parse_element (element (cls, fields (17)))
+    val vfelim: Fielder = parse_element (element (cls, fields (18)))
+    val vhmax: Fielder = parse_element (element (cls, fields (19)))
+    val vrmax: Fielder = parse_element (element (cls, fields (20)))
+    val vrmin: Fielder = parse_element (element (cls, fields (21)))
 
     def parse (context: CIMContext): ExcIEEEAC6A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEAC6A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ka (), 0)),
@@ -7368,7 +7542,7 @@ object ExcIEEEAC6ASerializer extends CIMSerializer[ExcIEEEAC6A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC6A]): ExcIEEEAC6A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEAC6A (
             parent,
@@ -7407,63 +7581,63 @@ object ExcIEEEAC6ASerializer extends CIMSerializer[ExcIEEEAC6A]
  * Reference: IEEE 421.5-2005, 6.7. Note, however, that in IEEE 421.5-2005, the [1 / <i>sT</i><i><sub>E</sub></i>] block is shown as [1 / (1 + <i>sT</i><i><sub>E</sub></i>)], which is incorrect.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0,18.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param kdr Voltage regulator derivative gain (<i>K</i><i><sub>DR</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
- *        Typical value = 1.
- * @param kf1 Excitation control system stabilizer gain (<i>K</i><i><sub>F1</sub></i>) (&gt;= 0).
- *        Typical value = 0,212.
- * @param kf2 Excitation control system stabilizer gain (<i>K</i><i><sub>F2</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param kf3 Excitation control system stabilizer gain (<i>K</i><i><sub>F3</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param kia Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt;= 0).
- *        Typical value = 59,69.
- * @param kir Voltage regulator integral gain (<i>K</i><i><sub>IR</sub></i>) (&gt;= 0).
- *        Typical value = 4,24.
- * @param kl Exciter field voltage lower limit parameter (<i>K</i><i><sub>L</sub></i>).
- *        Typical value = 10.
- * @param kp Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt; 0).
- *        Typical value = 4,96.
- * @param kpa Voltage regulator proportional gain (<i>K</i><i><sub>PA</sub></i>) (&gt; 0 if ExcIEEEAC7B.kia = 0).
- *        Typical value = 65,36.
- * @param kpr Voltage regulator proportional gain (<i>K</i><i><sub>PR</sub></i>) (&gt; 0 if ExcIEEEAC7B.kir = 0).
- *        Typical value = 4,24.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,44.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,075.
- * @param tdr Lag time constant (<i>T</i><i><sub>DR</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 1,1.
- * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
- *        Typical value = -0,95.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
- *        Typical value = 6,3.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
- *        Typical value = 3,02.
- * @param vemin Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
- *        Typical value = 0.
- * @param vfemax Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>).
- *        Typical value = 6,9.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 5,79.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -5,79.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,18.
+ * @param kd                       Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param kdr                      Voltage regulator derivative gain (<i>K</i><i><sub>DR</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *                                 Typical value = 1.
+ * @param kf1                      Excitation control system stabilizer gain (<i>K</i><i><sub>F1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,212.
+ * @param kf2                      Excitation control system stabilizer gain (<i>K</i><i><sub>F2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param kf3                      Excitation control system stabilizer gain (<i>K</i><i><sub>F3</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param kia                      Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt;= 0).
+ *                                 Typical value = 59,69.
+ * @param kir                      Voltage regulator integral gain (<i>K</i><i><sub>IR</sub></i>) (&gt;= 0).
+ *                                 Typical value = 4,24.
+ * @param kl                       Exciter field voltage lower limit parameter (<i>K</i><i><sub>L</sub></i>).
+ *                                 Typical value = 10.
+ * @param kp                       Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,96.
+ * @param kpa                      Voltage regulator proportional gain (<i>K</i><i><sub>PA</sub></i>) (&gt; 0 if ExcIEEEAC7B.kia = 0).
+ *                                 Typical value = 65,36.
+ * @param kpr                      Voltage regulator proportional gain (<i>K</i><i><sub>PR</sub></i>) (&gt; 0 if ExcIEEEAC7B.kir = 0).
+ *                                 Typical value = 4,24.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,44.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,075.
+ * @param tdr                      Lag time constant (<i>T</i><i><sub>DR</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 1,1.
+ * @param tf                       Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vamax                    Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vamin                    Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -0,95.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *                                 Typical value = 6,3.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,02.
+ * @param vemin                    Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
+ *                                 Typical value = 0.
+ * @param vfemax                   Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>).
+ *                                 Typical value = 6,9.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 5,79.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -5,79.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEAC7B
 (
@@ -7495,8 +7669,8 @@ final case class ExcIEEEAC7B
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -7522,13 +7696,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEAC7B.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC7B.fields (position), value)
+
         emitelem (0, kc)
         emitelem (1, kd)
         emitelem (2, kdr)
@@ -7557,6 +7736,7 @@ extends
         emitelem (25, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEAC7B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC7B>".format (id, export_fields)
@@ -7564,10 +7744,10 @@ extends
 }
 
 object ExcIEEEAC7B
-extends
-    CIMParseable[ExcIEEEAC7B]
+    extends
+        CIMParseable[ExcIEEEAC7B]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kc",
         "kd",
         "kdr",
@@ -7595,37 +7775,37 @@ extends
         "vrmax",
         "vrmin"
     )
-    val kc: Fielder = parse_element (element (cls, fields(0)))
-    val kd: Fielder = parse_element (element (cls, fields(1)))
-    val kdr: Fielder = parse_element (element (cls, fields(2)))
-    val ke: Fielder = parse_element (element (cls, fields(3)))
-    val kf1: Fielder = parse_element (element (cls, fields(4)))
-    val kf2: Fielder = parse_element (element (cls, fields(5)))
-    val kf3: Fielder = parse_element (element (cls, fields(6)))
-    val kia: Fielder = parse_element (element (cls, fields(7)))
-    val kir: Fielder = parse_element (element (cls, fields(8)))
-    val kl: Fielder = parse_element (element (cls, fields(9)))
-    val kp: Fielder = parse_element (element (cls, fields(10)))
-    val kpa: Fielder = parse_element (element (cls, fields(11)))
-    val kpr: Fielder = parse_element (element (cls, fields(12)))
-    val seve1: Fielder = parse_element (element (cls, fields(13)))
-    val seve2: Fielder = parse_element (element (cls, fields(14)))
-    val tdr: Fielder = parse_element (element (cls, fields(15)))
-    val te: Fielder = parse_element (element (cls, fields(16)))
-    val tf: Fielder = parse_element (element (cls, fields(17)))
-    val vamax: Fielder = parse_element (element (cls, fields(18)))
-    val vamin: Fielder = parse_element (element (cls, fields(19)))
-    val ve1: Fielder = parse_element (element (cls, fields(20)))
-    val ve2: Fielder = parse_element (element (cls, fields(21)))
-    val vemin: Fielder = parse_element (element (cls, fields(22)))
-    val vfemax: Fielder = parse_element (element (cls, fields(23)))
-    val vrmax: Fielder = parse_element (element (cls, fields(24)))
-    val vrmin: Fielder = parse_element (element (cls, fields(25)))
+    val kc: Fielder = parse_element (element (cls, fields (0)))
+    val kd: Fielder = parse_element (element (cls, fields (1)))
+    val kdr: Fielder = parse_element (element (cls, fields (2)))
+    val ke: Fielder = parse_element (element (cls, fields (3)))
+    val kf1: Fielder = parse_element (element (cls, fields (4)))
+    val kf2: Fielder = parse_element (element (cls, fields (5)))
+    val kf3: Fielder = parse_element (element (cls, fields (6)))
+    val kia: Fielder = parse_element (element (cls, fields (7)))
+    val kir: Fielder = parse_element (element (cls, fields (8)))
+    val kl: Fielder = parse_element (element (cls, fields (9)))
+    val kp: Fielder = parse_element (element (cls, fields (10)))
+    val kpa: Fielder = parse_element (element (cls, fields (11)))
+    val kpr: Fielder = parse_element (element (cls, fields (12)))
+    val seve1: Fielder = parse_element (element (cls, fields (13)))
+    val seve2: Fielder = parse_element (element (cls, fields (14)))
+    val tdr: Fielder = parse_element (element (cls, fields (15)))
+    val te: Fielder = parse_element (element (cls, fields (16)))
+    val tf: Fielder = parse_element (element (cls, fields (17)))
+    val vamax: Fielder = parse_element (element (cls, fields (18)))
+    val vamin: Fielder = parse_element (element (cls, fields (19)))
+    val ve1: Fielder = parse_element (element (cls, fields (20)))
+    val ve2: Fielder = parse_element (element (cls, fields (21)))
+    val vemin: Fielder = parse_element (element (cls, fields (22)))
+    val vfemax: Fielder = parse_element (element (cls, fields (23)))
+    val vrmax: Fielder = parse_element (element (cls, fields (24)))
+    val vrmin: Fielder = parse_element (element (cls, fields (25)))
 
     def parse (context: CIMContext): ExcIEEEAC7B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEAC7B (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (kc (), 0)),
@@ -7702,7 +7882,7 @@ object ExcIEEEAC7BSerializer extends CIMSerializer[ExcIEEEAC7B]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC7B]): ExcIEEEAC7B =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEAC7B (
             parent,
@@ -7745,47 +7925,47 @@ object ExcIEEEAC7BSerializer extends CIMSerializer[ExcIEEEAC7B]
  * Reference: IEEE 421.5-2005, 6.8.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0,55.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
- *        Typical value = 1,1.
- * @param kdr Voltage regulator derivative gain (<i>K</i><i><sub>DR</sub></i>) (&gt;= 0).
- *        Typical value = 10.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
- *        Typical value = 1.
- * @param kir Voltage regulator integral gain (<i>K</i><i><sub>IR</sub></i>) (&gt;= 0).
- *        Typical value = 5.
- * @param kpr Voltage regulator proportional gain (<i>K</i><i><sub>PR</sub></i>) (&gt; 0 if ExcIEEEAC8B.kir = 0).
- *        Typical value = 80.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,3.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tdr Lag time constant (<i>T</i><i><sub>DR</sub></i>) (&gt; 0).
- *        Typical value = 0,1.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 1,2.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
- *        Typical value = 6,5.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
- *        Typical value = 9.
- * @param vemin Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
- *        Typical value = 0.
- * @param vfemax Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>).
- *        Typical value = 6.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 35.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0).
- *        Typical value = 0.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,55.
+ * @param kd                       Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1,1.
+ * @param kdr                      Voltage regulator derivative gain (<i>K</i><i><sub>DR</sub></i>) (&gt;= 0).
+ *                                 Typical value = 10.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *                                 Typical value = 1.
+ * @param kir                      Voltage regulator integral gain (<i>K</i><i><sub>IR</sub></i>) (&gt;= 0).
+ *                                 Typical value = 5.
+ * @param kpr                      Voltage regulator proportional gain (<i>K</i><i><sub>PR</sub></i>) (&gt; 0 if ExcIEEEAC8B.kir = 0).
+ *                                 Typical value = 80.
+ * @param seve1                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,3.
+ * @param seve2                    Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 3.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tdr                      Lag time constant (<i>T</i><i><sub>DR</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,1.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 1,2.
+ * @param ve1                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *                                 Typical value = 6,5.
+ * @param ve2                      Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *                                 Typical value = 9.
+ * @param vemin                    Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
+ *                                 Typical value = 0.
+ * @param vfemax                   Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>).
+ *                                 Typical value = 6.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 35.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0).
+ *                                 Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEAC8B
 (
@@ -7809,8 +7989,8 @@ final case class ExcIEEEAC8B
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -7836,13 +8016,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEAC8B.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC8B.fields (position), value)
+
         emitelem (0, ka)
         emitelem (1, kc)
         emitelem (2, kd)
@@ -7863,6 +8048,7 @@ extends
         emitelem (17, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEAC8B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC8B>".format (id, export_fields)
@@ -7870,10 +8056,10 @@ extends
 }
 
 object ExcIEEEAC8B
-extends
-    CIMParseable[ExcIEEEAC8B]
+    extends
+        CIMParseable[ExcIEEEAC8B]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ka",
         "kc",
         "kd",
@@ -7893,29 +8079,29 @@ extends
         "vrmax",
         "vrmin"
     )
-    val ka: Fielder = parse_element (element (cls, fields(0)))
-    val kc: Fielder = parse_element (element (cls, fields(1)))
-    val kd: Fielder = parse_element (element (cls, fields(2)))
-    val kdr: Fielder = parse_element (element (cls, fields(3)))
-    val ke: Fielder = parse_element (element (cls, fields(4)))
-    val kir: Fielder = parse_element (element (cls, fields(5)))
-    val kpr: Fielder = parse_element (element (cls, fields(6)))
-    val seve1: Fielder = parse_element (element (cls, fields(7)))
-    val seve2: Fielder = parse_element (element (cls, fields(8)))
-    val ta: Fielder = parse_element (element (cls, fields(9)))
-    val tdr: Fielder = parse_element (element (cls, fields(10)))
-    val te: Fielder = parse_element (element (cls, fields(11)))
-    val ve1: Fielder = parse_element (element (cls, fields(12)))
-    val ve2: Fielder = parse_element (element (cls, fields(13)))
-    val vemin: Fielder = parse_element (element (cls, fields(14)))
-    val vfemax: Fielder = parse_element (element (cls, fields(15)))
-    val vrmax: Fielder = parse_element (element (cls, fields(16)))
-    val vrmin: Fielder = parse_element (element (cls, fields(17)))
+    val ka: Fielder = parse_element (element (cls, fields (0)))
+    val kc: Fielder = parse_element (element (cls, fields (1)))
+    val kd: Fielder = parse_element (element (cls, fields (2)))
+    val kdr: Fielder = parse_element (element (cls, fields (3)))
+    val ke: Fielder = parse_element (element (cls, fields (4)))
+    val kir: Fielder = parse_element (element (cls, fields (5)))
+    val kpr: Fielder = parse_element (element (cls, fields (6)))
+    val seve1: Fielder = parse_element (element (cls, fields (7)))
+    val seve2: Fielder = parse_element (element (cls, fields (8)))
+    val ta: Fielder = parse_element (element (cls, fields (9)))
+    val tdr: Fielder = parse_element (element (cls, fields (10)))
+    val te: Fielder = parse_element (element (cls, fields (11)))
+    val ve1: Fielder = parse_element (element (cls, fields (12)))
+    val ve2: Fielder = parse_element (element (cls, fields (13)))
+    val vemin: Fielder = parse_element (element (cls, fields (14)))
+    val vfemax: Fielder = parse_element (element (cls, fields (15)))
+    val vrmax: Fielder = parse_element (element (cls, fields (16)))
+    val vrmin: Fielder = parse_element (element (cls, fields (17)))
 
     def parse (context: CIMContext): ExcIEEEAC8B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEAC8B (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ka (), 0)),
@@ -7976,7 +8162,7 @@ object ExcIEEEAC8BSerializer extends CIMSerializer[ExcIEEEAC8B]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEAC8B]): ExcIEEEAC8B =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEAC8B (
             parent,
@@ -8011,48 +8197,48 @@ object ExcIEEEAC8BSerializer extends CIMSerializer[ExcIEEEAC8B]
  * Reference: IEEE 421.5-2005, 5.1.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
- *        Typical value = 3,1.
- * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
- *        Typical value = 2,3.
- * @param exclim (<i>exclim</i>).
- *        IEEE standard is ambiguous about lower limit on exciter output.
- *        true = a lower limit of zero is applied to integrator output
- *        false = a lower limit of zero is not applied to integrator output.
- *        Typical value = true.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 46.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
- *        Typical value = 0.
- * @param kf Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 0.1.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0.33.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 0,06.
- * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 0,46.
- * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param uelin UEL input (<i>uelin</i>).
- *        true = input is connected to the HV gate
- *        false = input connects to the error signal.
- *        Typical value = true.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcIEEEDC1A.vrmin).
- *        Typical value = 1.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0 and &lt; ExcIEEEDC1A.vrmax).
- *        Typical value = -0,9.
+ * @param efd1                     Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,1.
+ * @param efd2                     Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+ *                                 Typical value = 2,3.
+ * @param exclim                   (<i>exclim</i>).
+ *                                 IEEE standard is ambiguous about lower limit on exciter output.
+ *                                 true = a lower limit of zero is applied to integrator output
+ *                                 false = a lower limit of zero is not applied to integrator output.
+ *                                 Typical value = true.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 46.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *                                 Typical value = 0.
+ * @param kf                       Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.1.
+ * @param seefd1                   Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0.33.
+ * @param seefd2                   Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,06.
+ * @param tb                       Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,46.
+ * @param tf                       Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param uelin                    UEL input (<i>uelin</i>).
+ *                                 true = input is connected to the HV gate
+ *                                 false = input connects to the error signal.
+ *                                 Typical value = true.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcIEEEDC1A.vrmin).
+ *                                 Typical value = 1.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0 and &lt; ExcIEEEDC1A.vrmax).
+ *                                 Typical value = -0,9.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEDC1A
 (
@@ -8074,8 +8260,8 @@ final case class ExcIEEEDC1A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -8101,13 +8287,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEDC1A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEDC1A.fields (position), value)
+
         emitelem (0, efd1)
         emitelem (1, efd2)
         emitelem (2, exclim)
@@ -8126,6 +8317,7 @@ extends
         emitelem (15, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEDC1A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEDC1A>".format (id, export_fields)
@@ -8133,10 +8325,10 @@ extends
 }
 
 object ExcIEEEDC1A
-extends
-    CIMParseable[ExcIEEEDC1A]
+    extends
+        CIMParseable[ExcIEEEDC1A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efd1",
         "efd2",
         "exclim",
@@ -8154,27 +8346,27 @@ extends
         "vrmax",
         "vrmin"
     )
-    val efd1: Fielder = parse_element (element (cls, fields(0)))
-    val efd2: Fielder = parse_element (element (cls, fields(1)))
-    val exclim: Fielder = parse_element (element (cls, fields(2)))
-    val ka: Fielder = parse_element (element (cls, fields(3)))
-    val ke: Fielder = parse_element (element (cls, fields(4)))
-    val kf: Fielder = parse_element (element (cls, fields(5)))
-    val seefd1: Fielder = parse_element (element (cls, fields(6)))
-    val seefd2: Fielder = parse_element (element (cls, fields(7)))
-    val ta: Fielder = parse_element (element (cls, fields(8)))
-    val tb: Fielder = parse_element (element (cls, fields(9)))
-    val tc: Fielder = parse_element (element (cls, fields(10)))
-    val te: Fielder = parse_element (element (cls, fields(11)))
-    val tf: Fielder = parse_element (element (cls, fields(12)))
-    val uelin: Fielder = parse_element (element (cls, fields(13)))
-    val vrmax: Fielder = parse_element (element (cls, fields(14)))
-    val vrmin: Fielder = parse_element (element (cls, fields(15)))
+    val efd1: Fielder = parse_element (element (cls, fields (0)))
+    val efd2: Fielder = parse_element (element (cls, fields (1)))
+    val exclim: Fielder = parse_element (element (cls, fields (2)))
+    val ka: Fielder = parse_element (element (cls, fields (3)))
+    val ke: Fielder = parse_element (element (cls, fields (4)))
+    val kf: Fielder = parse_element (element (cls, fields (5)))
+    val seefd1: Fielder = parse_element (element (cls, fields (6)))
+    val seefd2: Fielder = parse_element (element (cls, fields (7)))
+    val ta: Fielder = parse_element (element (cls, fields (8)))
+    val tb: Fielder = parse_element (element (cls, fields (9)))
+    val tc: Fielder = parse_element (element (cls, fields (10)))
+    val te: Fielder = parse_element (element (cls, fields (11)))
+    val tf: Fielder = parse_element (element (cls, fields (12)))
+    val uelin: Fielder = parse_element (element (cls, fields (13)))
+    val vrmax: Fielder = parse_element (element (cls, fields (14)))
+    val vrmin: Fielder = parse_element (element (cls, fields (15)))
 
     def parse (context: CIMContext): ExcIEEEDC1A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEDC1A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efd1 (), 0)),
@@ -8231,7 +8423,7 @@ object ExcIEEEDC1ASerializer extends CIMSerializer[ExcIEEEDC1A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEDC1A]): ExcIEEEDC1A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEDC1A (
             parent,
@@ -8265,45 +8457,45 @@ object ExcIEEEDC1ASerializer extends CIMSerializer[ExcIEEEDC1A]
  * Reference: IEEE 421.5-2005, 5.2.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
- *        Typical value = 3,05.
- * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
- *        Typical value = 2,29.
- * @param exclim (<i>exclim</i>).
- *        IEEE standard is ambiguous about lower limit on exciter output. Typical value = - 999  which means that there is no limit applied.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 300.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,279.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,117.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 0,01.
- * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 1,33.
- * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
- *        Typical value = 0,675.
- * @param uelin UEL input (<i>uelin</i>).
- *        true = input is connected to the HV gate
- *        false = input connects to the error signal.
- *        Typical value = true.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>)(&gt; ExcIEEEDC2A.vrmin).
- *        Typical value = 4,95.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0 and &lt; ExcIEEEDC2A.vrmax).
- *        Typical value = -4,9.
+ * @param efd1                     Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,05.
+ * @param efd2                     Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+ *                                 Typical value = 2,29.
+ * @param exclim                   (<i>exclim</i>).
+ *                                 IEEE standard is ambiguous about lower limit on exciter output. Typical value = - 999  which means that there is no limit applied.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 300.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param seefd1                   Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,279.
+ * @param seefd2                   Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,117.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,01.
+ * @param tb                       Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 1,33.
+ * @param tf                       Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,675.
+ * @param uelin                    UEL input (<i>uelin</i>).
+ *                                 true = input is connected to the HV gate
+ *                                 false = input connects to the error signal.
+ *                                 Typical value = true.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>)(&gt; ExcIEEEDC2A.vrmin).
+ *                                 Typical value = 4,95.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0 and &lt; ExcIEEEDC2A.vrmax).
+ *                                 Typical value = -4,9.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEDC2A
 (
@@ -8325,8 +8517,8 @@ final case class ExcIEEEDC2A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -8352,13 +8544,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEDC2A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEDC2A.fields (position), value)
+
         emitelem (0, efd1)
         emitelem (1, efd2)
         emitelem (2, exclim)
@@ -8377,6 +8574,7 @@ extends
         emitelem (15, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEDC2A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEDC2A>".format (id, export_fields)
@@ -8384,10 +8582,10 @@ extends
 }
 
 object ExcIEEEDC2A
-extends
-    CIMParseable[ExcIEEEDC2A]
+    extends
+        CIMParseable[ExcIEEEDC2A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efd1",
         "efd2",
         "exclim",
@@ -8405,27 +8603,27 @@ extends
         "vrmax",
         "vrmin"
     )
-    val efd1: Fielder = parse_element (element (cls, fields(0)))
-    val efd2: Fielder = parse_element (element (cls, fields(1)))
-    val exclim: Fielder = parse_element (element (cls, fields(2)))
-    val ka: Fielder = parse_element (element (cls, fields(3)))
-    val ke: Fielder = parse_element (element (cls, fields(4)))
-    val kf: Fielder = parse_element (element (cls, fields(5)))
-    val seefd1: Fielder = parse_element (element (cls, fields(6)))
-    val seefd2: Fielder = parse_element (element (cls, fields(7)))
-    val ta: Fielder = parse_element (element (cls, fields(8)))
-    val tb: Fielder = parse_element (element (cls, fields(9)))
-    val tc: Fielder = parse_element (element (cls, fields(10)))
-    val te: Fielder = parse_element (element (cls, fields(11)))
-    val tf: Fielder = parse_element (element (cls, fields(12)))
-    val uelin: Fielder = parse_element (element (cls, fields(13)))
-    val vrmax: Fielder = parse_element (element (cls, fields(14)))
-    val vrmin: Fielder = parse_element (element (cls, fields(15)))
+    val efd1: Fielder = parse_element (element (cls, fields (0)))
+    val efd2: Fielder = parse_element (element (cls, fields (1)))
+    val exclim: Fielder = parse_element (element (cls, fields (2)))
+    val ka: Fielder = parse_element (element (cls, fields (3)))
+    val ke: Fielder = parse_element (element (cls, fields (4)))
+    val kf: Fielder = parse_element (element (cls, fields (5)))
+    val seefd1: Fielder = parse_element (element (cls, fields (6)))
+    val seefd2: Fielder = parse_element (element (cls, fields (7)))
+    val ta: Fielder = parse_element (element (cls, fields (8)))
+    val tb: Fielder = parse_element (element (cls, fields (9)))
+    val tc: Fielder = parse_element (element (cls, fields (10)))
+    val te: Fielder = parse_element (element (cls, fields (11)))
+    val tf: Fielder = parse_element (element (cls, fields (12)))
+    val uelin: Fielder = parse_element (element (cls, fields (13)))
+    val vrmax: Fielder = parse_element (element (cls, fields (14)))
+    val vrmin: Fielder = parse_element (element (cls, fields (15)))
 
     def parse (context: CIMContext): ExcIEEEDC2A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEDC2A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efd1 (), 0)),
@@ -8482,7 +8680,7 @@ object ExcIEEEDC2ASerializer extends CIMSerializer[ExcIEEEDC2A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEDC2A]): ExcIEEEDC2A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEDC2A (
             parent,
@@ -8515,36 +8713,36 @@ object ExcIEEEDC2ASerializer extends CIMSerializer[ExcIEEEDC2A]
  * Reference: IEEE 421.5-2005, 5.3.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
- *        Typical value = 3,375.
- * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
- *        Typical value = 3,15.
- * @param exclim (<i>exclim</i>).
- *        IEEE standard is ambiguous about lower limit on exciter output.
- *        true = a lower limit of zero is applied to integrator output
- *        false = a lower limit of zero is not applied to integrator output.
- *        Typical value = true.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
- *        Typical value = 0,05.
- * @param kv Fast raise/lower contact setting (<i>K</i><i><sub>V</sub></i>) (&gt; 0).
- *        Typical value = 0,05.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,267.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,068.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 0,5.
- * @param trh Rheostat travel time (<i>T</i><i><sub>RH</sub></i>) (&gt; 0).
- *        Typical value = 20.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0).
- *        Typical value = 0.
+ * @param efd1                     Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,375.
+ * @param efd2                     Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+ *                                 Typical value = 3,15.
+ * @param exclim                   (<i>exclim</i>).
+ *                                 IEEE standard is ambiguous about lower limit on exciter output.
+ *                                 true = a lower limit of zero is applied to integrator output
+ *                                 false = a lower limit of zero is not applied to integrator output.
+ *                                 Typical value = true.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *                                 Typical value = 0,05.
+ * @param kv                       Fast raise/lower contact setting (<i>K</i><i><sub>V</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,05.
+ * @param seefd1                   Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,267.
+ * @param seefd2                   Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,068.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,5.
+ * @param trh                      Rheostat travel time (<i>T</i><i><sub>RH</sub></i>) (&gt; 0).
+ *                                 Typical value = 20.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0).
+ *                                 Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEDC3A
 (
@@ -8561,8 +8759,8 @@ final case class ExcIEEEDC3A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -8588,13 +8786,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEDC3A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEDC3A.fields (position), value)
+
         emitelem (0, efd1)
         emitelem (1, efd2)
         emitelem (2, exclim)
@@ -8608,6 +8811,7 @@ extends
         emitelem (10, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEDC3A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEDC3A>".format (id, export_fields)
@@ -8615,10 +8819,10 @@ extends
 }
 
 object ExcIEEEDC3A
-extends
-    CIMParseable[ExcIEEEDC3A]
+    extends
+        CIMParseable[ExcIEEEDC3A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efd1",
         "efd2",
         "exclim",
@@ -8631,22 +8835,22 @@ extends
         "vrmax",
         "vrmin"
     )
-    val efd1: Fielder = parse_element (element (cls, fields(0)))
-    val efd2: Fielder = parse_element (element (cls, fields(1)))
-    val exclim: Fielder = parse_element (element (cls, fields(2)))
-    val ke: Fielder = parse_element (element (cls, fields(3)))
-    val kv: Fielder = parse_element (element (cls, fields(4)))
-    val seefd1: Fielder = parse_element (element (cls, fields(5)))
-    val seefd2: Fielder = parse_element (element (cls, fields(6)))
-    val te: Fielder = parse_element (element (cls, fields(7)))
-    val trh: Fielder = parse_element (element (cls, fields(8)))
-    val vrmax: Fielder = parse_element (element (cls, fields(9)))
-    val vrmin: Fielder = parse_element (element (cls, fields(10)))
+    val efd1: Fielder = parse_element (element (cls, fields (0)))
+    val efd2: Fielder = parse_element (element (cls, fields (1)))
+    val exclim: Fielder = parse_element (element (cls, fields (2)))
+    val ke: Fielder = parse_element (element (cls, fields (3)))
+    val kv: Fielder = parse_element (element (cls, fields (4)))
+    val seefd1: Fielder = parse_element (element (cls, fields (5)))
+    val seefd2: Fielder = parse_element (element (cls, fields (6)))
+    val te: Fielder = parse_element (element (cls, fields (7)))
+    val trh: Fielder = parse_element (element (cls, fields (8)))
+    val vrmax: Fielder = parse_element (element (cls, fields (9)))
+    val vrmin: Fielder = parse_element (element (cls, fields (10)))
 
     def parse (context: CIMContext): ExcIEEEDC3A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEDC3A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efd1 (), 0)),
@@ -8693,7 +8897,7 @@ object ExcIEEEDC3ASerializer extends CIMSerializer[ExcIEEEDC3A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEDC3A]): ExcIEEEDC3A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEDC3A (
             parent,
@@ -8721,53 +8925,53 @@ object ExcIEEEDC3ASerializer extends CIMSerializer[ExcIEEEDC3A]
  * Reference: IEEE 421.5-2005, 5.4.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
- *        Typical value = 1,75.
- * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
- *        Typical value = 2,33.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param kd Regulator derivative gain (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
- *        Typical value = 20.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param ki Regulator integral gain (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
- *        Typical value = 20.
- * @param kp Regulator proportional gain (<i>K</i><i><sub>P</sub></i>) (&gt;= 0).
- *        Typical value = 20.
- * @param oelin OEL input (<i>OELin</i>).
- *        true = LV gate
- *        false = subtract from error signal.
- *        Typical value = true.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,08.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
- *        Typical value = 0,27.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 0,2.
- * @param td Regulator derivative filter time constant (<i>T</i><i><sub>D</sub></i>) (&gt; 0 if ExcIEEEDC4B.kd &gt; 0).
- *        Typical value = 0,01.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 0,8.
- * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param uelin UEL input (<i>UELin</i>).
- *        true = HV gate
- *        false = add to error signal.
- *        Typical value = true.
- * @param vemin Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
- *        Typical value = 0.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcIEEEDC4B.vrmin).
- *        Typical value = 2,7.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0 and &lt; ExcIEEEDC4B.vrmax).
- *        Typical value = -0,9.
+ * @param efd1                     Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+ *                                 Typical value = 1,75.
+ * @param efd2                     Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+ *                                 Typical value = 2,33.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param kd                       Regulator derivative gain (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *                                 Typical value = 20.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param ki                       Regulator integral gain (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
+ *                                 Typical value = 20.
+ * @param kp                       Regulator proportional gain (<i>K</i><i><sub>P</sub></i>) (&gt;= 0).
+ *                                 Typical value = 20.
+ * @param oelin                    OEL input (<i>OELin</i>).
+ *                                 true = LV gate
+ *                                 false = subtract from error signal.
+ *                                 Typical value = true.
+ * @param seefd1                   Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,08.
+ * @param seefd2                   Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+ *                                 Typical value = 0,27.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,2.
+ * @param td                       Regulator derivative filter time constant (<i>T</i><i><sub>D</sub></i>) (&gt; 0 if ExcIEEEDC4B.kd &gt; 0).
+ *                                 Typical value = 0,01.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,8.
+ * @param tf                       Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param uelin                    UEL input (<i>UELin</i>).
+ *                                 true = HV gate
+ *                                 false = add to error signal.
+ *                                 Typical value = true.
+ * @param vemin                    Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
+ *                                 Typical value = 0.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcIEEEDC4B.vrmin).
+ *                                 Typical value = 2,7.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0 and &lt; ExcIEEEDC4B.vrmax).
+ *                                 Typical value = -0,9.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEDC4B
 (
@@ -8792,8 +8996,8 @@ final case class ExcIEEEDC4B
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -8819,13 +9023,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEDC4B.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEDC4B.fields (position), value)
+
         emitelem (0, efd1)
         emitelem (1, efd2)
         emitelem (2, ka)
@@ -8847,6 +9056,7 @@ extends
         emitelem (18, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEDC4B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEDC4B>".format (id, export_fields)
@@ -8854,10 +9064,10 @@ extends
 }
 
 object ExcIEEEDC4B
-extends
-    CIMParseable[ExcIEEEDC4B]
+    extends
+        CIMParseable[ExcIEEEDC4B]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efd1",
         "efd2",
         "ka",
@@ -8878,30 +9088,30 @@ extends
         "vrmax",
         "vrmin"
     )
-    val efd1: Fielder = parse_element (element (cls, fields(0)))
-    val efd2: Fielder = parse_element (element (cls, fields(1)))
-    val ka: Fielder = parse_element (element (cls, fields(2)))
-    val kd: Fielder = parse_element (element (cls, fields(3)))
-    val ke: Fielder = parse_element (element (cls, fields(4)))
-    val kf: Fielder = parse_element (element (cls, fields(5)))
-    val ki: Fielder = parse_element (element (cls, fields(6)))
-    val kp: Fielder = parse_element (element (cls, fields(7)))
-    val oelin: Fielder = parse_element (element (cls, fields(8)))
-    val seefd1: Fielder = parse_element (element (cls, fields(9)))
-    val seefd2: Fielder = parse_element (element (cls, fields(10)))
-    val ta: Fielder = parse_element (element (cls, fields(11)))
-    val td: Fielder = parse_element (element (cls, fields(12)))
-    val te: Fielder = parse_element (element (cls, fields(13)))
-    val tf: Fielder = parse_element (element (cls, fields(14)))
-    val uelin: Fielder = parse_element (element (cls, fields(15)))
-    val vemin: Fielder = parse_element (element (cls, fields(16)))
-    val vrmax: Fielder = parse_element (element (cls, fields(17)))
-    val vrmin: Fielder = parse_element (element (cls, fields(18)))
+    val efd1: Fielder = parse_element (element (cls, fields (0)))
+    val efd2: Fielder = parse_element (element (cls, fields (1)))
+    val ka: Fielder = parse_element (element (cls, fields (2)))
+    val kd: Fielder = parse_element (element (cls, fields (3)))
+    val ke: Fielder = parse_element (element (cls, fields (4)))
+    val kf: Fielder = parse_element (element (cls, fields (5)))
+    val ki: Fielder = parse_element (element (cls, fields (6)))
+    val kp: Fielder = parse_element (element (cls, fields (7)))
+    val oelin: Fielder = parse_element (element (cls, fields (8)))
+    val seefd1: Fielder = parse_element (element (cls, fields (9)))
+    val seefd2: Fielder = parse_element (element (cls, fields (10)))
+    val ta: Fielder = parse_element (element (cls, fields (11)))
+    val td: Fielder = parse_element (element (cls, fields (12)))
+    val te: Fielder = parse_element (element (cls, fields (13)))
+    val tf: Fielder = parse_element (element (cls, fields (14)))
+    val uelin: Fielder = parse_element (element (cls, fields (15)))
+    val vemin: Fielder = parse_element (element (cls, fields (16)))
+    val vrmax: Fielder = parse_element (element (cls, fields (17)))
+    val vrmin: Fielder = parse_element (element (cls, fields (18)))
 
     def parse (context: CIMContext): ExcIEEEDC4B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEDC4B (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efd1 (), 0)),
@@ -8964,7 +9174,7 @@ object ExcIEEEDC4BSerializer extends CIMSerializer[ExcIEEEDC4B]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEDC4B]): ExcIEEEDC4B =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEDC4B (
             parent,
@@ -9000,51 +9210,51 @@ object ExcIEEEDC4BSerializer extends CIMSerializer[ExcIEEEDC4B]
  * Reference: IEEE 421.5-2005, 7.1.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ilr Exciter output current limit reference (<i>I</i><i><sub>LR</sub></i><i>)</i>.
- *        Typical value = 0.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 190.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0,08.
- * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param klr Exciter output current limiter gain (<i>K</i><i><sub>LR</sub></i>).
- *        Typical value = 0.
- * @param pssin Selector of the Power System Stabilizer (PSS) input (<i>PSSin</i>).
- *        true = PSS input (<i>Vs</i>) added to error signal
- *        false = PSS input (<i>Vs</i>) added to voltage regulator output.
- *        Typical value = true.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 10.
- * @param tb1 Voltage regulator time constant (<i>T</i><i><sub>B1</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tc1 Voltage regulator time constant (<i>T</i><i><sub>C1</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param uelin Selector of the connection of the UEL input (<i>UELin</i>).
- *        Typical value = ignoreUELsignal.
- * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
- *        Typical value = 14,5.
- * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
- *        Typical value = -14,5.
- * @param vimax Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
- *        Typical value = 999.
- * @param vimin Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
- *        Typical value = -999.
- * @param vrmax Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 7,8.
- * @param vrmin Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -6,7.
+ * @param ilr                      Exciter output current limit reference (<i>I</i><i><sub>LR</sub></i><i>)</i>.
+ *                                 Typical value = 0.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 190.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,08.
+ * @param kf                       Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param klr                      Exciter output current limiter gain (<i>K</i><i><sub>LR</sub></i>).
+ *                                 Typical value = 0.
+ * @param pssin                    Selector of the Power System Stabilizer (PSS) input (<i>PSSin</i>).
+ *                                 true = PSS input (<i>Vs</i>) added to error signal
+ *                                 false = PSS input (<i>Vs</i>) added to voltage regulator output.
+ *                                 Typical value = true.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tb                       Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 10.
+ * @param tb1                      Voltage regulator time constant (<i>T</i><i><sub>B1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tc1                      Voltage regulator time constant (<i>T</i><i><sub>C1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tf                       Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param uelin                    Selector of the connection of the UEL input (<i>UELin</i>).
+ *                                 Typical value = ignoreUELsignal.
+ * @param vamax                    Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 14,5.
+ * @param vamin                    Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -14,5.
+ * @param vimax                    Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 999.
+ * @param vimin                    Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -999.
+ * @param vrmax                    Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 7,8.
+ * @param vrmin                    Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -6,7.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEST1A
 (
@@ -9069,8 +9279,8 @@ final case class ExcIEEEST1A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -9096,14 +9306,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEST1A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST1A.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcIEEEST1A.fields (position), value)
+
         emitelem (0, ilr)
         emitelem (1, ka)
         emitelem (2, kc)
@@ -9125,6 +9341,7 @@ extends
         emitelem (18, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEST1A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST1A>".format (id, export_fields)
@@ -9132,10 +9349,10 @@ extends
 }
 
 object ExcIEEEST1A
-extends
-    CIMParseable[ExcIEEEST1A]
+    extends
+        CIMParseable[ExcIEEEST1A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ilr",
         "ka",
         "kc",
@@ -9156,30 +9373,30 @@ extends
         "vrmax",
         "vrmin"
     )
-    val ilr: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val kc: Fielder = parse_element (element (cls, fields(2)))
-    val kf: Fielder = parse_element (element (cls, fields(3)))
-    val klr: Fielder = parse_element (element (cls, fields(4)))
-    val pssin: Fielder = parse_element (element (cls, fields(5)))
-    val ta: Fielder = parse_element (element (cls, fields(6)))
-    val tb: Fielder = parse_element (element (cls, fields(7)))
-    val tb1: Fielder = parse_element (element (cls, fields(8)))
-    val tc: Fielder = parse_element (element (cls, fields(9)))
-    val tc1: Fielder = parse_element (element (cls, fields(10)))
-    val tf: Fielder = parse_element (element (cls, fields(11)))
-    val uelin: Fielder = parse_attribute (attribute (cls, fields(12)))
-    val vamax: Fielder = parse_element (element (cls, fields(13)))
-    val vamin: Fielder = parse_element (element (cls, fields(14)))
-    val vimax: Fielder = parse_element (element (cls, fields(15)))
-    val vimin: Fielder = parse_element (element (cls, fields(16)))
-    val vrmax: Fielder = parse_element (element (cls, fields(17)))
-    val vrmin: Fielder = parse_element (element (cls, fields(18)))
+    val ilr: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val kc: Fielder = parse_element (element (cls, fields (2)))
+    val kf: Fielder = parse_element (element (cls, fields (3)))
+    val klr: Fielder = parse_element (element (cls, fields (4)))
+    val pssin: Fielder = parse_element (element (cls, fields (5)))
+    val ta: Fielder = parse_element (element (cls, fields (6)))
+    val tb: Fielder = parse_element (element (cls, fields (7)))
+    val tb1: Fielder = parse_element (element (cls, fields (8)))
+    val tc: Fielder = parse_element (element (cls, fields (9)))
+    val tc1: Fielder = parse_element (element (cls, fields (10)))
+    val tf: Fielder = parse_element (element (cls, fields (11)))
+    val uelin: Fielder = parse_attribute (attribute (cls, fields (12)))
+    val vamax: Fielder = parse_element (element (cls, fields (13)))
+    val vamin: Fielder = parse_element (element (cls, fields (14)))
+    val vimax: Fielder = parse_element (element (cls, fields (15)))
+    val vimin: Fielder = parse_element (element (cls, fields (16)))
+    val vrmax: Fielder = parse_element (element (cls, fields (17)))
+    val vrmin: Fielder = parse_element (element (cls, fields (18)))
 
     def parse (context: CIMContext): ExcIEEEST1A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEST1A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ilr (), 0)),
@@ -9242,7 +9459,7 @@ object ExcIEEEST1ASerializer extends CIMSerializer[ExcIEEEST1A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST1A]): ExcIEEEST1A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEST1A (
             parent,
@@ -9278,39 +9495,39 @@ object ExcIEEEST1ASerializer extends CIMSerializer[ExcIEEEST1A]
  * Reference: IEEE 421.5-2005, 7.2.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Maximum field voltage (<i>E</i><i><sub>FDMax</sub></i>) (&gt;= 0).
- *        Typical value = 99.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 120.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 1,82.
- * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param ki Potential circuit gain coefficient (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
- *        Typical value = 8.
- * @param kp Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt;= 0).
- *        Typical value = 4,88.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
- *        Typical value = 0,15.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
- *        Typical value = 0,5.
- * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param uelin UEL input (<i>UELin</i>).
- *        true = HV gate
- *        false = add to error signal.
- *        Typical value = true.
- * @param vrmax Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param vrmin Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0).
- *        Typical value = 0.
+ * @param efdmax                   Maximum field voltage (<i>E</i><i><sub>FDMax</sub></i>) (&gt;= 0).
+ *                                 Typical value = 99.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 120.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1,82.
+ * @param ke                       Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,05.
+ * @param ki                       Potential circuit gain coefficient (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
+ *                                 Typical value = 8.
+ * @param kp                       Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt;= 0).
+ *                                 Typical value = 4,88.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,15.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,5.
+ * @param tf                       Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param uelin                    UEL input (<i>UELin</i>).
+ *                                 true = HV gate
+ *                                 false = add to error signal.
+ *                                 Typical value = true.
+ * @param vrmax                    Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vrmin                    Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0).
+ *                                 Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEST2A
 (
@@ -9329,8 +9546,8 @@ final case class ExcIEEEST2A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -9356,13 +9573,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEST2A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST2A.fields (position), value)
+
         emitelem (0, efdmax)
         emitelem (1, ka)
         emitelem (2, kc)
@@ -9378,6 +9600,7 @@ extends
         emitelem (12, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEST2A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST2A>".format (id, export_fields)
@@ -9385,10 +9608,10 @@ extends
 }
 
 object ExcIEEEST2A
-extends
-    CIMParseable[ExcIEEEST2A]
+    extends
+        CIMParseable[ExcIEEEST2A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efdmax",
         "ka",
         "kc",
@@ -9403,24 +9626,24 @@ extends
         "vrmax",
         "vrmin"
     )
-    val efdmax: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val kc: Fielder = parse_element (element (cls, fields(2)))
-    val ke: Fielder = parse_element (element (cls, fields(3)))
-    val kf: Fielder = parse_element (element (cls, fields(4)))
-    val ki: Fielder = parse_element (element (cls, fields(5)))
-    val kp: Fielder = parse_element (element (cls, fields(6)))
-    val ta: Fielder = parse_element (element (cls, fields(7)))
-    val te: Fielder = parse_element (element (cls, fields(8)))
-    val tf: Fielder = parse_element (element (cls, fields(9)))
-    val uelin: Fielder = parse_element (element (cls, fields(10)))
-    val vrmax: Fielder = parse_element (element (cls, fields(11)))
-    val vrmin: Fielder = parse_element (element (cls, fields(12)))
+    val efdmax: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val kc: Fielder = parse_element (element (cls, fields (2)))
+    val ke: Fielder = parse_element (element (cls, fields (3)))
+    val kf: Fielder = parse_element (element (cls, fields (4)))
+    val ki: Fielder = parse_element (element (cls, fields (5)))
+    val kp: Fielder = parse_element (element (cls, fields (6)))
+    val ta: Fielder = parse_element (element (cls, fields (7)))
+    val te: Fielder = parse_element (element (cls, fields (8)))
+    val tf: Fielder = parse_element (element (cls, fields (9)))
+    val uelin: Fielder = parse_element (element (cls, fields (10)))
+    val vrmax: Fielder = parse_element (element (cls, fields (11)))
+    val vrmin: Fielder = parse_element (element (cls, fields (12)))
 
     def parse (context: CIMContext): ExcIEEEST2A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEST2A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efdmax (), 0)),
@@ -9471,7 +9694,7 @@ object ExcIEEEST2ASerializer extends CIMSerializer[ExcIEEEST2A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST2A]): ExcIEEEST2A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEST2A (
             parent,
@@ -9501,51 +9724,51 @@ object ExcIEEEST2ASerializer extends CIMSerializer[ExcIEEEST2A]
  * Reference: IEEE 421.5-2005, 7.3.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
- *        This is parameter <i>K</i> in the IEEE standard. Typical value = 200.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0,2.
- * @param kg Feedback gain constant of the inner loop field regulator (<i>K</i><i><sub>G</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param ki Potential circuit gain coefficient (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param km Forward gain constant of the inner loop field regulator (<i>K</i><i><sub>M</sub></i>) (&gt; 0).
- *        Typical value = 7,93.
- * @param kp Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt; 0).
- *        Typical value = 6,15.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 10.
- * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param thetap Potential circuit phase angle (<i>thetap</i>).
- *        Typical value = 0.
- * @param tm Forward time constant of inner loop field regulator (<i>T</i><i><sub>M</sub></i>) (&gt; 0).
- *        Typical value = 0,4.
- * @param vbmax Maximum excitation voltage (<i>V</i><i><sub>BMax</sub></i>) (&gt; 0).
- *        Typical value = 6,9.
- * @param vgmax Maximum inner loop feedback voltage (<i>V</i><i><sub>GMax</sub></i>) (&gt;= 0).
- *        Typical value = 5,8.
- * @param vimax Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
- *        Typical value = 0,2.
- * @param vimin Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
- *        Typical value = -0,2.
- * @param vmmax Maximum inner loop output (<i>V</i><i><sub>MMax</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param vmmin Minimum inner loop output (<i>V</i><i><sub>MMin</sub></i>) (&lt;= 0).
- *        Typical value = 0.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 10.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -10.
- * @param xl Reactance associated with potential source (<i>X</i><i><sub>L</sub></i>) (&gt;= 0).
- *        Typical value = 0,081.
+ * @param ka                       Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *                                 This is parameter <i>K</i> in the IEEE standard. Typical value = 200.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,2.
+ * @param kg                       Feedback gain constant of the inner loop field regulator (<i>K</i><i><sub>G</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param ki                       Potential circuit gain coefficient (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param km                       Forward gain constant of the inner loop field regulator (<i>K</i><i><sub>M</sub></i>) (&gt; 0).
+ *                                 Typical value = 7,93.
+ * @param kp                       Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt; 0).
+ *                                 Typical value = 6,15.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tb                       Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 10.
+ * @param tc                       Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param thetap                   Potential circuit phase angle (<i>thetap</i>).
+ *                                 Typical value = 0.
+ * @param tm                       Forward time constant of inner loop field regulator (<i>T</i><i><sub>M</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,4.
+ * @param vbmax                    Maximum excitation voltage (<i>V</i><i><sub>BMax</sub></i>) (&gt; 0).
+ *                                 Typical value = 6,9.
+ * @param vgmax                    Maximum inner loop feedback voltage (<i>V</i><i><sub>GMax</sub></i>) (&gt;= 0).
+ *                                 Typical value = 5,8.
+ * @param vimax                    Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 0,2.
+ * @param vimin                    Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -0,2.
+ * @param vmmax                    Maximum inner loop output (<i>V</i><i><sub>MMax</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vmmin                    Minimum inner loop output (<i>V</i><i><sub>MMin</sub></i>) (&lt;= 0).
+ *                                 Typical value = 0.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 10.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -10.
+ * @param xl                       Reactance associated with potential source (<i>X</i><i><sub>L</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,081.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEST3A
 (
@@ -9571,8 +9794,8 @@ final case class ExcIEEEST3A
     vrmin: Double = 0.0,
     xl: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -9598,13 +9821,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEST3A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST3A.fields (position), value)
+
         emitelem (0, ka)
         emitelem (1, kc)
         emitelem (2, kg)
@@ -9627,6 +9855,7 @@ extends
         emitelem (19, xl)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEST3A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST3A>".format (id, export_fields)
@@ -9634,10 +9863,10 @@ extends
 }
 
 object ExcIEEEST3A
-extends
-    CIMParseable[ExcIEEEST3A]
+    extends
+        CIMParseable[ExcIEEEST3A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ka",
         "kc",
         "kg",
@@ -9659,31 +9888,31 @@ extends
         "vrmin",
         "xl"
     )
-    val ka: Fielder = parse_element (element (cls, fields(0)))
-    val kc: Fielder = parse_element (element (cls, fields(1)))
-    val kg: Fielder = parse_element (element (cls, fields(2)))
-    val ki: Fielder = parse_element (element (cls, fields(3)))
-    val km: Fielder = parse_element (element (cls, fields(4)))
-    val kp: Fielder = parse_element (element (cls, fields(5)))
-    val ta: Fielder = parse_element (element (cls, fields(6)))
-    val tb: Fielder = parse_element (element (cls, fields(7)))
-    val tc: Fielder = parse_element (element (cls, fields(8)))
-    val thetap: Fielder = parse_element (element (cls, fields(9)))
-    val tm: Fielder = parse_element (element (cls, fields(10)))
-    val vbmax: Fielder = parse_element (element (cls, fields(11)))
-    val vgmax: Fielder = parse_element (element (cls, fields(12)))
-    val vimax: Fielder = parse_element (element (cls, fields(13)))
-    val vimin: Fielder = parse_element (element (cls, fields(14)))
-    val vmmax: Fielder = parse_element (element (cls, fields(15)))
-    val vmmin: Fielder = parse_element (element (cls, fields(16)))
-    val vrmax: Fielder = parse_element (element (cls, fields(17)))
-    val vrmin: Fielder = parse_element (element (cls, fields(18)))
-    val xl: Fielder = parse_element (element (cls, fields(19)))
+    val ka: Fielder = parse_element (element (cls, fields (0)))
+    val kc: Fielder = parse_element (element (cls, fields (1)))
+    val kg: Fielder = parse_element (element (cls, fields (2)))
+    val ki: Fielder = parse_element (element (cls, fields (3)))
+    val km: Fielder = parse_element (element (cls, fields (4)))
+    val kp: Fielder = parse_element (element (cls, fields (5)))
+    val ta: Fielder = parse_element (element (cls, fields (6)))
+    val tb: Fielder = parse_element (element (cls, fields (7)))
+    val tc: Fielder = parse_element (element (cls, fields (8)))
+    val thetap: Fielder = parse_element (element (cls, fields (9)))
+    val tm: Fielder = parse_element (element (cls, fields (10)))
+    val vbmax: Fielder = parse_element (element (cls, fields (11)))
+    val vgmax: Fielder = parse_element (element (cls, fields (12)))
+    val vimax: Fielder = parse_element (element (cls, fields (13)))
+    val vimin: Fielder = parse_element (element (cls, fields (14)))
+    val vmmax: Fielder = parse_element (element (cls, fields (15)))
+    val vmmin: Fielder = parse_element (element (cls, fields (16)))
+    val vrmax: Fielder = parse_element (element (cls, fields (17)))
+    val vrmin: Fielder = parse_element (element (cls, fields (18)))
+    val xl: Fielder = parse_element (element (cls, fields (19)))
 
     def parse (context: CIMContext): ExcIEEEST3A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEST3A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ka (), 0)),
@@ -9748,7 +9977,7 @@ object ExcIEEEST3ASerializer extends CIMSerializer[ExcIEEEST3A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST3A]): ExcIEEEST3A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEST3A (
             parent,
@@ -9785,43 +10014,43 @@ object ExcIEEEST3ASerializer extends CIMSerializer[ExcIEEEST3A]
  * Reference: IEEE 421.5-2005, 7.4.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0,113.
- * @param kg Feedback gain constant of the inner loop field regulator (<i>K</i><i><sub>G</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param ki Potential circuit gain coefficient (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param kim Voltage regulator integral gain output (<i>K</i><i><sub>IM</sub></i>).
- *        Typical value = 0.
- * @param kir Voltage regulator integral gain (<i>K</i><i><sub>IR</sub></i>).
- *        Typical value = 10,75.
- * @param kp Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt; 0).
- *        Typical value = 9,3.
- * @param kpm Voltage regulator proportional gain output (<i>K</i><i><sub>PM</sub></i>).
- *        Typical value = 1.
- * @param kpr Voltage regulator proportional gain (<i>K</i><i><sub>PR</sub></i>).
- *        Typical value = 10,75.
- * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param thetap Potential circuit phase angle (<i>thetap</i>).
- *        Typical value = 0.
- * @param vbmax Maximum excitation voltage (<i>V</i><i><sub>BMax</sub></i>) (&gt; 0).
- *        Typical value = 11,63.
- * @param vmmax Maximum inner loop output (<i>V</i><i><sub>MMax</sub></i>) (&gt; ExcIEEEST4B.vmmin).
- *        Typical value = 99.
- * @param vmmin Minimum inner loop output (<i>V</i><i><sub>MMin</sub></i>) (&lt; ExcIEEEST4B.vmmax).
- *        Typical value = -99.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 1.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -0,87.
- * @param xl Reactance associated with potential source (<i>X</i><i><sub>L</sub></i>) (&gt;= 0).
- *        Typical value = 0,124.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,113.
+ * @param kg                       Feedback gain constant of the inner loop field regulator (<i>K</i><i><sub>G</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param ki                       Potential circuit gain coefficient (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param kim                      Voltage regulator integral gain output (<i>K</i><i><sub>IM</sub></i>).
+ *                                 Typical value = 0.
+ * @param kir                      Voltage regulator integral gain (<i>K</i><i><sub>IR</sub></i>).
+ *                                 Typical value = 10,75.
+ * @param kp                       Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt; 0).
+ *                                 Typical value = 9,3.
+ * @param kpm                      Voltage regulator proportional gain output (<i>K</i><i><sub>PM</sub></i>).
+ *                                 Typical value = 1.
+ * @param kpr                      Voltage regulator proportional gain (<i>K</i><i><sub>PR</sub></i>).
+ *                                 Typical value = 10,75.
+ * @param ta                       Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param thetap                   Potential circuit phase angle (<i>thetap</i>).
+ *                                 Typical value = 0.
+ * @param vbmax                    Maximum excitation voltage (<i>V</i><i><sub>BMax</sub></i>) (&gt; 0).
+ *                                 Typical value = 11,63.
+ * @param vmmax                    Maximum inner loop output (<i>V</i><i><sub>MMax</sub></i>) (&gt; ExcIEEEST4B.vmmin).
+ *                                 Typical value = 99.
+ * @param vmmin                    Minimum inner loop output (<i>V</i><i><sub>MMin</sub></i>) (&lt; ExcIEEEST4B.vmmax).
+ *                                 Typical value = -99.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -0,87.
+ * @param xl                       Reactance associated with potential source (<i>X</i><i><sub>L</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,124.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEST4B
 (
@@ -9843,8 +10072,8 @@ final case class ExcIEEEST4B
     vrmin: Double = 0.0,
     xl: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -9870,13 +10099,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEST4B.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST4B.fields (position), value)
+
         emitelem (0, kc)
         emitelem (1, kg)
         emitelem (2, ki)
@@ -9895,6 +10129,7 @@ extends
         emitelem (15, xl)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEST4B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST4B>".format (id, export_fields)
@@ -9902,10 +10137,10 @@ extends
 }
 
 object ExcIEEEST4B
-extends
-    CIMParseable[ExcIEEEST4B]
+    extends
+        CIMParseable[ExcIEEEST4B]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kc",
         "kg",
         "ki",
@@ -9923,27 +10158,27 @@ extends
         "vrmin",
         "xl"
     )
-    val kc: Fielder = parse_element (element (cls, fields(0)))
-    val kg: Fielder = parse_element (element (cls, fields(1)))
-    val ki: Fielder = parse_element (element (cls, fields(2)))
-    val kim: Fielder = parse_element (element (cls, fields(3)))
-    val kir: Fielder = parse_element (element (cls, fields(4)))
-    val kp: Fielder = parse_element (element (cls, fields(5)))
-    val kpm: Fielder = parse_element (element (cls, fields(6)))
-    val kpr: Fielder = parse_element (element (cls, fields(7)))
-    val ta: Fielder = parse_element (element (cls, fields(8)))
-    val thetap: Fielder = parse_element (element (cls, fields(9)))
-    val vbmax: Fielder = parse_element (element (cls, fields(10)))
-    val vmmax: Fielder = parse_element (element (cls, fields(11)))
-    val vmmin: Fielder = parse_element (element (cls, fields(12)))
-    val vrmax: Fielder = parse_element (element (cls, fields(13)))
-    val vrmin: Fielder = parse_element (element (cls, fields(14)))
-    val xl: Fielder = parse_element (element (cls, fields(15)))
+    val kc: Fielder = parse_element (element (cls, fields (0)))
+    val kg: Fielder = parse_element (element (cls, fields (1)))
+    val ki: Fielder = parse_element (element (cls, fields (2)))
+    val kim: Fielder = parse_element (element (cls, fields (3)))
+    val kir: Fielder = parse_element (element (cls, fields (4)))
+    val kp: Fielder = parse_element (element (cls, fields (5)))
+    val kpm: Fielder = parse_element (element (cls, fields (6)))
+    val kpr: Fielder = parse_element (element (cls, fields (7)))
+    val ta: Fielder = parse_element (element (cls, fields (8)))
+    val thetap: Fielder = parse_element (element (cls, fields (9)))
+    val vbmax: Fielder = parse_element (element (cls, fields (10)))
+    val vmmax: Fielder = parse_element (element (cls, fields (11)))
+    val vmmin: Fielder = parse_element (element (cls, fields (12)))
+    val vrmax: Fielder = parse_element (element (cls, fields (13)))
+    val vrmin: Fielder = parse_element (element (cls, fields (14)))
+    val xl: Fielder = parse_element (element (cls, fields (15)))
 
     def parse (context: CIMContext): ExcIEEEST4B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEST4B (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (kc (), 0)),
@@ -10000,7 +10235,7 @@ object ExcIEEEST4BSerializer extends CIMSerializer[ExcIEEEST4B]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST4B]): ExcIEEEST4B =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEST4B (
             parent,
@@ -10034,45 +10269,45 @@ object ExcIEEEST4BSerializer extends CIMSerializer[ExcIEEEST4B]
  * Reference: IEEE 421.5-2005, 7.5.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kc Rectifier regulation factor (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 0,004.
- * @param kr Regulator gain (<i>K</i><i><sub>R</sub></i>) (&gt; 0).
- *        Typical value = 200.
- * @param t1 Firing circuit time constant (<i>T1</i>) (&gt;= 0).
- *        Typical value = 0,004.
- * @param tb1 Regulator lag time constant (<i>T</i><i><sub>B1</sub></i>) (&gt;= 0).
- *        Typical value = 6.
- * @param tb2 Regulator lag time constant (<i>T</i><i><sub>B2</sub></i>) (&gt;= 0).
- *        Typical value = 0,01.
- * @param tc1 Regulator lead time constant (<i>T</i><i><sub>C1</sub></i>) (&gt;= 0).
- *        Typical value = 0,8.
- * @param tc2 Regulator lead time constant (<i>T</i><i><sub>C2</sub></i>) (&gt;= 0).
- *        Typical value = 0,08.
- * @param tob1 OEL lag time constant (<i>T</i><i><sub>OB1</sub></i>) (&gt;= 0).
- *        Typical value = 2.
- * @param tob2 OEL lag time constant (<i>T</i><i><sub>OB2</sub></i>) (&gt;= 0).
- *        Typical value = 0,08.
- * @param toc1 OEL lead time constant (<i>T</i><i><sub>OC1</sub></i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param toc2 OEL lead time constant (<i>T</i><i><sub>OC2</sub></i>) (&gt;= 0).
- *        Typical value = 0,08.
- * @param tub1 UEL lag time constant (<i>T</i><i><sub>UB1</sub></i>) (&gt;= 0).
- *        Typical value = 10.
- * @param tub2 UEL lag time constant (<i>T</i><i><sub>UB2</sub></i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param tuc1 UEL lead time constant (<i>T</i><i><sub>UC1</sub></i>) (&gt;= 0).
- *        Typical value = 2.
- * @param tuc2 UEL lead time constant (<i>T</i><i><sub>UC2</sub></i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 5.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -4.
+ * @param kc                       Rectifier regulation factor (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,004.
+ * @param kr                       Regulator gain (<i>K</i><i><sub>R</sub></i>) (&gt; 0).
+ *                                 Typical value = 200.
+ * @param t1                       Firing circuit time constant (<i>T1</i>) (&gt;= 0).
+ *                                 Typical value = 0,004.
+ * @param tb1                      Regulator lag time constant (<i>T</i><i><sub>B1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 6.
+ * @param tb2                      Regulator lag time constant (<i>T</i><i><sub>B2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,01.
+ * @param tc1                      Regulator lead time constant (<i>T</i><i><sub>C1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,8.
+ * @param tc2                      Regulator lead time constant (<i>T</i><i><sub>C2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,08.
+ * @param tob1                     OEL lag time constant (<i>T</i><i><sub>OB1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 2.
+ * @param tob2                     OEL lag time constant (<i>T</i><i><sub>OB2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,08.
+ * @param toc1                     OEL lead time constant (<i>T</i><i><sub>OC1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param toc2                     OEL lead time constant (<i>T</i><i><sub>OC2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,08.
+ * @param tub1                     UEL lag time constant (<i>T</i><i><sub>UB1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 10.
+ * @param tub2                     UEL lag time constant (<i>T</i><i><sub>UB2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,05.
+ * @param tuc1                     UEL lead time constant (<i>T</i><i><sub>UC1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 2.
+ * @param tuc2                     UEL lead time constant (<i>T</i><i><sub>UC2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 5.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -4.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEST5B
 (
@@ -10095,8 +10330,8 @@ final case class ExcIEEEST5B
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -10122,13 +10357,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEST5B.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST5B.fields (position), value)
+
         emitelem (0, kc)
         emitelem (1, kr)
         emitelem (2, t1)
@@ -10148,6 +10388,7 @@ extends
         emitelem (16, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEST5B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST5B>".format (id, export_fields)
@@ -10155,10 +10396,10 @@ extends
 }
 
 object ExcIEEEST5B
-extends
-    CIMParseable[ExcIEEEST5B]
+    extends
+        CIMParseable[ExcIEEEST5B]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kc",
         "kr",
         "t1",
@@ -10177,28 +10418,28 @@ extends
         "vrmax",
         "vrmin"
     )
-    val kc: Fielder = parse_element (element (cls, fields(0)))
-    val kr: Fielder = parse_element (element (cls, fields(1)))
-    val t1: Fielder = parse_element (element (cls, fields(2)))
-    val tb1: Fielder = parse_element (element (cls, fields(3)))
-    val tb2: Fielder = parse_element (element (cls, fields(4)))
-    val tc1: Fielder = parse_element (element (cls, fields(5)))
-    val tc2: Fielder = parse_element (element (cls, fields(6)))
-    val tob1: Fielder = parse_element (element (cls, fields(7)))
-    val tob2: Fielder = parse_element (element (cls, fields(8)))
-    val toc1: Fielder = parse_element (element (cls, fields(9)))
-    val toc2: Fielder = parse_element (element (cls, fields(10)))
-    val tub1: Fielder = parse_element (element (cls, fields(11)))
-    val tub2: Fielder = parse_element (element (cls, fields(12)))
-    val tuc1: Fielder = parse_element (element (cls, fields(13)))
-    val tuc2: Fielder = parse_element (element (cls, fields(14)))
-    val vrmax: Fielder = parse_element (element (cls, fields(15)))
-    val vrmin: Fielder = parse_element (element (cls, fields(16)))
+    val kc: Fielder = parse_element (element (cls, fields (0)))
+    val kr: Fielder = parse_element (element (cls, fields (1)))
+    val t1: Fielder = parse_element (element (cls, fields (2)))
+    val tb1: Fielder = parse_element (element (cls, fields (3)))
+    val tb2: Fielder = parse_element (element (cls, fields (4)))
+    val tc1: Fielder = parse_element (element (cls, fields (5)))
+    val tc2: Fielder = parse_element (element (cls, fields (6)))
+    val tob1: Fielder = parse_element (element (cls, fields (7)))
+    val tob2: Fielder = parse_element (element (cls, fields (8)))
+    val toc1: Fielder = parse_element (element (cls, fields (9)))
+    val toc2: Fielder = parse_element (element (cls, fields (10)))
+    val tub1: Fielder = parse_element (element (cls, fields (11)))
+    val tub2: Fielder = parse_element (element (cls, fields (12)))
+    val tuc1: Fielder = parse_element (element (cls, fields (13)))
+    val tuc2: Fielder = parse_element (element (cls, fields (14)))
+    val vrmax: Fielder = parse_element (element (cls, fields (15)))
+    val vrmin: Fielder = parse_element (element (cls, fields (16)))
 
     def parse (context: CIMContext): ExcIEEEST5B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEST5B (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (kc (), 0)),
@@ -10257,7 +10498,7 @@ object ExcIEEEST5BSerializer extends CIMSerializer[ExcIEEEST5B]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST5B]): ExcIEEEST5B =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEST5B (
             parent,
@@ -10291,39 +10532,39 @@ object ExcIEEEST5BSerializer extends CIMSerializer[ExcIEEEST5B]
  * Reference: IEEE 421.5-2005, 7.6.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ilr Exciter output current limit reference (<i>I</i><i><sub>LR</sub></i>) (&gt; 0).
- *        Typical value = 4,164.
- * @param kci Exciter output current limit adjustment (<i>K</i><i><sub>CI</sub></i>) (&gt; 0).
- *        Typical value = 1,0577.
- * @param kff Pre-control gain constant of the inner loop field regulator (<i>K</i><i><sub>FF</sub></i>).
- *        Typical value = 1.
- * @param kg Feedback gain constant of the inner loop field regulator (<i>K</i><i><sub>G</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param kia Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt; 0).
- *        Typical value = 45,094.
- * @param klr Exciter output current limiter gain (<i>K</i><i><sub>LR</sub></i>) (&gt; 0).
- *        Typical value = 17,33.
- * @param km Forward gain constant of the inner loop field regulator (<i>K</i><i><sub>M</sub></i>).
- *        Typical value = 1.
- * @param kpa Voltage regulator proportional gain (<u>K</u><u><sub>PA</sub></u>) (&gt; 0).
- *        Typical value = 18,038.
- * @param oelin OEL input selector (<i>OELin</i>).
- *        Typical value = noOELinput.
- * @param tg Feedback time constant of inner loop field voltage regulator (<i>T</i><i><sub>G</sub></i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param vamax Maximum voltage regulator output (V<i><sub>AMAX</sub></i>) (&gt; 0).
- *        Typical value = 4,81.
- * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
- *        Typical value = -3,85.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 4,81.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -3,85.
+ * @param ilr                      Exciter output current limit reference (<i>I</i><i><sub>LR</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,164.
+ * @param kci                      Exciter output current limit adjustment (<i>K</i><i><sub>CI</sub></i>) (&gt; 0).
+ *                                 Typical value = 1,0577.
+ * @param kff                      Pre-control gain constant of the inner loop field regulator (<i>K</i><i><sub>FF</sub></i>).
+ *                                 Typical value = 1.
+ * @param kg                       Feedback gain constant of the inner loop field regulator (<i>K</i><i><sub>G</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param kia                      Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt; 0).
+ *                                 Typical value = 45,094.
+ * @param klr                      Exciter output current limiter gain (<i>K</i><i><sub>LR</sub></i>) (&gt; 0).
+ *                                 Typical value = 17,33.
+ * @param km                       Forward gain constant of the inner loop field regulator (<i>K</i><i><sub>M</sub></i>).
+ *                                 Typical value = 1.
+ * @param kpa                      Voltage regulator proportional gain (<u>K</u><u><sub>PA</sub></u>) (&gt; 0).
+ *                                 Typical value = 18,038.
+ * @param oelin                    OEL input selector (<i>OELin</i>).
+ *                                 Typical value = noOELinput.
+ * @param tg                       Feedback time constant of inner loop field voltage regulator (<i>T</i><i><sub>G</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param vamax                    Maximum voltage regulator output (V<i><sub>AMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,81.
+ * @param vamin                    Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -3,85.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,81.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -3,85.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEST6B
 (
@@ -10343,8 +10584,8 @@ final case class ExcIEEEST6B
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -10370,14 +10611,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEST6B.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST6B.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcIEEEST6B.fields (position), value)
+
         emitelem (0, ilr)
         emitelem (1, kci)
         emitelem (2, kff)
@@ -10394,6 +10641,7 @@ extends
         emitelem (13, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEST6B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST6B>".format (id, export_fields)
@@ -10401,10 +10649,10 @@ extends
 }
 
 object ExcIEEEST6B
-extends
-    CIMParseable[ExcIEEEST6B]
+    extends
+        CIMParseable[ExcIEEEST6B]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ilr",
         "kci",
         "kff",
@@ -10420,25 +10668,25 @@ extends
         "vrmax",
         "vrmin"
     )
-    val ilr: Fielder = parse_element (element (cls, fields(0)))
-    val kci: Fielder = parse_element (element (cls, fields(1)))
-    val kff: Fielder = parse_element (element (cls, fields(2)))
-    val kg: Fielder = parse_element (element (cls, fields(3)))
-    val kia: Fielder = parse_element (element (cls, fields(4)))
-    val klr: Fielder = parse_element (element (cls, fields(5)))
-    val km: Fielder = parse_element (element (cls, fields(6)))
-    val kpa: Fielder = parse_element (element (cls, fields(7)))
-    val oelin: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val tg: Fielder = parse_element (element (cls, fields(9)))
-    val vamax: Fielder = parse_element (element (cls, fields(10)))
-    val vamin: Fielder = parse_element (element (cls, fields(11)))
-    val vrmax: Fielder = parse_element (element (cls, fields(12)))
-    val vrmin: Fielder = parse_element (element (cls, fields(13)))
+    val ilr: Fielder = parse_element (element (cls, fields (0)))
+    val kci: Fielder = parse_element (element (cls, fields (1)))
+    val kff: Fielder = parse_element (element (cls, fields (2)))
+    val kg: Fielder = parse_element (element (cls, fields (3)))
+    val kia: Fielder = parse_element (element (cls, fields (4)))
+    val klr: Fielder = parse_element (element (cls, fields (5)))
+    val km: Fielder = parse_element (element (cls, fields (6)))
+    val kpa: Fielder = parse_element (element (cls, fields (7)))
+    val oelin: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val tg: Fielder = parse_element (element (cls, fields (9)))
+    val vamax: Fielder = parse_element (element (cls, fields (10)))
+    val vamin: Fielder = parse_element (element (cls, fields (11)))
+    val vrmax: Fielder = parse_element (element (cls, fields (12)))
+    val vrmin: Fielder = parse_element (element (cls, fields (13)))
 
     def parse (context: CIMContext): ExcIEEEST6B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEST6B (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ilr (), 0)),
@@ -10491,7 +10739,7 @@ object ExcIEEEST6BSerializer extends CIMSerializer[ExcIEEEST6B]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST6B]): ExcIEEEST6B =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEST6B (
             parent,
@@ -10522,41 +10770,41 @@ object ExcIEEEST6BSerializer extends CIMSerializer[ExcIEEEST6B]
  * Reference: IEEE 421.5-2005, 7.7.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kh High-value gate feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param kia Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param kl Low-value gate feedback gain (<i>K</i><i><sub>L</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param kpa Voltage regulator proportional gain (<i>K</i><i><sub>PA</sub></i>) (&gt; 0).
- *        Typical value = 40.
- * @param oelin OEL input selector (<i>OELin</i>).
- *        Typical value = noOELinput.
- * @param tb Regulator lag time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tc Regulator lead time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tg Feedback time constant of inner loop field voltage regulator (<i>T</i><i><sub>G</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tia Feedback time constant (<i>T</i><i><sub>IA</sub></i>) (&gt;= 0).
- *        Typical value = 3.
- * @param uelin UEL input selector (<i>UELin</i>).
- *        Typical value = noUELinput.
- * @param vmax Maximum voltage reference signal (<i>V</i><i><sub>MAX</sub></i>) (&gt; 0 and &gt; ExcIEEEST7B.vmin).
- *        Typical value = 1,1.
- * @param vmin Minimum voltage reference signal (<i>V</i><i><sub>MIN</sub></i>) (&gt; 0 and &lt; ExcIEEEST7B.vmax).
- *        Typical value = 0,9.
- * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
- *        Typical value = 5.
- * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
- *        Typical value = -4,5.
+ * @param kh                       High-value gate feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param kia                      Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param kl                       Low-value gate feedback gain (<i>K</i><i><sub>L</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param kpa                      Voltage regulator proportional gain (<i>K</i><i><sub>PA</sub></i>) (&gt; 0).
+ *                                 Typical value = 40.
+ * @param oelin                    OEL input selector (<i>OELin</i>).
+ *                                 Typical value = noOELinput.
+ * @param tb                       Regulator lag time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tc                       Regulator lead time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tf                       Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tg                       Feedback time constant of inner loop field voltage regulator (<i>T</i><i><sub>G</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tia                      Feedback time constant (<i>T</i><i><sub>IA</sub></i>) (&gt;= 0).
+ *                                 Typical value = 3.
+ * @param uelin                    UEL input selector (<i>UELin</i>).
+ *                                 Typical value = noUELinput.
+ * @param vmax                     Maximum voltage reference signal (<i>V</i><i><sub>MAX</sub></i>) (&gt; 0 and &gt; ExcIEEEST7B.vmin).
+ *                                 Typical value = 1,1.
+ * @param vmin                     Minimum voltage reference signal (<i>V</i><i><sub>MIN</sub></i>) (&gt; 0 and &lt; ExcIEEEST7B.vmax).
+ *                                 Typical value = 0,9.
+ * @param vrmax                    Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *                                 Typical value = 5.
+ * @param vrmin                    Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *                                 Typical value = -4,5.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcIEEEST7B
 (
@@ -10577,8 +10825,8 @@ final case class ExcIEEEST7B
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -10604,14 +10852,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcIEEEST7B.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST7B.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcIEEEST7B.fields (position), value)
+
         emitelem (0, kh)
         emitelem (1, kia)
         emitelem (2, kl)
@@ -10629,6 +10883,7 @@ extends
         emitelem (14, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcIEEEST7B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST7B>".format (id, export_fields)
@@ -10636,10 +10891,10 @@ extends
 }
 
 object ExcIEEEST7B
-extends
-    CIMParseable[ExcIEEEST7B]
+    extends
+        CIMParseable[ExcIEEEST7B]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kh",
         "kia",
         "kl",
@@ -10656,26 +10911,26 @@ extends
         "vrmax",
         "vrmin"
     )
-    val kh: Fielder = parse_element (element (cls, fields(0)))
-    val kia: Fielder = parse_element (element (cls, fields(1)))
-    val kl: Fielder = parse_element (element (cls, fields(2)))
-    val kpa: Fielder = parse_element (element (cls, fields(3)))
-    val oelin: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val tb: Fielder = parse_element (element (cls, fields(5)))
-    val tc: Fielder = parse_element (element (cls, fields(6)))
-    val tf: Fielder = parse_element (element (cls, fields(7)))
-    val tg: Fielder = parse_element (element (cls, fields(8)))
-    val tia: Fielder = parse_element (element (cls, fields(9)))
-    val uelin: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val vmax: Fielder = parse_element (element (cls, fields(11)))
-    val vmin: Fielder = parse_element (element (cls, fields(12)))
-    val vrmax: Fielder = parse_element (element (cls, fields(13)))
-    val vrmin: Fielder = parse_element (element (cls, fields(14)))
+    val kh: Fielder = parse_element (element (cls, fields (0)))
+    val kia: Fielder = parse_element (element (cls, fields (1)))
+    val kl: Fielder = parse_element (element (cls, fields (2)))
+    val kpa: Fielder = parse_element (element (cls, fields (3)))
+    val oelin: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val tb: Fielder = parse_element (element (cls, fields (5)))
+    val tc: Fielder = parse_element (element (cls, fields (6)))
+    val tf: Fielder = parse_element (element (cls, fields (7)))
+    val tg: Fielder = parse_element (element (cls, fields (8)))
+    val tia: Fielder = parse_element (element (cls, fields (9)))
+    val uelin: Fielder = parse_attribute (attribute (cls, fields (10)))
+    val vmax: Fielder = parse_element (element (cls, fields (11)))
+    val vmin: Fielder = parse_element (element (cls, fields (12)))
+    val vrmax: Fielder = parse_element (element (cls, fields (13)))
+    val vrmin: Fielder = parse_element (element (cls, fields (14)))
 
     def parse (context: CIMContext): ExcIEEEST7B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcIEEEST7B (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (kh (), 0)),
@@ -10730,7 +10985,7 @@ object ExcIEEEST7BSerializer extends CIMSerializer[ExcIEEEST7B]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcIEEEST7B]): ExcIEEEST7B =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcIEEEST7B (
             parent,
@@ -10759,35 +11014,35 @@ object ExcIEEEST7BSerializer extends CIMSerializer[ExcIEEEST7B]
  * Bus or solid fed SCR (silicon-controlled rectifier) bridge excitation system model type NI (NVE).
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param busFedSelector Fed by selector (<i>BusFedSelector</i>).
- *        true = bus fed (switch is closed)
- *        false = solid fed (switch is open).
- *        Typical value = true.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 210.
- * @param kf Excitation control system stabilizer gain (<i>Kf</i>) (&gt; 0).
- *        Typical value 0,01.
- * @param r <i>rc</i> / <i>rfd</i> (<i>R</i>) (&gt;= 0).
- *        0 means exciter has negative current capability
- *        &gt; 0 means exciter does not have negative current capability.
- *        Typical value = 5.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
- *        Typical value = 0,02.
- * @param tf1 Excitation control system stabilizer time constant (<i>Tf1</i>) (&gt; 0).
- *        Typical value = 1,0.
- * @param tf2 Excitation control system stabilizer time constant (<i>Tf2</i>) (&gt; 0).
- *        Typical value = 0,1.
- * @param tr Time constant (<i>Tr</i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param vrmax Maximum voltage regulator ouput (<i>Vrmax</i>) (&gt; ExcNI.vrmin).
- *        Typical value = 5,0.
- * @param vrmin Minimum voltage regulator ouput (<i>Vrmin</i>) (&lt; ExcNI.vrmax).
- *        Typical value = -2,0.
+ * @param busFedSelector           Fed by selector (<i>BusFedSelector</i>).
+ *                                 true = bus fed (switch is closed)
+ *                                 false = solid fed (switch is open).
+ *                                 Typical value = true.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 210.
+ * @param kf                       Excitation control system stabilizer gain (<i>Kf</i>) (&gt; 0).
+ *                                 Typical value 0,01.
+ * @param r                        <i>rc</i> / <i>rfd</i> (<i>R</i>) (&gt;= 0).
+ *                                 0 means exciter has negative current capability
+ *                                 &gt; 0 means exciter does not have negative current capability.
+ *                                 Typical value = 5.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *                                 Typical value = 0,02.
+ * @param tf1                      Excitation control system stabilizer time constant (<i>Tf1</i>) (&gt; 0).
+ *                                 Typical value = 1,0.
+ * @param tf2                      Excitation control system stabilizer time constant (<i>Tf2</i>) (&gt; 0).
+ *                                 Typical value = 0,1.
+ * @param tr                       Time constant (<i>Tr</i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param vrmax                    Maximum voltage regulator ouput (<i>Vrmax</i>) (&gt; ExcNI.vrmin).
+ *                                 Typical value = 5,0.
+ * @param vrmin                    Minimum voltage regulator ouput (<i>Vrmin</i>) (&lt; ExcNI.vrmax).
+ *                                 Typical value = -2,0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcNI
 (
@@ -10803,8 +11058,8 @@ final case class ExcNI
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -10830,13 +11085,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcNI.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcNI.fields (position), value)
+
         emitelem (0, busFedSelector)
         emitelem (1, ka)
         emitelem (2, kf)
@@ -10849,6 +11109,7 @@ extends
         emitelem (9, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcNI rdf:ID=\"%s\">\n%s\t</cim:ExcNI>".format (id, export_fields)
@@ -10856,10 +11117,10 @@ extends
 }
 
 object ExcNI
-extends
-    CIMParseable[ExcNI]
+    extends
+        CIMParseable[ExcNI]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "busFedSelector",
         "ka",
         "kf",
@@ -10871,21 +11132,21 @@ extends
         "vrmax",
         "vrmin"
     )
-    val busFedSelector: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val kf: Fielder = parse_element (element (cls, fields(2)))
-    val r: Fielder = parse_element (element (cls, fields(3)))
-    val ta: Fielder = parse_element (element (cls, fields(4)))
-    val tf1: Fielder = parse_element (element (cls, fields(5)))
-    val tf2: Fielder = parse_element (element (cls, fields(6)))
-    val tr: Fielder = parse_element (element (cls, fields(7)))
-    val vrmax: Fielder = parse_element (element (cls, fields(8)))
-    val vrmin: Fielder = parse_element (element (cls, fields(9)))
+    val busFedSelector: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val kf: Fielder = parse_element (element (cls, fields (2)))
+    val r: Fielder = parse_element (element (cls, fields (3)))
+    val ta: Fielder = parse_element (element (cls, fields (4)))
+    val tf1: Fielder = parse_element (element (cls, fields (5)))
+    val tf2: Fielder = parse_element (element (cls, fields (6)))
+    val tr: Fielder = parse_element (element (cls, fields (7)))
+    val vrmax: Fielder = parse_element (element (cls, fields (8)))
+    val vrmin: Fielder = parse_element (element (cls, fields (9)))
 
     def parse (context: CIMContext): ExcNI =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcNI (
             ExcitationSystemDynamics.parse (context),
             toBoolean (mask (busFedSelector (), 0)),
@@ -10930,7 +11191,7 @@ object ExcNISerializer extends CIMSerializer[ExcNI]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcNI]): ExcNI =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcNI (
             parent,
@@ -10954,30 +11215,30 @@ object ExcNISerializer extends CIMSerializer[ExcNI]
  * Modified IEEE type ST1 excitation system with semi-continuous and acting terminal voltage limiter.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Saturation parameter (<i>E</i><i><sub>1</sub></i>).
- * @param e2 Saturation parameter (<i>E</i><i><sub>2</sub></i>).
- * @param ka Gain (<i>K</i><i><sub>A</sub></i>).
- * @param kc Gain (<i>K</i><i><sub>C</sub></i>).
- * @param kd Gain (<i>K</i><i><sub>D</sub></i>).
- * @param ke Gain (<i>K</i><i><sub>E</sub></i>).
- * @param kf Gain (<i>K</i><i><sub>F</sub></i>).
- * @param see1 Saturation parameter (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>1</sub></i><i>]</i>).
- * @param see2 Saturation parameter (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>2</sub></i><i>]</i>).
- * @param t1 Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
- * @param t2 Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
- * @param t3 Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
- * @param t4 Time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
- * @param t5 Time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
- * @param t6 Time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
- * @param te Time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
- * @param tf Time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
- * @param vrmax Limiter (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcOEX3T.vrmin).
- * @param vrmin Limiter (<i>V</i><i><sub>RMIN</sub></i>) (&lt; ExcOEX3T.vrmax).
+ * @param e1                       Saturation parameter (<i>E</i><i><sub>1</sub></i>).
+ * @param e2                       Saturation parameter (<i>E</i><i><sub>2</sub></i>).
+ * @param ka                       Gain (<i>K</i><i><sub>A</sub></i>).
+ * @param kc                       Gain (<i>K</i><i><sub>C</sub></i>).
+ * @param kd                       Gain (<i>K</i><i><sub>D</sub></i>).
+ * @param ke                       Gain (<i>K</i><i><sub>E</sub></i>).
+ * @param kf                       Gain (<i>K</i><i><sub>F</sub></i>).
+ * @param see1                     Saturation parameter (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>1</sub></i><i>]</i>).
+ * @param see2                     Saturation parameter (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>2</sub></i><i>]</i>).
+ * @param t1                       Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ * @param t2                       Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ * @param t3                       Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ * @param t4                       Time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ * @param t5                       Time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ * @param t6                       Time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ * @param te                       Time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
+ * @param tf                       Time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ * @param vrmax                    Limiter (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcOEX3T.vrmin).
+ * @param vrmin                    Limiter (<i>V</i><i><sub>RMIN</sub></i>) (&lt; ExcOEX3T.vrmax).
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcOEX3T
 (
@@ -11002,8 +11263,8 @@ final case class ExcOEX3T
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -11029,13 +11290,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcOEX3T.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcOEX3T.fields (position), value)
+
         emitelem (0, e1)
         emitelem (1, e2)
         emitelem (2, ka)
@@ -11057,6 +11323,7 @@ extends
         emitelem (18, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcOEX3T rdf:ID=\"%s\">\n%s\t</cim:ExcOEX3T>".format (id, export_fields)
@@ -11064,10 +11331,10 @@ extends
 }
 
 object ExcOEX3T
-extends
-    CIMParseable[ExcOEX3T]
+    extends
+        CIMParseable[ExcOEX3T]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "e1",
         "e2",
         "ka",
@@ -11088,30 +11355,30 @@ extends
         "vrmax",
         "vrmin"
     )
-    val e1: Fielder = parse_element (element (cls, fields(0)))
-    val e2: Fielder = parse_element (element (cls, fields(1)))
-    val ka: Fielder = parse_element (element (cls, fields(2)))
-    val kc: Fielder = parse_element (element (cls, fields(3)))
-    val kd: Fielder = parse_element (element (cls, fields(4)))
-    val ke: Fielder = parse_element (element (cls, fields(5)))
-    val kf: Fielder = parse_element (element (cls, fields(6)))
-    val see1: Fielder = parse_element (element (cls, fields(7)))
-    val see2: Fielder = parse_element (element (cls, fields(8)))
-    val t1: Fielder = parse_element (element (cls, fields(9)))
-    val t2: Fielder = parse_element (element (cls, fields(10)))
-    val t3: Fielder = parse_element (element (cls, fields(11)))
-    val t4: Fielder = parse_element (element (cls, fields(12)))
-    val t5: Fielder = parse_element (element (cls, fields(13)))
-    val t6: Fielder = parse_element (element (cls, fields(14)))
-    val te: Fielder = parse_element (element (cls, fields(15)))
-    val tf: Fielder = parse_element (element (cls, fields(16)))
-    val vrmax: Fielder = parse_element (element (cls, fields(17)))
-    val vrmin: Fielder = parse_element (element (cls, fields(18)))
+    val e1: Fielder = parse_element (element (cls, fields (0)))
+    val e2: Fielder = parse_element (element (cls, fields (1)))
+    val ka: Fielder = parse_element (element (cls, fields (2)))
+    val kc: Fielder = parse_element (element (cls, fields (3)))
+    val kd: Fielder = parse_element (element (cls, fields (4)))
+    val ke: Fielder = parse_element (element (cls, fields (5)))
+    val kf: Fielder = parse_element (element (cls, fields (6)))
+    val see1: Fielder = parse_element (element (cls, fields (7)))
+    val see2: Fielder = parse_element (element (cls, fields (8)))
+    val t1: Fielder = parse_element (element (cls, fields (9)))
+    val t2: Fielder = parse_element (element (cls, fields (10)))
+    val t3: Fielder = parse_element (element (cls, fields (11)))
+    val t4: Fielder = parse_element (element (cls, fields (12)))
+    val t5: Fielder = parse_element (element (cls, fields (13)))
+    val t6: Fielder = parse_element (element (cls, fields (14)))
+    val te: Fielder = parse_element (element (cls, fields (15)))
+    val tf: Fielder = parse_element (element (cls, fields (16)))
+    val vrmax: Fielder = parse_element (element (cls, fields (17)))
+    val vrmin: Fielder = parse_element (element (cls, fields (18)))
 
     def parse (context: CIMContext): ExcOEX3T =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcOEX3T (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (e1 (), 0)),
@@ -11174,7 +11441,7 @@ object ExcOEX3TSerializer extends CIMSerializer[ExcOEX3T]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcOEX3T]): ExcOEX3T =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcOEX3T (
             parent,
@@ -11209,57 +11476,57 @@ object ExcOEX3TSerializer extends CIMSerializer[ExcOEX3T]
  * This model can be used to represent excitation systems with a proportional-integral (PI) voltage regulator controller.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
- *        Typical value = 0.
- * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
- *        Typical value = 0.
- * @param efdmax Exciter maximum limit (<i>E</i><i><sub>fdmax</sub></i>) (&gt; ExcPIC.efdmin).
- *        Typical value = 8.
- * @param efdmin Exciter minimum limit (<i>E</i><i><sub>fdmin</sub></i>) (&lt; ExcPIC.efdmax).
- *        Typical value = -0,87.
- * @param ka PI controller gain (<i>K</i><i><sub>a</sub></i>).
- *        Typical value = 3,15.
- * @param kc Exciter regulation factor (<i>K</i><i><sub>c</sub></i>).
- *        Typical value = 0,08.
- * @param ke Exciter constant (<i>K</i><i><sub>e</sub></i>).
- *        Typical value = 0.
- * @param kf Rate feedback gain (<i>K</i><i><sub>f</sub></i>).
- *        Typical value = 0.
- * @param ki Current source gain (<i>K</i><i><sub>i</sub></i>).
- *        Typical value = 0.
- * @param kp Potential source gain (<i>K</i><i><sub>p</sub></i>).
- *        Typical value = 6,5.
- * @param se1 Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>Se</i><i><sub>1</sub></i>).
- *        Typical value = 0.
- * @param se2 Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>Se</i><i><sub>2</sub></i>).
- *        Typical value = 0.
- * @param ta1 PI controller time constant (<i>T</i><i><sub>a1</sub></i>) (&gt;= 0).
- *        Typical value = 1.
- * @param ta2 Voltage regulator time constant (<i>T</i><i><sub>a2</sub></i>) (&gt;= 0).
- *        Typical value = 0,01.
- * @param ta3 Lead time constant (<i>T</i><i><sub>a3</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param ta4 Lag time constant (<i>T</i><i><sub>a4</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant (<i>T</i><i><sub>e</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tf1 Rate feedback time constant (<i>T</i><i><sub>f1</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tf2 Rate feedback lag time constant (<i>T</i><i><sub>f2</sub></i>) (&gt;= 0).
- *        Typical value = 0.
- * @param vr1 PI maximum limit (<i>V</i><i><sub>r1</sub></i>).
- *        Typical value = 1.
- * @param vr2 PI minimum limit (<i>V</i><i><sub>r2</sub></i>).
- *        Typical value = -0,87.
- * @param vrmax Voltage regulator maximum limit (<i>V</i><i><sub>rmax</sub></i>) (&gt; ExcPIC.vrmin).
- *        Typical value = 1.
- * @param vrmin Voltage regulator minimum limit (<i>V</i><i><sub>rmin</sub></i>) (&lt; ExcPIC.vrmax).
- *        Typical value = -0,87.
+ * @param e1                       Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+ *                                 Typical value = 0.
+ * @param e2                       Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+ *                                 Typical value = 0.
+ * @param efdmax                   Exciter maximum limit (<i>E</i><i><sub>fdmax</sub></i>) (&gt; ExcPIC.efdmin).
+ *                                 Typical value = 8.
+ * @param efdmin                   Exciter minimum limit (<i>E</i><i><sub>fdmin</sub></i>) (&lt; ExcPIC.efdmax).
+ *                                 Typical value = -0,87.
+ * @param ka                       PI controller gain (<i>K</i><i><sub>a</sub></i>).
+ *                                 Typical value = 3,15.
+ * @param kc                       Exciter regulation factor (<i>K</i><i><sub>c</sub></i>).
+ *                                 Typical value = 0,08.
+ * @param ke                       Exciter constant (<i>K</i><i><sub>e</sub></i>).
+ *                                 Typical value = 0.
+ * @param kf                       Rate feedback gain (<i>K</i><i><sub>f</sub></i>).
+ *                                 Typical value = 0.
+ * @param ki                       Current source gain (<i>K</i><i><sub>i</sub></i>).
+ *                                 Typical value = 0.
+ * @param kp                       Potential source gain (<i>K</i><i><sub>p</sub></i>).
+ *                                 Typical value = 6,5.
+ * @param se1                      Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>Se</i><i><sub>1</sub></i>).
+ *                                 Typical value = 0.
+ * @param se2                      Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>Se</i><i><sub>2</sub></i>).
+ *                                 Typical value = 0.
+ * @param ta1                      PI controller time constant (<i>T</i><i><sub>a1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param ta2                      Voltage regulator time constant (<i>T</i><i><sub>a2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0,01.
+ * @param ta3                      Lead time constant (<i>T</i><i><sub>a3</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param ta4                      Lag time constant (<i>T</i><i><sub>a4</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant (<i>T</i><i><sub>e</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tf1                      Rate feedback time constant (<i>T</i><i><sub>f1</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tf2                      Rate feedback lag time constant (<i>T</i><i><sub>f2</sub></i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param vr1                      PI maximum limit (<i>V</i><i><sub>r1</sub></i>).
+ *                                 Typical value = 1.
+ * @param vr2                      PI minimum limit (<i>V</i><i><sub>r2</sub></i>).
+ *                                 Typical value = -0,87.
+ * @param vrmax                    Voltage regulator maximum limit (<i>V</i><i><sub>rmax</sub></i>) (&gt; ExcPIC.vrmin).
+ *                                 Typical value = 1.
+ * @param vrmin                    Voltage regulator minimum limit (<i>V</i><i><sub>rmin</sub></i>) (&lt; ExcPIC.vrmax).
+ *                                 Typical value = -0,87.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcPIC
 (
@@ -11288,8 +11555,8 @@ final case class ExcPIC
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -11315,13 +11582,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcPIC.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcPIC.fields (position), value)
+
         emitelem (0, e1)
         emitelem (1, e2)
         emitelem (2, efdmax)
@@ -11347,6 +11619,7 @@ extends
         emitelem (22, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcPIC rdf:ID=\"%s\">\n%s\t</cim:ExcPIC>".format (id, export_fields)
@@ -11354,10 +11627,10 @@ extends
 }
 
 object ExcPIC
-extends
-    CIMParseable[ExcPIC]
+    extends
+        CIMParseable[ExcPIC]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "e1",
         "e2",
         "efdmax",
@@ -11382,34 +11655,34 @@ extends
         "vrmax",
         "vrmin"
     )
-    val e1: Fielder = parse_element (element (cls, fields(0)))
-    val e2: Fielder = parse_element (element (cls, fields(1)))
-    val efdmax: Fielder = parse_element (element (cls, fields(2)))
-    val efdmin: Fielder = parse_element (element (cls, fields(3)))
-    val ka: Fielder = parse_element (element (cls, fields(4)))
-    val kc: Fielder = parse_element (element (cls, fields(5)))
-    val ke: Fielder = parse_element (element (cls, fields(6)))
-    val kf: Fielder = parse_element (element (cls, fields(7)))
-    val ki: Fielder = parse_element (element (cls, fields(8)))
-    val kp: Fielder = parse_element (element (cls, fields(9)))
-    val se1: Fielder = parse_element (element (cls, fields(10)))
-    val se2: Fielder = parse_element (element (cls, fields(11)))
-    val ta1: Fielder = parse_element (element (cls, fields(12)))
-    val ta2: Fielder = parse_element (element (cls, fields(13)))
-    val ta3: Fielder = parse_element (element (cls, fields(14)))
-    val ta4: Fielder = parse_element (element (cls, fields(15)))
-    val te: Fielder = parse_element (element (cls, fields(16)))
-    val tf1: Fielder = parse_element (element (cls, fields(17)))
-    val tf2: Fielder = parse_element (element (cls, fields(18)))
-    val vr1: Fielder = parse_element (element (cls, fields(19)))
-    val vr2: Fielder = parse_element (element (cls, fields(20)))
-    val vrmax: Fielder = parse_element (element (cls, fields(21)))
-    val vrmin: Fielder = parse_element (element (cls, fields(22)))
+    val e1: Fielder = parse_element (element (cls, fields (0)))
+    val e2: Fielder = parse_element (element (cls, fields (1)))
+    val efdmax: Fielder = parse_element (element (cls, fields (2)))
+    val efdmin: Fielder = parse_element (element (cls, fields (3)))
+    val ka: Fielder = parse_element (element (cls, fields (4)))
+    val kc: Fielder = parse_element (element (cls, fields (5)))
+    val ke: Fielder = parse_element (element (cls, fields (6)))
+    val kf: Fielder = parse_element (element (cls, fields (7)))
+    val ki: Fielder = parse_element (element (cls, fields (8)))
+    val kp: Fielder = parse_element (element (cls, fields (9)))
+    val se1: Fielder = parse_element (element (cls, fields (10)))
+    val se2: Fielder = parse_element (element (cls, fields (11)))
+    val ta1: Fielder = parse_element (element (cls, fields (12)))
+    val ta2: Fielder = parse_element (element (cls, fields (13)))
+    val ta3: Fielder = parse_element (element (cls, fields (14)))
+    val ta4: Fielder = parse_element (element (cls, fields (15)))
+    val te: Fielder = parse_element (element (cls, fields (16)))
+    val tf1: Fielder = parse_element (element (cls, fields (17)))
+    val tf2: Fielder = parse_element (element (cls, fields (18)))
+    val vr1: Fielder = parse_element (element (cls, fields (19)))
+    val vr2: Fielder = parse_element (element (cls, fields (20)))
+    val vrmax: Fielder = parse_element (element (cls, fields (21)))
+    val vrmin: Fielder = parse_element (element (cls, fields (22)))
 
     def parse (context: CIMContext): ExcPIC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcPIC (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (e1 (), 0)),
@@ -11480,7 +11753,7 @@ object ExcPICSerializer extends CIMSerializer[ExcPIC]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcPIC]): ExcPIC =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcPIC (
             parent,
@@ -11519,83 +11792,83 @@ object ExcPICSerializer extends CIMSerializer[ExcPIC]
  * This model can be used to represent a wide range of excitation systems whose DC power source is an AC or DC generator. It encompasses IEEE type AC1, AC2, DC1, and DC2 excitation system models.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
- *        Typical value = 3.
- * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
- *        Typical value = 4.
- * @param fbf Rate feedback signal flag (<i>fbf</i>).
- *        Typical value = fieldCurrent.
- * @param flimf Limit type flag (<i>Flimf</i>).
- *        Typical value = 0.
- * @param kc Rectifier regulation factor (<i>Kc</i>).
- *        Typical value = 0,05.
- * @param kd Exciter regulation factor (<i>Kd</i>).
- *        Typical value = 2.
- * @param ke Exciter field proportional constant (<i>Ke</i>).
- *        Typical value = 1.
- * @param kefd Field voltage feedback gain (<i>Kefd</i>).
- *        Typical value = 0.
- * @param kf Rate feedback gain (<i>Kf</i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param kh Field voltage controller feedback gain (<i>Kh</i>).
- *        Typical value = 0.
- * @param kii Field current regulator integral gain (<i>Kii</i>).
- *        Typical value = 0.
- * @param kip Field current regulator proportional gain (<i>Kip</i>).
- *        Typical value = 1.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
- *        Typical value = 0.
- * @param kvi Voltage regulator integral gain (<i>Kvi</i>).
- *        Typical value = 0.
- * @param kvp Voltage regulator proportional gain (<i>Kvp</i>).
- *        Typical value = 2800.
- * @param kvphz V/Hz limiter gain (<i>Kvphz</i>).
- *        Typical value = 0.
- * @param nvphz Pickup speed of V/Hz limiter (<i>Nvphz</i>).
- *        Typical value = 0.
- * @param se1 Saturation factor at <i>E</i><i><sub>1</sub></i><i> </i>(<i>Se</i><i><sub>1</sub></i>).
- *        Typical value = 0,0001.
- * @param se2 Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>Se</i><i><sub>2</sub></i>).
- *        Typical value = 0,001.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0,01.
- * @param tb1 Lag time constant (<i>Tb1</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0.
- * @param tb2 Lag time constant (<i>Tb2</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0.
- * @param tc1 Lead time constant (<i>Tc1</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc2 Lead time constant (<i>Tc2</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter field time constant (<i>Te</i>) (&gt; 0).
- *        Typical value = 1,2.
- * @param tf Rate feedback time constant (<i>Tf</i>) (&gt;= 0).
- *        If = 0, the feedback path is not used.  Typical value = 1.
- * @param tf1 Feedback lead time constant (<i>Tf1</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tf2 Feedback lag time constant (<i>Tf2</i>) (&gt;= 0).
- *        If = 0, block is bypassed.  Typical value = 0.
- * @param tp Field current bridge time constant (<i>Tp</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param vcmax Maximum compounding voltage (<i>Vcmax</i>).
- *        Typical value = 0.
- * @param vfmax Maximum exciter field current (<i>Vfmax</i>) (&gt; ExcREXS.vfmin).
- *        Typical value = 47.
- * @param vfmin Minimum exciter field current (<i>Vfmin</i>) (&lt; ExcREXS.vfmax).
- *        Typical value = -20.
- * @param vimax Voltage regulator input limit (<i>Vimax</i>).
- *        Typical value = 0,1.
- * @param vrmax Maximum controller output (V<i>rmax</i>) (&gt; ExcREXS.vrmin).
- *        Typical value = 47.
- * @param vrmin Minimum controller output (<i>Vrmin</i>) (&lt; ExcREXS.vrmax).
- *        Typical value = -20.
- * @param xc Exciter compounding reactance (<i>Xc</i>).
- *        Typical value = 0.
+ * @param e1                       Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+ *                                 Typical value = 3.
+ * @param e2                       Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+ *                                 Typical value = 4.
+ * @param fbf                      Rate feedback signal flag (<i>fbf</i>).
+ *                                 Typical value = fieldCurrent.
+ * @param flimf                    Limit type flag (<i>Flimf</i>).
+ *                                 Typical value = 0.
+ * @param kc                       Rectifier regulation factor (<i>Kc</i>).
+ *                                 Typical value = 0,05.
+ * @param kd                       Exciter regulation factor (<i>Kd</i>).
+ *                                 Typical value = 2.
+ * @param ke                       Exciter field proportional constant (<i>Ke</i>).
+ *                                 Typical value = 1.
+ * @param kefd                     Field voltage feedback gain (<i>Kefd</i>).
+ *                                 Typical value = 0.
+ * @param kf                       Rate feedback gain (<i>Kf</i>) (&gt;= 0).
+ *                                 Typical value = 0,05.
+ * @param kh                       Field voltage controller feedback gain (<i>Kh</i>).
+ *                                 Typical value = 0.
+ * @param kii                      Field current regulator integral gain (<i>Kii</i>).
+ *                                 Typical value = 0.
+ * @param kip                      Field current regulator proportional gain (<i>Kip</i>).
+ *                                 Typical value = 1.
+ * @param ks                       Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *                                 Typical value = 0.
+ * @param kvi                      Voltage regulator integral gain (<i>Kvi</i>).
+ *                                 Typical value = 0.
+ * @param kvp                      Voltage regulator proportional gain (<i>Kvp</i>).
+ *                                 Typical value = 2800.
+ * @param kvphz                    V/Hz limiter gain (<i>Kvphz</i>).
+ *                                 Typical value = 0.
+ * @param nvphz                    Pickup speed of V/Hz limiter (<i>Nvphz</i>).
+ *                                 Typical value = 0.
+ * @param se1                      Saturation factor at <i>E</i><i><sub>1</sub></i><i> </i>(<i>Se</i><i><sub>1</sub></i>).
+ *                                 Typical value = 0,0001.
+ * @param se2                      Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>Se</i><i><sub>2</sub></i>).
+ *                                 Typical value = 0,001.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+ *                                 If = 0, block is bypassed.  Typical value = 0,01.
+ * @param tb1                      Lag time constant (<i>Tb1</i>) (&gt;= 0).
+ *                                 If = 0, block is bypassed.  Typical value = 0.
+ * @param tb2                      Lag time constant (<i>Tb2</i>) (&gt;= 0).
+ *                                 If = 0, block is bypassed.  Typical value = 0.
+ * @param tc1                      Lead time constant (<i>Tc1</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc2                      Lead time constant (<i>Tc2</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter field time constant (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 1,2.
+ * @param tf                       Rate feedback time constant (<i>Tf</i>) (&gt;= 0).
+ *                                 If = 0, the feedback path is not used.  Typical value = 1.
+ * @param tf1                      Feedback lead time constant (<i>Tf1</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tf2                      Feedback lag time constant (<i>Tf2</i>) (&gt;= 0).
+ *                                 If = 0, block is bypassed.  Typical value = 0.
+ * @param tp                       Field current bridge time constant (<i>Tp</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param vcmax                    Maximum compounding voltage (<i>Vcmax</i>).
+ *                                 Typical value = 0.
+ * @param vfmax                    Maximum exciter field current (<i>Vfmax</i>) (&gt; ExcREXS.vfmin).
+ *                                 Typical value = 47.
+ * @param vfmin                    Minimum exciter field current (<i>Vfmin</i>) (&lt; ExcREXS.vfmax).
+ *                                 Typical value = -20.
+ * @param vimax                    Voltage regulator input limit (<i>Vimax</i>).
+ *                                 Typical value = 0,1.
+ * @param vrmax                    Maximum controller output (V<i>rmax</i>) (&gt; ExcREXS.vrmin).
+ *                                 Typical value = 47.
+ * @param vrmin                    Minimum controller output (<i>Vrmin</i>) (&lt; ExcREXS.vrmax).
+ *                                 Typical value = -20.
+ * @param xc                       Exciter compounding reactance (<i>Xc</i>).
+ *                                 Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcREXS
 (
@@ -11637,8 +11910,8 @@ final case class ExcREXS
     vrmin: Double = 0.0,
     xc: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -11664,14 +11937,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcREXS.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcREXS.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcREXS.fields (position), value)
+
         emitelem (0, e1)
         emitelem (1, e2)
         emitattr (2, fbf)
@@ -11710,6 +11989,7 @@ extends
         emitelem (35, xc)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcREXS rdf:ID=\"%s\">\n%s\t</cim:ExcREXS>".format (id, export_fields)
@@ -11717,10 +11997,10 @@ extends
 }
 
 object ExcREXS
-extends
-    CIMParseable[ExcREXS]
+    extends
+        CIMParseable[ExcREXS]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "e1",
         "e2",
         "fbf",
@@ -11758,47 +12038,47 @@ extends
         "vrmin",
         "xc"
     )
-    val e1: Fielder = parse_element (element (cls, fields(0)))
-    val e2: Fielder = parse_element (element (cls, fields(1)))
-    val fbf: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val flimf: Fielder = parse_element (element (cls, fields(3)))
-    val kc: Fielder = parse_element (element (cls, fields(4)))
-    val kd: Fielder = parse_element (element (cls, fields(5)))
-    val ke: Fielder = parse_element (element (cls, fields(6)))
-    val kefd: Fielder = parse_element (element (cls, fields(7)))
-    val kf: Fielder = parse_element (element (cls, fields(8)))
-    val kh: Fielder = parse_element (element (cls, fields(9)))
-    val kii: Fielder = parse_element (element (cls, fields(10)))
-    val kip: Fielder = parse_element (element (cls, fields(11)))
-    val ks: Fielder = parse_element (element (cls, fields(12)))
-    val kvi: Fielder = parse_element (element (cls, fields(13)))
-    val kvp: Fielder = parse_element (element (cls, fields(14)))
-    val kvphz: Fielder = parse_element (element (cls, fields(15)))
-    val nvphz: Fielder = parse_element (element (cls, fields(16)))
-    val se1: Fielder = parse_element (element (cls, fields(17)))
-    val se2: Fielder = parse_element (element (cls, fields(18)))
-    val ta: Fielder = parse_element (element (cls, fields(19)))
-    val tb1: Fielder = parse_element (element (cls, fields(20)))
-    val tb2: Fielder = parse_element (element (cls, fields(21)))
-    val tc1: Fielder = parse_element (element (cls, fields(22)))
-    val tc2: Fielder = parse_element (element (cls, fields(23)))
-    val te: Fielder = parse_element (element (cls, fields(24)))
-    val tf: Fielder = parse_element (element (cls, fields(25)))
-    val tf1: Fielder = parse_element (element (cls, fields(26)))
-    val tf2: Fielder = parse_element (element (cls, fields(27)))
-    val tp: Fielder = parse_element (element (cls, fields(28)))
-    val vcmax: Fielder = parse_element (element (cls, fields(29)))
-    val vfmax: Fielder = parse_element (element (cls, fields(30)))
-    val vfmin: Fielder = parse_element (element (cls, fields(31)))
-    val vimax: Fielder = parse_element (element (cls, fields(32)))
-    val vrmax: Fielder = parse_element (element (cls, fields(33)))
-    val vrmin: Fielder = parse_element (element (cls, fields(34)))
-    val xc: Fielder = parse_element (element (cls, fields(35)))
+    val e1: Fielder = parse_element (element (cls, fields (0)))
+    val e2: Fielder = parse_element (element (cls, fields (1)))
+    val fbf: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val flimf: Fielder = parse_element (element (cls, fields (3)))
+    val kc: Fielder = parse_element (element (cls, fields (4)))
+    val kd: Fielder = parse_element (element (cls, fields (5)))
+    val ke: Fielder = parse_element (element (cls, fields (6)))
+    val kefd: Fielder = parse_element (element (cls, fields (7)))
+    val kf: Fielder = parse_element (element (cls, fields (8)))
+    val kh: Fielder = parse_element (element (cls, fields (9)))
+    val kii: Fielder = parse_element (element (cls, fields (10)))
+    val kip: Fielder = parse_element (element (cls, fields (11)))
+    val ks: Fielder = parse_element (element (cls, fields (12)))
+    val kvi: Fielder = parse_element (element (cls, fields (13)))
+    val kvp: Fielder = parse_element (element (cls, fields (14)))
+    val kvphz: Fielder = parse_element (element (cls, fields (15)))
+    val nvphz: Fielder = parse_element (element (cls, fields (16)))
+    val se1: Fielder = parse_element (element (cls, fields (17)))
+    val se2: Fielder = parse_element (element (cls, fields (18)))
+    val ta: Fielder = parse_element (element (cls, fields (19)))
+    val tb1: Fielder = parse_element (element (cls, fields (20)))
+    val tb2: Fielder = parse_element (element (cls, fields (21)))
+    val tc1: Fielder = parse_element (element (cls, fields (22)))
+    val tc2: Fielder = parse_element (element (cls, fields (23)))
+    val te: Fielder = parse_element (element (cls, fields (24)))
+    val tf: Fielder = parse_element (element (cls, fields (25)))
+    val tf1: Fielder = parse_element (element (cls, fields (26)))
+    val tf2: Fielder = parse_element (element (cls, fields (27)))
+    val tp: Fielder = parse_element (element (cls, fields (28)))
+    val vcmax: Fielder = parse_element (element (cls, fields (29)))
+    val vfmax: Fielder = parse_element (element (cls, fields (30)))
+    val vfmin: Fielder = parse_element (element (cls, fields (31)))
+    val vimax: Fielder = parse_element (element (cls, fields (32)))
+    val vrmax: Fielder = parse_element (element (cls, fields (33)))
+    val vrmin: Fielder = parse_element (element (cls, fields (34)))
+    val xc: Fielder = parse_element (element (cls, fields (35)))
 
     def parse (context: CIMContext): ExcREXS =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = ExcREXS (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (e1 (), 0)),
@@ -11895,7 +12175,7 @@ object ExcREXSSerializer extends CIMSerializer[ExcREXS]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcREXS]): ExcREXS =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcREXS (
             parent,
@@ -11947,37 +12227,37 @@ object ExcREXSSerializer extends CIMSerializer[ExcREXS]
  * This excitation system shall be always used together with power system stabilizer type PssRQB.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ki0 Voltage reference input gain (<i>Ki0</i>).
- *        Typical value = 12,7.
- * @param ki1 Voltage input gain (<i>Ki1</i>).
- *        Typical value = -16,8.
- * @param klir OEL input gain (<i>KLIR</i>).
- *        Typical value = 12,13.
- * @param klus Limiter gain (<i>KLUS</i>).
- *        Typical value = 50.
- * @param lsat Integrator limiter (<i>LSAT</i>).
- *        Typical value = 5,73.
- * @param lus Setpoint (<i>LUS</i>).
- *        Typical value = 0,12.
- * @param mesu Voltage input time constant (<i>MESU</i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param t4m Input time constant (<i>T4M</i>) (&gt;= 0).
- *        Typical value = 5.
- * @param tc Lead lag time constant (<i>TC</i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param te Lead lag time constant (<i>TE</i>) (&gt;= 0).
- *        Typical value = 0,22.
- * @param tf Exciter time constant (<i>TF</i>) (&gt;= 0).
- *        Typical value = 0,01.
- * @param ucmax Maximum voltage reference limit (<i>UCMAX</i>) (&gt; ExcRQB.ucmin).
- *        Typical value = 1,1.
- * @param ucmin Minimum voltage reference limit (<i>UCMIN</i>) (&lt; ExcRQB.ucmax).
- *        Typical value = 0,9.
+ * @param ki0                      Voltage reference input gain (<i>Ki0</i>).
+ *                                 Typical value = 12,7.
+ * @param ki1                      Voltage input gain (<i>Ki1</i>).
+ *                                 Typical value = -16,8.
+ * @param klir                     OEL input gain (<i>KLIR</i>).
+ *                                 Typical value = 12,13.
+ * @param klus                     Limiter gain (<i>KLUS</i>).
+ *                                 Typical value = 50.
+ * @param lsat                     Integrator limiter (<i>LSAT</i>).
+ *                                 Typical value = 5,73.
+ * @param lus                      Setpoint (<i>LUS</i>).
+ *                                 Typical value = 0,12.
+ * @param mesu                     Voltage input time constant (<i>MESU</i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param t4m                      Input time constant (<i>T4M</i>) (&gt;= 0).
+ *                                 Typical value = 5.
+ * @param tc                       Lead lag time constant (<i>TC</i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param te                       Lead lag time constant (<i>TE</i>) (&gt;= 0).
+ *                                 Typical value = 0,22.
+ * @param tf                       Exciter time constant (<i>TF</i>) (&gt;= 0).
+ *                                 Typical value = 0,01.
+ * @param ucmax                    Maximum voltage reference limit (<i>UCMAX</i>) (&gt; ExcRQB.ucmin).
+ *                                 Typical value = 1,1.
+ * @param ucmin                    Minimum voltage reference limit (<i>UCMIN</i>) (&lt; ExcRQB.ucmax).
+ *                                 Typical value = 0,9.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcRQB
 (
@@ -11996,8 +12276,8 @@ final case class ExcRQB
     ucmax: Double = 0.0,
     ucmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -12023,13 +12303,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcRQB.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcRQB.fields (position), value)
+
         emitelem (0, ki0)
         emitelem (1, ki1)
         emitelem (2, klir)
@@ -12045,6 +12330,7 @@ extends
         emitelem (12, ucmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcRQB rdf:ID=\"%s\">\n%s\t</cim:ExcRQB>".format (id, export_fields)
@@ -12052,10 +12338,10 @@ extends
 }
 
 object ExcRQB
-extends
-    CIMParseable[ExcRQB]
+    extends
+        CIMParseable[ExcRQB]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ki0",
         "ki1",
         "klir",
@@ -12070,24 +12356,24 @@ extends
         "ucmax",
         "ucmin"
     )
-    val ki0: Fielder = parse_element (element (cls, fields(0)))
-    val ki1: Fielder = parse_element (element (cls, fields(1)))
-    val klir: Fielder = parse_element (element (cls, fields(2)))
-    val klus: Fielder = parse_element (element (cls, fields(3)))
-    val lsat: Fielder = parse_element (element (cls, fields(4)))
-    val lus: Fielder = parse_element (element (cls, fields(5)))
-    val mesu: Fielder = parse_element (element (cls, fields(6)))
-    val t4m: Fielder = parse_element (element (cls, fields(7)))
-    val tc: Fielder = parse_element (element (cls, fields(8)))
-    val te: Fielder = parse_element (element (cls, fields(9)))
-    val tf: Fielder = parse_element (element (cls, fields(10)))
-    val ucmax: Fielder = parse_element (element (cls, fields(11)))
-    val ucmin: Fielder = parse_element (element (cls, fields(12)))
+    val ki0: Fielder = parse_element (element (cls, fields (0)))
+    val ki1: Fielder = parse_element (element (cls, fields (1)))
+    val klir: Fielder = parse_element (element (cls, fields (2)))
+    val klus: Fielder = parse_element (element (cls, fields (3)))
+    val lsat: Fielder = parse_element (element (cls, fields (4)))
+    val lus: Fielder = parse_element (element (cls, fields (5)))
+    val mesu: Fielder = parse_element (element (cls, fields (6)))
+    val t4m: Fielder = parse_element (element (cls, fields (7)))
+    val tc: Fielder = parse_element (element (cls, fields (8)))
+    val te: Fielder = parse_element (element (cls, fields (9)))
+    val tf: Fielder = parse_element (element (cls, fields (10)))
+    val ucmax: Fielder = parse_element (element (cls, fields (11)))
+    val ucmin: Fielder = parse_element (element (cls, fields (12)))
 
     def parse (context: CIMContext): ExcRQB =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcRQB (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ki0 (), 0)),
@@ -12138,7 +12424,7 @@ object ExcRQBSerializer extends CIMSerializer[ExcRQB]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcRQB]): ExcRQB =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcRQB (
             parent,
@@ -12165,28 +12451,28 @@ object ExcRQBSerializer extends CIMSerializer[ExcRQB]
  * Simple excitation system with generic characteristics typical of many excitation systems; intended for use where negative field current could be a problem.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param cswitch Power source switch (<i>Cswitch</i>).
- *        true = fixed voltage of 1.0 PU
- *        false = generator terminal voltage.
- * @param emax Maximum field voltage output (<i>Emax</i>) (&gt; ExcSCRX.emin).
- *        Typical value = 5.
- * @param emin Minimum field voltage output (<i>Emin</i>) (&lt; ExcSCRX.emax).
- *        Typical value = 0.
- * @param k Gain (<i>K</i>) (&gt; 0).
- *        Typical value = 200.
- * @param rcrfd Ratio of field discharge resistance to field winding resistance ([<i>rc / rfd]</i>).
- *        Typical value = 0.
- * @param tatb Gain reduction ratio of lag-lead element ([<i>Ta</i> / <i>Tb</i>]).
- *        The parameter <i>Ta</i> is not defined explicitly.  Typical value = 0.1.
- * @param tb Denominator time constant of lag-lead block (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 10.
- * @param te Time constant of gain block (<i>Te</i>) (&gt; 0).
- *        Typical value = 0,02.
+ * @param cswitch                  Power source switch (<i>Cswitch</i>).
+ *                                 true = fixed voltage of 1.0 PU
+ *                                 false = generator terminal voltage.
+ * @param emax                     Maximum field voltage output (<i>Emax</i>) (&gt; ExcSCRX.emin).
+ *                                 Typical value = 5.
+ * @param emin                     Minimum field voltage output (<i>Emin</i>) (&lt; ExcSCRX.emax).
+ *                                 Typical value = 0.
+ * @param k                        Gain (<i>K</i>) (&gt; 0).
+ *                                 Typical value = 200.
+ * @param rcrfd                    Ratio of field discharge resistance to field winding resistance ([<i>rc / rfd]</i>).
+ *                                 Typical value = 0.
+ * @param tatb                     Gain reduction ratio of lag-lead element ([<i>Ta</i> / <i>Tb</i>]).
+ *                                 The parameter <i>Ta</i> is not defined explicitly.  Typical value = 0.1.
+ * @param tb                       Denominator time constant of lag-lead block (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 10.
+ * @param te                       Time constant of gain block (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 0,02.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcSCRX
 (
@@ -12200,8 +12486,8 @@ final case class ExcSCRX
     tb: Double = 0.0,
     te: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -12227,13 +12513,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcSCRX.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcSCRX.fields (position), value)
+
         emitelem (0, cswitch)
         emitelem (1, emax)
         emitelem (2, emin)
@@ -12244,6 +12535,7 @@ extends
         emitelem (7, te)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcSCRX rdf:ID=\"%s\">\n%s\t</cim:ExcSCRX>".format (id, export_fields)
@@ -12251,10 +12543,10 @@ extends
 }
 
 object ExcSCRX
-extends
-    CIMParseable[ExcSCRX]
+    extends
+        CIMParseable[ExcSCRX]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "cswitch",
         "emax",
         "emin",
@@ -12264,19 +12556,19 @@ extends
         "tb",
         "te"
     )
-    val cswitch: Fielder = parse_element (element (cls, fields(0)))
-    val emax: Fielder = parse_element (element (cls, fields(1)))
-    val emin: Fielder = parse_element (element (cls, fields(2)))
-    val k: Fielder = parse_element (element (cls, fields(3)))
-    val rcrfd: Fielder = parse_element (element (cls, fields(4)))
-    val tatb: Fielder = parse_element (element (cls, fields(5)))
-    val tb: Fielder = parse_element (element (cls, fields(6)))
-    val te: Fielder = parse_element (element (cls, fields(7)))
+    val cswitch: Fielder = parse_element (element (cls, fields (0)))
+    val emax: Fielder = parse_element (element (cls, fields (1)))
+    val emin: Fielder = parse_element (element (cls, fields (2)))
+    val k: Fielder = parse_element (element (cls, fields (3)))
+    val rcrfd: Fielder = parse_element (element (cls, fields (4)))
+    val tatb: Fielder = parse_element (element (cls, fields (5)))
+    val tb: Fielder = parse_element (element (cls, fields (6)))
+    val te: Fielder = parse_element (element (cls, fields (7)))
 
     def parse (context: CIMContext): ExcSCRX =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcSCRX (
             ExcitationSystemDynamics.parse (context),
             toBoolean (mask (cswitch (), 0)),
@@ -12317,7 +12609,7 @@ object ExcSCRXSerializer extends CIMSerializer[ExcSCRX]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcSCRX]): ExcSCRX =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcSCRX (
             parent,
@@ -12339,31 +12631,31 @@ object ExcSCRXSerializer extends CIMSerializer[ExcSCRX]
  * Simplified excitation system.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Field voltage clipping maximum limit (<i>Efdmax</i>) (&gt; ExcSEXS.efdmin).
- *        Typical value = 5.
- * @param efdmin Field voltage clipping minimum limit (<i>Efdmin</i>) (&lt; ExcSEXS.efdmax).
- *        Typical value = -5.
- * @param emax Maximum field voltage output (<i>Emax</i>) (&gt; ExcSEXS.emin).
- *        Typical value = 5.
- * @param emin Minimum field voltage output (<i>Emin</i>) (&lt; ExcSEXS.emax).
- *        Typical value = -5.
- * @param k Gain (<i>K</i>) (&gt; 0).
- *        Typical value = 100.
- * @param kc PI controller gain (<i>Kc</i>) (&gt; 0 if ExcSEXS.tc &gt; 0).
- *        Typical value = 0,08.
- * @param tatb Gain reduction ratio of lag-lead element (<i>[Ta / Tb]</i>).
- *        Typical value = 0,1.
- * @param tb Denominator time constant of lag-lead block (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 10.
- * @param tc PI controller phase lead time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Time constant of gain block (<i>Te</i>) (&gt; 0).
- *        Typical value = 0,05.
+ * @param efdmax                   Field voltage clipping maximum limit (<i>Efdmax</i>) (&gt; ExcSEXS.efdmin).
+ *                                 Typical value = 5.
+ * @param efdmin                   Field voltage clipping minimum limit (<i>Efdmin</i>) (&lt; ExcSEXS.efdmax).
+ *                                 Typical value = -5.
+ * @param emax                     Maximum field voltage output (<i>Emax</i>) (&gt; ExcSEXS.emin).
+ *                                 Typical value = 5.
+ * @param emin                     Minimum field voltage output (<i>Emin</i>) (&lt; ExcSEXS.emax).
+ *                                 Typical value = -5.
+ * @param k                        Gain (<i>K</i>) (&gt; 0).
+ *                                 Typical value = 100.
+ * @param kc                       PI controller gain (<i>Kc</i>) (&gt; 0 if ExcSEXS.tc &gt; 0).
+ *                                 Typical value = 0,08.
+ * @param tatb                     Gain reduction ratio of lag-lead element (<i>[Ta / Tb]</i>).
+ *                                 Typical value = 0,1.
+ * @param tb                       Denominator time constant of lag-lead block (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 10.
+ * @param tc                       PI controller phase lead time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Time constant of gain block (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 0,05.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcSEXS
 (
@@ -12379,8 +12671,8 @@ final case class ExcSEXS
     tc: Double = 0.0,
     te: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -12406,13 +12698,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcSEXS.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcSEXS.fields (position), value)
+
         emitelem (0, efdmax)
         emitelem (1, efdmin)
         emitelem (2, emax)
@@ -12425,6 +12722,7 @@ extends
         emitelem (9, te)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcSEXS rdf:ID=\"%s\">\n%s\t</cim:ExcSEXS>".format (id, export_fields)
@@ -12432,10 +12730,10 @@ extends
 }
 
 object ExcSEXS
-extends
-    CIMParseable[ExcSEXS]
+    extends
+        CIMParseable[ExcSEXS]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efdmax",
         "efdmin",
         "emax",
@@ -12447,21 +12745,21 @@ extends
         "tc",
         "te"
     )
-    val efdmax: Fielder = parse_element (element (cls, fields(0)))
-    val efdmin: Fielder = parse_element (element (cls, fields(1)))
-    val emax: Fielder = parse_element (element (cls, fields(2)))
-    val emin: Fielder = parse_element (element (cls, fields(3)))
-    val k: Fielder = parse_element (element (cls, fields(4)))
-    val kc: Fielder = parse_element (element (cls, fields(5)))
-    val tatb: Fielder = parse_element (element (cls, fields(6)))
-    val tb: Fielder = parse_element (element (cls, fields(7)))
-    val tc: Fielder = parse_element (element (cls, fields(8)))
-    val te: Fielder = parse_element (element (cls, fields(9)))
+    val efdmax: Fielder = parse_element (element (cls, fields (0)))
+    val efdmin: Fielder = parse_element (element (cls, fields (1)))
+    val emax: Fielder = parse_element (element (cls, fields (2)))
+    val emin: Fielder = parse_element (element (cls, fields (3)))
+    val k: Fielder = parse_element (element (cls, fields (4)))
+    val kc: Fielder = parse_element (element (cls, fields (5)))
+    val tatb: Fielder = parse_element (element (cls, fields (6)))
+    val tb: Fielder = parse_element (element (cls, fields (7)))
+    val tc: Fielder = parse_element (element (cls, fields (8)))
+    val te: Fielder = parse_element (element (cls, fields (9)))
 
     def parse (context: CIMContext): ExcSEXS =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcSEXS (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efdmax (), 0)),
@@ -12506,7 +12804,7 @@ object ExcSEXSSerializer extends CIMSerializer[ExcSEXS]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcSEXS]): ExcSEXS =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcSEXS (
             parent,
@@ -12532,75 +12830,75 @@ object ExcSEXSSerializer extends CIMSerializer[ExcSEXS]
  * UEL and secondary voltage control are included in this model. When this model is used, there cannot be a separate underexcitation limiter or VAr controller model.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Field voltage clipping upper level limit (<i>Efdmax</i>) (&gt; ExcSK.efdmin).
- * @param efdmin Field voltage clipping lower level limit (<i>Efdmin</i>) (&lt; ExcSK.efdmax).
- * @param emax Maximum field voltage output (<i>Emax</i>) (&gt; ExcSK.emin).
- *        Typical value = 20.
- * @param emin Minimum field voltage output (<i>Emin</i>) (&lt; ExcSK.emax).
- *        Typical value = -20.
- * @param k Gain (<i>K</i>).
- *        Typical value = 1.
- * @param k1 Parameter of underexcitation limit (<i>K1</i>).
- *        Typical value = 0,1364.
- * @param k2 Parameter of underexcitation limit (<i>K2</i>).
- *        Typical value = -0,3861.
- * @param kc PI controller gain (<i>Kc</i>).
- *        Typical value = 70.
- * @param kce Rectifier regulation factor (<i>Kce</i>).
- *        Typical value = 0.
- * @param kd Exciter internal reactance (<i>Kd</i>).
- *        Typical value = 0.
- * @param kgob P controller gain (<i>Kgob</i>).
- *        Typical value = 10.
- * @param kp PI controller gain (<i>Kp</i>).
- *        Typical value = 1.
- * @param kqi PI controller gain of integral component (<i>Kqi</i>).
- *        Typical value = 0.
- * @param kqob Rate of rise of the reactive power (<i>Kqob</i>).
- * @param kqp PI controller gain (<i>Kqp</i>).
- *        Typical value = 0.
- * @param nq Deadband of reactive power (<i>nq</i>).
- *        Determines the range of sensitivity.  Typical value = 0,001.
- * @param qconoff Secondary voltage control state (<i>Qc_on_off</i>).
- *        true = secondary voltage control is on
- *        false = secondary voltage control is off.
- *        Typical value = false.
- * @param qz Desired value (setpoint) of reactive power, manual setting (<i>Qz</i>).
- * @param remote Selector to apply automatic calculation in secondary controller model (<i>remote</i>).
- *        true = automatic calculation is activated
- *        false = manual set is active; the use of desired value of reactive power (<i>Qz</i>) is required.
- *        Typical value = true.
- * @param sbase Apparent power of the unit (<i>Sbase</i>) (&gt; 0).
- *        Unit = MVA.  Typical value = 259.
- * @param tc PI controller phase lead time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 8.
- * @param te Time constant of gain block (<i>Te</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param ti PI controller phase lead time constant (<i>Ti</i>) (&gt;= 0).
- *        Typical value = 2.
- * @param tp Time constant (<i>Tp</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param tr Voltage transducer time constant (<i>Tr</i>) (&gt;= 0).
- *        Typical value = 0,01.
- * @param uimax Maximum error (<i>UImax</i>) (&gt; ExcSK.uimin).
- *        Typical value = 10.
- * @param uimin Minimum error (<i>UImin</i>) (&lt; ExcSK.uimax).
- *        Typical value = -10.
- * @param urmax Maximum controller output (<i>URmax</i>) (&gt; ExcSK.urmin).
- *        Typical value = 10.
- * @param urmin Minimum controller output (<i>URmin</i>) (&lt; ExcSK.urmax).
- *        Typical value = -10.
- * @param vtmax Maximum terminal voltage input (<i>Vtmax</i>) (&gt; ExcSK.vtmin).
- *        Determines the range of voltage deadband.  Typical value = 1,05.
- * @param vtmin Minimum terminal voltage input (<i>Vtmin</i>) (&lt; ExcSK.vtmax).
- *        Determines the range of voltage deadband.  Typical value = 0,95.
- * @param yp Maximum output (<i>Yp</i>).
- *        Typical value = 1.
+ * @param efdmax                   Field voltage clipping upper level limit (<i>Efdmax</i>) (&gt; ExcSK.efdmin).
+ * @param efdmin                   Field voltage clipping lower level limit (<i>Efdmin</i>) (&lt; ExcSK.efdmax).
+ * @param emax                     Maximum field voltage output (<i>Emax</i>) (&gt; ExcSK.emin).
+ *                                 Typical value = 20.
+ * @param emin                     Minimum field voltage output (<i>Emin</i>) (&lt; ExcSK.emax).
+ *                                 Typical value = -20.
+ * @param k                        Gain (<i>K</i>).
+ *                                 Typical value = 1.
+ * @param k1                       Parameter of underexcitation limit (<i>K1</i>).
+ *                                 Typical value = 0,1364.
+ * @param k2                       Parameter of underexcitation limit (<i>K2</i>).
+ *                                 Typical value = -0,3861.
+ * @param kc                       PI controller gain (<i>Kc</i>).
+ *                                 Typical value = 70.
+ * @param kce                      Rectifier regulation factor (<i>Kce</i>).
+ *                                 Typical value = 0.
+ * @param kd                       Exciter internal reactance (<i>Kd</i>).
+ *                                 Typical value = 0.
+ * @param kgob                     P controller gain (<i>Kgob</i>).
+ *                                 Typical value = 10.
+ * @param kp                       PI controller gain (<i>Kp</i>).
+ *                                 Typical value = 1.
+ * @param kqi                      PI controller gain of integral component (<i>Kqi</i>).
+ *                                 Typical value = 0.
+ * @param kqob                     Rate of rise of the reactive power (<i>Kqob</i>).
+ * @param kqp                      PI controller gain (<i>Kqp</i>).
+ *                                 Typical value = 0.
+ * @param nq                       Deadband of reactive power (<i>nq</i>).
+ *                                 Determines the range of sensitivity.  Typical value = 0,001.
+ * @param qconoff                  Secondary voltage control state (<i>Qc_on_off</i>).
+ *                                 true = secondary voltage control is on
+ *                                 false = secondary voltage control is off.
+ *                                 Typical value = false.
+ * @param qz                       Desired value (setpoint) of reactive power, manual setting (<i>Qz</i>).
+ * @param remote                   Selector to apply automatic calculation in secondary controller model (<i>remote</i>).
+ *                                 true = automatic calculation is activated
+ *                                 false = manual set is active; the use of desired value of reactive power (<i>Qz</i>) is required.
+ *                                 Typical value = true.
+ * @param sbase                    Apparent power of the unit (<i>Sbase</i>) (&gt; 0).
+ *                                 Unit = MVA.  Typical value = 259.
+ * @param tc                       PI controller phase lead time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 8.
+ * @param te                       Time constant of gain block (<i>Te</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param ti                       PI controller phase lead time constant (<i>Ti</i>) (&gt;= 0).
+ *                                 Typical value = 2.
+ * @param tp                       Time constant (<i>Tp</i>) (&gt;= 0).
+ *                                 Typical value = 0,1.
+ * @param tr                       Voltage transducer time constant (<i>Tr</i>) (&gt;= 0).
+ *                                 Typical value = 0,01.
+ * @param uimax                    Maximum error (<i>UImax</i>) (&gt; ExcSK.uimin).
+ *                                 Typical value = 10.
+ * @param uimin                    Minimum error (<i>UImin</i>) (&lt; ExcSK.uimax).
+ *                                 Typical value = -10.
+ * @param urmax                    Maximum controller output (<i>URmax</i>) (&gt; ExcSK.urmin).
+ *                                 Typical value = 10.
+ * @param urmin                    Minimum controller output (<i>URmin</i>) (&lt; ExcSK.urmax).
+ *                                 Typical value = -10.
+ * @param vtmax                    Maximum terminal voltage input (<i>Vtmax</i>) (&gt; ExcSK.vtmin).
+ *                                 Determines the range of voltage deadband.  Typical value = 1,05.
+ * @param vtmin                    Minimum terminal voltage input (<i>Vtmin</i>) (&lt; ExcSK.vtmax).
+ *                                 Determines the range of voltage deadband.  Typical value = 0,95.
+ * @param yp                       Maximum output (<i>Yp</i>).
+ *                                 Typical value = 1.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcSK
 (
@@ -12638,8 +12936,8 @@ final case class ExcSK
     vtmin: Double = 0.0,
     yp: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -12665,13 +12963,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcSK.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcSK.fields (position), value)
+
         emitelem (0, efdmax)
         emitelem (1, efdmin)
         emitelem (2, emax)
@@ -12706,6 +13009,7 @@ extends
         emitelem (31, yp)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcSK rdf:ID=\"%s\">\n%s\t</cim:ExcSK>".format (id, export_fields)
@@ -12713,10 +13017,10 @@ extends
 }
 
 object ExcSK
-extends
-    CIMParseable[ExcSK]
+    extends
+        CIMParseable[ExcSK]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efdmax",
         "efdmin",
         "emax",
@@ -12750,43 +13054,43 @@ extends
         "vtmin",
         "yp"
     )
-    val efdmax: Fielder = parse_element (element (cls, fields(0)))
-    val efdmin: Fielder = parse_element (element (cls, fields(1)))
-    val emax: Fielder = parse_element (element (cls, fields(2)))
-    val emin: Fielder = parse_element (element (cls, fields(3)))
-    val k: Fielder = parse_element (element (cls, fields(4)))
-    val k1: Fielder = parse_element (element (cls, fields(5)))
-    val k2: Fielder = parse_element (element (cls, fields(6)))
-    val kc: Fielder = parse_element (element (cls, fields(7)))
-    val kce: Fielder = parse_element (element (cls, fields(8)))
-    val kd: Fielder = parse_element (element (cls, fields(9)))
-    val kgob: Fielder = parse_element (element (cls, fields(10)))
-    val kp: Fielder = parse_element (element (cls, fields(11)))
-    val kqi: Fielder = parse_element (element (cls, fields(12)))
-    val kqob: Fielder = parse_element (element (cls, fields(13)))
-    val kqp: Fielder = parse_element (element (cls, fields(14)))
-    val nq: Fielder = parse_element (element (cls, fields(15)))
-    val qconoff: Fielder = parse_element (element (cls, fields(16)))
-    val qz: Fielder = parse_element (element (cls, fields(17)))
-    val remote: Fielder = parse_element (element (cls, fields(18)))
-    val sbase: Fielder = parse_element (element (cls, fields(19)))
-    val tc: Fielder = parse_element (element (cls, fields(20)))
-    val te: Fielder = parse_element (element (cls, fields(21)))
-    val ti: Fielder = parse_element (element (cls, fields(22)))
-    val tp: Fielder = parse_element (element (cls, fields(23)))
-    val tr: Fielder = parse_element (element (cls, fields(24)))
-    val uimax: Fielder = parse_element (element (cls, fields(25)))
-    val uimin: Fielder = parse_element (element (cls, fields(26)))
-    val urmax: Fielder = parse_element (element (cls, fields(27)))
-    val urmin: Fielder = parse_element (element (cls, fields(28)))
-    val vtmax: Fielder = parse_element (element (cls, fields(29)))
-    val vtmin: Fielder = parse_element (element (cls, fields(30)))
-    val yp: Fielder = parse_element (element (cls, fields(31)))
+    val efdmax: Fielder = parse_element (element (cls, fields (0)))
+    val efdmin: Fielder = parse_element (element (cls, fields (1)))
+    val emax: Fielder = parse_element (element (cls, fields (2)))
+    val emin: Fielder = parse_element (element (cls, fields (3)))
+    val k: Fielder = parse_element (element (cls, fields (4)))
+    val k1: Fielder = parse_element (element (cls, fields (5)))
+    val k2: Fielder = parse_element (element (cls, fields (6)))
+    val kc: Fielder = parse_element (element (cls, fields (7)))
+    val kce: Fielder = parse_element (element (cls, fields (8)))
+    val kd: Fielder = parse_element (element (cls, fields (9)))
+    val kgob: Fielder = parse_element (element (cls, fields (10)))
+    val kp: Fielder = parse_element (element (cls, fields (11)))
+    val kqi: Fielder = parse_element (element (cls, fields (12)))
+    val kqob: Fielder = parse_element (element (cls, fields (13)))
+    val kqp: Fielder = parse_element (element (cls, fields (14)))
+    val nq: Fielder = parse_element (element (cls, fields (15)))
+    val qconoff: Fielder = parse_element (element (cls, fields (16)))
+    val qz: Fielder = parse_element (element (cls, fields (17)))
+    val remote: Fielder = parse_element (element (cls, fields (18)))
+    val sbase: Fielder = parse_element (element (cls, fields (19)))
+    val tc: Fielder = parse_element (element (cls, fields (20)))
+    val te: Fielder = parse_element (element (cls, fields (21)))
+    val ti: Fielder = parse_element (element (cls, fields (22)))
+    val tp: Fielder = parse_element (element (cls, fields (23)))
+    val tr: Fielder = parse_element (element (cls, fields (24)))
+    val uimax: Fielder = parse_element (element (cls, fields (25)))
+    val uimin: Fielder = parse_element (element (cls, fields (26)))
+    val urmax: Fielder = parse_element (element (cls, fields (27)))
+    val urmin: Fielder = parse_element (element (cls, fields (28)))
+    val vtmax: Fielder = parse_element (element (cls, fields (29)))
+    val vtmin: Fielder = parse_element (element (cls, fields (30)))
+    val yp: Fielder = parse_element (element (cls, fields (31)))
 
     def parse (context: CIMContext): ExcSK =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0,0)
+        implicit val bitfields: Array[Int] = Array (0, 0)
         val ret = ExcSK (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efdmax (), 0)),
@@ -12875,7 +13179,7 @@ object ExcSKSerializer extends CIMSerializer[ExcSK]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcSK]): ExcSK =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcSK (
             parent,
@@ -12921,47 +13225,47 @@ object ExcSKSerializer extends CIMSerializer[ExcSK]
  * Modification of an old IEEE ST1A static excitation system without overexcitation limiter (OEL) and underexcitation limiter (UEL).
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ilr Exciter output current limit reference (<i>Ilr</i>).
- *        Typical value = 0.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 190.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param kf Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param klr Exciter output current limiter gain (<i>Klr</i>).
- *        Typical value = 0.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 10.
- * @param tb1 Voltage regulator time constant (<i>Tb1</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tc1 Voltage regulator time constant (<i>Tc1</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param vamax Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
- *        Typical value = 999.
- * @param vamin Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
- *        Typical value = -999.
- * @param vimax Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; 0).
- *        Typical value = 999.
- * @param vimin Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
- *        Typical value = -999.
- * @param vrmax Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0) .
- *        Typical value = 7,8.
- * @param vrmin Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
- *        Typical value = -6,7.
- * @param xe Excitation xfmr effective reactance (<i>Xe</i>).
- *        Typical value = 0,04.
+ * @param ilr                      Exciter output current limit reference (<i>Ilr</i>).
+ *                                 Typical value = 0.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 190.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *                                 Typical value = 0,05.
+ * @param kf                       Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param klr                      Exciter output current limiter gain (<i>Klr</i>).
+ *                                 Typical value = 0.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param tb                       Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 10.
+ * @param tb1                      Voltage regulator time constant (<i>Tb1</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tc1                      Voltage regulator time constant (<i>Tc1</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tf                       Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param vamax                    Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+ *                                 Typical value = 999.
+ * @param vamin                    Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+ *                                 Typical value = -999.
+ * @param vimax                    Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; 0).
+ *                                 Typical value = 999.
+ * @param vimin                    Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
+ *                                 Typical value = -999.
+ * @param vrmax                    Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0) .
+ *                                 Typical value = 7,8.
+ * @param vrmin                    Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value = -6,7.
+ * @param xe                       Excitation xfmr effective reactance (<i>Xe</i>).
+ *                                 Typical value = 0,04.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcST1A
 (
@@ -12985,8 +13289,8 @@ final case class ExcST1A
     vrmin: Double = 0.0,
     xe: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -13012,13 +13316,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcST1A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST1A.fields (position), value)
+
         emitelem (0, ilr)
         emitelem (1, ka)
         emitelem (2, kc)
@@ -13039,6 +13348,7 @@ extends
         emitelem (17, xe)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcST1A rdf:ID=\"%s\">\n%s\t</cim:ExcST1A>".format (id, export_fields)
@@ -13046,10 +13356,10 @@ extends
 }
 
 object ExcST1A
-extends
-    CIMParseable[ExcST1A]
+    extends
+        CIMParseable[ExcST1A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ilr",
         "ka",
         "kc",
@@ -13069,29 +13379,29 @@ extends
         "vrmin",
         "xe"
     )
-    val ilr: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val kc: Fielder = parse_element (element (cls, fields(2)))
-    val kf: Fielder = parse_element (element (cls, fields(3)))
-    val klr: Fielder = parse_element (element (cls, fields(4)))
-    val ta: Fielder = parse_element (element (cls, fields(5)))
-    val tb: Fielder = parse_element (element (cls, fields(6)))
-    val tb1: Fielder = parse_element (element (cls, fields(7)))
-    val tc: Fielder = parse_element (element (cls, fields(8)))
-    val tc1: Fielder = parse_element (element (cls, fields(9)))
-    val tf: Fielder = parse_element (element (cls, fields(10)))
-    val vamax: Fielder = parse_element (element (cls, fields(11)))
-    val vamin: Fielder = parse_element (element (cls, fields(12)))
-    val vimax: Fielder = parse_element (element (cls, fields(13)))
-    val vimin: Fielder = parse_element (element (cls, fields(14)))
-    val vrmax: Fielder = parse_element (element (cls, fields(15)))
-    val vrmin: Fielder = parse_element (element (cls, fields(16)))
-    val xe: Fielder = parse_element (element (cls, fields(17)))
+    val ilr: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val kc: Fielder = parse_element (element (cls, fields (2)))
+    val kf: Fielder = parse_element (element (cls, fields (3)))
+    val klr: Fielder = parse_element (element (cls, fields (4)))
+    val ta: Fielder = parse_element (element (cls, fields (5)))
+    val tb: Fielder = parse_element (element (cls, fields (6)))
+    val tb1: Fielder = parse_element (element (cls, fields (7)))
+    val tc: Fielder = parse_element (element (cls, fields (8)))
+    val tc1: Fielder = parse_element (element (cls, fields (9)))
+    val tf: Fielder = parse_element (element (cls, fields (10)))
+    val vamax: Fielder = parse_element (element (cls, fields (11)))
+    val vamin: Fielder = parse_element (element (cls, fields (12)))
+    val vimax: Fielder = parse_element (element (cls, fields (13)))
+    val vimin: Fielder = parse_element (element (cls, fields (14)))
+    val vrmax: Fielder = parse_element (element (cls, fields (15)))
+    val vrmin: Fielder = parse_element (element (cls, fields (16)))
+    val xe: Fielder = parse_element (element (cls, fields (17)))
 
     def parse (context: CIMContext): ExcST1A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcST1A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ilr (), 0)),
@@ -13152,7 +13462,7 @@ object ExcST1ASerializer extends CIMSerializer[ExcST1A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcST1A]): ExcST1A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcST1A (
             parent,
@@ -13184,43 +13494,43 @@ object ExcST1ASerializer extends CIMSerializer[ExcST1A]
  * Modified IEEE ST2A static excitation system with another lead-lag block added to match the model defined by WECC.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Maximum field voltage (<i>Efdmax</i>) (&gt;= 0).
- *        Typical value = 99.
- * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
- *        Typical value = 120.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
- *        Typical value = 1,82.
- * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
- *        Typical value = 1.
- * @param kf Excitation control system stabilizer gains (<i>kf</i>) (&gt;= 0).
- *        Typical value = 0,05.
- * @param ki Potential circuit gain coefficient (<i>K</i><i><sub>i</sub></i>) (&gt;= 0).
- *        Typical value = 8.
- * @param kp Potential circuit gain coefficient (<i>K</i><i><sub>p</sub></i>) (&gt;= 0).
- *        Typical value = 4,88.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
- *        Typical value = 0,15.
- * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
- *        Typical value = 0,5.
- * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
- *        Typical value = 0,7.
- * @param uelin UEL input (<i>UELin</i>).
- *        true = HV gate
- *        false = add to error signal.
- *        Typical value = false.
- * @param vrmax Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 1.
- * @param vrmin Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
- *        Typical value = -1.
+ * @param efdmax                   Maximum field voltage (<i>Efdmax</i>) (&gt;= 0).
+ *                                 Typical value = 99.
+ * @param ka                       Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *                                 Typical value = 120.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *                                 Typical value = 1,82.
+ * @param ke                       Exciter constant related to self-excited field (<i>Ke</i>).
+ *                                 Typical value = 1.
+ * @param kf                       Excitation control system stabilizer gains (<i>kf</i>) (&gt;= 0).
+ *                                 Typical value = 0,05.
+ * @param ki                       Potential circuit gain coefficient (<i>K</i><i><sub>i</sub></i>) (&gt;= 0).
+ *                                 Typical value = 8.
+ * @param kp                       Potential circuit gain coefficient (<i>K</i><i><sub>p</sub></i>) (&gt;= 0).
+ *                                 Typical value = 4,88.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *                                 Typical value = 0,15.
+ * @param tb                       Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tc                       Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param te                       Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *                                 Typical value = 0,5.
+ * @param tf                       Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
+ *                                 Typical value = 0,7.
+ * @param uelin                    UEL input (<i>UELin</i>).
+ *                                 true = HV gate
+ *                                 false = add to error signal.
+ *                                 Typical value = false.
+ * @param vrmax                    Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vrmin                    Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value = -1.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcST2A
 (
@@ -13241,8 +13551,8 @@ final case class ExcST2A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -13268,13 +13578,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcST2A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST2A.fields (position), value)
+
         emitelem (0, efdmax)
         emitelem (1, ka)
         emitelem (2, kc)
@@ -13292,6 +13607,7 @@ extends
         emitelem (14, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcST2A rdf:ID=\"%s\">\n%s\t</cim:ExcST2A>".format (id, export_fields)
@@ -13299,10 +13615,10 @@ extends
 }
 
 object ExcST2A
-extends
-    CIMParseable[ExcST2A]
+    extends
+        CIMParseable[ExcST2A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efdmax",
         "ka",
         "kc",
@@ -13319,26 +13635,26 @@ extends
         "vrmax",
         "vrmin"
     )
-    val efdmax: Fielder = parse_element (element (cls, fields(0)))
-    val ka: Fielder = parse_element (element (cls, fields(1)))
-    val kc: Fielder = parse_element (element (cls, fields(2)))
-    val ke: Fielder = parse_element (element (cls, fields(3)))
-    val kf: Fielder = parse_element (element (cls, fields(4)))
-    val ki: Fielder = parse_element (element (cls, fields(5)))
-    val kp: Fielder = parse_element (element (cls, fields(6)))
-    val ta: Fielder = parse_element (element (cls, fields(7)))
-    val tb: Fielder = parse_element (element (cls, fields(8)))
-    val tc: Fielder = parse_element (element (cls, fields(9)))
-    val te: Fielder = parse_element (element (cls, fields(10)))
-    val tf: Fielder = parse_element (element (cls, fields(11)))
-    val uelin: Fielder = parse_element (element (cls, fields(12)))
-    val vrmax: Fielder = parse_element (element (cls, fields(13)))
-    val vrmin: Fielder = parse_element (element (cls, fields(14)))
+    val efdmax: Fielder = parse_element (element (cls, fields (0)))
+    val ka: Fielder = parse_element (element (cls, fields (1)))
+    val kc: Fielder = parse_element (element (cls, fields (2)))
+    val ke: Fielder = parse_element (element (cls, fields (3)))
+    val kf: Fielder = parse_element (element (cls, fields (4)))
+    val ki: Fielder = parse_element (element (cls, fields (5)))
+    val kp: Fielder = parse_element (element (cls, fields (6)))
+    val ta: Fielder = parse_element (element (cls, fields (7)))
+    val tb: Fielder = parse_element (element (cls, fields (8)))
+    val tc: Fielder = parse_element (element (cls, fields (9)))
+    val te: Fielder = parse_element (element (cls, fields (10)))
+    val tf: Fielder = parse_element (element (cls, fields (11)))
+    val uelin: Fielder = parse_element (element (cls, fields (12)))
+    val vrmax: Fielder = parse_element (element (cls, fields (13)))
+    val vrmin: Fielder = parse_element (element (cls, fields (14)))
 
     def parse (context: CIMContext): ExcST2A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcST2A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efdmax (), 0)),
@@ -13393,7 +13709,7 @@ object ExcST2ASerializer extends CIMSerializer[ExcST2A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcST2A]): ExcST2A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcST2A (
             parent,
@@ -13422,51 +13738,51 @@ object ExcST2ASerializer extends CIMSerializer[ExcST2A]
  * Modified IEEE ST3A static excitation system with added speed multiplier.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Maximum AVR output (<i>Efdmax</i>) (&gt;= 0).
- *        Typical value = 6,9.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
- *        Typical value = 1,1.
- * @param kg Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param ki Potential circuit gain coefficient (<i>K</i><i><sub>i</sub></i>) (&gt;= 0).
- *        Typical value = 4,83.
- * @param kj AVR gain (<i>Kj</i>) (&gt; 0).
- *        Typical value = 200.
- * @param km Forward gain constant of the inner loop field regulator (<i>Km</i>) (&gt; 0).
- *        Typical value = 7,04.
- * @param kp Potential source gain (<i>K</i><i><sub>p</sub></i>) (&gt; 0).
- *        Typical value = 4,37.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
- *        Typical value = 0.
- * @param ks1 Coefficient to allow different usage of the model-speed coefficient (<i>Ks1</i>).
- *        Typical value = 0.
- * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 6,67.
- * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param thetap Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
- *        Typical value = 20.
- * @param tm Forward time constant of inner loop field regulator (<i>Tm</i>) (&gt; 0).
- *        Typical value = 1.
- * @param vbmax Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
- *        Typical value = 8,63.
- * @param vgmax Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
- *        Typical value = 6,53.
- * @param vimax Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; 0).
- *        Typical value = 0,2.
- * @param vimin Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
- *        Typical value = -0,2.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 1.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
- *        Typical value = -1.
- * @param xl Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
- *        Typical value = 0,09.
+ * @param efdmax                   Maximum AVR output (<i>Efdmax</i>) (&gt;= 0).
+ *                                 Typical value = 6,9.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *                                 Typical value = 1,1.
+ * @param kg                       Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param ki                       Potential circuit gain coefficient (<i>K</i><i><sub>i</sub></i>) (&gt;= 0).
+ *                                 Typical value = 4,83.
+ * @param kj                       AVR gain (<i>Kj</i>) (&gt; 0).
+ *                                 Typical value = 200.
+ * @param km                       Forward gain constant of the inner loop field regulator (<i>Km</i>) (&gt; 0).
+ *                                 Typical value = 7,04.
+ * @param kp                       Potential source gain (<i>K</i><i><sub>p</sub></i>) (&gt; 0).
+ *                                 Typical value = 4,37.
+ * @param ks                       Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *                                 Typical value = 0.
+ * @param ks1                      Coefficient to allow different usage of the model-speed coefficient (<i>Ks1</i>).
+ *                                 Typical value = 0.
+ * @param tb                       Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 6,67.
+ * @param tc                       Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param thetap                   Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
+ *                                 Typical value = 20.
+ * @param tm                       Forward time constant of inner loop field regulator (<i>Tm</i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vbmax                    Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
+ *                                 Typical value = 8,63.
+ * @param vgmax                    Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
+ *                                 Typical value = 6,53.
+ * @param vimax                    Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; 0).
+ *                                 Typical value = 0,2.
+ * @param vimin                    Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
+ *                                 Typical value = -0,2.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value = -1.
+ * @param xl                       Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
+ *                                 Typical value = 0,09.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcST3A
 (
@@ -13492,8 +13808,8 @@ final case class ExcST3A
     vrmin: Double = 0.0,
     xl: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -13519,13 +13835,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcST3A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST3A.fields (position), value)
+
         emitelem (0, efdmax)
         emitelem (1, kc)
         emitelem (2, kg)
@@ -13548,6 +13869,7 @@ extends
         emitelem (19, xl)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcST3A rdf:ID=\"%s\">\n%s\t</cim:ExcST3A>".format (id, export_fields)
@@ -13555,10 +13877,10 @@ extends
 }
 
 object ExcST3A
-extends
-    CIMParseable[ExcST3A]
+    extends
+        CIMParseable[ExcST3A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efdmax",
         "kc",
         "kg",
@@ -13580,31 +13902,31 @@ extends
         "vrmin",
         "xl"
     )
-    val efdmax: Fielder = parse_element (element (cls, fields(0)))
-    val kc: Fielder = parse_element (element (cls, fields(1)))
-    val kg: Fielder = parse_element (element (cls, fields(2)))
-    val ki: Fielder = parse_element (element (cls, fields(3)))
-    val kj: Fielder = parse_element (element (cls, fields(4)))
-    val km: Fielder = parse_element (element (cls, fields(5)))
-    val kp: Fielder = parse_element (element (cls, fields(6)))
-    val ks: Fielder = parse_element (element (cls, fields(7)))
-    val ks1: Fielder = parse_element (element (cls, fields(8)))
-    val tb: Fielder = parse_element (element (cls, fields(9)))
-    val tc: Fielder = parse_element (element (cls, fields(10)))
-    val thetap: Fielder = parse_element (element (cls, fields(11)))
-    val tm: Fielder = parse_element (element (cls, fields(12)))
-    val vbmax: Fielder = parse_element (element (cls, fields(13)))
-    val vgmax: Fielder = parse_element (element (cls, fields(14)))
-    val vimax: Fielder = parse_element (element (cls, fields(15)))
-    val vimin: Fielder = parse_element (element (cls, fields(16)))
-    val vrmax: Fielder = parse_element (element (cls, fields(17)))
-    val vrmin: Fielder = parse_element (element (cls, fields(18)))
-    val xl: Fielder = parse_element (element (cls, fields(19)))
+    val efdmax: Fielder = parse_element (element (cls, fields (0)))
+    val kc: Fielder = parse_element (element (cls, fields (1)))
+    val kg: Fielder = parse_element (element (cls, fields (2)))
+    val ki: Fielder = parse_element (element (cls, fields (3)))
+    val kj: Fielder = parse_element (element (cls, fields (4)))
+    val km: Fielder = parse_element (element (cls, fields (5)))
+    val kp: Fielder = parse_element (element (cls, fields (6)))
+    val ks: Fielder = parse_element (element (cls, fields (7)))
+    val ks1: Fielder = parse_element (element (cls, fields (8)))
+    val tb: Fielder = parse_element (element (cls, fields (9)))
+    val tc: Fielder = parse_element (element (cls, fields (10)))
+    val thetap: Fielder = parse_element (element (cls, fields (11)))
+    val tm: Fielder = parse_element (element (cls, fields (12)))
+    val vbmax: Fielder = parse_element (element (cls, fields (13)))
+    val vgmax: Fielder = parse_element (element (cls, fields (14)))
+    val vimax: Fielder = parse_element (element (cls, fields (15)))
+    val vimin: Fielder = parse_element (element (cls, fields (16)))
+    val vrmax: Fielder = parse_element (element (cls, fields (17)))
+    val vrmin: Fielder = parse_element (element (cls, fields (18)))
+    val xl: Fielder = parse_element (element (cls, fields (19)))
 
     def parse (context: CIMContext): ExcST3A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcST3A (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (efdmax (), 0)),
@@ -13669,7 +13991,7 @@ object ExcST3ASerializer extends CIMSerializer[ExcST3A]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcST3A]): ExcST3A =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcST3A (
             parent,
@@ -13703,53 +14025,53 @@ object ExcST3ASerializer extends CIMSerializer[ExcST3A]
  * Modified IEEE ST4B static excitation system with maximum inner loop feedback gain <i>Vgmax</i>.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
- *        Typical value = 0,113.
- * @param kg Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param ki Potential circuit gain coefficient (<i>Ki</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param kim Voltage regulator integral gain output (<i>Kim</i>).
- *        Typical value = 0.
- * @param kir Voltage regulator integral gain (<i>Kir</i>).
- *        Typical value = 10,75.
- * @param kp Potential circuit gain coefficient (<i>Kp</i>) (&gt; 0).
- *        Typical value = 9,3.
- * @param kpm Voltage regulator proportional gain output (<i>Kpm</i>).
- *        Typical value = 1.
- * @param kpr Voltage regulator proportional gain (<i>Kpr</i>).
- *        Typical value = 10,75.
- * @param lvgate Selector (<i>LVGate</i>).
- *        true = <i>LVGate</i> is part of the block diagram
- *        false = <i>LVGate</i> is not part of the block diagram.
- *        Typical value = false.
- * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param thetap Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
- *        Typical value = 0.
- * @param uel Selector (<i>UEL</i>).
- *        true = <i>UEL</i> is part of block diagram
- *        false = <i>UEL</i> is not part of block diagram.
- *        Typical value = false.
- * @param vbmax Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
- *        Typical value = 11,63.
- * @param vgmax Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
- *        Typical value = 5,8.
- * @param vmmax Maximum inner loop output (<i>Vmmax</i>) (&gt; ExcST4B.vmmin).
- *        Typical value = 99.
- * @param vmmin Minimum inner loop output (<i>Vmmin</i>) (&lt; ExcST4B.vmmax).
- *        Typical value = -99.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 1.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
- *        Typical value = -0,87.
- * @param xl Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
- *        Typical value = 0,124.
+ * @param kc                       Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *                                 Typical value = 0,113.
+ * @param kg                       Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param ki                       Potential circuit gain coefficient (<i>Ki</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param kim                      Voltage regulator integral gain output (<i>Kim</i>).
+ *                                 Typical value = 0.
+ * @param kir                      Voltage regulator integral gain (<i>Kir</i>).
+ *                                 Typical value = 10,75.
+ * @param kp                       Potential circuit gain coefficient (<i>Kp</i>) (&gt; 0).
+ *                                 Typical value = 9,3.
+ * @param kpm                      Voltage regulator proportional gain output (<i>Kpm</i>).
+ *                                 Typical value = 1.
+ * @param kpr                      Voltage regulator proportional gain (<i>Kpr</i>).
+ *                                 Typical value = 10,75.
+ * @param lvgate                   Selector (<i>LVGate</i>).
+ *                                 true = <i>LVGate</i> is part of the block diagram
+ *                                 false = <i>LVGate</i> is not part of the block diagram.
+ *                                 Typical value = false.
+ * @param ta                       Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param thetap                   Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
+ *                                 Typical value = 0.
+ * @param uel                      Selector (<i>UEL</i>).
+ *                                 true = <i>UEL</i> is part of block diagram
+ *                                 false = <i>UEL</i> is not part of block diagram.
+ *                                 Typical value = false.
+ * @param vbmax                    Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
+ *                                 Typical value = 11,63.
+ * @param vgmax                    Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
+ *                                 Typical value = 5,8.
+ * @param vmmax                    Maximum inner loop output (<i>Vmmax</i>) (&gt; ExcST4B.vmmin).
+ *                                 Typical value = 99.
+ * @param vmmin                    Minimum inner loop output (<i>Vmmin</i>) (&lt; ExcST4B.vmmax).
+ *                                 Typical value = -99.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 1.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value = -0,87.
+ * @param xl                       Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
+ *                                 Typical value = 0,124.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcST4B
 (
@@ -13774,8 +14096,8 @@ final case class ExcST4B
     vrmin: Double = 0.0,
     xl: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -13801,13 +14123,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcST4B.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST4B.fields (position), value)
+
         emitelem (0, kc)
         emitelem (1, kg)
         emitelem (2, ki)
@@ -13829,6 +14156,7 @@ extends
         emitelem (18, xl)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcST4B rdf:ID=\"%s\">\n%s\t</cim:ExcST4B>".format (id, export_fields)
@@ -13836,10 +14164,10 @@ extends
 }
 
 object ExcST4B
-extends
-    CIMParseable[ExcST4B]
+    extends
+        CIMParseable[ExcST4B]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kc",
         "kg",
         "ki",
@@ -13860,30 +14188,30 @@ extends
         "vrmin",
         "xl"
     )
-    val kc: Fielder = parse_element (element (cls, fields(0)))
-    val kg: Fielder = parse_element (element (cls, fields(1)))
-    val ki: Fielder = parse_element (element (cls, fields(2)))
-    val kim: Fielder = parse_element (element (cls, fields(3)))
-    val kir: Fielder = parse_element (element (cls, fields(4)))
-    val kp: Fielder = parse_element (element (cls, fields(5)))
-    val kpm: Fielder = parse_element (element (cls, fields(6)))
-    val kpr: Fielder = parse_element (element (cls, fields(7)))
-    val lvgate: Fielder = parse_element (element (cls, fields(8)))
-    val ta: Fielder = parse_element (element (cls, fields(9)))
-    val thetap: Fielder = parse_element (element (cls, fields(10)))
-    val uel: Fielder = parse_element (element (cls, fields(11)))
-    val vbmax: Fielder = parse_element (element (cls, fields(12)))
-    val vgmax: Fielder = parse_element (element (cls, fields(13)))
-    val vmmax: Fielder = parse_element (element (cls, fields(14)))
-    val vmmin: Fielder = parse_element (element (cls, fields(15)))
-    val vrmax: Fielder = parse_element (element (cls, fields(16)))
-    val vrmin: Fielder = parse_element (element (cls, fields(17)))
-    val xl: Fielder = parse_element (element (cls, fields(18)))
+    val kc: Fielder = parse_element (element (cls, fields (0)))
+    val kg: Fielder = parse_element (element (cls, fields (1)))
+    val ki: Fielder = parse_element (element (cls, fields (2)))
+    val kim: Fielder = parse_element (element (cls, fields (3)))
+    val kir: Fielder = parse_element (element (cls, fields (4)))
+    val kp: Fielder = parse_element (element (cls, fields (5)))
+    val kpm: Fielder = parse_element (element (cls, fields (6)))
+    val kpr: Fielder = parse_element (element (cls, fields (7)))
+    val lvgate: Fielder = parse_element (element (cls, fields (8)))
+    val ta: Fielder = parse_element (element (cls, fields (9)))
+    val thetap: Fielder = parse_element (element (cls, fields (10)))
+    val uel: Fielder = parse_element (element (cls, fields (11)))
+    val vbmax: Fielder = parse_element (element (cls, fields (12)))
+    val vgmax: Fielder = parse_element (element (cls, fields (13)))
+    val vmmax: Fielder = parse_element (element (cls, fields (14)))
+    val vmmin: Fielder = parse_element (element (cls, fields (15)))
+    val vrmax: Fielder = parse_element (element (cls, fields (16)))
+    val vrmin: Fielder = parse_element (element (cls, fields (17)))
+    val xl: Fielder = parse_element (element (cls, fields (18)))
 
     def parse (context: CIMContext): ExcST4B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcST4B (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (kc (), 0)),
@@ -13946,7 +14274,7 @@ object ExcST4BSerializer extends CIMSerializer[ExcST4B]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcST4B]): ExcST4B =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcST4B (
             parent,
@@ -13979,63 +14307,63 @@ object ExcST4BSerializer extends CIMSerializer[ExcST4B]
  * Modified IEEE ST6B static excitation system with PID controller and optional inner feedback loop.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ilr Exciter output current limit reference (<i>Ilr</i>) (&gt; 0).
- *        Typical value = 4,164.
- * @param k1 Selector (<i>K1</i>).
- *        true = feedback is from <i>Ifd</i>
- *        false = feedback is not from <i>Ifd</i>.
- *        Typical value = true.
- * @param kcl Exciter output current limit adjustment (<i>Kcl</i>) (&gt; 0).
- *        Typical value = 1,0577.
- * @param kff Pre-control gain constant of the inner loop field regulator (<i>Kff</i>).
- *        Typical value = 1.
- * @param kg Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param kia Voltage regulator integral gain (<i>Kia</i>) (&gt; 0).
- *        Typical value = 45,094.
- * @param klr Exciter output current limit adjustment (<i>Kcl</i>) (&gt; 0).
- *        Typical value = 17,33.
- * @param km Forward gain constant of the inner loop field regulator (<i>Km</i>).
- *        Typical value = 1.
- * @param kpa Voltage regulator proportional gain (<i>Kpa</i>) (&gt; 0).
- *        Typical value = 18,038.
- * @param kvd Voltage regulator derivative gain (<i>Kvd</i>).
- *        Typical value = 0.
- * @param oelin OEL input selector (<i>OELin</i>).
- *        Typical value = noOELinput (corresponds to <i>OELin</i> = 0 on diagram).
- * @param tg Feedback time constant of inner loop field voltage regulator (<i>Tg</i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param ts Rectifier firing time constant (<i>Ts</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param tvd Voltage regulator derivative gain (<i>Tvd</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param vamax Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
- *        Typical value = 4,81.
- * @param vamin Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
- *        Typical value = -3,85.
- * @param vilim Selector (<i>Vilim</i>).
- *        true = <i>Vimin</i>-<i>Vimax</i> limiter is active
- *        false = <i>Vimin</i>-<i>Vimax</i> limiter is not active.
- *        Typical value = true.
- * @param vimax Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; ExcST6B.vimin).
- *        Typical value = 10.
- * @param vimin Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; ExcST6B.vimax).
- *        Typical value = -10.
- * @param vmult Selector (<i>vmult</i>).
- *        true = multiply regulator output by terminal voltage
- *        false = do not multiply regulator output by terminal voltage.
- *        Typical value = true.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 4,81.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
- *        Typical value = -3,85.
- * @param xc Excitation source reactance (<i>Xc</i>).
- *        Typical value = 0,05.
+ * @param ilr                      Exciter output current limit reference (<i>Ilr</i>) (&gt; 0).
+ *                                 Typical value = 4,164.
+ * @param k1                       Selector (<i>K1</i>).
+ *                                 true = feedback is from <i>Ifd</i>
+ *                                 false = feedback is not from <i>Ifd</i>.
+ *                                 Typical value = true.
+ * @param kcl                      Exciter output current limit adjustment (<i>Kcl</i>) (&gt; 0).
+ *                                 Typical value = 1,0577.
+ * @param kff                      Pre-control gain constant of the inner loop field regulator (<i>Kff</i>).
+ *                                 Typical value = 1.
+ * @param kg                       Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param kia                      Voltage regulator integral gain (<i>Kia</i>) (&gt; 0).
+ *                                 Typical value = 45,094.
+ * @param klr                      Exciter output current limit adjustment (<i>Kcl</i>) (&gt; 0).
+ *                                 Typical value = 17,33.
+ * @param km                       Forward gain constant of the inner loop field regulator (<i>Km</i>).
+ *                                 Typical value = 1.
+ * @param kpa                      Voltage regulator proportional gain (<i>Kpa</i>) (&gt; 0).
+ *                                 Typical value = 18,038.
+ * @param kvd                      Voltage regulator derivative gain (<i>Kvd</i>).
+ *                                 Typical value = 0.
+ * @param oelin                    OEL input selector (<i>OELin</i>).
+ *                                 Typical value = noOELinput (corresponds to <i>OELin</i> = 0 on diagram).
+ * @param tg                       Feedback time constant of inner loop field voltage regulator (<i>Tg</i>) (&gt;= 0).
+ *                                 Typical value = 0,02.
+ * @param ts                       Rectifier firing time constant (<i>Ts</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param tvd                      Voltage regulator derivative gain (<i>Tvd</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param vamax                    Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+ *                                 Typical value = 4,81.
+ * @param vamin                    Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+ *                                 Typical value = -3,85.
+ * @param vilim                    Selector (<i>Vilim</i>).
+ *                                 true = <i>Vimin</i>-<i>Vimax</i> limiter is active
+ *                                 false = <i>Vimin</i>-<i>Vimax</i> limiter is not active.
+ *                                 Typical value = true.
+ * @param vimax                    Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; ExcST6B.vimin).
+ *                                 Typical value = 10.
+ * @param vimin                    Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; ExcST6B.vimax).
+ *                                 Typical value = -10.
+ * @param vmult                    Selector (<i>vmult</i>).
+ *                                 true = multiply regulator output by terminal voltage
+ *                                 false = do not multiply regulator output by terminal voltage.
+ *                                 Typical value = true.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 4,81.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value = -3,85.
+ * @param xc                       Excitation source reactance (<i>Xc</i>).
+ *                                 Typical value = 0,05.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcST6B
 (
@@ -14064,8 +14392,8 @@ final case class ExcST6B
     vrmin: Double = 0.0,
     xc: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -14091,14 +14419,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcST6B.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST6B.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcST6B.fields (position), value)
+
         emitelem (0, ilr)
         emitelem (1, k1)
         emitelem (2, kcl)
@@ -14124,6 +14458,7 @@ extends
         emitelem (22, xc)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcST6B rdf:ID=\"%s\">\n%s\t</cim:ExcST6B>".format (id, export_fields)
@@ -14131,10 +14466,10 @@ extends
 }
 
 object ExcST6B
-extends
-    CIMParseable[ExcST6B]
+    extends
+        CIMParseable[ExcST6B]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ilr",
         "k1",
         "kcl",
@@ -14159,34 +14494,34 @@ extends
         "vrmin",
         "xc"
     )
-    val ilr: Fielder = parse_element (element (cls, fields(0)))
-    val k1: Fielder = parse_element (element (cls, fields(1)))
-    val kcl: Fielder = parse_element (element (cls, fields(2)))
-    val kff: Fielder = parse_element (element (cls, fields(3)))
-    val kg: Fielder = parse_element (element (cls, fields(4)))
-    val kia: Fielder = parse_element (element (cls, fields(5)))
-    val klr: Fielder = parse_element (element (cls, fields(6)))
-    val km: Fielder = parse_element (element (cls, fields(7)))
-    val kpa: Fielder = parse_element (element (cls, fields(8)))
-    val kvd: Fielder = parse_element (element (cls, fields(9)))
-    val oelin: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val tg: Fielder = parse_element (element (cls, fields(11)))
-    val ts: Fielder = parse_element (element (cls, fields(12)))
-    val tvd: Fielder = parse_element (element (cls, fields(13)))
-    val vamax: Fielder = parse_element (element (cls, fields(14)))
-    val vamin: Fielder = parse_element (element (cls, fields(15)))
-    val vilim: Fielder = parse_element (element (cls, fields(16)))
-    val vimax: Fielder = parse_element (element (cls, fields(17)))
-    val vimin: Fielder = parse_element (element (cls, fields(18)))
-    val vmult: Fielder = parse_element (element (cls, fields(19)))
-    val vrmax: Fielder = parse_element (element (cls, fields(20)))
-    val vrmin: Fielder = parse_element (element (cls, fields(21)))
-    val xc: Fielder = parse_element (element (cls, fields(22)))
+    val ilr: Fielder = parse_element (element (cls, fields (0)))
+    val k1: Fielder = parse_element (element (cls, fields (1)))
+    val kcl: Fielder = parse_element (element (cls, fields (2)))
+    val kff: Fielder = parse_element (element (cls, fields (3)))
+    val kg: Fielder = parse_element (element (cls, fields (4)))
+    val kia: Fielder = parse_element (element (cls, fields (5)))
+    val klr: Fielder = parse_element (element (cls, fields (6)))
+    val km: Fielder = parse_element (element (cls, fields (7)))
+    val kpa: Fielder = parse_element (element (cls, fields (8)))
+    val kvd: Fielder = parse_element (element (cls, fields (9)))
+    val oelin: Fielder = parse_attribute (attribute (cls, fields (10)))
+    val tg: Fielder = parse_element (element (cls, fields (11)))
+    val ts: Fielder = parse_element (element (cls, fields (12)))
+    val tvd: Fielder = parse_element (element (cls, fields (13)))
+    val vamax: Fielder = parse_element (element (cls, fields (14)))
+    val vamin: Fielder = parse_element (element (cls, fields (15)))
+    val vilim: Fielder = parse_element (element (cls, fields (16)))
+    val vimax: Fielder = parse_element (element (cls, fields (17)))
+    val vimin: Fielder = parse_element (element (cls, fields (18)))
+    val vmult: Fielder = parse_element (element (cls, fields (19)))
+    val vrmax: Fielder = parse_element (element (cls, fields (20)))
+    val vrmin: Fielder = parse_element (element (cls, fields (21)))
+    val xc: Fielder = parse_element (element (cls, fields (22)))
 
     def parse (context: CIMContext): ExcST6B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcST6B (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (ilr (), 0)),
@@ -14257,7 +14592,7 @@ object ExcST6BSerializer extends CIMSerializer[ExcST6B]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcST6B]): ExcST6B =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcST6B (
             parent,
@@ -14294,43 +14629,43 @@ object ExcST6BSerializer extends CIMSerializer[ExcST6B]
  * Modified IEEE ST7B static excitation system without stator current limiter (SCL) and current compensator (DROOP) inputs.
  *
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kh High-value gate feedback gain (<i>Kh</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param kia Voltage regulator integral gain (<i>Kia</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param kl Low-value gate feedback gain (<i>Kl</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param kpa Voltage regulator proportional gain (<i>Kpa</i>) (&gt; 0).
- *        Typical value = 40.
- * @param oelin OEL input selector (<i>OELin</i>).
- *        Typical value = noOELinput.
- * @param tb Regulator lag time constant (<i>Tb</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tc Regulator lead time constant (<i>Tc</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tg Feedback time constant of inner loop field voltage regulator (<i>Tg</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tia Feedback time constant (<i>Tia</i>) (&gt;= 0).
- *        Typical value = 3.
- * @param ts Rectifier firing time constant (<i>Ts</i>) (&gt;= 0).
- *        Typical value = 0.
- * @param uelin UEL input selector (<i>UELin</i>).
- *        Typical value = noUELinput.
- * @param vmax Maximum voltage reference signal (<i>Vmax</i>) (&gt; 0 and &gt; ExcST7B.vmin)).
- *        Typical value = 1,1.
- * @param vmin Minimum voltage reference signal (<i>Vmin</i>) (&gt; 0 and &lt; ExcST7B.vmax).
- *        Typical value = 0,9.
- * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
- *        Typical value = 5.
- * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
- *        Typical value = -4,5.
+ * @param kh                       High-value gate feedback gain (<i>Kh</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param kia                      Voltage regulator integral gain (<i>Kia</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param kl                       Low-value gate feedback gain (<i>Kl</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param kpa                      Voltage regulator proportional gain (<i>Kpa</i>) (&gt; 0).
+ *                                 Typical value = 40.
+ * @param oelin                    OEL input selector (<i>OELin</i>).
+ *                                 Typical value = noOELinput.
+ * @param tb                       Regulator lag time constant (<i>Tb</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tc                       Regulator lead time constant (<i>Tc</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tf                       Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tg                       Feedback time constant of inner loop field voltage regulator (<i>Tg</i>) (&gt;= 0).
+ *                                 Typical value = 1.
+ * @param tia                      Feedback time constant (<i>Tia</i>) (&gt;= 0).
+ *                                 Typical value = 3.
+ * @param ts                       Rectifier firing time constant (<i>Ts</i>) (&gt;= 0).
+ *                                 Typical value = 0.
+ * @param uelin                    UEL input selector (<i>UELin</i>).
+ *                                 Typical value = noUELinput.
+ * @param vmax                     Maximum voltage reference signal (<i>Vmax</i>) (&gt; 0 and &gt; ExcST7B.vmin)).
+ *                                 Typical value = 1,1.
+ * @param vmin                     Minimum voltage reference signal (<i>Vmin</i>) (&gt; 0 and &lt; ExcST7B.vmax).
+ *                                 Typical value = 0,9.
+ * @param vrmax                    Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *                                 Typical value = 5.
+ * @param vrmin                    Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *                                 Typical value = -4,5.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcST7B
 (
@@ -14352,8 +14687,8 @@ final case class ExcST7B
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -14379,14 +14714,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcST7B.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST7B.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcST7B.fields (position), value)
+
         emitelem (0, kh)
         emitelem (1, kia)
         emitelem (2, kl)
@@ -14405,6 +14746,7 @@ extends
         emitelem (15, vrmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcST7B rdf:ID=\"%s\">\n%s\t</cim:ExcST7B>".format (id, export_fields)
@@ -14412,10 +14754,10 @@ extends
 }
 
 object ExcST7B
-extends
-    CIMParseable[ExcST7B]
+    extends
+        CIMParseable[ExcST7B]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kh",
         "kia",
         "kl",
@@ -14433,27 +14775,27 @@ extends
         "vrmax",
         "vrmin"
     )
-    val kh: Fielder = parse_element (element (cls, fields(0)))
-    val kia: Fielder = parse_element (element (cls, fields(1)))
-    val kl: Fielder = parse_element (element (cls, fields(2)))
-    val kpa: Fielder = parse_element (element (cls, fields(3)))
-    val oelin: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val tb: Fielder = parse_element (element (cls, fields(5)))
-    val tc: Fielder = parse_element (element (cls, fields(6)))
-    val tf: Fielder = parse_element (element (cls, fields(7)))
-    val tg: Fielder = parse_element (element (cls, fields(8)))
-    val tia: Fielder = parse_element (element (cls, fields(9)))
-    val ts: Fielder = parse_element (element (cls, fields(10)))
-    val uelin: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val vmax: Fielder = parse_element (element (cls, fields(12)))
-    val vmin: Fielder = parse_element (element (cls, fields(13)))
-    val vrmax: Fielder = parse_element (element (cls, fields(14)))
-    val vrmin: Fielder = parse_element (element (cls, fields(15)))
+    val kh: Fielder = parse_element (element (cls, fields (0)))
+    val kia: Fielder = parse_element (element (cls, fields (1)))
+    val kl: Fielder = parse_element (element (cls, fields (2)))
+    val kpa: Fielder = parse_element (element (cls, fields (3)))
+    val oelin: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val tb: Fielder = parse_element (element (cls, fields (5)))
+    val tc: Fielder = parse_element (element (cls, fields (6)))
+    val tf: Fielder = parse_element (element (cls, fields (7)))
+    val tg: Fielder = parse_element (element (cls, fields (8)))
+    val tia: Fielder = parse_element (element (cls, fields (9)))
+    val ts: Fielder = parse_element (element (cls, fields (10)))
+    val uelin: Fielder = parse_attribute (attribute (cls, fields (11)))
+    val vmax: Fielder = parse_element (element (cls, fields (12)))
+    val vmin: Fielder = parse_element (element (cls, fields (13)))
+    val vrmax: Fielder = parse_element (element (cls, fields (14)))
+    val vrmin: Fielder = parse_element (element (cls, fields (15)))
 
     def parse (context: CIMContext): ExcST7B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcST7B (
             ExcitationSystemDynamics.parse (context),
             toDouble (mask (kh (), 0)),
@@ -14510,7 +14852,7 @@ object ExcST7BSerializer extends CIMSerializer[ExcST7B]
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcST7B]): ExcST7B =
     {
-        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf[ExcitationSystemDynamics])
+        val parent = ExcitationSystemDynamicsSerializer.read (kryo, input, classOf [ExcitationSystemDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcST7B (
             parent,
@@ -14539,20 +14881,20 @@ object ExcST7BSerializer extends CIMSerializer[ExcST7B]
 /**
  * Excitation system function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock                  [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Discontinuous excitation control model associated with this excitation system model.
- * @param OverexcitationLimiterDynamics [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Overexcitation limiter model associated with this excitation system model.
- * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power factor or VAr controller type 1 model associated with this excitation system model.
- * @param PFVArControllerType2Dynamics [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Power factor or VAr controller type 2 model associated with this excitation system model.
- * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Power system stabilizer model associated with this excitation system model.
- * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine model with which this excitation system model is associated.
- * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Undrexcitation limiter model associated with this excitation system model.
- * @param VoltageCompensatorDynamics [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Voltage compensator model associated with this excitation system model.
+ * @param OverexcitationLimiterDynamics          [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Overexcitation limiter model associated with this excitation system model.
+ * @param PFVArControllerType1Dynamics           [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power factor or VAr controller type 1 model associated with this excitation system model.
+ * @param PFVArControllerType2Dynamics           [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Power factor or VAr controller type 2 model associated with this excitation system model.
+ * @param PowerSystemStabilizerDynamics          [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Power system stabilizer model associated with this excitation system model.
+ * @param SynchronousMachineDynamics             [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine model with which this excitation system model is associated.
+ * @param UnderexcitationLimiterDynamics         [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Undrexcitation limiter model associated with this excitation system model.
+ * @param VoltageCompensatorDynamics             [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Voltage compensator model associated with this excitation system model.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
-The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
-The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine).
+ *            The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+ *            The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 final case class ExcitationSystemDynamics
 (
@@ -14566,8 +14908,8 @@ final case class ExcitationSystemDynamics
     UnderexcitationLimiterDynamics: String = null,
     VoltageCompensatorDynamics: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -14593,13 +14935,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcitationSystemDynamics.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcitationSystemDynamics.fields (position), value)
+
         emitattr (0, DiscontinuousExcitationControlDynamics)
         emitattr (1, OverexcitationLimiterDynamics)
         emitattr (2, PFVArControllerType1Dynamics)
@@ -14610,6 +14957,7 @@ extends
         emitattr (7, VoltageCompensatorDynamics)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ExcitationSystemDynamics rdf:ID=\"%s\">\n%s\t</cim:ExcitationSystemDynamics>".format (id, export_fields)
@@ -14617,10 +14965,10 @@ extends
 }
 
 object ExcitationSystemDynamics
-extends
-    CIMParseable[ExcitationSystemDynamics]
+    extends
+        CIMParseable[ExcitationSystemDynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "DiscontinuousExcitationControlDynamics",
         "OverexcitationLimiterDynamics",
         "PFVArControllerType1Dynamics",
@@ -14640,19 +14988,19 @@ extends
         CIMRelationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "1"),
         CIMRelationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "1", "1")
     )
-    val DiscontinuousExcitationControlDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val OverexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val PFVArControllerType1Dynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val PFVArControllerType2Dynamics: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val PowerSystemStabilizerDynamics: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val UnderexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val VoltageCompensatorDynamics: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val DiscontinuousExcitationControlDynamics: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val OverexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val PFVArControllerType1Dynamics: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val PFVArControllerType2Dynamics: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val PowerSystemStabilizerDynamics: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val UnderexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val VoltageCompensatorDynamics: Fielder = parse_attribute (attribute (cls, fields (7)))
 
     def parse (context: CIMContext): ExcitationSystemDynamics =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ExcitationSystemDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (DiscontinuousExcitationControlDynamics (), 0),
@@ -14693,7 +15041,7 @@ object ExcitationSystemDynamicsSerializer extends CIMSerializer[ExcitationSystem
 
     def read (kryo: Kryo, input: Input, cls: Class[ExcitationSystemDynamics]): ExcitationSystemDynamics =
     {
-        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf [DynamicsFunctionBlock])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExcitationSystemDynamics (
             parent,

@@ -18,45 +18,45 @@ import ch.ninecode.cim.CIMSerializer
  * Reference: IEEE 421.5-2005, 12.2.
  *
  * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
- * @param esc Speed change reference (<i>E</i><i><sub>SC</sub></i>).
- *        Typical value = 0,0015.
- * @param kan Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
- *        Typical value = 400.
- * @param ketl Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).
- *        Typical value = 47.
- * @param tan Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>) (&gt;= 0).
- *        Typical value = 0,08.
- * @param td Time constant (<i>T</i><i><sub>D</sub></i>) (&gt;= 0).
- *        Typical value = 0,03.
- * @param tl1 Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>) (&gt;= 0).
- *        Typical value = 0,025.
- * @param tl2 Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>) (&gt;= 0).
- *        Typical value = 1,25.
- * @param tw5 DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>) (&gt;= 0).
- *        Typical value = 5.
- * @param val Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
- *        Typical value = 5,5.
- * @param vanmax Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).
- * @param vomax Limiter (<i>V</i><i><sub>OMAX</sub></i>) (&gt; DiscExcContIEEEDEC1A.vomin).
- *        Typical value = 0,3.
- * @param vomin Limiter (<i>V</i><i><sub>OMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vomax).
- *        Typical value = 0,1.
- * @param vsmax Limiter (<i>V</i><i><sub>SMAX</sub></i>)(&gt; DiscExcContIEEEDEC1A.vsmin).
- *        Typical value = 0,2.
- * @param vsmin Limiter (<i>V</i><i><sub>SMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vsmax).
- *        Typical value = -0,066.
- * @param vtc Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).
- *        Typical value = 0,95.
- * @param vtlmt Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).
- *        Typical value = 1,1.
- * @param vtm Voltage limits (<i>V</i><i><sub>TM</sub></i>).
- *        Typical value = 1,13.
- * @param vtn Voltage limits (<i>V</i><i><sub>TN</sub></i>).
- *        Typical value = 1,12.
+ * @param esc                                    Speed change reference (<i>E</i><i><sub>SC</sub></i>).
+ *                                               Typical value = 0,0015.
+ * @param kan                                    Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
+ *                                               Typical value = 400.
+ * @param ketl                                   Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).
+ *                                               Typical value = 47.
+ * @param tan                                    Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>) (&gt;= 0).
+ *                                               Typical value = 0,08.
+ * @param td                                     Time constant (<i>T</i><i><sub>D</sub></i>) (&gt;= 0).
+ *                                               Typical value = 0,03.
+ * @param tl1                                    Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>) (&gt;= 0).
+ *                                               Typical value = 0,025.
+ * @param tl2                                    Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>) (&gt;= 0).
+ *                                               Typical value = 1,25.
+ * @param tw5                                    DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>) (&gt;= 0).
+ *                                               Typical value = 5.
+ * @param val                                    Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
+ *                                               Typical value = 5,5.
+ * @param vanmax                                 Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).
+ * @param vomax                                  Limiter (<i>V</i><i><sub>OMAX</sub></i>) (&gt; DiscExcContIEEEDEC1A.vomin).
+ *                                               Typical value = 0,3.
+ * @param vomin                                  Limiter (<i>V</i><i><sub>OMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vomax).
+ *                                               Typical value = 0,1.
+ * @param vsmax                                  Limiter (<i>V</i><i><sub>SMAX</sub></i>)(&gt; DiscExcContIEEEDEC1A.vsmin).
+ *                                               Typical value = 0,2.
+ * @param vsmin                                  Limiter (<i>V</i><i><sub>SMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vsmax).
+ *                                               Typical value = -0,066.
+ * @param vtc                                    Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).
+ *                                               Typical value = 0,95.
+ * @param vtlmt                                  Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).
+ *                                               Typical value = 1,1.
+ * @param vtm                                    Voltage limits (<i>V</i><i><sub>TM</sub></i>).
+ *                                               Typical value = 1,13.
+ * @param vtn                                    Voltage limits (<i>V</i><i><sub>TN</sub></i>).
+ *                                               Typical value = 1,12.
  * @group DiscontinuousExcitationControlDynamics
  * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
  * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
-<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
+ *            <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
 final case class DiscExcContIEEEDEC1A
 (
@@ -80,8 +80,8 @@ final case class DiscExcContIEEEDEC1A
     vtm: Double = 0.0,
     vtn: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -107,13 +107,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiscExcContIEEEDEC1A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscExcContIEEEDEC1A.fields (position), value)
+
         emitelem (0, esc)
         emitelem (1, kan)
         emitelem (2, ketl)
@@ -134,6 +139,7 @@ extends
         emitelem (17, vtn)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DiscExcContIEEEDEC1A rdf:ID=\"%s\">\n%s\t</cim:DiscExcContIEEEDEC1A>".format (id, export_fields)
@@ -141,10 +147,10 @@ extends
 }
 
 object DiscExcContIEEEDEC1A
-extends
-    CIMParseable[DiscExcContIEEEDEC1A]
+    extends
+        CIMParseable[DiscExcContIEEEDEC1A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "esc",
         "kan",
         "ketl",
@@ -164,29 +170,29 @@ extends
         "vtm",
         "vtn"
     )
-    val esc: Fielder = parse_element (element (cls, fields(0)))
-    val kan: Fielder = parse_element (element (cls, fields(1)))
-    val ketl: Fielder = parse_element (element (cls, fields(2)))
-    val tan: Fielder = parse_element (element (cls, fields(3)))
-    val td: Fielder = parse_element (element (cls, fields(4)))
-    val tl1: Fielder = parse_element (element (cls, fields(5)))
-    val tl2: Fielder = parse_element (element (cls, fields(6)))
-    val tw5: Fielder = parse_element (element (cls, fields(7)))
-    val `val`: Fielder = parse_element (element (cls, fields(8)))
-    val vanmax: Fielder = parse_element (element (cls, fields(9)))
-    val vomax: Fielder = parse_element (element (cls, fields(10)))
-    val vomin: Fielder = parse_element (element (cls, fields(11)))
-    val vsmax: Fielder = parse_element (element (cls, fields(12)))
-    val vsmin: Fielder = parse_element (element (cls, fields(13)))
-    val vtc: Fielder = parse_element (element (cls, fields(14)))
-    val vtlmt: Fielder = parse_element (element (cls, fields(15)))
-    val vtm: Fielder = parse_element (element (cls, fields(16)))
-    val vtn: Fielder = parse_element (element (cls, fields(17)))
+    val esc: Fielder = parse_element (element (cls, fields (0)))
+    val kan: Fielder = parse_element (element (cls, fields (1)))
+    val ketl: Fielder = parse_element (element (cls, fields (2)))
+    val tan: Fielder = parse_element (element (cls, fields (3)))
+    val td: Fielder = parse_element (element (cls, fields (4)))
+    val tl1: Fielder = parse_element (element (cls, fields (5)))
+    val tl2: Fielder = parse_element (element (cls, fields (6)))
+    val tw5: Fielder = parse_element (element (cls, fields (7)))
+    val `val`: Fielder = parse_element (element (cls, fields (8)))
+    val vanmax: Fielder = parse_element (element (cls, fields (9)))
+    val vomax: Fielder = parse_element (element (cls, fields (10)))
+    val vomin: Fielder = parse_element (element (cls, fields (11)))
+    val vsmax: Fielder = parse_element (element (cls, fields (12)))
+    val vsmin: Fielder = parse_element (element (cls, fields (13)))
+    val vtc: Fielder = parse_element (element (cls, fields (14)))
+    val vtlmt: Fielder = parse_element (element (cls, fields (15)))
+    val vtm: Fielder = parse_element (element (cls, fields (16)))
+    val vtn: Fielder = parse_element (element (cls, fields (17)))
 
     def parse (context: CIMContext): DiscExcContIEEEDEC1A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DiscExcContIEEEDEC1A (
             DiscontinuousExcitationControlDynamics.parse (context),
             toDouble (mask (esc (), 0)),
@@ -247,7 +253,7 @@ object DiscExcContIEEEDEC1ASerializer extends CIMSerializer[DiscExcContIEEEDEC1A
 
     def read (kryo: Kryo, input: Input, cls: Class[DiscExcContIEEEDEC1A]): DiscExcContIEEEDEC1A =
     {
-        val parent = DiscontinuousExcitationControlDynamicsSerializer.read (kryo, input, classOf[DiscontinuousExcitationControlDynamics])
+        val parent = DiscontinuousExcitationControlDynamicsSerializer.read (kryo, input, classOf [DiscontinuousExcitationControlDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DiscExcContIEEEDEC1A (
             parent,
@@ -282,15 +288,15 @@ object DiscExcContIEEEDEC1ASerializer extends CIMSerializer[DiscExcContIEEEDEC1A
  * Reference: IEEE 421.5-2005 12.3.
  *
  * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
- * @param td1 Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>) (&gt;= 0).
- * @param td2 Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>) (&gt;= 0).
- * @param vdmax Limiter (<i>V</i><i><sub>DMAX</sub></i>) (&gt; DiscExcContIEEEDEC2A.vdmin).
- * @param vdmin Limiter (<i>V</i><i><sub>DMIN</sub></i>) (&lt; DiscExcContIEEEDEC2A.vdmax).
- * @param vk Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).
+ * @param td1                                    Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>) (&gt;= 0).
+ * @param td2                                    Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>) (&gt;= 0).
+ * @param vdmax                                  Limiter (<i>V</i><i><sub>DMAX</sub></i>) (&gt; DiscExcContIEEEDEC2A.vdmin).
+ * @param vdmin                                  Limiter (<i>V</i><i><sub>DMIN</sub></i>) (&lt; DiscExcContIEEEDEC2A.vdmax).
+ * @param vk                                     Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).
  * @group DiscontinuousExcitationControlDynamics
  * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
  * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
-<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
+ *            <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
 final case class DiscExcContIEEEDEC2A
 (
@@ -301,8 +307,8 @@ final case class DiscExcContIEEEDEC2A
     vdmin: Double = 0.0,
     vk: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -328,13 +334,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiscExcContIEEEDEC2A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscExcContIEEEDEC2A.fields (position), value)
+
         emitelem (0, td1)
         emitelem (1, td2)
         emitelem (2, vdmax)
@@ -342,6 +353,7 @@ extends
         emitelem (4, vk)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DiscExcContIEEEDEC2A rdf:ID=\"%s\">\n%s\t</cim:DiscExcContIEEEDEC2A>".format (id, export_fields)
@@ -349,26 +361,26 @@ extends
 }
 
 object DiscExcContIEEEDEC2A
-extends
-    CIMParseable[DiscExcContIEEEDEC2A]
+    extends
+        CIMParseable[DiscExcContIEEEDEC2A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "td1",
         "td2",
         "vdmax",
         "vdmin",
         "vk"
     )
-    val td1: Fielder = parse_element (element (cls, fields(0)))
-    val td2: Fielder = parse_element (element (cls, fields(1)))
-    val vdmax: Fielder = parse_element (element (cls, fields(2)))
-    val vdmin: Fielder = parse_element (element (cls, fields(3)))
-    val vk: Fielder = parse_element (element (cls, fields(4)))
+    val td1: Fielder = parse_element (element (cls, fields (0)))
+    val td2: Fielder = parse_element (element (cls, fields (1)))
+    val vdmax: Fielder = parse_element (element (cls, fields (2)))
+    val vdmin: Fielder = parse_element (element (cls, fields (3)))
+    val vk: Fielder = parse_element (element (cls, fields (4)))
 
     def parse (context: CIMContext): DiscExcContIEEEDEC2A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DiscExcContIEEEDEC2A (
             DiscontinuousExcitationControlDynamics.parse (context),
             toDouble (mask (td1 (), 0)),
@@ -403,7 +415,7 @@ object DiscExcContIEEEDEC2ASerializer extends CIMSerializer[DiscExcContIEEEDEC2A
 
     def read (kryo: Kryo, input: Input, cls: Class[DiscExcContIEEEDEC2A]): DiscExcContIEEEDEC2A =
     {
-        val parent = DiscontinuousExcitationControlDynamicsSerializer.read (kryo, input, classOf[DiscontinuousExcitationControlDynamics])
+        val parent = DiscontinuousExcitationControlDynamicsSerializer.read (kryo, input, classOf [DiscontinuousExcitationControlDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DiscExcContIEEEDEC2A (
             parent,
@@ -425,12 +437,12 @@ object DiscExcContIEEEDEC2ASerializer extends CIMSerializer[DiscExcContIEEEDEC2A
  * Reference: IEEE 421.5-2005 12.4.
  *
  * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
- * @param tdr Reset time delay (<i>T</i><i><sub>DR</sub></i>) (&gt;= 0).
- * @param vtmin Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
+ * @param tdr                                    Reset time delay (<i>T</i><i><sub>DR</sub></i>) (&gt;= 0).
+ * @param vtmin                                  Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
  * @group DiscontinuousExcitationControlDynamics
  * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
  * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
-<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
+ *            <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
 final case class DiscExcContIEEEDEC3A
 (
@@ -438,8 +450,8 @@ final case class DiscExcContIEEEDEC3A
     tdr: Double = 0.0,
     vtmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -465,17 +477,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiscExcContIEEEDEC3A.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscExcContIEEEDEC3A.fields (position), value)
+
         emitelem (0, tdr)
         emitelem (1, vtmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DiscExcContIEEEDEC3A rdf:ID=\"%s\">\n%s\t</cim:DiscExcContIEEEDEC3A>".format (id, export_fields)
@@ -483,20 +501,20 @@ extends
 }
 
 object DiscExcContIEEEDEC3A
-extends
-    CIMParseable[DiscExcContIEEEDEC3A]
+    extends
+        CIMParseable[DiscExcContIEEEDEC3A]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "tdr",
         "vtmin"
     )
-    val tdr: Fielder = parse_element (element (cls, fields(0)))
-    val vtmin: Fielder = parse_element (element (cls, fields(1)))
+    val tdr: Fielder = parse_element (element (cls, fields (0)))
+    val vtmin: Fielder = parse_element (element (cls, fields (1)))
 
     def parse (context: CIMContext): DiscExcContIEEEDEC3A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DiscExcContIEEEDEC3A (
             DiscontinuousExcitationControlDynamics.parse (context),
             toDouble (mask (tdr (), 0)),
@@ -525,7 +543,7 @@ object DiscExcContIEEEDEC3ASerializer extends CIMSerializer[DiscExcContIEEEDEC3A
 
     def read (kryo: Kryo, input: Input, cls: Class[DiscExcContIEEEDEC3A]): DiscExcContIEEEDEC3A =
     {
-        val parent = DiscontinuousExcitationControlDynamicsSerializer.read (kryo, input, classOf[DiscontinuousExcitationControlDynamics])
+        val parent = DiscontinuousExcitationControlDynamicsSerializer.read (kryo, input, classOf [DiscontinuousExcitationControlDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DiscExcContIEEEDEC3A (
             parent,
@@ -540,13 +558,13 @@ object DiscExcContIEEEDEC3ASerializer extends CIMSerializer[DiscExcContIEEEDEC3A
 /**
  * Discontinuous excitation control function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model</font>.
  *
- * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock    [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this discontinuous excitation control model is associated.
- * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this discontinuous excitation control system model.
+ * @param RemoteInputSignal        [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this discontinuous excitation control system model.
  * @group DiscontinuousExcitationControlDynamics
  * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
  * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
-<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
+ *            <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
 final case class DiscontinuousExcitationControlDynamics
 (
@@ -554,8 +572,8 @@ final case class DiscontinuousExcitationControlDynamics
     ExcitationSystemDynamics: String = null,
     RemoteInputSignal: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -581,17 +599,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiscontinuousExcitationControlDynamics.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DiscontinuousExcitationControlDynamics.fields (position), value)
+
         emitattr (0, ExcitationSystemDynamics)
         emitattr (1, RemoteInputSignal)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DiscontinuousExcitationControlDynamics rdf:ID=\"%s\">\n%s\t</cim:DiscontinuousExcitationControlDynamics>".format (id, export_fields)
@@ -599,10 +623,10 @@ extends
 }
 
 object DiscontinuousExcitationControlDynamics
-extends
-    CIMParseable[DiscontinuousExcitationControlDynamics]
+    extends
+        CIMParseable[DiscontinuousExcitationControlDynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ExcitationSystemDynamics",
         "RemoteInputSignal"
     )
@@ -610,13 +634,13 @@ extends
         CIMRelationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
         CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
     )
-    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): DiscontinuousExcitationControlDynamics =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DiscontinuousExcitationControlDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (ExcitationSystemDynamics (), 0),
@@ -645,7 +669,7 @@ object DiscontinuousExcitationControlDynamicsSerializer extends CIMSerializer[Di
 
     def read (kryo: Kryo, input: Input, cls: Class[DiscontinuousExcitationControlDynamics]): DiscontinuousExcitationControlDynamics =
     {
-        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf [DynamicsFunctionBlock])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DiscontinuousExcitationControlDynamics (
             parent,

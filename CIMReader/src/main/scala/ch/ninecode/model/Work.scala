@@ -15,13 +15,13 @@ import ch.ninecode.cim.CIMSerializer
 /**
  * Common representation for work and work tasks.
  *
- * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param kind Kind of work.
- * @param priority Priority of work.
- * @param statusKind Kind of work status.
- * @param TimeSchedules [[ch.ninecode.model.WorkTimeSchedule WorkTimeSchedule]] All time schedules for this work or work task.
+ * @param Document            [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param kind                Kind of work.
+ * @param priority            Priority of work.
+ * @param statusKind          Kind of work status.
+ * @param TimeSchedules       [[ch.ninecode.model.WorkTimeSchedule WorkTimeSchedule]] All time schedules for this work or work task.
  * @param WorkActivityRecords [[ch.ninecode.model.WorkActivityRecord WorkActivityRecord]] All activity records for this work or work task.
- * @param WorkLocation [[ch.ninecode.model.WorkLocation WorkLocation]] Location for this work/task.
+ * @param WorkLocation        [[ch.ninecode.model.WorkLocation WorkLocation]] Location for this work/task.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -36,8 +36,8 @@ final case class BaseWork
     WorkActivityRecords: List[String] = null,
     WorkLocation: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -63,14 +63,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BaseWork.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BaseWork.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (BaseWork.fields (position), x))
+
         emitattr (0, kind)
         emitattr (1, priority)
         emitattr (2, statusKind)
@@ -79,6 +85,7 @@ extends
         emitattr (5, WorkLocation)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BaseWork rdf:ID=\"%s\">\n%s\t</cim:BaseWork>".format (id, export_fields)
@@ -86,10 +93,10 @@ extends
 }
 
 object BaseWork
-extends
-    CIMParseable[BaseWork]
+    extends
+        CIMParseable[BaseWork]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kind",
         "priority",
         "statusKind",
@@ -102,17 +109,17 @@ extends
         CIMRelationship ("WorkActivityRecords", "WorkActivityRecord", "0..*", "0..1"),
         CIMRelationship ("WorkLocation", "WorkLocation", "0..1", "0..*")
     )
-    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val priority: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val statusKind: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val TimeSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val WorkActivityRecords: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val WorkLocation: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val priority: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val statusKind: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val TimeSchedules: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val WorkActivityRecords: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val WorkLocation: Fielder = parse_attribute (attribute (cls, fields (5)))
 
     def parse (context: CIMContext): BaseWork =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = BaseWork (
             Document.parse (context),
             mask (kind (), 0),
@@ -149,7 +156,7 @@ object BaseWorkSerializer extends CIMSerializer[BaseWork]
 
     def read (kryo: Kryo, input: Input, cls: Class[BaseWork]): BaseWork =
     {
-        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        val parent = DocumentSerializer.read (kryo, input, classOf [Document])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = BaseWork (
             parent,
@@ -168,11 +175,11 @@ object BaseWorkSerializer extends CIMSerializer[BaseWork]
 /**
  * Description of location internal to a building.
  *
- * @param WorkLocation [[ch.ninecode.model.WorkLocation WorkLocation]] Reference to the superclass object.
- * @param buildingName Name of building where location is.
+ * @param WorkLocation   [[ch.ninecode.model.WorkLocation WorkLocation]] Reference to the superclass object.
+ * @param buildingName   Name of building where location is.
  * @param buildingNumber Number of building where location is.
- * @param floor Floor of location.
- * @param roomNumber Room number of location.
+ * @param floor          Floor of location.
+ * @param roomNumber     Room number of location.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -185,8 +192,8 @@ final case class InternalLocation
     floor: Int = 0,
     roomNumber: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -212,19 +219,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = InternalLocation.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (InternalLocation.fields (position), value)
+
         emitelem (0, buildingName)
         emitelem (1, buildingNumber)
         emitelem (2, floor)
         emitelem (3, roomNumber)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:InternalLocation rdf:ID=\"%s\">\n%s\t</cim:InternalLocation>".format (id, export_fields)
@@ -232,24 +245,24 @@ extends
 }
 
 object InternalLocation
-extends
-    CIMParseable[InternalLocation]
+    extends
+        CIMParseable[InternalLocation]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "buildingName",
         "buildingNumber",
         "floor",
         "roomNumber"
     )
-    val buildingName: Fielder = parse_element (element (cls, fields(0)))
-    val buildingNumber: Fielder = parse_element (element (cls, fields(1)))
-    val floor: Fielder = parse_element (element (cls, fields(2)))
-    val roomNumber: Fielder = parse_element (element (cls, fields(3)))
+    val buildingName: Fielder = parse_element (element (cls, fields (0)))
+    val buildingNumber: Fielder = parse_element (element (cls, fields (1)))
+    val floor: Fielder = parse_element (element (cls, fields (2)))
+    val roomNumber: Fielder = parse_element (element (cls, fields (3)))
 
     def parse (context: CIMContext): InternalLocation =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = InternalLocation (
             WorkLocation.parse (context),
             mask (buildingName (), 0),
@@ -282,7 +295,7 @@ object InternalLocationSerializer extends CIMSerializer[InternalLocation]
 
     def read (kryo: Kryo, input: Input, cls: Class[InternalLocation]): InternalLocation =
     {
-        val parent = WorkLocationSerializer.read (kryo, input, classOf[WorkLocation])
+        val parent = WorkLocationSerializer.read (kryo, input, classOf [WorkLocation])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = InternalLocation (
             parent,
@@ -299,11 +312,11 @@ object InternalLocationSerializer extends CIMSerializer[InternalLocation]
 /**
  * Location where to perform maintenance work.
  *
- * @param WorkLocation [[ch.ninecode.model.WorkLocation WorkLocation]] Reference to the superclass object.
- * @param block (if applicable) Name, identifier, or description of the block in which work is to occur.
- * @param lot (if applicable) Name, identifier, or description of the lot in which work is to occur.
+ * @param WorkLocation        [[ch.ninecode.model.WorkLocation WorkLocation]] Reference to the superclass object.
+ * @param block               (if applicable) Name, identifier, or description of the block in which work is to occur.
+ * @param lot                 (if applicable) Name, identifier, or description of the lot in which work is to occur.
  * @param nearestIntersection The names of streets at the nearest intersection to work area.
- * @param subdivision (if applicable) Name, identifier, or description of the subdivision in which work is to occur.
+ * @param subdivision         (if applicable) Name, identifier, or description of the subdivision in which work is to occur.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -316,8 +329,8 @@ final case class MaintenanceLocation
     nearestIntersection: String = null,
     subdivision: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -343,19 +356,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MaintenanceLocation.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MaintenanceLocation.fields (position), value)
+
         emitelem (0, block)
         emitelem (1, lot)
         emitelem (2, nearestIntersection)
         emitelem (3, subdivision)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MaintenanceLocation rdf:ID=\"%s\">\n%s\t</cim:MaintenanceLocation>".format (id, export_fields)
@@ -363,24 +382,24 @@ extends
 }
 
 object MaintenanceLocation
-extends
-    CIMParseable[MaintenanceLocation]
+    extends
+        CIMParseable[MaintenanceLocation]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "block",
         "lot",
         "nearestIntersection",
         "subdivision"
     )
-    val block: Fielder = parse_element (element (cls, fields(0)))
-    val lot: Fielder = parse_element (element (cls, fields(1)))
-    val nearestIntersection: Fielder = parse_element (element (cls, fields(2)))
-    val subdivision: Fielder = parse_element (element (cls, fields(3)))
+    val block: Fielder = parse_element (element (cls, fields (0)))
+    val lot: Fielder = parse_element (element (cls, fields (1)))
+    val nearestIntersection: Fielder = parse_element (element (cls, fields (2)))
+    val subdivision: Fielder = parse_element (element (cls, fields (3)))
 
     def parse (context: CIMContext): MaintenanceLocation =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = MaintenanceLocation (
             WorkLocation.parse (context),
             mask (block (), 0),
@@ -413,7 +432,7 @@ object MaintenanceLocationSerializer extends CIMSerializer[MaintenanceLocation]
 
     def read (kryo: Kryo, input: Input, cls: Class[MaintenanceLocation]): MaintenanceLocation =
     {
-        val parent = WorkLocationSerializer.read (kryo, input, classOf[WorkLocation])
+        val parent = WorkLocationSerializer.read (kryo, input, classOf [WorkLocation])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MaintenanceLocation (
             parent,
@@ -432,8 +451,8 @@ object MaintenanceLocationSerializer extends CIMSerializer[MaintenanceLocation]
  *
  * Costs associated with this are considered preventive maintenance (PM) costs.
  *
- * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
- * @param breakerMaintenanceKind Kind of breaker maintenance performed by this maintenance work task.
+ * @param WorkTask                   [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
+ * @param breakerMaintenanceKind     Kind of breaker maintenance performed by this maintenance work task.
  * @param transformerMaintenanceKind Kind of transformer maintenance performed by this maintenance work task.
  * @group Work
  * @groupname Work Package Work
@@ -445,8 +464,8 @@ final case class MaintenanceWorkTask
     breakerMaintenanceKind: String = null,
     transformerMaintenanceKind: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -472,17 +491,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MaintenanceWorkTask.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MaintenanceWorkTask.fields (position), value)
+
         emitattr (0, breakerMaintenanceKind)
         emitattr (1, transformerMaintenanceKind)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MaintenanceWorkTask rdf:ID=\"%s\">\n%s\t</cim:MaintenanceWorkTask>".format (id, export_fields)
@@ -490,20 +515,20 @@ extends
 }
 
 object MaintenanceWorkTask
-extends
-    CIMParseable[MaintenanceWorkTask]
+    extends
+        CIMParseable[MaintenanceWorkTask]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "breakerMaintenanceKind",
         "transformerMaintenanceKind"
     )
-    val breakerMaintenanceKind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val transformerMaintenanceKind: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val breakerMaintenanceKind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val transformerMaintenanceKind: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): MaintenanceWorkTask =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = MaintenanceWorkTask (
             WorkTask.parse (context),
             mask (breakerMaintenanceKind (), 0),
@@ -532,7 +557,7 @@ object MaintenanceWorkTaskSerializer extends CIMSerializer[MaintenanceWorkTask]
 
     def read (kryo: Kryo, input: Input, cls: Class[MaintenanceWorkTask]): MaintenanceWorkTask =
     {
-        val parent = WorkTaskSerializer.read (kryo, input, classOf[WorkTask])
+        val parent = WorkTaskSerializer.read (kryo, input, classOf [WorkTask])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MaintenanceWorkTask (
             parent,
@@ -550,9 +575,9 @@ object MaintenanceWorkTaskSerializer extends CIMSerializer[MaintenanceWorkTask]
  * It includes items such as nuts, bolts, brackets, glue, etc.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param quantity Quantity of material used.
- * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
- * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
+ * @param quantity         Quantity of material used.
+ * @param TypeMaterial     [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
+ * @param WorkTask         [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -564,8 +589,8 @@ final case class MaterialItem
     TypeMaterial: String = null,
     WorkTask: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -591,18 +616,24 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MaterialItem.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MaterialItem.fields (position), value)
+
         emitattr (0, quantity)
         emitattr (1, TypeMaterial)
         emitattr (2, WorkTask)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MaterialItem rdf:ID=\"%s\">\n%s\t</cim:MaterialItem>".format (id, export_fields)
@@ -610,10 +641,10 @@ extends
 }
 
 object MaterialItem
-extends
-    CIMParseable[MaterialItem]
+    extends
+        CIMParseable[MaterialItem]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "quantity",
         "TypeMaterial",
         "WorkTask"
@@ -622,14 +653,14 @@ extends
         CIMRelationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*"),
         CIMRelationship ("WorkTask", "WorkTask", "0..1", "0..*")
     )
-    val quantity: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val WorkTask: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val quantity: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val WorkTask: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): MaterialItem =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = MaterialItem (
             IdentifiedObject.parse (context),
             mask (quantity (), 0),
@@ -660,7 +691,7 @@ object MaterialItemSerializer extends CIMSerializer[MaterialItem]
 
     def read (kryo: Kryo, input: Input, cls: Class[MaterialItem]): MaterialItem =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MaterialItem (
             parent,
@@ -676,10 +707,10 @@ object MaterialItemSerializer extends CIMSerializer[MaterialItem]
 /**
  * Asset component to be repaired or problem area to be corrected.
  *
- * @param Element Reference to the superclass object.
- * @param breakerRepairItem Breaker component or problem area which is the focus of this maintenance work task (for work tasks related to breakers only).
+ * @param Element               Reference to the superclass object.
+ * @param breakerRepairItem     Breaker component or problem area which is the focus of this maintenance work task (for work tasks related to breakers only).
  * @param transformerRepairItem Transformer component or problem area which is the focus of this maintenance work task (for work tasks related to transformers only).
- * @param RepairWorkTask [[ch.ninecode.model.RepairWorkTask RepairWorkTask]] Repair work task under which breaker item of this type is repaired.
+ * @param RepairWorkTask        [[ch.ninecode.model.RepairWorkTask RepairWorkTask]] Repair work task under which breaker item of this type is repaired.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -691,8 +722,8 @@ final case class RepairItem
     transformerRepairItem: String = null,
     RepairWorkTask: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -718,19 +749,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RepairItem.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RepairItem.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RepairItem.fields (position), x))
+
         emitattr (0, breakerRepairItem)
         emitattr (1, transformerRepairItem)
         emitattrs (2, RepairWorkTask)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:RepairItem rdf:ID=\"%s\">\n%s\t</cim:RepairItem>".format (id, export_fields)
@@ -738,10 +776,10 @@ extends
 }
 
 object RepairItem
-extends
-    CIMParseable[RepairItem]
+    extends
+        CIMParseable[RepairItem]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "breakerRepairItem",
         "transformerRepairItem",
         "RepairWorkTask"
@@ -749,14 +787,14 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("RepairWorkTask", "RepairWorkTask", "0..*", "0..*")
     )
-    val breakerRepairItem: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val transformerRepairItem: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val RepairWorkTask: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val breakerRepairItem: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val transformerRepairItem: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val RepairWorkTask: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): RepairItem =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = RepairItem (
             BasicElement.parse (context),
             mask (breakerRepairItem (), 0),
@@ -779,7 +817,7 @@ object RepairItemSerializer extends CIMSerializer[RepairItem]
             () => output.writeString (obj.transformerRepairItem),
             () => writeList (obj.RepairWorkTask, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -787,7 +825,7 @@ object RepairItemSerializer extends CIMSerializer[RepairItem]
 
     def read (kryo: Kryo, input: Input, cls: Class[RepairItem]): RepairItem =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RepairItem (
             parent,
@@ -805,8 +843,8 @@ object RepairItemSerializer extends CIMSerializer[RepairItem]
  *
  * Costs associated with this are considered corrective maintenance (CM) costs.
  *
- * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
- * @param emergency Repair work is emergency.
+ * @param WorkTask          [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
+ * @param emergency         Repair work is emergency.
  * @param BreakerRepairItem [[ch.ninecode.model.RepairItem RepairItem]] Type of breaker item to be repaird by this repair work task.
  * @group Work
  * @groupname Work Package Work
@@ -818,8 +856,8 @@ final case class RepairWorkTask
     emergency: Boolean = false,
     BreakerRepairItem: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -845,18 +883,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RepairWorkTask.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RepairWorkTask.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RepairWorkTask.fields (position), x))
+
         emitelem (0, emergency)
         emitattrs (1, BreakerRepairItem)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:RepairWorkTask rdf:ID=\"%s\">\n%s\t</cim:RepairWorkTask>".format (id, export_fields)
@@ -864,23 +909,23 @@ extends
 }
 
 object RepairWorkTask
-extends
-    CIMParseable[RepairWorkTask]
+    extends
+        CIMParseable[RepairWorkTask]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "emergency",
         "BreakerRepairItem"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("BreakerRepairItem", "RepairItem", "0..*", "0..*")
     )
-    val emergency: Fielder = parse_element (element (cls, fields(0)))
-    val BreakerRepairItem: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val emergency: Fielder = parse_element (element (cls, fields (0)))
+    val BreakerRepairItem: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): RepairWorkTask =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = RepairWorkTask (
             WorkTask.parse (context),
             toBoolean (mask (emergency (), 0)),
@@ -909,7 +954,7 @@ object RepairWorkTaskSerializer extends CIMSerializer[RepairWorkTask]
 
     def read (kryo: Kryo, input: Input, cls: Class[RepairWorkTask]): RepairWorkTask =
     {
-        val parent = WorkTaskSerializer.read (kryo, input, classOf[WorkTask])
+        val parent = WorkTaskSerializer.read (kryo, input, classOf [WorkTask])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RepairWorkTask (
             parent,
@@ -924,7 +969,7 @@ object RepairWorkTaskSerializer extends CIMSerializer[RepairWorkTask]
 /**
  * Tool asset.
  *
- * @param WorkAsset [[ch.ninecode.model.WorkAsset WorkAsset]] Reference to the superclass object.
+ * @param WorkAsset           [[ch.ninecode.model.WorkAsset WorkAsset]] Reference to the superclass object.
  * @param lastCalibrationDate (if applicable) Date the tool was last calibrated.
  * @group Work
  * @groupname Work Package Work
@@ -935,8 +980,8 @@ final case class Tool
     WorkAsset: WorkAsset = null,
     lastCalibrationDate: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -962,16 +1007,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Tool.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Tool.fields (position), value)
+
         emitelem (0, lastCalibrationDate)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Tool rdf:ID=\"%s\">\n%s\t</cim:Tool>".format (id, export_fields)
@@ -979,18 +1030,18 @@ extends
 }
 
 object Tool
-extends
-    CIMParseable[Tool]
+    extends
+        CIMParseable[Tool]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "lastCalibrationDate"
     )
-    val lastCalibrationDate: Fielder = parse_element (element (cls, fields(0)))
+    val lastCalibrationDate: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: CIMContext): Tool =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Tool (
             WorkAsset.parse (context),
             mask (lastCalibrationDate (), 0)
@@ -1017,7 +1068,7 @@ object ToolSerializer extends CIMSerializer[Tool]
 
     def read (kryo: Kryo, input: Input, cls: Class[Tool]): Tool =
     {
-        val parent = WorkAssetSerializer.read (kryo, input, classOf[WorkAsset])
+        val parent = WorkAssetSerializer.read (kryo, input, classOf [WorkAsset])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Tool (
             parent,
@@ -1031,11 +1082,11 @@ object ToolSerializer extends CIMSerializer[Tool]
 /**
  * Vehicle asset.
  *
- * @param WorkAsset [[ch.ninecode.model.WorkAsset WorkAsset]] Reference to the superclass object.
+ * @param WorkAsset            [[ch.ninecode.model.WorkAsset WorkAsset]] Reference to the superclass object.
  * @param odometerReadDateTime Date and time the last odometer reading was recorded.
- * @param odometerReading Odometer reading of this vehicle as of the 'odometerReadingDateTime'.
- *        Refer to associated ActivityRecords for earlier readings.
- * @param usageKind Kind of usage of the vehicle.
+ * @param odometerReading      Odometer reading of this vehicle as of the 'odometerReadingDateTime'.
+ *                             Refer to associated ActivityRecords for earlier readings.
+ * @param usageKind            Kind of usage of the vehicle.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -1047,8 +1098,8 @@ final case class Vehicle
     odometerReading: Double = 0.0,
     usageKind: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1074,19 +1125,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Vehicle.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Vehicle.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Vehicle.fields (position), value)
+
         emitelem (0, odometerReadDateTime)
         emitelem (1, odometerReading)
         emitattr (2, usageKind)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Vehicle rdf:ID=\"%s\">\n%s\t</cim:Vehicle>".format (id, export_fields)
@@ -1094,22 +1152,22 @@ extends
 }
 
 object Vehicle
-extends
-    CIMParseable[Vehicle]
+    extends
+        CIMParseable[Vehicle]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "odometerReadDateTime",
         "odometerReading",
         "usageKind"
     )
-    val odometerReadDateTime: Fielder = parse_element (element (cls, fields(0)))
-    val odometerReading: Fielder = parse_element (element (cls, fields(1)))
-    val usageKind: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val odometerReadDateTime: Fielder = parse_element (element (cls, fields (0)))
+    val odometerReading: Fielder = parse_element (element (cls, fields (1)))
+    val usageKind: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): Vehicle =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Vehicle (
             WorkAsset.parse (context),
             mask (odometerReadDateTime (), 0),
@@ -1140,7 +1198,7 @@ object VehicleSerializer extends CIMSerializer[Vehicle]
 
     def read (kryo: Kryo, input: Input, cls: Class[Vehicle]): Vehicle =
     {
-        val parent = WorkAssetSerializer.read (kryo, input, classOf[WorkAsset])
+        val parent = WorkAssetSerializer.read (kryo, input, classOf [WorkAsset])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Vehicle (
             parent,
@@ -1156,20 +1214,20 @@ object VehicleSerializer extends CIMSerializer[Vehicle]
 /**
  * Document used to request, initiate, track and record work.
  *
- * @param BaseWork [[ch.ninecode.model.BaseWork BaseWork]] Reference to the superclass object.
- * @param requestDateTime Date and time work was requested.
- * @param workOrderNumber Work order number (or other unique identifying information) for this work.
- * @param Appointments [[ch.ninecode.model.Appointment Appointment]] All appointments for this work.
- * @param BusinessCase [[ch.ninecode.model.BusinessCase BusinessCase]] <em>undocumented</em>
- * @param Customers [[ch.ninecode.model.Customer Customer]] All the customers for which this work is performed.
- * @param Designs [[ch.ninecode.model.Design Design]] <em>undocumented</em>
+ * @param BaseWork             [[ch.ninecode.model.BaseWork BaseWork]] Reference to the superclass object.
+ * @param requestDateTime      Date and time work was requested.
+ * @param workOrderNumber      Work order number (or other unique identifying information) for this work.
+ * @param Appointments         [[ch.ninecode.model.Appointment Appointment]] All appointments for this work.
+ * @param BusinessCase         [[ch.ninecode.model.BusinessCase BusinessCase]] <em>undocumented</em>
+ * @param Customers            [[ch.ninecode.model.Customer Customer]] All the customers for which this work is performed.
+ * @param Designs              [[ch.ninecode.model.Design Design]] <em>undocumented</em>
  * @param ErpProjectAccounting [[ch.ninecode.model.ErpProjectAccounting ErpProjectAccounting]] <em>undocumented</em>
- * @param Incidents [[ch.ninecode.model.Incident Incident]] All incidents being addressed by this work.
- * @param Project [[ch.ninecode.model.Project Project]] <em>undocumented</em>
- * @param WorkBillingInfo [[ch.ninecode.model.WorkBillingInfo WorkBillingInfo]] <em>undocumented</em>
- * @param WorkCostDetails [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
- * @param WorkFlowSteps [[ch.ninecode.model.WorkFlowStep WorkFlowStep]] <em>undocumented</em>
- * @param WorkTasks [[ch.ninecode.model.WorkTask WorkTask]] All tasks in this work.
+ * @param Incidents            [[ch.ninecode.model.Incident Incident]] All incidents being addressed by this work.
+ * @param Project              [[ch.ninecode.model.Project Project]] <em>undocumented</em>
+ * @param WorkBillingInfo      [[ch.ninecode.model.WorkBillingInfo WorkBillingInfo]] <em>undocumented</em>
+ * @param WorkCostDetails      [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
+ * @param WorkFlowSteps        [[ch.ninecode.model.WorkFlowStep WorkFlowStep]] <em>undocumented</em>
+ * @param WorkTasks            [[ch.ninecode.model.WorkTask WorkTask]] All tasks in this work.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -1191,8 +1249,8 @@ final case class Work
     WorkFlowSteps: List[String] = null,
     WorkTasks: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1218,15 +1276,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Work.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Work.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Work.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Work.fields (position), x))
+
         emitelem (0, requestDateTime)
         emitelem (1, workOrderNumber)
         emitattrs (2, Appointments)
@@ -1242,6 +1307,7 @@ extends
         emitattrs (12, WorkTasks)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Work rdf:ID=\"%s\">\n%s\t</cim:Work>".format (id, export_fields)
@@ -1249,10 +1315,10 @@ extends
 }
 
 object Work
-extends
-    CIMParseable[Work]
+    extends
+        CIMParseable[Work]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "requestDateTime",
         "workOrderNumber",
         "Appointments",
@@ -1280,24 +1346,24 @@ extends
         CIMRelationship ("WorkFlowSteps", "WorkFlowStep", "0..*", "0..1"),
         CIMRelationship ("WorkTasks", "WorkTask", "0..*", "1")
     )
-    val requestDateTime: Fielder = parse_element (element (cls, fields(0)))
-    val workOrderNumber: Fielder = parse_element (element (cls, fields(1)))
-    val Appointments: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val BusinessCase: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val Customers: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val Designs: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val ErpProjectAccounting: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val Incidents: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val Project: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val WorkBillingInfo: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val WorkCostDetails: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val WorkFlowSteps: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val requestDateTime: Fielder = parse_element (element (cls, fields (0)))
+    val workOrderNumber: Fielder = parse_element (element (cls, fields (1)))
+    val Appointments: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val BusinessCase: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val Customers: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val Designs: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val ErpProjectAccounting: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val Incidents: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val Project: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val WorkBillingInfo: Fielder = parse_attribute (attribute (cls, fields (9)))
+    val WorkCostDetails: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
+    val WorkFlowSteps: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
+    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields (12)))
 
     def parse (context: CIMContext): Work =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Work (
             BaseWork.parse (context),
             mask (requestDateTime (), 0),
@@ -1348,7 +1414,7 @@ object WorkSerializer extends CIMSerializer[Work]
 
     def read (kryo: Kryo, input: Input, cls: Class[Work]): Work =
     {
-        val parent = BaseWorkSerializer.read (kryo, input, classOf[BaseWork])
+        val parent = BaseWorkSerializer.read (kryo, input, classOf [BaseWork])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Work (
             parent,
@@ -1374,9 +1440,9 @@ object WorkSerializer extends CIMSerializer[Work]
 /**
  * Records information about the status of work or work task at a point in time.
  *
- * @param ActivityRecord [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
+ * @param ActivityRecord  [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param percentComplete Estimated percentage of completion of this individual work task or overall work order.
- * @param BaseWork [[ch.ninecode.model.BaseWork BaseWork]] Base work that this activity record tracks.
+ * @param BaseWork        [[ch.ninecode.model.BaseWork BaseWork]] Base work that this activity record tracks.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -1387,8 +1453,8 @@ final case class WorkActivityRecord
     percentComplete: Double = 0.0,
     BaseWork: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1414,18 +1480,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WorkActivityRecord.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WorkActivityRecord.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkActivityRecord.fields (position), value)
+
         emitelem (0, percentComplete)
         emitattr (1, BaseWork)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WorkActivityRecord rdf:ID=\"%s\">\n%s\t</cim:WorkActivityRecord>".format (id, export_fields)
@@ -1433,23 +1506,23 @@ extends
 }
 
 object WorkActivityRecord
-extends
-    CIMParseable[WorkActivityRecord]
+    extends
+        CIMParseable[WorkActivityRecord]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "percentComplete",
         "BaseWork"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("BaseWork", "BaseWork", "0..1", "0..*")
     )
-    val percentComplete: Fielder = parse_element (element (cls, fields(0)))
-    val BaseWork: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val percentComplete: Fielder = parse_element (element (cls, fields (0)))
+    val BaseWork: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): WorkActivityRecord =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WorkActivityRecord (
             ActivityRecord.parse (context),
             toDouble (mask (percentComplete (), 0)),
@@ -1478,7 +1551,7 @@ object WorkActivityRecordSerializer extends CIMSerializer[WorkActivityRecord]
 
     def read (kryo: Kryo, input: Input, cls: Class[WorkActivityRecord]): WorkActivityRecord =
     {
-        val parent = ActivityRecordSerializer.read (kryo, input, classOf[ActivityRecord])
+        val parent = ActivityRecordSerializer.read (kryo, input, classOf [ActivityRecord])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WorkActivityRecord (
             parent,
@@ -1493,9 +1566,9 @@ object WorkActivityRecordSerializer extends CIMSerializer[WorkActivityRecord]
 /**
  * Asset used to perform work.
  *
- * @param Asset [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
+ * @param Asset                [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
  * @param CUWorkEquipmentAsset [[ch.ninecode.model.CUWorkEquipmentItem CUWorkEquipmentItem]] <em>undocumented</em>
- * @param Crew [[ch.ninecode.model.Crew Crew]] Crew using this work asset.
+ * @param Crew                 [[ch.ninecode.model.Crew Crew]] Crew using this work asset.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -1506,8 +1579,8 @@ final case class WorkAsset
     CUWorkEquipmentAsset: String = null,
     Crew: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1533,17 +1606,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WorkAsset.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkAsset.fields (position), value)
+
         emitattr (0, CUWorkEquipmentAsset)
         emitattr (1, Crew)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WorkAsset rdf:ID=\"%s\">\n%s\t</cim:WorkAsset>".format (id, export_fields)
@@ -1551,10 +1630,10 @@ extends
 }
 
 object WorkAsset
-extends
-    CIMParseable[WorkAsset]
+    extends
+        CIMParseable[WorkAsset]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "CUWorkEquipmentAsset",
         "Crew"
     )
@@ -1562,13 +1641,13 @@ extends
         CIMRelationship ("CUWorkEquipmentAsset", "CUWorkEquipmentItem", "0..1", "0..1"),
         CIMRelationship ("Crew", "Crew", "0..1", "0..*")
     )
-    val CUWorkEquipmentAsset: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Crew: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val CUWorkEquipmentAsset: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val Crew: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): WorkAsset =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WorkAsset (
             Asset.parse (context),
             mask (CUWorkEquipmentAsset (), 0),
@@ -1597,7 +1676,7 @@ object WorkAssetSerializer extends CIMSerializer[WorkAsset]
 
     def read (kryo: Kryo, input: Input, cls: Class[WorkAsset]): WorkAsset =
     {
-        val parent = AssetSerializer.read (kryo, input, classOf[Asset])
+        val parent = AssetSerializer.read (kryo, input, classOf [Asset])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WorkAsset (
             parent,
@@ -1612,10 +1691,10 @@ object WorkAssetSerializer extends CIMSerializer[WorkAsset]
 /**
  * Information about a particular location for various forms of work.
  *
- * @param Location [[ch.ninecode.model.Location Location]] Reference to the superclass object.
- * @param BaseWorks [[ch.ninecode.model.BaseWork BaseWork]] All works/tasks at this location.
+ * @param Location        [[ch.ninecode.model.Location Location]] Reference to the superclass object.
+ * @param BaseWorks       [[ch.ninecode.model.BaseWork BaseWork]] All works/tasks at this location.
  * @param DesignLocations [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
- * @param OneCallRequest [[ch.ninecode.model.OneCallRequest OneCallRequest]] <em>undocumented</em>
+ * @param OneCallRequest  [[ch.ninecode.model.OneCallRequest OneCallRequest]] <em>undocumented</em>
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -1627,8 +1706,8 @@ final case class WorkLocation
     DesignLocations: List[String] = null,
     OneCallRequest: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1654,19 +1733,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WorkLocation.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkLocation.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WorkLocation.fields (position), x))
+
         emitattrs (0, BaseWorks)
         emitattrs (1, DesignLocations)
         emitattr (2, OneCallRequest)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WorkLocation rdf:ID=\"%s\">\n%s\t</cim:WorkLocation>".format (id, export_fields)
@@ -1674,10 +1760,10 @@ extends
 }
 
 object WorkLocation
-extends
-    CIMParseable[WorkLocation]
+    extends
+        CIMParseable[WorkLocation]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "BaseWorks",
         "DesignLocations",
         "OneCallRequest"
@@ -1687,14 +1773,14 @@ extends
         CIMRelationship ("DesignLocations", "DesignLocation", "0..*", "1..*"),
         CIMRelationship ("OneCallRequest", "OneCallRequest", "0..1", "0..*")
     )
-    val BaseWorks: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val DesignLocations: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val OneCallRequest: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val BaseWorks: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val DesignLocations: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val OneCallRequest: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): WorkLocation =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WorkLocation (
             Location.parse (context),
             masks (BaseWorks (), 0),
@@ -1725,7 +1811,7 @@ object WorkLocationSerializer extends CIMSerializer[WorkLocation]
 
     def read (kryo: Kryo, input: Input, cls: Class[WorkLocation]): WorkLocation =
     {
-        val parent = LocationSerializer.read (kryo, input, classOf[Location])
+        val parent = LocationSerializer.read (kryo, input, classOf [Location])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WorkLocation (
             parent,
@@ -1741,27 +1827,27 @@ object WorkLocationSerializer extends CIMSerializer[WorkLocation]
 /**
  * A task within a set of work.
  *
- * @param BaseWork [[ch.ninecode.model.BaseWork BaseWork]] Reference to the superclass object.
- * @param completedDateTime Date and time work task was completed.
- * @param contractorCost Total contractor costs associated with the work task.
- * @param crewETA Estimated time of arrival, so that customer or police/fire department can be informed when the crew will arrive.
+ * @param BaseWork                [[ch.ninecode.model.BaseWork BaseWork]] Reference to the superclass object.
+ * @param completedDateTime       Date and time work task was completed.
+ * @param contractorCost          Total contractor costs associated with the work task.
+ * @param crewETA                 Estimated time of arrival, so that customer or police/fire department can be informed when the crew will arrive.
  * @param estimatedCompletionTime Time and Date when the work task will be completed.
- * @param instruction Instructions for performing this task.
- * @param laborCost Total labor costs associated with the work task.
- * @param laborHours Hours of labor expended under work task.
- * @param materiallCost Total material costs associated with the work task.
- * @param schedOverride If specified, override schedule and perform this task in accordance with instructions specified here.
- * @param startedDateTime Date and time work task was started.
- * @param taskKind Kind of work.
- * @param toolCost Total tool costs associated with the work task.
- * @param Assets [[ch.ninecode.model.Asset Asset]] All assets on which this non-replacement work task is performed.
- * @param Crews [[ch.ninecode.model.Crew Crew]] All crews participating in this work task.
- * @param MaterialItems [[ch.ninecode.model.MaterialItem MaterialItem]] <em>undocumented</em>
- * @param OldAsset [[ch.ninecode.model.Asset Asset]] Old asset replaced by this work task.
- * @param ProcedureDataSet [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Procedure data set associated with this work task.
- * @param SwitchingPlan [[ch.ninecode.model.SwitchingPlan SwitchingPlan]] Switching plan executed by this work task.
- * @param TroubleOrder [[ch.ninecode.model.TroubleOrder TroubleOrder]] <em>undocumented</em>
- * @param Work [[ch.ninecode.model.Work Work]] Work this task belongs to.
+ * @param instruction             Instructions for performing this task.
+ * @param laborCost               Total labor costs associated with the work task.
+ * @param laborHours              Hours of labor expended under work task.
+ * @param materiallCost           Total material costs associated with the work task.
+ * @param schedOverride           If specified, override schedule and perform this task in accordance with instructions specified here.
+ * @param startedDateTime         Date and time work task was started.
+ * @param taskKind                Kind of work.
+ * @param toolCost                Total tool costs associated with the work task.
+ * @param Assets                  [[ch.ninecode.model.Asset Asset]] All assets on which this non-replacement work task is performed.
+ * @param Crews                   [[ch.ninecode.model.Crew Crew]] All crews participating in this work task.
+ * @param MaterialItems           [[ch.ninecode.model.MaterialItem MaterialItem]] <em>undocumented</em>
+ * @param OldAsset                [[ch.ninecode.model.Asset Asset]] Old asset replaced by this work task.
+ * @param ProcedureDataSet        [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Procedure data set associated with this work task.
+ * @param SwitchingPlan           [[ch.ninecode.model.SwitchingPlan SwitchingPlan]] Switching plan executed by this work task.
+ * @param TroubleOrder            [[ch.ninecode.model.TroubleOrder TroubleOrder]] <em>undocumented</em>
+ * @param Work                    [[ch.ninecode.model.Work Work]] Work this task belongs to.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -1790,8 +1876,8 @@ final case class WorkTask
     TroubleOrder: String = null,
     Work: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1817,15 +1903,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WorkTask.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WorkTask.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkTask.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WorkTask.fields (position), x))
+
         emitelem (0, completedDateTime)
         emitelem (1, contractorCost)
         emitelem (2, crewETA)
@@ -1848,6 +1941,7 @@ extends
         emitattr (19, Work)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WorkTask rdf:ID=\"%s\">\n%s\t</cim:WorkTask>".format (id, export_fields)
@@ -1855,10 +1949,10 @@ extends
 }
 
 object WorkTask
-extends
-    CIMParseable[WorkTask]
+    extends
+        CIMParseable[WorkTask]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "completedDateTime",
         "contractorCost",
         "crewETA",
@@ -1890,31 +1984,31 @@ extends
         CIMRelationship ("TroubleOrder", "TroubleOrder", "0..1", "0..*"),
         CIMRelationship ("Work", "Work", "1", "0..*")
     )
-    val completedDateTime: Fielder = parse_element (element (cls, fields(0)))
-    val contractorCost: Fielder = parse_element (element (cls, fields(1)))
-    val crewETA: Fielder = parse_element (element (cls, fields(2)))
-    val estimatedCompletionTime: Fielder = parse_element (element (cls, fields(3)))
-    val instruction: Fielder = parse_element (element (cls, fields(4)))
-    val laborCost: Fielder = parse_element (element (cls, fields(5)))
-    val laborHours: Fielder = parse_element (element (cls, fields(6)))
-    val materiallCost: Fielder = parse_element (element (cls, fields(7)))
-    val schedOverride: Fielder = parse_element (element (cls, fields(8)))
-    val startedDateTime: Fielder = parse_element (element (cls, fields(9)))
-    val taskKind: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val toolCost: Fielder = parse_element (element (cls, fields(11)))
-    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
-    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
-    val MaterialItems: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
-    val OldAsset: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
-    val ProcedureDataSet: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
-    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(17)))
-    val TroubleOrder: Fielder = parse_attribute (attribute (cls, fields(18)))
-    val Work: Fielder = parse_attribute (attribute (cls, fields(19)))
+    val completedDateTime: Fielder = parse_element (element (cls, fields (0)))
+    val contractorCost: Fielder = parse_element (element (cls, fields (1)))
+    val crewETA: Fielder = parse_element (element (cls, fields (2)))
+    val estimatedCompletionTime: Fielder = parse_element (element (cls, fields (3)))
+    val instruction: Fielder = parse_element (element (cls, fields (4)))
+    val laborCost: Fielder = parse_element (element (cls, fields (5)))
+    val laborHours: Fielder = parse_element (element (cls, fields (6)))
+    val materiallCost: Fielder = parse_element (element (cls, fields (7)))
+    val schedOverride: Fielder = parse_element (element (cls, fields (8)))
+    val startedDateTime: Fielder = parse_element (element (cls, fields (9)))
+    val taskKind: Fielder = parse_attribute (attribute (cls, fields (10)))
+    val toolCost: Fielder = parse_element (element (cls, fields (11)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields (12)))
+    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields (13)))
+    val MaterialItems: FielderMultiple = parse_attributes (attribute (cls, fields (14)))
+    val OldAsset: FielderMultiple = parse_attributes (attribute (cls, fields (15)))
+    val ProcedureDataSet: FielderMultiple = parse_attributes (attribute (cls, fields (16)))
+    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields (17)))
+    val TroubleOrder: Fielder = parse_attribute (attribute (cls, fields (18)))
+    val Work: Fielder = parse_attribute (attribute (cls, fields (19)))
 
     def parse (context: CIMContext): WorkTask =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WorkTask (
             BaseWork.parse (context),
             mask (completedDateTime (), 0),
@@ -1979,7 +2073,7 @@ object WorkTaskSerializer extends CIMSerializer[WorkTask]
 
     def read (kryo: Kryo, input: Input, cls: Class[WorkTask]): WorkTask =
     {
-        val parent = BaseWorkSerializer.read (kryo, input, classOf[BaseWork])
+        val parent = BaseWorkSerializer.read (kryo, input, classOf [BaseWork])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WorkTask (
             parent,
@@ -2013,8 +2107,8 @@ object WorkTaskSerializer extends CIMSerializer[WorkTask]
  * Time schedule specific to work.
  *
  * @param TimeSchedule [[ch.ninecode.model.TimeSchedule TimeSchedule]] Reference to the superclass object.
- * @param kind [[ch.ninecode.model.WorkTimeScheduleKind WorkTimeScheduleKind]] Kind of this work schedule.
- * @param BaseWork [[ch.ninecode.model.BaseWork BaseWork]] Time schedule for this work or work task.
+ * @param kind         [[ch.ninecode.model.WorkTimeScheduleKind WorkTimeScheduleKind]] Kind of this work schedule.
+ * @param BaseWork     [[ch.ninecode.model.BaseWork BaseWork]] Time schedule for this work or work task.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -2025,8 +2119,8 @@ final case class WorkTimeSchedule
     kind: String = null,
     BaseWork: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2052,17 +2146,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WorkTimeSchedule.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkTimeSchedule.fields (position), value)
+
         emitattr (0, kind)
         emitattr (1, BaseWork)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WorkTimeSchedule rdf:ID=\"%s\">\n%s\t</cim:WorkTimeSchedule>".format (id, export_fields)
@@ -2070,10 +2170,10 @@ extends
 }
 
 object WorkTimeSchedule
-extends
-    CIMParseable[WorkTimeSchedule]
+    extends
+        CIMParseable[WorkTimeSchedule]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kind",
         "BaseWork"
     )
@@ -2081,13 +2181,13 @@ extends
         CIMRelationship ("kind", "WorkTimeScheduleKind", "0..1", "0..*"),
         CIMRelationship ("BaseWork", "BaseWork", "0..1", "0..*")
     )
-    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val BaseWork: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val BaseWork: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): WorkTimeSchedule =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WorkTimeSchedule (
             TimeSchedule.parse (context),
             mask (kind (), 0),
@@ -2116,7 +2216,7 @@ object WorkTimeScheduleSerializer extends CIMSerializer[WorkTimeSchedule]
 
     def read (kryo: Kryo, input: Input, cls: Class[WorkTimeSchedule]): WorkTimeSchedule =
     {
-        val parent = TimeScheduleSerializer.read (kryo, input, classOf[TimeSchedule])
+        val parent = TimeScheduleSerializer.read (kryo, input, classOf [TimeSchedule])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WorkTimeSchedule (
             parent,
@@ -2131,13 +2231,13 @@ object WorkTimeScheduleSerializer extends CIMSerializer[WorkTimeSchedule]
 /**
  * Kind of work schedule.
  *
- * @param Element Reference to the superclass object.
- * @param actual Actual work time schedule.
- * @param earliest Earliest work time schedule.
- * @param estimate Estimate work time schedule.
+ * @param Element   Reference to the superclass object.
+ * @param actual    Actual work time schedule.
+ * @param earliest  Earliest work time schedule.
+ * @param estimate  Estimate work time schedule.
  * @param immediate ??.
- * @param latest Latest work time schedule.
- * @param request Request work time schedule.
+ * @param latest    Latest work time schedule.
+ * @param request   Request work time schedule.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -2152,8 +2252,8 @@ final case class WorkTimeScheduleKind
     latest: String = null,
     request: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2179,13 +2279,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WorkTimeScheduleKind.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkTimeScheduleKind.fields (position), value)
+
         emitattr (0, actual)
         emitattr (1, earliest)
         emitattr (2, estimate)
@@ -2194,6 +2299,7 @@ extends
         emitattr (5, request)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WorkTimeScheduleKind rdf:ID=\"%s\">\n%s\t</cim:WorkTimeScheduleKind>".format (id, export_fields)
@@ -2201,10 +2307,10 @@ extends
 }
 
 object WorkTimeScheduleKind
-extends
-    CIMParseable[WorkTimeScheduleKind]
+    extends
+        CIMParseable[WorkTimeScheduleKind]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "actual",
         "earliest",
         "estimate",
@@ -2212,17 +2318,17 @@ extends
         "latest",
         "request"
     )
-    val actual: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val earliest: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val estimate: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val immediate: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val latest: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val request: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val actual: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val earliest: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val estimate: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val immediate: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val latest: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val request: Fielder = parse_attribute (attribute (cls, fields (5)))
 
     def parse (context: CIMContext): WorkTimeScheduleKind =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = WorkTimeScheduleKind (
             BasicElement.parse (context),
             mask (actual (), 0),
@@ -2251,7 +2357,7 @@ object WorkTimeScheduleKindSerializer extends CIMSerializer[WorkTimeScheduleKind
             () => output.writeString (obj.latest),
             () => output.writeString (obj.request)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -2259,7 +2365,7 @@ object WorkTimeScheduleKindSerializer extends CIMSerializer[WorkTimeScheduleKind
 
     def read (kryo: Kryo, input: Input, cls: Class[WorkTimeScheduleKind]): WorkTimeScheduleKind =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WorkTimeScheduleKind (
             parent,

@@ -7,8 +7,8 @@ import org.apache.spark.sql.SparkSession
 import ch.ninecode.model._
 
 class CIMNormalizeSuite
-extends
-    ch.ninecode.SparkSuite
+    extends
+        ch.ninecode.SparkSuite
 {
     val FILE_DEPOT = "data/"
 
@@ -21,7 +21,7 @@ extends
         new Unzip ().unzip (s"${FILE_DEPOT}MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BD_v2.zip", s"${FILE_DEPOT}MicroGrid/BaseCase_BC/")
         new Unzip ().unzip (s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", s"${FILE_DEPOT}RealGrid/")
         // run the tests
-        val ret  = super.run (testName, args)
+        val ret = super.run (testName, args)
         // erase the unpacked files
         deleteRecursive (new File (s"${FILE_DEPOT}MicroGrid/"))
         deleteRecursive (new File (s"${FILE_DEPOT}MicroGrid_Error/"))
@@ -46,40 +46,40 @@ extends
                 s"${FILE_DEPOT}MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
                 s"${FILE_DEPOT}MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
             )
-            val options = Map[String, String] (
+            val options = Map [String, String](
                 "ch.ninecode.cim.do_about" -> "true",
                 "ch.ninecode.cim.do_normalize" -> "true") // apply normalization
             val elements = readFile (filenames.mkString (","), options)
 
             assert (elements.count === 665)
 
-            val locations = get[Location]
+            val locations = get [Location]
             val refs = locations.map (location => (location.id, location.PowerSystemResources)).collect
             refs.foreach (ref =>
-                {
-                    assert (ref._2 == null, ref._1)
-                }
+            {
+                assert (ref._2 == null, ref._1)
+            }
             )
 
-            val cables = get[ACLineSegment]
+            val cables = get [ACLineSegment]
             val wires = cables.map (cable => (cable.id, cable.Conductor.ConductingEquipment.Equipment.PowerSystemResource.Location)).collect
             wires.foreach (location =>
-                {
-                    assert (location._2 != null, location._1)
-                }
+            {
+                assert (location._2 != null, location._1)
+            }
             )
 
-            val substations = get[Substation]
+            val substations = get [Substation]
             val stations = substations.map (station => (station.id, station.EquipmentContainer.ConnectivityNodeContainer.PowerSystemResource.Location)).collect
             stations.foreach (location =>
-                {
-                    assert (location._2 != null, location._1)
-                }
+            {
+                assert (location._2 != null, location._1)
+            }
             )
 
-// ToDo: export from CIMReader test cases
-//            val export = new CIMExport (spark)
-//            export.exportAll ("target/MicroGrid.rdf", "MicroGridTestConfiguration")
+        // ToDo: export from CIMReader test cases
+        //            val export = new CIMExport (spark)
+        //            export.exportAll ("target/MicroGrid.rdf", "MicroGridTestConfiguration")
     }
 
     test ("TopologicalNodes")
@@ -92,7 +92,7 @@ extends
                 s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_SV_v2.xml",
                 s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_TP_v2.xml"
             )
-            val options = Map[String, String] (
+            val options = Map [String, String](
                 "ch.ninecode.cim.do_about" -> "true",
                 "ch.ninecode.cim.do_normalize" -> "true") // apply normalization
             val elements = readFile (filenames.mkString (","), options)
@@ -100,16 +100,16 @@ extends
             // grep "rdf:ID" *.xml | wc
             assert (elements.count === 152388)
 
-            val nodes = get[TopologicalNode]
+            val nodes = get [TopologicalNode]
             val refs = nodes.map (node => (node.id, node.TopologicalIsland)).collect
             refs.foreach (ref =>
-                {
-                    assert (ref._2 != null, ref._1)
-                }
+            {
+                assert (ref._2 != null, ref._1)
+            }
             )
 
-// ToDo: export from CIMReader test cases
-//            val export = new CIMExport (spark)
-//            export.exportAll ("target/RealGrid.rdf", "CGMES_v2.4.15_RealGridTestConfiguration")
+        // ToDo: export from CIMReader test cases
+        //            val export = new CIMExport (spark)
+        //            export.exportAll ("target/RealGrid.rdf", "CGMES_v2.4.15_RealGridTestConfiguration")
     }
 }

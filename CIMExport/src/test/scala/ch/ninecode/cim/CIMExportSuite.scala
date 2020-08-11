@@ -109,13 +109,13 @@ class CIMExportSuite extends SparkSuite
     {
         _: SparkSession ⇒
             val voltage =
-"""<cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
+                """<cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
 	<cim:IdentifiedObject.name>400.000 V</cim:IdentifiedObject.name>
 	<cim:BaseVoltage.nominalVoltage>0.4</cim:BaseVoltage.nominalVoltage>
 </cim:BaseVoltage>"""
 
             val xml =
-s"""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                s"""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 	<md:FullModel rdf:about="sias_current">
 	<md:Model.description>NIS Strom (http://nis.ch/produkte#nisStrom) export</md:Model.description>
@@ -138,7 +138,7 @@ $voltage
     {
         _: SparkSession ⇒
             val xml =
-"""	<cim:Facility rdf:ID="STA196_asset">
+                """	<cim:Facility rdf:ID="STA196_asset">
 		<cim:IdentifiedObject.aliasName>187674625:nis_el_station</cim:IdentifiedObject.aliasName>
 		<cim:IdentifiedObject.description>Transformer Station</cim:IdentifiedObject.description>
 		<cim:IdentifiedObject.name>Kiental</cim:IdentifiedObject.name>
@@ -165,8 +165,8 @@ $voltage
     test ("Convex Hull")
     {
         _: SparkSession ⇒
-            val pp = Array[(Double, Double)] ((8, 9), (3, 5), (4, 4), (1, 7), (3, 4), (4, 5), (6, 6), (5, 7), (3, 8))
-            val hull = Hull.scan (pp.toList).toArray[(Double, Double)]
+            val pp = Array [(Double, Double)]((8, 9), (3, 5), (4, 4), (1, 7), (3, 4), (4, 5), (6, 6), (5, 7), (3, 8))
+            val hull = Hull.scan (pp.toList).toArray [(Double, Double)]
             assert ("(3.0,4.0)(1.0,7.0)(3.0,8.0)(8.0,9.0)(6.0,6.0)(4.0,4.0)(3.0,4.0)" == hull.mkString)
     }
 

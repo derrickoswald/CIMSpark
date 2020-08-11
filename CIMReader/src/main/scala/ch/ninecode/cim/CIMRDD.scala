@@ -10,54 +10,54 @@ import org.apache.spark.storage.StorageLevel
 import org.slf4j.Logger
 
 /**
-  * Access globally named and cached RDD of CIM classes.
-  *
-  * This uses the list of persistent RDDs maintained by Spark
-  * to retrieve pre-existing RDD of CIM classes persisted by the
-  * CIMReader.
-  *
-  * These RDD are strongly typed, and are named according to the
-  * corresponding CIM class. For example, there is an <code>RDD[ACLineSegment]</code>
-  * with the name <code>"ACLineSegment"</code> persisted and remembered in the
-  * <code>spark.sparkContext.getPersistentRDDs: collection.Map[Int, RDD[_] ]</code>
-  * by the CIMReader.
-  *
-  * Implicit parameters for the SparkSession and error Logger are required.
-  * Implicit parameter StorageLevel is required to put().
-  *
-  * @example Declare a class that extends CIMRDD to be able to access the <code>get()</code> methods:
-  * {{{
-  * import org.apache.spark.rdd.RDD
-  * import org.apache.spark.sql.SparkSession
-  * import org.slf4j.Logger
-  *
-  * import ch.ninecode.CIMRDD
-  * import ch.ninecode.model._
-  *
-  * class Processor (spark: SparkSession) extends CIMRDD with Serializable
-  * {
-  *     implicit val log: Logger = LoggerFactory.getLogger (getClass)
-  *     implicit val session = spark
-  *
-  *     def process =
-  *     {
-  *         val switches: RDD[Switch] = get[Switch]
-  *         ⋮
-  *     }
-  * }
-  * }}}
-  */
+ * Access globally named and cached RDD of CIM classes.
+ *
+ * This uses the list of persistent RDDs maintained by Spark
+ * to retrieve pre-existing RDD of CIM classes persisted by the
+ * CIMReader.
+ *
+ * These RDD are strongly typed, and are named according to the
+ * corresponding CIM class. For example, there is an <code>RDD[ACLineSegment]</code>
+ * with the name <code>"ACLineSegment"</code> persisted and remembered in the
+ * <code>spark.sparkContext.getPersistentRDDs: collection.Map[Int, RDD[_] ]</code>
+ * by the CIMReader.
+ *
+ * Implicit parameters for the SparkSession and error Logger are required.
+ * Implicit parameter StorageLevel is required to put().
+ *
+ * @example Declare a class that extends CIMRDD to be able to access the <code>get()</code> methods:
+ * {{{
+ * import org.apache.spark.rdd.RDD
+ * import org.apache.spark.sql.SparkSession
+ * import org.slf4j.Logger
+ *
+ * import ch.ninecode.CIMRDD
+ * import ch.ninecode.model._
+ *
+ * class Processor (spark: SparkSession) extends CIMRDD with Serializable
+ * {
+ *     implicit val log: Logger = LoggerFactory.getLogger (getClass)
+ *     implicit val session = spark
+ *
+ *     def process =
+ *     {
+ *         val switches: RDD[Switch] = get[Switch]
+ *         ⋮
+ *     }
+ * }
+ * }}}
+ */
 trait CIMRDD
 {
     /**
      * Check for the named RDD.
      *
-     * @param name The name of the RDD, usually the same as the CIM class.
+     * @param name  The name of the RDD, usually the same as the CIM class.
      * @param spark The Spark session which persisted the named RDD.
      * @tparam T The type of objects contained in the named RDD.
      * @return <code>true</code> if the named RDD exists, <code>false</code> otherwise.
      */
-    def test[T : ClassTag](name: String)(implicit spark: SparkSession): Boolean =
+    def test[T: ClassTag] (name: String)(implicit spark: SparkSession): Boolean =
     {
         spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
         {
@@ -69,25 +69,24 @@ trait CIMRDD
     }
 
     /**
-      * Get the named RDD.
-      *
-      * @param name The name of the RDD, usually the same as the CIM class.
-      * @param spark The Spark session which persisted the named RDD.
-      * @param log A logger for error messages.
-      * @tparam T The type of objects contained in the named RDD.
-      * @return The typed RDD, e.g. <code>RDD[T]</code>.
-      *
-      * @example The RDD of all elements is somewhat special,
-      * currently it is named Elements (plural), so this method must be used:
-      * {{{val elements: RDD[Element] = get[Element]("Elements")}}}.
-      *
-      */
-    def get[T : ClassTag](name: String)(implicit spark: SparkSession, log: Logger): RDD[T] =
+     * Get the named RDD.
+     *
+     * @param name  The name of the RDD, usually the same as the CIM class.
+     * @param spark The Spark session which persisted the named RDD.
+     * @param log   A logger for error messages.
+     * @tparam T The type of objects contained in the named RDD.
+     * @return The typed RDD, e.g. <code>RDD[T]</code>.
+     * @example                                                   The RDD of all elements is somewhat special,
+     *                                                            currently it is named Elements (plural), so this method must be used:
+     * {{{val elements: RDD[Element] = get[Element]("Elements")}}}.
+     *
+     */
+    def get[T: ClassTag] (name: String)(implicit spark: SparkSession, log: Logger): RDD[T] =
     {
         spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
         {
             case Some ((_: Int, rdd: RDD[_])) =>
-                rdd.asInstanceOf[RDD[T]]
+                rdd.asInstanceOf [RDD[T]]
             case Some (_) | None =>
                 log.warn ("""%s not found in Spark context persistent RDDs map""".format (name))
                 null
@@ -97,20 +96,20 @@ trait CIMRDD
     /**
      * Get the named RDD or else an empty RDD of the requested type.
      *
-     * @param name The name of the RDD, usually the same as the CIM class.
+     * @param name  The name of the RDD, usually the same as the CIM class.
      * @param spark The Spark session which persisted the named RDD.
      * @tparam T The type of objects contained in the named RDD.
      * @return The typed RDD, e.g. <code>RDD[T]</code>, as either the persisted RDD or an empty one if none was found.
      *
      */
-    def getOrElse[T : ClassTag](name: String)(implicit spark: SparkSession): RDD[T] =
+    def getOrElse[T: ClassTag] (name: String)(implicit spark: SparkSession): RDD[T] =
     {
         spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
         {
             case Some ((_: Int, rdd: RDD[_])) =>
-                rdd.asInstanceOf[RDD[T]]
+                rdd.asInstanceOf [RDD[T]]
             case Some (_) | None =>
-                spark.sparkContext.emptyRDD[T]
+                spark.sparkContext.emptyRDD [T]
         }
     }
 
@@ -175,18 +174,18 @@ trait CIMRDD
      * the original. But when a completely new CIM RDF file is read in, <code>keep=false</code> will unpersist all
      * the derived RDD.
      *
-     * @param rdd The RDD to persist
-     * @param name The name under which to persist it.
-     * @param keep If <code>true</code> then don't unpersist the existing RDD with the given name.
-     * @param spark The Spark session.
+     * @param rdd     The RDD to persist
+     * @param name    The name under which to persist it.
+     * @param keep    If <code>true</code> then don't unpersist the existing RDD with the given name.
+     * @param spark   The Spark session.
      * @param storage The storage level for persistence.
      * @return The named, viewed and possibly checkpointed original RDD.
      * @tparam T The type of RDD.
      */
-    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T], name: String, keep: Boolean)(implicit spark: SparkSession, storage: StorageLevel): Unit =
+    def put[T <: Product : ClassTag : TypeTag] (rdd: RDD[T], name: String, keep: Boolean)(implicit spark: SparkSession, storage: StorageLevel): Unit =
     {
         val matched = spark.sparkContext.getPersistentRDDs.filter (like (name))
-        val next = matched.foldLeft (0) (biggest (name)) + 1
+        val next = matched.foldLeft (0)(biggest (name)) + 1
         matched.foreach (
             x =>
             {
@@ -211,9 +210,9 @@ trait CIMRDD
      * @tparam T The type of the class.
      * @return The base name of the class.
      */
-    def nameOf[T : ClassTag]: String =
+    def nameOf[T: ClassTag]: String =
     {
-        val classname = classTag[T].runtimeClass.getName
+        val classname = classTag [T].runtimeClass.getName
         classname.substring (classname.lastIndexOf (".") + 1)
     }
 
@@ -227,7 +226,7 @@ trait CIMRDD
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return <code>true</code> if the named RDD exists, <code>false</code> otherwise.
      */
-    def test[T : ClassTag](implicit spark: SparkSession): Boolean = test[T] (nameOf[T])
+    def test[T: ClassTag] (implicit spark: SparkSession): Boolean = test [T](nameOf [T])
 
     /**
      * Get the typed RDD.
@@ -236,11 +235,11 @@ trait CIMRDD
      * class type (the usual case).
      *
      * @param spark The Spark session which persisted the typed RDD.
-     * @param log A logger for error messages.
+     * @param log   A logger for error messages.
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>.
      */
-    def get[T : ClassTag](implicit spark: SparkSession, log: Logger): RDD[T] = get[T] (nameOf[T])
+    def get[T: ClassTag] (implicit spark: SparkSession, log: Logger): RDD[T] = get [T](nameOf [T])
 
     /**
      * Get the typed RDD or an empty RDD if none was registered.
@@ -252,19 +251,19 @@ trait CIMRDD
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>, or an empty RDD of the requested type.
      */
-    def getOrElse[T : ClassTag](implicit spark: SparkSession): RDD[T] = getOrElse (nameOf[T])
+    def getOrElse[T: ClassTag] (implicit spark: SparkSession): RDD[T] = getOrElse (nameOf [T])
 
     /**
      * Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.
      *
-     * @param rdd The RDD to persist
-     * @param keep If <code>true</code> then don't unpersist any existing RDD with the given name.
-     * @param spark The Spark session.
+     * @param rdd     The RDD to persist
+     * @param keep    If <code>true</code> then don't unpersist any existing RDD with the given name.
+     * @param spark   The Spark session.
      * @param storage The storage level for persistence.
      * @tparam T The type of RDD.
      */
-    def put[T <: Product : ClassTag : TypeTag](rdd: RDD[T], keep: Boolean = false)(implicit spark: SparkSession, storage: StorageLevel): Unit =
-        put (rdd, nameOf[T], keep)
+    def put[T <: Product : ClassTag : TypeTag] (rdd: RDD[T], keep: Boolean = false)(implicit spark: SparkSession, storage: StorageLevel): Unit =
+        put (rdd, nameOf [T], keep)
 
     /**
      * Get a typed DataSet for the given class.
@@ -273,10 +272,10 @@ trait CIMRDD
      * @tparam T The type of RDD.
      * @return A typed dataset of the RDD.
      */
-    def asDataSet[T <: Product : ClassTag : TypeTag](implicit spark: SparkSession): Dataset[T] =
+    def asDataSet[T <: Product : ClassTag : TypeTag] (implicit spark: SparkSession): Dataset[T] =
     {
         import spark.sqlContext.implicits._
-        val rdd = getOrElse[T]
+        val rdd = getOrElse [T]
         spark.createDataset (rdd)
     }
 }

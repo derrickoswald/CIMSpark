@@ -27,8 +27,8 @@ final case class DERCurveData
     DERMonitorableParameter: String = null,
     DispatchSchedule: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -54,14 +54,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DERCurveData.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DERCurveData.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DERCurveData.fields (position), value)
+
         emitelem (0, intervalNumber)
         emitelem (1, maxYValue)
         emitelem (2, minYValue)
@@ -71,6 +77,7 @@ extends
         emitattr (6, DispatchSchedule)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DERCurveData rdf:ID=\"%s\">\n%s\t</cim:DERCurveData>".format (id, export_fields)
@@ -78,10 +85,10 @@ extends
 }
 
 object DERCurveData
-extends
-    CIMParseable[DERCurveData]
+    extends
+        CIMParseable[DERCurveData]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "intervalNumber",
         "maxYValue",
         "minYValue",
@@ -94,18 +101,18 @@ extends
         CIMRelationship ("DERMonitorableParameter", "DERMonitorableParameter", "1", "0..1"),
         CIMRelationship ("DispatchSchedule", "DispatchSchedule", "0..1", "0..*")
     )
-    val intervalNumber: Fielder = parse_element (element (cls, fields(0)))
-    val maxYValue: Fielder = parse_element (element (cls, fields(1)))
-    val minYValue: Fielder = parse_element (element (cls, fields(2)))
-    val nominalYValue: Fielder = parse_element (element (cls, fields(3)))
-    val timeStamp: Fielder = parse_element (element (cls, fields(4)))
-    val DERMonitorableParameter: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val DispatchSchedule: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val intervalNumber: Fielder = parse_element (element (cls, fields (0)))
+    val maxYValue: Fielder = parse_element (element (cls, fields (1)))
+    val minYValue: Fielder = parse_element (element (cls, fields (2)))
+    val nominalYValue: Fielder = parse_element (element (cls, fields (3)))
+    val timeStamp: Fielder = parse_element (element (cls, fields (4)))
+    val DERMonitorableParameter: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val DispatchSchedule: Fielder = parse_attribute (attribute (cls, fields (6)))
 
     def parse (context: CIMContext): DERCurveData =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DERCurveData (
             BasicElement.parse (context),
             toInteger (mask (intervalNumber (), 0)),
@@ -136,7 +143,7 @@ object DERCurveDataSerializer extends CIMSerializer[DERCurveData]
             () => output.writeString (obj.DERMonitorableParameter),
             () => output.writeString (obj.DispatchSchedule)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -144,7 +151,7 @@ object DERCurveDataSerializer extends CIMSerializer[DERCurveData]
 
     def read (kryo: Kryo, input: Input, cls: Class[DERCurveData]): DERCurveData =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DERCurveData (
             parent,
@@ -179,8 +186,8 @@ final case class DERFunction
     voltageRegulation: Boolean = false,
     EndDeviceGroup: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -206,14 +213,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DERFunction.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DERFunction.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DERFunction.fields (position), x))
+
         emitelem (0, connectDisconnect)
         emitelem (1, frequencyWattCurveFunction)
         emitelem (2, maxRealPowerLimiting)
@@ -226,6 +239,7 @@ extends
         emitattrs (9, EndDeviceGroup)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DERFunction rdf:ID=\"%s\">\n%s\t</cim:DERFunction>".format (id, export_fields)
@@ -233,10 +247,10 @@ extends
 }
 
 object DERFunction
-extends
-    CIMParseable[DERFunction]
+    extends
+        CIMParseable[DERFunction]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "connectDisconnect",
         "frequencyWattCurveFunction",
         "maxRealPowerLimiting",
@@ -251,21 +265,21 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("EndDeviceGroup", "EndDeviceGroup", "0..*", "0..1")
     )
-    val connectDisconnect: Fielder = parse_element (element (cls, fields(0)))
-    val frequencyWattCurveFunction: Fielder = parse_element (element (cls, fields(1)))
-    val maxRealPowerLimiting: Fielder = parse_element (element (cls, fields(2)))
-    val rampRateControl: Fielder = parse_element (element (cls, fields(3)))
-    val reactivePowerDispatch: Fielder = parse_element (element (cls, fields(4)))
-    val realPowerDispatch: Fielder = parse_element (element (cls, fields(5)))
-    val voltVarCurveFunction: Fielder = parse_element (element (cls, fields(6)))
-    val voltWattCurveFunction: Fielder = parse_element (element (cls, fields(7)))
-    val voltageRegulation: Fielder = parse_element (element (cls, fields(8)))
-    val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val connectDisconnect: Fielder = parse_element (element (cls, fields (0)))
+    val frequencyWattCurveFunction: Fielder = parse_element (element (cls, fields (1)))
+    val maxRealPowerLimiting: Fielder = parse_element (element (cls, fields (2)))
+    val rampRateControl: Fielder = parse_element (element (cls, fields (3)))
+    val reactivePowerDispatch: Fielder = parse_element (element (cls, fields (4)))
+    val realPowerDispatch: Fielder = parse_element (element (cls, fields (5)))
+    val voltVarCurveFunction: Fielder = parse_element (element (cls, fields (6)))
+    val voltWattCurveFunction: Fielder = parse_element (element (cls, fields (7)))
+    val voltageRegulation: Fielder = parse_element (element (cls, fields (8)))
+    val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
 
     def parse (context: CIMContext): DERFunction =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DERFunction (
             BasicElement.parse (context),
             toBoolean (mask (connectDisconnect (), 0)),
@@ -302,7 +316,7 @@ object DERFunctionSerializer extends CIMSerializer[DERFunction]
             () => output.writeBoolean (obj.voltageRegulation),
             () => writeList (obj.EndDeviceGroup, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -310,7 +324,7 @@ object DERFunctionSerializer extends CIMSerializer[DERFunction]
 
     def read (kryo: Kryo, input: Input, cls: Class[DERFunction]): DERFunction =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DERFunction (
             parent,
@@ -339,8 +353,8 @@ final case class DERGroupDispatch
     IdentifiedObject: IdentifiedObject = null,
     EndDeviceGroup: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -366,16 +380,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DERGroupDispatch.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DERGroupDispatch.fields (position), x))
+
         emitattrs (0, EndDeviceGroup)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DERGroupDispatch rdf:ID=\"%s\">\n%s\t</cim:DERGroupDispatch>".format (id, export_fields)
@@ -383,21 +403,21 @@ extends
 }
 
 object DERGroupDispatch
-extends
-    CIMParseable[DERGroupDispatch]
+    extends
+        CIMParseable[DERGroupDispatch]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "EndDeviceGroup"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("EndDeviceGroup", "EndDeviceGroup", "0..*", "0..*")
     )
-    val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): DERGroupDispatch =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DERGroupDispatch (
             IdentifiedObject.parse (context),
             masks (EndDeviceGroup (), 0)
@@ -424,7 +444,7 @@ object DERGroupDispatchSerializer extends CIMSerializer[DERGroupDispatch]
 
     def read (kryo: Kryo, input: Input, cls: Class[DERGroupDispatch]): DERGroupDispatch =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DERGroupDispatch (
             parent,
@@ -445,8 +465,8 @@ final case class DERGroupForecast
     predictionCreationDate: String = null,
     EndDeviceGroup: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -472,18 +492,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DERGroupForecast.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DERGroupForecast.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DERGroupForecast.fields (position), x))
+
         emitelem (0, predictionCreationDate)
         emitattrs (1, EndDeviceGroup)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DERGroupForecast rdf:ID=\"%s\">\n%s\t</cim:DERGroupForecast>".format (id, export_fields)
@@ -491,23 +518,23 @@ extends
 }
 
 object DERGroupForecast
-extends
-    CIMParseable[DERGroupForecast]
+    extends
+        CIMParseable[DERGroupForecast]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "predictionCreationDate",
         "EndDeviceGroup"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("EndDeviceGroup", "EndDeviceGroup", "1..*", "1..*")
     )
-    val predictionCreationDate: Fielder = parse_element (element (cls, fields(0)))
-    val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val predictionCreationDate: Fielder = parse_element (element (cls, fields (0)))
+    val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): DERGroupForecast =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DERGroupForecast (
             IdentifiedObject.parse (context),
             mask (predictionCreationDate (), 0),
@@ -536,7 +563,7 @@ object DERGroupForecastSerializer extends CIMSerializer[DERGroupForecast]
 
     def read (kryo: Kryo, input: Input, cls: Class[DERGroupForecast]): DERGroupForecast =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DERGroupForecast (
             parent,
@@ -565,8 +592,8 @@ final case class DERMonitorableParameter
     DispatchSchedule: List[String] = null,
     EndDeviceGroup: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -592,15 +619,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DERMonitorableParameter.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DERMonitorableParameter.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DERMonitorableParameter.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DERMonitorableParameter.fields (position), x))
+
         emitattr (0, flowDirection)
         emitattr (1, yMultiplier)
         emitattr (2, yUnit)
@@ -612,6 +646,7 @@ extends
         emitattrs (8, EndDeviceGroup)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DERMonitorableParameter rdf:ID=\"%s\">\n%s\t</cim:DERMonitorableParameter>".format (id, export_fields)
@@ -619,10 +654,10 @@ extends
 }
 
 object DERMonitorableParameter
-extends
-    CIMParseable[DERMonitorableParameter]
+    extends
+        CIMParseable[DERMonitorableParameter]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "flowDirection",
         "yMultiplier",
         "yUnit",
@@ -638,20 +673,20 @@ extends
         CIMRelationship ("DispatchSchedule", "DispatchSchedule", "0..*", "1"),
         CIMRelationship ("EndDeviceGroup", "EndDeviceGroup", "0..*", "0..*")
     )
-    val flowDirection: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val yMultiplier: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val yUnit: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val yUnitInstalledMax: Fielder = parse_element (element (cls, fields(3)))
-    val yUnitInstalledMin: Fielder = parse_element (element (cls, fields(4)))
-    val DERCurveData: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val DERParameter: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val DispatchSchedule: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val flowDirection: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val yMultiplier: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val yUnit: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val yUnitInstalledMax: Fielder = parse_element (element (cls, fields (3)))
+    val yUnitInstalledMin: Fielder = parse_element (element (cls, fields (4)))
+    val DERCurveData: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val DERParameter: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val DispatchSchedule: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val EndDeviceGroup: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
 
     def parse (context: CIMContext): DERMonitorableParameter =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DERMonitorableParameter (
             BasicElement.parse (context),
             mask (flowDirection (), 0),
@@ -686,7 +721,7 @@ object DERMonitorableParameterSerializer extends CIMSerializer[DERMonitorablePar
             () => writeList (obj.DispatchSchedule, output),
             () => writeList (obj.EndDeviceGroup, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -694,7 +729,7 @@ object DERMonitorableParameterSerializer extends CIMSerializer[DERMonitorablePar
 
     def read (kryo: Kryo, input: Input, cls: Class[DERMonitorableParameter]): DERMonitorableParameter =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DERMonitorableParameter (
             parent,
@@ -729,8 +764,8 @@ final case class DispatchSchedule
     DERCurveData: List[String] = null,
     DERMonitorableParameter: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -756,15 +791,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DispatchSchedule.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DispatchSchedule.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DispatchSchedule.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DispatchSchedule.fields (position), x))
+
         emitelem (0, confidence)
         emitattr (1, curveStyleKind)
         emitelem (2, numberOfIntervals)
@@ -775,6 +817,7 @@ extends
         emitattr (7, DERMonitorableParameter)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DispatchSchedule rdf:ID=\"%s\">\n%s\t</cim:DispatchSchedule>".format (id, export_fields)
@@ -782,10 +825,10 @@ extends
 }
 
 object DispatchSchedule
-extends
-    CIMParseable[DispatchSchedule]
+    extends
+        CIMParseable[DispatchSchedule]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "confidence",
         "curveStyleKind",
         "numberOfIntervals",
@@ -799,19 +842,19 @@ extends
         CIMRelationship ("DERCurveData", "DERCurveData", "0..*", "0..1"),
         CIMRelationship ("DERMonitorableParameter", "DERMonitorableParameter", "1", "0..*")
     )
-    val confidence: Fielder = parse_element (element (cls, fields(0)))
-    val curveStyleKind: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val numberOfIntervals: Fielder = parse_element (element (cls, fields(2)))
-    val startTime: Fielder = parse_element (element (cls, fields(3)))
-    val timeIntervalDuration: Fielder = parse_element (element (cls, fields(4)))
-    val timeIntervalUnit: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val DERCurveData: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val DERMonitorableParameter: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val confidence: Fielder = parse_element (element (cls, fields (0)))
+    val curveStyleKind: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val numberOfIntervals: Fielder = parse_element (element (cls, fields (2)))
+    val startTime: Fielder = parse_element (element (cls, fields (3)))
+    val timeIntervalDuration: Fielder = parse_element (element (cls, fields (4)))
+    val timeIntervalUnit: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val DERCurveData: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
+    val DERMonitorableParameter: Fielder = parse_attribute (attribute (cls, fields (7)))
 
     def parse (context: CIMContext): DispatchSchedule =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DispatchSchedule (
             BasicElement.parse (context),
             toDouble (mask (confidence (), 0)),
@@ -844,7 +887,7 @@ object DispatchScheduleSerializer extends CIMSerializer[DispatchSchedule]
             () => writeList (obj.DERCurveData, output),
             () => output.writeString (obj.DERMonitorableParameter)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -852,7 +895,7 @@ object DispatchScheduleSerializer extends CIMSerializer[DispatchSchedule]
 
     def read (kryo: Kryo, input: Input, cls: Class[DispatchSchedule]): DispatchSchedule =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DispatchSchedule (
             parent,
@@ -889,8 +932,8 @@ final case class DispatchablePowerCapability
     EndDevice: String = null,
     EndDeviceGroup: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -916,14 +959,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DispatchablePowerCapability.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DispatchablePowerCapability.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DispatchablePowerCapability.fields (position), value)
+
         emitelem (0, currentActivePower)
         emitelem (1, currentApparentPower)
         emitelem (2, currentReactivePower)
@@ -937,6 +986,7 @@ extends
         emitattr (10, EndDeviceGroup)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DispatchablePowerCapability rdf:ID=\"%s\">\n%s\t</cim:DispatchablePowerCapability>".format (id, export_fields)
@@ -944,10 +994,10 @@ extends
 }
 
 object DispatchablePowerCapability
-extends
-    CIMParseable[DispatchablePowerCapability]
+    extends
+        CIMParseable[DispatchablePowerCapability]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "currentActivePower",
         "currentApparentPower",
         "currentReactivePower",
@@ -964,22 +1014,22 @@ extends
         CIMRelationship ("EndDevice", "EndDevice", "0..1", "0..*"),
         CIMRelationship ("EndDeviceGroup", "EndDeviceGroup", "0..1", "0..1")
     )
-    val currentActivePower: Fielder = parse_element (element (cls, fields(0)))
-    val currentApparentPower: Fielder = parse_element (element (cls, fields(1)))
-    val currentReactivePower: Fielder = parse_element (element (cls, fields(2)))
-    val maxActivePower: Fielder = parse_element (element (cls, fields(3)))
-    val maxApparentPower: Fielder = parse_element (element (cls, fields(4)))
-    val maxReactivePower: Fielder = parse_element (element (cls, fields(5)))
-    val minActivePower: Fielder = parse_element (element (cls, fields(6)))
-    val minApparentPower: Fielder = parse_element (element (cls, fields(7)))
-    val minReactivePower: Fielder = parse_element (element (cls, fields(8)))
-    val EndDevice: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val EndDeviceGroup: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val currentActivePower: Fielder = parse_element (element (cls, fields (0)))
+    val currentApparentPower: Fielder = parse_element (element (cls, fields (1)))
+    val currentReactivePower: Fielder = parse_element (element (cls, fields (2)))
+    val maxActivePower: Fielder = parse_element (element (cls, fields (3)))
+    val maxApparentPower: Fielder = parse_element (element (cls, fields (4)))
+    val maxReactivePower: Fielder = parse_element (element (cls, fields (5)))
+    val minActivePower: Fielder = parse_element (element (cls, fields (6)))
+    val minApparentPower: Fielder = parse_element (element (cls, fields (7)))
+    val minReactivePower: Fielder = parse_element (element (cls, fields (8)))
+    val EndDevice: Fielder = parse_attribute (attribute (cls, fields (9)))
+    val EndDeviceGroup: Fielder = parse_attribute (attribute (cls, fields (10)))
 
     def parse (context: CIMContext): DispatchablePowerCapability =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DispatchablePowerCapability (
             BasicElement.parse (context),
             toDouble (mask (currentActivePower (), 0)),
@@ -1018,7 +1068,7 @@ object DispatchablePowerCapabilitySerializer extends CIMSerializer[DispatchableP
             () => output.writeString (obj.EndDevice),
             () => output.writeString (obj.EndDeviceGroup)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -1026,7 +1076,7 @@ object DispatchablePowerCapabilitySerializer extends CIMSerializer[DispatchableP
 
     def read (kryo: Kryo, input: Input, cls: Class[DispatchablePowerCapability]): DispatchablePowerCapability =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DispatchablePowerCapability (
             parent,

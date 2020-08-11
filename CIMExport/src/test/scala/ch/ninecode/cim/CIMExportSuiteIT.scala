@@ -21,6 +21,7 @@ class CIMExportSuiteIT
     extends
         ch.ninecode.SparkSuite
 {
+
     import CIMExportSuiteIT._
 
     val properties: Properties =
@@ -96,7 +97,7 @@ object CIMExportSuiteIT
          *
          * The directory will be created if does not exist.
          *
-         * @param file The Zip file.
+         * @param file      The Zip file.
          * @param directory The directory to extract it to
          * @throws IOException If there is a problem with the zip extraction
          */
@@ -132,7 +133,7 @@ object CIMExportSuiteIT
         /**
          * Extracts a zip entry (file entry).
          *
-         * @param zip The Zip input stream for the file.
+         * @param zip  The Zip input stream for the file.
          * @param path The path to extract he file to.
          * @throws IOException If there is a problem with the zip extraction
          */
@@ -142,7 +143,10 @@ object CIMExportSuiteIT
             val bos = new BufferedOutputStream (new FileOutputStream (path))
             val bytesIn = new Array[Byte](4096)
             var read = -1
-            while ({ read = zip.read (bytesIn); read != -1 })
+            while (
+            {
+                read = zip.read (bytesIn); read != -1
+            })
                 bos.write (bytesIn, 0, read)
             bos.close ()
         }

@@ -15,22 +15,22 @@ import ch.ninecode.cim.CIMSerializer
 /**
  * Supports connection to a terminal associated with a remote bus from which an input signal of a specific type is coming.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param remoteSignalType Type of input signal.
+ * @param IdentifiedObject                       [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param remoteSignalType                       Type of input signal.
  * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Discontinuous excitation control model using this remote input signal.
- * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power factor or VAr controller type 1 model using this remote input signal.
- * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Power system stabilizer model using this remote input signal.
- * @param Terminal [[ch.ninecode.model.Terminal Terminal]] Remote terminal with which this input signal is associated.
- * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Underexcitation limiter model using this remote input signal.
- * @param VoltageCompensatorDynamics [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Voltage compensator model using this remote input signal.
- * @param WindPlantDynamics [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] The wind plant using the remote signal.
- * @param WindTurbineType1or2Dynamics [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Wind generator type 1 or type 2 model using this remote input signal.
- * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Wind turbine type 3 or type 4 models using this remote input signal.
+ * @param PFVArControllerType1Dynamics           [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power factor or VAr controller type 1 model using this remote input signal.
+ * @param PowerSystemStabilizerDynamics          [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Power system stabilizer model using this remote input signal.
+ * @param Terminal                               [[ch.ninecode.model.Terminal Terminal]] Remote terminal with which this input signal is associated.
+ * @param UnderexcitationLimiterDynamics         [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Underexcitation limiter model using this remote input signal.
+ * @param VoltageCompensatorDynamics             [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Voltage compensator model using this remote input signal.
+ * @param WindPlantDynamics                      [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] The wind plant using the remote signal.
+ * @param WindTurbineType1or2Dynamics            [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Wind generator type 1 or type 2 model using this remote input signal.
+ * @param WindTurbineType3or4Dynamics            [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Wind turbine type 3 or type 4 models using this remote input signal.
  * @group StandardInterconnections
  * @groupname StandardInterconnections Package StandardInterconnections
  * @groupdesc StandardInterconnections This subclause describes the standard interconnections for various types of equipment. These interconnections are understood by the application programs and can be identified based on the presence of one of the key classes with a relationship to the static power flow model: SynchronousMachineDynamics, AsynchronousMachineDynamics, EnergyConsumerDynamics or WindTurbineType3or4Dynamics. 
-The relationships between classes expressed in the interconnection diagrams are intended to support dynamic behaviour described by either standard models or user-defined models.
-In the interconnection diagrams, boxes which are black in colour represent function blocks whose functionality can be provided by one of many standard models or by a user-defined model. Blue boxes represent specific standard models.  A dashed box means that the function block or specific standard model is optional.
+ *            The relationships between classes expressed in the interconnection diagrams are intended to support dynamic behaviour described by either standard models or user-defined models.
+ *            In the interconnection diagrams, boxes which are black in colour represent function blocks whose functionality can be provided by one of many standard models or by a user-defined model. Blue boxes represent specific standard models.  A dashed box means that the function block or specific standard model is optional.
  */
 final case class RemoteInputSignal
 (
@@ -46,8 +46,8 @@ final case class RemoteInputSignal
     WindTurbineType1or2Dynamics: String = null,
     WindTurbineType3or4Dynamics: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -73,13 +73,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteInputSignal.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteInputSignal.fields (position), value)
+
         emitattr (0, remoteSignalType)
         emitattr (1, DiscontinuousExcitationControlDynamics)
         emitattr (2, PFVArControllerType1Dynamics)
@@ -92,6 +97,7 @@ extends
         emitattr (9, WindTurbineType3or4Dynamics)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:RemoteInputSignal rdf:ID=\"%s\">\n%s\t</cim:RemoteInputSignal>".format (id, export_fields)
@@ -99,10 +105,10 @@ extends
 }
 
 object RemoteInputSignal
-extends
-    CIMParseable[RemoteInputSignal]
+    extends
+        CIMParseable[RemoteInputSignal]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "remoteSignalType",
         "DiscontinuousExcitationControlDynamics",
         "PFVArControllerType1Dynamics",
@@ -125,21 +131,21 @@ extends
         CIMRelationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "0..1"),
         CIMRelationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "0..1", "0..1")
     )
-    val remoteSignalType: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val DiscontinuousExcitationControlDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val PFVArControllerType1Dynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val PowerSystemStabilizerDynamics: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val UnderexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val VoltageCompensatorDynamics: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val WindPlantDynamics: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val WindTurbineType1or2Dynamics: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val WindTurbineType3or4Dynamics: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val remoteSignalType: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val DiscontinuousExcitationControlDynamics: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val PFVArControllerType1Dynamics: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val PowerSystemStabilizerDynamics: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val UnderexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val VoltageCompensatorDynamics: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val WindPlantDynamics: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val WindTurbineType1or2Dynamics: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val WindTurbineType3or4Dynamics: Fielder = parse_attribute (attribute (cls, fields (9)))
 
     def parse (context: CIMContext): RemoteInputSignal =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = RemoteInputSignal (
             IdentifiedObject.parse (context),
             mask (remoteSignalType (), 0),
@@ -184,7 +190,7 @@ object RemoteInputSignalSerializer extends CIMSerializer[RemoteInputSignal]
 
     def read (kryo: Kryo, input: Input, cls: Class[RemoteInputSignal]): RemoteInputSignal =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RemoteInputSignal (
             parent,

@@ -17,8 +17,8 @@ case class ModelParser (model: File)
     // override the normal UTF8 encoding for Windows-1252
     val db: Database = new DatabaseBuilder (model).setCharset (Charset.forName ("Windows-1252")).open ()
 
-    lazy val getPackageTable: Table =   db.getTable ("t_package")
-    lazy val getObjectTable: Table =    db.getTable ("t_object")
+    lazy val getPackageTable: Table = db.getTable ("t_package")
+    lazy val getObjectTable: Table = db.getTable ("t_object")
     lazy val getConnectorTable: Table = db.getTable ("t_connector")
     lazy val getAttributeTable: Table = db.getTable ("t_attribute")
 
@@ -88,14 +88,14 @@ case class ModelParser (model: File)
         for ((id, cls) <- classes)
             yield
                 if (supers.contains (id))
-                    (id, cls.copy (sup = classes.getOrElse (supers(id), null)))
+                    (id, cls.copy (sup = classes.getOrElse (supers (id), null)))
                 else
                     (id, cls)
     }
 
-    def extractAttributes: Map[ID,List[Attribute]] =
+    def extractAttributes: Map[ID, List[Attribute]] =
     {
-        val ret = scala.collection.mutable.Map[ID,List[Attribute]] ()
+        val ret = scala.collection.mutable.Map[ID, List[Attribute]]()
 
         for (
             row <- getAttributeTable.iterator.asScala.map (Row);
@@ -114,7 +114,7 @@ case class ModelParser (model: File)
                     if (row.hasClassifier) classes.getOrElse (row.getClassifier, null) else null,
                     if (row.hasDefault) row.getDefault else null)
                 if (ret.contains (cls_id))
-                    ret.put (cls_id, ret(cls_id) :+ attribute)
+                    ret.put (cls_id, ret (cls_id) :+ attribute)
                 else
                     ret.put (cls_id, List (attribute))
             }
@@ -135,20 +135,20 @@ case class ModelParser (model: File)
             if (null != src) && (null != dst)
         )
             yield
-            {
-                val role_1 = Role (row.getXUID, row.getDestRole, src, dst, row.getDestRoleNote, row.getDestCard, row.getDestIsAggregate, sideA = true)
-                val role_2 = Role (row.getXUID, row.getSourceRole, dst, src, row.getSourceRoleNote, row.getSourceCard, row.getSourceIsAggregate, sideA = false)
-                role_1.mate = role_2
-                role_2.mate = role_1
-                role_1 :: role_2 :: Nil
-            }
+                {
+                    val role_1 = Role (row.getXUID, row.getDestRole, src, dst, row.getDestRoleNote, row.getDestCard, row.getDestIsAggregate, sideA = true)
+                    val role_2 = Role (row.getXUID, row.getSourceRole, dst, src, row.getSourceRoleNote, row.getSourceCard, row.getSourceIsAggregate, sideA = false)
+                    role_1.mate = role_2
+                    role_2.mate = role_1
+                    role_1 :: role_2 :: Nil
+                }
 
         ret.flatten.toSet
     }
 
     def extractDomains: Set[Domain] =
     {
-        val empty = Set[String]()
+        val empty = Set [String]()
         val ret = for (
             row <- getObjectTable.iterator.asScala.map (Row)
             if row.getObjectType.equals ("Class");
@@ -161,12 +161,16 @@ case class ModelParser (model: File)
             {
                 case "Primitive" =>
                     Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), empty, "")
-                case "CIMDatatype" | "Compound"=>
-                    val details = attributes(cls_id)
-                    val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
+                case "CIMDatatype" | "Compound" =>
+                    val details = attributes (cls_id)
+                    val value = details.find (_.name == "value") match
+                    {
+                        case Some (attribute) => attribute.typ
+                        case None => null
+                    }
                     Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), empty, value)
                 case "enumeration" =>
-                    val enumeration = if (attributes.contains (cls_id)) attributes(cls_id).map (_.name).toSet else Set[String]()
+                    val enumeration = if (attributes.contains (cls_id)) attributes (cls_id).map (_.name).toSet else Set [String]()
                     Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), enumeration, "")
                 case _ =>
                     null
@@ -195,13 +199,22 @@ case class ModelParser (model: File)
 
         def stereo (cls: Class): Boolean =
             (cls.stereotype != "enumeration") &&
-            (cls.stereotype != "CIMDatatype") &&
-            (cls.stereotype != "Primitive")
+                (cls.stereotype != "CIMDatatype") &&
+                (cls.stereotype != "Primitive")
 
-        SortedSet[Class](classes.values.filter (cls => cls.pkg == pkg && stereo (cls)).toSeq:_*)
+        SortedSet [Class](classes.values.filter (cls => cls.pkg == pkg && stereo (cls)).toSeq: _*)
     }
 
-    def objectIdFor (cls: Class): Int = { classes.find (_._2.xuid == cls.xuid) match { case Some (c: (ID, Class)) => c._1 case _ => 0 } }
-    def attributesFor (cls: Class): List[Attribute] = attributes.getOrElse (objectIdFor (cls), List[Attribute]())
+    def objectIdFor (cls: Class): Int =
+    {
+        classes.find (_._2.xuid == cls.xuid) match
+        {
+            case Some (c: (ID, Class)) => c._1
+            case _ => 0
+        }
+    }
+
+    def attributesFor (cls: Class): List[Attribute] = attributes.getOrElse (objectIdFor (cls), List [Attribute]())
+
     def rolesFor (cls: Class): List[Role] = roles.filter (r => r.src == cls && r.name != "").toList
 }

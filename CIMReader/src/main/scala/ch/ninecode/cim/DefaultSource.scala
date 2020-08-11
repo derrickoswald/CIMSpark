@@ -10,12 +10,12 @@ import org.apache.spark.sql.sources.RelationProvider
 import org.slf4j.LoggerFactory
 
 class DefaultSource
-extends
-    RelationProvider
+    extends
+        RelationProvider
 {
     private val log = LoggerFactory.getLogger (getClass)
 
-    def isGlobPath (pattern: Path): Boolean = pattern.toString.exists("{}[]*?\\".toSet.contains)
+    def isGlobPath (pattern: Path): Boolean = pattern.toString.exists ("{}[]*?\\".toSet.contains)
 
     def globPath (fs: FileSystem, path: Path): Seq[Path] = fs.globStatus (path).map (_.getPath)
 
@@ -26,7 +26,7 @@ extends
         parameters: Map[String, String]): BaseRelation =
     {
         val session = sqlContext.sparkSession
-        val files = parameters.getOrElse ("path", sys.error("'path' must be specified for CIM data."))
+        val files = parameters.getOrElse ("path", sys.error ("'path' must be specified for CIM data."))
         log.info (s"createRelation for files $files")
         val allPaths: Seq[String] = files.split (",")
         val globbedPaths = allPaths.flatMap
@@ -49,7 +49,7 @@ extends
                 globPath
         }
         val fileCatalog = new InMemoryFileIndex (session, globbedPaths, parameters, None)
-        new CIMRelation (fileCatalog, parameters) (session)
+        new CIMRelation (fileCatalog, parameters)(session)
     }
 }
 

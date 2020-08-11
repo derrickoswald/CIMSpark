@@ -21,29 +21,32 @@ import scala.reflect.runtime.universe.TypeTag
  */
 abstract class CIMParseable[+A <: Product : ClassTag : TypeTag] extends CIMParser
 {
-    val runtime_class: Class[_] = classTag[A].runtimeClass
+    val runtime_class: Class[_] = classTag [A].runtimeClass
     val classname: String = runtime_class.getName
     val cls: String = classname.substring (classname.lastIndexOf (".") + 1)
     val subsetter: CIMSubsetter[_ <: Product] = new CIMSubsetter[A]()
+
     def register: CIMClassInfo =
         CIMClassInfo (cls, this, subsetter, relations, serializer)
-    def mask (field: Field, position: Int) (implicit bitfields: Array[Int]): String =
+
+    def mask (field: Field, position: Int)(implicit bitfields: Array[Int]): String =
     {
         field match
         {
             case Some (string) =>
-                bitfields(position / 32) |= (1 << (position % 32))
+                bitfields (position / 32) |= (1 << (position % 32))
                 string
             case None =>
                 null
         }
     }
-    def masks (fields: Fields, position: Int) (implicit bitfields: Array[Int]): List[String] =
+
+    def masks (fields: Fields, position: Int)(implicit bitfields: Array[Int]): List[String] =
     {
         fields match
         {
             case Some (list) =>
-                bitfields(position / 32) |= (1 << (position % 32))
+                bitfields (position / 32) |= (1 << (position % 32))
                 list
             case None =>
                 null

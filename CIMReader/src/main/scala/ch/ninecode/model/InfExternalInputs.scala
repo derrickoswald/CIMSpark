@@ -15,9 +15,9 @@ import ch.ninecode.cim.CIMSerializer
 /**
  * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
  *
- * @param ResourceGroupReq [[ch.ninecode.model.ResourceGroupReq ResourceGroupReq]] Reference to the superclass object.
- * @param MarketProduct [[ch.ninecode.model.MarketProduct MarketProduct]] Market product associated with reserve requirement must be a reserve or regulation product.
- * @param ReserveReqCurve [[ch.ninecode.model.ReserveReqCurve ReserveReqCurve]] <em>undocumented</em>
+ * @param ResourceGroupReq      [[ch.ninecode.model.ResourceGroupReq ResourceGroupReq]] Reference to the superclass object.
+ * @param MarketProduct         [[ch.ninecode.model.MarketProduct MarketProduct]] Market product associated with reserve requirement must be a reserve or regulation product.
+ * @param ReserveReqCurve       [[ch.ninecode.model.ReserveReqCurve ReserveReqCurve]] <em>undocumented</em>
  * @param SensitivityPriceCurve [[ch.ninecode.model.SensitivityPriceCurve SensitivityPriceCurve]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
@@ -29,8 +29,8 @@ final case class ReserveReq
     ReserveReqCurve: String = null,
     SensitivityPriceCurve: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -56,18 +56,24 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ReserveReq.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ReserveReq.fields (position), value)
+
         emitattr (0, MarketProduct)
         emitattr (1, ReserveReqCurve)
         emitattr (2, SensitivityPriceCurve)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ReserveReq rdf:ID=\"%s\">\n%s\t</cim:ReserveReq>".format (id, export_fields)
@@ -75,10 +81,10 @@ extends
 }
 
 object ReserveReq
-extends
-    CIMParseable[ReserveReq]
+    extends
+        CIMParseable[ReserveReq]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "MarketProduct",
         "ReserveReqCurve",
         "SensitivityPriceCurve"
@@ -88,14 +94,14 @@ extends
         CIMRelationship ("ReserveReqCurve", "ReserveReqCurve", "1", "1"),
         CIMRelationship ("SensitivityPriceCurve", "SensitivityPriceCurve", "0..1", "0..1")
     )
-    val MarketProduct: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val ReserveReqCurve: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val SensitivityPriceCurve: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val MarketProduct: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val ReserveReqCurve: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val SensitivityPriceCurve: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): ReserveReq =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ReserveReq (
             ResourceGroupReq.parse (context),
             mask (MarketProduct (), 0),
@@ -126,7 +132,7 @@ object ReserveReqSerializer extends CIMSerializer[ReserveReq]
 
     def read (kryo: Kryo, input: Input, cls: Class[ReserveReq]): ReserveReq =
     {
-        val parent = ResourceGroupReqSerializer.read (kryo, input, classOf[ResourceGroupReq])
+        val parent = ResourceGroupReqSerializer.read (kryo, input, classOf [ResourceGroupReq])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ReserveReq (
             parent,
@@ -146,7 +152,7 @@ object ReserveReqSerializer extends CIMSerializer[ReserveReq]
  * X is time, typically expressed in absolute time
  * Y1 is reserve requirement, typically expressed in MW
  *
- * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve      [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param ReserveReq [[ch.ninecode.model.ReserveReq ReserveReq]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
@@ -156,8 +162,8 @@ final case class ReserveReqCurve
     Curve: Curve = null,
     ReserveReq: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -183,16 +189,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ReserveReqCurve.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ReserveReqCurve.fields (position), value)
+
         emitattr (0, ReserveReq)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ReserveReqCurve rdf:ID=\"%s\">\n%s\t</cim:ReserveReqCurve>".format (id, export_fields)
@@ -200,21 +212,21 @@ extends
 }
 
 object ReserveReqCurve
-extends
-    CIMParseable[ReserveReqCurve]
+    extends
+        CIMParseable[ReserveReqCurve]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ReserveReq"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ReserveReq", "ReserveReq", "1", "1")
     )
-    val ReserveReq: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val ReserveReq: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ReserveReqCurve =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ReserveReqCurve (
             Curve.parse (context),
             mask (ReserveReq (), 0)
@@ -241,7 +253,7 @@ object ReserveReqCurveSerializer extends CIMSerializer[ReserveReqCurve]
 
     def read (kryo: Kryo, input: Input, cls: Class[ReserveReqCurve]): ReserveReqCurve =
     {
-        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        val parent = CurveSerializer.read (kryo, input, classOf [Curve])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ReserveReqCurve (
             parent,
@@ -255,11 +267,11 @@ object ReserveReqCurveSerializer extends CIMSerializer[ReserveReqCurve]
 /**
  * A logical grouping of resources that are used to model location of types of requirements for ancillary services such as spinning reserve zones, regulation zones, etc.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param status Status of this group.
- * @param type Type of this group.
+ * @param IdentifiedObject    [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param status              Status of this group.
+ * @param type                Type of this group.
  * @param RegisteredResources [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
- * @param ResourceGroupReqs [[ch.ninecode.model.ResourceGroupReq ResourceGroupReq]] <em>undocumented</em>
+ * @param ResourceGroupReqs   [[ch.ninecode.model.ResourceGroupReq ResourceGroupReq]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
@@ -271,8 +283,8 @@ final case class ResourceGroup
     RegisteredResources: List[String] = null,
     ResourceGroupReqs: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -298,21 +310,29 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ResourceGroup.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceGroup.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceGroup.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ResourceGroup.fields (position), x))
+
         emitattr (0, status)
         emitelem (1, `type`)
         emitattrs (2, RegisteredResources)
         emitattrs (3, ResourceGroupReqs)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ResourceGroup rdf:ID=\"%s\">\n%s\t</cim:ResourceGroup>".format (id, export_fields)
@@ -320,10 +340,10 @@ extends
 }
 
 object ResourceGroup
-extends
-    CIMParseable[ResourceGroup]
+    extends
+        CIMParseable[ResourceGroup]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "type",
         "RegisteredResources",
@@ -333,15 +353,15 @@ extends
         CIMRelationship ("RegisteredResources", "RegisteredResource", "1..*", "0..*"),
         CIMRelationship ("ResourceGroupReqs", "ResourceGroupReq", "0..*", "1")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val `type`: Fielder = parse_element (element (cls, fields(1)))
-    val RegisteredResources: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val ResourceGroupReqs: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val `type`: Fielder = parse_element (element (cls, fields (1)))
+    val RegisteredResources: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val ResourceGroupReqs: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): ResourceGroup =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ResourceGroup (
             IdentifiedObject.parse (context),
             mask (status (), 0),
@@ -374,7 +394,7 @@ object ResourceGroupSerializer extends CIMSerializer[ResourceGroup]
 
     def read (kryo: Kryo, input: Input, cls: Class[ResourceGroup]): ResourceGroup =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ResourceGroup (
             parent,
@@ -392,8 +412,8 @@ object ResourceGroupSerializer extends CIMSerializer[ResourceGroup]
  * Ancillary service requirements for a market.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param RTOs [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
- * @param ResourceGroup [[ch.ninecode.model.ResourceGroup ResourceGroup]] <em>undocumented</em>
+ * @param RTOs             [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
+ * @param ResourceGroup    [[ch.ninecode.model.ResourceGroup ResourceGroup]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
@@ -403,8 +423,8 @@ final case class ResourceGroupReq
     RTOs: List[String] = null,
     ResourceGroup: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -430,18 +450,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ResourceGroupReq.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceGroupReq.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ResourceGroupReq.fields (position), x))
+
         emitattrs (0, RTOs)
         emitattr (1, ResourceGroup)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ResourceGroupReq rdf:ID=\"%s\">\n%s\t</cim:ResourceGroupReq>".format (id, export_fields)
@@ -449,10 +476,10 @@ extends
 }
 
 object ResourceGroupReq
-extends
-    CIMParseable[ResourceGroupReq]
+    extends
+        CIMParseable[ResourceGroupReq]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "RTOs",
         "ResourceGroup"
     )
@@ -460,13 +487,13 @@ extends
         CIMRelationship ("RTOs", "RTO", "0..*", "0..*"),
         CIMRelationship ("ResourceGroup", "ResourceGroup", "1", "0..*")
     )
-    val RTOs: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val ResourceGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val RTOs: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val ResourceGroup: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): ResourceGroupReq =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ResourceGroupReq (
             IdentifiedObject.parse (context),
             masks (RTOs (), 0),
@@ -495,7 +522,7 @@ object ResourceGroupReqSerializer extends CIMSerializer[ResourceGroupReq]
 
     def read (kryo: Kryo, input: Input, cls: Class[ResourceGroupReq]): ResourceGroupReq =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ResourceGroupReq (
             parent,
@@ -514,7 +541,7 @@ object ResourceGroupReqSerializer extends CIMSerializer[ResourceGroupReq]
  * X axis is constrained quantity (e.g., MW)
  * Y1 axis is money per constrained quantity
  *
- * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve      [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param ReserveReq [[ch.ninecode.model.ReserveReq ReserveReq]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
@@ -524,8 +551,8 @@ final case class SensitivityPriceCurve
     Curve: Curve = null,
     ReserveReq: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -551,16 +578,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SensitivityPriceCurve.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SensitivityPriceCurve.fields (position), value)
+
         emitattr (0, ReserveReq)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:SensitivityPriceCurve rdf:ID=\"%s\">\n%s\t</cim:SensitivityPriceCurve>".format (id, export_fields)
@@ -568,21 +601,21 @@ extends
 }
 
 object SensitivityPriceCurve
-extends
-    CIMParseable[SensitivityPriceCurve]
+    extends
+        CIMParseable[SensitivityPriceCurve]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ReserveReq"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ReserveReq", "ReserveReq", "0..1", "0..1")
     )
-    val ReserveReq: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val ReserveReq: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): SensitivityPriceCurve =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = SensitivityPriceCurve (
             Curve.parse (context),
             mask (ReserveReq (), 0)
@@ -609,7 +642,7 @@ object SensitivityPriceCurveSerializer extends CIMSerializer[SensitivityPriceCur
 
     def read (kryo: Kryo, input: Input, cls: Class[SensitivityPriceCurve]): SensitivityPriceCurve =
     {
-        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        val parent = CurveSerializer.read (kryo, input, classOf [Curve])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = SensitivityPriceCurve (
             parent,

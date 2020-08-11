@@ -62,7 +62,7 @@ object CIMExportMain
      *
      * @param args command line arguments
      */
-    def main (args:Array[String])
+    def main (args: Array[String])
     {
         val optionparser = new CIMExportOptionsParser (APPLICATION_NAME, APPLICATION_VERSION)
 
@@ -102,12 +102,12 @@ object CIMExportMain
                     try
                     {
                         // read the file
-                        val reader_options = scala.collection.mutable.HashMap[String, String] ()
+                        val reader_options = scala.collection.mutable.HashMap[String, String]()
                         options.cimopts.map (pair => reader_options.put (pair._1, pair._2))
                         val filelist = options.files.mkString (",")
                         reader_options.put ("path", filelist)
                         log.info (s"reading CIM files $filelist")
-                        val elements = session.read.format ("ch.ninecode.cim").options (reader_options).load (options.files:_*)
+                        val elements = session.read.format ("ch.ninecode.cim").options (reader_options).load (options.files: _*)
                         log.info (s"${elements.count} elements")
 
                         val export = new CIMExport (session)
@@ -115,8 +115,9 @@ object CIMExportMain
                             export.exportAll (options.outputfile)
                         if (options.islands)
                             export.exportAllIslands (options.outputdir)
-                        else if (options.transformers)
-                            export.exportAllTransformers (options)
+                        else
+                            if (options.transformers)
+                                export.exportAllTransformers (options)
                     }
                     finally
                     {

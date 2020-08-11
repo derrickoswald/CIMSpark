@@ -17,9 +17,9 @@ import ch.ninecode.cim.CIMSerializer
  *
  * Relationship between time (Y1-axis) vs. MW (X-axis).
  *
- * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Curve                      [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param loadReductionTimeCurveType type of the curve: Possible values are but not limited to:
- *        Max, Min,
+ *                                   Max, Min,
  * @group InfReferenceData
  * @groupname InfReferenceData Package InfReferenceData
  */
@@ -28,8 +28,8 @@ final case class LoadReductionTimeCurve
     Curve: Curve = null,
     loadReductionTimeCurveType: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -55,16 +55,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadReductionTimeCurve.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadReductionTimeCurve.fields (position), value)
+
         emitelem (0, loadReductionTimeCurveType)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:LoadReductionTimeCurve rdf:ID=\"%s\">\n%s\t</cim:LoadReductionTimeCurve>".format (id, export_fields)
@@ -72,18 +78,18 @@ extends
 }
 
 object LoadReductionTimeCurve
-extends
-    CIMParseable[LoadReductionTimeCurve]
+    extends
+        CIMParseable[LoadReductionTimeCurve]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "loadReductionTimeCurveType"
     )
-    val loadReductionTimeCurveType: Fielder = parse_element (element (cls, fields(0)))
+    val loadReductionTimeCurveType: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: CIMContext): LoadReductionTimeCurve =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = LoadReductionTimeCurve (
             Curve.parse (context),
             mask (loadReductionTimeCurveType (), 0)
@@ -110,7 +116,7 @@ object LoadReductionTimeCurveSerializer extends CIMSerializer[LoadReductionTimeC
 
     def read (kryo: Kryo, input: Input, cls: Class[LoadReductionTimeCurve]): LoadReductionTimeCurve =
     {
-        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
+        val parent = CurveSerializer.read (kryo, input, classOf [Curve])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = LoadReductionTimeCurve (
             parent,
@@ -126,24 +132,24 @@ object LoadReductionTimeCurveSerializer extends CIMSerializer[LoadReductionTimeC
  *
  * Use for future use case when developing the RegisteredDistributedResource specialized classes.
  *
- * @param Element Reference to the superclass object.
- * @param maxBaseLoad Maximum Base Load (MW), per Participating Load Resource
- * @param maxDeploymentTime Maximum Deployment time (seconds)
- * @param maxLoadRedTimesPerDay Maximum Number of Daily Load Curtailments
- * @param maxLoadReduction maximum load reduction
- * @param maxReductionTime Maxiimum Load Reduction Time (min), per Participating Load Resource
- * @param maxWeeklyDeployment Maximum weekly deployments
- * @param minLoadReduction Minimum MW for a load reduction (e.g., MW rating of a discrete pump.
- *        This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
- * @param minLoadReductionCost minimum load reduction cost.
- *        Single number for the load
+ * @param Element                  Reference to the superclass object.
+ * @param maxBaseLoad              Maximum Base Load (MW), per Participating Load Resource
+ * @param maxDeploymentTime        Maximum Deployment time (seconds)
+ * @param maxLoadRedTimesPerDay    Maximum Number of Daily Load Curtailments
+ * @param maxLoadReduction         maximum load reduction
+ * @param maxReductionTime         Maxiimum Load Reduction Time (min), per Participating Load Resource
+ * @param maxWeeklyDeployment      Maximum weekly deployments
+ * @param minLoadReduction         Minimum MW for a load reduction (e.g., MW rating of a discrete pump.
+ *                                 This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
+ * @param minLoadReductionCost     minimum load reduction cost.
+ *                                 Single number for the load
  * @param minLoadReductionInterval Shortest period load reduction shall be maintained before load can be restored to normal levels.
- *        This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
- * @param minReductionTime Minimum Load Reduction Time (min), per Participating Load Resource
- * @param minTimeBetLoadRed Shortest time that load shall be left at normal levels before a new load reduction.
- *        This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
- * @param reqNoticeTime Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
- *        This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
+ *                                 This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
+ * @param minReductionTime         Minimum Load Reduction Time (min), per Participating Load Resource
+ * @param minTimeBetLoadRed        Shortest time that load shall be left at normal levels before a new load reduction.
+ *                                 This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
+ * @param reqNoticeTime            Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
+ *                                 This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
  * @group InfReferenceData
  * @groupname InfReferenceData Package InfReferenceData
  */
@@ -163,8 +169,8 @@ final case class RegisteredControllableLoad
     minTimeBetLoadRed: Double = 0.0,
     reqNoticeTime: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -190,13 +196,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RegisteredControllableLoad.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RegisteredControllableLoad.fields (position), value)
+
         emitelem (0, maxBaseLoad)
         emitelem (1, maxDeploymentTime)
         emitelem (2, maxLoadRedTimesPerDay)
@@ -211,6 +222,7 @@ extends
         emitelem (11, reqNoticeTime)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:RegisteredControllableLoad rdf:ID=\"%s\">\n%s\t</cim:RegisteredControllableLoad>".format (id, export_fields)
@@ -218,10 +230,10 @@ extends
 }
 
 object RegisteredControllableLoad
-extends
-    CIMParseable[RegisteredControllableLoad]
+    extends
+        CIMParseable[RegisteredControllableLoad]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "maxBaseLoad",
         "maxDeploymentTime",
         "maxLoadRedTimesPerDay",
@@ -235,23 +247,23 @@ extends
         "minTimeBetLoadRed",
         "reqNoticeTime"
     )
-    val maxBaseLoad: Fielder = parse_element (element (cls, fields(0)))
-    val maxDeploymentTime: Fielder = parse_element (element (cls, fields(1)))
-    val maxLoadRedTimesPerDay: Fielder = parse_element (element (cls, fields(2)))
-    val maxLoadReduction: Fielder = parse_element (element (cls, fields(3)))
-    val maxReductionTime: Fielder = parse_element (element (cls, fields(4)))
-    val maxWeeklyDeployment: Fielder = parse_element (element (cls, fields(5)))
-    val minLoadReduction: Fielder = parse_element (element (cls, fields(6)))
-    val minLoadReductionCost: Fielder = parse_element (element (cls, fields(7)))
-    val minLoadReductionInterval: Fielder = parse_element (element (cls, fields(8)))
-    val minReductionTime: Fielder = parse_element (element (cls, fields(9)))
-    val minTimeBetLoadRed: Fielder = parse_element (element (cls, fields(10)))
-    val reqNoticeTime: Fielder = parse_element (element (cls, fields(11)))
+    val maxBaseLoad: Fielder = parse_element (element (cls, fields (0)))
+    val maxDeploymentTime: Fielder = parse_element (element (cls, fields (1)))
+    val maxLoadRedTimesPerDay: Fielder = parse_element (element (cls, fields (2)))
+    val maxLoadReduction: Fielder = parse_element (element (cls, fields (3)))
+    val maxReductionTime: Fielder = parse_element (element (cls, fields (4)))
+    val maxWeeklyDeployment: Fielder = parse_element (element (cls, fields (5)))
+    val minLoadReduction: Fielder = parse_element (element (cls, fields (6)))
+    val minLoadReductionCost: Fielder = parse_element (element (cls, fields (7)))
+    val minLoadReductionInterval: Fielder = parse_element (element (cls, fields (8)))
+    val minReductionTime: Fielder = parse_element (element (cls, fields (9)))
+    val minTimeBetLoadRed: Fielder = parse_element (element (cls, fields (10)))
+    val reqNoticeTime: Fielder = parse_element (element (cls, fields (11)))
 
     def parse (context: CIMContext): RegisteredControllableLoad =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = RegisteredControllableLoad (
             BasicElement.parse (context),
             toDouble (mask (maxBaseLoad (), 0)),
@@ -292,7 +304,7 @@ object RegisteredControllableLoadSerializer extends CIMSerializer[RegisteredCont
             () => output.writeDouble (obj.minTimeBetLoadRed),
             () => output.writeDouble (obj.reqNoticeTime)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -300,7 +312,7 @@ object RegisteredControllableLoadSerializer extends CIMSerializer[RegisteredCont
 
     def read (kryo: Kryo, input: Input, cls: Class[RegisteredControllableLoad]): RegisteredControllableLoad =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RegisteredControllableLoad (
             parent,

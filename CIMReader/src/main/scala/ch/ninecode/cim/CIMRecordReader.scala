@@ -11,7 +11,7 @@ import ch.ninecode.model.Element
 
 class CIMRecordReader extends RecordReader[String, Element]
 {
-    val log: Log = LogFactory.getLog (classOf[CIMRecordReader])
+    val log: Log = LogFactory.getLog (classOf [CIMRecordReader])
     var cim: CHIM = _
 
     def initialize (genericSplit: InputSplit, context: TaskAttemptContext): Unit =
@@ -20,7 +20,7 @@ class CIMRecordReader extends RecordReader[String, Element]
         log.info (s"genericSplit: ${genericSplit.toString}")
         log.info (s"context: ${context.getTaskAttemptID.toString}")
         val job = context.getConfiguration
-        val split = genericSplit.asInstanceOf[FileSplit]
+        val split = genericSplit.asInstanceOf [FileSplit]
         val start = split.getStart
         val bytes = split.getLength
         val file = split.getPath
@@ -34,13 +34,13 @@ class CIMRecordReader extends RecordReader[String, Element]
         val extra = if (available > end) Math.min (CHIM.OVERREAD.toLong, available - end) else 0L
         // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
         val size = (bytes + extra).toInt
-        val buffer = new Array[Byte] (size)
+        val buffer = new Array[Byte](size)
         in.readFully (start, buffer)
 
         val low =
             if (0 == start)
-                // strip any BOM(Byte Order Mark) i.e. 0xEF,0xBB,0xBF
-                if ((size >= 3) && (buffer(0) == 0xef) && (buffer(1) == 0xbb) && (buffer(2) == 0xbf))
+            // strip any BOM(Byte Order Mark) i.e. 0xEF,0xBB,0xBF
+                if ((size >= 3) && (buffer (0) == 0xef) && (buffer (1) == 0xbb) && (buffer (2) == 0xbf))
                     3
                 else
                     0
@@ -53,8 +53,8 @@ class CIMRecordReader extends RecordReader[String, Element]
                 // skip to next UTF-8 non-continuation byte (high order bit zero)
                 // by advancing past at most 4 bytes
                 var i = 0
-                if ((buffer(low + i) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
-                    while (0 != (buffer(low + i) & 0x80) && (i < Math.min (4, size)))
+                if ((buffer (low + i) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
+                    while (0 != (buffer (low + i) & 0x80) && (i < Math.min (4, size)))
                         i += 1
                 low + i
             }

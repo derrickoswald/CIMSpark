@@ -18,50 +18,50 @@ import ch.ninecode.cim.CIMSerializer
  * In cases where a transformer phase shift is modelled and the EquivalentBranch is spanning the same nodes, the impedance quantities for the EquivalentBranch shall consider the needed phase shift.
  *
  * @param EquivalentEquipment [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
- * @param negativeR12 Negative sequence series resistance from terminal sequence  1 to terminal sequence 2.
- *        Used for short circuit data exchange according to IEC 60909.
- *        EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param negativeR21 Negative sequence series resistance from terminal sequence 2 to terminal sequence 1.
- *        Used for short circuit data exchange according to IEC 60909.
- *        EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param negativeX12 Negative sequence series reactance from terminal sequence  1 to terminal sequence 2.
- *        Used for short circuit data exchange according to IEC 60909.
- *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param negativeX21 Negative sequence series reactance from terminal sequence 2 to terminal sequence 1.
- *        Used for short circuit data exchange according to IEC 60909.
- *        Usage: EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param positiveR12 Positive sequence series resistance from terminal sequence  1 to terminal sequence 2 .
- *        Used for short circuit data exchange according to IEC 60909.
- *        EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param positiveR21 Positive sequence series resistance from terminal sequence 2 to terminal sequence 1.
- *        Used for short circuit data exchange according to IEC 60909.
- *        EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param positiveX12 Positive sequence series reactance from terminal sequence  1 to terminal sequence 2.
- *        Used for short circuit data exchange according to IEC 60909.
- *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param positiveX21 Positive sequence series reactance from terminal sequence 2 to terminal sequence 1.
- *        Used for short circuit data exchange according to IEC 60909.
- *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param r Positive sequence series resistance of the reduced branch.
- * @param r21 Resistance from terminal sequence 2 to terminal sequence 1 .
- *        Used for steady state power flow. This attribute is optional and represent unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.r is given, then EquivalentBranch.r21 is assumed equal to EquivalentBranch.r.
- *        Usage rule : EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param x Positive sequence series reactance of the reduced branch.
- * @param x21 Reactance from terminal sequence 2 to terminal sequence 1.
- *        Used for steady state power flow. This attribute is optional and represents an unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.x is given, then EquivalentBranch.x21 is assumed equal to EquivalentBranch.x.
- *        Usage rule: EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param zeroR12 Zero sequence series resistance from terminal sequence  1 to terminal sequence 2.
- *        Used for short circuit data exchange according to IEC 60909.
- *        EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param zeroR21 Zero sequence series resistance from terminal sequence  2 to terminal sequence 1.
- *        Used for short circuit data exchange according to IEC 60909.
- *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param zeroX12 Zero sequence series reactance from terminal sequence  1 to terminal sequence 2.
- *        Used for short circuit data exchange according to IEC 60909.
- *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
- * @param zeroX21 Zero sequence series reactance from terminal sequence 2 to terminal sequence 1.
- *        Used for short circuit data exchange according to IEC 60909.
- *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param negativeR12         Negative sequence series resistance from terminal sequence  1 to terminal sequence 2.
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param negativeR21         Negative sequence series resistance from terminal sequence 2 to terminal sequence 1.
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param negativeX12         Negative sequence series reactance from terminal sequence  1 to terminal sequence 2.
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param negativeX21         Negative sequence series reactance from terminal sequence 2 to terminal sequence 1.
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            Usage: EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param positiveR12         Positive sequence series resistance from terminal sequence  1 to terminal sequence 2 .
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param positiveR21         Positive sequence series resistance from terminal sequence 2 to terminal sequence 1.
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param positiveX12         Positive sequence series reactance from terminal sequence  1 to terminal sequence 2.
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param positiveX21         Positive sequence series reactance from terminal sequence 2 to terminal sequence 1.
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param r                   Positive sequence series resistance of the reduced branch.
+ * @param r21                 Resistance from terminal sequence 2 to terminal sequence 1 .
+ *                            Used for steady state power flow. This attribute is optional and represent unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.r is given, then EquivalentBranch.r21 is assumed equal to EquivalentBranch.r.
+ *                            Usage rule : EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param x                   Positive sequence series reactance of the reduced branch.
+ * @param x21                 Reactance from terminal sequence 2 to terminal sequence 1.
+ *                            Used for steady state power flow. This attribute is optional and represents an unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.x is given, then EquivalentBranch.x21 is assumed equal to EquivalentBranch.x.
+ *                            Usage rule: EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param zeroR12             Zero sequence series resistance from terminal sequence  1 to terminal sequence 2.
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param zeroR21             Zero sequence series resistance from terminal sequence  2 to terminal sequence 1.
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param zeroX12             Zero sequence series reactance from terminal sequence  1 to terminal sequence 2.
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
+ * @param zeroX21             Zero sequence series reactance from terminal sequence 2 to terminal sequence 1.
+ *                            Used for short circuit data exchange according to IEC 60909.
+ *                            Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
@@ -86,8 +86,8 @@ final case class EquivalentBranch
     zeroX12: Double = 0.0,
     zeroX21: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -113,13 +113,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EquivalentBranch.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EquivalentBranch.fields (position), value)
+
         emitelem (0, negativeR12)
         emitelem (1, negativeR21)
         emitelem (2, negativeX12)
@@ -138,6 +143,7 @@ extends
         emitelem (15, zeroX21)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:EquivalentBranch rdf:ID=\"%s\">\n%s\t</cim:EquivalentBranch>".format (id, export_fields)
@@ -145,10 +151,10 @@ extends
 }
 
 object EquivalentBranch
-extends
-    CIMParseable[EquivalentBranch]
+    extends
+        CIMParseable[EquivalentBranch]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "negativeR12",
         "negativeR21",
         "negativeX12",
@@ -166,27 +172,27 @@ extends
         "zeroX12",
         "zeroX21"
     )
-    val negativeR12: Fielder = parse_element (element (cls, fields(0)))
-    val negativeR21: Fielder = parse_element (element (cls, fields(1)))
-    val negativeX12: Fielder = parse_element (element (cls, fields(2)))
-    val negativeX21: Fielder = parse_element (element (cls, fields(3)))
-    val positiveR12: Fielder = parse_element (element (cls, fields(4)))
-    val positiveR21: Fielder = parse_element (element (cls, fields(5)))
-    val positiveX12: Fielder = parse_element (element (cls, fields(6)))
-    val positiveX21: Fielder = parse_element (element (cls, fields(7)))
-    val r: Fielder = parse_element (element (cls, fields(8)))
-    val r21: Fielder = parse_element (element (cls, fields(9)))
-    val x: Fielder = parse_element (element (cls, fields(10)))
-    val x21: Fielder = parse_element (element (cls, fields(11)))
-    val zeroR12: Fielder = parse_element (element (cls, fields(12)))
-    val zeroR21: Fielder = parse_element (element (cls, fields(13)))
-    val zeroX12: Fielder = parse_element (element (cls, fields(14)))
-    val zeroX21: Fielder = parse_element (element (cls, fields(15)))
+    val negativeR12: Fielder = parse_element (element (cls, fields (0)))
+    val negativeR21: Fielder = parse_element (element (cls, fields (1)))
+    val negativeX12: Fielder = parse_element (element (cls, fields (2)))
+    val negativeX21: Fielder = parse_element (element (cls, fields (3)))
+    val positiveR12: Fielder = parse_element (element (cls, fields (4)))
+    val positiveR21: Fielder = parse_element (element (cls, fields (5)))
+    val positiveX12: Fielder = parse_element (element (cls, fields (6)))
+    val positiveX21: Fielder = parse_element (element (cls, fields (7)))
+    val r: Fielder = parse_element (element (cls, fields (8)))
+    val r21: Fielder = parse_element (element (cls, fields (9)))
+    val x: Fielder = parse_element (element (cls, fields (10)))
+    val x21: Fielder = parse_element (element (cls, fields (11)))
+    val zeroR12: Fielder = parse_element (element (cls, fields (12)))
+    val zeroR21: Fielder = parse_element (element (cls, fields (13)))
+    val zeroX12: Fielder = parse_element (element (cls, fields (14)))
+    val zeroX21: Fielder = parse_element (element (cls, fields (15)))
 
     def parse (context: CIMContext): EquivalentBranch =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = EquivalentBranch (
             EquivalentEquipment.parse (context),
             toDouble (mask (negativeR12 (), 0)),
@@ -243,7 +249,7 @@ object EquivalentBranchSerializer extends CIMSerializer[EquivalentBranch]
 
     def read (kryo: Kryo, input: Input, cls: Class[EquivalentBranch]): EquivalentBranch =
     {
-        val parent = EquivalentEquipmentSerializer.read (kryo, input, classOf[EquivalentEquipment])
+        val parent = EquivalentEquipmentSerializer.read (kryo, input, classOf [EquivalentEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EquivalentBranch (
             parent,
@@ -275,7 +281,7 @@ object EquivalentBranchSerializer extends CIMSerializer[EquivalentBranch]
  * The class is the base for equivalent objects of different types.
  *
  * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
- * @param EquivalentNetwork [[ch.ninecode.model.EquivalentNetwork EquivalentNetwork]] The equivalent where the reduced model belongs.
+ * @param EquivalentNetwork   [[ch.ninecode.model.EquivalentNetwork EquivalentNetwork]] The equivalent where the reduced model belongs.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
@@ -285,8 +291,8 @@ final case class EquivalentEquipment
     ConductingEquipment: ConductingEquipment = null,
     EquivalentNetwork: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -312,16 +318,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EquivalentEquipment.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EquivalentEquipment.fields (position), value)
+
         emitattr (0, EquivalentNetwork)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:EquivalentEquipment rdf:ID=\"%s\">\n%s\t</cim:EquivalentEquipment>".format (id, export_fields)
@@ -329,21 +341,21 @@ extends
 }
 
 object EquivalentEquipment
-extends
-    CIMParseable[EquivalentEquipment]
+    extends
+        CIMParseable[EquivalentEquipment]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "EquivalentNetwork"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("EquivalentNetwork", "EquivalentNetwork", "0..1", "0..*")
     )
-    val EquivalentNetwork: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val EquivalentNetwork: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): EquivalentEquipment =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = EquivalentEquipment (
             ConductingEquipment.parse (context),
             mask (EquivalentNetwork (), 0)
@@ -370,7 +382,7 @@ object EquivalentEquipmentSerializer extends CIMSerializer[EquivalentEquipment]
 
     def read (kryo: Kryo, input: Input, cls: Class[EquivalentEquipment]): EquivalentEquipment =
     {
-        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf [ConductingEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EquivalentEquipment (
             parent,
@@ -386,43 +398,43 @@ object EquivalentEquipmentSerializer extends CIMSerializer[EquivalentEquipment]
  *
  * Voltage regulation is allowed only at the point of connection.
  *
- * @param EquivalentEquipment [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
- * @param maxP Maximum active power of the injection.
- * @param maxQ Maximum reactive power of the injection.
- *        Used for modelling of infeed for load flow exchange. Not used for short circuit modelling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
- * @param minP Minimum active power of the injection.
- * @param minQ Minimum reactive power of the injection.
- *        Used for modelling of infeed for load flow exchange. Not used for short circuit modelling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
- * @param p Equivalent active power injection.
- *        Load sign convention is used, i.e. positive sign means flow out from a node.
- *        Starting value for steady state solutions.
- * @param q Equivalent reactive power injection.
- *        Load sign convention is used, i.e. positive sign means flow out from a node.
- *        Starting value for steady state solutions.
- * @param r Positive sequence resistance.
- *        Used to represent Extended-Ward (IEC 60909).
- *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
- * @param r0 Zero sequence resistance.
- *        Used to represent Extended-Ward (IEC 60909).
- *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
- * @param r2 Negative sequence resistance.
- *        Used to represent Extended-Ward (IEC 60909).
- *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
- * @param regulationCapability Specifies whether or not the EquivalentInjection has the capability to regulate the local voltage.
- *        If true the EquivalentInjection can regulate. If false the EquivalentInjection cannot regulate. ReactiveCapabilityCurve can only be associated with EquivalentInjection  if the flag is true.
- * @param regulationStatus Specifies the regulation status of the EquivalentInjection.
- *        True is regulating.  False is not regulating.
- * @param regulationTarget The target voltage for voltage regulation.
- *        The attribute shall be a positive value.
- * @param x Positive sequence reactance.
- *        Used to represent Extended-Ward (IEC 60909).
- *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
- * @param x0 Zero sequence reactance.
- *        Used to represent Extended-Ward (IEC 60909).
- *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
- * @param x2 Negative sequence reactance.
- *        Used to represent Extended-Ward (IEC 60909).
- *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
+ * @param EquivalentEquipment     [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
+ * @param maxP                    Maximum active power of the injection.
+ * @param maxQ                    Maximum reactive power of the injection.
+ *                                Used for modelling of infeed for load flow exchange. Not used for short circuit modelling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
+ * @param minP                    Minimum active power of the injection.
+ * @param minQ                    Minimum reactive power of the injection.
+ *                                Used for modelling of infeed for load flow exchange. Not used for short circuit modelling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
+ * @param p                       Equivalent active power injection.
+ *                                Load sign convention is used, i.e. positive sign means flow out from a node.
+ *                                Starting value for steady state solutions.
+ * @param q                       Equivalent reactive power injection.
+ *                                Load sign convention is used, i.e. positive sign means flow out from a node.
+ *                                Starting value for steady state solutions.
+ * @param r                       Positive sequence resistance.
+ *                                Used to represent Extended-Ward (IEC 60909).
+ *                                Usage : Extended-Ward is a result of network reduction prior to the data exchange.
+ * @param r0                      Zero sequence resistance.
+ *                                Used to represent Extended-Ward (IEC 60909).
+ *                                Usage : Extended-Ward is a result of network reduction prior to the data exchange.
+ * @param r2                      Negative sequence resistance.
+ *                                Used to represent Extended-Ward (IEC 60909).
+ *                                Usage : Extended-Ward is a result of network reduction prior to the data exchange.
+ * @param regulationCapability    Specifies whether or not the EquivalentInjection has the capability to regulate the local voltage.
+ *                                If true the EquivalentInjection can regulate. If false the EquivalentInjection cannot regulate. ReactiveCapabilityCurve can only be associated with EquivalentInjection  if the flag is true.
+ * @param regulationStatus        Specifies the regulation status of the EquivalentInjection.
+ *                                True is regulating.  False is not regulating.
+ * @param regulationTarget        The target voltage for voltage regulation.
+ *                                The attribute shall be a positive value.
+ * @param x                       Positive sequence reactance.
+ *                                Used to represent Extended-Ward (IEC 60909).
+ *                                Usage : Extended-Ward is a result of network reduction prior to the data exchange.
+ * @param x0                      Zero sequence reactance.
+ *                                Used to represent Extended-Ward (IEC 60909).
+ *                                Usage : Extended-Ward is a result of network reduction prior to the data exchange.
+ * @param x2                      Negative sequence reactance.
+ *                                Used to represent Extended-Ward (IEC 60909).
+ *                                Usage : Extended-Ward is a result of network reduction prior to the data exchange.
  * @param ReactiveCapabilityCurve [[ch.ninecode.model.ReactiveCapabilityCurve ReactiveCapabilityCurve]] The reactive capability curve used by this equivalent injection.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
@@ -448,8 +460,8 @@ final case class EquivalentInjection
     x2: Double = 0.0,
     ReactiveCapabilityCurve: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -475,14 +487,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EquivalentInjection.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EquivalentInjection.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EquivalentInjection.fields (position), value)
+
         emitelem (0, maxP)
         emitelem (1, maxQ)
         emitelem (2, minP)
@@ -501,6 +519,7 @@ extends
         emitattr (15, ReactiveCapabilityCurve)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:EquivalentInjection rdf:ID=\"%s\">\n%s\t</cim:EquivalentInjection>".format (id, export_fields)
@@ -508,10 +527,10 @@ extends
 }
 
 object EquivalentInjection
-extends
-    CIMParseable[EquivalentInjection]
+    extends
+        CIMParseable[EquivalentInjection]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "maxP",
         "maxQ",
         "minP",
@@ -532,27 +551,27 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ReactiveCapabilityCurve", "ReactiveCapabilityCurve", "0..1", "0..*")
     )
-    val maxP: Fielder = parse_element (element (cls, fields(0)))
-    val maxQ: Fielder = parse_element (element (cls, fields(1)))
-    val minP: Fielder = parse_element (element (cls, fields(2)))
-    val minQ: Fielder = parse_element (element (cls, fields(3)))
-    val p: Fielder = parse_element (element (cls, fields(4)))
-    val q: Fielder = parse_element (element (cls, fields(5)))
-    val r: Fielder = parse_element (element (cls, fields(6)))
-    val r0: Fielder = parse_element (element (cls, fields(7)))
-    val r2: Fielder = parse_element (element (cls, fields(8)))
-    val regulationCapability: Fielder = parse_element (element (cls, fields(9)))
-    val regulationStatus: Fielder = parse_element (element (cls, fields(10)))
-    val regulationTarget: Fielder = parse_element (element (cls, fields(11)))
-    val x: Fielder = parse_element (element (cls, fields(12)))
-    val x0: Fielder = parse_element (element (cls, fields(13)))
-    val x2: Fielder = parse_element (element (cls, fields(14)))
-    val ReactiveCapabilityCurve: Fielder = parse_attribute (attribute (cls, fields(15)))
+    val maxP: Fielder = parse_element (element (cls, fields (0)))
+    val maxQ: Fielder = parse_element (element (cls, fields (1)))
+    val minP: Fielder = parse_element (element (cls, fields (2)))
+    val minQ: Fielder = parse_element (element (cls, fields (3)))
+    val p: Fielder = parse_element (element (cls, fields (4)))
+    val q: Fielder = parse_element (element (cls, fields (5)))
+    val r: Fielder = parse_element (element (cls, fields (6)))
+    val r0: Fielder = parse_element (element (cls, fields (7)))
+    val r2: Fielder = parse_element (element (cls, fields (8)))
+    val regulationCapability: Fielder = parse_element (element (cls, fields (9)))
+    val regulationStatus: Fielder = parse_element (element (cls, fields (10)))
+    val regulationTarget: Fielder = parse_element (element (cls, fields (11)))
+    val x: Fielder = parse_element (element (cls, fields (12)))
+    val x0: Fielder = parse_element (element (cls, fields (13)))
+    val x2: Fielder = parse_element (element (cls, fields (14)))
+    val ReactiveCapabilityCurve: Fielder = parse_attribute (attribute (cls, fields (15)))
 
     def parse (context: CIMContext): EquivalentInjection =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = EquivalentInjection (
             EquivalentEquipment.parse (context),
             toDouble (mask (maxP (), 0)),
@@ -609,7 +628,7 @@ object EquivalentInjectionSerializer extends CIMSerializer[EquivalentInjection]
 
     def read (kryo: Kryo, input: Input, cls: Class[EquivalentInjection]): EquivalentInjection =
     {
-        val parent = EquivalentEquipmentSerializer.read (kryo, input, classOf[EquivalentEquipment])
+        val parent = EquivalentEquipmentSerializer.read (kryo, input, classOf [EquivalentEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EquivalentInjection (
             parent,
@@ -641,7 +660,7 @@ object EquivalentInjectionSerializer extends CIMSerializer[EquivalentInjection]
  * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are not contained by the equivalent.
  *
  * @param ConnectivityNodeContainer [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] Reference to the superclass object.
- * @param EquivalentEquipments [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] The associated reduced equivalents.
+ * @param EquivalentEquipments      [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] The associated reduced equivalents.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
@@ -651,8 +670,8 @@ final case class EquivalentNetwork
     ConnectivityNodeContainer: ConnectivityNodeContainer = null,
     EquivalentEquipments: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -678,16 +697,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EquivalentNetwork.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EquivalentNetwork.fields (position), x))
+
         emitattrs (0, EquivalentEquipments)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:EquivalentNetwork rdf:ID=\"%s\">\n%s\t</cim:EquivalentNetwork>".format (id, export_fields)
@@ -695,21 +720,21 @@ extends
 }
 
 object EquivalentNetwork
-extends
-    CIMParseable[EquivalentNetwork]
+    extends
+        CIMParseable[EquivalentNetwork]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "EquivalentEquipments"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("EquivalentEquipments", "EquivalentEquipment", "0..*", "0..1")
     )
-    val EquivalentEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val EquivalentEquipments: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): EquivalentNetwork =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = EquivalentNetwork (
             ConnectivityNodeContainer.parse (context),
             masks (EquivalentEquipments (), 0)
@@ -736,7 +761,7 @@ object EquivalentNetworkSerializer extends CIMSerializer[EquivalentNetwork]
 
     def read (kryo: Kryo, input: Input, cls: Class[EquivalentNetwork]): EquivalentNetwork =
     {
-        val parent = ConnectivityNodeContainerSerializer.read (kryo, input, classOf[ConnectivityNodeContainer])
+        val parent = ConnectivityNodeContainerSerializer.read (kryo, input, classOf [ConnectivityNodeContainer])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EquivalentNetwork (
             parent,
@@ -751,8 +776,8 @@ object EquivalentNetworkSerializer extends CIMSerializer[EquivalentNetwork]
  * The class represents equivalent shunts.
  *
  * @param EquivalentEquipment [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
- * @param b Positive sequence shunt susceptance.
- * @param g Positive sequence shunt conductance.
+ * @param b                   Positive sequence shunt susceptance.
+ * @param g                   Positive sequence shunt conductance.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
@@ -763,8 +788,8 @@ final case class EquivalentShunt
     b: Double = 0.0,
     g: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -790,17 +815,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EquivalentShunt.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EquivalentShunt.fields (position), value)
+
         emitelem (0, b)
         emitelem (1, g)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:EquivalentShunt rdf:ID=\"%s\">\n%s\t</cim:EquivalentShunt>".format (id, export_fields)
@@ -808,20 +839,20 @@ extends
 }
 
 object EquivalentShunt
-extends
-    CIMParseable[EquivalentShunt]
+    extends
+        CIMParseable[EquivalentShunt]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "b",
         "g"
     )
-    val b: Fielder = parse_element (element (cls, fields(0)))
-    val g: Fielder = parse_element (element (cls, fields(1)))
+    val b: Fielder = parse_element (element (cls, fields (0)))
+    val g: Fielder = parse_element (element (cls, fields (1)))
 
     def parse (context: CIMContext): EquivalentShunt =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = EquivalentShunt (
             EquivalentEquipment.parse (context),
             toDouble (mask (b (), 0)),
@@ -850,7 +881,7 @@ object EquivalentShuntSerializer extends CIMSerializer[EquivalentShunt]
 
     def read (kryo: Kryo, input: Input, cls: Class[EquivalentShunt]): EquivalentShunt =
     {
-        val parent = EquivalentEquipmentSerializer.read (kryo, input, classOf[EquivalentEquipment])
+        val parent = EquivalentEquipmentSerializer.read (kryo, input, classOf [EquivalentEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EquivalentShunt (
             parent,

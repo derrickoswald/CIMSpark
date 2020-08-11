@@ -26,20 +26,23 @@ import ch.ninecode.model.Element
 // If (our class) DefaultSource inherits from FileFormat, we get no chance to do subsetting, named RDD setup, Join, Edges etc.
 //
 class CIMFileFormat
-extends
-    FileFormat
+    extends
+        FileFormat
 {
-    private val log = LoggerFactory.getLogger (getClass) 
+    private val log = LoggerFactory.getLogger (getClass)
 
     // just to get a schema
     case class dummy
     (
         override val sup: Element = null
     )
-    extends
-        Element
+        extends
+            Element
     {
-        override def copy (): Row = { clone ().asInstanceOf[Row] }
+        override def copy (): Row =
+        {
+            clone ().asInstanceOf [Row]
+        }
     }
 
     /**
@@ -84,17 +87,17 @@ extends
     /**
      * Returns a function that can be used to read a single file in as an Iterator of InternalRow.
      *
-     * @param dataSchema The global data schema. It can be either specified by the user, or
-     *                   reconciled/merged from all underlying data files. If any partition columns
-     *                   are contained in the files, they are preserved in this schema.
+     * @param dataSchema      The global data schema. It can be either specified by the user, or
+     *                        reconciled/merged from all underlying data files. If any partition columns
+     *                        are contained in the files, they are preserved in this schema.
      * @param partitionSchema The schema of the partition column row that will be present in each
      *                        PartitionedFile. These columns should be appended to the rows that
      *                        are produced by the iterator.
-     * @param requiredSchema The schema of the data that should be output for each row.  This may be a
-     *                       subset of the columns that are present in the file if column pruning has
-     *                       occurred.
-     * @param filters A set of filters than can optionally be used to reduce the number of rows output
-     * @param options A set of string -> string configuration options.
+     * @param requiredSchema  The schema of the data that should be output for each row.  This may be a
+     *                        subset of the columns that are present in the file if column pruning has
+     *                        occurred.
+     * @param filters         A set of filters than can optionally be used to reduce the number of rows output
+     * @param options         A set of string -> string configuration options.
      * @return A function to convert the file into a set of rows.
      */
     override def buildReader (
