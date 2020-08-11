@@ -40,7 +40,7 @@ class SparkSuite extends fixture.FunSuite
          *
          * The directory will be created if does not exist.
          *
-         * @param file The Zip file.
+         * @param file      The Zip file.
          * @param directory The directory to extract it to
          * @throws IOException If there is a problem with the zip extraction
          */
@@ -76,7 +76,7 @@ class SparkSuite extends fixture.FunSuite
         /**
          * Extracts a zip entry (file entry).
          *
-         * @param zip The Zip input stream for the file.
+         * @param zip  The Zip input stream for the file.
          * @param path The path to extract he file to.
          * @throws IOException If there is a problem with the zip extraction
          */
@@ -86,7 +86,10 @@ class SparkSuite extends fixture.FunSuite
             val bos = new BufferedOutputStream (new FileOutputStream (path))
             val bytesIn = new Array[Byte](4096)
             var read = -1
-            while ({ read = zip.read (bytesIn); read != -1 })
+            while (
+            {
+                read = zip.read (bytesIn); read != -1
+            })
                 bos.write (bytesIn, 0, read)
             bos.close ()
         }
@@ -120,11 +123,11 @@ class SparkSuite extends fixture.FunSuite
         val session = SparkSession.builder ().config (configuration).getOrCreate () // create the fixture
         session.sparkContext.setLogLevel ("ERROR") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
         try
-            withFixture (test.toNoArgTest (session)) // "loan" the fixture to the test
-        finally session.stop() // clean up the fixture
+        withFixture (test.toNoArgTest (session)) // "loan" the fixture to the test
+        finally session.stop () // clean up the fixture
     }
 
-    def readFile (filename: String, options: util.Map[String, String] = new util.HashMap[String, String] ())(implicit spark: SparkSession): DataFrame =
+    def readFile (filename: String, options: util.Map[String, String] = new util.HashMap[String, String]())(implicit spark: SparkSession): DataFrame =
     {
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
         spark.read.format ("ch.ninecode.cim").options (options).load (filename) // ToDo: why doesn't this work? load (filename.split (","):_*)
@@ -133,24 +136,23 @@ class SparkSuite extends fixture.FunSuite
     /**
      * Get the named RDD.
      *
-     * @param name The name of the RDD, usually the same as the CIM class.
+     * @param name  The name of the RDD, usually the same as the CIM class.
      * @param spark The Spark session which persisted the named RDD.
      * @tparam T The type of objects contained in the named RDD.
      * @return The typed RDD, e.g. <code>RDD[T]</code>.
-     *
-     * @example The RDD of all elements is somewhat special,
-     * currently it is named Elements (plural), so this method must be used:
+     * @example                                                   The RDD of all elements is somewhat special,
+     *                                                            currently it is named Elements (plural), so this method must be used:
      * {{{val elements: RDD[Element] = get[Element]("Elements")}}}.
      *
      */
-    def get[T : ClassTag](name: String)(implicit spark: SparkSession): RDD[T] =
+    def get[T: ClassTag] (name: String)(implicit spark: SparkSession): RDD[T] =
     {
 
         val rdd: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs
         rdd.find (_._2.name == name) match
         {
             case Some ((_, rdd: RDD[_])) =>
-                rdd.asInstanceOf[RDD[T]]
+                rdd.asInstanceOf [RDD[T]]
             case Some (_) =>
                 null
             case None =>
@@ -169,9 +171,9 @@ class SparkSuite extends fixture.FunSuite
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>.
      */
-    def get[T : ClassTag](implicit spark: SparkSession): RDD[T] =
+    def get[T: ClassTag] (implicit spark: SparkSession): RDD[T] =
     {
-        val classname = classTag[T].runtimeClass.getName
+        val classname = classTag [T].runtimeClass.getName
         val name = classname.substring (classname.lastIndexOf (".") + 1)
         get (name)
     }

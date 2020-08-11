@@ -7,8 +7,8 @@ import ch.ninecode.model._
 import org.apache.spark.sql.SparkSession
 
 class CIMAboutSuite
-extends
-    ch.ninecode.SparkSuite
+    extends
+        ch.ninecode.SparkSuite
 {
     val FILE_DEPOT = "data/"
 
@@ -20,7 +20,7 @@ extends
         new Unzip ().unzip (FILE_DEPOT + "MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_NL_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
         new Unzip ().unzip (FILE_DEPOT + "MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BD_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
         // run the tests
-        val ret  = super.run (testName, args)
+        val ret = super.run (testName, args)
         // erase the unpacked files
         deleteRecursive (new File (FILE_DEPOT + "MicroGrid/"))
         deleteRecursive (new File (FILE_DEPOT + "MicroGrid_Error/"))
@@ -192,174 +192,174 @@ extends
     {
         implicit spark: SparkSession ⇒
 
-        val filenames = Array (
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_EQ_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_TP_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_DL_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_SSH_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_DY_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_GL_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_SV_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
-        )
-        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-        options.put ("ch.ninecode.cim.do_about", "true")
-        val elements = readFile (filenames.mkString (","), options)
+            val filenames = Array (
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_EQ_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_TP_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_DL_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_SSH_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_DY_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_GL_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_SV_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
+            )
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
+            options.put ("ch.ninecode.cim.do_about", "true")
+            val elements = readFile (filenames.mkString (","), options)
 
-        assert (elements.count === 665)
-        for (pair ← BelgiumElementCount)
-            assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
-        for (pair ← BelgiumElementCount)
-            assert (spark.sparkContext.getPersistentRDDs.filter (_._2.name == pair._1).head._2.count === pair._2, pair._1)
+            assert (elements.count === 665)
+            for (pair ← BelgiumElementCount)
+                assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
+            for (pair ← BelgiumElementCount)
+                assert (spark.sparkContext.getPersistentRDDs.filter (_._2.name == pair._1).head._2.count === pair._2, pair._1)
 
-        // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
-        val terminals = get[Terminal]
-        val tnodes = terminals.flatMap (terminal ⇒ if (0 != terminal.ACDCTerminal.sequenceNumber) List (terminal) else List ()).collect
-        tnodes.foreach (terminal ⇒
+            // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
+            val terminals = get [Terminal]
+            val tnodes = terminals.flatMap (terminal ⇒ if (0 != terminal.ACDCTerminal.sequenceNumber) List (terminal) else List ()).collect
+            tnodes.foreach (terminal ⇒
             {
                 assert (null != terminal.TopologicalNode, terminal.id)
                 assert (terminal.ACDCTerminal.connected, terminal.id)
             }
-        )
+            )
 
-        // test rdf:about added p and q to energy consumers
-        val consumers = get[EnergyConsumer]
-        val enodes = consumers.collect
-        enodes.foreach (consumer ⇒
+            // test rdf:about added p and q to energy consumers
+            val consumers = get [EnergyConsumer]
+            val enodes = consumers.collect
+            enodes.foreach (consumer ⇒
             {
                 assert (0.0 != consumer.p, consumer.id)
                 assert (0.0 != consumer.q || consumer.id == "_b1480a00-b427-4001-a26c-51954d2bb7e9", consumer.id) // handle the special snowflake
             }
-        )
+            )
 
-        // test rdf:about added p and q to equivalent injections
-        val injections = get[EquivalentInjection]
-        val inodes = injections.collect
-        inodes.foreach (injection ⇒
+            // test rdf:about added p and q to equivalent injections
+            val injections = get [EquivalentInjection]
+            val inodes = injections.collect
+            inodes.foreach (injection ⇒
             {
                 assert (0.0 != injection.p, injection.id)
                 assert (0.0 != injection.q, injection.id)
             }
-        )
+            )
     }
 
     test ("Netherlands")
     {
         implicit spark: SparkSession ⇒
 
-        val filenames = Array (
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_EQ_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_TP_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_DL_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_SSH_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_DY_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_GL_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_SV_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
-        )
-        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-        options.put ("ch.ninecode.cim.do_about", "true")
-        val elements = readFile (filenames.mkString (","), options)
+            val filenames = Array (
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_EQ_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_TP_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_DL_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_SSH_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_DY_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_GL_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_SV_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
+            )
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
+            options.put ("ch.ninecode.cim.do_about", "true")
+            val elements = readFile (filenames.mkString (","), options)
 
-        assert (elements.count === 567)
-        for (pair ← NetherlandsElementCount)
-            assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
-        for (pair ← NetherlandsElementCount)
-            assert (spark.sparkContext.getPersistentRDDs.filter (_._2.name == pair._1).head._2.count === pair._2, pair._1)
+            assert (elements.count === 567)
+            for (pair ← NetherlandsElementCount)
+                assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
+            for (pair ← NetherlandsElementCount)
+                assert (spark.sparkContext.getPersistentRDDs.filter (_._2.name == pair._1).head._2.count === pair._2, pair._1)
 
-        // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
-        val terminals = get[Terminal]
-        val tnodes = terminals.flatMap (terminal ⇒ if (0 != terminal.ACDCTerminal.sequenceNumber) List (terminal) else List ()).collect
-        tnodes.foreach (terminal ⇒
+            // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
+            val terminals = get [Terminal]
+            val tnodes = terminals.flatMap (terminal ⇒ if (0 != terminal.ACDCTerminal.sequenceNumber) List (terminal) else List ()).collect
+            tnodes.foreach (terminal ⇒
             {
                 assert (null != terminal.TopologicalNode, terminal.id)
                 assert (terminal.ACDCTerminal.connected, terminal.id)
             }
-        )
+            )
 
-        // test rdf:about added p and q to energy consumers
-        val consumers = get[EnergyConsumer]
-        val enodes = consumers.collect
-        enodes.foreach (consumer ⇒
+            // test rdf:about added p and q to energy consumers
+            val consumers = get [EnergyConsumer]
+            val enodes = consumers.collect
+            enodes.foreach (consumer ⇒
             {
                 assert (0.0 != consumer.p, consumer.id)
                 assert (0.0 != consumer.q, consumer.id)
             }
-        )
+            )
 
-        // test rdf:about added p and q to equivalent injections
-        val injections = get[EquivalentInjection]
-        val inodes = injections.collect
-        inodes.foreach (injection ⇒
+            // test rdf:about added p and q to equivalent injections
+            val injections = get [EquivalentInjection]
+            val inodes = injections.collect
+            inodes.foreach (injection ⇒
             {
                 assert (0.0 != injection.p, injection.id)
                 assert (0.0 != injection.q, injection.id)
             }
-        )
+            )
     }
 
     test ("Base Case")
     {
         implicit spark: SparkSession ⇒
 
-        val filenames = Array (
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_EQ_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_TP_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_DL_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_SSH_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_DY_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_GL_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_SV_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_EQ_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_TP_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_DL_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_SSH_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_DY_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_GL_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_SV_V2.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
-            FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
-        )
-        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-        options.put ("ch.ninecode.cim.do_about", "true")
-        val elements = readFile (filenames.mkString (","), options)
+            val filenames = Array (
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_EQ_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_TP_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_DL_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_SSH_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_DY_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_GL_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_SV_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_EQ_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_TP_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_DL_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_SSH_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_DY_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_GL_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_SV_V2.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
+                FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
+            )
+            val options = new util.HashMap[String, String]().asInstanceOf [util.Map[String, String]]
+            options.put ("ch.ninecode.cim.do_about", "true")
+            val elements = readFile (filenames.mkString (","), options)
 
-        assert (elements.count === 1206) // BaseCaseElementCount.map (_._2).sum is off by 6 = TapChangerControl (isA RegulatingControl)
-        for (pair ← BaseCaseElementCount)
-            assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
-        for (pair ← BaseCaseElementCount)
-            assert (spark.sparkContext.getPersistentRDDs.filter(_._2.name == pair._1).head._2.count === pair._2, pair._1)
+            assert (elements.count === 1206) // BaseCaseElementCount.map (_._2).sum is off by 6 = TapChangerControl (isA RegulatingControl)
+            for (pair ← BaseCaseElementCount)
+                assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
+            for (pair ← BaseCaseElementCount)
+                assert (spark.sparkContext.getPersistentRDDs.filter (_._2.name == pair._1).head._2.count === pair._2, pair._1)
 
-        // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
-        val terminals = get[Terminal]
-        val tnodes = terminals.flatMap (terminal ⇒ if (0 != terminal.ACDCTerminal.sequenceNumber) List (terminal) else List ()).collect
-        tnodes.foreach (terminal ⇒
+            // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
+            val terminals = get [Terminal]
+            val tnodes = terminals.flatMap (terminal ⇒ if (0 != terminal.ACDCTerminal.sequenceNumber) List (terminal) else List ()).collect
+            tnodes.foreach (terminal ⇒
             {
                 assert (null != terminal.TopologicalNode, terminal.id)
                 assert (terminal.ACDCTerminal.connected, terminal.id)
             }
-        )
+            )
 
-        // test rdf:about added p and q to energy consumers
-        val consumers = get[EnergyConsumer]
-        val enodes = consumers.collect
-        enodes.foreach (consumer ⇒
+            // test rdf:about added p and q to energy consumers
+            val consumers = get [EnergyConsumer]
+            val enodes = consumers.collect
+            enodes.foreach (consumer ⇒
             {
                 assert (0.0 != consumer.p, consumer.id)
                 assert (0.0 != consumer.q || consumer.id == "_b1480a00-b427-4001-a26c-51954d2bb7e9", consumer.id) // handle the special snowflake
             }
-        )
+            )
 
-        // test rdf:about added p and q to equivalent injections
-        val injections = get[EquivalentInjection]
-        val inodes = injections.collect
-        inodes.foreach (injection ⇒
+            // test rdf:about added p and q to equivalent injections
+            val injections = get [EquivalentInjection]
+            val inodes = injections.collect
+            inodes.foreach (injection ⇒
             {
                 assert (0.0 != injection.p, injection.id)
                 assert (0.0 != injection.q, injection.id)
             }
-        )
+            )
     }
 }

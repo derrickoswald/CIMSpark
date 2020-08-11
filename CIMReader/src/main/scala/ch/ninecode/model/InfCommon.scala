@@ -10,9 +10,9 @@ import ch.ninecode.cim.Relationship
 /**
  * Organisation that is a commercial bank, agency, or other institution that offers a similar service.
  *
- * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
- * @param bic Bank identifier code as defined in ISO 9362; for use in countries wher IBAN is not yet in operation.
- * @param iban International bank account number defined in ISO 13616; for countries where IBAN is not in operation, the existing BIC or SWIFT codes may be used instead (see ISO 9362).
+ * @param sup          [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
+ * @param bic          Bank identifier code as defined in ISO 9362; for use in countries wher IBAN is not yet in operation.
+ * @param iban         International bank account number defined in ISO 13616; for countries where IBAN is not in operation, the existing BIC or SWIFT codes may be used instead (see ISO 9362).
  * @param BankAccounts [[ch.ninecode.model.BankAccount BankAccount]] All BankAccounts this Bank provides.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -25,13 +25,17 @@ case class Bank
     iban: String,
     BankAccounts: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List()) }
+    def this () =
+    {
+        this (null, null, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -40,27 +44,38 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
-    override def copy (): Row = { clone ().asInstanceOf[Bank] }
+    def OrganisationRole: OrganisationRole = sup.asInstanceOf [OrganisationRole]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Bank]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Bank.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Bank.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Bank.fields (position), x))
+
         emitelem (0, bic)
         emitelem (1, iban)
         emitattrs (2, BankAccounts)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Bank rdf:ID=\"%s\">\n%s\t</cim:Bank>".format (id, export_fields)
@@ -68,10 +83,10 @@ extends
 }
 
 object Bank
-extends
-    Parseable[Bank]
+    extends
+        Parseable[Bank]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "bic",
         "iban",
         "BankAccounts"
@@ -79,14 +94,14 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("BankAccounts", "BankAccount", "0..*", "0..1")
     )
-    val bic: Fielder = parse_element (element (cls, fields(0)))
-    val iban: Fielder = parse_element (element (cls, fields(1)))
-    val BankAccounts: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val bic: Fielder = parse_element (element (cls, fields (0)))
+    val iban: Fielder = parse_element (element (cls, fields (1)))
+    val BankAccounts: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: Context): Bank =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Bank (
             OrganisationRole.parse (context),
             mask (bic (), 0),
@@ -101,9 +116,9 @@ extends
 /**
  * Bank account.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param accountNumber Account reference number.
- * @param Bank [[ch.ninecode.model.Bank Bank]] Bank that provides this BankAccount.
+ * @param sup             [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param accountNumber   Account reference number.
+ * @param Bank            [[ch.ninecode.model.Bank Bank]] Bank that provides this BankAccount.
  * @param ServiceSupplier [[ch.ninecode.model.ServiceSupplier ServiceSupplier]] ServiceSupplier that is owner of this BankAccount.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -116,13 +131,17 @@ case class BankAccount
     Bank: String,
     ServiceSupplier: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -131,27 +150,38 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { clone ().asInstanceOf[BankAccount] }
+    def Document: Document = sup.asInstanceOf [Document]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BankAccount]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BankAccount.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BankAccount.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BankAccount.fields (position), value)
+
         emitelem (0, accountNumber)
         emitattr (1, Bank)
         emitattr (2, ServiceSupplier)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BankAccount rdf:ID=\"%s\">\n%s\t</cim:BankAccount>".format (id, export_fields)
@@ -159,10 +189,10 @@ extends
 }
 
 object BankAccount
-extends
-    Parseable[BankAccount]
+    extends
+        Parseable[BankAccount]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "accountNumber",
         "Bank",
         "ServiceSupplier"
@@ -171,14 +201,14 @@ extends
         Relationship ("Bank", "Bank", "0..1", "0..*"),
         Relationship ("ServiceSupplier", "ServiceSupplier", "0..1", "0..*")
     )
-    val accountNumber: Fielder = parse_element (element (cls, fields(0)))
-    val Bank: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val accountNumber: Fielder = parse_element (element (cls, fields (0)))
+    val Bank: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: Context): BankAccount =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BankAccount (
             Document.parse (context),
             mask (accountNumber (), 0),
@@ -204,13 +234,17 @@ case class BusinessPlan
 (
     override val sup: Document
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -219,20 +253,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { clone ().asInstanceOf[BusinessPlan] }
+    def Document: Document = sup.asInstanceOf [Document]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BusinessPlan]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:BusinessPlan rdf:ID=\"%s\">\n%s\t</cim:BusinessPlan>".format (id, export_fields)
@@ -240,8 +282,8 @@ extends
 }
 
 object BusinessPlan
-extends
-    Parseable[BusinessPlan]
+    extends
+        Parseable[BusinessPlan]
 {
 
     def parse (context: Context): BusinessPlan =
@@ -259,9 +301,9 @@ extends
  *
  * A single organisation typically performs many functions, each one described as a role.
  *
- * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
+ * @param sup    [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param type Classification by utility's corporate standards and practices.
+ * @param type   Classification by utility's corporate standards and practices.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -272,13 +314,17 @@ case class BusinessRole
     status: String,
     `type`: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -287,26 +333,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
-    override def copy (): Row = { clone ().asInstanceOf[BusinessRole] }
+    def OrganisationRole: OrganisationRole = sup.asInstanceOf [OrganisationRole]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BusinessRole]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BusinessRole.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BusinessRole.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BusinessRole.fields (position), value)
+
         emitattr (0, status)
         emitelem (1, `type`)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BusinessRole rdf:ID=\"%s\">\n%s\t</cim:BusinessRole>".format (id, export_fields)
@@ -314,20 +371,20 @@ extends
 }
 
 object BusinessRole
-extends
-    Parseable[BusinessRole]
+    extends
+        Parseable[BusinessRole]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "type"
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val `type`: Fielder = parse_element (element (cls, fields(1)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val `type`: Fielder = parse_element (element (cls, fields (1)))
 
     def parse (context: Context): BusinessRole =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BusinessRole (
             OrganisationRole.parse (context),
             mask (status (), 0),
@@ -343,12 +400,12 @@ extends
  *
  * Examples include overhead electric, underground electric, high pressure gas, etc. This ensures necessary knowledge and skills before being allowed to perform certain types of work.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
- * @param type Classification by utility's work mangement standards and practices.
+ * @param sup          [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param status       <em>undocumented</em>
+ * @param type         Classification by utility's work mangement standards and practices.
  * @param Capabilities [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
- * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
- * @param Skills [[ch.ninecode.model.Skill Skill]] <em>undocumented</em>
+ * @param ErpPersons   [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
+ * @param Skills       [[ch.ninecode.model.Skill Skill]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -362,13 +419,17 @@ case class Craft
     ErpPersons: List[String],
     Skills: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List(), List(), List()) }
+    def this () =
+    {
+        this (null, null, null, List (), List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -377,23 +438,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[Craft] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Craft]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Craft.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Craft.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Craft.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Craft.fields (position), x))
+
         emitattr (0, status)
         emitelem (1, `type`)
         emitattrs (2, Capabilities)
@@ -401,6 +473,7 @@ extends
         emitattrs (4, Skills)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Craft rdf:ID=\"%s\">\n%s\t</cim:Craft>".format (id, export_fields)
@@ -408,10 +481,10 @@ extends
 }
 
 object Craft
-extends
-    Parseable[Craft]
+    extends
+        Parseable[Craft]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "type",
         "Capabilities",
@@ -423,16 +496,16 @@ extends
         Relationship ("ErpPersons", "OldPerson", "0..*", "0..*"),
         Relationship ("Skills", "Skill", "0..*", "0..*")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val `type`: Fielder = parse_element (element (cls, fields(1)))
-    val Capabilities: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val `type`: Fielder = parse_element (element (cls, fields (1)))
+    val Capabilities: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
 
     def parse (context: Context): Craft =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Craft (
             IdentifiedObject.parse (context),
             mask (status (), 0),
@@ -458,13 +531,17 @@ case class DocumentOrganisationRole
 (
     override val sup: OrganisationRole
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -473,20 +550,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
-    override def copy (): Row = { clone ().asInstanceOf[DocumentOrganisationRole] }
+    def OrganisationRole: OrganisationRole = sup.asInstanceOf [OrganisationRole]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [DocumentOrganisationRole]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:DocumentOrganisationRole rdf:ID=\"%s\">\n%s\t</cim:DocumentOrganisationRole>".format (id, export_fields)
@@ -494,8 +579,8 @@ extends
 }
 
 object DocumentOrganisationRole
-extends
-    Parseable[DocumentOrganisationRole]
+    extends
+        Parseable[DocumentOrganisationRole]
 {
 
     def parse (context: Context): DocumentOrganisationRole =
@@ -511,13 +596,13 @@ extends
 /**
  * A crew is a group of people with specific skills, tools, and vehicles.
  *
- * @param sup [[ch.ninecode.model.Crew Crew]] Reference to the superclass object.
- * @param type Classification by utility's work management standards and practices.
- * @param Assignments [[ch.ninecode.model.Assignment Assignment]] All Assignments for this Crew.
- * @param Capabilities [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
- * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
+ * @param sup           [[ch.ninecode.model.Crew Crew]] Reference to the superclass object.
+ * @param type          Classification by utility's work management standards and practices.
+ * @param Assignments   [[ch.ninecode.model.Assignment Assignment]] All Assignments for this Crew.
+ * @param Capabilities  [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
+ * @param Locations     [[ch.ninecode.model.Location Location]] <em>undocumented</em>
  * @param Organisations [[ch.ninecode.model.Organisation Organisation]] <em>undocumented</em>
- * @param Route [[ch.ninecode.model.Route Route]] <em>undocumented</em>
+ * @param Route         [[ch.ninecode.model.Route Route]] <em>undocumented</em>
  * @param ShiftPatterns [[ch.ninecode.model.ShiftPattern ShiftPattern]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -534,13 +619,17 @@ case class OldCrew
     Route: String,
     ShiftPatterns: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List(), List(), List(), null, List()) }
+    def this () =
+    {
+        this (null, null, List (), List (), List (), List (), null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -549,23 +638,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Crew: Crew = sup.asInstanceOf[Crew]
-    override def copy (): Row = { clone ().asInstanceOf[OldCrew] }
+    def Crew: Crew = sup.asInstanceOf [Crew]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [OldCrew]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OldCrew.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OldCrew.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OldCrew.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OldCrew.fields (position), x))
+
         emitelem (0, `type`)
         emitattrs (1, Assignments)
         emitattrs (2, Capabilities)
@@ -575,6 +675,7 @@ extends
         emitattrs (6, ShiftPatterns)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:OldCrew rdf:ID=\"%s\">\n%s\t</cim:OldCrew>".format (id, export_fields)
@@ -582,10 +683,10 @@ extends
 }
 
 object OldCrew
-extends
-    Parseable[OldCrew]
+    extends
+        Parseable[OldCrew]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "type",
         "Assignments",
         "Capabilities",
@@ -602,18 +703,18 @@ extends
         Relationship ("Route", "Route", "0..1", "0..*"),
         Relationship ("ShiftPatterns", "ShiftPattern", "0..*", "0..*")
     )
-    val `type`: Fielder = parse_element (element (cls, fields(0)))
-    val Assignments: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val Capabilities: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val Organisations: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val Route: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val ShiftPatterns: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val `type`: Fielder = parse_element (element (cls, fields (0)))
+    val Assignments: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val Capabilities: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val Organisations: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val Route: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val ShiftPatterns: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
 
     def parse (context: Context): OldCrew =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = OldCrew (
             Crew.parse (context),
             mask (`type` (), 0),
@@ -632,20 +733,20 @@ extends
 /**
  * General purpose information for name and other information to contact people.
  *
- * @param sup [[ch.ninecode.model.Person Person]] Reference to the superclass object.
- * @param status <em>undocumented</em>
- * @param type Utility-specific classification for this person, according to the utility's corporate standards and practices.
- *        Examples include employee, contractor, agent, not affiliated, etc.
- * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
- * @param CustomerData [[ch.ninecode.model.Customer Customer]] <em>undocumented</em>
- * @param DocumentRoles [[ch.ninecode.model.PersonDocumentRole PersonDocumentRole]] <em>undocumented</em>
- * @param ErpCompetency [[ch.ninecode.model.ErpCompetency ErpCompetency]] <em>undocumented</em>
- * @param ErpPersonnel [[ch.ninecode.model.ErpPersonnel ErpPersonnel]] <em>undocumented</em>
- * @param LaborItems [[ch.ninecode.model.LaborItem LaborItem]] <em>undocumented</em>
+ * @param sup               [[ch.ninecode.model.Person Person]] Reference to the superclass object.
+ * @param status            <em>undocumented</em>
+ * @param type              Utility-specific classification for this person, according to the utility's corporate standards and practices.
+ *                          Examples include employee, contractor, agent, not affiliated, etc.
+ * @param Crafts            [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
+ * @param CustomerData      [[ch.ninecode.model.Customer Customer]] <em>undocumented</em>
+ * @param DocumentRoles     [[ch.ninecode.model.PersonDocumentRole PersonDocumentRole]] <em>undocumented</em>
+ * @param ErpCompetency     [[ch.ninecode.model.ErpCompetency ErpCompetency]] <em>undocumented</em>
+ * @param ErpPersonnel      [[ch.ninecode.model.ErpPersonnel ErpPersonnel]] <em>undocumented</em>
+ * @param LaborItems        [[ch.ninecode.model.LaborItem LaborItem]] <em>undocumented</em>
  * @param LandPropertyRoles [[ch.ninecode.model.PersonPropertyRole PersonPropertyRole]] <em>undocumented</em>
  * @param MeasurementValues [[ch.ninecode.model.MeasurementValue MeasurementValue]] <em>undocumented</em>
  * @param OrganisationRoles [[ch.ninecode.model.PersonOrganisationRole PersonOrganisationRole]] <em>undocumented</em>
- * @param Skills [[ch.ninecode.model.Skill Skill]] <em>undocumented</em>
+ * @param Skills            [[ch.ninecode.model.Skill Skill]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -666,13 +767,17 @@ case class OldPerson
     OrganisationRoles: List[String],
     Skills: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List(), null, List(), null, null, List(), List(), List(), List(), List()) }
+    def this () =
+    {
+        this (null, null, null, List (), null, List (), null, null, List (), List (), List (), List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -681,23 +786,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Person: Person = sup.asInstanceOf[Person]
-    override def copy (): Row = { clone ().asInstanceOf[OldPerson] }
+    def Person: Person = sup.asInstanceOf [Person]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [OldPerson]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OldPerson.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OldPerson.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OldPerson.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OldPerson.fields (position), x))
+
         emitattr (0, status)
         emitelem (1, `type`)
         emitattrs (2, Crafts)
@@ -712,6 +828,7 @@ extends
         emitattrs (11, Skills)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:OldPerson rdf:ID=\"%s\">\n%s\t</cim:OldPerson>".format (id, export_fields)
@@ -719,10 +836,10 @@ extends
 }
 
 object OldPerson
-extends
-    Parseable[OldPerson]
+    extends
+        Parseable[OldPerson]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "type",
         "Crafts",
@@ -748,23 +865,23 @@ extends
         Relationship ("OrganisationRoles", "PersonOrganisationRole", "0..*", "1"),
         Relationship ("Skills", "Skill", "0..*", "0..1")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val `type`: Fielder = parse_element (element (cls, fields(1)))
-    val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val CustomerData: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val DocumentRoles: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val ErpCompetency: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val ErpPersonnel: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val LaborItems: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val LandPropertyRoles: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val MeasurementValues: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val OrganisationRoles: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val `type`: Fielder = parse_element (element (cls, fields (1)))
+    val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val CustomerData: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val DocumentRoles: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val ErpCompetency: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val ErpPersonnel: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val LaborItems: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val LandPropertyRoles: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val MeasurementValues: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
+    val OrganisationRoles: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
+    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
 
     def parse (context: Context): OldPerson =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = OldPerson (
             Person.parse (context),
             mask (status (), 0),
@@ -790,7 +907,7 @@ extends
  *
  * This includes role ups for ogranisations, cost centers, profit centers, regulatory reporting, etc.
  *
- * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
+ * @param sup      [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param clientID Identifiers of the organisation held by another organisation, such as a government agency (federal, state, province, city, county), financial institution (Dun and Bradstreet), etc.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -801,13 +918,17 @@ case class OrgOrgRole
     override val sup: OrganisationRole,
     clientID: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -816,24 +937,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
-    override def copy (): Row = { clone ().asInstanceOf[OrgOrgRole] }
+    def OrganisationRole: OrganisationRole = sup.asInstanceOf [OrganisationRole]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [OrgOrgRole]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OrgOrgRole.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OrgOrgRole.fields (position), value)
+
         emitelem (0, clientID)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:OrgOrgRole rdf:ID=\"%s\">\n%s\t</cim:OrgOrgRole>".format (id, export_fields)
@@ -841,18 +972,18 @@ extends
 }
 
 object OrgOrgRole
-extends
-    Parseable[OrgOrgRole]
+    extends
+        Parseable[OrgOrgRole]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "clientID"
     )
-    val clientID: Fielder = parse_element (element (cls, fields(0)))
+    val clientID: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: Context): OrgOrgRole =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = OrgOrgRole (
             OrganisationRole.parse (context),
             mask (clientID (), 0)
@@ -865,7 +996,7 @@ extends
 /**
  * Roles played between Persons and Documents.
  *
- * @param sup [[ch.ninecode.model.Role Role]] Reference to the superclass object.
+ * @param sup    [[ch.ninecode.model.Role Role]] Reference to the superclass object.
  * @param Person [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -876,13 +1007,17 @@ case class PersonDocumentRole
     override val sup: Role,
     Person: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -891,24 +1026,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Role: Role = sup.asInstanceOf[Role]
-    override def copy (): Row = { clone ().asInstanceOf[PersonDocumentRole] }
+    def Role: Role = sup.asInstanceOf [Role]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PersonDocumentRole]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PersonDocumentRole.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PersonDocumentRole.fields (position), value)
+
         emitattr (0, Person)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PersonDocumentRole rdf:ID=\"%s\">\n%s\t</cim:PersonDocumentRole>".format (id, export_fields)
@@ -916,21 +1061,21 @@ extends
 }
 
 object PersonDocumentRole
-extends
-    Parseable[PersonDocumentRole]
+    extends
+        Parseable[PersonDocumentRole]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "Person"
     )
     override val relations: List[Relationship] = List (
         Relationship ("Person", "OldPerson", "1", "0..*")
     )
-    val Person: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val Person: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: Context): PersonDocumentRole =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PersonDocumentRole (
             Role.parse (context),
             mask (Person (), 0)
@@ -943,8 +1088,8 @@ extends
 /**
  * Role an organisation plays with respect to persons.
  *
- * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
- * @param clientID Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
+ * @param sup       [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
+ * @param clientID  Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
  * @param ErpPerson [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -956,13 +1101,17 @@ case class PersonOrganisationRole
     clientID: String,
     ErpPerson: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -971,26 +1120,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
-    override def copy (): Row = { clone ().asInstanceOf[PersonOrganisationRole] }
+    def OrganisationRole: OrganisationRole = sup.asInstanceOf [OrganisationRole]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PersonOrganisationRole]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PersonOrganisationRole.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PersonOrganisationRole.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PersonOrganisationRole.fields (position), value)
+
         emitelem (0, clientID)
         emitattr (1, ErpPerson)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PersonOrganisationRole rdf:ID=\"%s\">\n%s\t</cim:PersonOrganisationRole>".format (id, export_fields)
@@ -998,23 +1158,23 @@ extends
 }
 
 object PersonOrganisationRole
-extends
-    Parseable[PersonOrganisationRole]
+    extends
+        Parseable[PersonOrganisationRole]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "clientID",
         "ErpPerson"
     )
     override val relations: List[Relationship] = List (
         Relationship ("ErpPerson", "OldPerson", "1", "0..*")
     )
-    val clientID: Fielder = parse_element (element (cls, fields(0)))
-    val ErpPerson: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val clientID: Fielder = parse_element (element (cls, fields (0)))
+    val ErpPerson: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: Context): PersonOrganisationRole =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PersonOrganisationRole (
             OrganisationRole.parse (context),
             mask (clientID (), 0),
@@ -1030,9 +1190,9 @@ extends
  *
  * Examples of roles include: owner, renter, contractor, etc.
  *
- * @param sup [[ch.ninecode.model.Role Role]] Reference to the superclass object.
+ * @param sup          [[ch.ninecode.model.Role Role]] Reference to the superclass object.
  * @param LandProperty [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
- * @param Person [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
+ * @param Person       [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1043,13 +1203,17 @@ case class PersonPropertyRole
     LandProperty: String,
     Person: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1058,25 +1222,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Role: Role = sup.asInstanceOf[Role]
-    override def copy (): Row = { clone ().asInstanceOf[PersonPropertyRole] }
+    def Role: Role = sup.asInstanceOf [Role]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PersonPropertyRole]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PersonPropertyRole.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PersonPropertyRole.fields (position), value)
+
         emitattr (0, LandProperty)
         emitattr (1, Person)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PersonPropertyRole rdf:ID=\"%s\">\n%s\t</cim:PersonPropertyRole>".format (id, export_fields)
@@ -1084,10 +1258,10 @@ extends
 }
 
 object PersonPropertyRole
-extends
-    Parseable[PersonPropertyRole]
+    extends
+        Parseable[PersonPropertyRole]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "LandProperty",
         "Person"
     )
@@ -1095,13 +1269,13 @@ extends
         Relationship ("LandProperty", "LandProperty", "1", "0..*"),
         Relationship ("Person", "OldPerson", "1", "0..*")
     )
-    val LandProperty: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Person: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val LandProperty: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val Person: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: Context): PersonPropertyRole =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PersonPropertyRole (
             Role.parse (context),
             mask (LandProperty (), 0),
@@ -1115,7 +1289,7 @@ extends
 /**
  * Role an organisation plays with respect to property (for example, the organisation may be the owner, renter, occupier, taxiing authority, etc.).
  *
- * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
+ * @param sup          [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param LandProperty [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -1126,13 +1300,17 @@ case class PropertyOrganisationRole
     override val sup: OrganisationRole,
     LandProperty: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () =
+    {
+        this (null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1141,24 +1319,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def OrganisationRole: OrganisationRole = sup.asInstanceOf[OrganisationRole]
-    override def copy (): Row = { clone ().asInstanceOf[PropertyOrganisationRole] }
+    def OrganisationRole: OrganisationRole = sup.asInstanceOf [OrganisationRole]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PropertyOrganisationRole]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PropertyOrganisationRole.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PropertyOrganisationRole.fields (position), x))
+
         emitattrs (0, LandProperty)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PropertyOrganisationRole rdf:ID=\"%s\">\n%s\t</cim:PropertyOrganisationRole>".format (id, export_fields)
@@ -1166,21 +1354,21 @@ extends
 }
 
 object PropertyOrganisationRole
-extends
-    Parseable[PropertyOrganisationRole]
+    extends
+        Parseable[PropertyOrganisationRole]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "LandProperty"
     )
     override val relations: List[Relationship] = List (
         Relationship ("LandProperty", "LandProperty", "1..", "0..*")
     )
-    val LandProperty: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val LandProperty: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: Context): PropertyOrganisationRole =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PropertyOrganisationRole (
             OrganisationRole.parse (context),
             masks (LandProperty (), 0)
@@ -1193,9 +1381,9 @@ extends
 /**
  * Fraction specified explicitly with a numerator and denominator, which can be used to calculate the quotient.
  *
- * @param sup Reference to the superclass object.
+ * @param sup         Reference to the superclass object.
  * @param denominator The part of a fraction that is below the line and that functions as the divisor of the numerator.
- * @param numerator The part of a fraction that is above the line and signifies the number to be divided by the denominator.
+ * @param numerator   The part of a fraction that is above the line and signifies the number to be divided by the denominator.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1206,13 +1394,17 @@ case class Ratio
     denominator: Double,
     numerator: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0) }
+    def this () =
+    {
+        this (null, 0.0, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1221,25 +1413,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[Ratio] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Ratio]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Ratio.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Ratio.fields (position), value)
+
         emitelem (0, denominator)
         emitelem (1, numerator)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Ratio rdf:ID=\"%s\">\n%s\t</cim:Ratio>".format (id, export_fields)
@@ -1247,20 +1449,20 @@ extends
 }
 
 object Ratio
-extends
-    Parseable[Ratio]
+    extends
+        Parseable[Ratio]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "denominator",
         "numerator"
     )
-    val denominator: Fielder = parse_element (element (cls, fields(0)))
-    val numerator: Fielder = parse_element (element (cls, fields(1)))
+    val denominator: Fielder = parse_element (element (cls, fields (0)))
+    val numerator: Fielder = parse_element (element (cls, fields (1)))
 
     def parse (context: Context): Ratio =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Ratio (
             BasicElement.parse (context),
             toDouble (mask (denominator (), 0)),
@@ -1274,9 +1476,9 @@ extends
 /**
  * Enumeration of potential roles that might be played by one object relative to another.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param sup    [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param type Type of role.
+ * @param type   Type of role.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1287,13 +1489,17 @@ case class Role
     status: String,
     `type`: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1302,26 +1508,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[Role] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Role]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Role.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Role.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Role.fields (position), value)
+
         emitattr (0, status)
         emitelem (1, `type`)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Role rdf:ID=\"%s\">\n%s\t</cim:Role>".format (id, export_fields)
@@ -1329,20 +1546,20 @@ extends
 }
 
 object Role
-extends
-    Parseable[Role]
+    extends
+        Parseable[Role]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "type"
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val `type`: Fielder = parse_element (element (cls, fields(1)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val `type`: Fielder = parse_element (element (cls, fields (1)))
 
     def parse (context: Context): Role =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Role (
             IdentifiedObject.parse (context),
             mask (status (), 0),
@@ -1356,12 +1573,12 @@ extends
 /**
  * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param certificationPeriod Interval between the certification and its expiry.
- * @param effectiveDateTime Date and time the skill became effective.
- * @param level Level of skill for a Craft.
- * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
- * @param ErpPerson [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
+ * @param sup                       [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param certificationPeriod       Interval between the certification and its expiry.
+ * @param effectiveDateTime         Date and time the skill became effective.
+ * @param level                     Level of skill for a Craft.
+ * @param Crafts                    [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
+ * @param ErpPerson                 [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @param QualificationRequirements [[ch.ninecode.model.QualificationRequirement QualificationRequirement]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -1377,13 +1594,17 @@ case class Skill
     ErpPerson: String,
     QualificationRequirements: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List(), null, List()) }
+    def this () =
+    {
+        this (null, null, null, null, List (), null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1392,23 +1613,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { clone ().asInstanceOf[Skill] }
+    def Document: Document = sup.asInstanceOf [Document]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Skill]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Skill.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Skill.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Skill.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Skill.fields (position), x))
+
         emitattr (0, certificationPeriod)
         emitelem (1, effectiveDateTime)
         emitattr (2, level)
@@ -1417,6 +1649,7 @@ extends
         emitattrs (5, QualificationRequirements)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Skill rdf:ID=\"%s\">\n%s\t</cim:Skill>".format (id, export_fields)
@@ -1424,10 +1657,10 @@ extends
 }
 
 object Skill
-extends
-    Parseable[Skill]
+    extends
+        Parseable[Skill]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "certificationPeriod",
         "effectiveDateTime",
         "level",
@@ -1440,17 +1673,17 @@ extends
         Relationship ("ErpPerson", "OldPerson", "0..1", "0..*"),
         Relationship ("QualificationRequirements", "QualificationRequirement", "0..*", "0..*")
     )
-    val certificationPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val effectiveDateTime: Fielder = parse_element (element (cls, fields(1)))
-    val level: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val ErpPerson: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val QualificationRequirements: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val certificationPeriod: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val effectiveDateTime: Fielder = parse_element (element (cls, fields (1)))
+    val level: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val ErpPerson: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val QualificationRequirements: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
 
     def parse (context: Context): Skill =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Skill (
             Document.parse (context),
             mask (certificationPeriod (), 0),

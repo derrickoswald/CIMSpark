@@ -12,9 +12,9 @@ import scala.collection.mutable
 
 case class ModelParser (db: Database)
 {
-    val packages: mutable.Map[Int, Package] = mutable.Map[Int,Package]()
-    val classes: mutable.Map[Int, Class] = mutable.Map[Int,Class]()
-    val attributes: mutable.Map[Int, List[Attribute]] = mutable.Map[Int,List[Attribute]]()
+    val packages: mutable.Map[Int, Package] = mutable.Map[Int, Package]()
+    val classes: mutable.Map[Int, Class] = mutable.Map[Int, Class]()
+    val attributes: mutable.Map[Int, List[Attribute]] = mutable.Map[Int, List[Attribute]]()
     val roles: mutable.Set[Role] = mutable.Set[Role]()
     val domains: mutable.Set[Domain] = mutable.Set[Domain]()
 
@@ -22,7 +22,11 @@ case class ModelParser (db: Database)
     lazy val getObjectTable: Table = db.getTable ("t_object")
     lazy val getConnectorTable: Table = db.getTable ("t_connector")
     lazy val getAttributeTable: Table = db.getTable ("t_attribute")
-    lazy val globalPackage: Package = packages.find (_._2.global) match { case Some (p) => p._2 case _ => null }
+    lazy val globalPackage: Package = packages.find (_._2.global) match
+    {
+        case Some (p) => p._2
+        case _ => null
+    }
 
     def gatherPackageIDs (): Unit =
     {
@@ -42,7 +46,7 @@ case class ModelParser (db: Database)
         while (it.hasNext)
         {
             val row = Row (it.next ())
-            val pkg = packages(row.getPackageID)
+            val pkg = packages (row.getPackageID)
             if (!pkg.global)
                 pkg.parent = packages.getOrElse (row.getParentID, globalPackage)
         }
@@ -84,12 +88,12 @@ case class ModelParser (db: Database)
                 val dflt = if (row.hasDefault) row.getDefault else null
                 val attribute = Attribute (row.getXUID, row.getName, cls.pkg, cls, row.getNotes, row.getType, classifier, dflt)
                 if (attributes.contains (cls_id))
-                    attributes.put (cls_id, attributes(cls_id) :+ attribute)
+                    attributes.put (cls_id, attributes (cls_id) :+ attribute)
                 else
                     attributes.put (cls_id, List (attribute))
             }
             else
-                System.out.println("Could not find the domain of attribute " + row.getName + ". Domain ID = " + cls_id)
+                System.out.println ("Could not find the domain of attribute " + row.getName + ". Domain ID = " + cls_id)
         }
     }
 
@@ -107,7 +111,7 @@ case class ModelParser (db: Database)
                 if ((null != src) && (null != dst))
                 {
                     if (typ.equals ("Generalization"))
-                        src.sup  = dst
+                        src.sup = dst
                     else
                     {
                         val rolea = Role (row.getXUID, row.getDestRole, src, dst, row.getDestRoleNote, row.getDestCard, row.getDestIsAggregate, sideA = true)
@@ -141,15 +145,23 @@ case class ModelParser (db: Database)
                     case "Primitive" =>
                         Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, "")
                     case "CIMDatatype" =>
-                        val details = attributes(cls_id)
-                        val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
+                        val details = attributes (cls_id)
+                        val value = details.find (_.name == "value") match
+                        {
+                            case Some (attribute) => attribute.typ
+                            case None => null
+                        }
                         Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, value)
                     case "Compound" =>
-                        val details = attributes(cls_id)
-                        val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
+                        val details = attributes (cls_id)
+                        val value = details.find (_.name == "value") match
+                        {
+                            case Some (attribute) => attribute.typ
+                            case None => null
+                        }
                         Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, value)
                     case "enumeration" =>
-                        val enumeration = attributes(cls_id).map (_.name).toSet
+                        val enumeration = attributes (cls_id).map (_.name).toSet
                         Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), enumeration, "")
                     case _ =>
                         null
@@ -228,8 +240,17 @@ case class ModelParser (db: Database)
         ret
     }
 
-    def objectIdFor (cls: Class): Int = { classes.find (_._2.xuid == cls.xuid) match { case Some (c: (Int, Class)) ⇒ c._1 case _ ⇒ 0 } }
-    def attributesFor (cls: Class): List[Attribute] = attributes.getOrElse (objectIdFor (cls), List[Attribute]())
+    def objectIdFor (cls: Class): Int =
+    {
+        classes.find (_._2.xuid == cls.xuid) match
+        {
+            case Some (c: (Int, Class)) ⇒ c._1
+            case _ ⇒ 0
+        }
+    }
+
+    def attributesFor (cls: Class): List[Attribute] = attributes.getOrElse (objectIdFor (cls), List [Attribute]())
+
     def rolesFor (cls: Class): List[Role] = roles.filter (r ⇒ r.src == cls && r.name != "").toList
 }
 
@@ -238,7 +259,7 @@ object ModelParser
     val VERSION = "16"
     val SCALA = true
 
-    def main (args : Array[String])
+    def main (args: Array[String])
     {
         val file = VERSION match
         {
@@ -251,16 +272,16 @@ object ModelParser
 
         val parser = ModelParser (DatabaseBuilder.open (new File ("private_data/" + file)))
         parser.run ()
-//        println ("Packages: " + parser.packages.size)
-//        parser.showPackages ()
-//        println ("Classes: " + parser.classes.size)
-//        parser.showClasses ()
-//        println ("Attributes: " + parser.attributes.map (_._2.size).sum)
-//        parser.showAttributes ()
-//        println ("Roles: " + parser.roles.size)
-//        parser.showRoles ()
-//        println ("Domains: " + parser.domains.size)
-//        parser.showDomains ()
+        //        println ("Packages: " + parser.packages.size)
+        //        parser.showPackages ()
+        //        println ("Classes: " + parser.classes.size)
+        //        parser.showClasses ()
+        //        println ("Attributes: " + parser.attributes.map (_._2.size).sum)
+        //        parser.showAttributes ()
+        //        println ("Roles: " + parser.roles.size)
+        //        parser.showRoles ()
+        //        println ("Domains: " + parser.domains.size)
+        //        parser.showDomains ()
         val dir = new File ("target/model/")
         dir.mkdir
         if (SCALA)
@@ -272,10 +293,11 @@ object ModelParser
                 packages.add ((scala.register, pkg._1))
             }
             val register = new StringBuilder ()
-            register.append ("""    def classes: List[ClassInfo] =
-                |        List (
-                |""".stripMargin)
-            var registers: List[String] = List[String]()
+            register.append (
+                """    def classes: List[ClassInfo] =
+                  |        List (
+                  |""".stripMargin)
+            var registers: List[String] = List [String]()
             val pkgdoc = new StringBuilder ()
             pkgdoc.append (
                 """package ch.ninecode
@@ -309,7 +331,7 @@ object ModelParser
                   | * The classes can be ordered by package (Grouped) or alphabetically.
                   | * The classes are alos listed in the panel on the left for easy reference.
                   |""".stripMargin)
-            var package_docs: List[String] = List[String]()
+            var package_docs: List[String] = List [String]()
             for (q <- packages)
             {
                 val pkg = parser.packages (q._2)
@@ -326,12 +348,14 @@ object ModelParser
                 }
             }
             register.append (registers.mkString (",\n"))
-            register.append ("""
-                |        ).flatten
-                |""".stripMargin)
+            register.append (
+                """
+                  |        ).flatten
+                  |""".stripMargin)
             Files.write (Paths.get ("target/chim_register.scala"), register.toString.getBytes (StandardCharsets.UTF_8))
             pkgdoc.append (package_docs.mkString ("\n"))
-            pkgdoc.append ("""
+            pkgdoc.append (
+                """
                   | */
                   |package object model
                   |{
@@ -342,6 +366,7 @@ object ModelParser
         else
         {
             val files = scala.collection.mutable.SortedSet[String]()
+
             def do_package (p: Package): Unit =
             {
                 val js = JavaScript (parser, p)
@@ -353,6 +378,7 @@ object ModelParser
                     Files.write (Paths.get ("target/model/" + p.name + ".js"), s.getBytes (StandardCharsets.UTF_8))
                 }
             }
+
             for (pkg <- parser.packages)
             {
                 val p = pkg._2
@@ -372,7 +398,7 @@ object ModelParser
                 else
                     do_package (p)
             }
-            val decl = """    ["model/base", """"  + files.map ("""model/""" + _).mkString ("""", """") + """"],"""
+            val decl = """    ["model/base", """" + files.map ("""model/""" + _).mkString ("""", """") + """"],"""
             val fn = """    function (base, """ + files.mkString (""", """) + """)"""
             Files.write (Paths.get ("target/cim_header.js"), (decl + "\n" + fn).getBytes (StandardCharsets.UTF_8))
         }

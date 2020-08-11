@@ -10,17 +10,17 @@ import ch.ninecode.cim.Relationship
 /**
  * Logical gate than support logical operation based on the input.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param kind The logical operation of the gate.
- * @param GateInputPin [[ch.ninecode.model.GateInputPin GateInputPin]] <em>undocumented</em>
- * @param PinGate [[ch.ninecode.model.PinGate PinGate]] <em>undocumented</em>
- * @param ProtectiveActionCom [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
+ * @param sup                     [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param kind                    The logical operation of the gate.
+ * @param GateInputPin            [[ch.ninecode.model.GateInputPin GateInputPin]] <em>undocumented</em>
+ * @param PinGate                 [[ch.ninecode.model.PinGate PinGate]] <em>undocumented</em>
+ * @param ProtectiveActionCom     [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
  * @param ProtectiveActionEnabled [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
- * @param RemedialActionScheme [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
- * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
- * @param StageTriggerArmed [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
- * @param StageTriggerCom [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
- * @param TriggerCondition [[ch.ninecode.model.TriggerCondition TriggerCondition]] <em>undocumented</em>
+ * @param RemedialActionScheme    [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
+ * @param StageTrigger            [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
+ * @param StageTriggerArmed       [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
+ * @param StageTriggerCom         [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
+ * @param TriggerCondition        [[ch.ninecode.model.TriggerCondition TriggerCondition]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -39,13 +39,17 @@ case class Gate
     StageTriggerCom: List[String],
     TriggerCondition: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List(), List(), List(), List(), List(), List(), List(), List()) }
+    def this () =
+    {
+        this (null, null, List (), List (), List (), List (), List (), List (), List (), List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -54,22 +58,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[Gate] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Gate]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Gate.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Gate.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Gate.fields (position), x))
+
         emitattr (0, kind)
         emitattrs (1, GateInputPin)
         emitattrs (2, PinGate)
@@ -82,6 +96,7 @@ extends
         emitattrs (9, TriggerCondition)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Gate rdf:ID=\"%s\">\n%s\t</cim:Gate>".format (id, export_fields)
@@ -89,10 +104,10 @@ extends
 }
 
 object Gate
-extends
-    Parseable[Gate]
+    extends
+        Parseable[Gate]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kind",
         "GateInputPin",
         "PinGate",
@@ -115,21 +130,21 @@ extends
         Relationship ("StageTriggerCom", "StageTrigger", "0..*", "0..1"),
         Relationship ("TriggerCondition", "TriggerCondition", "0..*", "1")
     )
-    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val GateInputPin: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val PinGate: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val ProtectiveActionCom: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val ProtectiveActionEnabled: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val RemedialActionScheme: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val StageTrigger: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val StageTriggerArmed: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val StageTriggerCom: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val TriggerCondition: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val GateInputPin: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val PinGate: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val ProtectiveActionCom: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val ProtectiveActionEnabled: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val RemedialActionScheme: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val StageTrigger: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
+    val StageTriggerArmed: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val StageTriggerCom: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val TriggerCondition: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
 
     def parse (context: Context): Gate =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Gate (
             IdentifiedObject.parse (context),
             mask (kind (), 0),
@@ -153,15 +168,15 @@ extends
  *
  * The condition described in the input pin will give a logical true or false. Result from measurement and calculation are converted to a true or false.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param aDLogicKind The compare operation.
- * @param absoluteValue If true, use the absolute value for compare..
- * @param duration The duration the compare condition need to be present before given a true.
- *        Default is 0 seconds.
- * @param negate Invert/negate the result of the compare.
+ * @param sup                 [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param aDLogicKind         The compare operation.
+ * @param absoluteValue       If true, use the absolute value for compare..
+ * @param duration            The duration the compare condition need to be present before given a true.
+ *                            Default is 0 seconds.
+ * @param negate              Invert/negate the result of the compare.
  * @param thresholdPercentage The threshold percentage that should be used for compare with the percentage change between input value and threshold value.
- * @param thresholdValue The threshold value that should be used for compare with the input value.
- * @param Gate [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param thresholdValue      The threshold value that should be used for compare with the input value.
+ * @param Gate                [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -177,13 +192,17 @@ case class GateInputPin
     thresholdValue: Double,
     Gate: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, false, 0.0, false, 0.0, 0.0, null) }
+    def this () =
+    {
+        this (null, null, false, 0.0, false, 0.0, 0.0, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -192,22 +211,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[GateInputPin] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [GateInputPin]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GateInputPin.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GateInputPin.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GateInputPin.fields (position), value)
+
         emitattr (0, aDLogicKind)
         emitelem (1, absoluteValue)
         emitelem (2, duration)
@@ -217,6 +246,7 @@ extends
         emitattr (6, Gate)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GateInputPin rdf:ID=\"%s\">\n%s\t</cim:GateInputPin>".format (id, export_fields)
@@ -224,10 +254,10 @@ extends
 }
 
 object GateInputPin
-extends
-    Parseable[GateInputPin]
+    extends
+        Parseable[GateInputPin]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "aDLogicKind",
         "absoluteValue",
         "duration",
@@ -239,18 +269,18 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("Gate", "Gate", "1", "1..*")
     )
-    val aDLogicKind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val absoluteValue: Fielder = parse_element (element (cls, fields(1)))
-    val duration: Fielder = parse_element (element (cls, fields(2)))
-    val negate: Fielder = parse_element (element (cls, fields(3)))
-    val thresholdPercentage: Fielder = parse_element (element (cls, fields(4)))
-    val thresholdValue: Fielder = parse_element (element (cls, fields(5)))
-    val Gate: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val aDLogicKind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val absoluteValue: Fielder = parse_element (element (cls, fields (1)))
+    val duration: Fielder = parse_element (element (cls, fields (2)))
+    val negate: Fielder = parse_element (element (cls, fields (3)))
+    val thresholdPercentage: Fielder = parse_element (element (cls, fields (4)))
+    val thresholdValue: Fielder = parse_element (element (cls, fields (5)))
+    val Gate: Fielder = parse_attribute (attribute (cls, fields (6)))
 
     def parse (context: Context): GateInputPin =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = GateInputPin (
             IdentifiedObject.parse (context),
             mask (aDLogicKind (), 0),
@@ -269,10 +299,10 @@ extends
 /**
  * Result of a calculation of one or more measurement.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param kind Calculation operation executed on the operants.
+ * @param sup                        [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param kind                       Calculation operation executed on the operants.
  * @param MeasurementCalculatorInput [[ch.ninecode.model.MeasurementCalculatorInput MeasurementCalculatorInput]] <em>undocumented</em>
- * @param PinMeasurement [[ch.ninecode.model.PinMeasurement PinMeasurement]] <em>undocumented</em>
+ * @param PinMeasurement             [[ch.ninecode.model.PinMeasurement PinMeasurement]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -284,13 +314,17 @@ case class MeasurementCalculator
     MeasurementCalculatorInput: List[String],
     PinMeasurement: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List()) }
+    def this () =
+    {
+        this (null, null, List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -299,27 +333,38 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[MeasurementCalculator] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [MeasurementCalculator]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MeasurementCalculator.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MeasurementCalculator.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MeasurementCalculator.fields (position), x))
+
         emitattr (0, kind)
         emitattrs (1, MeasurementCalculatorInput)
         emitattrs (2, PinMeasurement)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MeasurementCalculator rdf:ID=\"%s\">\n%s\t</cim:MeasurementCalculator>".format (id, export_fields)
@@ -327,10 +372,10 @@ extends
 }
 
 object MeasurementCalculator
-extends
-    Parseable[MeasurementCalculator]
+    extends
+        Parseable[MeasurementCalculator]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kind",
         "MeasurementCalculatorInput",
         "PinMeasurement"
@@ -339,14 +384,14 @@ extends
         Relationship ("MeasurementCalculatorInput", "MeasurementCalculatorInput", "1..*", "1"),
         Relationship ("PinMeasurement", "PinMeasurement", "0..*", "0..1")
     )
-    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val MeasurementCalculatorInput: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val PinMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val MeasurementCalculatorInput: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val PinMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: Context): MeasurementCalculator =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = MeasurementCalculator (
             IdentifiedObject.parse (context),
             mask (kind (), 0),
@@ -363,11 +408,11 @@ extends
  *
  * Support Analog, Discrete and Accumulator.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param absoluteValue If true, use the absolute value for the calculation.
- * @param order Positive number that defines the order of the operant in the calculation. 0 = default.
- *        The order is not relevant (e.g. summation).
- * @param Measurement [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
+ * @param sup                   [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param absoluteValue         If true, use the absolute value for the calculation.
+ * @param order                 Positive number that defines the order of the operant in the calculation. 0 = default.
+ *                              The order is not relevant (e.g. summation).
+ * @param Measurement           [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
  * @param MeasurementCalculator [[ch.ninecode.model.MeasurementCalculator MeasurementCalculator]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -381,13 +426,17 @@ case class MeasurementCalculatorInput
     Measurement: String,
     MeasurementCalculator: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, 0, null, null) }
+    def this () =
+    {
+        this (null, false, 0, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -396,28 +445,39 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[MeasurementCalculatorInput] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [MeasurementCalculatorInput]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MeasurementCalculatorInput.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MeasurementCalculatorInput.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MeasurementCalculatorInput.fields (position), value)
+
         emitelem (0, absoluteValue)
         emitelem (1, order)
         emitattr (2, Measurement)
         emitattr (3, MeasurementCalculator)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MeasurementCalculatorInput rdf:ID=\"%s\">\n%s\t</cim:MeasurementCalculatorInput>".format (id, export_fields)
@@ -425,10 +485,10 @@ extends
 }
 
 object MeasurementCalculatorInput
-extends
-    Parseable[MeasurementCalculatorInput]
+    extends
+        Parseable[MeasurementCalculatorInput]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "absoluteValue",
         "order",
         "Measurement",
@@ -438,15 +498,15 @@ extends
         Relationship ("Measurement", "Measurement", "1", "0..*"),
         Relationship ("MeasurementCalculator", "MeasurementCalculator", "1", "1..*")
     )
-    val absoluteValue: Fielder = parse_element (element (cls, fields(0)))
-    val order: Fielder = parse_element (element (cls, fields(1)))
-    val Measurement: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val MeasurementCalculator: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val absoluteValue: Fielder = parse_element (element (cls, fields (0)))
+    val order: Fielder = parse_element (element (cls, fields (1)))
+    val Measurement: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val MeasurementCalculator: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: Context): MeasurementCalculatorInput =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = MeasurementCalculatorInput (
             IdentifiedObject.parse (context),
             toBoolean (mask (absoluteValue (), 0)),
@@ -462,8 +522,8 @@ extends
 /**
  * Value associated with branch group is used as compare.
  *
- * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
- * @param kind The compare operation done on the branch group.
+ * @param sup         [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
+ * @param kind        The compare operation done on the branch group.
  * @param BranchGroup [[ch.ninecode.model.BranchGroup BranchGroup]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -475,13 +535,17 @@ case class PinBranchGroup
     kind: String,
     BranchGroup: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -490,25 +554,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GateInputPin: GateInputPin = sup.asInstanceOf[GateInputPin]
-    override def copy (): Row = { clone ().asInstanceOf[PinBranchGroup] }
+    def GateInputPin: GateInputPin = sup.asInstanceOf [GateInputPin]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PinBranchGroup]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PinBranchGroup.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PinBranchGroup.fields (position), value)
+
         emitattr (0, kind)
         emitattr (1, BranchGroup)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PinBranchGroup rdf:ID=\"%s\">\n%s\t</cim:PinBranchGroup>".format (id, export_fields)
@@ -516,23 +590,23 @@ extends
 }
 
 object PinBranchGroup
-extends
-    Parseable[PinBranchGroup]
+    extends
+        Parseable[PinBranchGroup]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kind",
         "BranchGroup"
     )
     override val relations: List[Relationship] = List (
         Relationship ("BranchGroup", "BranchGroup", "1", "0..*")
     )
-    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val BranchGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val BranchGroup: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: Context): PinBranchGroup =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PinBranchGroup (
             GateInputPin.parse (context),
             mask (kind (), 0),
@@ -546,8 +620,8 @@ extends
 /**
  * Value associated with Equipment is used as compare.
  *
- * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
- * @param kind The compare operation done on the equipment.
+ * @param sup       [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
+ * @param kind      The compare operation done on the equipment.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -559,13 +633,17 @@ case class PinEquipment
     kind: String,
     Equipment: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -574,25 +652,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GateInputPin: GateInputPin = sup.asInstanceOf[GateInputPin]
-    override def copy (): Row = { clone ().asInstanceOf[PinEquipment] }
+    def GateInputPin: GateInputPin = sup.asInstanceOf [GateInputPin]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PinEquipment]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PinEquipment.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PinEquipment.fields (position), value)
+
         emitattr (0, kind)
         emitattr (1, Equipment)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PinEquipment rdf:ID=\"%s\">\n%s\t</cim:PinEquipment>".format (id, export_fields)
@@ -600,23 +688,23 @@ extends
 }
 
 object PinEquipment
-extends
-    Parseable[PinEquipment]
+    extends
+        Parseable[PinEquipment]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kind",
         "Equipment"
     )
     override val relations: List[Relationship] = List (
         Relationship ("Equipment", "Equipment", "1", "0..*")
     )
-    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Equipment: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val Equipment: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: Context): PinEquipment =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PinEquipment (
             GateInputPin.parse (context),
             mask (kind (), 0),
@@ -630,7 +718,7 @@ extends
 /**
  * An output from one gate represent an input to another gate.
  *
- * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
+ * @param sup        [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
  * @param GateOutput [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -641,13 +729,17 @@ case class PinGate
     override val sup: GateInputPin,
     GateOutput: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -656,24 +748,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GateInputPin: GateInputPin = sup.asInstanceOf[GateInputPin]
-    override def copy (): Row = { clone ().asInstanceOf[PinGate] }
+    def GateInputPin: GateInputPin = sup.asInstanceOf [GateInputPin]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PinGate]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PinGate.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PinGate.fields (position), value)
+
         emitattr (0, GateOutput)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PinGate rdf:ID=\"%s\">\n%s\t</cim:PinGate>".format (id, export_fields)
@@ -681,21 +783,21 @@ extends
 }
 
 object PinGate
-extends
-    Parseable[PinGate]
+    extends
+        Parseable[PinGate]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "GateOutput"
     )
     override val relations: List[Relationship] = List (
         Relationship ("GateOutput", "Gate", "1", "0..*")
     )
-    val GateOutput: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val GateOutput: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: Context): PinGate =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PinGate (
             GateInputPin.parse (context),
             mask (GateOutput (), 0)
@@ -708,8 +810,8 @@ extends
 /**
  * Gate input pin that is associated with a Measurement or a calculation of Measurement.
  *
- * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
- * @param Measurement [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
+ * @param sup                   [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
+ * @param Measurement           [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
  * @param MeasurementCalculator [[ch.ninecode.model.MeasurementCalculator MeasurementCalculator]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -721,13 +823,17 @@ case class PinMeasurement
     Measurement: String,
     MeasurementCalculator: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -736,25 +842,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GateInputPin: GateInputPin = sup.asInstanceOf[GateInputPin]
-    override def copy (): Row = { clone ().asInstanceOf[PinMeasurement] }
+    def GateInputPin: GateInputPin = sup.asInstanceOf [GateInputPin]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PinMeasurement]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PinMeasurement.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PinMeasurement.fields (position), value)
+
         emitattr (0, Measurement)
         emitattr (1, MeasurementCalculator)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PinMeasurement rdf:ID=\"%s\">\n%s\t</cim:PinMeasurement>".format (id, export_fields)
@@ -762,10 +878,10 @@ extends
 }
 
 object PinMeasurement
-extends
-    Parseable[PinMeasurement]
+    extends
+        Parseable[PinMeasurement]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "Measurement",
         "MeasurementCalculator"
     )
@@ -773,13 +889,13 @@ extends
         Relationship ("Measurement", "Measurement", "0..1", "0..*"),
         Relationship ("MeasurementCalculator", "MeasurementCalculator", "0..1", "0..*")
     )
-    val Measurement: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val MeasurementCalculator: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val Measurement: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val MeasurementCalculator: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: Context): PinMeasurement =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PinMeasurement (
             GateInputPin.parse (context),
             mask (Measurement (), 0),
@@ -793,8 +909,8 @@ extends
 /**
  * Value associated with Terminal is used as compare.
  *
- * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
- * @param kind The compare operation done on the terminal.
+ * @param sup      [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
+ * @param kind     The compare operation done on the terminal.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -806,13 +922,17 @@ case class PinTerminal
     kind: String,
     Terminal: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -821,25 +941,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GateInputPin: GateInputPin = sup.asInstanceOf[GateInputPin]
-    override def copy (): Row = { clone ().asInstanceOf[PinTerminal] }
+    def GateInputPin: GateInputPin = sup.asInstanceOf [GateInputPin]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PinTerminal]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PinTerminal.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PinTerminal.fields (position), value)
+
         emitattr (0, kind)
         emitattr (1, Terminal)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PinTerminal rdf:ID=\"%s\">\n%s\t</cim:PinTerminal>".format (id, export_fields)
@@ -847,23 +977,23 @@ extends
 }
 
 object PinTerminal
-extends
-    Parseable[PinTerminal]
+    extends
+        Parseable[PinTerminal]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kind",
         "Terminal"
     )
     override val relations: List[Relationship] = List (
         Relationship ("Terminal", "Terminal", "1", "0..*")
     )
-    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: Context): PinTerminal =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PinTerminal (
             GateInputPin.parse (context),
             mask (kind (), 0),
@@ -877,13 +1007,13 @@ extends
 /**
  * A protective action for supporting the integrity of the power system.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param enabled The status of the class set by operation or by signal.
- *        Optional field that will override other status fields.
- * @param normalEnabled The default/normal value used when other active signal/values are missing.
- * @param GateComCondition [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
- * @param GateEnabledCondition [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
- * @param ProtectionEquipment [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] <em>undocumented</em>
+ * @param sup                        [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param enabled                    The status of the class set by operation or by signal.
+ *                                   Optional field that will override other status fields.
+ * @param normalEnabled              The default/normal value used when other active signal/values are missing.
+ * @param GateComCondition           [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param GateEnabledCondition       [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param ProtectionEquipment        [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] <em>undocumented</em>
  * @param ProtectiveActionCollection [[ch.ninecode.model.ProtectiveActionCollection ProtectiveActionCollection]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -899,13 +1029,17 @@ case class ProtectiveAction
     ProtectionEquipment: String,
     ProtectiveActionCollection: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, false, null, null, null, null) }
+    def this () =
+    {
+        this (null, false, false, null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -914,22 +1048,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[ProtectiveAction] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ProtectiveAction]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProtectiveAction.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProtectiveAction.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProtectiveAction.fields (position), value)
+
         emitelem (0, enabled)
         emitelem (1, normalEnabled)
         emitattr (2, GateComCondition)
@@ -938,6 +1082,7 @@ extends
         emitattr (5, ProtectiveActionCollection)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ProtectiveAction rdf:ID=\"%s\">\n%s\t</cim:ProtectiveAction>".format (id, export_fields)
@@ -945,10 +1090,10 @@ extends
 }
 
 object ProtectiveAction
-extends
-    Parseable[ProtectiveAction]
+    extends
+        Parseable[ProtectiveAction]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "enabled",
         "normalEnabled",
         "GateComCondition",
@@ -962,17 +1107,17 @@ extends
         Relationship ("ProtectionEquipment", "ProtectionEquipment", "0..1", "0..*"),
         Relationship ("ProtectiveActionCollection", "ProtectiveActionCollection", "1", "1..*")
     )
-    val enabled: Fielder = parse_element (element (cls, fields(0)))
-    val normalEnabled: Fielder = parse_element (element (cls, fields(1)))
-    val GateComCondition: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val GateEnabledCondition: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val ProtectionEquipment: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val ProtectiveActionCollection: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val enabled: Fielder = parse_element (element (cls, fields (0)))
+    val normalEnabled: Fielder = parse_element (element (cls, fields (1)))
+    val GateComCondition: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val GateEnabledCondition: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val ProtectionEquipment: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val ProtectiveActionCollection: Fielder = parse_attribute (attribute (cls, fields (5)))
 
     def parse (context: Context): ProtectiveAction =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ProtectiveAction (
             IdentifiedObject.parse (context),
             toBoolean (mask (enabled (), 0)),
@@ -992,17 +1137,17 @@ extends
  *
  * The operating condition is adjusted.
  *
- * @param sup [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
- * @param byPercentage The adjustment is given in percent of the active value.
- * @param byValue The adjustment is given in value of the active value.
- * @param kind Defines the kind of adjustment that should be done.
- *        With this value the correct attribute containing the value needs to be used.
- * @param reduce If true, the adjusted value is an reduction.
- *        Other wise it is an increase in the value.
- * @param setValue The adjustment is given by a new active value.
- * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] <em>undocumented</em>
+ * @param sup                   [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
+ * @param byPercentage          The adjustment is given in percent of the active value.
+ * @param byValue               The adjustment is given in value of the active value.
+ * @param kind                  Defines the kind of adjustment that should be done.
+ *                              With this value the correct attribute containing the value needs to be used.
+ * @param reduce                If true, the adjusted value is an reduction.
+ *                              Other wise it is an increase in the value.
+ * @param setValue              The adjustment is given by a new active value.
+ * @param ConductingEquipment   [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] <em>undocumented</em>
  * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] <em>undocumented</em>
- * @param Measurement [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
+ * @param Measurement           [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -1019,13 +1164,17 @@ case class ProtectiveActionAdjustment
     DCConductingEquipment: String,
     Measurement: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, false, 0.0, null, null, null) }
+    def this () =
+    {
+        this (null, 0.0, 0.0, null, false, 0.0, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1034,22 +1183,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProtectiveAction: ProtectiveAction = sup.asInstanceOf[ProtectiveAction]
-    override def copy (): Row = { clone ().asInstanceOf[ProtectiveActionAdjustment] }
+    def ProtectiveAction: ProtectiveAction = sup.asInstanceOf [ProtectiveAction]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ProtectiveActionAdjustment]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProtectiveActionAdjustment.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProtectiveActionAdjustment.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProtectiveActionAdjustment.fields (position), value)
+
         emitelem (0, byPercentage)
         emitelem (1, byValue)
         emitattr (2, kind)
@@ -1060,6 +1219,7 @@ extends
         emitattr (7, Measurement)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ProtectiveActionAdjustment rdf:ID=\"%s\">\n%s\t</cim:ProtectiveActionAdjustment>".format (id, export_fields)
@@ -1067,10 +1227,10 @@ extends
 }
 
 object ProtectiveActionAdjustment
-extends
-    Parseable[ProtectiveActionAdjustment]
+    extends
+        Parseable[ProtectiveActionAdjustment]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "byPercentage",
         "byValue",
         "kind",
@@ -1085,19 +1245,19 @@ extends
         Relationship ("DCConductingEquipment", "DCConductingEquipment", "1", "0..*"),
         Relationship ("Measurement", "Measurement", "0..1", "0..*")
     )
-    val byPercentage: Fielder = parse_element (element (cls, fields(0)))
-    val byValue: Fielder = parse_element (element (cls, fields(1)))
-    val kind: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val reduce: Fielder = parse_element (element (cls, fields(3)))
-    val setValue: Fielder = parse_element (element (cls, fields(4)))
-    val ConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val DCConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val Measurement: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val byPercentage: Fielder = parse_element (element (cls, fields (0)))
+    val byValue: Fielder = parse_element (element (cls, fields (1)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val reduce: Fielder = parse_element (element (cls, fields (3)))
+    val setValue: Fielder = parse_element (element (cls, fields (4)))
+    val ConductingEquipment: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val DCConductingEquipment: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val Measurement: Fielder = parse_attribute (attribute (cls, fields (7)))
 
     def parse (context: Context): ProtectiveActionAdjustment =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ProtectiveActionAdjustment (
             ProtectiveAction.parse (context),
             toDouble (mask (byPercentage (), 0)),
@@ -1117,9 +1277,9 @@ extends
 /**
  * A collection of protective actions to protect the integrity of the power system.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param sup              [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
- * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
+ * @param StageTrigger     [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -1130,13 +1290,17 @@ case class ProtectiveActionCollection
     ProtectiveAction: List[String],
     StageTrigger: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), List()) }
+    def this () =
+    {
+        this (null, List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1145,25 +1309,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[ProtectiveActionCollection] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ProtectiveActionCollection]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProtectiveActionCollection.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ProtectiveActionCollection.fields (position), x))
+
         emitattrs (0, ProtectiveAction)
         emitattrs (1, StageTrigger)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ProtectiveActionCollection rdf:ID=\"%s\">\n%s\t</cim:ProtectiveActionCollection>".format (id, export_fields)
@@ -1171,10 +1345,10 @@ extends
 }
 
 object ProtectiveActionCollection
-extends
-    Parseable[ProtectiveActionCollection]
+    extends
+        Parseable[ProtectiveActionCollection]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ProtectiveAction",
         "StageTrigger"
     )
@@ -1182,13 +1356,13 @@ extends
         Relationship ("ProtectiveAction", "ProtectiveAction", "1..*", "1"),
         Relationship ("StageTrigger", "StageTrigger", "0..*", "1")
     )
-    val ProtectiveAction: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val StageTrigger: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ProtectiveAction: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val StageTrigger: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: Context): ProtectiveActionCollection =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ProtectiveActionCollection (
             IdentifiedObject.parse (context),
             masks (ProtectiveAction (), 0),
@@ -1202,7 +1376,7 @@ extends
 /**
  * Protective action to put an Equipment in-service/out-of-service.
  *
- * @param sup [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
+ * @param sup       [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
  * @param inService If true the equipment is put in-service, otherwise out-of-service.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] <em>undocumented</em>
  * @group InfSIPS
@@ -1215,13 +1389,17 @@ case class ProtectiveActionEquipment
     inService: Boolean,
     Equipment: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, null) }
+    def this () =
+    {
+        this (null, false, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1230,26 +1408,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProtectiveAction: ProtectiveAction = sup.asInstanceOf[ProtectiveAction]
-    override def copy (): Row = { clone ().asInstanceOf[ProtectiveActionEquipment] }
+    def ProtectiveAction: ProtectiveAction = sup.asInstanceOf [ProtectiveAction]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ProtectiveActionEquipment]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProtectiveActionEquipment.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProtectiveActionEquipment.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProtectiveActionEquipment.fields (position), value)
+
         emitelem (0, inService)
         emitattr (1, Equipment)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ProtectiveActionEquipment rdf:ID=\"%s\">\n%s\t</cim:ProtectiveActionEquipment>".format (id, export_fields)
@@ -1257,23 +1446,23 @@ extends
 }
 
 object ProtectiveActionEquipment
-extends
-    Parseable[ProtectiveActionEquipment]
+    extends
+        Parseable[ProtectiveActionEquipment]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "inService",
         "Equipment"
     )
     override val relations: List[Relationship] = List (
         Relationship ("Equipment", "Equipment", "1", "0..*")
     )
-    val inService: Fielder = parse_element (element (cls, fields(0)))
-    val Equipment: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val inService: Fielder = parse_element (element (cls, fields (0)))
+    val Equipment: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: Context): ProtectiveActionEquipment =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ProtectiveActionEquipment (
             ProtectiveAction.parse (context),
             toBoolean (mask (inService (), 0)),
@@ -1287,10 +1476,10 @@ extends
 /**
  * Protective action to change regulation to Equipment.
  *
- * @param sup [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
- * @param isRegulating If true the regulator is put in-service, otherwise out-of-service (no regulation).
- * @param targetValue The target value specified the new case input for the regulator.
- *        The value has the units appropriate to the mode attribute. The protective action does not change the mode attribute.
+ * @param sup               [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Reference to the superclass object.
+ * @param isRegulating      If true the regulator is put in-service, otherwise out-of-service (no regulation).
+ * @param targetValue       The target value specified the new case input for the regulator.
+ *                          The value has the units appropriate to the mode attribute. The protective action does not change the mode attribute.
  * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -1303,13 +1492,17 @@ case class ProtectiveActionRegulation
     targetValue: Double,
     RegulatingControl: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, 0.0, null) }
+    def this () =
+    {
+        this (null, false, 0.0, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1318,27 +1511,38 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProtectiveAction: ProtectiveAction = sup.asInstanceOf[ProtectiveAction]
-    override def copy (): Row = { clone ().asInstanceOf[ProtectiveActionRegulation] }
+    def ProtectiveAction: ProtectiveAction = sup.asInstanceOf [ProtectiveAction]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ProtectiveActionRegulation]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProtectiveActionRegulation.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProtectiveActionRegulation.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProtectiveActionRegulation.fields (position), value)
+
         emitelem (0, isRegulating)
         emitelem (1, targetValue)
         emitattr (2, RegulatingControl)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ProtectiveActionRegulation rdf:ID=\"%s\">\n%s\t</cim:ProtectiveActionRegulation>".format (id, export_fields)
@@ -1346,10 +1550,10 @@ extends
 }
 
 object ProtectiveActionRegulation
-extends
-    Parseable[ProtectiveActionRegulation]
+    extends
+        Parseable[ProtectiveActionRegulation]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "isRegulating",
         "targetValue",
         "RegulatingControl"
@@ -1357,14 +1561,14 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("RegulatingControl", "RegulatingControl", "1", "0..*")
     )
-    val isRegulating: Fielder = parse_element (element (cls, fields(0)))
-    val targetValue: Fielder = parse_element (element (cls, fields(1)))
-    val RegulatingControl: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val isRegulating: Fielder = parse_element (element (cls, fields (0)))
+    val targetValue: Fielder = parse_element (element (cls, fields (1)))
+    val RegulatingControl: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: Context): ProtectiveActionRegulation =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ProtectiveActionRegulation (
             ProtectiveAction.parse (context),
             toBoolean (mask (isRegulating (), 0)),
@@ -1379,13 +1583,13 @@ extends
 /**
  * Remedial Action Scheme (RAS), Special Protection Schemes (SPS), System Protection Schemes (SPS) or System Integrity Protection Schemes (SIPS).
  *
- * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param armed The status of the class set by operation or by signal.
- *        Optional field that will override other status fields.
- * @param kind Kind of Remedial Action Scheme (RAS)
- * @param normalArmed The default/normal value used when other active signal/values are missing.
- * @param GateArmed [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
- * @param Stage [[ch.ninecode.model.Stage Stage]] <em>undocumented</em>
+ * @param sup              [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param armed            The status of the class set by operation or by signal.
+ *                         Optional field that will override other status fields.
+ * @param kind             Kind of Remedial Action Scheme (RAS)
+ * @param normalArmed      The default/normal value used when other active signal/values are missing.
+ * @param GateArmed        [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param Stage            [[ch.ninecode.model.Stage Stage]] <em>undocumented</em>
  * @param TriggerCondition [[ch.ninecode.model.TriggerCondition TriggerCondition]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -1401,13 +1605,17 @@ case class RemedialActionScheme
     Stage: List[String],
     TriggerCondition: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, null, false, null, List(), List()) }
+    def this () =
+    {
+        this (null, false, null, false, null, List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1416,23 +1624,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
-    override def copy (): Row = { clone ().asInstanceOf[RemedialActionScheme] }
+    def PowerSystemResource: PowerSystemResource = sup.asInstanceOf [PowerSystemResource]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [RemedialActionScheme]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemedialActionScheme.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemedialActionScheme.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemedialActionScheme.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RemedialActionScheme.fields (position), x))
+
         emitelem (0, armed)
         emitattr (1, kind)
         emitelem (2, normalArmed)
@@ -1441,6 +1660,7 @@ extends
         emitattrs (5, TriggerCondition)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:RemedialActionScheme rdf:ID=\"%s\">\n%s\t</cim:RemedialActionScheme>".format (id, export_fields)
@@ -1448,10 +1668,10 @@ extends
 }
 
 object RemedialActionScheme
-extends
-    Parseable[RemedialActionScheme]
+    extends
+        Parseable[RemedialActionScheme]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "armed",
         "kind",
         "normalArmed",
@@ -1464,17 +1684,17 @@ extends
         Relationship ("Stage", "Stage", "1..*", "1"),
         Relationship ("TriggerCondition", "TriggerCondition", "0..*", "1")
     )
-    val armed: Fielder = parse_element (element (cls, fields(0)))
-    val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val normalArmed: Fielder = parse_element (element (cls, fields(2)))
-    val GateArmed: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val Stage: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val TriggerCondition: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val armed: Fielder = parse_element (element (cls, fields (0)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val normalArmed: Fielder = parse_element (element (cls, fields (2)))
+    val GateArmed: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val Stage: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val TriggerCondition: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
 
     def parse (context: Context): RemedialActionScheme =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = RemedialActionScheme (
             PowerSystemResource.parse (context),
             toBoolean (mask (armed (), 0)),
@@ -1492,11 +1712,11 @@ extends
 /**
  * Stage of a remedial action scheme.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param priority The priority of the stage.   0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
- *        A stage with higher priority needs be activated before a lower stage can be activated.
+ * @param sup                  [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param priority             The priority of the stage.   0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
+ *                             A stage with higher priority needs be activated before a lower stage can be activated.
  * @param RemedialActionScheme [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
- * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
+ * @param StageTrigger         [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -1508,13 +1728,17 @@ case class Stage
     RemedialActionScheme: String,
     StageTrigger: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, null, List()) }
+    def this () =
+    {
+        this (null, 0, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1523,28 +1747,40 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[Stage] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Stage]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Stage.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Stage.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Stage.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Stage.fields (position), x))
+
         emitelem (0, priority)
         emitattr (1, RemedialActionScheme)
         emitattrs (2, StageTrigger)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Stage rdf:ID=\"%s\">\n%s\t</cim:Stage>".format (id, export_fields)
@@ -1552,10 +1788,10 @@ extends
 }
 
 object Stage
-extends
-    Parseable[Stage]
+    extends
+        Parseable[Stage]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "priority",
         "RemedialActionScheme",
         "StageTrigger"
@@ -1564,14 +1800,14 @@ extends
         Relationship ("RemedialActionScheme", "RemedialActionScheme", "1", "1..*"),
         Relationship ("StageTrigger", "StageTrigger", "1..*", "1")
     )
-    val priority: Fielder = parse_element (element (cls, fields(0)))
-    val RemedialActionScheme: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val StageTrigger: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val priority: Fielder = parse_element (element (cls, fields (0)))
+    val RemedialActionScheme: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val StageTrigger: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: Context): Stage =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Stage (
             IdentifiedObject.parse (context),
             toInteger (mask (priority (), 0)),
@@ -1586,17 +1822,17 @@ extends
 /**
  * Condition that is triggered either by TriggerCondition of by gate condition within a stage and has remedial action-s.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param armed The status of the class set by operation or by signal.
- *        Optional field that will override other status fields.
- * @param normalArmed The default/normal value used when other active signal/values are missing.
- * @param priority Priority of trigger. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
- *        A trigger with the highest priority will trigger first.
- * @param GateArmed [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
- * @param GateComCondition [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
- * @param GateTrigger [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param sup                        [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param armed                      The status of the class set by operation or by signal.
+ *                                   Optional field that will override other status fields.
+ * @param normalArmed                The default/normal value used when other active signal/values are missing.
+ * @param priority                   Priority of trigger. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
+ *                                   A trigger with the highest priority will trigger first.
+ * @param GateArmed                  [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param GateComCondition           [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param GateTrigger                [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @param ProtectiveActionCollection [[ch.ninecode.model.ProtectiveActionCollection ProtectiveActionCollection]] <em>undocumented</em>
- * @param Stage [[ch.ninecode.model.Stage Stage]] <em>undocumented</em>
+ * @param Stage                      [[ch.ninecode.model.Stage Stage]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -1613,13 +1849,17 @@ case class StageTrigger
     ProtectiveActionCollection: String,
     Stage: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, false, 0, null, null, null, null, null) }
+    def this () =
+    {
+        this (null, false, false, 0, null, null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1628,22 +1868,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[StageTrigger] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [StageTrigger]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StageTrigger.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (StageTrigger.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (StageTrigger.fields (position), value)
+
         emitelem (0, armed)
         emitelem (1, normalArmed)
         emitelem (2, priority)
@@ -1654,6 +1904,7 @@ extends
         emitattr (7, Stage)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:StageTrigger rdf:ID=\"%s\">\n%s\t</cim:StageTrigger>".format (id, export_fields)
@@ -1661,10 +1912,10 @@ extends
 }
 
 object StageTrigger
-extends
-    Parseable[StageTrigger]
+    extends
+        Parseable[StageTrigger]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "armed",
         "normalArmed",
         "priority",
@@ -1681,19 +1932,19 @@ extends
         Relationship ("ProtectiveActionCollection", "ProtectiveActionCollection", "1", "0..*"),
         Relationship ("Stage", "Stage", "1", "1..*")
     )
-    val armed: Fielder = parse_element (element (cls, fields(0)))
-    val normalArmed: Fielder = parse_element (element (cls, fields(1)))
-    val priority: Fielder = parse_element (element (cls, fields(2)))
-    val GateArmed: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val GateComCondition: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val GateTrigger: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val ProtectiveActionCollection: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val Stage: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val armed: Fielder = parse_element (element (cls, fields (0)))
+    val normalArmed: Fielder = parse_element (element (cls, fields (1)))
+    val priority: Fielder = parse_element (element (cls, fields (2)))
+    val GateArmed: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val GateComCondition: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val GateTrigger: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val ProtectiveActionCollection: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val Stage: Fielder = parse_attribute (attribute (cls, fields (7)))
 
     def parse (context: Context): StageTrigger =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = StageTrigger (
             IdentifiedObject.parse (context),
             toBoolean (mask (armed (), 0)),
@@ -1713,8 +1964,8 @@ extends
 /**
  * A conditions that can trigger remedial actions.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param GateTrigger [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param sup                  [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param GateTrigger          [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @param RemedialActionScheme [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
@@ -1726,13 +1977,17 @@ case class TriggerCondition
     GateTrigger: String,
     RemedialActionScheme: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1741,25 +1996,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[TriggerCondition] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [TriggerCondition]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TriggerCondition.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TriggerCondition.fields (position), value)
+
         emitattr (0, GateTrigger)
         emitattr (1, RemedialActionScheme)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:TriggerCondition rdf:ID=\"%s\">\n%s\t</cim:TriggerCondition>".format (id, export_fields)
@@ -1767,10 +2032,10 @@ extends
 }
 
 object TriggerCondition
-extends
-    Parseable[TriggerCondition]
+    extends
+        Parseable[TriggerCondition]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "GateTrigger",
         "RemedialActionScheme"
     )
@@ -1778,13 +2043,13 @@ extends
         Relationship ("GateTrigger", "Gate", "1", "0..*"),
         Relationship ("RemedialActionScheme", "RemedialActionScheme", "1", "0..*")
     )
-    val GateTrigger: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val RemedialActionScheme: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val GateTrigger: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val RemedialActionScheme: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: Context): TriggerCondition =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = TriggerCondition (
             IdentifiedObject.parse (context),
             mask (GateTrigger (), 0),

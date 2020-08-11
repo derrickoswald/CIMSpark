@@ -15,7 +15,7 @@ case class Member (
     referenced_class: String)
 {
 
-    def multiple:Boolean = !(this_cardinality.equals ("1") || this_cardinality.endsWith ("..1"))
+    def multiple: Boolean = !(this_cardinality.equals ("1") || this_cardinality.endsWith ("..1"))
 
     def edit (s: String): String =
     {
@@ -49,7 +49,7 @@ case class Member (
             """"""
         else
             """
-                | *        %s""".stripMargin.format (asterisks (edit (jd.body)))
+              | *        %s""".stripMargin.format (asterisks (edit (jd.body)))
         """ * @param %s%s %s%s""".format (name, ref, summary, body)
     }
 }

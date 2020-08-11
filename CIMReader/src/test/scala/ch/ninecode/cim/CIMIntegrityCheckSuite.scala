@@ -14,7 +14,7 @@ class CIMIntegrityCheckSuite extends ch.ninecode.SparkSuite
         new Unzip ().unzip (FILE_DEPOT + "DemoData.zip", FILE_DEPOT)
 
         // run the tests
-        val ret  = super.run (testName, args)
+        val ret = super.run (testName, args)
 
         // erase the unpacked files
         deleteRecursive (new File (FILE_DEPOT + "DemoData.rdf"))

@@ -10,23 +10,23 @@ import ch.ninecode.cim.Relationship
 /**
  * Bilateral transaction
  *
- * @param sup Reference to the superclass object.
- * @param curtailTimeMax Maximum curtailment time in number of trading intervals
- * @param curtailTimeMin Minimum curtailment time in number of trading intervals
- * @param marketType Market type (default=DA)
- *        DA - Day Ahead
- *        RT - Real Time
- *        HA - Hour Ahead
- * @param purchaseTimeMax Maximum purchase time in number of trading intervals
- * @param purchaseTimeMin Minimum purchase time in number of trading intervals
- * @param scope Transaction scope:
- *        'Internal' (default)
- *        'External'
+ * @param sup                Reference to the superclass object.
+ * @param curtailTimeMax     Maximum curtailment time in number of trading intervals
+ * @param curtailTimeMin     Minimum curtailment time in number of trading intervals
+ * @param marketType         Market type (default=DA)
+ *                           DA - Day Ahead
+ *                           RT - Real Time
+ *                           HA - Hour Ahead
+ * @param purchaseTimeMax    Maximum purchase time in number of trading intervals
+ * @param purchaseTimeMin    Minimum purchase time in number of trading intervals
+ * @param scope              Transaction scope:
+ *                           'Internal' (default)
+ *                           'External'
  * @param totalTranChargeMax Maximum total transmission (congestion) charges in monetary units
- * @param transactionType Transaction type (default 1)
- *        1 - Fixed
- *        2 - Dispatchable continuous
- *        3 - Dispatchable block-loading
+ * @param transactionType    Transaction type (default 1)
+ *                           1 - Fixed
+ *                           2 - Dispatchable continuous
+ *                           3 - Dispatchable block-loading
  * @group InfMarketOperations
  * @groupname InfMarketOperations Package InfMarketOperations
  */
@@ -42,13 +42,17 @@ case class BilateralTransaction
     totalTranChargeMax: Double,
     transactionType: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, 0, null, 0, 0, null, 0.0, null) }
+    def this () =
+    {
+        this (null, 0, 0, null, 0, 0, null, 0.0, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -57,21 +61,30 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[BilateralTransaction] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BilateralTransaction]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BilateralTransaction.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BilateralTransaction.fields (position), value)
+
         emitelem (0, curtailTimeMax)
         emitelem (1, curtailTimeMin)
         emitelem (2, marketType)
@@ -82,6 +95,7 @@ extends
         emitelem (7, transactionType)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BilateralTransaction rdf:ID=\"%s\">\n%s\t</cim:BilateralTransaction>".format (id, export_fields)
@@ -89,10 +103,10 @@ extends
 }
 
 object BilateralTransaction
-extends
-    Parseable[BilateralTransaction]
+    extends
+        Parseable[BilateralTransaction]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "curtailTimeMax",
         "curtailTimeMin",
         "marketType",
@@ -102,19 +116,19 @@ extends
         "totalTranChargeMax",
         "transactionType"
     )
-    val curtailTimeMax: Fielder = parse_element (element (cls, fields(0)))
-    val curtailTimeMin: Fielder = parse_element (element (cls, fields(1)))
-    val marketType: Fielder = parse_element (element (cls, fields(2)))
-    val purchaseTimeMax: Fielder = parse_element (element (cls, fields(3)))
-    val purchaseTimeMin: Fielder = parse_element (element (cls, fields(4)))
-    val scope: Fielder = parse_element (element (cls, fields(5)))
-    val totalTranChargeMax: Fielder = parse_element (element (cls, fields(6)))
-    val transactionType: Fielder = parse_element (element (cls, fields(7)))
+    val curtailTimeMax: Fielder = parse_element (element (cls, fields (0)))
+    val curtailTimeMin: Fielder = parse_element (element (cls, fields (1)))
+    val marketType: Fielder = parse_element (element (cls, fields (2)))
+    val purchaseTimeMax: Fielder = parse_element (element (cls, fields (3)))
+    val purchaseTimeMin: Fielder = parse_element (element (cls, fields (4)))
+    val scope: Fielder = parse_element (element (cls, fields (5)))
+    val totalTranChargeMax: Fielder = parse_element (element (cls, fields (6)))
+    val transactionType: Fielder = parse_element (element (cls, fields (7)))
 
     def parse (context: Context): BilateralTransaction =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BilateralTransaction (
             BasicElement.parse (context),
             toInteger (mask (curtailTimeMax (), 0)),
@@ -134,9 +148,9 @@ extends
 /**
  * Participation level of a given Pnode in a given AggregatePnode.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param sup    [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param factor Used to calculate "participation" of Pnode in an AggregatePnode.
- *        For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
+ *               For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
  * @group InfMarketOperations
  * @groupname InfMarketOperations Package InfMarketOperations
  */
@@ -145,13 +159,17 @@ case class Participation
     override val sup: IdentifiedObject,
     factor: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () =
+    {
+        this (null, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -160,24 +178,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[Participation] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Participation]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Participation.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Participation.fields (position), value)
+
         emitelem (0, factor)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Participation rdf:ID=\"%s\">\n%s\t</cim:Participation>".format (id, export_fields)
@@ -185,18 +213,18 @@ extends
 }
 
 object Participation
-extends
-    Parseable[Participation]
+    extends
+        Parseable[Participation]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "factor"
     )
-    val factor: Fielder = parse_element (element (cls, fields(0)))
+    val factor: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: Context): Participation =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Participation (
             IdentifiedObject.parse (context),
             toDouble (mask (factor (), 0))
@@ -211,21 +239,21 @@ extends
  *
  * For example, a resource is certified for Non-Spinning reserve for RTM.
  *
- * @param sup Reference to the superclass object.
- * @param certifiedDAM <em>undocumented</em>
- * @param certifiedNonspinDAM <em>undocumented</em>
+ * @param sup                   Reference to the superclass object.
+ * @param certifiedDAM          <em>undocumented</em>
+ * @param certifiedNonspinDAM   <em>undocumented</em>
  * @param certifiedNonspinDAMMw <em>undocumented</em>
- * @param certifiedNonspinRTM <em>undocumented</em>
+ * @param certifiedNonspinRTM   <em>undocumented</em>
  * @param certifiedNonspinRTMMw <em>undocumented</em>
- * @param certifiedPIRP <em>undocumented</em>
- * @param certifiedRTM <em>undocumented</em>
- * @param certifiedRUC <em>undocumented</em>
- * @param certifiedRegulation <em>undocumented</em>
+ * @param certifiedPIRP         <em>undocumented</em>
+ * @param certifiedRTM          <em>undocumented</em>
+ * @param certifiedRUC          <em>undocumented</em>
+ * @param certifiedRegulation   <em>undocumented</em>
  * @param certifiedRegulationMw <em>undocumented</em>
- * @param certifiedReplaceAS <em>undocumented</em>
- * @param certifiedSpin <em>undocumented</em>
- * @param certifiedSpinMw <em>undocumented</em>
- * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
+ * @param certifiedReplaceAS    <em>undocumented</em>
+ * @param certifiedSpin         <em>undocumented</em>
+ * @param certifiedSpinMw       <em>undocumented</em>
+ * @param RegisteredResource    [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group InfMarketOperations
  * @groupname InfMarketOperations Package InfMarketOperations
  */
@@ -247,13 +275,17 @@ case class ResourceCertification
     certifiedSpinMw: Double,
     RegisteredResource: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0.0, null, 0.0, null, null, null, null, 0.0, null, null, 0.0, List()) }
+    def this () =
+    {
+        this (null, null, null, 0.0, null, 0.0, null, null, null, null, 0.0, null, null, 0.0, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -262,23 +294,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ResourceCertification] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ResourceCertification]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ResourceCertification.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceCertification.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceCertification.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ResourceCertification.fields (position), x))
+
         emitattr (0, certifiedDAM)
         emitattr (1, certifiedNonspinDAM)
         emitelem (2, certifiedNonspinDAMMw)
@@ -295,6 +338,7 @@ extends
         emitattrs (13, RegisteredResource)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ResourceCertification rdf:ID=\"%s\">\n%s\t</cim:ResourceCertification>".format (id, export_fields)
@@ -302,10 +346,10 @@ extends
 }
 
 object ResourceCertification
-extends
-    Parseable[ResourceCertification]
+    extends
+        Parseable[ResourceCertification]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "certifiedDAM",
         "certifiedNonspinDAM",
         "certifiedNonspinDAMMw",
@@ -324,25 +368,25 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*")
     )
-    val certifiedDAM: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val certifiedNonspinDAM: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val certifiedNonspinDAMMw: Fielder = parse_element (element (cls, fields(2)))
-    val certifiedNonspinRTM: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val certifiedNonspinRTMMw: Fielder = parse_element (element (cls, fields(4)))
-    val certifiedPIRP: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val certifiedRTM: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val certifiedRUC: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val certifiedRegulation: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val certifiedRegulationMw: Fielder = parse_element (element (cls, fields(9)))
-    val certifiedReplaceAS: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val certifiedSpin: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val certifiedSpinMw: Fielder = parse_element (element (cls, fields(12)))
-    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val certifiedDAM: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val certifiedNonspinDAM: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val certifiedNonspinDAMMw: Fielder = parse_element (element (cls, fields (2)))
+    val certifiedNonspinRTM: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val certifiedNonspinRTMMw: Fielder = parse_element (element (cls, fields (4)))
+    val certifiedPIRP: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val certifiedRTM: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val certifiedRUC: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val certifiedRegulation: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val certifiedRegulationMw: Fielder = parse_element (element (cls, fields (9)))
+    val certifiedReplaceAS: Fielder = parse_attribute (attribute (cls, fields (10)))
+    val certifiedSpin: Fielder = parse_attribute (attribute (cls, fields (11)))
+    val certifiedSpinMw: Fielder = parse_element (element (cls, fields (12)))
+    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields (13)))
 
     def parse (context: Context): ResourceCertification =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ResourceCertification (
             BasicElement.parse (context),
             mask (certifiedDAM (), 0),

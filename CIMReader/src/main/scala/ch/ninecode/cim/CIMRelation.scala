@@ -28,19 +28,19 @@ import ch.ninecode.model.Element
  * to the subclasses of each element, and saves each RDD in the persistent RDD list
  * using the CIM class name.
  *
- * @param location object containing the file(s) to read
+ * @param location        object containing the file(s) to read
  * @param partitionSchema <em>not used</em>
- * @param dataSchema <em>not used</em>
- * @param fileFormat <em>not used</em>
- * @param parameters specific settings for reading the file(s)
- * @param spark the Spark session object
+ * @param dataSchema      <em>not used</em>
+ * @param fileFormat      <em>not used</em>
+ * @param parameters      specific settings for reading the file(s)
+ * @param spark           the Spark session object
  */
 class CIMRelation (
     location: FileIndex,
     partitionSchema: StructType,
     dataSchema: StructType,
     fileFormat: FileFormat,
-    parameters: Map[String, String]) (spark: SparkSession) extends BaseRelation with TableScan with CIMRDD
+    parameters: Map[String, String])(spark: SparkSession) extends BaseRelation with TableScan with CIMRDD
 {
     // We use BaseRelation because if it inherits from HadoopFSRelation,
     // DataSource uses the CIMFileFormat which doesn't allow subsetting, etc. :
@@ -120,8 +120,8 @@ class CIMRelation (
     (
         override val sup: Element = null
     )
-    extends
-        Element
+        extends
+            Element
 
     /**
      * Specifies schema of actual data files.  For partitioned relations, if one or more partitioned
@@ -141,7 +141,7 @@ class CIMRelation (
     {
         // aggregate the set of class names
         val names = rdd
-            .aggregate (Set[String]()) (
+            .aggregate (Set [String]())(
                 (set, element) => element.classes.toSet.union (set),
                 (set1, set2) => set1.union (set2)
             )
@@ -173,7 +173,7 @@ class CIMRelation (
             case Some ((_: Int, old: RDD[_])) =>
                 // aggregate the set of subclass names
                 val names = old.asInstanceOf[RDD[Element]]
-                    .aggregate (Set[String]()) (
+                    .aggregate (Set [String]())(
                         (set, element) => element.classes.toSet.union (set),
                         (set1, set2) => set1.union (set2)
                     )
@@ -200,7 +200,7 @@ class CIMRelation (
                 val rdd: RDD[Element] = spark.sparkContext.objectFile (_Cache)
                 put (rdd, "Elements")
                 make_tables (rdd)
-                ret = rdd.asInstanceOf[RDD[Row]]
+                ret = rdd.asInstanceOf [RDD[Row]]
             }
         }
 
@@ -215,19 +215,19 @@ class CIMRelation (
 
             var rdd = spark.sparkContext.newAPIHadoopRDD (
                 configuration,
-                classOf[CIMInputFormat],
-                classOf[String],
-                classOf[Element]).values
+                classOf [CIMInputFormat],
+                classOf [String],
+                classOf [Element]).values
 
             put (rdd, "Elements")
-            ret = rdd.asInstanceOf[RDD[Row]]
+            ret = rdd.asInstanceOf [RDD[Row]]
 
             // about processing if requested
             if (_About)
             {
                 val about = new CIMAbout (spark, _StorageLevel)
                 rdd = about.do_about ()
-                ret = rdd.asInstanceOf[RDD[Row]]
+                ret = rdd.asInstanceOf [RDD[Row]]
             }
 
             // normalize if requested
@@ -235,7 +235,7 @@ class CIMRelation (
             {
                 val normalize = new CIMNormalize (spark, _StorageLevel)
                 rdd = normalize.do_normalization ()
-                ret = rdd.asInstanceOf[RDD[Row]]
+                ret = rdd.asInstanceOf [RDD[Row]]
             }
 
             // dedup if requested
@@ -243,7 +243,7 @@ class CIMRelation (
             {
                 val dedup = new CIMDeDup (spark, _StorageLevel)
                 rdd = dedup.do_deduplicate ()
-                ret = rdd.asInstanceOf[RDD[Row]]
+                ret = rdd.asInstanceOf [RDD[Row]]
             }
 
             // as a side effect, define all the other temporary tables
@@ -254,21 +254,21 @@ class CIMRelation (
             if (_Join)
             {
                 val join = new CIMJoin (spark, _StorageLevel)
-                ret = join.do_join ().asInstanceOf[RDD[Row]]
+                ret = join.do_join ().asInstanceOf [RDD[Row]]
             }
 
             // perform topological processing if requested
             if (_Topo)
             {
                 val ntp = new CIMNetworkTopologyProcessor (spark, _StorageLevel)
-                ret = ntp.process (_TopologyOptions).asInstanceOf[RDD[Row]]
+                ret = ntp.process (_TopologyOptions).asInstanceOf [RDD[Row]]
             }
 
             // set up edge graph if requested
             if (_Edges)
             {
                 val cimedges = new CIMEdges (spark, _StorageLevel)
-                ret = cimedges.make_edges (_Topo).asInstanceOf[RDD[Row]]
+                ret = cimedges.make_edges (_Topo).asInstanceOf [RDD[Row]]
             }
 
             // cache elements if requested

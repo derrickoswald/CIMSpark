@@ -10,15 +10,15 @@ import ch.ninecode.cim.Relationship
 /**
  * Financial Transmission Rights (FTR) regarding transmission capacity at a flowgate.
  *
- * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
- * @param action Buy, Sell
- * @param baseEnergy Quantity, typically MWs - Seller owns all rights being offered, MWs over time on same Point of Receipt, Point of Delivery, or Resource.
- * @param class Peak, Off-peak, 24-hour
- * @param ftrType Type of rights being offered (product) allowed to be auctioned (option, obligation).
- * @param optimized Fixed (covers re-configuration, grandfathering) or Optimized (up for sale/purchase
+ * @param sup              [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param action           Buy, Sell
+ * @param baseEnergy       Quantity, typically MWs - Seller owns all rights being offered, MWs over time on same Point of Receipt, Point of Delivery, or Resource.
+ * @param class            Peak, Off-peak, 24-hour
+ * @param ftrType          Type of rights being offered (product) allowed to be auctioned (option, obligation).
+ * @param optimized        Fixed (covers re-configuration, grandfathering) or Optimized (up for sale/purchase
  * @param EnergyPriceCurve [[ch.ninecode.model.EnergyPriceCurve EnergyPriceCurve]] <em>undocumented</em>
- * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
- * @param Pnodes [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
+ * @param Flowgate         [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param Pnodes           [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
  * @group InfCongestionRevenueRights
  * @groupname InfCongestionRevenueRights Package InfCongestionRevenueRights
  */
@@ -34,13 +34,17 @@ case class FTR
     Flowgate: String,
     Pnodes: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, null, null, null, null, null, List()) }
+    def this () =
+    {
+        this (null, null, 0.0, null, null, null, null, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -49,23 +53,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Agreement: Agreement = sup.asInstanceOf[Agreement]
-    override def copy (): Row = { clone ().asInstanceOf[FTR] }
+    def Agreement: Agreement = sup.asInstanceOf [Agreement]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [FTR]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FTR.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FTR.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FTR.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FTR.fields (position), x))
+
         emitelem (0, action)
         emitelem (1, baseEnergy)
         emitelem (2, `class`)
@@ -76,6 +91,7 @@ extends
         emitattrs (7, Pnodes)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:FTR rdf:ID=\"%s\">\n%s\t</cim:FTR>".format (id, export_fields)
@@ -83,10 +99,10 @@ extends
 }
 
 object FTR
-extends
-    Parseable[FTR]
+    extends
+        Parseable[FTR]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "action",
         "baseEnergy",
         "class",
@@ -101,19 +117,19 @@ extends
         Relationship ("Flowgate", "Flowgate", "0..1", "0..*"),
         Relationship ("Pnodes", "Pnode", "0..*", "0..*")
     )
-    val action: Fielder = parse_element (element (cls, fields(0)))
-    val baseEnergy: Fielder = parse_element (element (cls, fields(1)))
-    val `class`: Fielder = parse_element (element (cls, fields(2)))
-    val ftrType: Fielder = parse_element (element (cls, fields(3)))
-    val optimized: Fielder = parse_element (element (cls, fields(4)))
-    val EnergyPriceCurve: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val Pnodes: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val action: Fielder = parse_element (element (cls, fields (0)))
+    val baseEnergy: Fielder = parse_element (element (cls, fields (1)))
+    val `class`: Fielder = parse_element (element (cls, fields (2)))
+    val ftrType: Fielder = parse_element (element (cls, fields (3)))
+    val optimized: Fielder = parse_element (element (cls, fields (4)))
+    val EnergyPriceCurve: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val Flowgate: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val Pnodes: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
 
     def parse (context: Context): FTR =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = FTR (
             Agreement.parse (context),
             mask (action (), 0),
@@ -133,10 +149,10 @@ extends
 /**
  * A type of limit that indicates if it is enforced and, through association, the organisation responsible for setting the limit.
  *
- * @param sup [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
- * @param enforced True if limit is enforced.
- * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
- * @param MktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] <em>undocumented</em>
+ * @param sup             [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
+ * @param enforced        True if limit is enforced.
+ * @param Flowgate        [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param MktMeasurement  [[ch.ninecode.model.MktMeasurement MktMeasurement]] <em>undocumented</em>
  * @param MktOrganisation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>
  * @group InfCongestionRevenueRights
  * @groupname InfCongestionRevenueRights Package InfCongestionRevenueRights
@@ -149,13 +165,17 @@ case class ViolationLimit
     MktMeasurement: String,
     MktOrganisation: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, null, null, List()) }
+    def this () =
+    {
+        this (null, false, null, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -164,29 +184,41 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Limit: Limit = sup.asInstanceOf[Limit]
-    override def copy (): Row = { clone ().asInstanceOf[ViolationLimit] }
+    def Limit: Limit = sup.asInstanceOf [Limit]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ViolationLimit]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ViolationLimit.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ViolationLimit.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ViolationLimit.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ViolationLimit.fields (position), x))
+
         emitelem (0, enforced)
         emitattr (1, Flowgate)
         emitattr (2, MktMeasurement)
         emitattrs (3, MktOrganisation)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ViolationLimit rdf:ID=\"%s\">\n%s\t</cim:ViolationLimit>".format (id, export_fields)
@@ -194,10 +226,10 @@ extends
 }
 
 object ViolationLimit
-extends
-    Parseable[ViolationLimit]
+    extends
+        Parseable[ViolationLimit]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "enforced",
         "Flowgate",
         "MktMeasurement",
@@ -208,15 +240,15 @@ extends
         Relationship ("MktMeasurement", "MktMeasurement", "0..1", "0..*"),
         Relationship ("MktOrganisation", "MktOrganisation", "0..*", "0..*")
     )
-    val enforced: Fielder = parse_element (element (cls, fields(0)))
-    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val MktMeasurement: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val MktOrganisation: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val enforced: Fielder = parse_element (element (cls, fields (0)))
+    val Flowgate: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val MktMeasurement: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val MktOrganisation: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
 
     def parse (context: Context): ViolationLimit =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ViolationLimit (
             Limit.parse (context),
             toBoolean (mask (enforced (), 0)),

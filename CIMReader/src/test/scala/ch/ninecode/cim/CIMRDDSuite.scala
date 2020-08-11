@@ -64,121 +64,124 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
         session.sparkContext.parallelize (result._1.values.toSeq)
     }
 
-    def rddHadoop (map: Map[String,String])(implicit session: SparkSession): RDD[Element] =
+    def rddHadoop (map: Map[String, String])(implicit session: SparkSession): RDD[Element] =
     {
-        val configuration = map.foldLeft (new Configuration (session.sparkContext.hadoopConfiguration))((c, e) => { c.set (e._1, e._2); c })
-        session.sparkContext.newAPIHadoopRDD (configuration, classOf[CIMInputFormat], classOf[String], classOf[Element]).values
+        val configuration = map.foldLeft (new Configuration (session.sparkContext.hadoopConfiguration))((c, e) =>
+        {
+            c.set (e._1, e._2); c
+        })
+        session.sparkContext.newAPIHadoopRDD (configuration, classOf [CIMInputFormat], classOf [String], classOf [Element]).values
     }
 
     test ("Create")
     {
         implicit session: SparkSession ⇒
 
-        val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
-        val parser = new CHIM (xml.toString)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 0)
-        val rdd = session.sparkContext.parallelize (result._1.toSeq, 2)
-        assert (rdd.count () === 1)
+            val xml = "yadda yadda <cim:PSRType rdf:ID=\"PSRType_Substation\">\n<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>\n</cim:PSRType> foo bar"
+            val parser = new CHIM (xml.toString)
+            val result = CHIM.parse (parser)
+            assert (result._1.size === 1)
+            assert (result._2.length === 0)
+            val rdd = session.sparkContext.parallelize (result._1.toSeq, 2)
+            assert (rdd.count () === 1)
     }
 
     test ("Read")
     {
         implicit session: SparkSession ⇒
 
-        val rdd = rddFile (FILENAME1)
-        assert (rdd.count () === ELEMENTS1)
+            val rdd = rddFile (FILENAME1)
+            assert (rdd.count () === ELEMENTS1)
     }
 
     test ("Read Partial")
     {
         implicit session: SparkSession ⇒
 
-        val (xml, start, end) = CHIM.read (FILENAME1, OFFSET, 1024 * 1024) // exactly a megabyte
-        //markup ("" + start + ":" + end + " " + OFFSET + "+" + 1024 * 1024 + " " + xml.substring (0, 50))
-        val parser = new CHIM (xml, start, end, OFFSET, OFFSET + (1024 * 1024))
-        val result = CHIM.parse (parser)
-        assert (result._1.size === PARTIAL_MAP_SIZE)
-        assert (result._2.length === 0)
-        assert (!result._1.exists (_.getClass == classOf[Unknown]))
+            val (xml, start, end) = CHIM.read (FILENAME1, OFFSET, 1024 * 1024) // exactly a megabyte
+            //markup ("" + start + ":" + end + " " + OFFSET + "+" + 1024 * 1024 + " " + xml.substring (0, 50))
+            val parser = new CHIM (xml, start, end, OFFSET, OFFSET + (1024 * 1024))
+            val result = CHIM.parse (parser)
+            assert (result._1.size === PARTIAL_MAP_SIZE)
+            assert (result._2.length === 0)
+            assert (!result._1.exists (_.getClass == classOf [Unknown]))
     }
 
     test ("Merge Partial")
     {
         implicit session: SparkSession ⇒
 
-        val size = new File (FILENAME3).length ().toInt
-        var offset = 0
-        var count = 0 // count of elements
-        val random = new Random ()
-        var last: RDD[String] = null // previous result
-        while (offset < size)
-        {
-            var piece = random.nextInt (size / 10)
-            if (offset + piece > size)
-                piece = size - offset
-            var (xml, start, end) = CHIM.read (FILENAME3, offset, piece)
-            //markup ("" + start + ":" + end + " " + offset + "+" + piece + " " + xml.substring (0, 50))
-            val parser = new CHIM (xml, start, end, offset, offset + piece)
-            xml = null
-            val result = CHIM.parse (parser)
-            //markup ("" + result._1.size + " elements")
-            assert (result._2.length === 0)
-            val rdd = session.sparkContext.parallelize (result._1.keys.toSeq)
-            if (null != last)
+            val size = new File (FILENAME3).length ().toInt
+            var offset = 0
+            var count = 0 // count of elements
+            val random = new Random ()
+            var last: RDD[String] = null // previous result
+            while (offset < size)
             {
-                val int = rdd.intersection (last)
-                if (int.count () != 0)
+                var piece = random.nextInt (size / 10)
+                if (offset + piece > size)
+                    piece = size - offset
+                var (xml, start, end) = CHIM.read (FILENAME3, offset, piece)
+                //markup ("" + start + ":" + end + " " + offset + "+" + piece + " " + xml.substring (0, 50))
+                val parser = new CHIM (xml, start, end, offset, offset + piece)
+                xml = null
+                val result = CHIM.parse (parser)
+                //markup ("" + result._1.size + " elements")
+                assert (result._2.length === 0)
+                val rdd = session.sparkContext.parallelize (result._1.keys.toSeq)
+                if (null != last)
                 {
-                    val i1 = int.collect ()
-                    markup ("There were non-zero intersections between rdd1 and rdd2 (" + i1.length + ") like:")
-                    for (i <- i1.indices)
-                        markup (i1 (i))
+                    val int = rdd.intersection (last)
+                    if (int.count () != 0)
+                    {
+                        val i1 = int.collect ()
+                        markup ("There were non-zero intersections between rdd1 and rdd2 (" + i1.length + ") like:")
+                        for (i <- i1.indices)
+                            markup (i1 (i))
+                    }
+                    assert (int.count () == 0)
                 }
-                assert (int.count () == 0)
+                last = rdd
+                offset += piece
+                count += result._1.size
             }
-            last = rdd
-            offset += piece
-            count += result._1.size
-        }
-        assert (count === ELEMENTS3)
+            assert (count === ELEMENTS3)
     }
 
     test ("Hadoop")
     {
         implicit session: SparkSession ⇒
 
-        val rdd = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME1)))
-        val unknowns = rdd.collect ({ case x: Any if x.getClass == classOf[Unknown] => x.asInstanceOf[Unknown] })
-        if (unknowns.count () != 0)
-        {
-            val u = unknowns.first ()
-            markup ("There were non-zero unknowns (" + unknowns.count () + ") like @line " + u.line + " when parsing text starting at " + u.start + " and last parse ending at " + u.end + " with internal text '" + u.guts + "'")
-        }
-        assert (rdd.count () === ELEMENTS1)
+            val rdd = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME1)))
+            val unknowns = rdd.collect ({ case x: Any if x.getClass == classOf [Unknown] => x.asInstanceOf [Unknown] })
+            if (unknowns.count () != 0)
+            {
+                val u = unknowns.first ()
+                markup ("There were non-zero unknowns (" + unknowns.count () + ") like @line " + u.line + " when parsing text starting at " + u.start + " and last parse ending at " + u.end + " with internal text '" + u.guts + "'")
+            }
+            assert (rdd.count () === ELEMENTS1)
     }
 
     test ("Multiple Files")
     {
         implicit session: SparkSession ⇒
 
-        val rdd1 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME1)))
-        val rdd2 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME2)))
-        val rdd3 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME1 + "," + FILENAME2)))
-        assert (rdd1.count () === ELEMENTS1)
-        assert (rdd2.count () === ELEMENTS2)
-        assert (rdd3.count () === (ELEMENTS1 + ELEMENTS2))
+            val rdd1 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME1)))
+            val rdd2 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME2)))
+            val rdd3 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME1 + "," + FILENAME2)))
+            assert (rdd1.count () === ELEMENTS1)
+            assert (rdd2.count () === ELEMENTS2)
+            assert (rdd3.count () === (ELEMENTS1 + ELEMENTS2))
     }
 
     test ("Splits")
     {
         implicit session: SparkSession ⇒
 
-        val rdd1 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME3)))
-        val rdd2 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME3), ("mapreduce.input.fileinputformat.split.maxsize", "655360")))
-        assert (rdd1.count () === ELEMENTS3)
-        assert (rdd2.count () === ELEMENTS3)
+            val rdd1 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME3)))
+            val rdd2 = rddHadoop (Map (("mapreduce.input.fileinputformat.inputdir", FILENAME3), ("mapreduce.input.fileinputformat.split.maxsize", "655360")))
+            assert (rdd1.count () === ELEMENTS3)
+            assert (rdd2.count () === ELEMENTS3)
     }
 }
 

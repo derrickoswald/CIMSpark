@@ -10,15 +10,15 @@ import ch.ninecode.cim.Relationship
 /**
  * Power Factor or VAr controller Type I function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param sup                      [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this Power Factor or VAr controller Type I model is associated.
- * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this Power Factor or VAr controller Type I model.
- * @param VoltageAdjusterDynamics [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Voltage adjuster model associated with this Power Factor or VA controller Type I model.
+ * @param RemoteInputSignal        [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this Power Factor or VAr controller Type I model.
+ * @param VoltageAdjusterDynamics  [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Voltage adjuster model associated with this Power Factor or VA controller Type I model.
  * @group PFVArControllerType1Dynamics
  * @groupname PFVArControllerType1Dynamics Package PFVArControllerType1Dynamics
  * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE Std 421.1 as �A control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+ *            <font color="#0f0f0f">
+ *            </font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
  */
 case class PFVArControllerType1Dynamics
 (
@@ -27,13 +27,17 @@ case class PFVArControllerType1Dynamics
     RemoteInputSignal: String,
     VoltageAdjusterDynamics: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -42,26 +46,36 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
-    override def copy (): Row = { clone ().asInstanceOf[PFVArControllerType1Dynamics] }
+    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf [DynamicsFunctionBlock]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PFVArControllerType1Dynamics]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PFVArControllerType1Dynamics.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PFVArControllerType1Dynamics.fields (position), value)
+
         emitattr (0, ExcitationSystemDynamics)
         emitattr (1, RemoteInputSignal)
         emitattr (2, VoltageAdjusterDynamics)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PFVArControllerType1Dynamics rdf:ID=\"%s\">\n%s\t</cim:PFVArControllerType1Dynamics>".format (id, export_fields)
@@ -69,10 +83,10 @@ extends
 }
 
 object PFVArControllerType1Dynamics
-extends
-    Parseable[PFVArControllerType1Dynamics]
+    extends
+        Parseable[PFVArControllerType1Dynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ExcitationSystemDynamics",
         "RemoteInputSignal",
         "VoltageAdjusterDynamics"
@@ -82,14 +96,14 @@ extends
         Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
         Relationship ("VoltageAdjusterDynamics", "VoltageAdjusterDynamics", "0..1", "1")
     )
-    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val VoltageAdjusterDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val VoltageAdjusterDynamics: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: Context): PFVArControllerType1Dynamics =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PFVArControllerType1Dynamics (
             DynamicsFunctionBlock.parse (context),
             mask (ExcitationSystemDynamics (), 0),
@@ -106,24 +120,24 @@ extends
  *
  * Reference: IEEE Standard 421.5-2005 Section 11.2.
  *
- * @param sup [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
- * @param ovex Overexcitation Flag (<i>OVEX</i>)
- *        true = overexcited
- *        false = underexcited.
- * @param tpfc PF controller time delay (<i>T</i><i><sub>PFC</sub></i>).
- *        Typical Value = 5.
+ * @param sup    [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
+ * @param ovex   Overexcitation Flag (<i>OVEX</i>)
+ *               true = overexcited
+ *               false = underexcited.
+ * @param tpfc   PF controller time delay (<i>T</i><i><sub>PFC</sub></i>).
+ *               Typical Value = 5.
  * @param vitmin Minimum machine terminal current needed to enable pf/var controller (<i>V</i><i><sub>ITMIN</sub></i>).
- * @param vpf Synchronous machine power factor (<i>V</i><i><sub>PF</sub></i>).
+ * @param vpf    Synchronous machine power factor (<i>V</i><i><sub>PF</sub></i>).
  * @param vpfcbw PF controller dead band (<i>V</i><i><sub>PFC_BW</sub></i>).
- *        Typical Value = 0.05.
+ *               Typical Value = 0.05.
  * @param vpfref PF controller reference (<i>V</i><i><sub>PFREF</sub></i>).
  * @param vvtmax Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).
  * @param vvtmin Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).
  * @group PFVArControllerType1Dynamics
  * @groupname PFVArControllerType1Dynamics Package PFVArControllerType1Dynamics
  * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE Std 421.1 as �A control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+ *            <font color="#0f0f0f">
+ *            </font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
  */
 case class PFVArType1IEEEPFController
 (
@@ -137,13 +151,17 @@ case class PFVArType1IEEEPFController
     vvtmax: Double,
     vvtmin: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () =
+    {
+        this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -152,21 +170,30 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PFVArControllerType1Dynamics: PFVArControllerType1Dynamics = sup.asInstanceOf[PFVArControllerType1Dynamics]
-    override def copy (): Row = { clone ().asInstanceOf[PFVArType1IEEEPFController] }
+    def PFVArControllerType1Dynamics: PFVArControllerType1Dynamics = sup.asInstanceOf [PFVArControllerType1Dynamics]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PFVArType1IEEEPFController]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PFVArType1IEEEPFController.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArType1IEEEPFController.fields (position), value)
+
         emitelem (0, ovex)
         emitelem (1, tpfc)
         emitelem (2, vitmin)
@@ -177,6 +204,7 @@ extends
         emitelem (7, vvtmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PFVArType1IEEEPFController rdf:ID=\"%s\">\n%s\t</cim:PFVArType1IEEEPFController>".format (id, export_fields)
@@ -184,10 +212,10 @@ extends
 }
 
 object PFVArType1IEEEPFController
-extends
-    Parseable[PFVArType1IEEEPFController]
+    extends
+        Parseable[PFVArType1IEEEPFController]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ovex",
         "tpfc",
         "vitmin",
@@ -197,19 +225,19 @@ extends
         "vvtmax",
         "vvtmin"
     )
-    val ovex: Fielder = parse_element (element (cls, fields(0)))
-    val tpfc: Fielder = parse_element (element (cls, fields(1)))
-    val vitmin: Fielder = parse_element (element (cls, fields(2)))
-    val vpf: Fielder = parse_element (element (cls, fields(3)))
-    val vpfcbw: Fielder = parse_element (element (cls, fields(4)))
-    val vpfref: Fielder = parse_element (element (cls, fields(5)))
-    val vvtmax: Fielder = parse_element (element (cls, fields(6)))
-    val vvtmin: Fielder = parse_element (element (cls, fields(7)))
+    val ovex: Fielder = parse_element (element (cls, fields (0)))
+    val tpfc: Fielder = parse_element (element (cls, fields (1)))
+    val vitmin: Fielder = parse_element (element (cls, fields (2)))
+    val vpf: Fielder = parse_element (element (cls, fields (3)))
+    val vpfcbw: Fielder = parse_element (element (cls, fields (4)))
+    val vpfref: Fielder = parse_element (element (cls, fields (5)))
+    val vvtmax: Fielder = parse_element (element (cls, fields (6)))
+    val vvtmin: Fielder = parse_element (element (cls, fields (7)))
 
     def parse (context: Context): PFVArType1IEEEPFController =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PFVArType1IEEEPFController (
             PFVArControllerType1Dynamics.parse (context),
             toBoolean (mask (ovex (), 0)),
@@ -231,20 +259,20 @@ extends
  *
  * Reference: IEEE Standard 421.5-2005 Section 11.3.
  *
- * @param sup [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
- * @param tvarc Var controller time delay (<i>T</i><i><sub>VARC</sub></i>).
- *        Typical Value = 5.
- * @param vvar Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).
+ * @param sup     [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
+ * @param tvarc   Var controller time delay (<i>T</i><i><sub>VARC</sub></i>).
+ *                Typical Value = 5.
+ * @param vvar    Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).
  * @param vvarcbw Var controller dead band (<i>V</i><i><sub>VARC_BW</sub></i>).
- *        Typical Value = 0.02.
+ *                Typical Value = 0.02.
  * @param vvarref Var controller reference (<i>V</i><i><sub>VARREF</sub></i>).
- * @param vvtmax Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).
- * @param vvtmin Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).
+ * @param vvtmax  Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).
+ * @param vvtmin  Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).
  * @group PFVArControllerType1Dynamics
  * @groupname PFVArControllerType1Dynamics Package PFVArControllerType1Dynamics
  * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE Std 421.1 as �A control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+ *            <font color="#0f0f0f">
+ *            </font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
  */
 case class PFVArType1IEEEVArController
 (
@@ -256,13 +284,17 @@ case class PFVArType1IEEEVArController
     vvtmax: Double,
     vvtmin: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () =
+    {
+        this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -271,21 +303,30 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def PFVArControllerType1Dynamics: PFVArControllerType1Dynamics = sup.asInstanceOf[PFVArControllerType1Dynamics]
-    override def copy (): Row = { clone ().asInstanceOf[PFVArType1IEEEVArController] }
+    def PFVArControllerType1Dynamics: PFVArControllerType1Dynamics = sup.asInstanceOf [PFVArControllerType1Dynamics]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PFVArType1IEEEVArController]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PFVArType1IEEEVArController.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArType1IEEEVArController.fields (position), value)
+
         emitelem (0, tvarc)
         emitelem (1, vvar)
         emitelem (2, vvarcbw)
@@ -294,6 +335,7 @@ extends
         emitelem (5, vvtmin)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PFVArType1IEEEVArController rdf:ID=\"%s\">\n%s\t</cim:PFVArType1IEEEVArController>".format (id, export_fields)
@@ -301,10 +343,10 @@ extends
 }
 
 object PFVArType1IEEEVArController
-extends
-    Parseable[PFVArType1IEEEVArController]
+    extends
+        Parseable[PFVArType1IEEEVArController]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "tvarc",
         "vvar",
         "vvarcbw",
@@ -312,17 +354,17 @@ extends
         "vvtmax",
         "vvtmin"
     )
-    val tvarc: Fielder = parse_element (element (cls, fields(0)))
-    val vvar: Fielder = parse_element (element (cls, fields(1)))
-    val vvarcbw: Fielder = parse_element (element (cls, fields(2)))
-    val vvarref: Fielder = parse_element (element (cls, fields(3)))
-    val vvtmax: Fielder = parse_element (element (cls, fields(4)))
-    val vvtmin: Fielder = parse_element (element (cls, fields(5)))
+    val tvarc: Fielder = parse_element (element (cls, fields (0)))
+    val vvar: Fielder = parse_element (element (cls, fields (1)))
+    val vvarcbw: Fielder = parse_element (element (cls, fields (2)))
+    val vvarref: Fielder = parse_element (element (cls, fields (3)))
+    val vvtmax: Fielder = parse_element (element (cls, fields (4)))
+    val vvtmin: Fielder = parse_element (element (cls, fields (5)))
 
     def parse (context: Context): PFVArType1IEEEVArController =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PFVArType1IEEEVArController (
             PFVArControllerType1Dynamics.parse (context),
             toDouble (mask (tvarc (), 0)),

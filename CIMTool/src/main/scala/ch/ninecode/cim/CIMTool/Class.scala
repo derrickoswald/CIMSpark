@@ -3,10 +3,10 @@ package ch.ninecode.cim.CIMTool
 /**
  * CIM class.
  *
- * @param xuid Unique identifier in the model.
- * @param name The class name.
- * @param note Textual notes attached to the class.
- * @param pkg Containing package.
+ * @param xuid       Unique identifier in the model.
+ * @param name       The class name.
+ * @param note       Textual notes attached to the class.
+ * @param pkg        Containing package.
  * @param stereotype UML stereotype for the class.
  */
 case class Class (

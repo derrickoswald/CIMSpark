@@ -2,7 +2,7 @@ package ch.ninecode.cim.CIMTool
 
 import java.util.regex.Pattern
 
-case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List(), group: String = "", group_name: String = "", group_description: String = "")
+case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List (), group: String = "", group_name: String = "", group_description: String = "")
 {
     lazy val spaces: String = (for (i <- 0 until leftpad) yield " ").mkString ("")
     val regex: Pattern = Pattern.compile ("""([\s\S^.]*?\.)\s*?(\p{Upper}.*)|([\s\S]*[\n])(.*)""")
@@ -15,8 +15,13 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
             val matcher = regex.matcher (n)
             val found = matcher.find ()
             if (found)
-                ({ (if (null != matcher.group (1)) matcher.group (1) else matcher.group (3)).trim },
-                 { (if (null != matcher.group (2)) matcher.group (2) else matcher.group (4)).trim })
+                (
+                    {
+                        (if (null != matcher.group (1)) matcher.group (1) else matcher.group (3)).trim
+                    },
+                    {
+                        (if (null != matcher.group (2)) matcher.group (2) else matcher.group (4)).trim
+                    })
             else
                 (n.trim, "")
         }
@@ -40,14 +45,15 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
 
     def addGroupStuff (s: StringBuilder): Unit =
     {
-        s.append ("""
-          | * @group """.stripMargin)
+        s.append (
+            """
+              | * @group """.stripMargin)
         s.append (group)
         if ("" != group_name)
         {
             s.append (
                 """
-                    | * @groupname """.stripMargin)
+                  | * @groupname """.stripMargin)
             s.append (group)
             s.append (" ")
             s.append (group_name)
@@ -55,9 +61,9 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
         if ("" != group_description)
         {
             s.
-            append (
-            """
-                | * @groupdesc """.stripMargin)
+                append (
+                    """
+                      | * @groupdesc """.stripMargin)
             s.append (group)
             s.append (" ")
             s.append (group_description)
@@ -74,13 +80,15 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
             s.append (asterisks (edit (summary)))
             if ("" != body)
             {
-                s.append ("""
+                s.append (
+                    """
                       | *
                       | * """.stripMargin)
                 s.append (asterisks (edit (body)))
             }
-            s.append ("""
-                        | *""".stripMargin)
+            s.append (
+                """
+                  | *""".stripMargin)
             for (member <- members)
                 s.append ("\n" + member.javaDoc)
         }

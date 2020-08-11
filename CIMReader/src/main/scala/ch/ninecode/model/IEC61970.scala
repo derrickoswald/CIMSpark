@@ -10,10 +10,10 @@ import ch.ninecode.cim.Relationship
 /**
  * This is the IEC 61970 CIM version number assigned to this UML model.
  *
- * @param sup Reference to the superclass object.
- * @param date Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
+ * @param sup     Reference to the superclass object.
+ * @param date    Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
  * @param version Form is IEC61970CIMXXvYY where XX is the major CIM package version and the YY is the minor version.
- *        For example IEC61970CIM13v18.
+ *                For example IEC61970CIM13v18.
  * @group IEC61970
  * @groupname IEC61970 Package IEC61970
  * @groupdesc IEC61970 Top package for IEC 61970.
@@ -24,13 +24,17 @@ case class IEC61970CIMVersion
     date: String,
     version: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -39,25 +43,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[IEC61970CIMVersion] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [IEC61970CIMVersion]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IEC61970CIMVersion.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (IEC61970CIMVersion.fields (position), value)
+
         emitelem (0, date)
         emitelem (1, version)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:IEC61970CIMVersion rdf:ID=\"%s\">\n%s\t</cim:IEC61970CIMVersion>".format (id, export_fields)
@@ -65,20 +79,20 @@ extends
 }
 
 object IEC61970CIMVersion
-extends
-    Parseable[IEC61970CIMVersion]
+    extends
+        Parseable[IEC61970CIMVersion]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "date",
         "version"
     )
-    val date: Fielder = parse_element (element (cls, fields(0)))
-    val version: Fielder = parse_element (element (cls, fields(1)))
+    val date: Fielder = parse_element (element (cls, fields (0)))
+    val version: Fielder = parse_element (element (cls, fields (1)))
 
     def parse (context: Context): IEC61970CIMVersion =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = IEC61970CIMVersion (
             BasicElement.parse (context),
             mask (date (), 0),

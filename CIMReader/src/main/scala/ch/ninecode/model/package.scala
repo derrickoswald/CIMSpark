@@ -126,7 +126,7 @@ package ch.ninecode
  *
  *
  * ===ICCP===
-
+ *
  *
  * ===IEC61968===
  * The IEC 61968 subpackages of the CIM are developed, standardized and maintained by IEC TC57 Working Group 14: interfaces for distribution management (WG14).
@@ -143,7 +143,7 @@ package ch.ninecode
  *
  *
  * ===InfAssetInfo===
-
+ *
  *
  * ===InfAssets===
  * The package is used to define asset-level models for objects.
@@ -156,7 +156,7 @@ package ch.ninecode
  *
  *
  * ===InfCongestionRevenueRights===
-
+ *
  *
  * ===InfCustomers===
  * The package is used to define detailed customer models.
@@ -175,10 +175,10 @@ package ch.ninecode
  *
  *
  * ===InfEnergySource===
-
+ *
  *
  * ===InfExternalInputs===
-
+ *
  *
  * ===InfFinancial===
  * This package is responsible for Settlement and Billing.
@@ -187,16 +187,16 @@ package ch.ninecode
  *
  *
  * ===InfLocations===
-
+ *
  *
  * ===InfMarketOperations===
-
+ *
  *
  * ===InfMarketResults===
-
+ *
  *
  * ===InfNewAssets===
-
+ *
  *
  * ===InfOperationalLimits===
  * The description of computed or dynamic limits.
@@ -205,10 +205,10 @@ package ch.ninecode
  *
  *
  * ===InfParticipantInterfaces===
-
+ *
  *
  * ===InfReservation===
-
+ *
  *
  * ===InfSIPS===
  * System Integrity Protection Schemes (SIPS) (IEC terminology).
@@ -217,10 +217,10 @@ package ch.ninecode
  *
  *
  * ===InfTypeAsset===
-
+ *
  *
  * ===InfWiresExt===
-
+ *
  *
  * ===InfWork===
  * The package covers all types of work, including inspection, maintenance, repair, restoration, and construction.

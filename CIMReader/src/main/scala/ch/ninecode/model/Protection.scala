@@ -10,14 +10,14 @@ import ch.ninecode.cim.Relationship
 /**
  * A device that checks current flow values in any direction or designated direction.
  *
- * @param sup [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Reference to the superclass object.
- * @param currentLimit1 Current limit number one 1 for inverse time pickup.
- * @param currentLimit2 Current limit number 2 for inverse time pickup.
- * @param currentLimit3 Current limit number 3 for inverse time pickup.
+ * @param sup             [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Reference to the superclass object.
+ * @param currentLimit1   Current limit number one 1 for inverse time pickup.
+ * @param currentLimit2   Current limit number 2 for inverse time pickup.
+ * @param currentLimit3   Current limit number 3 for inverse time pickup.
  * @param inverseTimeFlag Set true if the current relay has inverse time characteristic.
- * @param timeDelay1 Inverse time delay number 1 for current limit number 1.
- * @param timeDelay2 Inverse time delay number 2 for current limit number 2.
- * @param timeDelay3 Inverse time delay number 3 for current limit number 3.
+ * @param timeDelay1      Inverse time delay number 1 for current limit number 1.
+ * @param timeDelay2      Inverse time delay number 2 for current limit number 2.
+ * @param timeDelay3      Inverse time delay number 3 for current limit number 3.
  * @group Protection
  * @groupname Protection Package Protection
  * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
@@ -33,13 +33,17 @@ case class CurrentRelay
     timeDelay2: Double,
     timeDelay3: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
+    def this () =
+    {
+        this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -48,21 +52,30 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProtectionEquipment: ProtectionEquipment = sup.asInstanceOf[ProtectionEquipment]
-    override def copy (): Row = { clone ().asInstanceOf[CurrentRelay] }
+    def ProtectionEquipment: ProtectionEquipment = sup.asInstanceOf [ProtectionEquipment]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [CurrentRelay]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CurrentRelay.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CurrentRelay.fields (position), value)
+
         emitelem (0, currentLimit1)
         emitelem (1, currentLimit2)
         emitelem (2, currentLimit3)
@@ -72,6 +85,7 @@ extends
         emitelem (6, timeDelay3)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:CurrentRelay rdf:ID=\"%s\">\n%s\t</cim:CurrentRelay>".format (id, export_fields)
@@ -79,10 +93,10 @@ extends
 }
 
 object CurrentRelay
-extends
-    Parseable[CurrentRelay]
+    extends
+        Parseable[CurrentRelay]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "currentLimit1",
         "currentLimit2",
         "currentLimit3",
@@ -91,18 +105,18 @@ extends
         "timeDelay2",
         "timeDelay3"
     )
-    val currentLimit1: Fielder = parse_element (element (cls, fields(0)))
-    val currentLimit2: Fielder = parse_element (element (cls, fields(1)))
-    val currentLimit3: Fielder = parse_element (element (cls, fields(2)))
-    val inverseTimeFlag: Fielder = parse_element (element (cls, fields(3)))
-    val timeDelay1: Fielder = parse_element (element (cls, fields(4)))
-    val timeDelay2: Fielder = parse_element (element (cls, fields(5)))
-    val timeDelay3: Fielder = parse_element (element (cls, fields(6)))
+    val currentLimit1: Fielder = parse_element (element (cls, fields (0)))
+    val currentLimit2: Fielder = parse_element (element (cls, fields (1)))
+    val currentLimit3: Fielder = parse_element (element (cls, fields (2)))
+    val inverseTimeFlag: Fielder = parse_element (element (cls, fields (3)))
+    val timeDelay1: Fielder = parse_element (element (cls, fields (4)))
+    val timeDelay2: Fielder = parse_element (element (cls, fields (5)))
+    val timeDelay3: Fielder = parse_element (element (cls, fields (6)))
 
     def parse (context: Context): CurrentRelay =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = CurrentRelay (
             ProtectionEquipment.parse (context),
             toDouble (mask (currentLimit1 (), 0)),
@@ -123,16 +137,16 @@ extends
  *
  * Protection equipment are associated with conducting equipment and usually operate circuit breakers.
  *
- * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
- * @param highLimit The maximum allowable value.
- * @param lowLimit The minimum allowable value.
- * @param powerDirectionFlag Direction same as positive active power flow value.
- * @param relayDelayTime The time delay from detection of abnormal conditions to relay operation.
- * @param unitMultiplier The unit multiplier of the value.
- * @param unitSymbol The unit of measure of the value.
+ * @param sup                  [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param highLimit            The maximum allowable value.
+ * @param lowLimit             The minimum allowable value.
+ * @param powerDirectionFlag   Direction same as positive active power flow value.
+ * @param relayDelayTime       The time delay from detection of abnormal conditions to relay operation.
+ * @param unitMultiplier       The unit multiplier of the value.
+ * @param unitSymbol           The unit of measure of the value.
  * @param ConductingEquipments [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Protection equipment may be used to protect specific conducting equipment.
- * @param ProtectedSwitches [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] Protected switches operated by this ProtectionEquipment.
- * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
+ * @param ProtectedSwitches    [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] Protected switches operated by this ProtectionEquipment.
+ * @param ProtectiveAction     [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
  * @group Protection
  * @groupname Protection Package Protection
  * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
@@ -150,13 +164,17 @@ case class ProtectionEquipment
     ProtectedSwitches: List[String],
     ProtectiveAction: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, false, 0.0, null, null, List(), List(), List()) }
+    def this () =
+    {
+        this (null, 0.0, 0.0, false, 0.0, null, null, List (), List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -165,23 +183,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Equipment: Equipment = sup.asInstanceOf[Equipment]
-    override def copy (): Row = { clone ().asInstanceOf[ProtectionEquipment] }
+    def Equipment: Equipment = sup.asInstanceOf [Equipment]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ProtectionEquipment]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProtectionEquipment.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProtectionEquipment.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProtectionEquipment.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ProtectionEquipment.fields (position), x))
+
         emitelem (0, highLimit)
         emitelem (1, lowLimit)
         emitelem (2, powerDirectionFlag)
@@ -193,6 +222,7 @@ extends
         emitattrs (8, ProtectiveAction)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ProtectionEquipment rdf:ID=\"%s\">\n%s\t</cim:ProtectionEquipment>".format (id, export_fields)
@@ -200,10 +230,10 @@ extends
 }
 
 object ProtectionEquipment
-extends
-    Parseable[ProtectionEquipment]
+    extends
+        Parseable[ProtectionEquipment]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "highLimit",
         "lowLimit",
         "powerDirectionFlag",
@@ -219,20 +249,20 @@ extends
         Relationship ("ProtectedSwitches", "ProtectedSwitch", "0..*", "0..*"),
         Relationship ("ProtectiveAction", "ProtectiveAction", "0..*", "0..1")
     )
-    val highLimit: Fielder = parse_element (element (cls, fields(0)))
-    val lowLimit: Fielder = parse_element (element (cls, fields(1)))
-    val powerDirectionFlag: Fielder = parse_element (element (cls, fields(2)))
-    val relayDelayTime: Fielder = parse_element (element (cls, fields(3)))
-    val unitMultiplier: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val unitSymbol: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val ConductingEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val ProtectedSwitches: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val ProtectiveAction: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val highLimit: Fielder = parse_element (element (cls, fields (0)))
+    val lowLimit: Fielder = parse_element (element (cls, fields (1)))
+    val powerDirectionFlag: Fielder = parse_element (element (cls, fields (2)))
+    val relayDelayTime: Fielder = parse_element (element (cls, fields (3)))
+    val unitMultiplier: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val unitSymbol: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val ConductingEquipments: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
+    val ProtectedSwitches: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val ProtectiveAction: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
 
     def parse (context: Context): ProtectionEquipment =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ProtectionEquipment (
             Equipment.parse (context),
             toDouble (mask (highLimit (), 0)),
@@ -253,9 +283,9 @@ extends
 /**
  * A reclose sequence (open and close) is defined for each possible reclosure of a breaker.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param recloseDelay Indicates the time lapse before the reclose step will execute a reclose.
- * @param recloseStep Indicates the ordinal position of the reclose step relative to other steps in the sequence.
+ * @param sup             [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param recloseDelay    Indicates the time lapse before the reclose step will execute a reclose.
+ * @param recloseStep     Indicates the ordinal position of the reclose step relative to other steps in the sequence.
  * @param ProtectedSwitch [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] A breaker may have zero or more automatic reclosures after a trip occurs.
  * @group Protection
  * @groupname Protection Package Protection
@@ -268,13 +298,17 @@ case class RecloseSequence
     recloseStep: Int,
     ProtectedSwitch: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0, null) }
+    def this () =
+    {
+        this (null, 0.0, 0, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -283,27 +317,38 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[RecloseSequence] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [RecloseSequence]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RecloseSequence.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RecloseSequence.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RecloseSequence.fields (position), value)
+
         emitelem (0, recloseDelay)
         emitelem (1, recloseStep)
         emitattr (2, ProtectedSwitch)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:RecloseSequence rdf:ID=\"%s\">\n%s\t</cim:RecloseSequence>".format (id, export_fields)
@@ -311,10 +356,10 @@ extends
 }
 
 object RecloseSequence
-extends
-    Parseable[RecloseSequence]
+    extends
+        Parseable[RecloseSequence]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "recloseDelay",
         "recloseStep",
         "ProtectedSwitch"
@@ -322,14 +367,14 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("ProtectedSwitch", "ProtectedSwitch", "1", "0..*")
     )
-    val recloseDelay: Fielder = parse_element (element (cls, fields(0)))
-    val recloseStep: Fielder = parse_element (element (cls, fields(1)))
-    val ProtectedSwitch: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val recloseDelay: Fielder = parse_element (element (cls, fields (0)))
+    val recloseStep: Fielder = parse_element (element (cls, fields (1)))
+    val ProtectedSwitch: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: Context): RecloseSequence =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = RecloseSequence (
             IdentifiedObject.parse (context),
             toDouble (mask (recloseDelay (), 0)),
@@ -346,10 +391,10 @@ extends
  *
  * Used to prevent the paralleling of non-synchronous topological islands.
  *
- * @param sup [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Reference to the superclass object.
+ * @param sup          [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Reference to the superclass object.
  * @param maxAngleDiff The maximum allowable voltage vector phase angle difference across the open device.
- * @param maxFreqDiff The maximum allowable frequency difference across the open device.
- * @param maxVoltDiff The maximum allowable difference voltage across the open device.
+ * @param maxFreqDiff  The maximum allowable frequency difference across the open device.
+ * @param maxVoltDiff  The maximum allowable difference voltage across the open device.
  * @group Protection
  * @groupname Protection Package Protection
  * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
@@ -361,13 +406,17 @@ case class SynchrocheckRelay
     maxFreqDiff: Double,
     maxVoltDiff: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0) }
+    def this () =
+    {
+        this (null, 0.0, 0.0, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -376,26 +425,36 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProtectionEquipment: ProtectionEquipment = sup.asInstanceOf[ProtectionEquipment]
-    override def copy (): Row = { clone ().asInstanceOf[SynchrocheckRelay] }
+    def ProtectionEquipment: ProtectionEquipment = sup.asInstanceOf [ProtectionEquipment]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [SynchrocheckRelay]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SynchrocheckRelay.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchrocheckRelay.fields (position), value)
+
         emitelem (0, maxAngleDiff)
         emitelem (1, maxFreqDiff)
         emitelem (2, maxVoltDiff)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:SynchrocheckRelay rdf:ID=\"%s\">\n%s\t</cim:SynchrocheckRelay>".format (id, export_fields)
@@ -403,22 +462,22 @@ extends
 }
 
 object SynchrocheckRelay
-extends
-    Parseable[SynchrocheckRelay]
+    extends
+        Parseable[SynchrocheckRelay]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "maxAngleDiff",
         "maxFreqDiff",
         "maxVoltDiff"
     )
-    val maxAngleDiff: Fielder = parse_element (element (cls, fields(0)))
-    val maxFreqDiff: Fielder = parse_element (element (cls, fields(1)))
-    val maxVoltDiff: Fielder = parse_element (element (cls, fields(2)))
+    val maxAngleDiff: Fielder = parse_element (element (cls, fields (0)))
+    val maxFreqDiff: Fielder = parse_element (element (cls, fields (1)))
+    val maxVoltDiff: Fielder = parse_element (element (cls, fields (2)))
 
     def parse (context: Context): SynchrocheckRelay =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = SynchrocheckRelay (
             ProtectionEquipment.parse (context),
             toDouble (mask (maxAngleDiff (), 0)),

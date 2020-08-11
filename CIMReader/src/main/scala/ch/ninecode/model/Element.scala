@@ -20,26 +20,26 @@ import org.apache.spark.sql.types.ElementUDT
  *
  * Provides overridable functionality to:
  *
- - access the typed superclass for each object (implemented as <code>null</code> in this trait)
- - access the unique ID for each object
- - access the class name and hierarchy class list
- - act as a Row object for use in SQL DataFrames ([[length]], [[get]] and [[copy]])
- - export the object as XML (implemented as <code>""</code> in this trait)
+ * - access the typed superclass for each object (implemented as <code>null</code> in this trait)
+ * - access the unique ID for each object
+ * - access the class name and hierarchy class list
+ * - act as a Row object for use in SQL DataFrames ([[length]], [[get]] and [[copy]])
+ * - export the object as XML (implemented as <code>""</code> in this trait)
  *
  * @group Added
  * @groupname Added Classes added by CIMReader
  * @groupdesc Low level classes needed to parse the hierarchical CIM classes and generate nested RDD of.
  */
-@SQLUserDefinedType(udt = classOf[ElementUDT])
+@SQLUserDefinedType (udt = classOf [ElementUDT])
 trait Element
-extends
-    Row
-with
-    Serializable
-with
-    Cloneable
-with
-    Product
+    extends
+        Row
+        with
+        Serializable
+        with
+        Cloneable
+        with
+        Product
 {
     /**
      * Get the superclass object.
@@ -70,7 +70,7 @@ with
      * For classes constructed manually, we initially fill this in with the worst case scenario.
      * ToDo: this won't work for classes with more than 96 fields (so far none).
      */
-    var bitfields: Array[Int] = Array(-1, -1, -1)
+    var bitfields: Array[Int] = Array (-1, -1, -1)
 
     /**
      * Is a field present predicate.
@@ -80,7 +80,7 @@ with
      * @param position the field position in the fields array
      * @return <code>true</code> if the field was parsed, <code>false</code> otherwise.
      */
-    def mask (position: Int): Boolean = 0 != (bitfields(position / 32) & (1 << (position % 32)))
+    def mask (position: Int): Boolean = 0 != (bitfields (position / 32) & (1 << (position % 32)))
 
     /**
      * Flag for rdf:about elements.
@@ -156,17 +156,19 @@ with
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { throw new Exception ("copy() should be overridden in derived classes") }
+    override def copy (): Row =
+    {
+        throw new Exception ("copy() should be overridden in derived classes")
+    }
 
     /**
      * Emit one XML element.
      *
      * @example &lt;cim:IdentifiedObject.name&gt;WGS 84&lt;/cim:IdentifiedObject.name&gt;
-     *
      * @param field The name of the field.
      * @param value The value of the field.
-     * @param clz The class name (e.g. ACLineSegment) of this element
-     * @param s The builder to write into.
+     * @param clz   The class name (e.g. ACLineSegment) of this element
+     * @param s     The builder to write into.
      */
     def emit_element (field: String, value: Any)(implicit clz: String, s: StringBuilder): Unit =
     {
@@ -194,11 +196,10 @@ with
      * Emit one XML attribute.
      *
      * @example &lt;cim:Location.CoordinateSystem rdf:resource="#wgs84"/&gt;
-     *
      * @param field The name of the field.
      * @param value The value of the field.
-     * @param clz The class name (e.g. ACLineSegment) of this element
-     * @param s The builder to write into.
+     * @param clz   The class name (e.g. ACLineSegment) of this element
+     * @param s     The builder to write into.
      */
     def emit_attribute (field: String, value: Any)(implicit clz: String, s: StringBuilder): Unit =
     {
@@ -245,7 +246,7 @@ with
  * Not all elements really have an mRID (classes in package Common like PositionPoint and PostalAddress)
  * But Spark needs identifiers for joins, so, for now all elements have an mRID.
  *
- * @param sup Reference to the superclass object.
+ * @param sup  Reference to the superclass object.
  * @param mRID Master resource identifier issued by a model authority. By convention, this is used as the RDF id in the CIM XML.
  * @group Added
  * @groupname Added Classes added by CIMReader
@@ -256,13 +257,16 @@ case class BasicElement
     override val sup: Element = null,
     mRID: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero arg constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
 
     /**
      * Return the unique ID for the object, the mRID for IdentifiedObject derived classes.
@@ -286,14 +290,16 @@ extends
      */
     override def about: Boolean = _about
 
-    override def copy(): Row = clone ().asInstanceOf[Element]
+    override def copy (): Row = clone ().asInstanceOf [Element]
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
 }
 
@@ -306,12 +312,12 @@ object BasicElement
      * Parse an element.
      * Simply extracts the rdf:ID.
      */
-    val ID: FielderFunction = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
+    val ID: FielderFunction = parse_element ((Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
     /**
      * Parse an element.
      * Simply extracts the rdf:about.
      */
-    val about: FielderFunction = parse_element ((Pattern.compile("""rdf:about=("|')([\s\S]*?)\1>?"""), 2))
+    val about: FielderFunction = parse_element ((Pattern.compile ("""rdf:about=("|')([\s\S]*?)\1>?"""), 2))
 
     override def parse (context: Context): BasicElement =
     {
@@ -333,43 +339,53 @@ object BasicElement
  *
  * Default parsed element, when no other more specific class applies.
  *
- * @param sup Reference to the superclass object.
- * @param guts Internal contents of the XML element with the unrecognized name.
- * @param line The line number on which the unknown XML element starts, <em>in Spark this is relative to the split being processed</em>.
+ * @param sup   Reference to the superclass object.
+ * @param guts  Internal contents of the XML element with the unrecognized name.
+ * @param line  The line number on which the unknown XML element starts, <em>in Spark this is relative to the split being processed</em>.
  * @param start The starting character position of the unknown XML element, <em>in Spark this is relative to the split being processed</em>.
- * @param end The ending character position of the unknown XML element, <em>in Spark this is relative to the split being processed</em>.
+ * @param end   The ending character position of the unknown XML element, <em>in Spark this is relative to the split being processed</em>.
  * @group Added
  * @groupname Added Classes added by CIMReader
  * @groupdesc Low level classes needed to parse the hierarchical CIM classes and generate nested RDD of.
  */
-case class Unknown(
+case class Unknown (
     override val sup: Element = null,
     guts: String,
     line: Int,
     start: Long,
     end: Long)
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero arg constructor.
      */
-    def this() = { this (null, null, 0, 0L, 0L) }
+    def this () =
+    {
+        this (null, null, 0, 0L, 0L)
+    }
+
     def Element: Element = sup
-    override def copy (): Row = { clone ().asInstanceOf[Unknown] }
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Unknown]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
 }
 
 object Unknown
-extends
-    Parseable[Unknown]
+    extends
+        Parseable[Unknown]
 {
     /**
      * The current element name.
@@ -377,16 +393,17 @@ extends
      */
     var name: String = ""
 
-    def parse(context: Context): Unknown =
+    def parse (context: Context): Unknown =
     {
         if (Context.DEBUG && (context.errors.size < Context.MAXERRORS))
-            context.errors += "Unknown element \"" + name + "\" at line " + context.line_number()
+            context.errors += "Unknown element \"" + name + "\" at line " + context.line_number ()
         Unknown (
-            BasicElement.parse(context),
+            BasicElement.parse (context),
             context.subxml,
-            context.line_number(),
+            context.line_number (),
             context.start,
             context.end)
     }
+
     override val relations: List[Relationship] = List ()
 }

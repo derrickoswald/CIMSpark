@@ -79,17 +79,18 @@ object CIMServerJDBC
         type LogLevels = Value
         val ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN = Value
     }
+
     implicit val LogLevelsRead: scopt.Read[LogLevels.Value] = scopt.Read.reads (LogLevels.withName)
 
-    implicit val mapRead: scopt.Read[Map[String,String]] = scopt.Read.reads (
+    implicit val mapRead: scopt.Read[Map[String, String]] = scopt.Read.reads (
         s =>
         {
-            var ret = Map[String, String] ()
+            var ret = Map [String, String]()
             val ss = s.split (",")
             for (p <- ss)
             {
                 val kv = p.split ("=")
-                ret = ret + ((kv(0), kv(1)))
+                ret = ret + ((kv (0), kv (1)))
             }
             ret
         }
@@ -98,13 +99,13 @@ object CIMServerJDBC
     case class Arguments (
         quiet: Boolean = false,
         master: String = "",
-        opts: Map[String,String] = Map(),
+        opts: Map[String, String] = Map (),
         storage: String = "MEMORY_AND_DISK_SER",
         dedup: Boolean = false,
         log_level: LogLevels.Value = LogLevels.OFF,
         host: String = "localhost",
         port: Int = 10004,
-        files: Seq[String] = Seq()
+        files: Seq[String] = Seq ()
     )
 
     val parser: OptionParser[Arguments] = new scopt.OptionParser[Arguments](APPLICATION_NAME)
@@ -124,39 +125,39 @@ object CIMServerJDBC
 
         val default = new Arguments
 
-        opt[Unit]("quiet").
+        opt [Unit]("quiet").
             action ((_, c) => c.copy (quiet = true)).
             text ("suppress informational messages [%s]".format (default.quiet))
 
-        opt[String]("master").valueName ("MASTER_URL").
+        opt [String]("master").valueName ("MASTER_URL").
             action ((x, c) => c.copy (master = x)).
             text ("local[*], spark://host:port, mesos://host:port, yarn [%s]".format (default.master))
 
-        opt[Map[String,String]]("opts").valueName ("k1=v1,k2=v2").
+        opt [Map[String, String]]("opts").valueName ("k1=v1,k2=v2").
             action ((x, c) => c.copy (opts = x)).
             text ("other Spark options [%s]".format (default.opts.map (x ⇒ x._1 + "=" + x._2).mkString (",")))
 
-        opt[String]("storage_level").
+        opt [String]("storage_level").
             action ((x, c) => c.copy (storage = x)).
             text ("storage level for RDD serialization [%s]".format (default.storage))
 
-        opt[Unit]("deduplicate").
+        opt [Unit]("deduplicate").
             action ((_, c) => c.copy (dedup = true)).
             text ("de-duplicate input (striped) files [%s]".format (default.dedup))
 
-        opt[LogLevels.Value]("logging").
+        opt [LogLevels.Value]("logging").
             action ((x, c) => c.copy (log_level = x)).
             text ("log level, one of %s [%s]".format (LogLevels.values.iterator.mkString (","), default.log_level))
 
-        opt[String]("host").valueName ("name or IP").
+        opt [String]("host").valueName ("name or IP").
             action ((x, c) => c.copy (host = x)).
             text ("Hive Thriftserver host interface to bind to [%s]".format (default.host))
 
-        opt[Int]("port").valueName ("integer").
+        opt [Int]("port").valueName ("integer").
             action ((x, c) => c.copy (port = x)).
             text ("Hive Thriftserver port [%s]".format (default.port))
 
-        arg[String]("<CIM> <CIM> ...").unbounded ().
+        arg [String]("<CIM> <CIM> ...").unbounded ().
             action ((x, c) => c.copy (files = c.files :+ x)).
             text ("CIM rdf files to process")
     }
@@ -191,7 +192,7 @@ object CIMServerJDBC
      *
      * @param args command line arguments
      */
-    def main (args:Array[String])
+    def main (args: Array[String])
     {
         parser.parse (args, Arguments ()) match
         {
@@ -225,7 +226,7 @@ object CIMServerJDBC
                 configuration.set ("hive.server2.enable.impersonation", "false")
                 // https://issues.apache.org/jira/browse/SPARK-5159
                 // https://issues.apache.org/jira/browse/SPARK-11248
-//                configuration.set ("hive.metastore.execute.setugi", "true")
+                //                configuration.set ("hive.metastore.execute.setugi", "true")
                 val session_builder = SparkSession.builder ()
                 session_builder.enableHiveSupport ()
                 val session = session_builder.config (configuration).getOrCreate ()
@@ -237,37 +238,37 @@ object CIMServerJDBC
                 try
                 {
                     // read the file
-                    val reader_options = new scala.collection.mutable.HashMap[String, String] ()
+                    val reader_options = new scala.collection.mutable.HashMap[String, String]()
                     reader_options.put ("path", arguments.files.mkString (","))
                     reader_options.put ("ch.ninecode.cim.make_edges", "false")
                     reader_options.put ("ch.ninecode.cim.do_join", "false")
                     reader_options.put ("ch.ninecode.cim.do_topo", "false")
                     reader_options.put ("ch.ninecode.cim.do_topo_islands", "false")
                     log.info ("reading CIM files %s".format (arguments.files.mkString (",")))
-                    val elements = session.read.format ("ch.ninecode.cim").options (reader_options).load (arguments.files:_*)
+                    val elements = session.read.format ("ch.ninecode.cim").options (reader_options).load (arguments.files: _*)
                     if (-1 != session.sparkContext.master.indexOf ("sandbox")) // are we in development
-                        elements.explain
-                    else
+                    elements.explain
+                        else
                         log.info ("" + elements.count + " elements")
 
                     // start the thrift JDBC server
                     HiveThriftServer2.startWithContext (session.sqlContext)
                     log.info ("thriftserver started on port " + arguments.port)
 
-//                    log.info ("databases")
-//                    val databases = session.sqlContext.sql ("show databases")
-//                    for (database <- databases)
-//                        log.info (database.toString ())
+                    //                    log.info ("databases")
+                    //                    val databases = session.sqlContext.sql ("show databases")
+                    //                    for (database <- databases)
+                    //                        log.info (database.toString ())
 
                     log.info ("serving tables:")
                     val tables = session.sqlContext.tableNames ()
                     for (table <- tables)
-                       log.info (table.toString)
+                        log.info (table.toString)
 
-//                    log.info ("tables #2")
-//                    val dataframe = session.sqlContext.sql ("show tables")
-//                    for (x <- dataframe)
-//                        log.info (x.getString (0))
+                    //                    log.info ("tables #2")
+                    //                    val dataframe = session.sqlContext.sql ("show tables")
+                    //                    for (x <- dataframe)
+                    //                        log.info (x.getString (0))
 
                     scala.io.StdIn.readLine ("Press [Return] to exit...")
                     println ("Done.")

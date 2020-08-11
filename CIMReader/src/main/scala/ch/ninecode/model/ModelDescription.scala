@@ -10,10 +10,10 @@ import ch.ninecode.cim.Relationship
 /**
  * Identity contain comon descriptive information.
  *
- * @param sup Reference to the superclass object.
+ * @param sup         Reference to the superclass object.
  * @param description <em>undocumented</em>
- * @param name <em>undocumented</em>
- * @param version <em>undocumented</em>
+ * @param name        <em>undocumented</em>
+ * @param version     <em>undocumented</em>
  * @group ModelDescription
  * @groupname ModelDescription Package ModelDescription
  * @groupdesc ModelDescription The package describes meta data for the exchange of power system model data.
@@ -25,13 +25,17 @@ case class Description
     name: String,
     version: Int
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0) }
+    def this () =
+    {
+        this (null, null, null, 0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -40,26 +44,36 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[Description] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Description]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Description.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Description.fields (position), value)
+
         emitelem (0, description)
         emitelem (1, name)
         emitelem (2, version)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Description rdf:ID=\"%s\">\n%s\t</cim:Description>".format (id, export_fields)
@@ -67,22 +81,22 @@ extends
 }
 
 object Description
-extends
-    Parseable[Description]
+    extends
+        Parseable[Description]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "description",
         "name",
         "version"
     )
-    val description: Fielder = parse_element (element (cls, fields(0)))
-    val name: Fielder = parse_element (element (cls, fields(1)))
-    val version: Fielder = parse_element (element (cls, fields(2)))
+    val description: Fielder = parse_element (element (cls, fields (0)))
+    val name: Fielder = parse_element (element (cls, fields (1)))
+    val version: Fielder = parse_element (element (cls, fields (2)))
 
     def parse (context: Context): Description =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Description (
             BasicElement.parse (context),
             mask (description (), 0),
@@ -95,7 +109,7 @@ extends
 }
 
 /**
-
+ *
  * @group ModelDescription
  * @groupname ModelDescription Package ModelDescription
  * @groupdesc ModelDescription The package describes meta data for the exchange of power system model data.
@@ -105,13 +119,17 @@ case class DescriptionID
     override val sup: Description,
     uri: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -120,24 +138,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Description: Description = sup.asInstanceOf[Description]
-    override def copy (): Row = { clone ().asInstanceOf[DescriptionID] }
+    def Description: Description = sup.asInstanceOf [Description]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [DescriptionID]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DescriptionID.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DescriptionID.fields (position), value)
+
         emitelem (0, uri)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DescriptionID rdf:ID=\"%s\">\n%s\t</cim:DescriptionID>".format (id, export_fields)
@@ -145,18 +173,18 @@ extends
 }
 
 object DescriptionID
-extends
-    Parseable[DescriptionID]
+    extends
+        Parseable[DescriptionID]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "uri"
     )
-    val uri: Fielder = parse_element (element (cls, fields(0)))
+    val uri: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: Context): DescriptionID =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = DescriptionID (
             Description.parse (context),
             mask (uri (), 0)
@@ -167,7 +195,7 @@ extends
 }
 
 /**
-
+ *
  * @group ModelDescription
  * @groupname ModelDescription Package ModelDescription
  * @groupdesc ModelDescription The package describes meta data for the exchange of power system model data.
@@ -178,13 +206,17 @@ case class DifferenceModel
     forwardDifferences: String,
     reverseDifferences: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -193,25 +225,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Model: Model = sup.asInstanceOf[Model]
-    override def copy (): Row = { clone ().asInstanceOf[DifferenceModel] }
+    def Model: Model = sup.asInstanceOf [Model]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [DifferenceModel]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DifferenceModel.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DifferenceModel.fields (position), value)
+
         emitattr (0, forwardDifferences)
         emitattr (1, reverseDifferences)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DifferenceModel rdf:ID=\"%s\">\n%s\t</cim:DifferenceModel>".format (id, export_fields)
@@ -219,10 +261,10 @@ extends
 }
 
 object DifferenceModel
-extends
-    Parseable[DifferenceModel]
+    extends
+        Parseable[DifferenceModel]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "forwardDifferences",
         "reverseDifferences"
     )
@@ -230,13 +272,13 @@ extends
         Relationship ("forwardDifferences", "Statements", "0..1", ""),
         Relationship ("reverseDifferences", "Statements", "0..1", "")
     )
-    val forwardDifferences: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val reverseDifferences: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val forwardDifferences: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val reverseDifferences: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: Context): DifferenceModel =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = DifferenceModel (
             Model.parse (context),
             mask (forwardDifferences (), 0),
@@ -248,7 +290,7 @@ extends
 }
 
 /**
-
+ *
  * @group ModelDescription
  * @groupname ModelDescription Package ModelDescription
  * @groupdesc ModelDescription The package describes meta data for the exchange of power system model data.
@@ -257,13 +299,17 @@ case class FullModel
 (
     override val sup: FullModelDocumentElement
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -272,20 +318,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def FullModelDocumentElement: FullModelDocumentElement = sup.asInstanceOf[FullModelDocumentElement]
-    override def copy (): Row = { clone ().asInstanceOf[FullModel] }
+    def FullModelDocumentElement: FullModelDocumentElement = sup.asInstanceOf [FullModelDocumentElement]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [FullModel]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:FullModel rdf:ID=\"%s\">\n%s\t</cim:FullModel>".format (id, export_fields)
@@ -293,8 +347,8 @@ extends
 }
 
 object FullModel
-extends
-    Parseable[FullModel]
+    extends
+        Parseable[FullModel]
 {
 
     def parse (context: Context): FullModel =
@@ -308,7 +362,7 @@ extends
 }
 
 /**
-
+ *
  * @group ModelDescription
  * @groupname ModelDescription Package ModelDescription
  * @groupdesc ModelDescription The package describes meta data for the exchange of power system model data.
@@ -317,13 +371,17 @@ case class FullModelDocumentElement
 (
     override val sup: BasicElement
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -332,20 +390,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[FullModelDocumentElement] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [FullModelDocumentElement]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:FullModelDocumentElement rdf:ID=\"%s\">\n%s\t</cim:FullModelDocumentElement>".format (id, export_fields)
@@ -353,8 +419,8 @@ extends
 }
 
 object FullModelDocumentElement
-extends
-    Parseable[FullModelDocumentElement]
+    extends
+        Parseable[FullModelDocumentElement]
 {
 
     def parse (context: Context): FullModelDocumentElement =
@@ -368,7 +434,7 @@ extends
 }
 
 /**
-
+ *
  * @group ModelDescription
  * @groupname ModelDescription Package ModelDescription
  * @groupdesc ModelDescription The package describes meta data for the exchange of power system model data.
@@ -387,13 +453,17 @@ case class Model
     SupersededBy: List[String],
     Supersedes: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, List(), List(), List(), List()) }
+    def this () =
+    {
+        this (null, null, null, null, null, null, null, List (), List (), List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -402,22 +472,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[Model] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Model]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Model.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Model.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Model.fields (position), x))
+
         emitelem (0, created)
         emitelem (1, description)
         emitelem (2, modelingAuthoritySet)
@@ -430,6 +510,7 @@ extends
         emitattrs (9, Supersedes)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Model rdf:ID=\"%s\">\n%s\t</cim:Model>".format (id, export_fields)
@@ -437,10 +518,10 @@ extends
 }
 
 object Model
-extends
-    Parseable[Model]
+    extends
+        Parseable[Model]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "created",
         "description",
         "modelingAuthoritySet",
@@ -458,21 +539,21 @@ extends
         Relationship ("SupersededBy", "Model", "0..*", "0..*"),
         Relationship ("Supersedes", "Model", "0..*", "0..*")
     )
-    val created: Fielder = parse_element (element (cls, fields(0)))
-    val description: Fielder = parse_element (element (cls, fields(1)))
-    val modelingAuthoritySet: Fielder = parse_element (element (cls, fields(2)))
-    val profile: Fielder = parse_element (element (cls, fields(3)))
-    val scenarioTime: Fielder = parse_element (element (cls, fields(4)))
-    val version: Fielder = parse_element (element (cls, fields(5)))
-    val DependentOn: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val Depending: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val SupersededBy: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val Supersedes: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val created: Fielder = parse_element (element (cls, fields (0)))
+    val description: Fielder = parse_element (element (cls, fields (1)))
+    val modelingAuthoritySet: Fielder = parse_element (element (cls, fields (2)))
+    val profile: Fielder = parse_element (element (cls, fields (3)))
+    val scenarioTime: Fielder = parse_element (element (cls, fields (4)))
+    val version: Fielder = parse_element (element (cls, fields (5)))
+    val DependentOn: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
+    val Depending: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val SupersededBy: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val Supersedes: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
 
     def parse (context: Context): Model =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Model (
             BasicElement.parse (context),
             mask (created (), 0),
@@ -492,7 +573,7 @@ extends
 }
 
 /**
-
+ *
  * @group ModelDescription
  * @groupname ModelDescription Package ModelDescription
  * @groupdesc ModelDescription The package describes meta data for the exchange of power system model data.
@@ -503,13 +584,17 @@ case class ModelDescriptionCIMVersion
     date: String,
     version: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -518,25 +603,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ModelDescriptionCIMVersion] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ModelDescriptionCIMVersion]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ModelDescriptionCIMVersion.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ModelDescriptionCIMVersion.fields (position), value)
+
         emitelem (0, date)
         emitelem (1, version)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ModelDescriptionCIMVersion rdf:ID=\"%s\">\n%s\t</cim:ModelDescriptionCIMVersion>".format (id, export_fields)
@@ -544,20 +639,20 @@ extends
 }
 
 object ModelDescriptionCIMVersion
-extends
-    Parseable[ModelDescriptionCIMVersion]
+    extends
+        Parseable[ModelDescriptionCIMVersion]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "date",
         "version"
     )
-    val date: Fielder = parse_element (element (cls, fields(0)))
-    val version: Fielder = parse_element (element (cls, fields(1)))
+    val date: Fielder = parse_element (element (cls, fields (0)))
+    val version: Fielder = parse_element (element (cls, fields (1)))
 
     def parse (context: Context): ModelDescriptionCIMVersion =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ModelDescriptionCIMVersion (
             BasicElement.parse (context),
             mask (date (), 0),
@@ -569,7 +664,7 @@ extends
 }
 
 /**
-
+ *
  * @group ModelDescription
  * @groupname ModelDescription Package ModelDescription
  * @groupdesc ModelDescription The package describes meta data for the exchange of power system model data.
@@ -578,13 +673,17 @@ case class Statements
 (
     override val sup: FullModelDocumentElement
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -593,20 +692,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def FullModelDocumentElement: FullModelDocumentElement = sup.asInstanceOf[FullModelDocumentElement]
-    override def copy (): Row = { clone ().asInstanceOf[Statements] }
+    def FullModelDocumentElement: FullModelDocumentElement = sup.asInstanceOf [FullModelDocumentElement]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Statements]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:Statements rdf:ID=\"%s\">\n%s\t</cim:Statements>".format (id, export_fields)
@@ -614,8 +721,8 @@ extends
 }
 
 object Statements
-extends
-    Parseable[Statements]
+    extends
+        Parseable[Statements]
 {
 
     def parse (context: Context): Statements =

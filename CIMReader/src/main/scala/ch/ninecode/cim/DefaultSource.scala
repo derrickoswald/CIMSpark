@@ -10,17 +10,17 @@ import org.apache.spark.sql.sources.RelationProvider
 import org.slf4j.LoggerFactory
 
 class DefaultSource
-extends
-    RelationProvider
+    extends
+        RelationProvider
 {
-    private val log = LoggerFactory.getLogger (getClass) 
-    
+    private val log = LoggerFactory.getLogger (getClass)
+
     override def createRelation (
         sqlContext: SQLContext,
         parameters: Map[String, String]): BaseRelation =
     {
         val session = sqlContext.sparkSession
-        val files = parameters.getOrElse ("path", sys.error("'path' must be specified for CIM data."))
+        val files = parameters.getOrElse ("path", sys.error ("'path' must be specified for CIM data."))
         log.info ("createRelation for files " + files)
         val allPaths: Seq[String] = files.split (",")
         val globbedPaths = allPaths.flatMap
@@ -33,15 +33,15 @@ extends
                 val globPath = SparkHadoopUtil.get.globPathIfNecessary (qualified)
                 if (globPath.isEmpty)
                     throw new java.io.FileNotFoundException (s"Path does not exist: $qualified")
-                if (!fs.exists(globPath.head))
+                if (!fs.exists (globPath.head))
                     throw new java.io.FileNotFoundException (s"Path does not exist: ${globPath.head}")
                 globPath
         }
         val fileCatalog = new InMemoryFileIndex (session, globbedPaths, parameters, None)
-        val partitionSchema = fileCatalog.partitionSpec().partitionColumns
+        val partitionSchema = fileCatalog.partitionSpec ().partitionColumns
         val format = new CIMFileFormat ()
         val dataSchema = format.inferSchema (session, parameters, fileCatalog.allFiles ()).get
-        new CIMRelation (fileCatalog, partitionSchema, dataSchema, format, parameters) (session)
+        new CIMRelation (fileCatalog, partitionSchema, dataSchema, format, parameters)(session)
     }
 }
 

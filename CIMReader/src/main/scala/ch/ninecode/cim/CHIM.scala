@@ -23,22 +23,27 @@ import ch.ninecode.model._
  */
 trait Parser
 {
+
     import Parser._
 
     type Expression = (Pattern, Int)
 
     type Field = (String, Boolean)
+
     trait FielderFunction
     {
-        def apply ()(implicit context:Context): Field
+        def apply ()(implicit context: Context): Field
     }
+
     type Fielder = FielderFunction
 
     type Fields = (List[String], Boolean)
+
     trait FielderFunctionMultiple
     {
-        def apply ()(implicit context:Context): Fields
+        def apply ()(implicit context: Context): Fields
     }
+
     type FielderMultiple = FielderFunctionMultiple
 
     val fields: Array[String] = Array ()
@@ -47,7 +52,8 @@ trait Parser
     /**
      * Regular expression to parse an element.
      * For example: <cim:ACLineSegment.r>0.224</cim:ACLineSegment.r>
-     * @param cls The class name.
+     *
+     * @param cls  The class name.
      * @param name The element name (without namespace prefix).
      * @return The compiled regex pattern and the index of the match group.
      */
@@ -60,7 +66,8 @@ trait Parser
     /**
      * Regular expression to parse an attribute.
      * For example: <cim:ACLineSegmentPhase.phase rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind.A"/>
-     * @param cls The class name.
+     *
+     * @param cls  The class name.
      * @param name The attribute name (without namespace prefix).
      * @return The compiled regex pattern and the index of the match group.
      */
@@ -90,16 +97,18 @@ trait Parser
      *         )
      *     }
      * }}}
+     *
      * @param context The context for the substring in the XML and
-     * line number and position context for reporting in case of an error.
+     *                line number and position context for reporting in case of an error.
      * @return The parsed CIM element, e.g. ACLineSegment.
      */
     def parse (context: Context): Element
 
     /**
      * Create a function to parse one XML element from a string.
+     *
      * @param pattern A Tuple2 of the regular expression pattern to look for and
-     * the index of the capture group to extract from within the pattern.
+     *                the index of the capture group to extract from within the pattern.
      * @return A function for parsing the element.
      */
     def parse_element (pattern: Expression): FielderFunction =
@@ -110,7 +119,7 @@ trait Parser
         //     * @return The matched group from the regular expression, or null if the pattern wasn't found.
         new FielderFunction
         {
-            def apply () (implicit context: Context): Field =
+            def apply ()(implicit context: Context): Field =
             {
                 val matcher = pattern._1.matcher (context.subxml)
                 if (matcher.find ())
@@ -128,8 +137,9 @@ trait Parser
 
     /**
      * Parse one or more XML elements from a string.
+     *
      * @param pattern A Tuple2 of the regular expression pattern to look for and
-     * the index of the capture group to extract from within the pattern.
+     *                the index of the capture group to extract from within the pattern.
      * @return A function for parsing the elements.
      */
     def parse_elements (pattern: Expression): FielderFunctionMultiple =
@@ -139,7 +149,7 @@ trait Parser
         //     * @return The matched group(s) from the regular expression or null if none were found.
         new FielderFunctionMultiple
         {
-            def apply () (implicit context: Context): Fields =
+            def apply ()(implicit context: Context): Fields =
             {
                 var ret: List[String] = null
 
@@ -160,8 +170,9 @@ trait Parser
 
     /**
      * Create a function to parse one attribute from an XML string.
+     *
      * @param pattern A Tuple2 of the regular expression pattern to look for and
-     * the index of the capture group to extract from within the pattern.
+     *                the index of the capture group to extract from within the pattern.
      * @return A function for parsing the attribute.
      */
     def parse_attribute (pattern: (Pattern, Int)): FielderFunction =
@@ -171,7 +182,7 @@ trait Parser
         //     * @return The attribute value (with leading # stripped off), or null if the pattern wasn't found.
         new FielderFunction
         {
-            def apply () (implicit context: Context): Field =
+            def apply ()(implicit context: Context): Field =
             {
                 val matcher = pattern._1.matcher (context.subxml)
                 if (matcher.find ())
@@ -197,8 +208,9 @@ trait Parser
 
     /**
      * Create a function to parse one or more attributes from an XML string.
+     *
      * @param pattern A Tuple2 of the regular expression pattern to look for and
-     * the index of the capture group to extract from within the pattern.
+     *                the index of the capture group to extract from within the pattern.
      * @return A function for parsing the attributes.
      */
     def parse_attributes (pattern: (Pattern, Int)): FielderMultiple =
@@ -208,7 +220,7 @@ trait Parser
         //     * @return The attribute value(s) (with leading # stripped off).
         new FielderFunctionMultiple
         {
-            def apply () (implicit context: Context): Fields =
+            def apply ()(implicit context: Context): Fields =
             {
                 var ret: List[String] = null
 
@@ -234,20 +246,21 @@ trait Parser
 
     /**
      * Convert a string into a boolean.
-     * @param string The string to convert. Should be either "true" or "false". <null> and the empty string are considered false.
+     *
+     * @param string  The string to convert. Should be either "true" or "false". <null> and the empty string are considered false.
      * @param context The context for reporting in case of an unparseable boolean.
      * @return The boolean value.
      */
-    def toBoolean (string: String) (implicit context: Context): Boolean =
+    def toBoolean (string: String)(implicit context: Context): Boolean =
     {
         var ret = false
 
         if ((null != string) && ("" != string))
             try
-                ret = string.toBoolean
+            ret = string.toBoolean
             catch
             {
-                case _: Throwable ⇒ throw new Exception ("unparsable boolean (" + string + ") found while parsing at line " + context.line_number())
+                case _: Throwable ⇒ throw new Exception ("unparsable boolean (" + string + ") found while parsing at line " + context.line_number ())
             }
 
         ret
@@ -255,20 +268,21 @@ trait Parser
 
     /**
      * Convert a string into an integer.
-     * @param string The string to convert. Should be just digits although whitespace at the beginning or end is tolerated.
+     *
+     * @param string  The string to convert. Should be just digits although whitespace at the beginning or end is tolerated.
      * @param context The context for reporting in case of an unparseable integer.
      * @return The integer value.
      */
-    def toInteger (string: String) (implicit context: Context): Int =
+    def toInteger (string: String)(implicit context: Context): Int =
     {
         var ret: Int = 0
 
         if ((null != string) && ("" != string))
             try
-                ret = string.trim.toInt
+            ret = string.trim.toInt
             catch
             {
-                case _: Throwable ⇒ throw new Exception ("unparsable integer (" + string + ") found while parsing at line " + context.line_number())
+                case _: Throwable ⇒ throw new Exception ("unparsable integer (" + string + ") found while parsing at line " + context.line_number ())
             }
 
         ret
@@ -276,17 +290,18 @@ trait Parser
 
     /**
      * Convert a string into a floating point value.
-     * @param string The string to convert. Should be a valid floating point formatted number although whitespace at the beginning or end is tolerated.
+     *
+     * @param string  The string to convert. Should be a valid floating point formatted number although whitespace at the beginning or end is tolerated.
      * @param context The context for reporting in case of an unparseable double.
      * @return The double value.
      */
-    def toDouble (string: String) (implicit context: Context): Double =
+    def toDouble (string: String)(implicit context: Context): Double =
     {
         var ret = 0.0
 
         if ((null != string) && ("" != string))
             try
-                ret = string.trim.toDouble
+            ret = string.trim.toDouble
             catch
             {
                 case _: Throwable ⇒ throw new Exception ("unparsable double (" + string + ") found while parsing at line " + context.line_number ())
@@ -302,7 +317,7 @@ trait Parser
  * This parser companion object is only needed because Scala doesn't have a static declaration,
  * and instead invents a "companion object" to hold the trait or class
  * members that should be accessible without an instantiated object.
- * 
+ *
  */
 object Parser
 {
@@ -323,6 +338,7 @@ case class Relationship (
     mate_cardinality: String)
 {
     def multiple: Boolean = !(this_cardinality.equals ("1") || this_cardinality.endsWith ("..1"))
+
     // true if the class with this relationship is the N side in a 1:N relation
     def heavyside: Boolean = multiple && (mate_cardinality.equals ("1") || mate_cardinality.endsWith ("..1"))
 }
@@ -345,27 +361,30 @@ case class ClassInfo (
  *     def parse (context: Context): Terminal = ???
  * }
  * }}}
- * 
+ *
  * @tparam A The CIM class type.
  */
 abstract class Parseable[+A <: Product : ClassTag : TypeTag] extends Parser
 {
-    val runtime_class: Class[_] = classTag[A].runtimeClass
+    val runtime_class: Class[_] = classTag [A].runtimeClass
     val classname: String = runtime_class.getName
     val cls: String = classname.substring (classname.lastIndexOf (".") + 1)
     val subsetter: CIMSubsetter[_ <: Product] = new CIMSubsetter[A]()
+
     def register: ClassInfo =
-        ClassInfo (cls, this.asInstanceOf[Parseable[Product]], subsetter, relations)
-    def mask (field: Field, position: Int) (implicit bitfields: Array[Int]): String =
+        ClassInfo (cls, this.asInstanceOf [Parseable[Product]], subsetter, relations)
+
+    def mask (field: Field, position: Int)(implicit bitfields: Array[Int]): String =
     {
         if (field._2)
-            bitfields(position / 32) |= (1 << (position % 32))
+            bitfields (position / 32) |= (1 << (position % 32))
         field._1
     }
-    def masks (field: Fields, position: Int) (implicit bitfields: Array[Int]): List[String] =
+
+    def masks (field: Fields, position: Int)(implicit bitfields: Array[Int]): List[String] =
     {
         if (field._2)
-            bitfields(position / 32) |= (1 << (position % 32))
+            bitfields (position / 32) |= (1 << (position % 32))
         field._1
     }
 }
@@ -381,18 +400,19 @@ abstract class Parseable[+A <: Product : ClassTag : TypeTag] extends Parser
 /**
  * Common Hierarchical Information Model
  * CIM classes for parsing RDF files.
- * @param xml The CIM RDF to parse.
- * @param start The initial character position in the xml to start parsing at.
- * @param finish The final character position in the xml to parse.
+ *
+ * @param xml        The CIM RDF to parse.
+ * @param start      The initial character position in the xml to start parsing at.
+ * @param finish     The final character position in the xml to parse.
  * @param first_byte The first byte offset of the xml.
- * @param last_byte The last byte offset within the xml at which to stop parsing.
+ * @param last_byte  The last byte offset within the xml at which to stop parsing.
  */
 class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val first_byte: Long = 0L, val last_byte: Long = 0L) extends Serializable
 {
     val last: Long = if (last_byte != 0L) last_byte else xml.getBytes ("UTF-8").length
     val context: Context = new Context (xml, start, start, first_byte)
     val matcher: Matcher = Parser.rddex.matcher (xml)
-    val bytes: ByteBuffer = ByteBuffer.wrap (new Array[Byte] (4 * CHIM.OVERREAD))
+    val bytes: ByteBuffer = ByteBuffer.wrap (new Array[Byte](4 * CHIM.OVERREAD))
     val encoder: CharsetEncoder = Charset.forName ("UTF-8").newEncoder ()
     var value: Element = _
 
@@ -564,8 +584,8 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
 
 object CHIM
 {
-    val CHUNK: Int = 1024*1024*64
-    val OVERREAD: Int = 1024*256 // should be large enough that no RDF element is bigger than this
+    val CHUNK: Int = 1024 * 1024 * 64
+    val OVERREAD: Int = 1024 * 256 // should be large enough that no RDF element is bigger than this
     val row: Row = null
 
     def parse (parser: CHIM): (scala.collection.mutable.HashMap[String, Element], ArrayBuffer[String]) =
@@ -597,13 +617,13 @@ object CHIM
                 val extra = if (in.available () > end - start) CHIM.OVERREAD else 0
                 // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
                 val size = (end - start + extra).toInt
-                val buffer = new Array[Byte] (size)
+                val buffer = new Array[Byte](size)
                 in.read (buffer)
 
                 val low =
                     if (0 == start)
-                        // strip any BOM(Byte Order Mark) i.e. 0xEF,0xBB,0xBF
-                        if ((size >= 3) && (buffer(0) == 0xef) && (buffer(1) == 0xbb) && (buffer(2) == 0xbf))
+                    // strip any BOM(Byte Order Mark) i.e. 0xEF,0xBB,0xBF
+                        if ((size >= 3) && (buffer (0) == 0xef) && (buffer (1) == 0xbb) && (buffer (2) == 0xbf))
                             3
                         else
                             0
@@ -616,8 +636,8 @@ object CHIM
                         // skip to next UTF-8 non-continuation byte (high order bit zero)
                         // by advancing past at most 4 bytes
                         var i = 0
-                        if ((buffer(low + i) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
-                            while (0 != (buffer(low + i) & 0x80) && (i < Math.min (4, size)))
+                        if ((buffer (low + i) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
+                            while (0 != (buffer (low + i) & 0x80) && (i < Math.min (4, size)))
                                 i += 1
                         low + i
                     }
@@ -645,7 +665,7 @@ object CHIM
             if (args.length > 1)
             {
                 println ("Press [Return] to continue...")
-                System.console().readLine()
+                System.console ().readLine ()
             }
 
             val filename = args (0)
@@ -682,7 +702,7 @@ object CHIM
             println ("reading %g seconds".format (reading / 1e6))
             println ("parsing %g seconds".format (parsing / 1e6))
             println (result.size + " identified elements parsed")
-            val subset = result.values.filter (_.getClass == classOf[Unknown])
+            val subset = result.values.filter (_.getClass == classOf [Unknown])
             println (subset.size + " unknown elements")
         }
         else

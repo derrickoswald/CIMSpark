@@ -10,20 +10,20 @@ import ch.ninecode.cim.Relationship
 /**
  * The result of a problem (typically an asset failure) diagnosis.
  *
- * @param sup [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
- * @param effect Effect of problem.
- * @param failureMode Failuer mode, for example: Failure to Insulate; Failure to conduct; Failure to contain oil; Failure to provide ground plane; Other.
- * @param finalCause Cause of problem determined during diagnosis.
- * @param finalCode Code for diagnosed probem type.
- * @param finalOrigin Origin of problem determined during diagnosis.
- * @param finalRemark Remarks pertaining to findings during problem diagnosis.
- * @param phaseCode Phase(s) diagnosed.
- * @param preliminaryCode Code for problem type determined during preliminary assessment.
+ * @param sup                 [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
+ * @param effect              Effect of problem.
+ * @param failureMode         Failuer mode, for example: Failure to Insulate; Failure to conduct; Failure to contain oil; Failure to provide ground plane; Other.
+ * @param finalCause          Cause of problem determined during diagnosis.
+ * @param finalCode           Code for diagnosed probem type.
+ * @param finalOrigin         Origin of problem determined during diagnosis.
+ * @param finalRemark         Remarks pertaining to findings during problem diagnosis.
+ * @param phaseCode           Phase(s) diagnosed.
+ * @param preliminaryCode     Code for problem type determined during preliminary assessment.
  * @param preliminaryDateTime Date and time preliminary assessment of problem was performed.
- * @param preliminaryRemark Remarks pertaining to preliminary assessment of problem.
- * @param rootCause Root cause of problem determined during diagnosis.
- * @param rootOrigin Root origin of problem determined during diagnosis.
- * @param rootRemark Remarks pertaining to root cause findings during problem diagnosis.
+ * @param preliminaryRemark   Remarks pertaining to preliminary assessment of problem.
+ * @param rootCause           Root cause of problem determined during diagnosis.
+ * @param rootOrigin          Root origin of problem determined during diagnosis.
+ * @param rootRemark          Remarks pertaining to root cause findings during problem diagnosis.
  * @group InfNewAssets
  * @groupname InfNewAssets Package InfNewAssets
  */
@@ -44,13 +44,17 @@ case class DiagnosisDataSet
     rootOrigin: String,
     rootRemark: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -59,22 +63,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf[ProcedureDataSet]
-    override def copy (): Row = { clone ().asInstanceOf[DiagnosisDataSet] }
+    def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf [ProcedureDataSet]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [DiagnosisDataSet]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiagnosisDataSet.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiagnosisDataSet.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DiagnosisDataSet.fields (position), value)
+
         emitelem (0, effect)
         emitelem (1, failureMode)
         emitelem (2, finalCause)
@@ -90,6 +104,7 @@ extends
         emitelem (12, rootRemark)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DiagnosisDataSet rdf:ID=\"%s\">\n%s\t</cim:DiagnosisDataSet>".format (id, export_fields)
@@ -97,10 +112,10 @@ extends
 }
 
 object DiagnosisDataSet
-extends
-    Parseable[DiagnosisDataSet]
+    extends
+        Parseable[DiagnosisDataSet]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "effect",
         "failureMode",
         "finalCause",
@@ -115,24 +130,24 @@ extends
         "rootOrigin",
         "rootRemark"
     )
-    val effect: Fielder = parse_element (element (cls, fields(0)))
-    val failureMode: Fielder = parse_element (element (cls, fields(1)))
-    val finalCause: Fielder = parse_element (element (cls, fields(2)))
-    val finalCode: Fielder = parse_element (element (cls, fields(3)))
-    val finalOrigin: Fielder = parse_element (element (cls, fields(4)))
-    val finalRemark: Fielder = parse_element (element (cls, fields(5)))
-    val phaseCode: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val preliminaryCode: Fielder = parse_element (element (cls, fields(7)))
-    val preliminaryDateTime: Fielder = parse_element (element (cls, fields(8)))
-    val preliminaryRemark: Fielder = parse_element (element (cls, fields(9)))
-    val rootCause: Fielder = parse_element (element (cls, fields(10)))
-    val rootOrigin: Fielder = parse_element (element (cls, fields(11)))
-    val rootRemark: Fielder = parse_element (element (cls, fields(12)))
+    val effect: Fielder = parse_element (element (cls, fields (0)))
+    val failureMode: Fielder = parse_element (element (cls, fields (1)))
+    val finalCause: Fielder = parse_element (element (cls, fields (2)))
+    val finalCode: Fielder = parse_element (element (cls, fields (3)))
+    val finalOrigin: Fielder = parse_element (element (cls, fields (4)))
+    val finalRemark: Fielder = parse_element (element (cls, fields (5)))
+    val phaseCode: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val preliminaryCode: Fielder = parse_element (element (cls, fields (7)))
+    val preliminaryDateTime: Fielder = parse_element (element (cls, fields (8)))
+    val preliminaryRemark: Fielder = parse_element (element (cls, fields (9)))
+    val rootCause: Fielder = parse_element (element (cls, fields (10)))
+    val rootOrigin: Fielder = parse_element (element (cls, fields (11)))
+    val rootRemark: Fielder = parse_element (element (cls, fields (12)))
 
     def parse (context: Context): DiagnosisDataSet =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = DiagnosisDataSet (
             ProcedureDataSet.parse (context),
             mask (effect (), 0),
@@ -157,8 +172,8 @@ extends
 /**
  * Documents the result of one inspection, for a given attribute of an asset.
  *
- * @param sup [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
- * @param locationCondition Description of the conditions of the location where the asset resides.
+ * @param sup                  [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
+ * @param locationCondition    Description of the conditions of the location where the asset resides.
  * @param AccordingToSchedules [[ch.ninecode.model.ScheduledEventData ScheduledEventData]] <em>undocumented</em>
  * @group InfNewAssets
  * @groupname InfNewAssets Package InfNewAssets
@@ -169,13 +184,17 @@ case class InspectionDataSet
     locationCondition: String,
     AccordingToSchedules: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List()) }
+    def this () =
+    {
+        this (null, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -184,26 +203,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf[ProcedureDataSet]
-    override def copy (): Row = { clone ().asInstanceOf[InspectionDataSet] }
+    def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf [ProcedureDataSet]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [InspectionDataSet]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = InspectionDataSet.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (InspectionDataSet.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (InspectionDataSet.fields (position), x))
+
         emitelem (0, locationCondition)
         emitattrs (1, AccordingToSchedules)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:InspectionDataSet rdf:ID=\"%s\">\n%s\t</cim:InspectionDataSet>".format (id, export_fields)
@@ -211,23 +241,23 @@ extends
 }
 
 object InspectionDataSet
-extends
-    Parseable[InspectionDataSet]
+    extends
+        Parseable[InspectionDataSet]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "locationCondition",
         "AccordingToSchedules"
     )
     override val relations: List[Relationship] = List (
         Relationship ("AccordingToSchedules", "ScheduledEventData", "0..*", "1")
     )
-    val locationCondition: Fielder = parse_element (element (cls, fields(0)))
-    val AccordingToSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val locationCondition: Fielder = parse_element (element (cls, fields (0)))
+    val AccordingToSchedules: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: Context): InspectionDataSet =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = InspectionDataSet (
             ProcedureDataSet.parse (context),
             mask (locationCondition (), 0),
@@ -241,10 +271,10 @@ extends
 /**
  * The result of a maintenance activity, a type of Procedure, for a given attribute of an asset.
  *
- * @param sup [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
- * @param conditionAfter Condition of asset just following maintenance procedure.
+ * @param sup             [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
+ * @param conditionAfter  Condition of asset just following maintenance procedure.
  * @param conditionBefore Description of the condition of the asset just prior to maintenance being performed.
- * @param maintCode Code for the type of maintenance performed.
+ * @param maintCode       Code for the type of maintenance performed.
  * @group InfNewAssets
  * @groupname InfNewAssets Package InfNewAssets
  */
@@ -255,13 +285,17 @@ case class MaintenanceDataSet
     conditionBefore: String,
     maintCode: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -270,26 +304,36 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf[ProcedureDataSet]
-    override def copy (): Row = { clone ().asInstanceOf[MaintenanceDataSet] }
+    def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf [ProcedureDataSet]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [MaintenanceDataSet]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MaintenanceDataSet.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MaintenanceDataSet.fields (position), value)
+
         emitelem (0, conditionAfter)
         emitelem (1, conditionBefore)
         emitelem (2, maintCode)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MaintenanceDataSet rdf:ID=\"%s\">\n%s\t</cim:MaintenanceDataSet>".format (id, export_fields)
@@ -297,22 +341,22 @@ extends
 }
 
 object MaintenanceDataSet
-extends
-    Parseable[MaintenanceDataSet]
+    extends
+        Parseable[MaintenanceDataSet]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "conditionAfter",
         "conditionBefore",
         "maintCode"
     )
-    val conditionAfter: Fielder = parse_element (element (cls, fields(0)))
-    val conditionBefore: Fielder = parse_element (element (cls, fields(1)))
-    val maintCode: Fielder = parse_element (element (cls, fields(2)))
+    val conditionAfter: Fielder = parse_element (element (cls, fields (0)))
+    val conditionBefore: Fielder = parse_element (element (cls, fields (1)))
+    val maintCode: Fielder = parse_element (element (cls, fields (2)))
 
     def parse (context: Context): MaintenanceDataSet =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = MaintenanceDataSet (
             ProcedureDataSet.parse (context),
             mask (conditionAfter (), 0),
@@ -327,9 +371,9 @@ extends
 /**
  * Test results, usually obtained by a lab or other independent organisation.
  *
- * @param sup [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
- * @param conclusion Conclusion drawn from test results.
- * @param specimenID Identifier of specimen used in inspection or test.
+ * @param sup                   [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
+ * @param conclusion            Conclusion drawn from test results.
+ * @param specimenID            Identifier of specimen used in inspection or test.
  * @param specimenToLabDateTime Date and time the specimen was received by the lab.
  * @group InfNewAssets
  * @groupname InfNewAssets Package InfNewAssets
@@ -341,13 +385,17 @@ case class TestDataSet
     specimenID: String,
     specimenToLabDateTime: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -356,26 +404,36 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf[ProcedureDataSet]
-    override def copy (): Row = { clone ().asInstanceOf[TestDataSet] }
+    def ProcedureDataSet: ProcedureDataSet = sup.asInstanceOf [ProcedureDataSet]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [TestDataSet]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TestDataSet.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TestDataSet.fields (position), value)
+
         emitelem (0, conclusion)
         emitelem (1, specimenID)
         emitelem (2, specimenToLabDateTime)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:TestDataSet rdf:ID=\"%s\">\n%s\t</cim:TestDataSet>".format (id, export_fields)
@@ -383,22 +441,22 @@ extends
 }
 
 object TestDataSet
-extends
-    Parseable[TestDataSet]
+    extends
+        Parseable[TestDataSet]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "conclusion",
         "specimenID",
         "specimenToLabDateTime"
     )
-    val conclusion: Fielder = parse_element (element (cls, fields(0)))
-    val specimenID: Fielder = parse_element (element (cls, fields(1)))
-    val specimenToLabDateTime: Fielder = parse_element (element (cls, fields(2)))
+    val conclusion: Fielder = parse_element (element (cls, fields (0)))
+    val specimenID: Fielder = parse_element (element (cls, fields (1)))
+    val specimenToLabDateTime: Fielder = parse_element (element (cls, fields (2)))
 
     def parse (context: Context): TestDataSet =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = TestDataSet (
             ProcedureDataSet.parse (context),
             mask (conclusion (), 0),

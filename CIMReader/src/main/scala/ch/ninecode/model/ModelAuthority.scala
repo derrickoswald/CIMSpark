@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * A Modeling Authority is an entity responsible for supplying and maintaining the data defining a specific set of objects in a network model.
  *
- * @param sup Reference to the superclass object.
+ * @param sup                   Reference to the superclass object.
  * @param ModelingAuthoritySets [[ch.ninecode.model.ModelingAuthoritySet ModelingAuthoritySet]] A Modeling Authority set supplies and maintains the data for the objects in a Modeling Authority Set.
  * @group ModelAuthority
  * @groupname ModelAuthority Package ModelAuthority
@@ -21,13 +21,17 @@ case class ModelingAuthority
     override val sup: BasicElement,
     ModelingAuthoritySets: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () =
+    {
+        this (null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -36,24 +40,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ModelingAuthority] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ModelingAuthority]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ModelingAuthority.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ModelingAuthority.fields (position), x))
+
         emitattrs (0, ModelingAuthoritySets)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ModelingAuthority rdf:ID=\"%s\">\n%s\t</cim:ModelingAuthority>".format (id, export_fields)
@@ -61,21 +75,21 @@ extends
 }
 
 object ModelingAuthority
-extends
-    Parseable[ModelingAuthority]
+    extends
+        Parseable[ModelingAuthority]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ModelingAuthoritySets"
     )
     override val relations: List[Relationship] = List (
         Relationship ("ModelingAuthoritySets", "ModelingAuthoritySet", "1..*", "1")
     )
-    val ModelingAuthoritySets: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ModelingAuthoritySets: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: Context): ModelingAuthority =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ModelingAuthority (
             BasicElement.parse (context),
             masks (ModelingAuthoritySets (), 0)
@@ -90,7 +104,7 @@ extends
  *
  * This class is typically not included in instance data exchange as this information is tracked by other mechanisms in the exchange.
  *
- * @param sup Reference to the superclass object.
+ * @param sup               Reference to the superclass object.
  * @param ModelingAuthority [[ch.ninecode.model.ModelingAuthority ModelingAuthority]] A Modeling Authority set supplies and maintains the data for the objects in a Modeling Authority Set.
  * @group ModelAuthority
  * @groupname ModelAuthority Package ModelAuthority
@@ -101,13 +115,17 @@ case class ModelingAuthoritySet
     override val sup: BasicElement,
     ModelingAuthority: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -116,24 +134,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ModelingAuthoritySet] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ModelingAuthoritySet]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ModelingAuthoritySet.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ModelingAuthoritySet.fields (position), value)
+
         emitattr (0, ModelingAuthority)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ModelingAuthoritySet rdf:ID=\"%s\">\n%s\t</cim:ModelingAuthoritySet>".format (id, export_fields)
@@ -141,21 +169,21 @@ extends
 }
 
 object ModelingAuthoritySet
-extends
-    Parseable[ModelingAuthoritySet]
+    extends
+        Parseable[ModelingAuthoritySet]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ModelingAuthority"
     )
     override val relations: List[Relationship] = List (
         Relationship ("ModelingAuthority", "ModelingAuthority", "1", "1..*")
     )
-    val ModelingAuthority: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val ModelingAuthority: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: Context): ModelingAuthoritySet =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ModelingAuthoritySet (
             BasicElement.parse (context),
             mask (ModelingAuthority (), 0)

@@ -10,10 +10,10 @@ import ch.ninecode.cim.Relationship
 /**
  * Action request against an existing Trade.
  *
- * @param sup Reference to the superclass object.
+ * @param sup        Reference to the superclass object.
  * @param actionName Action name type for the action request.
- * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
- * @param Trade [[ch.ninecode.model.Trade Trade]] <em>undocumented</em>
+ * @param Bid        [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
+ * @param Trade      [[ch.ninecode.model.Trade Trade]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -25,13 +25,17 @@ case class ActionRequest
     Bid: List[String],
     Trade: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List()) }
+    def this () =
+    {
+        this (null, null, List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -40,27 +44,38 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[ActionRequest] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ActionRequest]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ActionRequest.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ActionRequest.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ActionRequest.fields (position), x))
+
         emitattr (0, actionName)
         emitattrs (1, Bid)
         emitattrs (2, Trade)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ActionRequest rdf:ID=\"%s\">\n%s\t</cim:ActionRequest>".format (id, export_fields)
@@ -68,10 +83,10 @@ extends
 }
 
 object ActionRequest
-extends
-    Parseable[ActionRequest]
+    extends
+        Parseable[ActionRequest]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "actionName",
         "Bid",
         "Trade"
@@ -80,14 +95,14 @@ extends
         Relationship ("Bid", "Bid", "0..*", "1"),
         Relationship ("Trade", "Trade", "0..*", "1")
     )
-    val actionName: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Bid: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val Trade: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val actionName: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val Bid: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val Trade: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: Context): ActionRequest =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ActionRequest (
             BasicElement.parse (context),
             mask (actionName (), 0),
@@ -104,10 +119,10 @@ extends
  *
  * Instead, it is simply an aggregation of all LoadBids contained wtihin a specific SubControlArea. This entity should inherit from Bid for representation of the timeframe (startTime, stopTime) and the market type.
  *
- * @param sup [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
+ * @param sup         [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
  * @param demandBidMW The Demand Bid Megawatt for the area case.
- *        Attribute Usage: This is Scheduled demand MW in Day Ahead
- * @param LoadBid [[ch.ninecode.model.LoadBid LoadBid]] <em>undocumented</em>
+ *                    Attribute Usage: This is Scheduled demand MW in Day Ahead
+ * @param LoadBid     [[ch.ninecode.model.LoadBid LoadBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -118,13 +133,17 @@ case class AreaLoadBid
     demandBidMW: Double,
     LoadBid: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, List()) }
+    def this () =
+    {
+        this (null, 0.0, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -133,26 +152,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Bid: Bid = sup.asInstanceOf[Bid]
-    override def copy (): Row = { clone ().asInstanceOf[AreaLoadBid] }
+    def Bid: Bid = sup.asInstanceOf [Bid]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [AreaLoadBid]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AreaLoadBid.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AreaLoadBid.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AreaLoadBid.fields (position), x))
+
         emitelem (0, demandBidMW)
         emitattrs (1, LoadBid)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:AreaLoadBid rdf:ID=\"%s\">\n%s\t</cim:AreaLoadBid>".format (id, export_fields)
@@ -160,23 +190,23 @@ extends
 }
 
 object AreaLoadBid
-extends
-    Parseable[AreaLoadBid]
+    extends
+        Parseable[AreaLoadBid]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "demandBidMW",
         "LoadBid"
     )
     override val relations: List[Relationship] = List (
         Relationship ("LoadBid", "LoadBid", "0..*", "0..1")
     )
-    val demandBidMW: Fielder = parse_element (element (cls, fields(0)))
-    val LoadBid: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val demandBidMW: Fielder = parse_element (element (cls, fields (0)))
+    val LoadBid: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: Context): AreaLoadBid =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = AreaLoadBid (
             Bid.parse (context),
             toDouble (mask (demandBidMW (), 0)),
@@ -190,10 +220,10 @@ extends
 /**
  * Property for a particular attribute that contains name and value
  *
- * @param sup Reference to the superclass object.
- * @param propertyName <em>undocumented</em>
- * @param propertyValue <em>undocumented</em>
- * @param sequence <em>undocumented</em>
+ * @param sup              Reference to the superclass object.
+ * @param propertyName     <em>undocumented</em>
+ * @param propertyValue    <em>undocumented</em>
+ * @param sequence         <em>undocumented</em>
  * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -207,13 +237,17 @@ case class AttributeProperty
     sequence: String,
     MktUserAttribute: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -222,28 +256,39 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[AttributeProperty] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [AttributeProperty]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AttributeProperty.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AttributeProperty.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AttributeProperty.fields (position), value)
+
         emitelem (0, propertyName)
         emitelem (1, propertyValue)
         emitelem (2, sequence)
         emitattr (3, MktUserAttribute)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:AttributeProperty rdf:ID=\"%s\">\n%s\t</cim:AttributeProperty>".format (id, export_fields)
@@ -251,10 +296,10 @@ extends
 }
 
 object AttributeProperty
-extends
-    Parseable[AttributeProperty]
+    extends
+        Parseable[AttributeProperty]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "propertyName",
         "propertyValue",
         "sequence",
@@ -263,15 +308,15 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("MktUserAttribute", "MktUserAttribute", "1", "0..*")
     )
-    val propertyName: Fielder = parse_element (element (cls, fields(0)))
-    val propertyValue: Fielder = parse_element (element (cls, fields(1)))
-    val sequence: Fielder = parse_element (element (cls, fields(2)))
-    val MktUserAttribute: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val propertyName: Fielder = parse_element (element (cls, fields (0)))
+    val propertyValue: Fielder = parse_element (element (cls, fields (1)))
+    val sequence: Fielder = parse_element (element (cls, fields (2)))
+    val MktUserAttribute: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: Context): AttributeProperty =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = AttributeProperty (
             BasicElement.parse (context),
             mask (propertyName (), 0),
@@ -287,19 +332,19 @@ extends
 /**
  * Represents both bids to purchase and offers to sell energy or ancillary services in an RTO-sponsored market.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param marketType The market type, DAM or RTM.
- * @param startTime Start time and date for which bid applies.
- * @param stopTime Stop time and date for which bid is applicable.
- * @param ActionRequest [[ch.ninecode.model.ActionRequest ActionRequest]] <em>undocumented</em>
- * @param BidHourlySchedule [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] <em>undocumented</em>
- * @param ChargeProfiles [[ch.ninecode.model.ChargeProfile ChargeProfile]] <em>undocumented</em>
- * @param EnergyMarket [[ch.ninecode.model.EnergyMarket EnergyMarket]] <em>undocumented</em>
- * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
- * @param MitigatedBid [[ch.ninecode.model.MitigatedBid MitigatedBid]] <em>undocumented</em>
- * @param MitigatedBidSegment [[ch.ninecode.model.MitigatedBidSegment MitigatedBidSegment]] <em>undocumented</em>
- * @param ProductBids [[ch.ninecode.model.ProductBid ProductBid]] A bid comprises one or more product bids of market products
- * @param RMRDetermination [[ch.ninecode.model.RMRDetermination RMRDetermination]] <em>undocumented</em>
+ * @param sup                   [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param marketType            The market type, DAM or RTM.
+ * @param startTime             Start time and date for which bid applies.
+ * @param stopTime              Stop time and date for which bid is applicable.
+ * @param ActionRequest         [[ch.ninecode.model.ActionRequest ActionRequest]] <em>undocumented</em>
+ * @param BidHourlySchedule     [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] <em>undocumented</em>
+ * @param ChargeProfiles        [[ch.ninecode.model.ChargeProfile ChargeProfile]] <em>undocumented</em>
+ * @param EnergyMarket          [[ch.ninecode.model.EnergyMarket EnergyMarket]] <em>undocumented</em>
+ * @param MarketParticipant     [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
+ * @param MitigatedBid          [[ch.ninecode.model.MitigatedBid MitigatedBid]] <em>undocumented</em>
+ * @param MitigatedBidSegment   [[ch.ninecode.model.MitigatedBidSegment MitigatedBidSegment]] <em>undocumented</em>
+ * @param ProductBids           [[ch.ninecode.model.ProductBid ProductBid]] A bid comprises one or more product bids of market products
+ * @param RMRDetermination      [[ch.ninecode.model.RMRDetermination RMRDetermination]] <em>undocumented</em>
  * @param SchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -322,13 +367,17 @@ case class Bid
     RMRDetermination: List[String],
     SchedulingCoordinator: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, List(), List(), null, null, List(), List(), List(), List(), null) }
+    def this () =
+    {
+        this (null, null, null, null, null, List (), List (), null, null, List (), List (), List (), List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -337,23 +386,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { clone ().asInstanceOf[Bid] }
+    def Document: Document = sup.asInstanceOf [Document]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Bid]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Bid.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Bid.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Bid.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Bid.fields (position), x))
+
         emitattr (0, marketType)
         emitelem (1, startTime)
         emitelem (2, stopTime)
@@ -369,6 +429,7 @@ extends
         emitattr (12, SchedulingCoordinator)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Bid rdf:ID=\"%s\">\n%s\t</cim:Bid>".format (id, export_fields)
@@ -376,10 +437,10 @@ extends
 }
 
 object Bid
-extends
-    Parseable[Bid]
+    extends
+        Parseable[Bid]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "marketType",
         "startTime",
         "stopTime",
@@ -406,24 +467,24 @@ extends
         Relationship ("RMRDetermination", "RMRDetermination", "0..*", "0..1"),
         Relationship ("SchedulingCoordinator", "SchedulingCoordinator", "0..1", "0..*")
     )
-    val marketType: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val startTime: Fielder = parse_element (element (cls, fields(1)))
-    val stopTime: Fielder = parse_element (element (cls, fields(2)))
-    val ActionRequest: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val BidHourlySchedule: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val ChargeProfiles: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val EnergyMarket: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val MarketParticipant: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val MitigatedBid: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val MitigatedBidSegment: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val ProductBids: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val RMRDetermination: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val SchedulingCoordinator: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val marketType: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val startTime: Fielder = parse_element (element (cls, fields (1)))
+    val stopTime: Fielder = parse_element (element (cls, fields (2)))
+    val ActionRequest: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val BidHourlySchedule: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val ChargeProfiles: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val EnergyMarket: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val MarketParticipant: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val MitigatedBid: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val MitigatedBidSegment: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
+    val ProductBids: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
+    val RMRDetermination: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
+    val SchedulingCoordinator: Fielder = parse_attribute (attribute (cls, fields (12)))
 
     def parse (context: Context): Bid =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Bid (
             Document.parse (context),
             mask (marketType (), 0),
@@ -448,11 +509,11 @@ extends
 /**
  * This class allows SC to input different time intervals for distribution factors
  *
- * @param sup Reference to the superclass object.
- * @param timeIntervalEnd End of the time interval n which bid is valid (yyyy-mm-dd hh24: mi: ss)
- * @param timeIntervalStart Start of the time interval in which bid is valid (yyyy-mm-dd hh24: mi: ss).
+ * @param sup                     Reference to the superclass object.
+ * @param timeIntervalEnd         End of the time interval n which bid is valid (yyyy-mm-dd hh24: mi: ss)
+ * @param timeIntervalStart       Start of the time interval in which bid is valid (yyyy-mm-dd hh24: mi: ss).
  * @param PnodeDistributionFactor [[ch.ninecode.model.PnodeDistributionFactor PnodeDistributionFactor]] <em>undocumented</em>
- * @param ProductBid [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
+ * @param ProductBid              [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -465,13 +526,17 @@ case class BidDistributionFactor
     PnodeDistributionFactor: List[String],
     ProductBid: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List(), null) }
+    def this () =
+    {
+        this (null, null, null, List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -480,29 +545,41 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[BidDistributionFactor] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BidDistributionFactor]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BidDistributionFactor.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BidDistributionFactor.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BidDistributionFactor.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BidDistributionFactor.fields (position), x))
+
         emitelem (0, timeIntervalEnd)
         emitelem (1, timeIntervalStart)
         emitattrs (2, PnodeDistributionFactor)
         emitattr (3, ProductBid)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BidDistributionFactor rdf:ID=\"%s\">\n%s\t</cim:BidDistributionFactor>".format (id, export_fields)
@@ -510,10 +587,10 @@ extends
 }
 
 object BidDistributionFactor
-extends
-    Parseable[BidDistributionFactor]
+    extends
+        Parseable[BidDistributionFactor]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "timeIntervalEnd",
         "timeIntervalStart",
         "PnodeDistributionFactor",
@@ -523,15 +600,15 @@ extends
         Relationship ("PnodeDistributionFactor", "PnodeDistributionFactor", "0..*", "0..1"),
         Relationship ("ProductBid", "ProductBid", "1", "0..*")
     )
-    val timeIntervalEnd: Fielder = parse_element (element (cls, fields(0)))
-    val timeIntervalStart: Fielder = parse_element (element (cls, fields(1)))
-    val PnodeDistributionFactor: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val ProductBid: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val timeIntervalEnd: Fielder = parse_element (element (cls, fields (0)))
+    val timeIntervalStart: Fielder = parse_element (element (cls, fields (1)))
+    val PnodeDistributionFactor: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val ProductBid: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: Context): BidDistributionFactor =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BidDistributionFactor (
             BasicElement.parse (context),
             mask (timeIntervalEnd (), 0),
@@ -547,17 +624,17 @@ extends
 /**
  * This class represent the error information for a bid that is detected during bid validation
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param sup           [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param componentType <em>undocumented</em>
- * @param endTime hour wihthin the bid for which the error applies
- * @param errMessage error message
- * @param errPriority Priority number for the error message
- * @param logTimeStamp <em>undocumented</em>
- * @param msgLevel <em>undocumented</em>
- * @param ruleID <em>undocumented</em>
- * @param startTime hour wihthin the bid for which the error applies
+ * @param endTime       hour wihthin the bid for which the error applies
+ * @param errMessage    error message
+ * @param errPriority   Priority number for the error message
+ * @param logTimeStamp  <em>undocumented</em>
+ * @param msgLevel      <em>undocumented</em>
+ * @param ruleID        <em>undocumented</em>
+ * @param startTime     hour wihthin the bid for which the error applies
  * @param MarketProduct [[ch.ninecode.model.MarketProduct MarketProduct]] <em>undocumented</em>
- * @param ResourceBid [[ch.ninecode.model.ResourceBid ResourceBid]] <em>undocumented</em>
+ * @param ResourceBid   [[ch.ninecode.model.ResourceBid ResourceBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -576,13 +653,17 @@ case class BidError
     MarketProduct: String,
     ResourceBid: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, 0, null, 0, 0, null, null, List()) }
+    def this () =
+    {
+        this (null, null, null, null, 0, null, 0, 0, null, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -591,23 +672,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[BidError] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BidError]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BidError.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BidError.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BidError.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BidError.fields (position), x))
+
         emitelem (0, componentType)
         emitelem (1, endTime)
         emitelem (2, errMessage)
@@ -620,6 +712,7 @@ extends
         emitattrs (9, ResourceBid)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BidError rdf:ID=\"%s\">\n%s\t</cim:BidError>".format (id, export_fields)
@@ -627,10 +720,10 @@ extends
 }
 
 object BidError
-extends
-    Parseable[BidError]
+    extends
+        Parseable[BidError]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "componentType",
         "endTime",
         "errMessage",
@@ -646,21 +739,21 @@ extends
         Relationship ("MarketProduct", "MarketProduct", "0..1", "0..*"),
         Relationship ("ResourceBid", "ResourceBid", "0..*", "0..*")
     )
-    val componentType: Fielder = parse_element (element (cls, fields(0)))
-    val endTime: Fielder = parse_element (element (cls, fields(1)))
-    val errMessage: Fielder = parse_element (element (cls, fields(2)))
-    val errPriority: Fielder = parse_element (element (cls, fields(3)))
-    val logTimeStamp: Fielder = parse_element (element (cls, fields(4)))
-    val msgLevel: Fielder = parse_element (element (cls, fields(5)))
-    val ruleID: Fielder = parse_element (element (cls, fields(6)))
-    val startTime: Fielder = parse_element (element (cls, fields(7)))
-    val MarketProduct: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val ResourceBid: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val componentType: Fielder = parse_element (element (cls, fields (0)))
+    val endTime: Fielder = parse_element (element (cls, fields (1)))
+    val errMessage: Fielder = parse_element (element (cls, fields (2)))
+    val errPriority: Fielder = parse_element (element (cls, fields (3)))
+    val logTimeStamp: Fielder = parse_element (element (cls, fields (4)))
+    val msgLevel: Fielder = parse_element (element (cls, fields (5)))
+    val ruleID: Fielder = parse_element (element (cls, fields (6)))
+    val startTime: Fielder = parse_element (element (cls, fields (7)))
+    val MarketProduct: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val ResourceBid: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
 
     def parse (context: Context): BidError =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BidError (
             IdentifiedObject.parse (context),
             mask (componentType (), 0),
@@ -682,7 +775,7 @@ extends
 /**
  * Containment for bid parameters that are dependent on a market product type.
  *
- * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param sup        [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
  * @param ProductBid [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -693,13 +786,17 @@ case class BidHourlyProductSchedule
     override val sup: RegularIntervalSchedule,
     ProductBid: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -708,24 +805,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
-    override def copy (): Row = { clone ().asInstanceOf[BidHourlyProductSchedule] }
+    def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf [RegularIntervalSchedule]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BidHourlyProductSchedule]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BidHourlyProductSchedule.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BidHourlyProductSchedule.fields (position), value)
+
         emitattr (0, ProductBid)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BidHourlyProductSchedule rdf:ID=\"%s\">\n%s\t</cim:BidHourlyProductSchedule>".format (id, export_fields)
@@ -733,21 +840,21 @@ extends
 }
 
 object BidHourlyProductSchedule
-extends
-    Parseable[BidHourlyProductSchedule]
+    extends
+        Parseable[BidHourlyProductSchedule]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ProductBid"
     )
     override val relations: List[Relationship] = List (
         Relationship ("ProductBid", "ProductBid", "1", "0..*")
     )
-    val ProductBid: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val ProductBid: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: Context): BidHourlyProductSchedule =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BidHourlyProductSchedule (
             RegularIntervalSchedule.parse (context),
             mask (ProductBid (), 0)
@@ -771,13 +878,17 @@ case class BidHourlySchedule
     override val sup: RegularIntervalSchedule,
     Bid: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -786,24 +897,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
-    override def copy (): Row = { clone ().asInstanceOf[BidHourlySchedule] }
+    def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf [RegularIntervalSchedule]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BidHourlySchedule]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BidHourlySchedule.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BidHourlySchedule.fields (position), value)
+
         emitattr (0, Bid)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BidHourlySchedule rdf:ID=\"%s\">\n%s\t</cim:BidHourlySchedule>".format (id, export_fields)
@@ -811,21 +932,21 @@ extends
 }
 
 object BidHourlySchedule
-extends
-    Parseable[BidHourlySchedule]
+    extends
+        Parseable[BidHourlySchedule]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "Bid"
     )
     override val relations: List[Relationship] = List (
         Relationship ("Bid", "Bid", "1", "0..*")
     )
-    val Bid: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val Bid: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: Context): BidHourlySchedule =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BidHourlySchedule (
             RegularIntervalSchedule.parse (context),
             mask (Bid (), 0)
@@ -838,7 +959,7 @@ extends
 /**
  * Relationship between unit operating price in \$/hour (Y-axis) and unit output in MW (X-axis).
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param sup         [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param BidSchedule [[ch.ninecode.model.BidPriceSchedule BidPriceSchedule]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -849,13 +970,17 @@ case class BidPriceCurve
     override val sup: Curve,
     BidSchedule: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () =
+    {
+        this (null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -864,24 +989,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup.asInstanceOf[Curve]
-    override def copy (): Row = { clone ().asInstanceOf[BidPriceCurve] }
+    def Curve: Curve = sup.asInstanceOf [Curve]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BidPriceCurve]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BidPriceCurve.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BidPriceCurve.fields (position), x))
+
         emitattrs (0, BidSchedule)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BidPriceCurve rdf:ID=\"%s\">\n%s\t</cim:BidPriceCurve>".format (id, export_fields)
@@ -889,21 +1024,21 @@ extends
 }
 
 object BidPriceCurve
-extends
-    Parseable[BidPriceCurve]
+    extends
+        Parseable[BidPriceCurve]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "BidSchedule"
     )
     override val relations: List[Relationship] = List (
         Relationship ("BidSchedule", "BidPriceSchedule", "0..*", "1")
     )
-    val BidSchedule: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val BidSchedule: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: Context): BidPriceCurve =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BidPriceCurve (
             Curve.parse (context),
             masks (BidSchedule (), 0)
@@ -916,21 +1051,21 @@ extends
 /**
  * Defines bid schedules to allow a product bid to use specified bid price curves for different time intervals.
  *
- * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
- * @param bidType BID Type:
- *        
- *        I - Initial Bid;
- *        F - Final Bid
+ * @param sup              [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param bidType          BID Type:
+ *
+ *                         I - Initial Bid;
+ *                         F - Final Bid
  * @param mitigationStatus Mitigation Status:
- *        
- *        'S' - Mitigated by SMPM because of "misconduct"
- *        'L; - Mitigated by LMPM because of "misconduct"
- *        'R' - Modified by LMPM because of RMR rules
- *        'M' - Mitigated because of "misconduct" both by SMPM and LMPM
- *        'B' - Mitigated because of "misconduct" both by SMPM and modified by LMLM because of RMR rules
- *        'O' - original
- * @param BidPriceCurve [[ch.ninecode.model.BidPriceCurve BidPriceCurve]] <em>undocumented</em>
- * @param ProductBid [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
+ *
+ *                         'S' - Mitigated by SMPM because of "misconduct"
+ *                         'L; - Mitigated by LMPM because of "misconduct"
+ *                         'R' - Modified by LMPM because of RMR rules
+ *                         'M' - Mitigated because of "misconduct" both by SMPM and LMPM
+ *                         'B' - Mitigated because of "misconduct" both by SMPM and modified by LMLM because of RMR rules
+ *                         'O' - original
+ * @param BidPriceCurve    [[ch.ninecode.model.BidPriceCurve BidPriceCurve]] <em>undocumented</em>
+ * @param ProductBid       [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -943,13 +1078,17 @@ case class BidPriceSchedule
     BidPriceCurve: String,
     ProductBid: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -958,27 +1097,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
-    override def copy (): Row = { clone ().asInstanceOf[BidPriceSchedule] }
+    def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf [RegularIntervalSchedule]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BidPriceSchedule]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BidPriceSchedule.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BidPriceSchedule.fields (position), value)
+
         emitattr (0, bidType)
         emitattr (1, mitigationStatus)
         emitattr (2, BidPriceCurve)
         emitattr (3, ProductBid)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BidPriceSchedule rdf:ID=\"%s\">\n%s\t</cim:BidPriceSchedule>".format (id, export_fields)
@@ -986,10 +1135,10 @@ extends
 }
 
 object BidPriceSchedule
-extends
-    Parseable[BidPriceSchedule]
+    extends
+        Parseable[BidPriceSchedule]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "bidType",
         "mitigationStatus",
         "BidPriceCurve",
@@ -999,15 +1148,15 @@ extends
         Relationship ("BidPriceCurve", "BidPriceCurve", "1", "0..*"),
         Relationship ("ProductBid", "ProductBid", "1", "0..*")
     )
-    val bidType: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val mitigationStatus: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val BidPriceCurve: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val ProductBid: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val bidType: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val mitigationStatus: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val BidPriceCurve: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val ProductBid: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: Context): BidPriceSchedule =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BidPriceSchedule (
             RegularIntervalSchedule.parse (context),
             mask (bidType (), 0),
@@ -1023,27 +1172,27 @@ extends
 /**
  * Defines self schedule values to be used for specified time intervals.
  *
- * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
- * @param balancingFlag This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
- *        It indicates whether a self-schedule using a TR is balanced with another self-schedule using the same TR ID.
- * @param bidType bidType has two types as the required output of requirements and qualified pre-dispatch.
- * @param priorityFlag This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
- *        It indicates whether a self-schedule using a TR has scheduling priority in DAM/RTM.
- * @param pumpSelfSchedMw Contains the PriceTaker, ExistingTransmissionContract, TransmissionOwnershipRights pumping self schedule quantity.
- *        If this value is not null, then the unit is in pumping mode.
- * @param referenceType Indication of which type of self schedule is being referenced.
- * @param selfSchedMw Self scheduled value
- * @param selfSchedSptResource Price Taker Export Self Sched Support Resource
- * @param selfSchedType This attribute is used to specify if a bid includes a self sched bid.
- *        If so what self sched type is it. The possible values are shown as follow but not limited to:
- * @param updateType <em>undocumented</em>
+ * @param sup                          [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param balancingFlag                This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
+ *                                     It indicates whether a self-schedule using a TR is balanced with another self-schedule using the same TR ID.
+ * @param bidType                      bidType has two types as the required output of requirements and qualified pre-dispatch.
+ * @param priorityFlag                 This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
+ *                                     It indicates whether a self-schedule using a TR has scheduling priority in DAM/RTM.
+ * @param pumpSelfSchedMw              Contains the PriceTaker, ExistingTransmissionContract, TransmissionOwnershipRights pumping self schedule quantity.
+ *                                     If this value is not null, then the unit is in pumping mode.
+ * @param referenceType                Indication of which type of self schedule is being referenced.
+ * @param selfSchedMw                  Self scheduled value
+ * @param selfSchedSptResource         Price Taker Export Self Sched Support Resource
+ * @param selfSchedType                This attribute is used to specify if a bid includes a self sched bid.
+ *                                     If so what self sched type is it. The possible values are shown as follow but not limited to:
+ * @param updateType                   <em>undocumented</em>
  * @param wheelingTransactionReference A unique identifier of a wheeling transaction.
- *        A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
- * @param AdjacentCASet [[ch.ninecode.model.AdjacentCASet AdjacentCASet]] <em>undocumented</em>
- * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
- * @param ProductBid [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
- * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
- * @param TransmissionContractRight [[ch.ninecode.model.ContractRight ContractRight]] <em>undocumented</em>
+ *                                     A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
+ * @param AdjacentCASet                [[ch.ninecode.model.AdjacentCASet AdjacentCASet]] <em>undocumented</em>
+ * @param HostControlArea              [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
+ * @param ProductBid                   [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
+ * @param SubControlArea               [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
+ * @param TransmissionContractRight    [[ch.ninecode.model.ContractRight ContractRight]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1067,13 +1216,17 @@ case class BidSelfSched
     SubControlArea: String,
     TransmissionContractRight: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, 0.0, null, 0.0, null, null, null, null, null, null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, null, 0.0, null, 0.0, null, null, null, null, null, null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1082,22 +1235,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
-    override def copy (): Row = { clone ().asInstanceOf[BidSelfSched] }
+    def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf [RegularIntervalSchedule]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BidSelfSched]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BidSelfSched.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BidSelfSched.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BidSelfSched.fields (position), value)
+
         emitattr (0, balancingFlag)
         emitattr (1, bidType)
         emitattr (2, priorityFlag)
@@ -1115,6 +1278,7 @@ extends
         emitattr (14, TransmissionContractRight)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BidSelfSched rdf:ID=\"%s\">\n%s\t</cim:BidSelfSched>".format (id, export_fields)
@@ -1122,10 +1286,10 @@ extends
 }
 
 object BidSelfSched
-extends
-    Parseable[BidSelfSched]
+    extends
+        Parseable[BidSelfSched]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "balancingFlag",
         "bidType",
         "priorityFlag",
@@ -1149,26 +1313,26 @@ extends
         Relationship ("SubControlArea", "SubControlArea", "0..1", "0..*"),
         Relationship ("TransmissionContractRight", "ContractRight", "0..1", "0..*")
     )
-    val balancingFlag: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val bidType: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val priorityFlag: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val pumpSelfSchedMw: Fielder = parse_element (element (cls, fields(3)))
-    val referenceType: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val selfSchedMw: Fielder = parse_element (element (cls, fields(5)))
-    val selfSchedSptResource: Fielder = parse_element (element (cls, fields(6)))
-    val selfSchedType: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val updateType: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val wheelingTransactionReference: Fielder = parse_element (element (cls, fields(9)))
-    val AdjacentCASet: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val HostControlArea: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val ProductBid: Fielder = parse_attribute (attribute (cls, fields(12)))
-    val SubControlArea: Fielder = parse_attribute (attribute (cls, fields(13)))
-    val TransmissionContractRight: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val balancingFlag: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val bidType: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val priorityFlag: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val pumpSelfSchedMw: Fielder = parse_element (element (cls, fields (3)))
+    val referenceType: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val selfSchedMw: Fielder = parse_element (element (cls, fields (5)))
+    val selfSchedSptResource: Fielder = parse_element (element (cls, fields (6)))
+    val selfSchedType: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val updateType: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val wheelingTransactionReference: Fielder = parse_element (element (cls, fields (9)))
+    val AdjacentCASet: Fielder = parse_attribute (attribute (cls, fields (10)))
+    val HostControlArea: Fielder = parse_attribute (attribute (cls, fields (11)))
+    val ProductBid: Fielder = parse_attribute (attribute (cls, fields (12)))
+    val SubControlArea: Fielder = parse_attribute (attribute (cls, fields (13)))
+    val TransmissionContractRight: Fielder = parse_attribute (attribute (cls, fields (14)))
 
     def parse (context: Context): BidSelfSched =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BidSelfSched (
             RegularIntervalSchedule.parse (context),
             mask (balancingFlag (), 0),
@@ -1197,7 +1361,7 @@ extends
  *
  * Of these generating bids, only one generating bid can be scheduled at a time.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param sup            [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param GeneratingBids [[ch.ninecode.model.GeneratingBid GeneratingBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -1208,13 +1372,17 @@ case class BidSet
     override val sup: IdentifiedObject,
     GeneratingBids: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () =
+    {
+        this (null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1223,24 +1391,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[BidSet] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BidSet]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BidSet.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BidSet.fields (position), x))
+
         emitattrs (0, GeneratingBids)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BidSet rdf:ID=\"%s\">\n%s\t</cim:BidSet>".format (id, export_fields)
@@ -1248,21 +1426,21 @@ extends
 }
 
 object BidSet
-extends
-    Parseable[BidSet]
+    extends
+        Parseable[BidSet]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "GeneratingBids"
     )
     override val relations: List[Relationship] = List (
         Relationship ("GeneratingBids", "GeneratingBid", "1..*", "0..1")
     )
-    val GeneratingBids: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val GeneratingBids: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: Context): BidSet =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BidSet (
             IdentifiedObject.parse (context),
             masks (GeneratingBids (), 0)
@@ -1275,17 +1453,17 @@ extends
 /**
  * A Charge Component is a list of configurable charge quality items to feed into settlement calculation and/or bill determinants.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param deleteStatus <em>undocumented</em>
- * @param effectiveDate <em>undocumented</em>
- * @param equation <em>undocumented</em>
- * @param message <em>undocumented</em>
- * @param roundOff <em>undocumented</em>
- * @param sum <em>undocumented</em>
- * @param terminationDate <em>undocumented</em>
- * @param type <em>undocumented</em>
+ * @param sup              [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param deleteStatus     <em>undocumented</em>
+ * @param effectiveDate    <em>undocumented</em>
+ * @param equation         <em>undocumented</em>
+ * @param message          <em>undocumented</em>
+ * @param roundOff         <em>undocumented</em>
+ * @param sum              <em>undocumented</em>
+ * @param terminationDate  <em>undocumented</em>
+ * @param type             <em>undocumented</em>
  * @param BillDeterminants [[ch.ninecode.model.BillDeterminant BillDeterminant]] A BillDeterminant can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n BillDeterminant.
- * @param ChargeTypes [[ch.ninecode.model.ChargeType ChargeType]] A ChargeType can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n ChargeType
+ * @param ChargeTypes      [[ch.ninecode.model.ChargeType ChargeType]] A ChargeType can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n ChargeType
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1304,13 +1482,17 @@ case class ChargeComponent
     BillDeterminants: List[String],
     ChargeTypes: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, List(), List()) }
+    def this () =
+    {
+        this (null, null, null, null, null, null, null, null, null, List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1319,22 +1501,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[ChargeComponent] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ChargeComponent]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ChargeComponent.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ChargeComponent.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ChargeComponent.fields (position), x))
+
         emitelem (0, deleteStatus)
         emitelem (1, effectiveDate)
         emitelem (2, equation)
@@ -1347,6 +1539,7 @@ extends
         emitattrs (9, ChargeTypes)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ChargeComponent rdf:ID=\"%s\">\n%s\t</cim:ChargeComponent>".format (id, export_fields)
@@ -1354,10 +1547,10 @@ extends
 }
 
 object ChargeComponent
-extends
-    Parseable[ChargeComponent]
+    extends
+        Parseable[ChargeComponent]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "deleteStatus",
         "effectiveDate",
         "equation",
@@ -1373,21 +1566,21 @@ extends
         Relationship ("BillDeterminants", "BillDeterminant", "0..*", "0..*"),
         Relationship ("ChargeTypes", "ChargeType", "0..*", "0..*")
     )
-    val deleteStatus: Fielder = parse_element (element (cls, fields(0)))
-    val effectiveDate: Fielder = parse_element (element (cls, fields(1)))
-    val equation: Fielder = parse_element (element (cls, fields(2)))
-    val message: Fielder = parse_element (element (cls, fields(3)))
-    val roundOff: Fielder = parse_element (element (cls, fields(4)))
-    val sum: Fielder = parse_element (element (cls, fields(5)))
-    val terminationDate: Fielder = parse_element (element (cls, fields(6)))
-    val `type`: Fielder = parse_element (element (cls, fields(7)))
-    val BillDeterminants: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val ChargeTypes: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val deleteStatus: Fielder = parse_element (element (cls, fields (0)))
+    val effectiveDate: Fielder = parse_element (element (cls, fields (1)))
+    val equation: Fielder = parse_element (element (cls, fields (2)))
+    val message: Fielder = parse_element (element (cls, fields (3)))
+    val roundOff: Fielder = parse_element (element (cls, fields (4)))
+    val sum: Fielder = parse_element (element (cls, fields (5)))
+    val terminationDate: Fielder = parse_element (element (cls, fields (6)))
+    val `type`: Fielder = parse_element (element (cls, fields (7)))
+    val BillDeterminants: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val ChargeTypes: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
 
     def parse (context: Context): ChargeComponent =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ChargeComponent (
             IdentifiedObject.parse (context),
             mask (deleteStatus (), 0),
@@ -1411,15 +1604,15 @@ extends
  *
  * Examples such as Ancillary Services, Interests, etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param effectiveDate <em>undocumented</em>
- * @param marketCode <em>undocumented</em>
- * @param terminationDate <em>undocumented</em>
- * @param ChargeGroupChild [[ch.ninecode.model.ChargeGroup ChargeGroup]] A ChargeGroup instance can have relationships with other ChargeGroup instances.
+ * @param sup               [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param effectiveDate     <em>undocumented</em>
+ * @param marketCode        <em>undocumented</em>
+ * @param terminationDate   <em>undocumented</em>
+ * @param ChargeGroupChild  [[ch.ninecode.model.ChargeGroup ChargeGroup]] A ChargeGroup instance can have relationships with other ChargeGroup instances.
  * @param ChargeGroupParent [[ch.ninecode.model.ChargeGroup ChargeGroup]] A ChargeGroup instance can have relationships with other ChargeGroup instances.
- * @param ChargeType [[ch.ninecode.model.ChargeType ChargeType]] A ChargeGroup can have 0-n ChargeType.
- *        A ChargeType can associate to 0-n ChargeGroup.
- * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
+ * @param ChargeType        [[ch.ninecode.model.ChargeType ChargeType]] A ChargeGroup can have 0-n ChargeType.
+ *                          A ChargeType can associate to 0-n ChargeGroup.
+ * @param MktUserAttribute  [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1435,13 +1628,17 @@ case class ChargeGroup
     ChargeType: List[String],
     MktUserAttribute: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List(), null, List(), List()) }
+    def this () =
+    {
+        this (null, null, null, null, List (), null, List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1450,23 +1647,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[ChargeGroup] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ChargeGroup]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ChargeGroup.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ChargeGroup.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ChargeGroup.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ChargeGroup.fields (position), x))
+
         emitelem (0, effectiveDate)
         emitelem (1, marketCode)
         emitelem (2, terminationDate)
@@ -1476,6 +1684,7 @@ extends
         emitattrs (6, MktUserAttribute)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ChargeGroup rdf:ID=\"%s\">\n%s\t</cim:ChargeGroup>".format (id, export_fields)
@@ -1483,10 +1692,10 @@ extends
 }
 
 object ChargeGroup
-extends
-    Parseable[ChargeGroup]
+    extends
+        Parseable[ChargeGroup]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "effectiveDate",
         "marketCode",
         "terminationDate",
@@ -1501,18 +1710,18 @@ extends
         Relationship ("ChargeType", "ChargeType", "0..*", "0..*"),
         Relationship ("MktUserAttribute", "MktUserAttribute", "0..*", "0..*")
     )
-    val effectiveDate: Fielder = parse_element (element (cls, fields(0)))
-    val marketCode: Fielder = parse_element (element (cls, fields(1)))
-    val terminationDate: Fielder = parse_element (element (cls, fields(2)))
-    val ChargeGroupChild: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val ChargeGroupParent: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val ChargeType: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val MktUserAttribute: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val effectiveDate: Fielder = parse_element (element (cls, fields (0)))
+    val marketCode: Fielder = parse_element (element (cls, fields (1)))
+    val terminationDate: Fielder = parse_element (element (cls, fields (2)))
+    val ChargeGroupChild: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val ChargeGroupParent: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val ChargeType: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val MktUserAttribute: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
 
     def parse (context: Context): ChargeGroup =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ChargeGroup (
             IdentifiedObject.parse (context),
             mask (effectiveDate (), 0),
@@ -1533,19 +1742,19 @@ extends
  *
  * Examples such as: Day Ahead Spinning Reserve Default Invoice Interest Charge, etc.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param chargeOrder <em>undocumented</em>
- * @param chargeVersion <em>undocumented</em>
- * @param effectiveDate <em>undocumented</em>
- * @param factor <em>undocumented</em>
- * @param frequencyType <em>undocumented</em>
- * @param terminationDate <em>undocumented</em>
- * @param totalInterval <em>undocumented</em>
+ * @param sup              [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param chargeOrder      <em>undocumented</em>
+ * @param chargeVersion    <em>undocumented</em>
+ * @param effectiveDate    <em>undocumented</em>
+ * @param factor           <em>undocumented</em>
+ * @param frequencyType    <em>undocumented</em>
+ * @param terminationDate  <em>undocumented</em>
+ * @param totalInterval    <em>undocumented</em>
  * @param ChargeComponents [[ch.ninecode.model.ChargeComponent ChargeComponent]] A ChargeType can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n ChargeType
- * @param ChargeGroup [[ch.ninecode.model.ChargeGroup ChargeGroup]] A ChargeGroup can have 0-n ChargeType.
- *        A ChargeType can associate to 0-n ChargeGroup.
+ * @param ChargeGroup      [[ch.ninecode.model.ChargeGroup ChargeGroup]] A ChargeGroup can have 0-n ChargeType.
+ *                         A ChargeType can associate to 0-n ChargeGroup.
  * @param MajorChargeGroup [[ch.ninecode.model.MajorChargeGroup MajorChargeGroup]] A MajorChargeGroup can have 0-n ChargeType.
- *        A ChargeType can associate to 0-n MajorChargeGroup.
+ *                         A ChargeType can associate to 0-n MajorChargeGroup.
  * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -1566,13 +1775,17 @@ case class ChargeType
     MajorChargeGroup: List[String],
     MktUserAttribute: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, List(), List(), List(), List()) }
+    def this () =
+    {
+        this (null, null, null, null, null, null, null, null, List (), List (), List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1581,22 +1794,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { clone ().asInstanceOf[ChargeType] }
+    def Document: Document = sup.asInstanceOf [Document]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ChargeType]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ChargeType.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ChargeType.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ChargeType.fields (position), x))
+
         emitelem (0, chargeOrder)
         emitelem (1, chargeVersion)
         emitelem (2, effectiveDate)
@@ -1610,6 +1833,7 @@ extends
         emitattrs (10, MktUserAttribute)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ChargeType rdf:ID=\"%s\">\n%s\t</cim:ChargeType>".format (id, export_fields)
@@ -1617,10 +1841,10 @@ extends
 }
 
 object ChargeType
-extends
-    Parseable[ChargeType]
+    extends
+        Parseable[ChargeType]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "chargeOrder",
         "chargeVersion",
         "effectiveDate",
@@ -1639,22 +1863,22 @@ extends
         Relationship ("MajorChargeGroup", "MajorChargeGroup", "0..*", "0..*"),
         Relationship ("MktUserAttribute", "MktUserAttribute", "0..*", "0..*")
     )
-    val chargeOrder: Fielder = parse_element (element (cls, fields(0)))
-    val chargeVersion: Fielder = parse_element (element (cls, fields(1)))
-    val effectiveDate: Fielder = parse_element (element (cls, fields(2)))
-    val factor: Fielder = parse_element (element (cls, fields(3)))
-    val frequencyType: Fielder = parse_element (element (cls, fields(4)))
-    val terminationDate: Fielder = parse_element (element (cls, fields(5)))
-    val totalInterval: Fielder = parse_element (element (cls, fields(6)))
-    val ChargeComponents: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val ChargeGroup: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val MajorChargeGroup: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val MktUserAttribute: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val chargeOrder: Fielder = parse_element (element (cls, fields (0)))
+    val chargeVersion: Fielder = parse_element (element (cls, fields (1)))
+    val effectiveDate: Fielder = parse_element (element (cls, fields (2)))
+    val factor: Fielder = parse_element (element (cls, fields (3)))
+    val frequencyType: Fielder = parse_element (element (cls, fields (4)))
+    val terminationDate: Fielder = parse_element (element (cls, fields (5)))
+    val totalInterval: Fielder = parse_element (element (cls, fields (6)))
+    val ChargeComponents: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val ChargeGroup: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val MajorChargeGroup: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
+    val MktUserAttribute: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
 
     def parse (context: Context): ChargeType =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ChargeType (
             Document.parse (context),
             mask (chargeOrder (), 0),
@@ -1677,22 +1901,22 @@ extends
 /**
  * Response from registered resource acknowleging receipt of dispatch instructions
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param acceptMW The accepted mw amount by the responder. aka response mw.
- * @param acceptStatus The accept status submitted by the responder. enumeration type needs to be defined
- * @param certificationName The Subject DN is the X509 Certificate Subject DN.
- *        This is the essentially the certificate name presented by the client. In the case of ADS Certificates, this will be the user name. It may be from an API Client or the MP Client (GUI).
- * @param clearedMW MW amount associated with instruction.
- *        For 5 minute binding dispatches, this is the Goto MW or DOT
- * @param instructionTime The target date/time for the received instruction.
- * @param instructionType instruction type:
- *        
- *        commitment
- *        out of sequence
- *        dispatch
- * @param passIndicator The type of run for the market clearing.
- * @param receivedTime Timestamp indicating the time at which the instruction was received.
- * @param startTime start time
+ * @param sup                [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param acceptMW           The accepted mw amount by the responder. aka response mw.
+ * @param acceptStatus       The accept status submitted by the responder. enumeration type needs to be defined
+ * @param certificationName  The Subject DN is the X509 Certificate Subject DN.
+ *                           This is the essentially the certificate name presented by the client. In the case of ADS Certificates, this will be the user name. It may be from an API Client or the MP Client (GUI).
+ * @param clearedMW          MW amount associated with instruction.
+ *                           For 5 minute binding dispatches, this is the Goto MW or DOT
+ * @param instructionTime    The target date/time for the received instruction.
+ * @param instructionType    instruction type:
+ *
+ *                           commitment
+ *                           out of sequence
+ *                           dispatch
+ * @param passIndicator      The type of run for the market clearing.
+ * @param receivedTime       Timestamp indicating the time at which the instruction was received.
+ * @param startTime          start time
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -1712,13 +1936,17 @@ case class DispatchInstReply
     startTime: String,
     RegisteredResource: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, 0.0, null, null, null, null, null, null) }
+    def this () =
+    {
+        this (null, 0.0, null, null, 0.0, null, null, null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1727,22 +1955,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[DispatchInstReply] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [DispatchInstReply]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DispatchInstReply.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DispatchInstReply.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DispatchInstReply.fields (position), value)
+
         emitelem (0, acceptMW)
         emitattr (1, acceptStatus)
         emitelem (2, certificationName)
@@ -1755,6 +1993,7 @@ extends
         emitattr (9, RegisteredResource)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DispatchInstReply rdf:ID=\"%s\">\n%s\t</cim:DispatchInstReply>".format (id, export_fields)
@@ -1762,10 +2001,10 @@ extends
 }
 
 object DispatchInstReply
-extends
-    Parseable[DispatchInstReply]
+    extends
+        Parseable[DispatchInstReply]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "acceptMW",
         "acceptStatus",
         "certificationName",
@@ -1780,21 +2019,21 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("RegisteredResource", "RegisteredResource", "1", "0..*")
     )
-    val acceptMW: Fielder = parse_element (element (cls, fields(0)))
-    val acceptStatus: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val certificationName: Fielder = parse_element (element (cls, fields(2)))
-    val clearedMW: Fielder = parse_element (element (cls, fields(3)))
-    val instructionTime: Fielder = parse_element (element (cls, fields(4)))
-    val instructionType: Fielder = parse_element (element (cls, fields(5)))
-    val passIndicator: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val receivedTime: Fielder = parse_element (element (cls, fields(7)))
-    val startTime: Fielder = parse_element (element (cls, fields(8)))
-    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val acceptMW: Fielder = parse_element (element (cls, fields (0)))
+    val acceptStatus: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val certificationName: Fielder = parse_element (element (cls, fields (2)))
+    val clearedMW: Fielder = parse_element (element (cls, fields (3)))
+    val instructionTime: Fielder = parse_element (element (cls, fields (4)))
+    val instructionType: Fielder = parse_element (element (cls, fields (5)))
+    val passIndicator: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val receivedTime: Fielder = parse_element (element (cls, fields (7)))
+    val startTime: Fielder = parse_element (element (cls, fields (8)))
+    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields (9)))
 
     def parse (context: Context): DispatchInstReply =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = DispatchInstReply (
             IdentifiedObject.parse (context),
             toDouble (mask (acceptMW (), 0)),
@@ -1816,9 +2055,9 @@ extends
 /**
  * Relationship between a price in \$(or other monetary unit) /hour (Y-axis) and a MW value (X-axis).
  *
- * @param sup Reference to the superclass object.
+ * @param sup                Reference to the superclass object.
  * @param EnergyTransactions [[ch.ninecode.model.EnergyTransaction EnergyTransaction]] <em>undocumented</em>
- * @param FTRs [[ch.ninecode.model.FTR FTR]] <em>undocumented</em>
+ * @param FTRs               [[ch.ninecode.model.FTR FTR]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1829,13 +2068,17 @@ case class EnergyPriceCurve
     EnergyTransactions: List[String],
     FTRs: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), List()) }
+    def this () =
+    {
+        this (null, List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1844,25 +2087,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[EnergyPriceCurve] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [EnergyPriceCurve]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnergyPriceCurve.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnergyPriceCurve.fields (position), x))
+
         emitattrs (0, EnergyTransactions)
         emitattrs (1, FTRs)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:EnergyPriceCurve rdf:ID=\"%s\">\n%s\t</cim:EnergyPriceCurve>".format (id, export_fields)
@@ -1870,10 +2123,10 @@ extends
 }
 
 object EnergyPriceCurve
-extends
-    Parseable[EnergyPriceCurve]
+    extends
+        Parseable[EnergyPriceCurve]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "EnergyTransactions",
         "FTRs"
     )
@@ -1881,13 +2134,13 @@ extends
         Relationship ("EnergyTransactions", "EnergyTransaction", "0..*", "0..*"),
         Relationship ("FTRs", "FTR", "0..*", "0..1")
     )
-    val EnergyTransactions: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val FTRs: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val EnergyTransactions: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val FTRs: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: Context): EnergyPriceCurve =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = EnergyPriceCurve (
             BasicElement.parse (context),
             masks (EnergyTransactions (), 0),
@@ -1901,37 +2154,37 @@ extends
 /**
  * Offer to supply energy/ancillary services from a generating unit or resource
  *
- * @param sup [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
+ * @param sup                    [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
  * @param combinedCycleUnitOffer Will indicate if the unit is part of a CC offer or not
- * @param downTimeMax Maximum down time.
- * @param installedCapacity Installed Capacity value
- * @param lowerRampRate Maximum Dn ramp rate in MW/min
- * @param maxEmergencyMW Power rating available for unit under emergency conditions greater than or equal to maximum economic limit.
- * @param maximumEconomicMW Maximum high economic MW limit, that should not exceed the maximum operating MW limit
- * @param minEmergencyMW Minimum power rating for unit under emergency conditions, which is less than or equal to the economic minimum.
- * @param minimumEconomicMW Low economic MW limit that shall be greater than or equal to the minimum operating MW limit
- * @param noLoadCost Resource fixed no load cost.
- * @param notificationTime Time required for crew notification prior to start up of the unit.
- * @param operatingMode Bid operating mode ('C' - cycling, 'F' - fixed, 'M' - must run, 'U' - unavailable)
- * @param raiseRampRate Maximum Up ramp rate in MW/min
- * @param rampCurveType Ramp curve type:
- *        0 - Fixed ramp rate independent of rate function unit MW output
- *        1 - Static ramp rates as a function of unit MW output only
- *        2 - Dynamic ramp rates as a function of unit MW output and ramping time
- * @param startUpRampRate Resource startup ramp rate (MW/minute)
- * @param startUpType Resource startup type:
- *        1 - Fixed startup time and fixed startup cost
- *        2 - Startup time as a function of down time and fixed startup cost
- *        3 - Startup cost as a function of down time
- * @param startupCost Startup cost/price
- * @param upTimeMax Maximum up time.
- * @param BidSet [[ch.ninecode.model.BidSet BidSet]] <em>undocumented</em>
- * @param NotificationTimeCurve [[ch.ninecode.model.NotificationTimeCurve NotificationTimeCurve]] <em>undocumented</em>
- * @param RampRateCurve [[ch.ninecode.model.RampRateCurve RampRateCurve]] <em>undocumented</em>
- * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
- * @param SecurityConstraints [[ch.ninecode.model.SecurityConstraints SecurityConstraints]] <em>undocumented</em>
- * @param StartUpCostCurve [[ch.ninecode.model.StartUpCostCurve StartUpCostCurve]] <em>undocumented</em>
- * @param StartUpTimeCurve [[ch.ninecode.model.StartUpTimeCurve StartUpTimeCurve]] <em>undocumented</em>
+ * @param downTimeMax            Maximum down time.
+ * @param installedCapacity      Installed Capacity value
+ * @param lowerRampRate          Maximum Dn ramp rate in MW/min
+ * @param maxEmergencyMW         Power rating available for unit under emergency conditions greater than or equal to maximum economic limit.
+ * @param maximumEconomicMW      Maximum high economic MW limit, that should not exceed the maximum operating MW limit
+ * @param minEmergencyMW         Minimum power rating for unit under emergency conditions, which is less than or equal to the economic minimum.
+ * @param minimumEconomicMW      Low economic MW limit that shall be greater than or equal to the minimum operating MW limit
+ * @param noLoadCost             Resource fixed no load cost.
+ * @param notificationTime       Time required for crew notification prior to start up of the unit.
+ * @param operatingMode          Bid operating mode ('C' - cycling, 'F' - fixed, 'M' - must run, 'U' - unavailable)
+ * @param raiseRampRate          Maximum Up ramp rate in MW/min
+ * @param rampCurveType          Ramp curve type:
+ *                               0 - Fixed ramp rate independent of rate function unit MW output
+ *                               1 - Static ramp rates as a function of unit MW output only
+ *                               2 - Dynamic ramp rates as a function of unit MW output and ramping time
+ * @param startUpRampRate        Resource startup ramp rate (MW/minute)
+ * @param startUpType            Resource startup type:
+ *                               1 - Fixed startup time and fixed startup cost
+ *                               2 - Startup time as a function of down time and fixed startup cost
+ *                               3 - Startup cost as a function of down time
+ * @param startupCost            Startup cost/price
+ * @param upTimeMax              Maximum up time.
+ * @param BidSet                 [[ch.ninecode.model.BidSet BidSet]] <em>undocumented</em>
+ * @param NotificationTimeCurve  [[ch.ninecode.model.NotificationTimeCurve NotificationTimeCurve]] <em>undocumented</em>
+ * @param RampRateCurve          [[ch.ninecode.model.RampRateCurve RampRateCurve]] <em>undocumented</em>
+ * @param RegisteredGenerator    [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
+ * @param SecurityConstraints    [[ch.ninecode.model.SecurityConstraints SecurityConstraints]] <em>undocumented</em>
+ * @param StartUpCostCurve       [[ch.ninecode.model.StartUpCostCurve StartUpCostCurve]] <em>undocumented</em>
+ * @param StartUpTimeCurve       [[ch.ninecode.model.StartUpTimeCurve StartUpTimeCurve]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1964,13 +2217,17 @@ case class GeneratingBid
     StartUpCostCurve: String,
     StartUpTimeCurve: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0, 0.0, 0, 0.0, 0.0, null, null, List(), null, List(), null, null) }
+    def this () =
+    {
+        this (null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0, 0.0, 0, 0.0, 0.0, null, null, List (), null, List (), null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1979,23 +2236,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ResourceBid: ResourceBid = sup.asInstanceOf[ResourceBid]
-    override def copy (): Row = { clone ().asInstanceOf[GeneratingBid] }
+    def ResourceBid: ResourceBid = sup.asInstanceOf [ResourceBid]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [GeneratingBid]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GeneratingBid.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GeneratingBid.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GeneratingBid.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (GeneratingBid.fields (position), x))
+
         emitelem (0, combinedCycleUnitOffer)
         emitelem (1, downTimeMax)
         emitelem (2, installedCapacity)
@@ -2022,6 +2290,7 @@ extends
         emitattr (23, StartUpTimeCurve)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GeneratingBid rdf:ID=\"%s\">\n%s\t</cim:GeneratingBid>".format (id, export_fields)
@@ -2029,10 +2298,10 @@ extends
 }
 
 object GeneratingBid
-extends
-    Parseable[GeneratingBid]
+    extends
+        Parseable[GeneratingBid]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "combinedCycleUnitOffer",
         "downTimeMax",
         "installedCapacity",
@@ -2067,35 +2336,35 @@ extends
         Relationship ("StartUpCostCurve", "StartUpCostCurve", "0..1", "0..*"),
         Relationship ("StartUpTimeCurve", "StartUpTimeCurve", "0..1", "0..*")
     )
-    val combinedCycleUnitOffer: Fielder = parse_element (element (cls, fields(0)))
-    val downTimeMax: Fielder = parse_element (element (cls, fields(1)))
-    val installedCapacity: Fielder = parse_element (element (cls, fields(2)))
-    val lowerRampRate: Fielder = parse_element (element (cls, fields(3)))
-    val maxEmergencyMW: Fielder = parse_element (element (cls, fields(4)))
-    val maximumEconomicMW: Fielder = parse_element (element (cls, fields(5)))
-    val minEmergencyMW: Fielder = parse_element (element (cls, fields(6)))
-    val minimumEconomicMW: Fielder = parse_element (element (cls, fields(7)))
-    val noLoadCost: Fielder = parse_element (element (cls, fields(8)))
-    val notificationTime: Fielder = parse_element (element (cls, fields(9)))
-    val operatingMode: Fielder = parse_element (element (cls, fields(10)))
-    val raiseRampRate: Fielder = parse_element (element (cls, fields(11)))
-    val rampCurveType: Fielder = parse_element (element (cls, fields(12)))
-    val startUpRampRate: Fielder = parse_element (element (cls, fields(13)))
-    val startUpType: Fielder = parse_element (element (cls, fields(14)))
-    val startupCost: Fielder = parse_element (element (cls, fields(15)))
-    val upTimeMax: Fielder = parse_element (element (cls, fields(16)))
-    val BidSet: Fielder = parse_attribute (attribute (cls, fields(17)))
-    val NotificationTimeCurve: Fielder = parse_attribute (attribute (cls, fields(18)))
-    val RampRateCurve: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
-    val RegisteredGenerator: Fielder = parse_attribute (attribute (cls, fields(20)))
-    val SecurityConstraints: FielderMultiple = parse_attributes (attribute (cls, fields(21)))
-    val StartUpCostCurve: Fielder = parse_attribute (attribute (cls, fields(22)))
-    val StartUpTimeCurve: Fielder = parse_attribute (attribute (cls, fields(23)))
+    val combinedCycleUnitOffer: Fielder = parse_element (element (cls, fields (0)))
+    val downTimeMax: Fielder = parse_element (element (cls, fields (1)))
+    val installedCapacity: Fielder = parse_element (element (cls, fields (2)))
+    val lowerRampRate: Fielder = parse_element (element (cls, fields (3)))
+    val maxEmergencyMW: Fielder = parse_element (element (cls, fields (4)))
+    val maximumEconomicMW: Fielder = parse_element (element (cls, fields (5)))
+    val minEmergencyMW: Fielder = parse_element (element (cls, fields (6)))
+    val minimumEconomicMW: Fielder = parse_element (element (cls, fields (7)))
+    val noLoadCost: Fielder = parse_element (element (cls, fields (8)))
+    val notificationTime: Fielder = parse_element (element (cls, fields (9)))
+    val operatingMode: Fielder = parse_element (element (cls, fields (10)))
+    val raiseRampRate: Fielder = parse_element (element (cls, fields (11)))
+    val rampCurveType: Fielder = parse_element (element (cls, fields (12)))
+    val startUpRampRate: Fielder = parse_element (element (cls, fields (13)))
+    val startUpType: Fielder = parse_element (element (cls, fields (14)))
+    val startupCost: Fielder = parse_element (element (cls, fields (15)))
+    val upTimeMax: Fielder = parse_element (element (cls, fields (16)))
+    val BidSet: Fielder = parse_attribute (attribute (cls, fields (17)))
+    val NotificationTimeCurve: Fielder = parse_attribute (attribute (cls, fields (18)))
+    val RampRateCurve: FielderMultiple = parse_attributes (attribute (cls, fields (19)))
+    val RegisteredGenerator: Fielder = parse_attribute (attribute (cls, fields (20)))
+    val SecurityConstraints: FielderMultiple = parse_attributes (attribute (cls, fields (21)))
+    val StartUpCostCurve: Fielder = parse_attribute (attribute (cls, fields (22)))
+    val StartUpTimeCurve: Fielder = parse_attribute (attribute (cls, fields (23)))
 
     def parse (context: Context): GeneratingBid =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = GeneratingBid (
             ResourceBid.parse (context),
             mask (combinedCycleUnitOffer (), 0),
@@ -2133,7 +2402,7 @@ extends
  *
  * The resource could be a RegisteredGenerator or a RegisteredInterTie.
  *
- * @param sup [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
+ * @param sup   [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
  * @param value Flag defining that for this hour in the resource bid the resource shall have an hourly pre-dispatch.
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2144,13 +2413,17 @@ case class HourlyPreDispatchSchedule
     override val sup: BidHourlySchedule,
     value: Boolean
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () =
+    {
+        this (null, false)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2159,24 +2432,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BidHourlySchedule: BidHourlySchedule = sup.asInstanceOf[BidHourlySchedule]
-    override def copy (): Row = { clone ().asInstanceOf[HourlyPreDispatchSchedule] }
+    def BidHourlySchedule: BidHourlySchedule = sup.asInstanceOf [BidHourlySchedule]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [HourlyPreDispatchSchedule]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = HourlyPreDispatchSchedule.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (HourlyPreDispatchSchedule.fields (position), value)
+
         emitelem (0, value)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:HourlyPreDispatchSchedule rdf:ID=\"%s\">\n%s\t</cim:HourlyPreDispatchSchedule>".format (id, export_fields)
@@ -2184,18 +2467,18 @@ extends
 }
 
 object HourlyPreDispatchSchedule
-extends
-    Parseable[HourlyPreDispatchSchedule]
+    extends
+        Parseable[HourlyPreDispatchSchedule]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "value"
     )
-    val value: Fielder = parse_element (element (cls, fields(0)))
+    val value: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: Context): HourlyPreDispatchSchedule =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = HourlyPreDispatchSchedule (
             BidHourlySchedule.parse (context),
             toBoolean (mask (value (), 0))
@@ -2208,9 +2491,9 @@ extends
 /**
  * This class represents the inter tie bid
  *
- * @param sup [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
- * @param minHourlyBlock  The minimum hourly block for an Inter-Tie Resource supplied within the bid.
- * @param RampRateCurve [[ch.ninecode.model.RampRateCurve RampRateCurve]] <em>undocumented</em>
+ * @param sup                [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
+ * @param minHourlyBlock     The minimum hourly block for an Inter-Tie Resource supplied within the bid.
+ * @param RampRateCurve      [[ch.ninecode.model.RampRateCurve RampRateCurve]] <em>undocumented</em>
  * @param RegisteredInterTie [[ch.ninecode.model.RegisteredInterTie RegisteredInterTie]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2223,13 +2506,17 @@ case class InterTieBid
     RampRateCurve: List[String],
     RegisteredInterTie: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, List(), null) }
+    def this () =
+    {
+        this (null, 0, List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2238,28 +2525,40 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ResourceBid: ResourceBid = sup.asInstanceOf[ResourceBid]
-    override def copy (): Row = { clone ().asInstanceOf[InterTieBid] }
+    def ResourceBid: ResourceBid = sup.asInstanceOf [ResourceBid]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [InterTieBid]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = InterTieBid.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (InterTieBid.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (InterTieBid.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (InterTieBid.fields (position), x))
+
         emitelem (0, minHourlyBlock_1)
         emitattrs (1, RampRateCurve)
         emitattr (2, RegisteredInterTie)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:InterTieBid rdf:ID=\"%s\">\n%s\t</cim:InterTieBid>".format (id, export_fields)
@@ -2267,10 +2566,10 @@ extends
 }
 
 object InterTieBid
-extends
-    Parseable[InterTieBid]
+    extends
+        Parseable[InterTieBid]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "minHourlyBlock ",
         "RampRateCurve",
         "RegisteredInterTie"
@@ -2279,14 +2578,14 @@ extends
         Relationship ("RampRateCurve", "RampRateCurve", "0..*", "0..1"),
         Relationship ("RegisteredInterTie", "RegisteredInterTie", "0..1", "0..1")
     )
-    val minHourlyBlock_1: Fielder = parse_element (element (cls, fields(0)))
-    val RampRateCurve: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val RegisteredInterTie: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val minHourlyBlock_1: Fielder = parse_element (element (cls, fields (0)))
+    val RampRateCurve: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val RegisteredInterTie: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: Context): InterTieBid =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = InterTieBid (
             ResourceBid.parse (context),
             toInteger (mask (minHourlyBlock_1 (), 0)),
@@ -2301,14 +2600,14 @@ extends
 /**
  * Response from an intertie resource acknowleging receipt of dispatch instructions
  *
- * @param sup Reference to the superclass object.
- * @param acceptMW The accepted mw amount by the responder. aka response mw.
- * @param acceptStatus The accept status submitted by the responder.
- *        Valid values are NON-RESPONSE, ACCEPT, DECLINE, PARTIAL.
- * @param clearedMW MW amount associated with instruction.
- *        For 5 minute binding dispatches, this is the Goto MW or DOT
- * @param passIndicator Part of the Composite key that downstream app uses to match the instruction
- * @param startTime Part of the Composite key that downstream app uses to match the instruction
+ * @param sup                Reference to the superclass object.
+ * @param acceptMW           The accepted mw amount by the responder. aka response mw.
+ * @param acceptStatus       The accept status submitted by the responder.
+ *                           Valid values are NON-RESPONSE, ACCEPT, DECLINE, PARTIAL.
+ * @param clearedMW          MW amount associated with instruction.
+ *                           For 5 minute binding dispatches, this is the Goto MW or DOT
+ * @param passIndicator      Part of the Composite key that downstream app uses to match the instruction
+ * @param startTime          Part of the Composite key that downstream app uses to match the instruction
  * @param RegisteredInterTie [[ch.ninecode.model.RegisteredInterTie RegisteredInterTie]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2324,13 +2623,17 @@ case class InterTieDispatchResponse
     startTime: String,
     RegisteredInterTie: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, 0.0, null, null, null) }
+    def this () =
+    {
+        this (null, 0.0, null, 0.0, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2339,22 +2642,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[InterTieDispatchResponse] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [InterTieDispatchResponse]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = InterTieDispatchResponse.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (InterTieDispatchResponse.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (InterTieDispatchResponse.fields (position), value)
+
         emitelem (0, acceptMW)
         emitattr (1, acceptStatus)
         emitelem (2, clearedMW)
@@ -2363,6 +2676,7 @@ extends
         emitattr (5, RegisteredInterTie)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:InterTieDispatchResponse rdf:ID=\"%s\">\n%s\t</cim:InterTieDispatchResponse>".format (id, export_fields)
@@ -2370,10 +2684,10 @@ extends
 }
 
 object InterTieDispatchResponse
-extends
-    Parseable[InterTieDispatchResponse]
+    extends
+        Parseable[InterTieDispatchResponse]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "acceptMW",
         "acceptStatus",
         "clearedMW",
@@ -2384,17 +2698,17 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("RegisteredInterTie", "RegisteredInterTie", "1", "0..*")
     )
-    val acceptMW: Fielder = parse_element (element (cls, fields(0)))
-    val acceptStatus: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val clearedMW: Fielder = parse_element (element (cls, fields(2)))
-    val passIndicator: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val startTime: Fielder = parse_element (element (cls, fields(4)))
-    val RegisteredInterTie: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val acceptMW: Fielder = parse_element (element (cls, fields (0)))
+    val acceptStatus: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val clearedMW: Fielder = parse_element (element (cls, fields (2)))
+    val passIndicator: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val startTime: Fielder = parse_element (element (cls, fields (4)))
+    val RegisteredInterTie: Fielder = parse_attribute (attribute (cls, fields (5)))
 
     def parse (context: Context): InterTieDispatchResponse =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = InterTieDispatchResponse (
             BasicElement.parse (context),
             toDouble (mask (acceptMW (), 0)),
@@ -2412,28 +2726,28 @@ extends
 /**
  * Offer to supply energy/ancillary services from a load resource (participating load reduces consumption)
  *
- * @param sup [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
- * @param dropRampRate Maximum rate that load can be reduced (MW/minute)
- * @param loadRedInitiationCost load reduction initiation cost
- * @param loadRedInitiationTime load reduction initiation time
- * @param marketDate The date represents the NextMarketDate for which the load response bids apply to.
- * @param meteredValue Flag indicated that the load reduction is metered. (See above)
- *        If priceSetting and meteredValue both equal 1, then the facility is eligible to set LMP in the real time market.
- * @param minLoad Minimum MW load below which it may not be reduced.
- * @param minLoadReduction Minimum MW for a load reduction (e.g.
- *        MW rating of a discrete pump.
- * @param minLoadReductionCost Cost in \$ at the minimum reduced load
+ * @param sup                      [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
+ * @param dropRampRate             Maximum rate that load can be reduced (MW/minute)
+ * @param loadRedInitiationCost    load reduction initiation cost
+ * @param loadRedInitiationTime    load reduction initiation time
+ * @param marketDate               The date represents the NextMarketDate for which the load response bids apply to.
+ * @param meteredValue             Flag indicated that the load reduction is metered. (See above)
+ *                                 If priceSetting and meteredValue both equal 1, then the facility is eligible to set LMP in the real time market.
+ * @param minLoad                  Minimum MW load below which it may not be reduced.
+ * @param minLoadReduction         Minimum MW for a load reduction (e.g.
+ *                                 MW rating of a discrete pump.
+ * @param minLoadReductionCost     Cost in \$ at the minimum reduced load
  * @param minLoadReductionInterval Shortest period load reduction shall be maintained before load can be restored to normal levels.
- * @param minTimeBetLoadRed Shortest time that load shall be left at normal levels before a new load reduction.
- * @param pickUpRampRate Maximum rate load may be restored (MW/minute)
- * @param priceSetting Flag to indicate that the facility can set LMP Works in tandem with Metered Value.
- *        Greater chance of this being dynamic than the Metered Value, however, it is requested that Price Setting and Metered Value stay at the same source.  Currently no customers have implemented the metering capability, but if this option is implemented, then Price Setting could become dynamic.  However, Metered Value will remain static.
- * @param reqNoticeTime Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
- * @param shutdownCost The fixed cost associated with committing a load reduction.
- * @param AreaLoadBid [[ch.ninecode.model.AreaLoadBid AreaLoadBid]] <em>undocumented</em>
- * @param LoadReductionPriceCurve [[ch.ninecode.model.LoadReductionPriceCurve LoadReductionPriceCurve]] <em>undocumented</em>
- * @param RampRateCurve [[ch.ninecode.model.RampRateCurve RampRateCurve]] <em>undocumented</em>
- * @param RegisteredLoad [[ch.ninecode.model.RegisteredLoad RegisteredLoad]] <em>undocumented</em>
+ * @param minTimeBetLoadRed        Shortest time that load shall be left at normal levels before a new load reduction.
+ * @param pickUpRampRate           Maximum rate load may be restored (MW/minute)
+ * @param priceSetting             Flag to indicate that the facility can set LMP Works in tandem with Metered Value.
+ *                                 Greater chance of this being dynamic than the Metered Value, however, it is requested that Price Setting and Metered Value stay at the same source.  Currently no customers have implemented the metering capability, but if this option is implemented, then Price Setting could become dynamic.  However, Metered Value will remain static.
+ * @param reqNoticeTime            Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
+ * @param shutdownCost             The fixed cost associated with committing a load reduction.
+ * @param AreaLoadBid              [[ch.ninecode.model.AreaLoadBid AreaLoadBid]] <em>undocumented</em>
+ * @param LoadReductionPriceCurve  [[ch.ninecode.model.LoadReductionPriceCurve LoadReductionPriceCurve]] <em>undocumented</em>
+ * @param RampRateCurve            [[ch.ninecode.model.RampRateCurve RampRateCurve]] <em>undocumented</em>
+ * @param RegisteredLoad           [[ch.ninecode.model.RegisteredLoad RegisteredLoad]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -2460,13 +2774,17 @@ case class LoadBid
     RampRateCurve: List[String],
     RegisteredLoad: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, null, List(), List(), null) }
+    def this () =
+    {
+        this (null, 0.0, 0.0, 0.0, null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, null, List (), List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2475,23 +2793,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ResourceBid: ResourceBid = sup.asInstanceOf[ResourceBid]
-    override def copy (): Row = { clone ().asInstanceOf[LoadBid] }
+    def ResourceBid: ResourceBid = sup.asInstanceOf [ResourceBid]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [LoadBid]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadBid.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadBid.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadBid.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (LoadBid.fields (position), x))
+
         emitelem (0, dropRampRate)
         emitelem (1, loadRedInitiationCost)
         emitelem (2, loadRedInitiationTime)
@@ -2512,6 +2841,7 @@ extends
         emitattr (17, RegisteredLoad)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:LoadBid rdf:ID=\"%s\">\n%s\t</cim:LoadBid>".format (id, export_fields)
@@ -2519,10 +2849,10 @@ extends
 }
 
 object LoadBid
-extends
-    Parseable[LoadBid]
+    extends
+        Parseable[LoadBid]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dropRampRate",
         "loadRedInitiationCost",
         "loadRedInitiationTime",
@@ -2548,29 +2878,29 @@ extends
         Relationship ("RampRateCurve", "RampRateCurve", "0..*", "0..1"),
         Relationship ("RegisteredLoad", "RegisteredLoad", "0..1", "0..*")
     )
-    val dropRampRate: Fielder = parse_element (element (cls, fields(0)))
-    val loadRedInitiationCost: Fielder = parse_element (element (cls, fields(1)))
-    val loadRedInitiationTime: Fielder = parse_element (element (cls, fields(2)))
-    val marketDate: Fielder = parse_element (element (cls, fields(3)))
-    val meteredValue: Fielder = parse_element (element (cls, fields(4)))
-    val minLoad: Fielder = parse_element (element (cls, fields(5)))
-    val minLoadReduction: Fielder = parse_element (element (cls, fields(6)))
-    val minLoadReductionCost: Fielder = parse_element (element (cls, fields(7)))
-    val minLoadReductionInterval: Fielder = parse_element (element (cls, fields(8)))
-    val minTimeBetLoadRed: Fielder = parse_element (element (cls, fields(9)))
-    val pickUpRampRate: Fielder = parse_element (element (cls, fields(10)))
-    val priceSetting: Fielder = parse_element (element (cls, fields(11)))
-    val reqNoticeTime: Fielder = parse_element (element (cls, fields(12)))
-    val shutdownCost: Fielder = parse_element (element (cls, fields(13)))
-    val AreaLoadBid: Fielder = parse_attribute (attribute (cls, fields(14)))
-    val LoadReductionPriceCurve: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
-    val RampRateCurve: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
-    val RegisteredLoad: Fielder = parse_attribute (attribute (cls, fields(17)))
+    val dropRampRate: Fielder = parse_element (element (cls, fields (0)))
+    val loadRedInitiationCost: Fielder = parse_element (element (cls, fields (1)))
+    val loadRedInitiationTime: Fielder = parse_element (element (cls, fields (2)))
+    val marketDate: Fielder = parse_element (element (cls, fields (3)))
+    val meteredValue: Fielder = parse_element (element (cls, fields (4)))
+    val minLoad: Fielder = parse_element (element (cls, fields (5)))
+    val minLoadReduction: Fielder = parse_element (element (cls, fields (6)))
+    val minLoadReductionCost: Fielder = parse_element (element (cls, fields (7)))
+    val minLoadReductionInterval: Fielder = parse_element (element (cls, fields (8)))
+    val minTimeBetLoadRed: Fielder = parse_element (element (cls, fields (9)))
+    val pickUpRampRate: Fielder = parse_element (element (cls, fields (10)))
+    val priceSetting: Fielder = parse_element (element (cls, fields (11)))
+    val reqNoticeTime: Fielder = parse_element (element (cls, fields (12)))
+    val shutdownCost: Fielder = parse_element (element (cls, fields (13)))
+    val AreaLoadBid: Fielder = parse_attribute (attribute (cls, fields (14)))
+    val LoadReductionPriceCurve: FielderMultiple = parse_attributes (attribute (cls, fields (15)))
+    val RampRateCurve: FielderMultiple = parse_attributes (attribute (cls, fields (16)))
+    val RegisteredLoad: Fielder = parse_attribute (attribute (cls, fields (17)))
 
     def parse (context: Context): LoadBid =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = LoadBid (
             ResourceBid.parse (context),
             toDouble (mask (dropRampRate (), 0)),
@@ -2600,12 +2930,12 @@ extends
 /**
  * Metered SubSystem Load Following Instruction
  *
- * @param sup Reference to the superclass object.
- * @param endTime Instruction End Time
- * @param loadFollowingMW Load Following MW Positive for follow-up and negative for follow-down
- * @param mssInstructionID Unique instruction id per instruction, assigned by the SC and provided to ADS.
- *        ADS passes through.
- * @param startTime Instruction Start Time
+ * @param sup                Reference to the superclass object.
+ * @param endTime            Instruction End Time
+ * @param loadFollowingMW    Load Following MW Positive for follow-up and negative for follow-down
+ * @param mssInstructionID   Unique instruction id per instruction, assigned by the SC and provided to ADS.
+ *                           ADS passes through.
+ * @param startTime          Instruction Start Time
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2620,13 +2950,17 @@ case class LoadFollowingInst
     startTime: String,
     RegisteredResource: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, null, null, null) }
+    def this () =
+    {
+        this (null, null, 0.0, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2635,22 +2969,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[LoadFollowingInst] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [LoadFollowingInst]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadFollowingInst.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadFollowingInst.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadFollowingInst.fields (position), value)
+
         emitelem (0, endTime)
         emitelem (1, loadFollowingMW)
         emitelem (2, mssInstructionID)
@@ -2658,6 +3002,7 @@ extends
         emitattr (4, RegisteredResource)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:LoadFollowingInst rdf:ID=\"%s\">\n%s\t</cim:LoadFollowingInst>".format (id, export_fields)
@@ -2665,10 +3010,10 @@ extends
 }
 
 object LoadFollowingInst
-extends
-    Parseable[LoadFollowingInst]
+    extends
+        Parseable[LoadFollowingInst]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "endTime",
         "loadFollowingMW",
         "mssInstructionID",
@@ -2678,16 +3023,16 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("RegisteredResource", "RegisteredResource", "1", "0..*")
     )
-    val endTime: Fielder = parse_element (element (cls, fields(0)))
-    val loadFollowingMW: Fielder = parse_element (element (cls, fields(1)))
-    val mssInstructionID: Fielder = parse_element (element (cls, fields(2)))
-    val startTime: Fielder = parse_element (element (cls, fields(3)))
-    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val endTime: Fielder = parse_element (element (cls, fields (0)))
+    val loadFollowingMW: Fielder = parse_element (element (cls, fields (1)))
+    val mssInstructionID: Fielder = parse_element (element (cls, fields (2)))
+    val startTime: Fielder = parse_element (element (cls, fields (3)))
+    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields (4)))
 
     def parse (context: Context): LoadFollowingInst =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = LoadFollowingInst (
             BasicElement.parse (context),
             mask (endTime (), 0),
@@ -2706,8 +3051,8 @@ extends
  *
  * Relationship between price (Y1-axis) vs. MW (X-axis).
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
- * @param LoadBid [[ch.ninecode.model.LoadBid LoadBid]] <em>undocumented</em>
+ * @param sup            [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param LoadBid        [[ch.ninecode.model.LoadBid LoadBid]] <em>undocumented</em>
  * @param RegisteredLoad [[ch.ninecode.model.RegisteredLoad RegisteredLoad]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2719,13 +3064,17 @@ case class LoadReductionPriceCurve
     LoadBid: String,
     RegisteredLoad: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List()) }
+    def this () =
+    {
+        this (null, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2734,26 +3083,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup.asInstanceOf[Curve]
-    override def copy (): Row = { clone ().asInstanceOf[LoadReductionPriceCurve] }
+    def Curve: Curve = sup.asInstanceOf [Curve]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [LoadReductionPriceCurve]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadReductionPriceCurve.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadReductionPriceCurve.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (LoadReductionPriceCurve.fields (position), x))
+
         emitattr (0, LoadBid)
         emitattrs (1, RegisteredLoad)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:LoadReductionPriceCurve rdf:ID=\"%s\">\n%s\t</cim:LoadReductionPriceCurve>".format (id, export_fields)
@@ -2761,10 +3121,10 @@ extends
 }
 
 object LoadReductionPriceCurve
-extends
-    Parseable[LoadReductionPriceCurve]
+    extends
+        Parseable[LoadReductionPriceCurve]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "LoadBid",
         "RegisteredLoad"
     )
@@ -2772,13 +3132,13 @@ extends
         Relationship ("LoadBid", "LoadBid", "1", "0..*"),
         Relationship ("RegisteredLoad", "RegisteredLoad", "0..*", "0..*")
     )
-    val LoadBid: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val RegisteredLoad: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val LoadBid: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val RegisteredLoad: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: Context): LoadReductionPriceCurve =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = LoadReductionPriceCurve (
             Curve.parse (context),
             mask (LoadBid (), 0),
@@ -2794,20 +3154,20 @@ extends
  *
  * Examples as Market, FERC, RMR,
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param effectiveDate <em>undocumented</em>
- * @param frequencyType <em>undocumented</em>
- * @param invoiceType <em>undocumented</em>
- * @param requireAutorun <em>undocumented</em>
- * @param revisionNumber Revision number for the major charge group
- * @param runType <em>undocumented</em>
- * @param runVersion <em>undocumented</em>
- * @param terminationDate <em>undocumented</em>
- * @param ChargeType [[ch.ninecode.model.ChargeType ChargeType]] A MajorChargeGroup can have 0-n ChargeType.
- *        A ChargeType can associate to 0-n MajorChargeGroup.
- * @param MarketInvoice [[ch.ninecode.model.MarketInvoice MarketInvoice]] <em>undocumented</em>
+ * @param sup               [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param effectiveDate     <em>undocumented</em>
+ * @param frequencyType     <em>undocumented</em>
+ * @param invoiceType       <em>undocumented</em>
+ * @param requireAutorun    <em>undocumented</em>
+ * @param revisionNumber    Revision number for the major charge group
+ * @param runType           <em>undocumented</em>
+ * @param runVersion        <em>undocumented</em>
+ * @param terminationDate   <em>undocumented</em>
+ * @param ChargeType        [[ch.ninecode.model.ChargeType ChargeType]] A MajorChargeGroup can have 0-n ChargeType.
+ *                          A ChargeType can associate to 0-n MajorChargeGroup.
+ * @param MarketInvoice     [[ch.ninecode.model.MarketInvoice MarketInvoice]] <em>undocumented</em>
  * @param MktScheduledEvent [[ch.ninecode.model.MarketScheduledEvent MarketScheduledEvent]] <em>undocumented</em>
- * @param Settlement [[ch.ninecode.model.Settlement Settlement]] <em>undocumented</em>
+ * @param Settlement        [[ch.ninecode.model.Settlement Settlement]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -2828,13 +3188,17 @@ case class MajorChargeGroup
     MktScheduledEvent: List[String],
     Settlement: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, List(), List(), List(), List()) }
+    def this () =
+    {
+        this (null, null, null, null, null, null, null, null, null, List (), List (), List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2843,22 +3207,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[MajorChargeGroup] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [MajorChargeGroup]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MajorChargeGroup.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MajorChargeGroup.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MajorChargeGroup.fields (position), x))
+
         emitelem (0, effectiveDate)
         emitelem (1, frequencyType)
         emitelem (2, invoiceType)
@@ -2873,6 +3247,7 @@ extends
         emitattrs (11, Settlement)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MajorChargeGroup rdf:ID=\"%s\">\n%s\t</cim:MajorChargeGroup>".format (id, export_fields)
@@ -2880,10 +3255,10 @@ extends
 }
 
 object MajorChargeGroup
-extends
-    Parseable[MajorChargeGroup]
+    extends
+        Parseable[MajorChargeGroup]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "effectiveDate",
         "frequencyType",
         "invoiceType",
@@ -2903,23 +3278,23 @@ extends
         Relationship ("MktScheduledEvent", "MarketScheduledEvent", "0..*", "0..1"),
         Relationship ("Settlement", "Settlement", "0..*", "1..*")
     )
-    val effectiveDate: Fielder = parse_element (element (cls, fields(0)))
-    val frequencyType: Fielder = parse_element (element (cls, fields(1)))
-    val invoiceType: Fielder = parse_element (element (cls, fields(2)))
-    val requireAutorun: Fielder = parse_element (element (cls, fields(3)))
-    val revisionNumber: Fielder = parse_element (element (cls, fields(4)))
-    val runType: Fielder = parse_element (element (cls, fields(5)))
-    val runVersion: Fielder = parse_element (element (cls, fields(6)))
-    val terminationDate: Fielder = parse_element (element (cls, fields(7)))
-    val ChargeType: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val MarketInvoice: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val MktScheduledEvent: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val Settlement: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val effectiveDate: Fielder = parse_element (element (cls, fields (0)))
+    val frequencyType: Fielder = parse_element (element (cls, fields (1)))
+    val invoiceType: Fielder = parse_element (element (cls, fields (2)))
+    val requireAutorun: Fielder = parse_element (element (cls, fields (3)))
+    val revisionNumber: Fielder = parse_element (element (cls, fields (4)))
+    val runType: Fielder = parse_element (element (cls, fields (5)))
+    val runVersion: Fielder = parse_element (element (cls, fields (6)))
+    val terminationDate: Fielder = parse_element (element (cls, fields (7)))
+    val ChargeType: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val MarketInvoice: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
+    val MktScheduledEvent: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
+    val Settlement: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
 
     def parse (context: Context): MajorChargeGroup =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = MajorChargeGroup (
             IdentifiedObject.parse (context),
             mask (effectiveDate (), 0),
@@ -2943,10 +3318,10 @@ extends
 /**
  * Signifies an event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units shall be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param category Category of scheduled event.
- * @param duration Duration of the scheduled event, for example, the time to ramp between values.
- * @param status <em>undocumented</em>
+ * @param sup              [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param category         Category of scheduled event.
+ * @param duration         Duration of the scheduled event, for example, the time to ramp between values.
+ * @param status           <em>undocumented</em>
  * @param MajorChargeGroup [[ch.ninecode.model.MajorChargeGroup MajorChargeGroup]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2960,13 +3335,17 @@ case class MarketScheduledEvent
     status: String,
     MajorChargeGroup: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, null, null) }
+    def this () =
+    {
+        this (null, null, 0.0, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2975,28 +3354,39 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[MarketScheduledEvent] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [MarketScheduledEvent]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketScheduledEvent.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketScheduledEvent.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketScheduledEvent.fields (position), value)
+
         emitelem (0, category)
         emitelem (1, duration)
         emitattr (2, status)
         emitattr (3, MajorChargeGroup)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MarketScheduledEvent rdf:ID=\"%s\">\n%s\t</cim:MarketScheduledEvent>".format (id, export_fields)
@@ -3004,10 +3394,10 @@ extends
 }
 
 object MarketScheduledEvent
-extends
-    Parseable[MarketScheduledEvent]
+    extends
+        Parseable[MarketScheduledEvent]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "category",
         "duration",
         "status",
@@ -3016,15 +3406,15 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("MajorChargeGroup", "MajorChargeGroup", "0..1", "0..*")
     )
-    val category: Fielder = parse_element (element (cls, fields(0)))
-    val duration: Fielder = parse_element (element (cls, fields(1)))
-    val status: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val MajorChargeGroup: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val category: Fielder = parse_element (element (cls, fields (0)))
+    val duration: Fielder = parse_element (element (cls, fields (1)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val MajorChargeGroup: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: Context): MarketScheduledEvent =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = MarketScheduledEvent (
             IdentifiedObject.parse (context),
             mask (category (), 0),
@@ -3042,7 +3432,7 @@ extends
  *
  * Relationship between crew notification time (Y1-axis) and unit startup time (Y2-axis) vs. unit elapsed down time (X-axis).
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param sup            [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param GeneratingBids [[ch.ninecode.model.GeneratingBid GeneratingBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -3053,13 +3443,17 @@ case class NotificationTimeCurve
     override val sup: Curve,
     GeneratingBids: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () =
+    {
+        this (null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -3068,24 +3462,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup.asInstanceOf[Curve]
-    override def copy (): Row = { clone ().asInstanceOf[NotificationTimeCurve] }
+    def Curve: Curve = sup.asInstanceOf [Curve]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [NotificationTimeCurve]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NotificationTimeCurve.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (NotificationTimeCurve.fields (position), x))
+
         emitattrs (0, GeneratingBids)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:NotificationTimeCurve rdf:ID=\"%s\">\n%s\t</cim:NotificationTimeCurve>".format (id, export_fields)
@@ -3093,21 +3497,21 @@ extends
 }
 
 object NotificationTimeCurve
-extends
-    Parseable[NotificationTimeCurve]
+    extends
+        Parseable[NotificationTimeCurve]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "GeneratingBids"
     )
     override val relations: List[Relationship] = List (
         Relationship ("GeneratingBids", "GeneratingBid", "0..*", "0..1")
     )
-    val GeneratingBids: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val GeneratingBids: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: Context): NotificationTimeCurve =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = NotificationTimeCurve (
             Curve.parse (context),
             masks (GeneratingBids (), 0)
@@ -3122,7 +3526,7 @@ extends
  *
  * This schedule is assocated with the hourly parameters in a resource bid.
  *
- * @param sup [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
+ * @param sup   [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -3133,13 +3537,17 @@ case class OpenTieSchedule
     override val sup: BidHourlySchedule,
     value: Boolean
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () =
+    {
+        this (null, false)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -3148,24 +3556,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BidHourlySchedule: BidHourlySchedule = sup.asInstanceOf[BidHourlySchedule]
-    override def copy (): Row = { clone ().asInstanceOf[OpenTieSchedule] }
+    def BidHourlySchedule: BidHourlySchedule = sup.asInstanceOf [BidHourlySchedule]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [OpenTieSchedule]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OpenTieSchedule.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OpenTieSchedule.fields (position), value)
+
         emitelem (0, value)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:OpenTieSchedule rdf:ID=\"%s\">\n%s\t</cim:OpenTieSchedule>".format (id, export_fields)
@@ -3173,18 +3591,18 @@ extends
 }
 
 object OpenTieSchedule
-extends
-    Parseable[OpenTieSchedule]
+    extends
+        Parseable[OpenTieSchedule]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "value"
     )
-    val value: Fielder = parse_element (element (cls, fields(0)))
+    val value: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: Context): OpenTieSchedule =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = OpenTieSchedule (
             BidHourlySchedule.parse (context),
             toBoolean (mask (value (), 0))
@@ -3197,13 +3615,13 @@ extends
 /**
  * Component of a bid that pertains to one market product.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param Bid [[ch.ninecode.model.Bid Bid]] A bid comprises one or more product bids of market products
- * @param BidDistributionFactor [[ch.ninecode.model.BidDistributionFactor BidDistributionFactor]] <em>undocumented</em>
+ * @param sup                      [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Bid                      [[ch.ninecode.model.Bid Bid]] A bid comprises one or more product bids of market products
+ * @param BidDistributionFactor    [[ch.ninecode.model.BidDistributionFactor BidDistributionFactor]] <em>undocumented</em>
  * @param BidHourlyProductSchedule [[ch.ninecode.model.BidHourlyProductSchedule BidHourlyProductSchedule]] <em>undocumented</em>
- * @param BidSchedule [[ch.ninecode.model.BidPriceSchedule BidPriceSchedule]] <em>undocumented</em>
- * @param BidSelfSched [[ch.ninecode.model.BidSelfSched BidSelfSched]] <em>undocumented</em>
- * @param MarketProduct [[ch.ninecode.model.MarketProduct MarketProduct]] <em>undocumented</em>
+ * @param BidSchedule              [[ch.ninecode.model.BidPriceSchedule BidPriceSchedule]] <em>undocumented</em>
+ * @param BidSelfSched             [[ch.ninecode.model.BidSelfSched BidSelfSched]] <em>undocumented</em>
+ * @param MarketProduct            [[ch.ninecode.model.MarketProduct MarketProduct]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -3218,13 +3636,17 @@ case class ProductBid
     BidSelfSched: List[String],
     MarketProduct: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List(), List(), List(), null) }
+    def this () =
+    {
+        this (null, null, List (), List (), List (), List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -3233,22 +3655,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[ProductBid] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ProductBid]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProductBid.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProductBid.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ProductBid.fields (position), x))
+
         emitattr (0, Bid)
         emitattrs (1, BidDistributionFactor)
         emitattrs (2, BidHourlyProductSchedule)
@@ -3257,6 +3689,7 @@ extends
         emitattr (5, MarketProduct)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ProductBid rdf:ID=\"%s\">\n%s\t</cim:ProductBid>".format (id, export_fields)
@@ -3264,10 +3697,10 @@ extends
 }
 
 object ProductBid
-extends
-    Parseable[ProductBid]
+    extends
+        Parseable[ProductBid]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "Bid",
         "BidDistributionFactor",
         "BidHourlyProductSchedule",
@@ -3283,17 +3716,17 @@ extends
         Relationship ("BidSelfSched", "BidSelfSched", "0..*", "1"),
         Relationship ("MarketProduct", "MarketProduct", "1", "0..*")
     )
-    val Bid: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val BidDistributionFactor: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val BidHourlyProductSchedule: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val BidSchedule: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val BidSelfSched: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val MarketProduct: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val Bid: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val BidDistributionFactor: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val BidHourlyProductSchedule: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val BidSchedule: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val BidSelfSched: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val MarketProduct: Fielder = parse_attribute (attribute (cls, fields (5)))
 
     def parse (context: Context): ProductBid =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ProductBid (
             IdentifiedObject.parse (context),
             mask (Bid (), 0),
@@ -3313,7 +3746,7 @@ extends
  *
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
  *
- * @param sup [[ch.ninecode.model.BidHourlyProductSchedule BidHourlyProductSchedule]] Reference to the superclass object.
+ * @param sup   [[ch.ninecode.model.BidHourlyProductSchedule BidHourlyProductSchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -3324,13 +3757,17 @@ case class PumpingCostSchedule
     override val sup: BidHourlyProductSchedule,
     value: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () =
+    {
+        this (null, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -3339,24 +3776,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BidHourlyProductSchedule: BidHourlyProductSchedule = sup.asInstanceOf[BidHourlyProductSchedule]
-    override def copy (): Row = { clone ().asInstanceOf[PumpingCostSchedule] }
+    def BidHourlyProductSchedule: BidHourlyProductSchedule = sup.asInstanceOf [BidHourlyProductSchedule]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PumpingCostSchedule]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PumpingCostSchedule.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PumpingCostSchedule.fields (position), value)
+
         emitelem (0, value)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PumpingCostSchedule rdf:ID=\"%s\">\n%s\t</cim:PumpingCostSchedule>".format (id, export_fields)
@@ -3364,18 +3811,18 @@ extends
 }
 
 object PumpingCostSchedule
-extends
-    Parseable[PumpingCostSchedule]
+    extends
+        Parseable[PumpingCostSchedule]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "value"
     )
-    val value: Fielder = parse_element (element (cls, fields(0)))
+    val value: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: Context): PumpingCostSchedule =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PumpingCostSchedule (
             BidHourlyProductSchedule.parse (context),
             toDouble (mask (value (), 0))
@@ -3390,7 +3837,7 @@ extends
  *
  * Associated with the energy market product type.
  *
- * @param sup [[ch.ninecode.model.BidHourlyProductSchedule BidHourlyProductSchedule]] Reference to the superclass object.
+ * @param sup   [[ch.ninecode.model.BidHourlyProductSchedule BidHourlyProductSchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -3401,13 +3848,17 @@ case class PumpingLevelSchedule
     override val sup: BidHourlyProductSchedule,
     value: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () =
+    {
+        this (null, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -3416,24 +3867,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BidHourlyProductSchedule: BidHourlyProductSchedule = sup.asInstanceOf[BidHourlyProductSchedule]
-    override def copy (): Row = { clone ().asInstanceOf[PumpingLevelSchedule] }
+    def BidHourlyProductSchedule: BidHourlyProductSchedule = sup.asInstanceOf [BidHourlyProductSchedule]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PumpingLevelSchedule]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PumpingLevelSchedule.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PumpingLevelSchedule.fields (position), value)
+
         emitelem (0, value)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PumpingLevelSchedule rdf:ID=\"%s\">\n%s\t</cim:PumpingLevelSchedule>".format (id, export_fields)
@@ -3441,18 +3902,18 @@ extends
 }
 
 object PumpingLevelSchedule
-extends
-    Parseable[PumpingLevelSchedule]
+    extends
+        Parseable[PumpingLevelSchedule]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "value"
     )
-    val value: Fielder = parse_element (element (cls, fields(0)))
+    val value: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: Context): PumpingLevelSchedule =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PumpingLevelSchedule (
             BidHourlyProductSchedule.parse (context),
             toDouble (mask (value (), 0))
@@ -3467,7 +3928,7 @@ extends
  *
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
  *
- * @param sup [[ch.ninecode.model.BidHourlyProductSchedule BidHourlyProductSchedule]] Reference to the superclass object.
+ * @param sup   [[ch.ninecode.model.BidHourlyProductSchedule BidHourlyProductSchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -3478,13 +3939,17 @@ case class PumpingShutDownCostSchedule
     override val sup: BidHourlyProductSchedule,
     value: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () =
+    {
+        this (null, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -3493,24 +3958,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def BidHourlyProductSchedule: BidHourlyProductSchedule = sup.asInstanceOf[BidHourlyProductSchedule]
-    override def copy (): Row = { clone ().asInstanceOf[PumpingShutDownCostSchedule] }
+    def BidHourlyProductSchedule: BidHourlyProductSchedule = sup.asInstanceOf [BidHourlyProductSchedule]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PumpingShutDownCostSchedule]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PumpingShutDownCostSchedule.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PumpingShutDownCostSchedule.fields (position), value)
+
         emitelem (0, value)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PumpingShutDownCostSchedule rdf:ID=\"%s\">\n%s\t</cim:PumpingShutDownCostSchedule>".format (id, export_fields)
@@ -3518,18 +3993,18 @@ extends
 }
 
 object PumpingShutDownCostSchedule
-extends
-    Parseable[PumpingShutDownCostSchedule]
+    extends
+        Parseable[PumpingShutDownCostSchedule]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "value"
     )
-    val value: Fielder = parse_element (element (cls, fields(0)))
+    val value: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: Context): PumpingShutDownCostSchedule =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PumpingShutDownCostSchedule (
             BidHourlyProductSchedule.parse (context),
             toDouble (mask (value (), 0))
@@ -3542,14 +4017,14 @@ extends
 /**
  * Ramp rate as a function of resource MW output
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
- * @param condition condition for the ramp rate
+ * @param sup                [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param condition          condition for the ramp rate
  * @param constraintRampType The condition that identifies whether a Generating Resource should be constrained from Ancillary Service provision if its Schedule or Dispatch change across Trading Hours or Trading Intervals requires more than a specified fraction of the duration of the Trading Hour or Trading Interval.
- *        Valid values are Fast/Slow
- * @param rampRateType How ramp rate is applied (e.g. raise or lower, as when applied to a generation resource)
- * @param GeneratingBid [[ch.ninecode.model.GeneratingBid GeneratingBid]] <em>undocumented</em>
- * @param InterTieBid [[ch.ninecode.model.InterTieBid InterTieBid]] <em>undocumented</em>
- * @param LoadBid [[ch.ninecode.model.LoadBid LoadBid]] <em>undocumented</em>
+ *                           Valid values are Fast/Slow
+ * @param rampRateType       How ramp rate is applied (e.g. raise or lower, as when applied to a generation resource)
+ * @param GeneratingBid      [[ch.ninecode.model.GeneratingBid GeneratingBid]] <em>undocumented</em>
+ * @param InterTieBid        [[ch.ninecode.model.InterTieBid InterTieBid]] <em>undocumented</em>
+ * @param LoadBid            [[ch.ninecode.model.LoadBid LoadBid]] <em>undocumented</em>
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -3566,13 +4041,17 @@ case class RampRateCurve
     LoadBid: String,
     RegisteredResource: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, List()) }
+    def this () =
+    {
+        this (null, null, null, null, null, null, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -3581,22 +4060,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup.asInstanceOf[Curve]
-    override def copy (): Row = { clone ().asInstanceOf[RampRateCurve] }
+    def Curve: Curve = sup.asInstanceOf [Curve]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [RampRateCurve]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RampRateCurve.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RampRateCurve.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RampRateCurve.fields (position), x))
+
         emitattr (0, condition)
         emitattr (1, constraintRampType)
         emitattr (2, rampRateType)
@@ -3606,6 +4095,7 @@ extends
         emitattrs (6, RegisteredResource)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:RampRateCurve rdf:ID=\"%s\">\n%s\t</cim:RampRateCurve>".format (id, export_fields)
@@ -3613,10 +4103,10 @@ extends
 }
 
 object RampRateCurve
-extends
-    Parseable[RampRateCurve]
+    extends
+        Parseable[RampRateCurve]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "condition",
         "constraintRampType",
         "rampRateType",
@@ -3631,18 +4121,18 @@ extends
         Relationship ("LoadBid", "LoadBid", "0..1", "0..*"),
         Relationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*")
     )
-    val condition: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val constraintRampType: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val rampRateType: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val GeneratingBid: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val InterTieBid: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val LoadBid: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val condition: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val constraintRampType: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val rampRateType: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val GeneratingBid: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val InterTieBid: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val LoadBid: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
 
     def parse (context: Context): RampRateCurve =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = RampRateCurve (
             Curve.parse (context),
             mask (condition (), 0),
@@ -3661,40 +4151,40 @@ extends
 /**
  * Energy bid for generation, load, or virtual type for the whole of the market-trading period (i.e., one day in day ahead market or one hour in the real time market)
  *
- * @param sup [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
- * @param aggregationFlag Aggregation flag
- *        0: individual resource level
- *        1: Aggregated node location
- *        2: Aggregated price location)
- * @param bidStatus <em>undocumented</em>
- * @param commodityType Energy product (commodity) type:
- *        'En' - Energy
- *        'Ru' - Regulation Up
- *        'Rd' - Regulation Dn
- *        'Sr' - Spinning Reserve
- *        'Nr' - Non-Spinning Reserve
- *        'Or' - Operating Reserve
+ * @param sup                  [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
+ * @param aggregationFlag      Aggregation flag
+ *                             0: individual resource level
+ *                             1: Aggregated node location
+ *                             2: Aggregated price location)
+ * @param bidStatus            <em>undocumented</em>
+ * @param commodityType        Energy product (commodity) type:
+ *                             'En' - Energy
+ *                             'Ru' - Regulation Up
+ *                             'Rd' - Regulation Dn
+ *                             'Sr' - Spinning Reserve
+ *                             'Nr' - Non-Spinning Reserve
+ *                             'Or' - Operating Reserve
  * @param contingencyAvailFlag contingent operating reserve availiability (Yes/No).
- *        Resource is availiable to participate with capacity only in contingency dispatch.
- * @param createdISO A Yes indicates that this bid was created by the ISO.
- * @param energyMaxDay Maximum amount of energy per day which can be produced during the trading period in MWh
- * @param energyMinDay Minimum amount of energy per day which has to be produced during the trading period in MWh
- * @param marketSepFlag Market Separation Flag
- *        
- *        'Y' - Enforce market separation constraints for this bid
- *        'N' - Don't enforce market separation constraints for this bid.
- * @param minDispatchTime minimum number of consecutive hours a resource shall be dispatched if bid is accepted
- * @param resourceLoadingType Resource loading curve type
- *        1 - step-wise continuous loading
- *        2 - piece-wise linear continuous loading
- *        3 - block loading
- * @param shutDownsMaxDay Maximum number of shutdowns per day.
- * @param shutDownsMaxWeek Maximum number of shutdowns per week.
- * @param startUpsMaxDay Maximum number of startups per day.
- * @param startUpsMaxWeek Maximum number of startups per week.
- * @param virtual True if bid is virtual.
- *        Bid is assumed to be non-virtual if attribute is absent
- * @param BidError [[ch.ninecode.model.BidError BidError]] <em>undocumented</em>
+ *                             Resource is availiable to participate with capacity only in contingency dispatch.
+ * @param createdISO           A Yes indicates that this bid was created by the ISO.
+ * @param energyMaxDay         Maximum amount of energy per day which can be produced during the trading period in MWh
+ * @param energyMinDay         Minimum amount of energy per day which has to be produced during the trading period in MWh
+ * @param marketSepFlag        Market Separation Flag
+ *
+ *                             'Y' - Enforce market separation constraints for this bid
+ *                             'N' - Don't enforce market separation constraints for this bid.
+ * @param minDispatchTime      minimum number of consecutive hours a resource shall be dispatched if bid is accepted
+ * @param resourceLoadingType  Resource loading curve type
+ *                             1 - step-wise continuous loading
+ *                             2 - piece-wise linear continuous loading
+ *                             3 - block loading
+ * @param shutDownsMaxDay      Maximum number of shutdowns per day.
+ * @param shutDownsMaxWeek     Maximum number of shutdowns per week.
+ * @param startUpsMaxDay       Maximum number of startups per day.
+ * @param startUpsMaxWeek      Maximum number of startups per week.
+ * @param virtual              True if bid is virtual.
+ *                             Bid is assumed to be non-virtual if attribute is absent
+ * @param BidError             [[ch.ninecode.model.BidError BidError]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -3719,13 +4209,17 @@ case class ResourceBid
     virtual: Boolean,
     BidError: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, null, null, null, null, 0.0, 0.0, null, 0, 0, 0, 0, 0, 0, false, List()) }
+    def this () =
+    {
+        this (null, 0, null, null, null, null, 0.0, 0.0, null, 0, 0, 0, 0, 0, 0, false, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -3734,23 +4228,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Bid: Bid = sup.asInstanceOf[Bid]
-    override def copy (): Row = { clone ().asInstanceOf[ResourceBid] }
+    def Bid: Bid = sup.asInstanceOf [Bid]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ResourceBid]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ResourceBid.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceBid.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceBid.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ResourceBid.fields (position), x))
+
         emitelem (0, aggregationFlag)
         emitelem (1, bidStatus)
         emitelem (2, commodityType)
@@ -3769,6 +4274,7 @@ extends
         emitattrs (15, BidError)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ResourceBid rdf:ID=\"%s\">\n%s\t</cim:ResourceBid>".format (id, export_fields)
@@ -3776,10 +4282,10 @@ extends
 }
 
 object ResourceBid
-extends
-    Parseable[ResourceBid]
+    extends
+        Parseable[ResourceBid]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "aggregationFlag",
         "bidStatus",
         "commodityType",
@@ -3800,27 +4306,27 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("BidError", "BidError", "0..*", "0..*")
     )
-    val aggregationFlag: Fielder = parse_element (element (cls, fields(0)))
-    val bidStatus: Fielder = parse_element (element (cls, fields(1)))
-    val commodityType: Fielder = parse_element (element (cls, fields(2)))
-    val contingencyAvailFlag: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val createdISO: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val energyMaxDay: Fielder = parse_element (element (cls, fields(5)))
-    val energyMinDay: Fielder = parse_element (element (cls, fields(6)))
-    val marketSepFlag: Fielder = parse_element (element (cls, fields(7)))
-    val minDispatchTime: Fielder = parse_element (element (cls, fields(8)))
-    val resourceLoadingType: Fielder = parse_element (element (cls, fields(9)))
-    val shutDownsMaxDay: Fielder = parse_element (element (cls, fields(10)))
-    val shutDownsMaxWeek: Fielder = parse_element (element (cls, fields(11)))
-    val startUpsMaxDay: Fielder = parse_element (element (cls, fields(12)))
-    val startUpsMaxWeek: Fielder = parse_element (element (cls, fields(13)))
-    val virtual: Fielder = parse_element (element (cls, fields(14)))
-    val BidError: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val aggregationFlag: Fielder = parse_element (element (cls, fields (0)))
+    val bidStatus: Fielder = parse_element (element (cls, fields (1)))
+    val commodityType: Fielder = parse_element (element (cls, fields (2)))
+    val contingencyAvailFlag: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val createdISO: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val energyMaxDay: Fielder = parse_element (element (cls, fields (5)))
+    val energyMinDay: Fielder = parse_element (element (cls, fields (6)))
+    val marketSepFlag: Fielder = parse_element (element (cls, fields (7)))
+    val minDispatchTime: Fielder = parse_element (element (cls, fields (8)))
+    val resourceLoadingType: Fielder = parse_element (element (cls, fields (9)))
+    val shutDownsMaxDay: Fielder = parse_element (element (cls, fields (10)))
+    val shutDownsMaxWeek: Fielder = parse_element (element (cls, fields (11)))
+    val startUpsMaxDay: Fielder = parse_element (element (cls, fields (12)))
+    val startUpsMaxWeek: Fielder = parse_element (element (cls, fields (13)))
+    val virtual: Fielder = parse_element (element (cls, fields (14)))
+    val BidError: FielderMultiple = parse_attributes (attribute (cls, fields (15)))
 
     def parse (context: Context): ResourceBid =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ResourceBid (
             Bid.parse (context),
             toInteger (mask (aggregationFlag (), 0)),
@@ -3850,8 +4356,8 @@ extends
  *
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis).
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
- * @param GeneratingBid [[ch.ninecode.model.GeneratingBid GeneratingBid]] <em>undocumented</em>
+ * @param sup                  [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param GeneratingBid        [[ch.ninecode.model.GeneratingBid GeneratingBid]] <em>undocumented</em>
  * @param RegisteredGenerators [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -3863,13 +4369,17 @@ case class StartUpCostCurve
     GeneratingBid: List[String],
     RegisteredGenerators: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), List()) }
+    def this () =
+    {
+        this (null, List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -3878,25 +4388,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup.asInstanceOf[Curve]
-    override def copy (): Row = { clone ().asInstanceOf[StartUpCostCurve] }
+    def Curve: Curve = sup.asInstanceOf [Curve]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [StartUpCostCurve]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StartUpCostCurve.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (StartUpCostCurve.fields (position), x))
+
         emitattrs (0, GeneratingBid)
         emitattrs (1, RegisteredGenerators)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:StartUpCostCurve rdf:ID=\"%s\">\n%s\t</cim:StartUpCostCurve>".format (id, export_fields)
@@ -3904,10 +4424,10 @@ extends
 }
 
 object StartUpCostCurve
-extends
-    Parseable[StartUpCostCurve]
+    extends
+        Parseable[StartUpCostCurve]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "GeneratingBid",
         "RegisteredGenerators"
     )
@@ -3915,13 +4435,13 @@ extends
         Relationship ("GeneratingBid", "GeneratingBid", "0..*", "0..1"),
         Relationship ("RegisteredGenerators", "RegisteredGenerator", "0..*", "0..*")
     )
-    val GeneratingBid: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val RegisteredGenerators: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val GeneratingBid: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val RegisteredGenerators: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: Context): StartUpCostCurve =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = StartUpCostCurve (
             Curve.parse (context),
             masks (GeneratingBid (), 0),
@@ -3937,8 +4457,8 @@ extends
  *
  * Relationship between unit startup time (Y1-axis) vs. unit elapsed down time (X-axis).
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
- * @param GeneratingBid [[ch.ninecode.model.GeneratingBid GeneratingBid]] <em>undocumented</em>
+ * @param sup                 [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param GeneratingBid       [[ch.ninecode.model.GeneratingBid GeneratingBid]] <em>undocumented</em>
  * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -3950,13 +4470,17 @@ case class StartUpTimeCurve
     GeneratingBid: List[String],
     RegisteredGenerator: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), null) }
+    def this () =
+    {
+        this (null, List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -3965,26 +4489,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup.asInstanceOf[Curve]
-    override def copy (): Row = { clone ().asInstanceOf[StartUpTimeCurve] }
+    def Curve: Curve = sup.asInstanceOf [Curve]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [StartUpTimeCurve]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StartUpTimeCurve.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (StartUpTimeCurve.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (StartUpTimeCurve.fields (position), x))
+
         emitattrs (0, GeneratingBid)
         emitattr (1, RegisteredGenerator)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:StartUpTimeCurve rdf:ID=\"%s\">\n%s\t</cim:StartUpTimeCurve>".format (id, export_fields)
@@ -3992,10 +4527,10 @@ extends
 }
 
 object StartUpTimeCurve
-extends
-    Parseable[StartUpTimeCurve]
+    extends
+        Parseable[StartUpTimeCurve]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "GeneratingBid",
         "RegisteredGenerator"
     )
@@ -4003,13 +4538,13 @@ extends
         Relationship ("GeneratingBid", "GeneratingBid", "0..*", "0..1"),
         Relationship ("RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1")
     )
-    val GeneratingBid: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val RegisteredGenerator: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val GeneratingBid: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val RegisteredGenerator: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: Context): StartUpTimeCurve =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = StartUpTimeCurve (
             Curve.parse (context),
             masks (GeneratingBid (), 0),
@@ -4023,33 +4558,33 @@ extends
 /**
  * Inter Scheduling Coordinator Trades to model financial trades which may impact settlement
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param adjustedTradeQuantity The validated and current market accepted trade amount of a physical energy trade.
- * @param counterTradeQuantity MW quantity submitted by counter SC for the same trade
- * @param dependOnTradeName The Depend On IST Name points to the unique IST Name in the chain of physical energy trades.
- * @param lastModified Time and date the trade was last modified.
- * @param marketType <em>undocumented</em>
- * @param startTime Start time and date for which trade applies.
- * @param stopTime Stop time and date for which trade is applicable.
+ * @param sup                             [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param adjustedTradeQuantity           The validated and current market accepted trade amount of a physical energy trade.
+ * @param counterTradeQuantity            MW quantity submitted by counter SC for the same trade
+ * @param dependOnTradeName               The Depend On IST Name points to the unique IST Name in the chain of physical energy trades.
+ * @param lastModified                    Time and date the trade was last modified.
+ * @param marketType                      <em>undocumented</em>
+ * @param startTime                       Start time and date for which trade applies.
+ * @param stopTime                        Stop time and date for which trade is applicable.
  * @param submitFromSchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
- * @param submitFromTimeStamp Timestamp of submittal of submit From Scheduling Coordinator Trade to Market Participant Bid Submittal
- * @param submitFromUser Userid of the submit From Scheduling Coordinator trade
- * @param submitToSchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
- * @param submitToTimeStamp Timestamp of submittal of submit To Scheduling Coordinator Trade to Market Participant Bid Submittal
- * @param submitToUser  Userid of the submit To Scheduling Coordinator trade
- * @param tradeQuantity tradeQuantity:
- *        If tradeType = IST, The amount of an Energy Trade.
- *        If tradeType = AST, The amount of an Ancillary Service Obligation Trade.
- * @param tradeStatus Resulting status of the trade following the rule engine processing.
- * @param updateTimeStamp <em>undocumented</em>
- * @param updateUser <em>undocumented</em>
- * @param ActionRequest [[ch.ninecode.model.ActionRequest ActionRequest]] <em>undocumented</em>
- * @param From_SC [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
- * @param Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
- * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
- * @param To_SC [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
- * @param TradeError [[ch.ninecode.model.TradeError TradeError]] <em>undocumented</em>
- * @param TradeProduct [[ch.ninecode.model.TradeProduct TradeProduct]] <em>undocumented</em>
+ * @param submitFromTimeStamp             Timestamp of submittal of submit From Scheduling Coordinator Trade to Market Participant Bid Submittal
+ * @param submitFromUser                  Userid of the submit From Scheduling Coordinator trade
+ * @param submitToSchedulingCoordinator   [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
+ * @param submitToTimeStamp               Timestamp of submittal of submit To Scheduling Coordinator Trade to Market Participant Bid Submittal
+ * @param submitToUser                    Userid of the submit To Scheduling Coordinator trade
+ * @param tradeQuantity                   tradeQuantity:
+ *                                        If tradeType = IST, The amount of an Energy Trade.
+ *                                        If tradeType = AST, The amount of an Ancillary Service Obligation Trade.
+ * @param tradeStatus                     Resulting status of the trade following the rule engine processing.
+ * @param updateTimeStamp                 <em>undocumented</em>
+ * @param updateUser                      <em>undocumented</em>
+ * @param ActionRequest                   [[ch.ninecode.model.ActionRequest ActionRequest]] <em>undocumented</em>
+ * @param From_SC                         [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
+ * @param Pnode                           [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
+ * @param RegisteredGenerator             [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
+ * @param To_SC                           [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
+ * @param TradeError                      [[ch.ninecode.model.TradeError TradeError]] <em>undocumented</em>
+ * @param TradeProduct                    [[ch.ninecode.model.TradeProduct TradeProduct]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -4082,13 +4617,17 @@ case class Trade
     TradeError: List[String],
     TradeProduct: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, null, null, null, null, null, null, null, null, null, null, 0.0, null, null, null, null, null, null, null, null, List(), null) }
+    def this () =
+    {
+        this (null, 0.0, 0.0, null, null, null, null, null, null, null, null, null, null, null, 0.0, null, null, null, null, null, null, null, null, List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -4097,23 +4636,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[Trade] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Trade]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Trade.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Trade.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Trade.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Trade.fields (position), x))
+
         emitelem (0, adjustedTradeQuantity)
         emitelem (1, counterTradeQuantity)
         emitelem (2, dependOnTradeName)
@@ -4140,6 +4690,7 @@ extends
         emitattr (23, TradeProduct)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Trade rdf:ID=\"%s\">\n%s\t</cim:Trade>".format (id, export_fields)
@@ -4147,10 +4698,10 @@ extends
 }
 
 object Trade
-extends
-    Parseable[Trade]
+    extends
+        Parseable[Trade]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "adjustedTradeQuantity",
         "counterTradeQuantity",
         "dependOnTradeName",
@@ -4187,35 +4738,35 @@ extends
         Relationship ("TradeError", "TradeError", "0..*", "0..1"),
         Relationship ("TradeProduct", "TradeProduct", "1", "0..*")
     )
-    val adjustedTradeQuantity: Fielder = parse_element (element (cls, fields(0)))
-    val counterTradeQuantity: Fielder = parse_element (element (cls, fields(1)))
-    val dependOnTradeName: Fielder = parse_element (element (cls, fields(2)))
-    val lastModified: Fielder = parse_element (element (cls, fields(3)))
-    val marketType: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val startTime: Fielder = parse_element (element (cls, fields(5)))
-    val stopTime: Fielder = parse_element (element (cls, fields(6)))
-    val submitFromSchedulingCoordinator: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val submitFromTimeStamp: Fielder = parse_element (element (cls, fields(8)))
-    val submitFromUser: Fielder = parse_element (element (cls, fields(9)))
-    val submitToSchedulingCoordinator: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val submitToTimeStamp: Fielder = parse_element (element (cls, fields(11)))
-    val submitToUser_1: Fielder = parse_element (element (cls, fields(12)))
-    val tradeQuantity: Fielder = parse_element (element (cls, fields(13)))
-    val tradeStatus: Fielder = parse_element (element (cls, fields(14)))
-    val updateTimeStamp: Fielder = parse_element (element (cls, fields(15)))
-    val updateUser: Fielder = parse_element (element (cls, fields(16)))
-    val ActionRequest: Fielder = parse_attribute (attribute (cls, fields(17)))
-    val From_SC: Fielder = parse_attribute (attribute (cls, fields(18)))
-    val Pnode: Fielder = parse_attribute (attribute (cls, fields(19)))
-    val RegisteredGenerator: Fielder = parse_attribute (attribute (cls, fields(20)))
-    val To_SC: Fielder = parse_attribute (attribute (cls, fields(21)))
-    val TradeError: FielderMultiple = parse_attributes (attribute (cls, fields(22)))
-    val TradeProduct: Fielder = parse_attribute (attribute (cls, fields(23)))
+    val adjustedTradeQuantity: Fielder = parse_element (element (cls, fields (0)))
+    val counterTradeQuantity: Fielder = parse_element (element (cls, fields (1)))
+    val dependOnTradeName: Fielder = parse_element (element (cls, fields (2)))
+    val lastModified: Fielder = parse_element (element (cls, fields (3)))
+    val marketType: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val startTime: Fielder = parse_element (element (cls, fields (5)))
+    val stopTime: Fielder = parse_element (element (cls, fields (6)))
+    val submitFromSchedulingCoordinator: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val submitFromTimeStamp: Fielder = parse_element (element (cls, fields (8)))
+    val submitFromUser: Fielder = parse_element (element (cls, fields (9)))
+    val submitToSchedulingCoordinator: Fielder = parse_attribute (attribute (cls, fields (10)))
+    val submitToTimeStamp: Fielder = parse_element (element (cls, fields (11)))
+    val submitToUser_1: Fielder = parse_element (element (cls, fields (12)))
+    val tradeQuantity: Fielder = parse_element (element (cls, fields (13)))
+    val tradeStatus: Fielder = parse_element (element (cls, fields (14)))
+    val updateTimeStamp: Fielder = parse_element (element (cls, fields (15)))
+    val updateUser: Fielder = parse_element (element (cls, fields (16)))
+    val ActionRequest: Fielder = parse_attribute (attribute (cls, fields (17)))
+    val From_SC: Fielder = parse_attribute (attribute (cls, fields (18)))
+    val Pnode: Fielder = parse_attribute (attribute (cls, fields (19)))
+    val RegisteredGenerator: Fielder = parse_attribute (attribute (cls, fields (20)))
+    val To_SC: Fielder = parse_attribute (attribute (cls, fields (21)))
+    val TradeError: FielderMultiple = parse_attributes (attribute (cls, fields (22)))
+    val TradeProduct: Fielder = parse_attribute (attribute (cls, fields (23)))
 
     def parse (context: Context): Trade =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Trade (
             IdentifiedObject.parse (context),
             toDouble (mask (adjustedTradeQuantity (), 0)),
@@ -4251,14 +4802,14 @@ extends
 /**
  * Trade error and warning messages associated with the rule engine processing of the submitted trade.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param endTime hour wihthin the trade for which the error applies
- * @param errMessage error message
- * @param errPriority Priority number for the error message
+ * @param sup          [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param endTime      hour wihthin the trade for which the error applies
+ * @param errMessage   error message
+ * @param errPriority  Priority number for the error message
  * @param logTimeStamp Timestamp of logged error/warning message
- * @param ruleID Rule identifier which triggered the error/warning message
- * @param startTime hour wihthin the trade for which the error applies
- * @param Trade [[ch.ninecode.model.Trade Trade]] <em>undocumented</em>
+ * @param ruleID       Rule identifier which triggered the error/warning message
+ * @param startTime    hour wihthin the trade for which the error applies
+ * @param Trade        [[ch.ninecode.model.Trade Trade]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -4274,13 +4825,17 @@ case class TradeError
     startTime: String,
     Trade: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0, null, 0, null, null) }
+    def this () =
+    {
+        this (null, null, null, 0, null, 0, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -4289,22 +4844,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[TradeError] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [TradeError]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TradeError.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TradeError.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TradeError.fields (position), value)
+
         emitelem (0, endTime)
         emitelem (1, errMessage)
         emitelem (2, errPriority)
@@ -4314,6 +4879,7 @@ extends
         emitattr (6, Trade)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:TradeError rdf:ID=\"%s\">\n%s\t</cim:TradeError>".format (id, export_fields)
@@ -4321,10 +4887,10 @@ extends
 }
 
 object TradeError
-extends
-    Parseable[TradeError]
+    extends
+        Parseable[TradeError]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "endTime",
         "errMessage",
         "errPriority",
@@ -4336,18 +4902,18 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("Trade", "Trade", "0..1", "0..*")
     )
-    val endTime: Fielder = parse_element (element (cls, fields(0)))
-    val errMessage: Fielder = parse_element (element (cls, fields(1)))
-    val errPriority: Fielder = parse_element (element (cls, fields(2)))
-    val logTimeStamp: Fielder = parse_element (element (cls, fields(3)))
-    val ruleID: Fielder = parse_element (element (cls, fields(4)))
-    val startTime: Fielder = parse_element (element (cls, fields(5)))
-    val Trade: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val endTime: Fielder = parse_element (element (cls, fields (0)))
+    val errMessage: Fielder = parse_element (element (cls, fields (1)))
+    val errPriority: Fielder = parse_element (element (cls, fields (2)))
+    val logTimeStamp: Fielder = parse_element (element (cls, fields (3)))
+    val ruleID: Fielder = parse_element (element (cls, fields (4)))
+    val startTime: Fielder = parse_element (element (cls, fields (5)))
+    val Trade: Fielder = parse_attribute (attribute (cls, fields (6)))
 
     def parse (context: Context): TradeError =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = TradeError (
             IdentifiedObject.parse (context),
             mask (endTime (), 0),
@@ -4375,18 +4941,18 @@ extends
  *
  * UCT (Unit Commitment Trade)            null
  *
- * @param sup Reference to the superclass object.
+ * @param sup              Reference to the superclass object.
  * @param tradeProductType PHY (Physical Energy Trade);
- *        APN (Energy Trades at Aggregated Pricing Nodes);
- *        CPT (Converted Physical Energy Trade);
- *        RUT (Regulation Up Trade);
- *        RDT (Regulation Down Trade);
- *        SRT (Spinning Reserve Trade);
- *        NRT (Non-Spinning Reserve Trade)
- * @param tradeType IST  - InterSC Trade;
- *        AST - Ancilliary Services Trade;
- *        UCT - Unit Commitment Trade
- * @param Trade [[ch.ninecode.model.Trade Trade]] <em>undocumented</em>
+ *                         APN (Energy Trades at Aggregated Pricing Nodes);
+ *                         CPT (Converted Physical Energy Trade);
+ *                         RUT (Regulation Up Trade);
+ *                         RDT (Regulation Down Trade);
+ *                         SRT (Spinning Reserve Trade);
+ *                         NRT (Non-Spinning Reserve Trade)
+ * @param tradeType        IST  - InterSC Trade;
+ *                         AST - Ancilliary Services Trade;
+ *                         UCT - Unit Commitment Trade
+ * @param Trade            [[ch.ninecode.model.Trade Trade]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -4398,13 +4964,17 @@ case class TradeProduct
     tradeType: String,
     Trade: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List()) }
+    def this () =
+    {
+        this (null, null, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -4413,28 +4983,40 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[TradeProduct] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [TradeProduct]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TradeProduct.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TradeProduct.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TradeProduct.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TradeProduct.fields (position), x))
+
         emitelem (0, tradeProductType)
         emitattr (1, tradeType)
         emitattrs (2, Trade)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:TradeProduct rdf:ID=\"%s\">\n%s\t</cim:TradeProduct>".format (id, export_fields)
@@ -4442,10 +5024,10 @@ extends
 }
 
 object TradeProduct
-extends
-    Parseable[TradeProduct]
+    extends
+        Parseable[TradeProduct]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "tradeProductType",
         "tradeType",
         "Trade"
@@ -4453,14 +5035,14 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("Trade", "Trade", "0..*", "1")
     )
-    val tradeProductType: Fielder = parse_element (element (cls, fields(0)))
-    val tradeType: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val Trade: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val tradeProductType: Fielder = parse_element (element (cls, fields (0)))
+    val tradeType: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val Trade: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: Context): TradeProduct =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = TradeProduct (
             BasicElement.parse (context),
             mask (tradeProductType (), 0),
@@ -4475,15 +5057,15 @@ extends
 /**
  * Bilateral or scheduled transactions for energy and ancillary services considered by market clearing process
  *
- * @param sup [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
- * @param demandTransaction Set true if this is a demand transaction.
- * @param dispatchable Set true if this is a dispatchable transaction.
- * @param payCongestion Set true if this is a willing to pay transaction.
- *        This flag is used to determine whether a schedule is willing-to-pay-congestion or not.
- * @param Delivery_Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
- * @param EnergyProfiles [[ch.ninecode.model.EnergyProfile EnergyProfile]] <em>undocumented</em>
- * @param Receipt_Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
- * @param TransactionBidResults [[ch.ninecode.model.TransactionBidResults TransactionBidResults]] <em>undocumented</em>
+ * @param sup                     [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
+ * @param demandTransaction       Set true if this is a demand transaction.
+ * @param dispatchable            Set true if this is a dispatchable transaction.
+ * @param payCongestion           Set true if this is a willing to pay transaction.
+ *                                This flag is used to determine whether a schedule is willing-to-pay-congestion or not.
+ * @param Delivery_Pnode          [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
+ * @param EnergyProfiles          [[ch.ninecode.model.EnergyProfile EnergyProfile]] <em>undocumented</em>
+ * @param Receipt_Pnode           [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
+ * @param TransactionBidResults   [[ch.ninecode.model.TransactionBidResults TransactionBidResults]] <em>undocumented</em>
  * @param TransmissionReservation [[ch.ninecode.model.TransmissionReservation TransmissionReservation]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -4501,13 +5083,17 @@ case class TransactionBid
     TransactionBidResults: List[String],
     TransmissionReservation: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, false, false, null, List(), null, List(), null) }
+    def this () =
+    {
+        this (null, false, false, false, null, List (), null, List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -4516,23 +5102,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Bid: Bid = sup.asInstanceOf[Bid]
-    override def copy (): Row = { clone ().asInstanceOf[TransactionBid] }
+    def Bid: Bid = sup.asInstanceOf [Bid]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [TransactionBid]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransactionBid.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransactionBid.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransactionBid.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransactionBid.fields (position), x))
+
         emitelem (0, demandTransaction)
         emitelem (1, dispatchable)
         emitelem (2, payCongestion)
@@ -4543,6 +5140,7 @@ extends
         emitattr (7, TransmissionReservation)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:TransactionBid rdf:ID=\"%s\">\n%s\t</cim:TransactionBid>".format (id, export_fields)
@@ -4550,10 +5148,10 @@ extends
 }
 
 object TransactionBid
-extends
-    Parseable[TransactionBid]
+    extends
+        Parseable[TransactionBid]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "demandTransaction",
         "dispatchable",
         "payCongestion",
@@ -4570,19 +5168,19 @@ extends
         Relationship ("TransactionBidResults", "TransactionBidResults", "0..*", "0..1"),
         Relationship ("TransmissionReservation", "TransmissionReservation", "0..1", "0..1")
     )
-    val demandTransaction: Fielder = parse_element (element (cls, fields(0)))
-    val dispatchable: Fielder = parse_element (element (cls, fields(1)))
-    val payCongestion: Fielder = parse_element (element (cls, fields(2)))
-    val Delivery_Pnode: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val EnergyProfiles: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val Receipt_Pnode: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val TransactionBidResults: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val TransmissionReservation: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val demandTransaction: Fielder = parse_element (element (cls, fields (0)))
+    val dispatchable: Fielder = parse_element (element (cls, fields (1)))
+    val payCongestion: Fielder = parse_element (element (cls, fields (2)))
+    val Delivery_Pnode: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val EnergyProfiles: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val Receipt_Pnode: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val TransactionBidResults: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
+    val TransmissionReservation: Fielder = parse_attribute (attribute (cls, fields (7)))
 
     def parse (context: Context): TransactionBid =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = TransactionBid (
             Bid.parse (context),
             toBoolean (mask (demandTransaction (), 0)),

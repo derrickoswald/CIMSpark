@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * AuxiliaryEquipment is attached to primary eqipment via an association with Terminal.
  *
- * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param sup      [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The Terminal at the equipment where the AuxiliaryEquipment is attached.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
@@ -23,13 +23,17 @@ case class AuxiliaryEquipment
     override val sup: Equipment,
     Terminal: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -38,24 +42,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Equipment: Equipment = sup.asInstanceOf[Equipment]
-    override def copy (): Row = { clone ().asInstanceOf[AuxiliaryEquipment] }
+    def Equipment: Equipment = sup.asInstanceOf [Equipment]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [AuxiliaryEquipment]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AuxiliaryEquipment.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AuxiliaryEquipment.fields (position), value)
+
         emitattr (0, Terminal)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:AuxiliaryEquipment rdf:ID=\"%s\">\n%s\t</cim:AuxiliaryEquipment>".format (id, export_fields)
@@ -63,21 +77,21 @@ extends
 }
 
 object AuxiliaryEquipment
-extends
-    Parseable[AuxiliaryEquipment]
+    extends
+        Parseable[AuxiliaryEquipment]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "Terminal"
     )
     override val relations: List[Relationship] = List (
         Relationship ("Terminal", "Terminal", "1", "0..*")
     )
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: Context): AuxiliaryEquipment =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = AuxiliaryEquipment (
             Equipment.parse (context),
             mask (Terminal (), 0)
@@ -92,12 +106,12 @@ extends
  *
  * Typically used as current transducer for the purpose of metering or protection. A typical secondary current rating would be 5A.
  *
- * @param sup [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
+ * @param sup           [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
  * @param accuracyClass CT accuracy classification.
  * @param accuracyLimit Percent of rated current for which the CT remains accurate within specified limits.
- * @param coreBurden Power burden of the CT core.
- * @param ctClass CT classification; i.e. class 10P.
- * @param usage Intended usage of the CT; i.e. metering, protection.
+ * @param coreBurden    Power burden of the CT core.
+ * @param ctClass       CT classification; i.e. class 10P.
+ * @param usage         Intended usage of the CT; i.e. metering, protection.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
@@ -111,13 +125,17 @@ case class CurrentTransformer
     ctClass: String,
     usage: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, 0.0, null, null) }
+    def this () =
+    {
+        this (null, null, 0.0, 0.0, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -126,21 +144,30 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Sensor: Sensor = sup.asInstanceOf[Sensor]
-    override def copy (): Row = { clone ().asInstanceOf[CurrentTransformer] }
+    def Sensor: Sensor = sup.asInstanceOf [Sensor]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [CurrentTransformer]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CurrentTransformer.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CurrentTransformer.fields (position), value)
+
         emitelem (0, accuracyClass)
         emitelem (1, accuracyLimit)
         emitelem (2, coreBurden)
@@ -148,6 +175,7 @@ extends
         emitelem (4, usage)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:CurrentTransformer rdf:ID=\"%s\">\n%s\t</cim:CurrentTransformer>".format (id, export_fields)
@@ -155,26 +183,26 @@ extends
 }
 
 object CurrentTransformer
-extends
-    Parseable[CurrentTransformer]
+    extends
+        Parseable[CurrentTransformer]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "accuracyClass",
         "accuracyLimit",
         "coreBurden",
         "ctClass",
         "usage"
     )
-    val accuracyClass: Fielder = parse_element (element (cls, fields(0)))
-    val accuracyLimit: Fielder = parse_element (element (cls, fields(1)))
-    val coreBurden: Fielder = parse_element (element (cls, fields(2)))
-    val ctClass: Fielder = parse_element (element (cls, fields(3)))
-    val usage: Fielder = parse_element (element (cls, fields(4)))
+    val accuracyClass: Fielder = parse_element (element (cls, fields (0)))
+    val accuracyLimit: Fielder = parse_element (element (cls, fields (1)))
+    val coreBurden: Fielder = parse_element (element (cls, fields (2)))
+    val ctClass: Fielder = parse_element (element (cls, fields (3)))
+    val usage: Fielder = parse_element (element (cls, fields (4)))
 
     def parse (context: Context): CurrentTransformer =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = CurrentTransformer (
             Sensor.parse (context),
             mask (accuracyClass (), 0),
@@ -202,13 +230,17 @@ case class FaultIndicator
 (
     override val sup: AuxiliaryEquipment
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -217,20 +249,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf[AuxiliaryEquipment]
-    override def copy (): Row = { clone ().asInstanceOf[FaultIndicator] }
+    def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf [AuxiliaryEquipment]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [FaultIndicator]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:FaultIndicator rdf:ID=\"%s\">\n%s\t</cim:FaultIndicator>".format (id, export_fields)
@@ -238,8 +278,8 @@ extends
 }
 
 object FaultIndicator
-extends
-    Parseable[FaultIndicator]
+    extends
+        Parseable[FaultIndicator]
 {
 
     def parse (context: Context): FaultIndicator =
@@ -264,13 +304,17 @@ case class PostLineSensor
 (
     override val sup: Sensor
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -279,20 +323,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Sensor: Sensor = sup.asInstanceOf[Sensor]
-    override def copy (): Row = { clone ().asInstanceOf[PostLineSensor] }
+    def Sensor: Sensor = sup.asInstanceOf [Sensor]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PostLineSensor]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:PostLineSensor rdf:ID=\"%s\">\n%s\t</cim:PostLineSensor>".format (id, export_fields)
@@ -300,8 +352,8 @@ extends
 }
 
 object PostLineSensor
-extends
-    Parseable[PostLineSensor]
+    extends
+        Parseable[PostLineSensor]
 {
 
     def parse (context: Context): PostLineSensor =
@@ -319,11 +371,11 @@ extends
  *
  * Typically used as voltage transducer for the purpose of metering, protection, or sometimes auxiliary substation supply. A typical secondary voltage rating would be 120V.
  *
- * @param sup [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
+ * @param sup           [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
  * @param accuracyClass PT accuracy classification.
- * @param nominalRatio Nominal ratio between the primary and secondary voltage.
- * @param ptClass Potential transformer (PT) classification covering burden.
- * @param type Potential transformer construction type.
+ * @param nominalRatio  Nominal ratio between the primary and secondary voltage.
+ * @param ptClass       Potential transformer (PT) classification covering burden.
+ * @param type          Potential transformer construction type.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
@@ -336,13 +388,17 @@ case class PotentialTransformer
     ptClass: String,
     `type`: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, null, null) }
+    def this () =
+    {
+        this (null, null, 0.0, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -351,28 +407,39 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Sensor: Sensor = sup.asInstanceOf[Sensor]
-    override def copy (): Row = { clone ().asInstanceOf[PotentialTransformer] }
+    def Sensor: Sensor = sup.asInstanceOf [Sensor]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PotentialTransformer]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PotentialTransformer.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PotentialTransformer.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PotentialTransformer.fields (position), value)
+
         emitelem (0, accuracyClass)
         emitelem (1, nominalRatio)
         emitelem (2, ptClass)
         emitattr (3, `type`)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PotentialTransformer rdf:ID=\"%s\">\n%s\t</cim:PotentialTransformer>".format (id, export_fields)
@@ -380,24 +447,24 @@ extends
 }
 
 object PotentialTransformer
-extends
-    Parseable[PotentialTransformer]
+    extends
+        Parseable[PotentialTransformer]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "accuracyClass",
         "nominalRatio",
         "ptClass",
         "type"
     )
-    val accuracyClass: Fielder = parse_element (element (cls, fields(0)))
-    val nominalRatio: Fielder = parse_element (element (cls, fields(1)))
-    val ptClass: Fielder = parse_element (element (cls, fields(2)))
-    val `type`: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val accuracyClass: Fielder = parse_element (element (cls, fields (0)))
+    val nominalRatio: Fielder = parse_element (element (cls, fields (1)))
+    val ptClass: Fielder = parse_element (element (cls, fields (2)))
+    val `type`: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: Context): PotentialTransformer =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PotentialTransformer (
             Sensor.parse (context),
             mask (accuracyClass (), 0),
@@ -422,13 +489,17 @@ case class Sensor
 (
     override val sup: AuxiliaryEquipment
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -437,20 +508,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf[AuxiliaryEquipment]
-    override def copy (): Row = { clone ().asInstanceOf[Sensor] }
+    def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf [AuxiliaryEquipment]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Sensor]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:Sensor rdf:ID=\"%s\">\n%s\t</cim:Sensor>".format (id, export_fields)
@@ -458,8 +537,8 @@ extends
 }
 
 object Sensor
-extends
-    Parseable[Sensor]
+    extends
+        Parseable[Sensor]
 {
 
     def parse (context: Context): Sensor =
@@ -484,13 +563,17 @@ case class SurgeArrester
 (
     override val sup: AuxiliaryEquipment
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -499,20 +582,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf[AuxiliaryEquipment]
-    override def copy (): Row = { clone ().asInstanceOf[SurgeArrester] }
+    def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf [AuxiliaryEquipment]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [SurgeArrester]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:SurgeArrester rdf:ID=\"%s\">\n%s\t</cim:SurgeArrester>".format (id, export_fields)
@@ -520,8 +611,8 @@ extends
 }
 
 object SurgeArrester
-extends
-    Parseable[SurgeArrester]
+    extends
+        Parseable[SurgeArrester]
 {
 
     def parse (context: Context): SurgeArrester =
@@ -546,13 +637,17 @@ case class WaveTrap
 (
     override val sup: AuxiliaryEquipment
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -561,20 +656,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf[AuxiliaryEquipment]
-    override def copy (): Row = { clone ().asInstanceOf[WaveTrap] }
+    def AuxiliaryEquipment: AuxiliaryEquipment = sup.asInstanceOf [AuxiliaryEquipment]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [WaveTrap]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:WaveTrap rdf:ID=\"%s\">\n%s\t</cim:WaveTrap>".format (id, export_fields)
@@ -582,8 +685,8 @@ extends
 }
 
 object WaveTrap
-extends
-    Parseable[WaveTrap]
+    extends
+        Parseable[WaveTrap]
 {
 
     def parse (context: Context): WaveTrap =

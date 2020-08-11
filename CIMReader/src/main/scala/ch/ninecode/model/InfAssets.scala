@@ -12,29 +12,29 @@ import ch.ninecode.cim.Relationship
  *
  * The relationship is to be defined between an independent variable (X-axis) and one or two dependent variables (Y1-axis and Y2-axis).
  *
- * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
- * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
+ * @param sup           [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Assets        [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param Specification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class AssetPropertyCurve
 (
@@ -42,13 +42,17 @@ case class AssetPropertyCurve
     Assets: List[String],
     Specification: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), null) }
+    def this () =
+    {
+        this (null, List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -57,26 +61,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Curve: Curve = sup.asInstanceOf[Curve]
-    override def copy (): Row = { clone ().asInstanceOf[AssetPropertyCurve] }
+    def Curve: Curve = sup.asInstanceOf [Curve]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [AssetPropertyCurve]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssetPropertyCurve.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AssetPropertyCurve.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AssetPropertyCurve.fields (position), x))
+
         emitattrs (0, Assets)
         emitattr (1, Specification)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:AssetPropertyCurve rdf:ID=\"%s\">\n%s\t</cim:AssetPropertyCurve>".format (id, export_fields)
@@ -84,10 +99,10 @@ extends
 }
 
 object AssetPropertyCurve
-extends
-    Parseable[AssetPropertyCurve]
+    extends
+        Parseable[AssetPropertyCurve]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "Assets",
         "Specification"
     )
@@ -95,13 +110,13 @@ extends
         Relationship ("Assets", "Asset", "0..*", "0..*"),
         Relationship ("Specification", "Specification", "0..1", "0..*")
     )
-    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val Specification: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val Specification: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: Context): AssetPropertyCurve =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = AssetPropertyCurve (
             Curve.parse (context),
             masks (Assets (), 0),
@@ -115,34 +130,34 @@ extends
 /**
  * Bushing asset.
  *
- * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
- * @param c1Capacitance Factory measured capacitance, measured between the power factor tap and the bushing conductor.
- * @param c1PowerFactor Factory measured insulation power factor, measured between the power factor tap and the bushing conductor.
- * @param c2Capacitance Factory measured capacitance measured between the power factor tap and ground.
- * @param c2PowerFactor Factory measured insulation power factor, measured between the power factor tap and ground.
- * @param insulationKind Kind of insulation.
+ * @param sup                  [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
+ * @param c1Capacitance        Factory measured capacitance, measured between the power factor tap and the bushing conductor.
+ * @param c1PowerFactor        Factory measured insulation power factor, measured between the power factor tap and the bushing conductor.
+ * @param c2Capacitance        Factory measured capacitance measured between the power factor tap and ground.
+ * @param c2PowerFactor        Factory measured insulation power factor, measured between the power factor tap and ground.
+ * @param insulationKind       Kind of insulation.
  * @param BushingInsulationPFs [[ch.ninecode.model.BushingInsulationPF BushingInsulationPF]] <em>undocumented</em>
- * @param Terminal [[ch.ninecode.model.Terminal Terminal]] <em>undocumented</em>
+ * @param Terminal             [[ch.ninecode.model.Terminal Terminal]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Bushing
 (
@@ -155,13 +170,17 @@ case class Bushing
     BushingInsulationPFs: List[String],
     Terminal: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, List(), null) }
+    def this () =
+    {
+        this (null, 0.0, 0.0, 0.0, 0.0, null, List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -170,23 +189,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Asset: Asset = sup.asInstanceOf[Asset]
-    override def copy (): Row = { clone ().asInstanceOf[Bushing] }
+    def Asset: Asset = sup.asInstanceOf [Asset]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Bushing]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Bushing.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Bushing.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Bushing.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Bushing.fields (position), x))
+
         emitelem (0, c1Capacitance)
         emitelem (1, c1PowerFactor)
         emitelem (2, c2Capacitance)
@@ -196,6 +226,7 @@ extends
         emitattr (6, Terminal)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Bushing rdf:ID=\"%s\">\n%s\t</cim:Bushing>".format (id, export_fields)
@@ -203,10 +234,10 @@ extends
 }
 
 object Bushing
-extends
-    Parseable[Bushing]
+    extends
+        Parseable[Bushing]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "c1Capacitance",
         "c1PowerFactor",
         "c2Capacitance",
@@ -219,18 +250,18 @@ extends
         Relationship ("BushingInsulationPFs", "BushingInsulationPF", "0..*", "0..1"),
         Relationship ("Terminal", "Terminal", "0..1", "0..1")
     )
-    val c1Capacitance: Fielder = parse_element (element (cls, fields(0)))
-    val c1PowerFactor: Fielder = parse_element (element (cls, fields(1)))
-    val c2Capacitance: Fielder = parse_element (element (cls, fields(2)))
-    val c2PowerFactor: Fielder = parse_element (element (cls, fields(3)))
-    val insulationKind: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val BushingInsulationPFs: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val c1Capacitance: Fielder = parse_element (element (cls, fields (0)))
+    val c1PowerFactor: Fielder = parse_element (element (cls, fields (1)))
+    val c2Capacitance: Fielder = parse_element (element (cls, fields (2)))
+    val c2PowerFactor: Fielder = parse_element (element (cls, fields (3)))
+    val insulationKind: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val BushingInsulationPFs: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields (6)))
 
     def parse (context: Context): Bushing =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Bushing (
             Asset.parse (context),
             toDouble (mask (c1Capacitance (), 0)),
@@ -251,31 +282,31 @@ extends
  *
  * Typical status values are: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
- * @param testKind Kind of test for this bushing.
- * @param Bushing [[ch.ninecode.model.Bushing Bushing]] <em>undocumented</em>
+ * @param sup                    [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param status                 <em>undocumented</em>
+ * @param testKind               Kind of test for this bushing.
+ * @param Bushing                [[ch.ninecode.model.Bushing Bushing]] <em>undocumented</em>
  * @param TransformerObservation [[ch.ninecode.model.TransformerObservation TransformerObservation]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class BushingInsulationPF
 (
@@ -285,13 +316,17 @@ case class BushingInsulationPF
     Bushing: String,
     TransformerObservation: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -300,27 +335,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[BushingInsulationPF] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [BushingInsulationPF]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BushingInsulationPF.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BushingInsulationPF.fields (position), value)
+
         emitattr (0, status)
         emitattr (1, testKind)
         emitattr (2, Bushing)
         emitattr (3, TransformerObservation)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BushingInsulationPF rdf:ID=\"%s\">\n%s\t</cim:BushingInsulationPF>".format (id, export_fields)
@@ -328,10 +373,10 @@ extends
 }
 
 object BushingInsulationPF
-extends
-    Parseable[BushingInsulationPF]
+    extends
+        Parseable[BushingInsulationPF]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "testKind",
         "Bushing",
@@ -341,15 +386,15 @@ extends
         Relationship ("Bushing", "Bushing", "0..1", "0..*"),
         Relationship ("TransformerObservation", "TransformerObservation", "0..1", "0..*")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val testKind: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val Bushing: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val TransformerObservation: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val testKind: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val Bushing: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val TransformerObservation: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: Context): BushingInsulationPF =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = BushingInsulationPF (
             IdentifiedObject.parse (context),
             mask (status (), 0),
@@ -369,35 +414,39 @@ extends
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Cabinet
 (
     override val sup: AssetContainer
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -406,20 +455,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
-    override def copy (): Row = { clone ().asInstanceOf[Cabinet] }
+    def AssetContainer: AssetContainer = sup.asInstanceOf [AssetContainer]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Cabinet]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:Cabinet rdf:ID=\"%s\">\n%s\t</cim:Cabinet>".format (id, export_fields)
@@ -427,8 +484,8 @@ extends
 }
 
 object Cabinet
-extends
-    Parseable[Cabinet]
+    extends
+        Parseable[Cabinet]
 {
 
     def parse (context: Context): Cabinet =
@@ -446,31 +503,31 @@ extends
  *
  * For instance, a transformer may be rated 121kV on the primary, 15kV on the secondary and 4kV on the tertiary winding. These are voltage ratings and the power ratings are generally the same for all three windings and independent of the voltage ratings, there are instances where the tertiary may have a lower power rating.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param coolingKind Kind of cooling system.
- * @param powerRating The power rating associated with type of cooling specified for this stage.
- * @param stage Stage of cooling and associated power rating.
+ * @param sup             [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param coolingKind     Kind of cooling system.
+ * @param powerRating     The power rating associated with type of cooling specified for this stage.
+ * @param stage           Stage of cooling and associated power rating.
  * @param Reconditionings [[ch.ninecode.model.Reconditioning Reconditioning]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class CoolingPowerRating
 (
@@ -480,13 +537,17 @@ case class CoolingPowerRating
     stage: Int,
     Reconditionings: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, 0, List()) }
+    def this () =
+    {
+        this (null, null, 0.0, 0, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -495,29 +556,41 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[CoolingPowerRating] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [CoolingPowerRating]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CoolingPowerRating.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CoolingPowerRating.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CoolingPowerRating.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CoolingPowerRating.fields (position), x))
+
         emitattr (0, coolingKind)
         emitelem (1, powerRating)
         emitelem (2, stage)
         emitattrs (3, Reconditionings)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:CoolingPowerRating rdf:ID=\"%s\">\n%s\t</cim:CoolingPowerRating>".format (id, export_fields)
@@ -525,10 +598,10 @@ extends
 }
 
 object CoolingPowerRating
-extends
-    Parseable[CoolingPowerRating]
+    extends
+        Parseable[CoolingPowerRating]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "coolingKind",
         "powerRating",
         "stage",
@@ -537,15 +610,15 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("Reconditionings", "Reconditioning", "0..*", "0..*")
     )
-    val coolingKind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val powerRating: Fielder = parse_element (element (cls, fields(1)))
-    val stage: Fielder = parse_element (element (cls, fields(2)))
-    val Reconditionings: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val coolingKind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val powerRating: Fielder = parse_element (element (cls, fields (1)))
+    val stage: Fielder = parse_element (element (cls, fields (2)))
+    val Reconditionings: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
 
     def parse (context: Context): CoolingPowerRating =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = CoolingPowerRating (
             IdentifiedObject.parse (context),
             mask (coolingKind (), 0),
@@ -563,34 +636,34 @@ extends
  *
  * Units and multipliers are specified per dimension.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param orientation A description of the orientation of the object relative to the dimensions.
- *        As an example, a vault may have north-south orientation for the sizeLength measurement and sizeDepth may be the height of the vault.
- * @param sizeDepth Depth measurement.
- * @param sizeDiameter Diameter measurement.
- * @param sizeLength Length measurement.
- * @param sizeWidth Width measurement.
+ * @param sup            [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param orientation    A description of the orientation of the object relative to the dimensions.
+ *                       As an example, a vault may have north-south orientation for the sizeLength measurement and sizeDepth may be the height of the vault.
+ * @param sizeDepth      Depth measurement.
+ * @param sizeDiameter   Diameter measurement.
+ * @param sizeLength     Length measurement.
+ * @param sizeWidth      Width measurement.
  * @param Specifications [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class DimensionsInfo
 (
@@ -602,13 +675,17 @@ case class DimensionsInfo
     sizeWidth: Double,
     Specifications: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, List()) }
+    def this () =
+    {
+        this (null, null, 0.0, 0.0, 0.0, 0.0, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -617,22 +694,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[DimensionsInfo] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [DimensionsInfo]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DimensionsInfo.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DimensionsInfo.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DimensionsInfo.fields (position), x))
+
         emitelem (0, orientation)
         emitelem (1, sizeDepth)
         emitelem (2, sizeDiameter)
@@ -641,6 +728,7 @@ extends
         emitattrs (5, Specifications)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DimensionsInfo rdf:ID=\"%s\">\n%s\t</cim:DimensionsInfo>".format (id, export_fields)
@@ -648,10 +736,10 @@ extends
 }
 
 object DimensionsInfo
-extends
-    Parseable[DimensionsInfo]
+    extends
+        Parseable[DimensionsInfo]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "orientation",
         "sizeDepth",
         "sizeDiameter",
@@ -662,17 +750,17 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("Specifications", "Specification", "0..*", "0..*")
     )
-    val orientation: Fielder = parse_element (element (cls, fields(0)))
-    val sizeDepth: Fielder = parse_element (element (cls, fields(1)))
-    val sizeDiameter: Fielder = parse_element (element (cls, fields(2)))
-    val sizeLength: Fielder = parse_element (element (cls, fields(3)))
-    val sizeWidth: Fielder = parse_element (element (cls, fields(4)))
-    val Specifications: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val orientation: Fielder = parse_element (element (cls, fields (0)))
+    val sizeDepth: Fielder = parse_element (element (cls, fields (1)))
+    val sizeDiameter: Fielder = parse_element (element (cls, fields (2)))
+    val sizeLength: Fielder = parse_element (element (cls, fields (3)))
+    val sizeWidth: Fielder = parse_element (element (cls, fields (4)))
+    val Specifications: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
 
     def parse (context: Context): DimensionsInfo =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = DimensionsInfo (
             IdentifiedObject.parse (context),
             mask (orientation (), 0),
@@ -690,30 +778,30 @@ extends
 /**
  * A duct contains individual wires in the layout as specified with associated wire spacing instances; number of them gives the number of conductors in this duct.
  *
- * @param sup [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
- * @param circuitCount Number of circuits in duct bank.
- *        Refer to associations between a duct (ConductorAsset) and an ACLineSegment to understand which circuits are in which ducts.
+ * @param sup              [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
+ * @param circuitCount     Number of circuits in duct bank.
+ *                         Refer to associations between a duct (ConductorAsset) and an ACLineSegment to understand which circuits are in which ducts.
  * @param WireSpacingInfos [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class DuctBank
 (
@@ -721,13 +809,17 @@ case class DuctBank
     circuitCount: Int,
     WireSpacingInfos: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, List()) }
+    def this () =
+    {
+        this (null, 0, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -736,26 +828,37 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
-    override def copy (): Row = { clone ().asInstanceOf[DuctBank] }
+    def AssetContainer: AssetContainer = sup.asInstanceOf [AssetContainer]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [DuctBank]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DuctBank.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DuctBank.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DuctBank.fields (position), x))
+
         emitelem (0, circuitCount)
         emitattrs (1, WireSpacingInfos)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DuctBank rdf:ID=\"%s\">\n%s\t</cim:DuctBank>".format (id, export_fields)
@@ -763,23 +866,23 @@ extends
 }
 
 object DuctBank
-extends
-    Parseable[DuctBank]
+    extends
+        Parseable[DuctBank]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "circuitCount",
         "WireSpacingInfos"
     )
     override val relations: List[Relationship] = List (
         Relationship ("WireSpacingInfos", "WireSpacingInfo", "0..*", "0..1")
     )
-    val circuitCount: Fielder = parse_element (element (cls, fields(0)))
-    val WireSpacingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val circuitCount: Fielder = parse_element (element (cls, fields (0)))
+    val WireSpacingInfos: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: Context): DuctBank =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = DuctBank (
             AssetContainer.parse (context),
             toInteger (mask (circuitCount (), 0)),
@@ -793,41 +896,45 @@ extends
 /**
  * FACTS device asset.
  *
- * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
+ * @param sup  [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
  * @param kind Kind of FACTS device.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class FACTSDevice
 (
     override val sup: Asset,
     kind: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -836,24 +943,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Asset: Asset = sup.asInstanceOf[Asset]
-    override def copy (): Row = { clone ().asInstanceOf[FACTSDevice] }
+    def Asset: Asset = sup.asInstanceOf [Asset]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [FACTSDevice]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FACTSDevice.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FACTSDevice.fields (position), value)
+
         emitattr (0, kind)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:FACTSDevice rdf:ID=\"%s\">\n%s\t</cim:FACTSDevice>".format (id, export_fields)
@@ -861,18 +978,18 @@ extends
 }
 
 object FACTSDevice
-extends
-    Parseable[FACTSDevice]
+    extends
+        Parseable[FACTSDevice]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kind"
     )
-    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: Context): FACTSDevice =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = FACTSDevice (
             Asset.parse (context),
             mask (kind (), 0)
@@ -885,41 +1002,45 @@ extends
 /**
  * A facility may contain buildings, storage facilities, switching facilities, power generation, manufacturing facilities, maintenance facilities, etc.
  *
- * @param sup [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
+ * @param sup  [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
  * @param kind Kind of this facility.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Facility
 (
     override val sup: AssetContainer,
     kind: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -928,24 +1049,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
-    override def copy (): Row = { clone ().asInstanceOf[Facility] }
+    def AssetContainer: AssetContainer = sup.asInstanceOf [AssetContainer]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Facility]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Facility.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Facility.fields (position), value)
+
         emitelem (0, kind)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Facility rdf:ID=\"%s\">\n%s\t</cim:Facility>".format (id, export_fields)
@@ -953,18 +1084,18 @@ extends
 }
 
 object Facility
-extends
-    Parseable[Facility]
+    extends
+        Parseable[Facility]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kind"
     )
-    val kind: Fielder = parse_element (element (cls, fields(0)))
+    val kind: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: Context): Facility =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Facility (
             AssetContainer.parse (context),
             mask (kind (), 0)
@@ -977,32 +1108,32 @@ extends
 /**
  * An event where an asset has failed to perform its functions within specified parameters.
  *
- * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
- * @param corporateCode Code for asset failure.
+ * @param sup                    [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
+ * @param corporateCode          Code for asset failure.
  * @param failureIsolationMethod How the asset failure was isolated from the system.
- * @param faultLocatingMethod The method used for locating the faulted part of the asset.
- *        For example, cable options include: Cap Discharge-Thumping, Bridge Method, Visual Inspection, Other.
- * @param location Failure location on an object.
+ * @param faultLocatingMethod    The method used for locating the faulted part of the asset.
+ *                               For example, cable options include: Cap Discharge-Thumping, Bridge Method, Visual Inspection, Other.
+ * @param location               Failure location on an object.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class FailureEvent
 (
@@ -1012,13 +1143,17 @@ case class FailureEvent
     faultLocatingMethod: String,
     location: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1027,28 +1162,39 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
-    override def copy (): Row = { clone ().asInstanceOf[FailureEvent] }
+    def ActivityRecord: ActivityRecord = sup.asInstanceOf [ActivityRecord]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [FailureEvent]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FailureEvent.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FailureEvent.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FailureEvent.fields (position), value)
+
         emitelem (0, corporateCode)
         emitattr (1, failureIsolationMethod)
         emitelem (2, faultLocatingMethod)
         emitelem (3, location)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:FailureEvent rdf:ID=\"%s\">\n%s\t</cim:FailureEvent>".format (id, export_fields)
@@ -1056,24 +1202,24 @@ extends
 }
 
 object FailureEvent
-extends
-    Parseable[FailureEvent]
+    extends
+        Parseable[FailureEvent]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "corporateCode",
         "failureIsolationMethod",
         "faultLocatingMethod",
         "location"
     )
-    val corporateCode: Fielder = parse_element (element (cls, fields(0)))
-    val failureIsolationMethod: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val faultLocatingMethod: Fielder = parse_element (element (cls, fields(2)))
-    val location: Fielder = parse_element (element (cls, fields(3)))
+    val corporateCode: Fielder = parse_element (element (cls, fields (0)))
+    val failureIsolationMethod: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val faultLocatingMethod: Fielder = parse_element (element (cls, fields (2)))
+    val location: Fielder = parse_element (element (cls, fields (3)))
 
     def parse (context: Context): FailureEvent =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = FailureEvent (
             ActivityRecord.parse (context),
             mask (corporateCode (), 0),
@@ -1091,40 +1237,40 @@ extends
  *
  * Historical properties may be determined by ActivityRecords associated with the asset.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param account The account to which this actual material item is charged.
- * @param actualPurchaseCost The actual purchase cost of this particular asset.
- * @param costDescription Description of the cost.
- * @param costType Type of cost to which this Material Item belongs.
- * @param financialValue Value of asset as of 'valueDateTime'.
+ * @param sup                   [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param account               The account to which this actual material item is charged.
+ * @param actualPurchaseCost    The actual purchase cost of this particular asset.
+ * @param costDescription       Description of the cost.
+ * @param costType              Type of cost to which this Material Item belongs.
+ * @param financialValue        Value of asset as of 'valueDateTime'.
  * @param plantTransferDateTime Date and time asset's financial value was put in plant for regulatory accounting purposes (e.g., for rate base calculations).
- *        This is sometime referred to as the "in-service date".
- * @param purchaseDateTime Date and time asset was purchased.
- * @param purchaseOrderNumber Purchase order identifier.
- * @param quantity The quantity of the asset if per unit length, for example conductor.
- * @param valueDateTime Date and time at which the financial value was last established.
- * @param warrantyEndDateTime Date and time warranty on asset expires.
- * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
+ *                              This is sometime referred to as the "in-service date".
+ * @param purchaseDateTime      Date and time asset was purchased.
+ * @param purchaseOrderNumber   Purchase order identifier.
+ * @param quantity              The quantity of the asset if per unit length, for example conductor.
+ * @param valueDateTime         Date and time at which the financial value was last established.
+ * @param warrantyEndDateTime   Date and time warranty on asset expires.
+ * @param Asset                 [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class FinancialInfo
 (
@@ -1142,13 +1288,17 @@ case class FinancialInfo
     warrantyEndDateTime: String,
     Asset: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, null, null, 0.0, null, null, null, null, null, null, null) }
+    def this () =
+    {
+        this (null, null, 0.0, null, null, 0.0, null, null, null, null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1157,22 +1307,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[FinancialInfo] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [FinancialInfo]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FinancialInfo.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FinancialInfo.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FinancialInfo.fields (position), value)
+
         emitelem (0, account)
         emitelem (1, actualPurchaseCost)
         emitelem (2, costDescription)
@@ -1187,6 +1347,7 @@ extends
         emitattr (11, Asset)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:FinancialInfo rdf:ID=\"%s\">\n%s\t</cim:FinancialInfo>".format (id, export_fields)
@@ -1194,10 +1355,10 @@ extends
 }
 
 object FinancialInfo
-extends
-    Parseable[FinancialInfo]
+    extends
+        Parseable[FinancialInfo]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "account",
         "actualPurchaseCost",
         "costDescription",
@@ -1214,23 +1375,23 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("Asset", "Asset", "0..1", "0..1")
     )
-    val account: Fielder = parse_element (element (cls, fields(0)))
-    val actualPurchaseCost: Fielder = parse_element (element (cls, fields(1)))
-    val costDescription: Fielder = parse_element (element (cls, fields(2)))
-    val costType: Fielder = parse_element (element (cls, fields(3)))
-    val financialValue: Fielder = parse_element (element (cls, fields(4)))
-    val plantTransferDateTime: Fielder = parse_element (element (cls, fields(5)))
-    val purchaseDateTime: Fielder = parse_element (element (cls, fields(6)))
-    val purchaseOrderNumber: Fielder = parse_element (element (cls, fields(7)))
-    val quantity: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val valueDateTime: Fielder = parse_element (element (cls, fields(9)))
-    val warrantyEndDateTime: Fielder = parse_element (element (cls, fields(10)))
-    val Asset: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val account: Fielder = parse_element (element (cls, fields (0)))
+    val actualPurchaseCost: Fielder = parse_element (element (cls, fields (1)))
+    val costDescription: Fielder = parse_element (element (cls, fields (2)))
+    val costType: Fielder = parse_element (element (cls, fields (3)))
+    val financialValue: Fielder = parse_element (element (cls, fields (4)))
+    val plantTransferDateTime: Fielder = parse_element (element (cls, fields (5)))
+    val purchaseDateTime: Fielder = parse_element (element (cls, fields (6)))
+    val purchaseOrderNumber: Fielder = parse_element (element (cls, fields (7)))
+    val quantity: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val valueDateTime: Fielder = parse_element (element (cls, fields (9)))
+    val warrantyEndDateTime: Fielder = parse_element (element (cls, fields (10)))
+    val Asset: Fielder = parse_attribute (attribute (cls, fields (11)))
 
     def parse (context: Context): FinancialInfo =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = FinancialInfo (
             IdentifiedObject.parse (context),
             mask (account (), 0),
@@ -1254,38 +1415,38 @@ extends
 /**
  * Generic asset or material item that may be used for planning, work or design purposes.
  *
- * @param sup [[ch.ninecode.model.AssetModel AssetModel]] Reference to the superclass object.
- * @param estimatedUnitCost Estimated unit cost (or cost per unit length) of this type of asset.
- *        It does not include labor to install/construct or configure it.
- * @param quantity The value, unit of measure, and multiplier for the quantity.
- * @param stockItem True if item is a stock item (default).
- * @param CUAsset [[ch.ninecode.model.CUAsset CUAsset]] <em>undocumented</em>
+ * @param sup                  [[ch.ninecode.model.AssetModel AssetModel]] Reference to the superclass object.
+ * @param estimatedUnitCost    Estimated unit cost (or cost per unit length) of this type of asset.
+ *                             It does not include labor to install/construct or configure it.
+ * @param quantity             The value, unit of measure, and multiplier for the quantity.
+ * @param stockItem            True if item is a stock item (default).
+ * @param CUAsset              [[ch.ninecode.model.CUAsset CUAsset]] <em>undocumented</em>
  * @param CUWorkEquipmentAsset [[ch.ninecode.model.CUWorkEquipmentItem CUWorkEquipmentItem]] <em>undocumented</em>
- * @param ErpBomItemDatas [[ch.ninecode.model.ErpBomItemData ErpBomItemData]] <em>undocumented</em>
- * @param ErpInventoryIssues [[ch.ninecode.model.ErpIssueInventory ErpIssueInventory]] <em>undocumented</em>
- * @param ErpReqLineItems [[ch.ninecode.model.ErpReqLineItem ErpReqLineItem]] <em>undocumented</em>
- * @param ProductAssetModels [[ch.ninecode.model.ProductAssetModel ProductAssetModel]] All product asset models satisfying this generic asset model.
- * @param TypeAssetCatalogue [[ch.ninecode.model.TypeAssetCatalogue TypeAssetCatalogue]] <em>undocumented</em>
+ * @param ErpBomItemDatas      [[ch.ninecode.model.ErpBomItemData ErpBomItemData]] <em>undocumented</em>
+ * @param ErpInventoryIssues   [[ch.ninecode.model.ErpIssueInventory ErpIssueInventory]] <em>undocumented</em>
+ * @param ErpReqLineItems      [[ch.ninecode.model.ErpReqLineItem ErpReqLineItem]] <em>undocumented</em>
+ * @param ProductAssetModels   [[ch.ninecode.model.ProductAssetModel ProductAssetModel]] All product asset models satisfying this generic asset model.
+ * @param TypeAssetCatalogue   [[ch.ninecode.model.TypeAssetCatalogue TypeAssetCatalogue]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class GenericAssetModelOrMaterial
 (
@@ -1301,13 +1462,17 @@ case class GenericAssetModelOrMaterial
     ProductAssetModels: List[String],
     TypeAssetCatalogue: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, false, null, null, List(), List(), List(), List(), null) }
+    def this () =
+    {
+        this (null, 0.0, null, false, null, null, List (), List (), List (), List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1316,23 +1481,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetModel: AssetModel = sup.asInstanceOf[AssetModel]
-    override def copy (): Row = { clone ().asInstanceOf[GenericAssetModelOrMaterial] }
+    def AssetModel: AssetModel = sup.asInstanceOf [AssetModel]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [GenericAssetModelOrMaterial]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GenericAssetModelOrMaterial.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GenericAssetModelOrMaterial.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GenericAssetModelOrMaterial.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (GenericAssetModelOrMaterial.fields (position), x))
+
         emitelem (0, estimatedUnitCost)
         emitattr (1, quantity)
         emitelem (2, stockItem)
@@ -1345,6 +1521,7 @@ extends
         emitattr (9, TypeAssetCatalogue)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:GenericAssetModelOrMaterial rdf:ID=\"%s\">\n%s\t</cim:GenericAssetModelOrMaterial>".format (id, export_fields)
@@ -1352,10 +1529,10 @@ extends
 }
 
 object GenericAssetModelOrMaterial
-extends
-    Parseable[GenericAssetModelOrMaterial]
+    extends
+        Parseable[GenericAssetModelOrMaterial]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "estimatedUnitCost",
         "quantity",
         "stockItem",
@@ -1376,21 +1553,21 @@ extends
         Relationship ("ProductAssetModels", "ProductAssetModel", "0..*", "0..1"),
         Relationship ("TypeAssetCatalogue", "TypeAssetCatalogue", "0..1", "0..*")
     )
-    val estimatedUnitCost: Fielder = parse_element (element (cls, fields(0)))
-    val quantity: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val stockItem: Fielder = parse_element (element (cls, fields(2)))
-    val CUAsset: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val CUWorkEquipmentAsset: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val ErpBomItemDatas: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val ErpInventoryIssues: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val ErpReqLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val ProductAssetModels: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val TypeAssetCatalogue: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val estimatedUnitCost: Fielder = parse_element (element (cls, fields (0)))
+    val quantity: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val stockItem: Fielder = parse_element (element (cls, fields (2)))
+    val CUAsset: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val CUWorkEquipmentAsset: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val ErpBomItemDatas: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val ErpInventoryIssues: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
+    val ErpReqLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val ProductAssetModels: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val TypeAssetCatalogue: Fielder = parse_attribute (attribute (cls, fields (9)))
 
     def parse (context: Context): GenericAssetModelOrMaterial =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = GenericAssetModelOrMaterial (
             AssetModel.parse (context),
             toDouble (mask (estimatedUnitCost (), 0)),
@@ -1414,30 +1591,30 @@ extends
  *
  * It includes the portion of cable under wipes, welds, or other seals.
  *
- * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
+ * @param sup               [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
  * @param configurationKind Configuration of joint.
- * @param fillKind Material used to fill the joint.
- * @param insulation The type of insulation around the joint, classified according to the utility's asset management standards and practices.
+ * @param fillKind          Material used to fill the joint.
+ * @param insulation        The type of insulation around the joint, classified according to the utility's asset management standards and practices.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Joint
 (
@@ -1446,13 +1623,17 @@ case class Joint
     fillKind: String,
     insulation: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1461,27 +1642,38 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Asset: Asset = sup.asInstanceOf[Asset]
-    override def copy (): Row = { clone ().asInstanceOf[Joint] }
+    def Asset: Asset = sup.asInstanceOf [Asset]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Joint]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Joint.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Joint.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Joint.fields (position), value)
+
         emitattr (0, configurationKind)
         emitattr (1, fillKind)
         emitelem (2, insulation)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Joint rdf:ID=\"%s\">\n%s\t</cim:Joint>".format (id, export_fields)
@@ -1489,22 +1681,22 @@ extends
 }
 
 object Joint
-extends
-    Parseable[Joint]
+    extends
+        Parseable[Joint]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "configurationKind",
         "fillKind",
         "insulation"
     )
-    val configurationKind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val fillKind: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val insulation: Fielder = parse_element (element (cls, fields(2)))
+    val configurationKind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val fillKind: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val insulation: Fielder = parse_element (element (cls, fields (2)))
 
     def parse (context: Context): Joint =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Joint (
             Asset.parse (context),
             mask (configurationKind (), 0),
@@ -1519,32 +1711,32 @@ extends
 /**
  * A substance that either (1) provides the means of transmission of a force or effect, such as hydraulic fluid, or (2) is used for a surrounding or enveloping substance, such as oil in a transformer or circuit breaker.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param kind Kind of this medium.
- * @param volumeSpec The volume of the medium specified for this application.
- *        Note that the actual volume is a type of measurement associated witht the asset.
- * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
+ * @param sup           [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param kind          Kind of this medium.
+ * @param volumeSpec    The volume of the medium specified for this application.
+ *                      Note that the actual volume is a type of measurement associated witht the asset.
+ * @param Assets        [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param Specification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Medium
 (
@@ -1554,13 +1746,17 @@ case class Medium
     Assets: List[String],
     Specification: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, List(), null) }
+    def this () =
+    {
+        this (null, null, 0.0, List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1569,29 +1765,41 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[Medium] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Medium]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Medium.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Medium.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Medium.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Medium.fields (position), x))
+
         emitattr (0, kind)
         emitelem (1, volumeSpec)
         emitattrs (2, Assets)
         emitattr (3, Specification)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Medium rdf:ID=\"%s\">\n%s\t</cim:Medium>".format (id, export_fields)
@@ -1599,10 +1807,10 @@ extends
 }
 
 object Medium
-extends
-    Parseable[Medium]
+    extends
+        Parseable[Medium]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kind",
         "volumeSpec",
         "Assets",
@@ -1612,15 +1820,15 @@ extends
         Relationship ("Assets", "Asset", "0..*", "0..*"),
         Relationship ("Specification", "Specification", "0..1", "0..*")
     )
-    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val volumeSpec: Fielder = parse_element (element (cls, fields(1)))
-    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Specification: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val volumeSpec: Fielder = parse_element (element (cls, fields (1)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val Specification: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: Context): Medium =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Medium (
             IdentifiedObject.parse (context),
             mask (kind (), 0),
@@ -1636,41 +1844,41 @@ extends
 /**
  * Pole asset.
  *
- * @param sup [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
- * @param baseKind Kind of base for this pole.
- * @param breastBlock True if a block of material has been attached to base of pole in ground for stability.
- *        This technique is used primarily when anchors can not be used.
- * @param classification Pole class: 1, 2, 3, 4, 5, 6, 7, H1, H2, Other, Unknown.
- * @param construction The framing structure mounted on the pole.
- * @param diameter Diameter of the pole.
- * @param jpaReference Joint pole agreement reference number.
- * @param length Length of the pole (inclusive of any section of the pole that may be underground post-installation).
+ * @param sup              [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
+ * @param baseKind         Kind of base for this pole.
+ * @param breastBlock      True if a block of material has been attached to base of pole in ground for stability.
+ *                         This technique is used primarily when anchors can not be used.
+ * @param classification   Pole class: 1, 2, 3, 4, 5, 6, 7, H1, H2, Other, Unknown.
+ * @param construction     The framing structure mounted on the pole.
+ * @param diameter         Diameter of the pole.
+ * @param jpaReference     Joint pole agreement reference number.
+ * @param length           Length of the pole (inclusive of any section of the pole that may be underground post-installation).
  * @param preservativeKind Kind of preservative for this pole.
- * @param speciesType Pole species.
- *        Aluminum, Aluminum Davit, Concrete, Fiberglass, Galvanized Davit, Galvanized, Steel Davit Primed, Steel Davit, Steel Standard Primed, Steel, Truncated, Wood-Treated, Wood-Hard, Wood-Salt Treated, Wood-Soft, Wood, Other, Unknown.
- * @param treatedDateTime Date and time pole was last treated with preservative.
- * @param treatmentKind Kind of treatment for this pole.
- * @param Streetlights [[ch.ninecode.model.Streetlight Streetlight]] All streetlights attached to this pole.
+ * @param speciesType      Pole species.
+ *                         Aluminum, Aluminum Davit, Concrete, Fiberglass, Galvanized Davit, Galvanized, Steel Davit Primed, Steel Davit, Steel Standard Primed, Steel, Truncated, Wood-Treated, Wood-Hard, Wood-Salt Treated, Wood-Soft, Wood, Other, Unknown.
+ * @param treatedDateTime  Date and time pole was last treated with preservative.
+ * @param treatmentKind    Kind of treatment for this pole.
+ * @param Streetlights     [[ch.ninecode.model.Streetlight Streetlight]] All streetlights attached to this pole.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Pole
 (
@@ -1688,13 +1896,17 @@ case class Pole
     treatmentKind: String,
     Streetlights: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, false, null, null, 0.0, null, 0.0, null, null, null, null, List()) }
+    def this () =
+    {
+        this (null, null, false, null, null, 0.0, null, 0.0, null, null, null, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1703,23 +1915,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Structure: Structure = sup.asInstanceOf[Structure]
-    override def copy (): Row = { clone ().asInstanceOf[Pole] }
+    def Structure: Structure = sup.asInstanceOf [Structure]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Pole]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Pole.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pole.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Pole.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Pole.fields (position), x))
+
         emitattr (0, baseKind)
         emitelem (1, breastBlock)
         emitelem (2, classification)
@@ -1734,6 +1957,7 @@ extends
         emitattrs (11, Streetlights)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Pole rdf:ID=\"%s\">\n%s\t</cim:Pole>".format (id, export_fields)
@@ -1741,10 +1965,10 @@ extends
 }
 
 object Pole
-extends
-    Parseable[Pole]
+    extends
+        Parseable[Pole]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "baseKind",
         "breastBlock",
         "classification",
@@ -1761,23 +1985,23 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("Streetlights", "Streetlight", "0..*", "0..1")
     )
-    val baseKind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val breastBlock: Fielder = parse_element (element (cls, fields(1)))
-    val classification: Fielder = parse_element (element (cls, fields(2)))
-    val construction: Fielder = parse_element (element (cls, fields(3)))
-    val diameter: Fielder = parse_element (element (cls, fields(4)))
-    val jpaReference: Fielder = parse_element (element (cls, fields(5)))
-    val len: Fielder = parse_element (element (cls, fields(6)))
-    val preservativeKind: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val speciesType: Fielder = parse_element (element (cls, fields(8)))
-    val treatedDateTime: Fielder = parse_element (element (cls, fields(9)))
-    val treatmentKind: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val Streetlights: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val baseKind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val breastBlock: Fielder = parse_element (element (cls, fields (1)))
+    val classification: Fielder = parse_element (element (cls, fields (2)))
+    val construction: Fielder = parse_element (element (cls, fields (3)))
+    val diameter: Fielder = parse_element (element (cls, fields (4)))
+    val jpaReference: Fielder = parse_element (element (cls, fields (5)))
+    val len: Fielder = parse_element (element (cls, fields (6)))
+    val preservativeKind: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val speciesType: Fielder = parse_element (element (cls, fields (8)))
+    val treatedDateTime: Fielder = parse_element (element (cls, fields (9)))
+    val treatmentKind: Fielder = parse_attribute (attribute (cls, fields (10)))
+    val Streetlights: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
 
     def parse (context: Context): Pole =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Pole (
             Structure.parse (context),
             mask (baseKind (), 0),
@@ -1801,31 +2025,31 @@ extends
 /**
  * Reconditioning information for an asset.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dateTime Date and time this reconditioning (or a major overhaul) has been performed.
- * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
- * @param PowerRatings [[ch.ninecode.model.CoolingPowerRating CoolingPowerRating]] <em>undocumented</em>
+ * @param sup                     [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param dateTime                Date and time this reconditioning (or a major overhaul) has been performed.
+ * @param Asset                   [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
+ * @param PowerRatings            [[ch.ninecode.model.CoolingPowerRating CoolingPowerRating]] <em>undocumented</em>
  * @param TransformerObservations [[ch.ninecode.model.TransformerObservation TransformerObservation]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Reconditioning
 (
@@ -1835,13 +2059,17 @@ case class Reconditioning
     PowerRatings: List[String],
     TransformerObservations: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List(), List()) }
+    def this () =
+    {
+        this (null, null, null, List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1850,29 +2078,41 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[Reconditioning] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Reconditioning]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Reconditioning.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Reconditioning.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Reconditioning.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Reconditioning.fields (position), x))
+
         emitelem (0, dateTime)
         emitattr (1, Asset)
         emitattrs (2, PowerRatings)
         emitattrs (3, TransformerObservations)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Reconditioning rdf:ID=\"%s\">\n%s\t</cim:Reconditioning>".format (id, export_fields)
@@ -1880,10 +2120,10 @@ extends
 }
 
 object Reconditioning
-extends
-    Parseable[Reconditioning]
+    extends
+        Parseable[Reconditioning]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "dateTime",
         "Asset",
         "PowerRatings",
@@ -1894,15 +2134,15 @@ extends
         Relationship ("PowerRatings", "CoolingPowerRating", "0..*", "0..*"),
         Relationship ("TransformerObservations", "TransformerObservation", "0..*", "1")
     )
-    val dateTime: Fielder = parse_element (element (cls, fields(0)))
-    val Asset: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val PowerRatings: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val TransformerObservations: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val dateTime: Fielder = parse_element (element (cls, fields (0)))
+    val Asset: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val PowerRatings: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val TransformerObservations: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
 
     def parse (context: Context): Reconditioning =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Reconditioning (
             IdentifiedObject.parse (context),
             mask (dateTime (), 0),
@@ -1918,31 +2158,31 @@ extends
 /**
  * Information regarding the experienced and expected reliability of a specific asset, type of asset, or asset model.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param mTTR Mean time to repair (MTTR - hours).
+ * @param sup            [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param mTTR           Mean time to repair (MTTR - hours).
  * @param momFailureRate Momentary failure rate (temporary failures/kft-year).
- * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
- * @param Specification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
+ * @param Assets         [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
+ * @param Specification  [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class ReliabilityInfo
 (
@@ -1952,13 +2192,17 @@ case class ReliabilityInfo
     Assets: List[String],
     Specification: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, List(), null) }
+    def this () =
+    {
+        this (null, 0.0, 0.0, List (), null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -1967,29 +2211,41 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[ReliabilityInfo] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [ReliabilityInfo]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ReliabilityInfo.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ReliabilityInfo.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ReliabilityInfo.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ReliabilityInfo.fields (position), x))
+
         emitelem (0, mTTR)
         emitelem (1, momFailureRate)
         emitattrs (2, Assets)
         emitattr (3, Specification)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ReliabilityInfo rdf:ID=\"%s\">\n%s\t</cim:ReliabilityInfo>".format (id, export_fields)
@@ -1997,10 +2253,10 @@ extends
 }
 
 object ReliabilityInfo
-extends
-    Parseable[ReliabilityInfo]
+    extends
+        Parseable[ReliabilityInfo]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "mTTR",
         "momFailureRate",
         "Assets",
@@ -2010,15 +2266,15 @@ extends
         Relationship ("Assets", "Asset", "0..*", "0..*"),
         Relationship ("Specification", "Specification", "0..1", "0..*")
     )
-    val mTTR: Fielder = parse_element (element (cls, fields(0)))
-    val momFailureRate: Fielder = parse_element (element (cls, fields(1)))
-    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Specification: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val mTTR: Fielder = parse_element (element (cls, fields (0)))
+    val momFailureRate: Fielder = parse_element (element (cls, fields (1)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val Specification: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: Context): ReliabilityInfo =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = ReliabilityInfo (
             IdentifiedObject.parse (context),
             toDouble (mask (mTTR (), 0)),
@@ -2036,36 +2292,36 @@ extends
  *
  * Examples include documents supplied by manufacturers such as asset installation instructions, asset maintenance instructions, etc.
  *
- * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param AssetProperites [[ch.ninecode.model.UserAttribute UserAttribute]] UserAttributes used to specify further properties of the asset covered with this specification.
- *        Use 'name' to specify what kind of property it is, and 'value.value' attribute for the actual value.
- * @param AssetPropertyCurves [[ch.ninecode.model.AssetPropertyCurve AssetPropertyCurve]] <em>undocumented</em>
- * @param DimensionsInfos [[ch.ninecode.model.DimensionsInfo DimensionsInfo]] <em>undocumented</em>
- * @param Mediums [[ch.ninecode.model.Medium Medium]] <em>undocumented</em>
+ * @param sup                       [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param AssetProperites           [[ch.ninecode.model.UserAttribute UserAttribute]] UserAttributes used to specify further properties of the asset covered with this specification.
+ *                                  Use 'name' to specify what kind of property it is, and 'value.value' attribute for the actual value.
+ * @param AssetPropertyCurves       [[ch.ninecode.model.AssetPropertyCurve AssetPropertyCurve]] <em>undocumented</em>
+ * @param DimensionsInfos           [[ch.ninecode.model.DimensionsInfo DimensionsInfo]] <em>undocumented</em>
+ * @param Mediums                   [[ch.ninecode.model.Medium Medium]] <em>undocumented</em>
  * @param QualificationRequirements [[ch.ninecode.model.QualificationRequirement QualificationRequirement]] <em>undocumented</em>
- * @param Ratings [[ch.ninecode.model.UserAttribute UserAttribute]] UserAttributes used to specify ratings of the asset covered by this specification.
- *        Ratings also can be used to set the initial value of operational measurement limits. Use 'name' to specify what kind of rating it is (e.g., voltage, current), and 'value' attribute for the actual value and unit information of the rating.
- * @param ReliabilityInfos [[ch.ninecode.model.ReliabilityInfo ReliabilityInfo]] <em>undocumented</em>
+ * @param Ratings                   [[ch.ninecode.model.UserAttribute UserAttribute]] UserAttributes used to specify ratings of the asset covered by this specification.
+ *                                  Ratings also can be used to set the initial value of operational measurement limits. Use 'name' to specify what kind of rating it is (e.g., voltage, current), and 'value' attribute for the actual value and unit information of the rating.
+ * @param ReliabilityInfos          [[ch.ninecode.model.ReliabilityInfo ReliabilityInfo]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Specification
 (
@@ -2078,13 +2334,17 @@ case class Specification
     Ratings: List[String],
     ReliabilityInfos: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), List(), List(), List(), List(), List(), List()) }
+    def this () =
+    {
+        this (null, List (), List (), List (), List (), List (), List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2093,21 +2353,30 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Document: Document = sup.asInstanceOf[Document]
-    override def copy (): Row = { clone ().asInstanceOf[Specification] }
+    def Document: Document = sup.asInstanceOf [Document]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Specification]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Specification.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Specification.fields (position), x))
+
         emitattrs (0, AssetProperites)
         emitattrs (1, AssetPropertyCurves)
         emitattrs (2, DimensionsInfos)
@@ -2117,6 +2386,7 @@ extends
         emitattrs (6, ReliabilityInfos)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Specification rdf:ID=\"%s\">\n%s\t</cim:Specification>".format (id, export_fields)
@@ -2124,10 +2394,10 @@ extends
 }
 
 object Specification
-extends
-    Parseable[Specification]
+    extends
+        Parseable[Specification]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "AssetProperites",
         "AssetPropertyCurves",
         "DimensionsInfos",
@@ -2145,18 +2415,18 @@ extends
         Relationship ("Ratings", "UserAttribute", "0..*", "0..1"),
         Relationship ("ReliabilityInfos", "ReliabilityInfo", "0..*", "0..1")
     )
-    val AssetProperites: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val AssetPropertyCurves: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val DimensionsInfos: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Mediums: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val QualificationRequirements: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val Ratings: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val ReliabilityInfos: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val AssetProperites: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val AssetPropertyCurves: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val DimensionsInfos: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val Mediums: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val QualificationRequirements: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val Ratings: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val ReliabilityInfos: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
 
     def parse (context: Context): Specification =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Specification (
             Document.parse (context),
             masks (AssetProperites (), 0),
@@ -2175,32 +2445,32 @@ extends
 /**
  * Streetlight asset.
  *
- * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
- * @param armLength Length of arm.
- *        Note that a new light may be placed on an existing arm.
- * @param lampKind Lamp kind.
+ * @param sup         [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
+ * @param armLength   Length of arm.
+ *                    Note that a new light may be placed on an existing arm.
+ * @param lampKind    Lamp kind.
  * @param lightRating Power rating of light.
- * @param Pole [[ch.ninecode.model.Pole Pole]] Pole to which thiss streetlight is attached.
+ * @param Pole        [[ch.ninecode.model.Pole Pole]] Pole to which thiss streetlight is attached.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Streetlight
 (
@@ -2210,13 +2480,17 @@ case class Streetlight
     lightRating: Double,
     Pole: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, 0.0, null) }
+    def this () =
+    {
+        this (null, 0.0, null, 0.0, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2225,28 +2499,39 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Asset: Asset = sup.asInstanceOf[Asset]
-    override def copy (): Row = { clone ().asInstanceOf[Streetlight] }
+    def Asset: Asset = sup.asInstanceOf [Asset]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Streetlight]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Streetlight.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Streetlight.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Streetlight.fields (position), value)
+
         emitelem (0, armLength)
         emitattr (1, lampKind)
         emitelem (2, lightRating)
         emitattr (3, Pole)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Streetlight rdf:ID=\"%s\">\n%s\t</cim:Streetlight>".format (id, export_fields)
@@ -2254,10 +2539,10 @@ extends
 }
 
 object Streetlight
-extends
-    Parseable[Streetlight]
+    extends
+        Parseable[Streetlight]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "armLength",
         "lampKind",
         "lightRating",
@@ -2266,15 +2551,15 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("Pole", "Pole", "0..1", "0..*")
     )
-    val armLength: Fielder = parse_element (element (cls, fields(0)))
-    val lampKind: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val lightRating: Fielder = parse_element (element (cls, fields(2)))
-    val Pole: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val armLength: Fielder = parse_element (element (cls, fields (0)))
+    val lampKind: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val lightRating: Fielder = parse_element (element (cls, fields (2)))
+    val Pole: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: Context): Streetlight =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Streetlight (
             Asset.parse (context),
             toDouble (mask (armLength (), 0)),
@@ -2292,37 +2577,37 @@ extends
  *
  * Where applicable, number of conductors can be derived from the number of associated wire spacing instances.
  *
- * @param sup [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
+ * @param sup                 [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
  * @param fumigantAppliedDate Date fumigant was last applied.
- * @param fumigantName Name of fumigant.
- * @param height Visible height of structure above ground level for overhead construction (e.g., Pole or Tower) or below ground level for an underground vault, manhole, etc.
- *        Refer to associated DimensionPropertiesInfo for other types of dimensions.
- * @param materialKind Material this structure is made of.
- * @param ratedVoltage Maximum rated voltage of the equipment that can be mounted on/contained within the structure.
- * @param removeWeed True if weeds are to be removed around asset.
- * @param weedRemovedDate Date weed were last removed.
- * @param StructureSupports [[ch.ninecode.model.StructureSupport StructureSupport]] <em>undocumented</em>
- * @param WireSpacingInfos [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] <em>undocumented</em>
+ * @param fumigantName        Name of fumigant.
+ * @param height              Visible height of structure above ground level for overhead construction (e.g., Pole or Tower) or below ground level for an underground vault, manhole, etc.
+ *                            Refer to associated DimensionPropertiesInfo for other types of dimensions.
+ * @param materialKind        Material this structure is made of.
+ * @param ratedVoltage        Maximum rated voltage of the equipment that can be mounted on/contained within the structure.
+ * @param removeWeed          True if weeds are to be removed around asset.
+ * @param weedRemovedDate     Date weed were last removed.
+ * @param StructureSupports   [[ch.ninecode.model.StructureSupport StructureSupport]] <em>undocumented</em>
+ * @param WireSpacingInfos    [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Structure
 (
@@ -2337,13 +2622,17 @@ case class Structure
     StructureSupports: List[String],
     WireSpacingInfos: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0.0, null, 0.0, false, null, List(), List()) }
+    def this () =
+    {
+        this (null, null, null, 0.0, null, 0.0, false, null, List (), List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2352,23 +2641,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetContainer: AssetContainer = sup.asInstanceOf[AssetContainer]
-    override def copy (): Row = { clone ().asInstanceOf[Structure] }
+    def AssetContainer: AssetContainer = sup.asInstanceOf [AssetContainer]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Structure]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Structure.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Structure.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Structure.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Structure.fields (position), x))
+
         emitelem (0, fumigantAppliedDate)
         emitelem (1, fumigantName)
         emitelem (2, height)
@@ -2380,6 +2680,7 @@ extends
         emitattrs (8, WireSpacingInfos)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Structure rdf:ID=\"%s\">\n%s\t</cim:Structure>".format (id, export_fields)
@@ -2387,10 +2688,10 @@ extends
 }
 
 object Structure
-extends
-    Parseable[Structure]
+    extends
+        Parseable[Structure]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "fumigantAppliedDate",
         "fumigantName",
         "height",
@@ -2405,20 +2706,20 @@ extends
         Relationship ("StructureSupports", "StructureSupport", "0..*", "0..1"),
         Relationship ("WireSpacingInfos", "WireSpacingInfo", "0..*", "0..*")
     )
-    val fumigantAppliedDate: Fielder = parse_element (element (cls, fields(0)))
-    val fumigantName: Fielder = parse_element (element (cls, fields(1)))
-    val height: Fielder = parse_element (element (cls, fields(2)))
-    val materialKind: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val ratedVoltage: Fielder = parse_element (element (cls, fields(4)))
-    val removeWeed: Fielder = parse_element (element (cls, fields(5)))
-    val weedRemovedDate: Fielder = parse_element (element (cls, fields(6)))
-    val StructureSupports: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val WireSpacingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val fumigantAppliedDate: Fielder = parse_element (element (cls, fields (0)))
+    val fumigantName: Fielder = parse_element (element (cls, fields (1)))
+    val height: Fielder = parse_element (element (cls, fields (2)))
+    val materialKind: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val ratedVoltage: Fielder = parse_element (element (cls, fields (4)))
+    val removeWeed: Fielder = parse_element (element (cls, fields (5)))
+    val weedRemovedDate: Fielder = parse_element (element (cls, fields (6)))
+    val StructureSupports: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val WireSpacingInfos: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
 
     def parse (context: Context): Structure =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Structure (
             AssetContainer.parse (context),
             mask (fumigantAppliedDate (), 0),
@@ -2439,35 +2740,35 @@ extends
 /**
  * Support for structure assets.
  *
- * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
- * @param anchorKind (if anchor) Kind of anchor.
- * @param anchorRodCount (if anchor) Number of rods used.
- * @param anchorRodLength (if anchor) Length of rod used.
- * @param direction Direction of this support structure.
- * @param kind Kind of structure support.
- * @param length Length of this support structure.
- * @param size Size of this support structure.
+ * @param sup              [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
+ * @param anchorKind       (if anchor) Kind of anchor.
+ * @param anchorRodCount   (if anchor) Number of rods used.
+ * @param anchorRodLength  (if anchor) Length of rod used.
+ * @param direction        Direction of this support structure.
+ * @param kind             Kind of structure support.
+ * @param length           Length of this support structure.
+ * @param size             Size of this support structure.
  * @param SecuredStructure [[ch.ninecode.model.Structure Structure]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class StructureSupport
 (
@@ -2481,13 +2782,17 @@ case class StructureSupport
     size1: String,
     SecuredStructure: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0, 0.0, 0.0, null, 0.0, null, null) }
+    def this () =
+    {
+        this (null, null, 0, 0.0, 0.0, null, 0.0, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2496,22 +2801,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Asset: Asset = sup.asInstanceOf[Asset]
-    override def copy (): Row = { clone ().asInstanceOf[StructureSupport] }
+    def Asset: Asset = sup.asInstanceOf [Asset]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [StructureSupport]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StructureSupport.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (StructureSupport.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (StructureSupport.fields (position), value)
+
         emitattr (0, anchorKind)
         emitelem (1, anchorRodCount)
         emitelem (2, anchorRodLength)
@@ -2522,6 +2837,7 @@ extends
         emitattr (7, SecuredStructure)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:StructureSupport rdf:ID=\"%s\">\n%s\t</cim:StructureSupport>".format (id, export_fields)
@@ -2529,10 +2845,10 @@ extends
 }
 
 object StructureSupport
-extends
-    Parseable[StructureSupport]
+    extends
+        Parseable[StructureSupport]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "anchorKind",
         "anchorRodCount",
         "anchorRodLength",
@@ -2545,19 +2861,19 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("SecuredStructure", "Structure", "0..1", "0..*")
     )
-    val anchorKind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val anchorRodCount: Fielder = parse_element (element (cls, fields(1)))
-    val anchorRodLength: Fielder = parse_element (element (cls, fields(2)))
-    val direction: Fielder = parse_element (element (cls, fields(3)))
-    val kind: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val len: Fielder = parse_element (element (cls, fields(5)))
-    val size1: Fielder = parse_element (element (cls, fields(6)))
-    val SecuredStructure: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val anchorKind: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val anchorRodCount: Fielder = parse_element (element (cls, fields (1)))
+    val anchorRodLength: Fielder = parse_element (element (cls, fields (2)))
+    val direction: Fielder = parse_element (element (cls, fields (3)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val len: Fielder = parse_element (element (cls, fields (5)))
+    val size1: Fielder = parse_element (element (cls, fields (6)))
+    val SecuredStructure: Fielder = parse_attribute (attribute (cls, fields (7)))
 
     def parse (context: Context): StructureSupport =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = StructureSupport (
             Asset.parse (context),
             mask (anchorKind (), 0),
@@ -2579,41 +2895,45 @@ extends
  *
  * Dimensions of the Tower are specified in associated DimensionsInfo class.
  *
- * @param sup [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
+ * @param sup              [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
  * @param constructionKind Construction structure on the tower.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class Tower
 (
     override val sup: Structure,
     constructionKind: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () =
+    {
+        this (null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2622,24 +2942,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Structure: Structure = sup.asInstanceOf[Structure]
-    override def copy (): Row = { clone ().asInstanceOf[Tower] }
+    def Structure: Structure = sup.asInstanceOf [Structure]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Tower]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Tower.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Tower.fields (position), value)
+
         emitattr (0, constructionKind)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Tower rdf:ID=\"%s\">\n%s\t</cim:Tower>".format (id, export_fields)
@@ -2647,18 +2977,18 @@ extends
 }
 
 object Tower
-extends
-    Parseable[Tower]
+    extends
+        Parseable[Tower]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "constructionKind"
     )
-    val constructionKind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val constructionKind: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: Context): Tower =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = Tower (
             Structure.parse (context),
             mask (constructionKind (), 0)
@@ -2673,49 +3003,49 @@ extends
  *
  * Note that some properties may be measured through other means and therefore have measurement values in addition to the observed values recorded here.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param bushingTemp Bushing temperature.
- * @param dga Dissolved Gas Analysis.
- *        Typical values are: Acceptable, Overheating, Corona, Sparking, Arcing.
- * @param freqResp Frequency Response Analysis.
- *        Typical values are: acceptable, slight movement, significant movement, failed, near failure. A graphic of the response diagram, which is a type of document, may be associated with this analysis through the recursive document relationship of the ProcedureDataSet.
- * @param furfuralDP Overall measure of furfural in oil and mechanical strength of paper.
- *        DP, the degree of polymerization, is the strength of the paper. Furfural is a measure of furfural compounds, often expressed in parts per million.
- * @param hotSpotTemp Hotspot oil temperature.
- * @param oilColor Oil Quality Analysis-Color.
- * @param oilDielectricStrength Oil Quality Analysis-Dielectric Strength.
- * @param oilIFT Oil Quality Analysis- inter facial tension (IFT) - number-Dynes/CM.
- * @param oilLevel The level of oil in the transformer.
+ * @param sup                     [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param bushingTemp             Bushing temperature.
+ * @param dga                     Dissolved Gas Analysis.
+ *                                Typical values are: Acceptable, Overheating, Corona, Sparking, Arcing.
+ * @param freqResp                Frequency Response Analysis.
+ *                                Typical values are: acceptable, slight movement, significant movement, failed, near failure. A graphic of the response diagram, which is a type of document, may be associated with this analysis through the recursive document relationship of the ProcedureDataSet.
+ * @param furfuralDP              Overall measure of furfural in oil and mechanical strength of paper.
+ *                                DP, the degree of polymerization, is the strength of the paper. Furfural is a measure of furfural compounds, often expressed in parts per million.
+ * @param hotSpotTemp             Hotspot oil temperature.
+ * @param oilColor                Oil Quality Analysis-Color.
+ * @param oilDielectricStrength   Oil Quality Analysis-Dielectric Strength.
+ * @param oilIFT                  Oil Quality Analysis- inter facial tension (IFT) - number-Dynes/CM.
+ * @param oilLevel                The level of oil in the transformer.
  * @param oilNeutralizationNumber Oil Quality Analysis-Neutralization Number - Number - Mg KOH.
- * @param pumpVibration Pump vibration, with typical values being: nominal, high.
- * @param status <em>undocumented</em>
- * @param topOilTemp Top oil temperature.
- * @param waterContent Water Content expressed in parts per million.
- * @param BushingInsultationPFs [[ch.ninecode.model.BushingInsulationPF BushingInsulationPF]] <em>undocumented</em>
- * @param ProcedureDataSets [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] <em>undocumented</em>
- * @param Reconditioning [[ch.ninecode.model.Reconditioning Reconditioning]] <em>undocumented</em>
- * @param Transformer [[ch.ninecode.model.TransformerTank TransformerTank]] <em>undocumented</em>
- * @param WindingInsulationPFs [[ch.ninecode.model.WindingInsulation WindingInsulation]] <em>undocumented</em>
+ * @param pumpVibration           Pump vibration, with typical values being: nominal, high.
+ * @param status                  <em>undocumented</em>
+ * @param topOilTemp              Top oil temperature.
+ * @param waterContent            Water Content expressed in parts per million.
+ * @param BushingInsultationPFs   [[ch.ninecode.model.BushingInsulationPF BushingInsulationPF]] <em>undocumented</em>
+ * @param ProcedureDataSets       [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] <em>undocumented</em>
+ * @param Reconditioning          [[ch.ninecode.model.Reconditioning Reconditioning]] <em>undocumented</em>
+ * @param Transformer             [[ch.ninecode.model.TransformerTank TransformerTank]] <em>undocumented</em>
+ * @param WindingInsulationPFs    [[ch.ninecode.model.WindingInsulation WindingInsulation]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class TransformerObservation
 (
@@ -2740,13 +3070,17 @@ case class TransformerObservation
     Transformer: String,
     WindingInsulationPFs: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, null, 0.0, null, 0.0, null, null, null, null, null, 0.0, null, List(), List(), null, null, List()) }
+    def this () =
+    {
+        this (null, 0.0, null, null, null, 0.0, null, 0.0, null, null, null, null, null, 0.0, null, List (), List (), null, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2755,23 +3089,34 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[TransformerObservation] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [TransformerObservation]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransformerObservation.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerObservation.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerObservation.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransformerObservation.fields (position), x))
+
         emitelem (0, bushingTemp)
         emitelem (1, dga)
         emitelem (2, freqResp)
@@ -2793,6 +3138,7 @@ extends
         emitattrs (18, WindingInsulationPFs)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:TransformerObservation rdf:ID=\"%s\">\n%s\t</cim:TransformerObservation>".format (id, export_fields)
@@ -2800,10 +3146,10 @@ extends
 }
 
 object TransformerObservation
-extends
-    Parseable[TransformerObservation]
+    extends
+        Parseable[TransformerObservation]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "bushingTemp",
         "dga",
         "freqResp",
@@ -2831,30 +3177,30 @@ extends
         Relationship ("Transformer", "TransformerTank", "0..1", "0..*"),
         Relationship ("WindingInsulationPFs", "WindingInsulation", "0..*", "0..1")
     )
-    val bushingTemp: Fielder = parse_element (element (cls, fields(0)))
-    val dga: Fielder = parse_element (element (cls, fields(1)))
-    val freqResp: Fielder = parse_element (element (cls, fields(2)))
-    val furfuralDP: Fielder = parse_element (element (cls, fields(3)))
-    val hotSpotTemp: Fielder = parse_element (element (cls, fields(4)))
-    val oilColor: Fielder = parse_element (element (cls, fields(5)))
-    val oilDielectricStrength: Fielder = parse_element (element (cls, fields(6)))
-    val oilIFT: Fielder = parse_element (element (cls, fields(7)))
-    val oilLevel: Fielder = parse_element (element (cls, fields(8)))
-    val oilNeutralizationNumber: Fielder = parse_element (element (cls, fields(9)))
-    val pumpVibration: Fielder = parse_element (element (cls, fields(10)))
-    val status: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val topOilTemp: Fielder = parse_element (element (cls, fields(12)))
-    val waterContent: Fielder = parse_element (element (cls, fields(13)))
-    val BushingInsultationPFs: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
-    val ProcedureDataSets: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
-    val Reconditioning: Fielder = parse_attribute (attribute (cls, fields(16)))
-    val Transformer: Fielder = parse_attribute (attribute (cls, fields(17)))
-    val WindingInsulationPFs: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
+    val bushingTemp: Fielder = parse_element (element (cls, fields (0)))
+    val dga: Fielder = parse_element (element (cls, fields (1)))
+    val freqResp: Fielder = parse_element (element (cls, fields (2)))
+    val furfuralDP: Fielder = parse_element (element (cls, fields (3)))
+    val hotSpotTemp: Fielder = parse_element (element (cls, fields (4)))
+    val oilColor: Fielder = parse_element (element (cls, fields (5)))
+    val oilDielectricStrength: Fielder = parse_element (element (cls, fields (6)))
+    val oilIFT: Fielder = parse_element (element (cls, fields (7)))
+    val oilLevel: Fielder = parse_element (element (cls, fields (8)))
+    val oilNeutralizationNumber: Fielder = parse_element (element (cls, fields (9)))
+    val pumpVibration: Fielder = parse_element (element (cls, fields (10)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (11)))
+    val topOilTemp: Fielder = parse_element (element (cls, fields (12)))
+    val waterContent: Fielder = parse_element (element (cls, fields (13)))
+    val BushingInsultationPFs: FielderMultiple = parse_attributes (attribute (cls, fields (14)))
+    val ProcedureDataSets: FielderMultiple = parse_attributes (attribute (cls, fields (15)))
+    val Reconditioning: Fielder = parse_attribute (attribute (cls, fields (16)))
+    val Transformer: Fielder = parse_attribute (attribute (cls, fields (17)))
+    val WindingInsulationPFs: FielderMultiple = parse_attributes (attribute (cls, fields (18)))
 
     def parse (context: Context): TransformerObservation =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = TransformerObservation (
             IdentifiedObject.parse (context),
             toDouble (mask (bushingTemp (), 0)),
@@ -2885,31 +3231,31 @@ extends
 /**
  * Underground structure.
  *
- * @param sup [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
- * @param hasVentilation True if vault is ventilating.
- * @param kind True if vault is ventilating.
- * @param material Primary material of underground structure.
+ * @param sup                        [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
+ * @param hasVentilation             True if vault is ventilating.
+ * @param kind                       True if vault is ventilating.
+ * @param material                   Primary material of underground structure.
  * @param sealingWarrantyExpiresDate Date sealing warranty expires.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class UndergroundStructure
 (
@@ -2919,13 +3265,17 @@ case class UndergroundStructure
     material: String,
     sealingWarrantyExpiresDate: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, null, null, null) }
+    def this () =
+    {
+        this (null, false, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -2934,28 +3284,39 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def Structure: Structure = sup.asInstanceOf[Structure]
-    override def copy (): Row = { clone ().asInstanceOf[UndergroundStructure] }
+    def Structure: Structure = sup.asInstanceOf [Structure]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [UndergroundStructure]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UndergroundStructure.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UndergroundStructure.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (UndergroundStructure.fields (position), value)
+
         emitelem (0, hasVentilation)
         emitattr (1, kind)
         emitelem (2, material)
         emitelem (3, sealingWarrantyExpiresDate)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:UndergroundStructure rdf:ID=\"%s\">\n%s\t</cim:UndergroundStructure>".format (id, export_fields)
@@ -2963,24 +3324,24 @@ extends
 }
 
 object UndergroundStructure
-extends
-    Parseable[UndergroundStructure]
+    extends
+        Parseable[UndergroundStructure]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "hasVentilation",
         "kind",
         "material",
         "sealingWarrantyExpiresDate"
     )
-    val hasVentilation: Fielder = parse_element (element (cls, fields(0)))
-    val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val material: Fielder = parse_element (element (cls, fields(2)))
-    val sealingWarrantyExpiresDate: Fielder = parse_element (element (cls, fields(3)))
+    val hasVentilation: Fielder = parse_element (element (cls, fields (0)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val material: Fielder = parse_element (element (cls, fields (2)))
+    val sealingWarrantyExpiresDate: Fielder = parse_element (element (cls, fields (3)))
 
     def parse (context: Context): UndergroundStructure =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = UndergroundStructure (
             Structure.parse (context),
             toBoolean (mask (hasVentilation (), 0)),
@@ -2996,35 +3357,35 @@ extends
 /**
  * Winding insulation condition as a result of a test.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param insulationPFStatus Status of Winding Insulation Power Factor as of statusDate: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
- * @param insulationResistance For testType, status of Winding Insulation Resistance as of statusDate.
- *        Typical values are: Acceptable, Questionable, Failed.
- * @param leakageReactance As of statusDate, the leakage reactance measured at the "from" winding with the "to" winding short-circuited and all other windings open-circuited.
- * @param status <em>undocumented</em>
- * @param FromWinding [[ch.ninecode.model.TransformerEnd TransformerEnd]] <em>undocumented</em>
- * @param ToWinding [[ch.ninecode.model.TransformerEnd TransformerEnd]] <em>undocumented</em>
+ * @param sup                    [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param insulationPFStatus     Status of Winding Insulation Power Factor as of statusDate: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
+ * @param insulationResistance   For testType, status of Winding Insulation Resistance as of statusDate.
+ *                               Typical values are: Acceptable, Questionable, Failed.
+ * @param leakageReactance       As of statusDate, the leakage reactance measured at the "from" winding with the "to" winding short-circuited and all other windings open-circuited.
+ * @param status                 <em>undocumented</em>
+ * @param FromWinding            [[ch.ninecode.model.TransformerEnd TransformerEnd]] <em>undocumented</em>
+ * @param ToWinding              [[ch.ninecode.model.TransformerEnd TransformerEnd]] <em>undocumented</em>
  * @param TransformerObservation [[ch.ninecode.model.TransformerObservation TransformerObservation]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
-The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
-<ul>
-	<li>Assets can have names, through inheritance to the Naming package</li>
-	<li>Assets are physical entities which have a lifecycle</li>
-	<li>One or more assets can be associated to create a PowerSystemResource</li>
-	<li>Assets can be grouped (aggregated) with other Assets</li>
-	<li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
-	<li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
-</ul>
-The following sections describe the packages in the Assets package.
-The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
-Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
-Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
-Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "Assets are the basic units which define a physical infrastructure. PowerSystemResources are logical objects meaningful to operations which are constructed from one or more Assets, although PowerSystemResources are not required to specifiy their component Assets.
+ *            The Asset package is comprosed of several packages. The key concepts of an Asset are as follows:
+ *            <ul>
+ *            <li>Assets can have names, through inheritance to the Naming package</li>
+ *            <li>Assets are physical entities which have a lifecycle</li>
+ *            <li>One or more assets can be associated to create a PowerSystemResource</li>
+ *            <li>Assets can be grouped (aggregated) with other Assets</li>
+ *            <li>Assets are typically either 'point' or 'linear' assets, which relate to physical geometry</li>
+ *            <li>Assets have a close relationship to Work as a consequence of their lifecycle</li>
+ *            </ul>
+ *            The following sections describe the packages in the Assets package.
+ *            The AssetBasics package defines the relationship between Asset and other classes, such as Organization, PowerSystemResource and Document.
+ *            Point assets are those assets whose physical location can be described in terms of a single coordinate, such as a pole or a switch.
+ *            Linear assets are those assets whose physical location is best described in terms of a line, plyline or polygon.
+ *            Asset work triggers are used to determine when inspection and/or maintenance are required for assets".
  */
 case class WindingInsulation
 (
@@ -3037,13 +3398,17 @@ case class WindingInsulation
     ToWinding: String,
     TransformerObservation: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0.0, null, null, null, null) }
+    def this () =
+    {
+        this (null, null, null, 0.0, null, null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -3052,22 +3417,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[WindingInsulation] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf [IdentifiedObject]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [WindingInsulation]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindingInsulation.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindingInsulation.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindingInsulation.fields (position), value)
+
         emitelem (0, insulationPFStatus)
         emitelem (1, insulationResistance)
         emitelem (2, leakageReactance)
@@ -3077,6 +3452,7 @@ extends
         emitattr (6, TransformerObservation)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:WindingInsulation rdf:ID=\"%s\">\n%s\t</cim:WindingInsulation>".format (id, export_fields)
@@ -3084,10 +3460,10 @@ extends
 }
 
 object WindingInsulation
-extends
-    Parseable[WindingInsulation]
+    extends
+        Parseable[WindingInsulation]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "insulationPFStatus",
         "insulationResistance",
         "leakageReactance",
@@ -3101,18 +3477,18 @@ extends
         Relationship ("ToWinding", "TransformerEnd", "1", "0..*"),
         Relationship ("TransformerObservation", "TransformerObservation", "0..1", "0..*")
     )
-    val insulationPFStatus: Fielder = parse_element (element (cls, fields(0)))
-    val insulationResistance: Fielder = parse_element (element (cls, fields(1)))
-    val leakageReactance: Fielder = parse_element (element (cls, fields(2)))
-    val status: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val FromWinding: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val ToWinding: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val TransformerObservation: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val insulationPFStatus: Fielder = parse_element (element (cls, fields (0)))
+    val insulationResistance: Fielder = parse_element (element (cls, fields (1)))
+    val leakageReactance: Fielder = parse_element (element (cls, fields (2)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val FromWinding: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val ToWinding: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val TransformerObservation: Fielder = parse_attribute (attribute (cls, fields (6)))
 
     def parse (context: Context): WindingInsulation =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = WindingInsulation (
             IdentifiedObject.parse (context),
             mask (insulationPFStatus (), 0),

@@ -16,6 +16,7 @@ import ch.ninecode.model.Element
  * This needs to be defined within package org.apache.spark.sql.types 
  * because UserDefinedType became private with Spark 2.0.x
  * it will be reintroduced with Spark 2.1.x.
+ *
  * @see https://issues.apache.org/jira/browse/SPARK-13326
  */
 class ElementUDT extends UserDefinedType[Element]
@@ -43,10 +44,10 @@ class ElementUDT extends UserDefinedType[Element]
 
     override def serialize (obj: Element): Any =
     {
-          val output = new Array[Any](1)
-          output (0) = UTF8String.fromString (obj.id.toString)
-          val r = new GenericInternalRow (output)
-          r
+        val output = new Array[Any](1)
+        output (0) = UTF8String.fromString (obj.id.toString)
+        val r = new GenericInternalRow (output)
+        r
     }
 
     override def deserialize (datum: Any): Element =
@@ -67,7 +68,7 @@ class ElementUDT extends UserDefinedType[Element]
             }
     }
 
-    override def userClass: Class[Element] = classOf[Element]
+    override def userClass: Class[Element] = classOf [Element]
 
     override def equals (o: Any): Boolean =
     {
@@ -78,7 +79,7 @@ class ElementUDT extends UserDefinedType[Element]
         }
     }
 
-    override def hashCode(): Int = classOf[ElementUDT].getName.hashCode()
+    override def hashCode (): Int = classOf [ElementUDT].getName.hashCode ()
 
     override def typeName: String = "element"
 
@@ -89,7 +90,7 @@ object ElementRegistration
 {
     def register (): Unit =
     {
-        if (!UDTRegistration.exists (classOf[Element].getName))
-            UDTRegistration.register (classOf[Element].getName, classOf[ElementUDT].getName)
+        if (!UDTRegistration.exists (classOf [Element].getName))
+            UDTRegistration.register (classOf [Element].getName, classOf [ElementUDT].getName)
     }
 }

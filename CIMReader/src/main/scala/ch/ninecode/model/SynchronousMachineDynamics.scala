@@ -12,20 +12,20 @@ import ch.ninecode.cim.Relationship
  *
  * The several variations differ in the following ways:
  *
- * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
- * @param efdBaseRatio Ratio (Exciter voltage/Generator voltage) of Efd bases of exciter and generator models.
- *        Typical Value = 1.
- * @param ifdBaseType Excitation base system mode.
- *        It should be equal to the value of WLMDV given by the user. WLMDV is the per unit ratio between the field voltage and the excitation current: Efd = WLMDV*Ifd. Typical Value = ifag.
+ * @param sup                      [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
+ * @param efdBaseRatio             Ratio (Exciter voltage/Generator voltage) of Efd bases of exciter and generator models.
+ *                                 Typical Value = 1.
+ * @param ifdBaseType              Excitation base system mode.
+ *                                 It should be equal to the value of WLMDV given by the user. WLMDV is the per unit ratio between the field voltage and the excitation current: Efd = WLMDV*Ifd. Typical Value = ifag.
  * @param saturationFactor120QAxis Q-axis saturation factor at 120% of rated terminal voltage (S12q) (&gt;=S1q).
- *        Typical Value = 0.12.
- * @param saturationFactorQAxis Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0).
- *        Typical Value = 0.02.
+ *                                 Typical Value = 0.12.
+ * @param saturationFactorQAxis    Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0).
+ *                                 Typical Value = 0.02.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
- * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
-
-The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.
+ *
+ *            The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineDetailed
 (
@@ -35,13 +35,17 @@ case class SynchronousMachineDetailed
     saturationFactor120QAxis: Double,
     saturationFactorQAxis: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, 0.0, 0.0) }
+    def this () =
+    {
+        this (null, 0.0, null, 0.0, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -50,28 +54,39 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SynchronousMachineDynamics: SynchronousMachineDynamics = sup.asInstanceOf[SynchronousMachineDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineDetailed] }
+    def SynchronousMachineDynamics: SynchronousMachineDynamics = sup.asInstanceOf [SynchronousMachineDynamics]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [SynchronousMachineDetailed]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SynchronousMachineDetailed.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchronousMachineDetailed.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SynchronousMachineDetailed.fields (position), value)
+
         emitelem (0, efdBaseRatio)
         emitattr (1, ifdBaseType)
         emitelem (2, saturationFactor120QAxis)
         emitelem (3, saturationFactorQAxis)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:SynchronousMachineDetailed rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachineDetailed>".format (id, export_fields)
@@ -79,24 +94,24 @@ extends
 }
 
 object SynchronousMachineDetailed
-extends
-    Parseable[SynchronousMachineDetailed]
+    extends
+        Parseable[SynchronousMachineDetailed]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "efdBaseRatio",
         "ifdBaseType",
         "saturationFactor120QAxis",
         "saturationFactorQAxis"
     )
-    val efdBaseRatio: Fielder = parse_element (element (cls, fields(0)))
-    val ifdBaseType: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val saturationFactor120QAxis: Fielder = parse_element (element (cls, fields(2)))
-    val saturationFactorQAxis: Fielder = parse_element (element (cls, fields(3)))
+    val efdBaseRatio: Fielder = parse_element (element (cls, fields (0)))
+    val ifdBaseType: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val saturationFactor120QAxis: Fielder = parse_element (element (cls, fields (2)))
+    val saturationFactorQAxis: Fielder = parse_element (element (cls, fields (3)))
 
     def parse (context: Context): SynchronousMachineDetailed =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = SynchronousMachineDetailed (
             SynchronousMachineDynamics.parse (context),
             toDouble (mask (efdBaseRatio (), 0)),
@@ -124,17 +139,17 @@ extends
  *
  * In this case a SynchronousMachine in the static model is not represented by anything in the dynamics model, instead it is treated as ordinary load.</font>
  *
- * @param sup [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
+ * @param sup                      [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model associated with this synchronous machine model.
- * @param GenICompensationForGenJ [[ch.ninecode.model.GenICompensationForGenJ GenICompensationForGenJ]] Compensation of voltage compensator's generator for current flow out of this  generator.
- * @param MechanicalLoadDynamics [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Mechanical load model associated with this synchronous machine model.
- * @param SynchronousMachine [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machine to which synchronous machine dynamics model applies.
- * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor model associated with this synchronous machine model.
+ * @param GenICompensationForGenJ  [[ch.ninecode.model.GenICompensationForGenJ GenICompensationForGenJ]] Compensation of voltage compensator's generator for current flow out of this  generator.
+ * @param MechanicalLoadDynamics   [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Mechanical load model associated with this synchronous machine model.
+ * @param SynchronousMachine       [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machine to which synchronous machine dynamics model applies.
+ * @param TurbineGovernorDynamics  [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor model associated with this synchronous machine model.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
- * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
-
-The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.
+ *
+ *            The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineDynamics
 (
@@ -145,13 +160,17 @@ case class SynchronousMachineDynamics
     SynchronousMachine: String,
     TurbineGovernorDynamics: List[String]
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), null, null, List()) }
+    def this () =
+    {
+        this (null, null, List (), null, null, List ())
+    }
+
     /**
      * Return the superclass object.
      *
@@ -160,22 +179,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def RotatingMachineDynamics: RotatingMachineDynamics = sup.asInstanceOf[RotatingMachineDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineDynamics] }
+    def RotatingMachineDynamics: RotatingMachineDynamics = sup.asInstanceOf [RotatingMachineDynamics]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [SynchronousMachineDynamics]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SynchronousMachineDynamics.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SynchronousMachineDynamics.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SynchronousMachineDynamics.fields (position), x))
+
         emitattr (0, ExcitationSystemDynamics)
         emitattrs (1, GenICompensationForGenJ)
         emitattr (2, MechanicalLoadDynamics)
@@ -183,6 +212,7 @@ extends
         emitattrs (4, TurbineGovernorDynamics)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:SynchronousMachineDynamics rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachineDynamics>".format (id, export_fields)
@@ -190,10 +220,10 @@ extends
 }
 
 object SynchronousMachineDynamics
-extends
-    Parseable[SynchronousMachineDynamics]
+    extends
+        Parseable[SynchronousMachineDynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ExcitationSystemDynamics",
         "GenICompensationForGenJ",
         "MechanicalLoadDynamics",
@@ -207,16 +237,16 @@ extends
         Relationship ("SynchronousMachine", "SynchronousMachine", "1", "0..1"),
         Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..*", "0..*")
     )
-    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val GenICompensationForGenJ: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val MechanicalLoadDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val SynchronousMachine: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val TurbineGovernorDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val GenICompensationForGenJ: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val MechanicalLoadDynamics: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val SynchronousMachine: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val TurbineGovernorDynamics: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
 
     def parse (context: Context): SynchronousMachineDynamics =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = SynchronousMachineDynamics (
             RotatingMachineDynamics.parse (context),
             mask (ExcitationSystemDynamics (), 0),
@@ -232,7 +262,7 @@ extends
 
 /**
  * The electrical equations for all variations of the synchronous models are based on the SynchronousEquivalentCircuit diagram for the direct and quadrature axes.
- * 
+ *
  * <b>Equations for conversion between Equivalent Circuit and Time Constant Reactance forms:</b>
  * <b>Xd</b> = <b>Xad</b> + <b>Xl</b>
  * <b>X�d</b> = <b>Xl</b> + <b>Xad</b> * <b>Xfd</b> / (<b>Xad</b> + <b>Xfd</b>)
@@ -259,23 +289,23 @@ extends
  *
  * Are only valid for a simplified model where "Canay" reactance is zero.
  *
- * @param sup [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
- * @param r1d D-axis damper 1 winding resistance.
- * @param r1q Q-axis damper 1 winding resistance.
- * @param r2q Q-axis damper 2 winding resistance.
- * @param rfd Field winding resistance.
- * @param x1d D-axis damper 1 winding leakage reactance.
- * @param x1q Q-axis damper 1 winding leakage reactance.
- * @param x2q Q-axis damper 2 winding leakage reactance.
- * @param xad D-axis mutual reactance.
- * @param xaq Q-axis mutual reactance.
+ * @param sup  [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
+ * @param r1d  D-axis damper 1 winding resistance.
+ * @param r1q  Q-axis damper 1 winding resistance.
+ * @param r2q  Q-axis damper 2 winding resistance.
+ * @param rfd  Field winding resistance.
+ * @param x1d  D-axis damper 1 winding leakage reactance.
+ * @param x1q  Q-axis damper 1 winding leakage reactance.
+ * @param x2q  Q-axis damper 2 winding leakage reactance.
+ * @param xad  D-axis mutual reactance.
+ * @param xaq  Q-axis mutual reactance.
  * @param xf1d Differential mutual (�Canay�) reactance.
- * @param xfd Field winding leakage reactance.
+ * @param xfd  Field winding leakage reactance.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
- * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
-
-The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.
+ *
+ *            The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineEquivalentCircuit
 (
@@ -292,13 +322,17 @@ case class SynchronousMachineEquivalentCircuit
     xf1d: Double,
     xfd: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () =
+    {
+        this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -307,21 +341,30 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SynchronousMachineDetailed: SynchronousMachineDetailed = sup.asInstanceOf[SynchronousMachineDetailed]
-    override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineEquivalentCircuit] }
+    def SynchronousMachineDetailed: SynchronousMachineDetailed = sup.asInstanceOf [SynchronousMachineDetailed]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [SynchronousMachineEquivalentCircuit]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SynchronousMachineEquivalentCircuit.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchronousMachineEquivalentCircuit.fields (position), value)
+
         emitelem (0, r1d)
         emitelem (1, r1q)
         emitelem (2, r2q)
@@ -335,6 +378,7 @@ extends
         emitelem (10, xfd)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:SynchronousMachineEquivalentCircuit rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachineEquivalentCircuit>".format (id, export_fields)
@@ -342,10 +386,10 @@ extends
 }
 
 object SynchronousMachineEquivalentCircuit
-extends
-    Parseable[SynchronousMachineEquivalentCircuit]
+    extends
+        Parseable[SynchronousMachineEquivalentCircuit]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "r1d",
         "r1q",
         "r2q",
@@ -358,22 +402,22 @@ extends
         "xf1d",
         "xfd"
     )
-    val r1d: Fielder = parse_element (element (cls, fields(0)))
-    val r1q: Fielder = parse_element (element (cls, fields(1)))
-    val r2q: Fielder = parse_element (element (cls, fields(2)))
-    val rfd: Fielder = parse_element (element (cls, fields(3)))
-    val x1d: Fielder = parse_element (element (cls, fields(4)))
-    val x1q: Fielder = parse_element (element (cls, fields(5)))
-    val x2q: Fielder = parse_element (element (cls, fields(6)))
-    val xad: Fielder = parse_element (element (cls, fields(7)))
-    val xaq: Fielder = parse_element (element (cls, fields(8)))
-    val xf1d: Fielder = parse_element (element (cls, fields(9)))
-    val xfd: Fielder = parse_element (element (cls, fields(10)))
+    val r1d: Fielder = parse_element (element (cls, fields (0)))
+    val r1q: Fielder = parse_element (element (cls, fields (1)))
+    val r2q: Fielder = parse_element (element (cls, fields (2)))
+    val rfd: Fielder = parse_element (element (cls, fields (3)))
+    val x1d: Fielder = parse_element (element (cls, fields (4)))
+    val x1q: Fielder = parse_element (element (cls, fields (5)))
+    val x2q: Fielder = parse_element (element (cls, fields (6)))
+    val xad: Fielder = parse_element (element (cls, fields (7)))
+    val xaq: Fielder = parse_element (element (cls, fields (8)))
+    val xf1d: Fielder = parse_element (element (cls, fields (9)))
+    val xfd: Fielder = parse_element (element (cls, fields (10)))
 
     def parse (context: Context): SynchronousMachineEquivalentCircuit =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = SynchronousMachineEquivalentCircuit (
             SynchronousMachineDetailed.parse (context),
             toDouble (mask (r1d (), 0)),
@@ -401,21 +445,25 @@ extends
  * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
- * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
-
-The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.
+ *
+ *            The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineSimplified
 (
     override val sup: SynchronousMachineDynamics
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () =
+    {
+        this (null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -424,20 +472,28 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SynchronousMachineDynamics: SynchronousMachineDynamics = sup.asInstanceOf[SynchronousMachineDynamics]
-    override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineSimplified] }
+    def SynchronousMachineDynamics: SynchronousMachineDynamics = sup.asInstanceOf [SynchronousMachineDynamics]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [SynchronousMachineSimplified]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:SynchronousMachineSimplified rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachineSimplified>".format (id, export_fields)
@@ -445,8 +501,8 @@ extends
 }
 
 object SynchronousMachineSimplified
-extends
-    Parseable[SynchronousMachineSimplified]
+    extends
+        Parseable[SynchronousMachineSimplified]
 {
 
     def parse (context: Context): SynchronousMachineSimplified =
@@ -496,38 +552,38 @@ extends
  *
  * </ul>
  *
- * @param sup [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
- * @param ks Saturation loading correction factor (Ks) (&gt;= 0).
- *        Used only by Type J model.  Typical Value = 0.
- * @param modelType Type of synchronous machine model used in Dynamic simulation applications.
- * @param rotorType Type of rotor on physical machine.
- * @param tc Damping time constant for �Canay� reactance.
- *        Typical Value = 0.
- * @param tpdo Direct-axis transient rotor time constant (T'do) (&gt; T''do).
- *        Typical Value = 5.
- * @param tppdo Direct-axis subtransient rotor time constant (T''do) (&gt; 0).
- *        Typical Value = 0.03.
- * @param tppqo Quadrature-axis subtransient rotor time constant (T''qo) (&gt; 0).
- *        Typical Value = 0.03.
- * @param tpqo Quadrature-axis transient rotor time constant (T'qo) (&gt; T''qo).
- *        Typical Value = 0.5.
+ * @param sup             [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
+ * @param ks              Saturation loading correction factor (Ks) (&gt;= 0).
+ *                        Used only by Type J model.  Typical Value = 0.
+ * @param modelType       Type of synchronous machine model used in Dynamic simulation applications.
+ * @param rotorType       Type of rotor on physical machine.
+ * @param tc              Damping time constant for �Canay� reactance.
+ *                        Typical Value = 0.
+ * @param tpdo            Direct-axis transient rotor time constant (T'do) (&gt; T''do).
+ *                        Typical Value = 5.
+ * @param tppdo           Direct-axis subtransient rotor time constant (T''do) (&gt; 0).
+ *                        Typical Value = 0.03.
+ * @param tppqo           Quadrature-axis subtransient rotor time constant (T''qo) (&gt; 0).
+ *                        Typical Value = 0.03.
+ * @param tpqo            Quadrature-axis transient rotor time constant (T'qo) (&gt; T''qo).
+ *                        Typical Value = 0.5.
  * @param xDirectSubtrans Direct-axis subtransient reactance (unsaturated) (X''d) (&gt; Xl).
- *        Typical Value = 0.2.
- * @param xDirectSync Direct-axis synchronous reactance (Xd) (&gt;= X'd).
- *        The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed. Typical Value = 1.8.
- * @param xDirectTrans Direct-axis transient reactance (unsaturated) (X'd) (&gt; =X''d).
- *        Typical Value = 0.5.
- * @param xQuadSubtrans Quadrature-axis subtransient reactance (X''q) (&gt; Xl).
- *        Typical Value = 0.2.
- * @param xQuadSync Quadrature-axis synchronous reactance (Xq) (&gt; =X'q).
- *        The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical Value = 1.6.
- * @param xQuadTrans Quadrature-axis transient reactance (X'q) (&gt; =X''q).
- *        Typical Value = 0.3.
+ *                        Typical Value = 0.2.
+ * @param xDirectSync     Direct-axis synchronous reactance (Xd) (&gt;= X'd).
+ *                        The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed. Typical Value = 1.8.
+ * @param xDirectTrans    Direct-axis transient reactance (unsaturated) (X'd) (&gt; =X''d).
+ *                        Typical Value = 0.5.
+ * @param xQuadSubtrans   Quadrature-axis subtransient reactance (X''q) (&gt; Xl).
+ *                        Typical Value = 0.2.
+ * @param xQuadSync       Quadrature-axis synchronous reactance (Xq) (&gt; =X'q).
+ *                        The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical Value = 1.6.
+ * @param xQuadTrans      Quadrature-axis transient reactance (X'q) (&gt; =X''q).
+ *                        Typical Value = 0.3.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
- * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
-
-The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.
+ *
+ *            The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineTimeConstantReactance
 (
@@ -547,13 +603,17 @@ case class SynchronousMachineTimeConstantReactance
     xQuadSync: Double,
     xQuadTrans: Double
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () =
+    {
+        this (null, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -562,22 +622,32 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def SynchronousMachineDetailed: SynchronousMachineDetailed = sup.asInstanceOf[SynchronousMachineDetailed]
-    override def copy (): Row = { clone ().asInstanceOf[SynchronousMachineTimeConstantReactance] }
+    def SynchronousMachineDetailed: SynchronousMachineDetailed = sup.asInstanceOf [SynchronousMachineDetailed]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [SynchronousMachineTimeConstantReactance]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SynchronousMachineTimeConstantReactance.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchronousMachineTimeConstantReactance.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SynchronousMachineTimeConstantReactance.fields (position), value)
+
         emitelem (0, ks)
         emitattr (1, modelType)
         emitattr (2, rotorType)
@@ -594,6 +664,7 @@ extends
         emitelem (13, xQuadTrans)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:SynchronousMachineTimeConstantReactance rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachineTimeConstantReactance>".format (id, export_fields)
@@ -601,10 +672,10 @@ extends
 }
 
 object SynchronousMachineTimeConstantReactance
-extends
-    Parseable[SynchronousMachineTimeConstantReactance]
+    extends
+        Parseable[SynchronousMachineTimeConstantReactance]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ks",
         "modelType",
         "rotorType",
@@ -620,25 +691,25 @@ extends
         "xQuadSync",
         "xQuadTrans"
     )
-    val ks: Fielder = parse_element (element (cls, fields(0)))
-    val modelType: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val rotorType: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val tc: Fielder = parse_element (element (cls, fields(3)))
-    val tpdo: Fielder = parse_element (element (cls, fields(4)))
-    val tppdo: Fielder = parse_element (element (cls, fields(5)))
-    val tppqo: Fielder = parse_element (element (cls, fields(6)))
-    val tpqo: Fielder = parse_element (element (cls, fields(7)))
-    val xDirectSubtrans: Fielder = parse_element (element (cls, fields(8)))
-    val xDirectSync: Fielder = parse_element (element (cls, fields(9)))
-    val xDirectTrans: Fielder = parse_element (element (cls, fields(10)))
-    val xQuadSubtrans: Fielder = parse_element (element (cls, fields(11)))
-    val xQuadSync: Fielder = parse_element (element (cls, fields(12)))
-    val xQuadTrans: Fielder = parse_element (element (cls, fields(13)))
+    val ks: Fielder = parse_element (element (cls, fields (0)))
+    val modelType: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val rotorType: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val tc: Fielder = parse_element (element (cls, fields (3)))
+    val tpdo: Fielder = parse_element (element (cls, fields (4)))
+    val tppdo: Fielder = parse_element (element (cls, fields (5)))
+    val tppqo: Fielder = parse_element (element (cls, fields (6)))
+    val tpqo: Fielder = parse_element (element (cls, fields (7)))
+    val xDirectSubtrans: Fielder = parse_element (element (cls, fields (8)))
+    val xDirectSync: Fielder = parse_element (element (cls, fields (9)))
+    val xDirectTrans: Fielder = parse_element (element (cls, fields (10)))
+    val xQuadSubtrans: Fielder = parse_element (element (cls, fields (11)))
+    val xQuadSync: Fielder = parse_element (element (cls, fields (12)))
+    val xQuadTrans: Fielder = parse_element (element (cls, fields (13)))
 
     def parse (context: Context): SynchronousMachineTimeConstantReactance =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = SynchronousMachineTimeConstantReactance (
             SynchronousMachineDetailed.parse (context),
             toDouble (mask (ks (), 0)),

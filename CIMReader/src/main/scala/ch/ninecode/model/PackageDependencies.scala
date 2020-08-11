@@ -12,11 +12,11 @@ import ch.ninecode.cim.Relationship
  *
  * This is not the same as the combined packages version.
  *
- * @param sup Reference to the superclass object.
- * @param date Date of last change to the main package dependencies in format YYYY-MM-DD.
- *        This is updated when the version attribute is updated.
+ * @param sup     Reference to the superclass object.
+ * @param date    Date of last change to the main package dependencies in format YYYY-MM-DD.
+ *                This is updated when the version attribute is updated.
  * @param version The version of the main subpackages of the combined CIM model.
- *        The format is simply an integer.  The version (and date) initial values should be updated any time the dependencies in the model change and require an actual change to the diagrams within this package.
+ *                The format is simply an integer.  The version (and date) initial values should be updated any time the dependencies in the model change and require an actual change to the diagrams within this package.
  * @group PackageDependencies
  * @groupname PackageDependencies Package PackageDependencies
  * @groupdesc PackageDependencies This package shows all the root level subpackage dependencies of the combined CIM model.
@@ -27,13 +27,17 @@ case class PackageDependenciesCIMVersion
     date: String,
     version: String
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () =
+    {
+        this (null, null, null)
+    }
+
     /**
      * Return the superclass object.
      *
@@ -42,25 +46,35 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[PackageDependenciesCIMVersion] }
+    def Element: Element = sup.asInstanceOf [Element]
+
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [PackageDependenciesCIMVersion]
+    }
+
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
+            productElement (i).asInstanceOf [AnyRef]
         else
             throw new IllegalArgumentException ("invalid property index " + i)
     }
+
     override def length: Int = productArity
+
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PackageDependenciesCIMVersion.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PackageDependenciesCIMVersion.fields (position), value)
+
         emitelem (0, date)
         emitelem (1, version)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PackageDependenciesCIMVersion rdf:ID=\"%s\">\n%s\t</cim:PackageDependenciesCIMVersion>".format (id, export_fields)
@@ -68,20 +82,20 @@ extends
 }
 
 object PackageDependenciesCIMVersion
-extends
-    Parseable[PackageDependenciesCIMVersion]
+    extends
+        Parseable[PackageDependenciesCIMVersion]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "date",
         "version"
     )
-    val date: Fielder = parse_element (element (cls, fields(0)))
-    val version: Fielder = parse_element (element (cls, fields(1)))
+    val date: Fielder = parse_element (element (cls, fields (0)))
+    val version: Fielder = parse_element (element (cls, fields (1)))
 
     def parse (context: Context): PackageDependenciesCIMVersion =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
+        implicit var bitfields: Array[Int] = Array (0)
         val ret = PackageDependenciesCIMVersion (
             BasicElement.parse (context),
             mask (date (), 0),

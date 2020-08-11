@@ -8,13 +8,15 @@ import scala.collection.mutable.ArrayBuffer
  * Contains the raw XML, indexes at which to start and stop parsing,
  * the line number index of newlines within the XML,
  * text coverage set (in debug) and error messages raised while parsing.
- * @param xml The current xml string being parsed.
- * @param start The starting character position of the xml string - non-zero if not the first Split.
- * @param end The ending character position at which to stop parsing.
+ *
+ * @param xml        The current xml string being parsed.
+ * @param start      The starting character position of the xml string - non-zero if not the first Split.
+ * @param end        The ending character position at which to stop parsing.
  * @param first_byte The byte offset of the first character to be parsed.
  */
 class Context (var xml: String, val start: Long, var end: Long, var first_byte: Long)
 {
+
     import Context._
 
     /**
@@ -47,11 +49,12 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
      * The index of newlines for the string
      * "Now is the time\nfor all good men\nto come to the aid of the party\n"
      * is [15, 32, 64]
+     *
      * @param string the string to index
      * @param offset optional offset to add to the index values
      * @return {Unit} nothing
      */
-    def index_string (string: String, offset: Long = 0L, n: ArrayBuffer[Long] = ArrayBuffer[Long] ()): ArrayBuffer[Long] =
+    def index_string (string: String, offset: Long = 0L, n: ArrayBuffer[Long] = ArrayBuffer [Long]()): ArrayBuffer[Long] =
     {
         val matcher = lines.matcher (string)
         while (matcher.find ())
@@ -63,6 +66,7 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
      * Get the line number for the given offset value.
      * Uses a binary search through the newline array to determine where the
      * given offset lies in the source stream.
+     *
      * @param offset the character position in the stream
      * @return the line number (1 + how many newlines precede the offset)
      */
@@ -75,17 +79,18 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
         while (min <= max)
         {
             index = (min + max) / 2 | 0
-            val item = newlines(index)
+            val item = newlines (index)
 
             if (item < offset)
                 min = index + 1
-            else if (item > offset)
-                max = index - 1
             else
-                return index + 1
+                if (item > offset)
+                    max = index - 1
+                else
+                    return index + 1
         }
 
-        if (newlines(index) <= offset)
+        if (newlines (index) <= offset)
             index += 1
 
         index + 1
@@ -94,6 +99,7 @@ class Context (var xml: String, val start: Long, var end: Long, var first_byte: 
     /**
      * Check that all characters were consumed by parsing.
      * Used to find attributes and references that are not understood by the model.
+     *
      * @return <code>true</code> if all non-whitespace characters were parsed.
      */
     def covered (): Boolean =
