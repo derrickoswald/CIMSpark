@@ -49,15 +49,15 @@ class CIMAbout (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
                 val fields = (for (i <- 0 until original.length) yield original.get (i)).toArray
                 for (about ← abouts)
                     if (clz.getCanonicalName == about.getClass.getCanonicalName) // check the class is the same
-                        {
-                            for (i <- 0 until original.length - 1)
-                                if (about.mask (i))
-                                {
-                                    fields (i + 1) = about.get (i + 1) // shift by one to avoid superclass
-                                    bitfields (i / 32) |= (1 << (i % 32))
-                                }
-                        }
-                        else
+                    {
+                        for (i <- 0 until original.length - 1)
+                            if (about.mask (i))
+                            {
+                                fields (i + 1) = about.get (i + 1) // shift by one to avoid superclass
+                                bitfields (i / 32) |= (1 << (i % 32))
+                            }
+                    }
+                    else
                         log.error ("rdf:about class %s is not the same as the reference class %s".format (about.getClass.getCanonicalName, clz.getCanonicalName))
                 // recurse for superclasses
                 fields (0) = if (null != original.sup) merge ((original.sup, Some (abouts.map (_.sup)))) else null

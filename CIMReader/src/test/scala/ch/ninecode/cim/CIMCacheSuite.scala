@@ -57,7 +57,8 @@ class CIMCacheSuite extends ch.ninecode.SparkSuite
             elements1.unpersist (true)
             spark.sparkContext.getPersistentRDDs.foreach (x ⇒
             {
-                x._2.unpersist (true); x._2.name = null
+                x._2.unpersist (true);
+                x._2.name = null
             })
 
             assert (cache.exists (), "cache created")

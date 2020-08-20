@@ -73,7 +73,7 @@ class CIMNormalize (spark: SparkSession, storage: StorageLevel = StorageLevel.ME
             {
                 val list = clz.get (fields.indexOf (relationship.field) + 1).asInstanceOf [List[String]]
                 if (null != list && list.nonEmpty) // could also check bitfields instead of checking for null
-                ret = ret :+ Relation (id, parent_class, relationship, list)
+                    ret = ret :+ Relation (id, parent_class, relationship, list)
             }
             )
             clz = clz.sup
@@ -102,22 +102,22 @@ class CIMNormalize (spark: SparkSession, storage: StorageLevel = StorageLevel.ME
         val class_name = clz.getName
         val bitfields = element.bitfields.clone ()
         if (child == class_name.substring (class_name.lastIndexOf (".") + 1)) // e.g. ACLineSegment
+        {
+            val field_names = companion [Parser](class_name).fields
+            val index = field_names.indexOf (field)
+            if (-1 != index)
             {
-                val field_names = companion [Parser](class_name).fields
-                val index = field_names.indexOf (field)
-                if (-1 != index)
-                {
-                    log.debug ("%s:%s.%s = %s".format (child, element.id, field, if (null == value) "null" else value.toString))
-                    fields (index + 1) = value
-                    bitfields (index / 32) = if (setbit)
-                        bitfields (index / 32) | (1 << (index % 32))
-                    else
-                        bitfields (index / 32) & ~(1 << (index % 32))
-                }
+                log.debug ("%s:%s.%s = %s".format (child, element.id, field, if (null == value) "null" else value.toString))
+                fields (index + 1) = value
+                bitfields (index / 32) = if (setbit)
+                    bitfields (index / 32) | (1 << (index % 32))
                 else
-                    log.error ("field %s not found in class %s, value cannot be set".format (field, class_name))
+                    bitfields (index / 32) & ~(1 << (index % 32))
             }
             else
+                log.error ("field %s not found in class %s, value cannot be set".format (field, class_name))
+        }
+        else
             fields (0) = set (element.sup, child, field, value)
         val c = clz.getConstructors.filter (_.getParameterCount == fields.length).head
         val obj = c.newInstance (fields: _*)

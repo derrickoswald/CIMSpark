@@ -75,7 +75,7 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
         val ret = elements.head
         if (1 != elements.size)
         // check for equality
-        check (ret, elements.tail)
+            check (ret, elements.tail)
         ret
     }
 

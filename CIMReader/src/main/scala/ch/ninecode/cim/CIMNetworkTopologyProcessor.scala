@@ -376,7 +376,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             if (!duplicates.isEmpty ())
                 duplicates.collect.map (x =>
                 {
-                    log.error (s"VertexId clash (${x._1}) for ${x._2.head.node_label} and ${x._2.tail.head.node_label}"); 1
+                    log.error (s"VertexId clash (${x._1}) for ${x._2.head.node_label} and ${x._2.tail.head.node_label}");
+                    1
                 })
 
             // check for missing vertices
@@ -388,7 +389,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             if (!missing.isEmpty)
                 missing.collect.map (x =>
                 {
-                    log.error (s"${x._1} missing ConnectivityNode ${x._2}"); 1
+                    log.error (s"${x._1} missing ConnectivityNode ${x._2}");
+                    1
                 })
         }
 
@@ -471,7 +473,10 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         // transfer the labels back to the full vertices
         val nv = ng.vertices.join (graph.vertices).map (x =>
         {
-            val v = x._2._2; v.node = x._2._1.node; v.node_label = x._2._1.node_label; (x._1, v)
+            val v = x._2._2;
+            v.node = x._2._1.node;
+            v.node_label = x._2._1.node_label;
+            (x._1, v)
         })
 
         // rebuild the graph
@@ -693,8 +698,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         {
             if (null == msg)
             // initially assign each node to it's own island
-            attr.island = attr.node
-                else
+                attr.island = attr.node
+            else
                 if (attr.island > msg.island)
                 {
                     attr.island = msg.island
