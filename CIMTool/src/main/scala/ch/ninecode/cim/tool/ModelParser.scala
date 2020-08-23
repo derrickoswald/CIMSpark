@@ -15,7 +15,7 @@ case class ModelParser (model: File)
     type ID = Int
 
     // override the normal UTF8 encoding for Windows-1252
-    val db: Database = new DatabaseBuilder (model).setCharset (Charset.forName ("Windows-1252")).open ()
+    lazy val db: Database = new DatabaseBuilder (model).setCharset (Charset.forName ("Windows-1252")).open ()
 
     lazy val getPackageTable: Table =   db.getTable ("t_package")
     lazy val getObjectTable: Table =    db.getTable ("t_object")
