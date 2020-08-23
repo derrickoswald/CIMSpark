@@ -22,7 +22,7 @@ class CIMSparkSuite extends ch.ninecode.SparkSuite
         new Unzip ().unzip (s"${FILE_DEPOT}CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
         new Unzip ().unzip (s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", s"${FILE_DEPOT}RealGrid/")
         // run the tests
-        val ret  = super.run (testName, args)
+        val ret = super.run (testName, args)
         // erase the unpacked files
         deleteRecursive (new File (s"${FILE_DEPOT}MicroGrid/"))
         deleteRecursive (new File (s"${FILE_DEPOT}MicroGrid_Error/"))
@@ -35,7 +35,7 @@ class CIMSparkSuite extends ch.ninecode.SparkSuite
     test ("Basic")
     {
         implicit session: SparkSession =>
-            val options = Map[String, String] (
+            val options = Map [String, String](
                 "ch.ninecode.cim.make_edges" -> "true",
                 "ch.ninecode.cim.do_topo_islands" -> "true")
             val elements = readFile (FILENAME, options)
@@ -52,7 +52,7 @@ class CIMSparkSuite extends ch.ninecode.SparkSuite
             val elements1 = readFile (FILENAME)
             val count1 = elements1.count ()
             assert (count1 === ELEMENTS1x)
-            val options = Map[String, String] ("ch.ninecode.cim.do_deduplication" -> "true")
+            val options = Map [String, String]("ch.ninecode.cim.do_deduplication" -> "true")
             val elements2 = readFile (s"$FILENAME,$FILENAME", options)
             val count2 = elements2.count ()
             assert (count1 === count2)

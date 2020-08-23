@@ -15,11 +15,11 @@ import ch.ninecode.cim.CIMSerializer
 /**
  * The Area Control Error tariff type that is applied or used.
  *
- * @param Element Reference to the superclass object.
- * @param type The coded type of an ACE tariff.
+ * @param Element        Reference to the superclass object.
+ * @param type           The coded type of an ACE tariff.
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
- * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
- * @param Unit [[ch.ninecode.model.Unit_ Unit_]] <em>undocumented</em>
+ * @param Point          [[ch.ninecode.model.Point Point]] <em>undocumented</em>
+ * @param Unit           [[ch.ninecode.model.Unit_ Unit_]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -32,8 +32,8 @@ final case class AceTariffType
     Point: List[String] = null,
     Unit: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -59,20 +59,27 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AceTariffType.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AceTariffType.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AceTariffType.fields (position), x))
+
         emitelem (0, `type`)
         emitattrs (1, MarketDocument)
         emitattrs (2, Point)
         emitattrs (3, Unit)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:AceTariffType rdf:ID=\"%s\">\n%s\t</cim:AceTariffType>".format (id, export_fields)
@@ -80,10 +87,10 @@ extends
 }
 
 object AceTariffType
-extends
-    CIMParseable[AceTariffType]
+    extends
+        CIMParseable[AceTariffType]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "type",
         "MarketDocument",
         "Point",
@@ -94,15 +101,15 @@ extends
         CIMRelationship ("Point", "Point", "0..*", "0..*"),
         CIMRelationship ("Unit", "Unit_", "0..*", "0..*")
     )
-    val `type`: Fielder = parse_element (element (cls, fields(0)))
-    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Unit: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val `type`: Fielder = parse_element (element (cls, fields (0)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val Point: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val Unit: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): AceTariffType =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = AceTariffType (
             BasicElement.parse (context),
             mask (`type` (), 0),
@@ -127,7 +134,7 @@ object AceTariffTypeSerializer extends CIMSerializer[AceTariffType]
             () => writeList (obj.Point, output),
             () => writeList (obj.Unit, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -135,7 +142,7 @@ object AceTariffTypeSerializer extends CIMSerializer[AceTariffType]
 
     def read (kryo: Kryo, input: Input, cls: Class[AceTariffType]): AceTariffType =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = AceTariffType (
             parent,
@@ -152,12 +159,12 @@ object AceTariffTypeSerializer extends CIMSerializer[AceTariffType]
 /**
  * A class used to provide information about an attribute.
  *
- * @param Element Reference to the superclass object.
- * @param attribute The identification of the formal name of an attribute.
+ * @param Element        Reference to the superclass object.
+ * @param attribute      The identification of the formal name of an attribute.
  * @param attributeValue The instance value of the attribute.
- * @param position A sequential value representing a relative sequence number.
+ * @param position       A sequential value representing a relative sequence number.
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param TimeSeries     [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -171,8 +178,8 @@ final case class AttributeInstanceComponent
     MarketDocument: List[String] = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -198,14 +205,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AttributeInstanceComponent.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AttributeInstanceComponent.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (AttributeInstanceComponent.fields (position), x))
+
         emitelem (0, attribute)
         emitelem (1, attributeValue)
         emitelem (2, position)
@@ -213,6 +226,7 @@ extends
         emitattrs (4, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:AttributeInstanceComponent rdf:ID=\"%s\">\n%s\t</cim:AttributeInstanceComponent>".format (id, export_fields)
@@ -220,10 +234,10 @@ extends
 }
 
 object AttributeInstanceComponent
-extends
-    CIMParseable[AttributeInstanceComponent]
+    extends
+        CIMParseable[AttributeInstanceComponent]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "attribute",
         "attributeValue",
         "position",
@@ -234,16 +248,16 @@ extends
         CIMRelationship ("MarketDocument", "MarketDocument", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val attribute: Fielder = parse_element (element (cls, fields(0)))
-    val attributeValue: Fielder = parse_element (element (cls, fields(1)))
-    val position: Fielder = parse_element (element (cls, fields(2)))
-    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val attribute: Fielder = parse_element (element (cls, fields (0)))
+    val attributeValue: Fielder = parse_element (element (cls, fields (1)))
+    val position: Fielder = parse_element (element (cls, fields (2)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
 
     def parse (context: CIMContext): AttributeInstanceComponent =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = AttributeInstanceComponent (
             BasicElement.parse (context),
             mask (attribute (), 0),
@@ -270,7 +284,7 @@ object AttributeInstanceComponentSerializer extends CIMSerializer[AttributeInsta
             () => writeList (obj.MarketDocument, output),
             () => writeList (obj.TimeSeries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -278,7 +292,7 @@ object AttributeInstanceComponentSerializer extends CIMSerializer[AttributeInsta
 
     def read (kryo: Kryo, input: Input, cls: Class[AttributeInstanceComponent]): AttributeInstanceComponent =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = AttributeInstanceComponent (
             parent,
@@ -297,13 +311,13 @@ object AttributeInstanceComponentSerializer extends CIMSerializer[AttributeInsta
  * A class providing the identification and type of an auction.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param allocationMode Identification of the method of allocation in an auction.
- * @param cancelled An indicator that signifies that the auction has been cancelled.
- * @param category The product category of an auction.
- * @param paymentTerms The terms which dictate the determination of the bid payment price.
- * @param rights The rights of use the transmission capacity acquired in an auction.
- * @param type The kind of the Auction (e.g. implicit, explicit ...).
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param allocationMode   Identification of the method of allocation in an auction.
+ * @param cancelled        An indicator that signifies that the auction has been cancelled.
+ * @param category         The product category of an auction.
+ * @param paymentTerms     The terms which dictate the determination of the bid payment price.
+ * @param rights           The rights of use the transmission capacity acquired in an auction.
+ * @param type             The kind of the Auction (e.g. implicit, explicit ...).
+ * @param TimeSeries       [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -319,8 +333,8 @@ final case class Auction
     `type`: String = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -346,14 +360,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Auction.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Auction.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Auction.fields (position), x))
+
         emitelem (0, allocationMode)
         emitelem (1, cancelled)
         emitelem (2, category)
@@ -363,6 +383,7 @@ extends
         emitattrs (6, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Auction rdf:ID=\"%s\">\n%s\t</cim:Auction>".format (id, export_fields)
@@ -370,10 +391,10 @@ extends
 }
 
 object Auction
-extends
-    CIMParseable[Auction]
+    extends
+        CIMParseable[Auction]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "allocationMode",
         "cancelled",
         "category",
@@ -385,18 +406,18 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val allocationMode: Fielder = parse_element (element (cls, fields(0)))
-    val cancelled: Fielder = parse_element (element (cls, fields(1)))
-    val category: Fielder = parse_element (element (cls, fields(2)))
-    val paymentTerms: Fielder = parse_element (element (cls, fields(3)))
-    val rights: Fielder = parse_element (element (cls, fields(4)))
-    val `type`: Fielder = parse_element (element (cls, fields(5)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val allocationMode: Fielder = parse_element (element (cls, fields (0)))
+    val cancelled: Fielder = parse_element (element (cls, fields (1)))
+    val category: Fielder = parse_element (element (cls, fields (2)))
+    val paymentTerms: Fielder = parse_element (element (cls, fields (3)))
+    val rights: Fielder = parse_element (element (cls, fields (4)))
+    val `type`: Fielder = parse_element (element (cls, fields (5)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
 
     def parse (context: CIMContext): Auction =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Auction (
             IdentifiedObject.parse (context),
             mask (allocationMode (), 0),
@@ -435,7 +456,7 @@ object AuctionSerializer extends CIMSerializer[Auction]
 
     def read (kryo: Kryo, input: Input, cls: Class[Auction]): Auction =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Auction (
             parent,
@@ -455,20 +476,20 @@ object AuctionSerializer extends CIMSerializer[Auction]
 /**
  * The formal specification of specific characteristics related to a bid.
  *
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] Reference to the superclass object.
- * @param blockBid Indication that  the values in the period are considered as a whole.
- *        They cannot be changed or subdivided.
- * @param direction The coded identification of the energy flow.
- * @param divisible An indication whether or not each element of the bid may be partially accepted or not.
+ * @param TimeSeries                  [[ch.ninecode.model.TimeSeries TimeSeries]] Reference to the superclass object.
+ * @param blockBid                    Indication that  the values in the period are considered as a whole.
+ *                                    They cannot be changed or subdivided.
+ * @param direction                   The coded identification of the energy flow.
+ * @param divisible                   An indication whether or not each element of the bid may be partially accepted or not.
  * @param exclusiveBidsIdentification Unique identification associated with all linked tenders.
- *        The identification of a set of tenders that are linked together signifying that only one can be accepted.
- *        This identification is defined by the tenderer and must be unique for a given auction.
- * @param linkedBidsIdentification Unique identification associated with all linked bids.
- * @param minimumActivationQuantity The minimum quantity of energy that can be activated at a given time interval.
- * @param priority The numeric local priority given to a bid.
- *        Lower numeric values will have higher priority.
- * @param status The information about the status of the bid, such as "shared", "restricted", ...
- * @param stepIncrementQuantity The minimum increment that can be applied for an increase in an activation request.
+ *                                    The identification of a set of tenders that are linked together signifying that only one can be accepted.
+ *                                    This identification is defined by the tenderer and must be unique for a given auction.
+ * @param linkedBidsIdentification    Unique identification associated with all linked bids.
+ * @param minimumActivationQuantity   The minimum quantity of energy that can be activated at a given time interval.
+ * @param priority                    The numeric local priority given to a bid.
+ *                                    Lower numeric values will have higher priority.
+ * @param status                      The information about the status of the bid, such as "shared", "restricted", ...
+ * @param stepIncrementQuantity       The minimum increment that can be applied for an increase in an activation request.
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -486,8 +507,8 @@ final case class BidTimeSeries
     status: String = null,
     stepIncrementQuantity: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -513,13 +534,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BidTimeSeries.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BidTimeSeries.fields (position), value)
+
         emitelem (0, blockBid)
         emitelem (1, direction)
         emitelem (2, divisible)
@@ -531,6 +557,7 @@ extends
         emitelem (8, stepIncrementQuantity)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BidTimeSeries rdf:ID=\"%s\">\n%s\t</cim:BidTimeSeries>".format (id, export_fields)
@@ -538,10 +565,10 @@ extends
 }
 
 object BidTimeSeries
-extends
-    CIMParseable[BidTimeSeries]
+    extends
+        CIMParseable[BidTimeSeries]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "blockBid",
         "direction",
         "divisible",
@@ -552,20 +579,20 @@ extends
         "status",
         "stepIncrementQuantity"
     )
-    val blockBid: Fielder = parse_element (element (cls, fields(0)))
-    val direction: Fielder = parse_element (element (cls, fields(1)))
-    val divisible: Fielder = parse_element (element (cls, fields(2)))
-    val exclusiveBidsIdentification: Fielder = parse_element (element (cls, fields(3)))
-    val linkedBidsIdentification: Fielder = parse_element (element (cls, fields(4)))
-    val minimumActivationQuantity: Fielder = parse_element (element (cls, fields(5)))
-    val priority: Fielder = parse_element (element (cls, fields(6)))
-    val status: Fielder = parse_element (element (cls, fields(7)))
-    val stepIncrementQuantity: Fielder = parse_element (element (cls, fields(8)))
+    val blockBid: Fielder = parse_element (element (cls, fields (0)))
+    val direction: Fielder = parse_element (element (cls, fields (1)))
+    val divisible: Fielder = parse_element (element (cls, fields (2)))
+    val exclusiveBidsIdentification: Fielder = parse_element (element (cls, fields (3)))
+    val linkedBidsIdentification: Fielder = parse_element (element (cls, fields (4)))
+    val minimumActivationQuantity: Fielder = parse_element (element (cls, fields (5)))
+    val priority: Fielder = parse_element (element (cls, fields (6)))
+    val status: Fielder = parse_element (element (cls, fields (7)))
+    val stepIncrementQuantity: Fielder = parse_element (element (cls, fields (8)))
 
     def parse (context: CIMContext): BidTimeSeries =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = BidTimeSeries (
             TimeSeries.parse (context),
             mask (blockBid (), 0),
@@ -608,7 +635,7 @@ object BidTimeSeriesSerializer extends CIMSerializer[BidTimeSeries]
 
     def read (kryo: Kryo, input: Input, cls: Class[BidTimeSeries]): BidTimeSeries =
     {
-        val parent = TimeSeriesSerializer.read (kryo, input, classOf[TimeSeries])
+        val parent = TimeSeriesSerializer.read (kryo, input, classOf [TimeSeries])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = BidTimeSeries (
             parent,
@@ -630,9 +657,9 @@ object BidTimeSeriesSerializer extends CIMSerializer[BidTimeSeries]
 /**
  * Duration constraint to activate, to put in operation, to deactivate, ... a given event.
  *
- * @param Element Reference to the superclass object.
- * @param duration The duration of the constraint.
- * @param type The type of the constraint.
+ * @param Element    Reference to the superclass object.
+ * @param duration   The duration of the constraint.
+ * @param type       The type of the constraint.
  * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
@@ -645,8 +672,8 @@ final case class ConstraintDuration
     `type`: String = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -672,19 +699,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ConstraintDuration.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ConstraintDuration.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ConstraintDuration.fields (position), x))
+
         emitelem (0, duration)
         emitelem (1, `type`)
         emitattrs (2, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ConstraintDuration rdf:ID=\"%s\">\n%s\t</cim:ConstraintDuration>".format (id, export_fields)
@@ -692,10 +726,10 @@ extends
 }
 
 object ConstraintDuration
-extends
-    CIMParseable[ConstraintDuration]
+    extends
+        CIMParseable[ConstraintDuration]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "duration",
         "type",
         "TimeSeries"
@@ -703,14 +737,14 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val duration: Fielder = parse_element (element (cls, fields(0)))
-    val `type`: Fielder = parse_element (element (cls, fields(1)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val duration: Fielder = parse_element (element (cls, fields (0)))
+    val `type`: Fielder = parse_element (element (cls, fields (1)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): ConstraintDuration =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ConstraintDuration (
             BasicElement.parse (context),
             mask (duration (), 0),
@@ -733,7 +767,7 @@ object ConstraintDurationSerializer extends CIMSerializer[ConstraintDuration]
             () => output.writeString (obj.`type`),
             () => writeList (obj.TimeSeries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -741,7 +775,7 @@ object ConstraintDurationSerializer extends CIMSerializer[ConstraintDuration]
 
     def read (kryo: Kryo, input: Input, cls: Class[ConstraintDuration]): ConstraintDuration =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ConstraintDuration (
             parent,
@@ -757,11 +791,11 @@ object ConstraintDurationSerializer extends CIMSerializer[ConstraintDuration]
 /**
  * The date and/or the time.
  *
- * @param Element Reference to the superclass object.
- * @param date Date as "yyyy-mm-dd", which conforms with ISO 8601
- * @param time Time as "hh:mm:ss.sssZ", which conforms with ISO 8601.
+ * @param Element        Reference to the superclass object.
+ * @param date           Date as "yyyy-mm-dd", which conforms with ISO 8601
+ * @param time           Time as "hh:mm:ss.sssZ", which conforms with ISO 8601.
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param TimeSeries     [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -774,8 +808,8 @@ final case class DateAndOrTime
     MarketDocument: List[String] = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -801,20 +835,27 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DateAndOrTime.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DateAndOrTime.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (DateAndOrTime.fields (position), x))
+
         emitelem (0, date)
         emitelem (1, time)
         emitattrs (2, MarketDocument)
         emitattrs (3, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:DateAndOrTime rdf:ID=\"%s\">\n%s\t</cim:DateAndOrTime>".format (id, export_fields)
@@ -822,10 +863,10 @@ extends
 }
 
 object DateAndOrTime
-extends
-    CIMParseable[DateAndOrTime]
+    extends
+        CIMParseable[DateAndOrTime]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "date",
         "time",
         "MarketDocument",
@@ -835,15 +876,15 @@ extends
         CIMRelationship ("MarketDocument", "MarketDocument", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val date: Fielder = parse_element (element (cls, fields(0)))
-    val time: Fielder = parse_element (element (cls, fields(1)))
-    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val date: Fielder = parse_element (element (cls, fields (0)))
+    val time: Fielder = parse_element (element (cls, fields (1)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): DateAndOrTime =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = DateAndOrTime (
             BasicElement.parse (context),
             mask (date (), 0),
@@ -868,7 +909,7 @@ object DateAndOrTimeSerializer extends CIMSerializer[DateAndOrTime]
             () => writeList (obj.MarketDocument, output),
             () => writeList (obj.TimeSeries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -876,7 +917,7 @@ object DateAndOrTimeSerializer extends CIMSerializer[DateAndOrTime]
 
     def read (kryo: Kryo, input: Input, cls: Class[DateAndOrTime]): DateAndOrTime =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DateAndOrTime (
             parent,
@@ -893,12 +934,12 @@ object DateAndOrTimeSerializer extends CIMSerializer[DateAndOrTime]
 /**
  * An area of activity defined within the energy market.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
- * @param Price [[ch.ninecode.model.Price Price]] <em>undocumented</em>
- * @param Quantity [[ch.ninecode.model.Quantity Quantity]] <em>undocumented</em>
+ * @param IdentifiedObject   [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param MarketDocument     [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param Price              [[ch.ninecode.model.Price Price]] <em>undocumented</em>
+ * @param Quantity           [[ch.ninecode.model.Quantity Quantity]] <em>undocumented</em>
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param TimeSeries         [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -912,8 +953,8 @@ final case class Domain
     RegisteredResource: List[String] = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -939,13 +980,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Domain.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Domain.fields (position), x))
+
         emitattrs (0, MarketDocument)
         emitattrs (1, Price)
         emitattrs (2, Quantity)
@@ -953,6 +999,7 @@ extends
         emitattrs (4, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Domain rdf:ID=\"%s\">\n%s\t</cim:Domain>".format (id, export_fields)
@@ -960,10 +1007,10 @@ extends
 }
 
 object Domain
-extends
-    CIMParseable[Domain]
+    extends
+        CIMParseable[Domain]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "MarketDocument",
         "Price",
         "Quantity",
@@ -977,16 +1024,16 @@ extends
         CIMRelationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val Price: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val Quantity: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val Price: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val Quantity: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
 
     def parse (context: CIMContext): Domain =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Domain (
             IdentifiedObject.parse (context),
             masks (MarketDocument (), 0),
@@ -1021,7 +1068,7 @@ object DomainSerializer extends CIMSerializer[Domain]
 
     def read (kryo: Kryo, input: Input, cls: Class[Domain]): Domain =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Domain (
             parent,
@@ -1039,9 +1086,9 @@ object DomainSerializer extends CIMSerializer[Domain]
 /**
  * The coded identification of the direction of energy flow.
  *
- * @param Element Reference to the superclass object.
- * @param direction The coded identification of the direction of energy flow.
- * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
+ * @param Element    Reference to the superclass object.
+ * @param direction  The coded identification of the direction of energy flow.
+ * @param Point      [[ch.ninecode.model.Point Point]] <em>undocumented</em>
  * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
@@ -1054,8 +1101,8 @@ final case class FlowDirection
     Point: List[String] = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1081,19 +1128,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FlowDirection.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FlowDirection.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (FlowDirection.fields (position), x))
+
         emitelem (0, direction)
         emitattrs (1, Point)
         emitattrs (2, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:FlowDirection rdf:ID=\"%s\">\n%s\t</cim:FlowDirection>".format (id, export_fields)
@@ -1101,10 +1155,10 @@ extends
 }
 
 object FlowDirection
-extends
-    CIMParseable[FlowDirection]
+    extends
+        CIMParseable[FlowDirection]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "direction",
         "Point",
         "TimeSeries"
@@ -1113,14 +1167,14 @@ extends
         CIMRelationship ("Point", "Point", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val direction: Fielder = parse_element (element (cls, fields(0)))
-    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val direction: Fielder = parse_element (element (cls, fields (0)))
+    val Point: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): FlowDirection =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = FlowDirection (
             BasicElement.parse (context),
             mask (direction (), 0),
@@ -1143,7 +1197,7 @@ object FlowDirectionSerializer extends CIMSerializer[FlowDirection]
             () => writeList (obj.Point, output),
             () => writeList (obj.TimeSeries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -1151,7 +1205,7 @@ object FlowDirectionSerializer extends CIMSerializer[FlowDirection]
 
     def read (kryo: Kryo, input: Input, cls: Class[FlowDirection]): FlowDirection =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = FlowDirection (
             parent,
@@ -1176,8 +1230,8 @@ final case class MarketAgreement
 (
     MarketDocument: MarketDocument = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1203,12 +1257,16 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:MarketAgreement rdf:ID=\"%s\">\n%s\t</cim:MarketAgreement>".format (id, export_fields)
@@ -1216,8 +1274,8 @@ extends
 }
 
 object MarketAgreement
-extends
-    CIMParseable[MarketAgreement]
+    extends
+        CIMParseable[MarketAgreement]
 {
 
     def parse (context: CIMContext): MarketAgreement =
@@ -1246,7 +1304,7 @@ object MarketAgreementSerializer extends CIMSerializer[MarketAgreement]
 
     def read (kryo: Kryo, input: Input, cls: Class[MarketAgreement]): MarketAgreement =
     {
-        val parent = MarketDocumentSerializer.read (kryo, input, classOf[MarketDocument])
+        val parent = MarketDocumentSerializer.read (kryo, input, classOf [MarketDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MarketAgreement (
             parent
@@ -1259,18 +1317,18 @@ object MarketAgreementSerializer extends CIMSerializer[MarketAgreement]
 /**
  * Electronic document containing the information necessary to satisfy a given business process set of requirements.
  *
- * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param AceTariffType [[ch.ninecode.model.AceTariffType AceTariffType]] <em>undocumented</em>
+ * @param Document                   [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param AceTariffType              [[ch.ninecode.model.AceTariffType AceTariffType]] <em>undocumented</em>
  * @param AttributeInstanceComponent [[ch.ninecode.model.AttributeInstanceComponent AttributeInstanceComponent]] <em>undocumented</em>
- * @param DateAndOrTime [[ch.ninecode.model.DateAndOrTime DateAndOrTime]] <em>undocumented</em>
- * @param Domain [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
- * @param MarketDocument_attr [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
- * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
- * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
- * @param Process [[ch.ninecode.model.Process Process]] <em>undocumented</em>
- * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
- * @param SelfMarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param DateAndOrTime              [[ch.ninecode.model.DateAndOrTime DateAndOrTime]] <em>undocumented</em>
+ * @param Domain                     [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
+ * @param MarketDocument_attr        [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param MarketParticipant          [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
+ * @param Period                     [[ch.ninecode.model.Period Period]] <em>undocumented</em>
+ * @param Process                    [[ch.ninecode.model.Process Process]] <em>undocumented</em>
+ * @param Reason                     [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
+ * @param SelfMarketDocument         [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param TimeSeries                 [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -1290,8 +1348,8 @@ final case class MarketDocument
     SelfMarketDocument: List[String] = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1317,13 +1375,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketDocument.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketDocument.fields (position), x))
+
         emitattrs (0, AceTariffType)
         emitattrs (1, AttributeInstanceComponent)
         emitattrs (2, DateAndOrTime)
@@ -1337,6 +1400,7 @@ extends
         emitattrs (10, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MarketDocument rdf:ID=\"%s\">\n%s\t</cim:MarketDocument>".format (id, export_fields)
@@ -1344,10 +1408,10 @@ extends
 }
 
 object MarketDocument
-extends
-    CIMParseable[MarketDocument]
+    extends
+        CIMParseable[MarketDocument]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "AceTariffType",
         "AttributeInstanceComponent",
         "DateAndOrTime",
@@ -1373,22 +1437,22 @@ extends
         CIMRelationship ("SelfMarketDocument", "MarketDocument", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val AttributeInstanceComponent: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val DateAndOrTime: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val MarketDocument_attr: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val MarketParticipant: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val Period: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val Process: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val SelfMarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val AttributeInstanceComponent: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val DateAndOrTime: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val MarketDocument_attr: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val MarketParticipant: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val Period: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
+    val Process: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val SelfMarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
 
     def parse (context: CIMContext): MarketDocument =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = MarketDocument (
             Document.parse (context),
             masks (AceTariffType (), 0),
@@ -1435,7 +1499,7 @@ object MarketDocumentSerializer extends CIMSerializer[MarketDocument]
 
     def read (kryo: Kryo, input: Input, cls: Class[MarketDocument]): MarketDocument =
     {
-        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        val parent = DocumentSerializer.read (kryo, input, classOf [Document])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MarketDocument (
             parent,
@@ -1470,8 +1534,8 @@ final case class MarketEvaluationPoint
     UsagePoint: UsagePoint = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1497,16 +1561,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketEvaluationPoint.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketEvaluationPoint.fields (position), x))
+
         emitattrs (0, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MarketEvaluationPoint rdf:ID=\"%s\">\n%s\t</cim:MarketEvaluationPoint>".format (id, export_fields)
@@ -1514,21 +1584,21 @@ extends
 }
 
 object MarketEvaluationPoint
-extends
-    CIMParseable[MarketEvaluationPoint]
+    extends
+        CIMParseable[MarketEvaluationPoint]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "TimeSeries"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): MarketEvaluationPoint =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = MarketEvaluationPoint (
             UsagePoint.parse (context),
             masks (TimeSeries (), 0)
@@ -1555,7 +1625,7 @@ object MarketEvaluationPointSerializer extends CIMSerializer[MarketEvaluationPoi
 
     def read (kryo: Kryo, input: Input, cls: Class[MarketEvaluationPoint]): MarketEvaluationPoint =
     {
-        val parent = UsagePointSerializer.read (kryo, input, classOf[UsagePoint])
+        val parent = UsagePointSerializer.read (kryo, input, classOf [UsagePoint])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MarketEvaluationPoint (
             parent,
@@ -1569,10 +1639,10 @@ object MarketEvaluationPointSerializer extends CIMSerializer[MarketEvaluationPoi
 /**
  * The condition or position of an object with regard to its standing.
  *
- * @param Element Reference to the superclass object.
- * @param status The coded condition or position of an object with regard to its standing.
+ * @param Element            Reference to the superclass object.
+ * @param status             The coded condition or position of an object with regard to its standing.
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param TimeSeries         [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -1584,8 +1654,8 @@ final case class MarketObjectStatus
     RegisteredResource: List[String] = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1611,19 +1681,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketObjectStatus.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketObjectStatus.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketObjectStatus.fields (position), x))
+
         emitelem (0, status)
         emitattrs (1, RegisteredResource)
         emitattrs (2, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MarketObjectStatus rdf:ID=\"%s\">\n%s\t</cim:MarketObjectStatus>".format (id, export_fields)
@@ -1631,10 +1708,10 @@ extends
 }
 
 object MarketObjectStatus
-extends
-    CIMParseable[MarketObjectStatus]
+    extends
+        CIMParseable[MarketObjectStatus]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "RegisteredResource",
         "TimeSeries"
@@ -1643,14 +1720,14 @@ extends
         CIMRelationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val status: Fielder = parse_element (element (cls, fields(0)))
-    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val status: Fielder = parse_element (element (cls, fields (0)))
+    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): MarketObjectStatus =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = MarketObjectStatus (
             BasicElement.parse (context),
             mask (status (), 0),
@@ -1673,7 +1750,7 @@ object MarketObjectStatusSerializer extends CIMSerializer[MarketObjectStatus]
             () => writeList (obj.RegisteredResource, output),
             () => writeList (obj.TimeSeries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -1681,7 +1758,7 @@ object MarketObjectStatusSerializer extends CIMSerializer[MarketObjectStatus]
 
     def read (kryo: Kryo, input: Input, cls: Class[MarketObjectStatus]): MarketObjectStatus =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MarketObjectStatus (
             parent,
@@ -1697,8 +1774,8 @@ object MarketObjectStatusSerializer extends CIMSerializer[MarketObjectStatus]
 /**
  * The type of a power system resource.
  *
- * @param PSRType [[ch.ninecode.model.PSRType PSRType]] Reference to the superclass object.
- * @param psrType The coded type of a power system resource.
+ * @param PSRType    [[ch.ninecode.model.PSRType PSRType]] Reference to the superclass object.
+ * @param psrType    The coded type of a power system resource.
  * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
@@ -1710,8 +1787,8 @@ final case class MktPSRType
     psrType: String = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1737,18 +1814,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktPSRType.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MktPSRType.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MktPSRType.fields (position), x))
+
         emitelem (0, psrType)
         emitattrs (1, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:MktPSRType rdf:ID=\"%s\">\n%s\t</cim:MktPSRType>".format (id, export_fields)
@@ -1756,23 +1840,23 @@ extends
 }
 
 object MktPSRType
-extends
-    CIMParseable[MktPSRType]
+    extends
+        CIMParseable[MktPSRType]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "psrType",
         "TimeSeries"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val psrType: Fielder = parse_element (element (cls, fields(0)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val psrType: Fielder = parse_element (element (cls, fields (0)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): MktPSRType =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = MktPSRType (
             PSRType.parse (context),
             mask (psrType (), 0),
@@ -1801,7 +1885,7 @@ object MktPSRTypeSerializer extends CIMSerializer[MktPSRType]
 
     def read (kryo: Kryo, input: Input, cls: Class[MktPSRType]): MktPSRType =
     {
-        val parent = PSRTypeSerializer.read (kryo, input, classOf[PSRType])
+        val parent = PSRTypeSerializer.read (kryo, input, classOf [PSRType])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MktPSRType (
             parent,
@@ -1816,13 +1900,13 @@ object MktPSRTypeSerializer extends CIMSerializer[MktPSRType]
 /**
  * An identification of a time interval that may have a given resolution.
  *
- * @param Element Reference to the superclass object.
- * @param resolution The number of units of time that compose an individual step within a period.
- * @param timeInterval The start and end date and time for a given interval.
+ * @param Element        Reference to the superclass object.
+ * @param resolution     The number of units of time that compose an individual step within a period.
+ * @param timeInterval   The start and end date and time for a given interval.
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
- * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
- * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param Point          [[ch.ninecode.model.Point Point]] <em>undocumented</em>
+ * @param Reason         [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
+ * @param TimeSeries     [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -1837,8 +1921,8 @@ final case class Period
     Reason: List[String] = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1864,15 +1948,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Period.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Period.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Period.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Period.fields (position), x))
+
         emitelem (0, resolution)
         emitattr (1, timeInterval)
         emitattrs (2, MarketDocument)
@@ -1881,6 +1972,7 @@ extends
         emitattrs (5, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Period rdf:ID=\"%s\">\n%s\t</cim:Period>".format (id, export_fields)
@@ -1888,10 +1980,10 @@ extends
 }
 
 object Period
-extends
-    CIMParseable[Period]
+    extends
+        CIMParseable[Period]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "resolution",
         "timeInterval",
         "MarketDocument",
@@ -1905,17 +1997,17 @@ extends
         CIMRelationship ("Reason", "Reason", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val resolution: Fielder = parse_element (element (cls, fields(0)))
-    val timeInterval: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val resolution: Fielder = parse_element (element (cls, fields (0)))
+    val timeInterval: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val Point: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
 
     def parse (context: CIMContext): Period =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Period (
             BasicElement.parse (context),
             mask (resolution (), 0),
@@ -1944,7 +2036,7 @@ object PeriodSerializer extends CIMSerializer[Period]
             () => writeList (obj.Reason, output),
             () => writeList (obj.TimeSeries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -1952,7 +2044,7 @@ object PeriodSerializer extends CIMSerializer[Period]
 
     def read (kryo: Kryo, input: Input, cls: Class[Period]): Period =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Period (
             parent,
@@ -1971,19 +2063,19 @@ object PeriodSerializer extends CIMSerializer[Period]
 /**
  * An identification of a set of values beeing adressed within a specific interval of time.
  *
- * @param Element Reference to the superclass object.
- * @param position A sequential value representing the relative position within a given time interval.
- * @param quality The quality of the information being provided.
- *        This quality may be estimated, not available, as provided, etc.
- * @param quantity Principal quantity identified for a point.
+ * @param Element           Reference to the superclass object.
+ * @param position          A sequential value representing the relative position within a given time interval.
+ * @param quality           The quality of the information being provided.
+ *                          This quality may be estimated, not available, as provided, etc.
+ * @param quantity          Principal quantity identified for a point.
  * @param secondaryQuantity Secondary quantity identified for a point.
- * @param AceTariffType [[ch.ninecode.model.AceTariffType AceTariffType]] <em>undocumented</em>
- * @param FlowDirection [[ch.ninecode.model.FlowDirection FlowDirection]] <em>undocumented</em>
- * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
- * @param Price [[ch.ninecode.model.Price Price]] <em>undocumented</em>
- * @param Quantity [[ch.ninecode.model.Quantity Quantity]] <em>undocumented</em>
- * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param AceTariffType     [[ch.ninecode.model.AceTariffType AceTariffType]] <em>undocumented</em>
+ * @param FlowDirection     [[ch.ninecode.model.FlowDirection FlowDirection]] <em>undocumented</em>
+ * @param Period            [[ch.ninecode.model.Period Period]] <em>undocumented</em>
+ * @param Price             [[ch.ninecode.model.Price Price]] <em>undocumented</em>
+ * @param Quantity          [[ch.ninecode.model.Quantity Quantity]] <em>undocumented</em>
+ * @param Reason            [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
+ * @param TimeSeries        [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -2003,8 +2095,8 @@ final case class Point
     Reason: List[String] = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2030,15 +2122,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Point.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Point.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Point.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Point.fields (position), x))
+
         emitelem (0, position)
         emitelem (1, quality)
         emitelem (2, quantity)
@@ -2052,6 +2151,7 @@ extends
         emitattrs (10, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Point rdf:ID=\"%s\">\n%s\t</cim:Point>".format (id, export_fields)
@@ -2059,10 +2159,10 @@ extends
 }
 
 object Point
-extends
-    CIMParseable[Point]
+    extends
+        CIMParseable[Point]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "position",
         "quality",
         "quantity",
@@ -2084,22 +2184,22 @@ extends
         CIMRelationship ("Reason", "Reason", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val position: Fielder = parse_element (element (cls, fields(0)))
-    val quality: Fielder = parse_element (element (cls, fields(1)))
-    val quantity: Fielder = parse_element (element (cls, fields(2)))
-    val secondaryQuantity: Fielder = parse_element (element (cls, fields(3)))
-    val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val FlowDirection: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val Period: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val Price: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val Quantity: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val position: Fielder = parse_element (element (cls, fields (0)))
+    val quality: Fielder = parse_element (element (cls, fields (1)))
+    val quantity: Fielder = parse_element (element (cls, fields (2)))
+    val secondaryQuantity: Fielder = parse_element (element (cls, fields (3)))
+    val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val FlowDirection: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val Period: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val Price: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val Quantity: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
 
     def parse (context: CIMContext): Point =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Point (
             BasicElement.parse (context),
             toInteger (mask (position (), 0)),
@@ -2138,7 +2238,7 @@ object PointSerializer extends CIMSerializer[Point]
             () => writeList (obj.Reason, output),
             () => writeList (obj.TimeSeries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -2146,7 +2246,7 @@ object PointSerializer extends CIMSerializer[Point]
 
     def read (kryo: Kryo, input: Input, cls: Class[Point]): Point =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Point (
             parent,
@@ -2170,13 +2270,13 @@ object PointSerializer extends CIMSerializer[Point]
 /**
  * The cost corresponding to a specific measure and expressed in a currency.
  *
- * @param Element Reference to the superclass object.
- * @param amount A number of monetary units specified in a unit of currency.
- * @param category The category of a price to be used in a price calculation.
- *        The price category is mutually agreed between System Operators.
- * @param direction The direction indicates whether a System Operator pays the Market Parties or inverse.
- * @param Domain [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
- * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
+ * @param Element    Reference to the superclass object.
+ * @param amount     A number of monetary units specified in a unit of currency.
+ * @param category   The category of a price to be used in a price calculation.
+ *                   The price category is mutually agreed between System Operators.
+ * @param direction  The direction indicates whether a System Operator pays the Market Parties or inverse.
+ * @param Domain     [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
+ * @param Point      [[ch.ninecode.model.Point Point]] <em>undocumented</em>
  * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
@@ -2192,8 +2292,8 @@ final case class Price
     Point: String = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2219,15 +2319,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Price.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Price.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Price.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Price.fields (position), x))
+
         emitelem (0, amount)
         emitelem (1, category)
         emitelem (2, direction)
@@ -2236,6 +2343,7 @@ extends
         emitattrs (5, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Price rdf:ID=\"%s\">\n%s\t</cim:Price>".format (id, export_fields)
@@ -2243,10 +2351,10 @@ extends
 }
 
 object Price
-extends
-    CIMParseable[Price]
+    extends
+        CIMParseable[Price]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "amount",
         "category",
         "direction",
@@ -2259,17 +2367,17 @@ extends
         CIMRelationship ("Point", "Point", "0..1", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val amount: Fielder = parse_element (element (cls, fields(0)))
-    val category: Fielder = parse_element (element (cls, fields(1)))
-    val direction: Fielder = parse_element (element (cls, fields(2)))
-    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val Point: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val amount: Fielder = parse_element (element (cls, fields (0)))
+    val category: Fielder = parse_element (element (cls, fields (1)))
+    val direction: Fielder = parse_element (element (cls, fields (2)))
+    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val Point: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
 
     def parse (context: CIMContext): Price =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Price (
             BasicElement.parse (context),
             toDouble (mask (amount (), 0)),
@@ -2298,7 +2406,7 @@ object PriceSerializer extends CIMSerializer[Price]
             () => output.writeString (obj.Point),
             () => writeList (obj.TimeSeries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -2306,7 +2414,7 @@ object PriceSerializer extends CIMSerializer[Price]
 
     def read (kryo: Kryo, input: Input, cls: Class[Price]): Price =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Price (
             parent,
@@ -2325,11 +2433,11 @@ object PriceSerializer extends CIMSerializer[Price]
 /**
  * The formal specification of a set of business transactions having the same business goal.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject   [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param classificationType The classification mechanism used to group a set of objects together within a business process.
- *        The grouping may be of a detailed or a summary nature.
- * @param processType The kind of business process.
- * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ *                           The grouping may be of a detailed or a summary nature.
+ * @param processType        The kind of business process.
+ * @param MarketDocument     [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -2341,8 +2449,8 @@ final case class Process
     processType: String = null,
     MarketDocument: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2368,19 +2476,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Process.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Process.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Process.fields (position), x))
+
         emitelem (0, classificationType)
         emitelem (1, processType)
         emitattrs (2, MarketDocument)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Process rdf:ID=\"%s\">\n%s\t</cim:Process>".format (id, export_fields)
@@ -2388,10 +2503,10 @@ extends
 }
 
 object Process
-extends
-    CIMParseable[Process]
+    extends
+        CIMParseable[Process]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "classificationType",
         "processType",
         "MarketDocument"
@@ -2399,14 +2514,14 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("MarketDocument", "MarketDocument", "0..*", "0..*")
     )
-    val classificationType: Fielder = parse_element (element (cls, fields(0)))
-    val processType: Fielder = parse_element (element (cls, fields(1)))
-    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val classificationType: Fielder = parse_element (element (cls, fields (0)))
+    val processType: Fielder = parse_element (element (cls, fields (1)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): Process =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Process (
             IdentifiedObject.parse (context),
             mask (classificationType (), 0),
@@ -2437,7 +2552,7 @@ object ProcessSerializer extends CIMSerializer[Process]
 
     def read (kryo: Kryo, input: Input, cls: Class[Process]): Process =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Process (
             parent,
@@ -2456,16 +2571,16 @@ object ProcessSerializer extends CIMSerializer[Process]
  * The type of the quantity is described either by the role of the association or the type attribute.
  * The quality attribute provides the information about the quality of the quantity (measured, estimated, etc.).
  *
- * @param Element Reference to the superclass object.
- * @param quality The quality of the information being provided.
- *        This quality may be estimated, not available, as provided, etc.
- * @param quantity The quantity value.
- *        The association role provides the information about what is expressed.
- * @param type The description of the type of the quantity.
+ * @param Element         Reference to the superclass object.
+ * @param quality         The quality of the information being provided.
+ *                        This quality may be estimated, not available, as provided, etc.
+ * @param quantity        The quantity value.
+ *                        The association role provides the information about what is expressed.
+ * @param type            The description of the type of the quantity.
  * @param Detail_Quantity [[ch.ninecode.model.Quantity Quantity]] Additional information related to the associated quantity.
- * @param Domain [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
- * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param Domain          [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
+ * @param Point           [[ch.ninecode.model.Point Point]] <em>undocumented</em>
+ * @param TimeSeries      [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -2481,8 +2596,8 @@ final case class Quantity
     Point: List[String] = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2508,14 +2623,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Quantity.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Quantity.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Quantity.fields (position), x))
+
         emitelem (0, quality)
         emitelem (1, quantity)
         emitelem (2, `type`)
@@ -2525,6 +2646,7 @@ extends
         emitattrs (6, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Quantity rdf:ID=\"%s\">\n%s\t</cim:Quantity>".format (id, export_fields)
@@ -2532,10 +2654,10 @@ extends
 }
 
 object Quantity
-extends
-    CIMParseable[Quantity]
+    extends
+        CIMParseable[Quantity]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "quality",
         "quantity",
         "type",
@@ -2550,18 +2672,18 @@ extends
         CIMRelationship ("Point", "Point", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val quality: Fielder = parse_element (element (cls, fields(0)))
-    val quantity: Fielder = parse_element (element (cls, fields(1)))
-    val `type`: Fielder = parse_element (element (cls, fields(2)))
-    val Detail_Quantity: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val quality: Fielder = parse_element (element (cls, fields (0)))
+    val quantity: Fielder = parse_element (element (cls, fields (1)))
+    val `type`: Fielder = parse_element (element (cls, fields (2)))
+    val Detail_Quantity: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val Point: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
 
     def parse (context: CIMContext): Quantity =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Quantity (
             BasicElement.parse (context),
             mask (quality (), 0),
@@ -2592,7 +2714,7 @@ object QuantitySerializer extends CIMSerializer[Quantity]
             () => writeList (obj.Point, output),
             () => writeList (obj.TimeSeries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -2600,7 +2722,7 @@ object QuantitySerializer extends CIMSerializer[Quantity]
 
     def read (kryo: Kryo, input: Input, cls: Class[Quantity]): Quantity =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Quantity (
             parent,
@@ -2620,14 +2742,14 @@ object QuantitySerializer extends CIMSerializer[Quantity]
 /**
  * The motivation of an act.
  *
- * @param Element Reference to the superclass object.
- * @param code The motivation of an act in coded form.
- * @param text The textual explanation corresponding to the reason code.
- * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
- * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
- * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
+ * @param Element            Reference to the superclass object.
+ * @param code               The motivation of an act in coded form.
+ * @param text               The textual explanation corresponding to the reason code.
+ * @param MarketDocument     [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param Period             [[ch.ninecode.model.Period Period]] <em>undocumented</em>
+ * @param Point              [[ch.ninecode.model.Point Point]] <em>undocumented</em>
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param TimeSeries         [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -2643,8 +2765,8 @@ final case class Reason
     RegisteredResource: List[String] = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2670,14 +2792,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Reason.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Reason.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Reason.fields (position), x))
+
         emitelem (0, code)
         emitelem (1, text)
         emitattrs (2, MarketDocument)
@@ -2687,6 +2815,7 @@ extends
         emitattrs (6, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Reason rdf:ID=\"%s\">\n%s\t</cim:Reason>".format (id, export_fields)
@@ -2694,10 +2823,10 @@ extends
 }
 
 object Reason
-extends
-    CIMParseable[Reason]
+    extends
+        CIMParseable[Reason]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "code",
         "text",
         "MarketDocument",
@@ -2713,18 +2842,18 @@ extends
         CIMRelationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val code: Fielder = parse_element (element (cls, fields(0)))
-    val text: Fielder = parse_element (element (cls, fields(1)))
-    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Period: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val code: Fielder = parse_element (element (cls, fields (0)))
+    val text: Fielder = parse_element (element (cls, fields (1)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val Period: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val Point: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
 
     def parse (context: CIMContext): Reason =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Reason (
             BasicElement.parse (context),
             mask (code (), 0),
@@ -2755,7 +2884,7 @@ object ReasonSerializer extends CIMSerializer[Reason]
             () => writeList (obj.RegisteredResource, output),
             () => writeList (obj.TimeSeries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -2763,7 +2892,7 @@ object ReasonSerializer extends CIMSerializer[Reason]
 
     def read (kryo: Kryo, input: Input, cls: Class[Reason]): Reason =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Reason (
             parent,
@@ -2783,12 +2912,12 @@ object ReasonSerializer extends CIMSerializer[Reason]
 /**
  * A set of similar physical or conceptual objects defined for the same period or point of time.
  *
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] Reference to the superclass object.
- * @param lastUpdateDate The date of the last update related to this market object.
- * @param methodType Type of method used in the business process related to this Series, e.g. metering method.
+ * @param TimeSeries       [[ch.ninecode.model.TimeSeries TimeSeries]] Reference to the superclass object.
+ * @param lastUpdateDate   The date of the last update related to this market object.
+ * @param methodType       Type of method used in the business process related to this Series, e.g. metering method.
  * @param registrationDate For a market object, the date of registration of a contract, e.g. the date of change of supplier for a customer.
- * @param SelfSeries [[ch.ninecode.model.Series Series]] <em>undocumented</em>
- * @param Series_attr [[ch.ninecode.model.Series Series]] <em>undocumented</em>
+ * @param SelfSeries       [[ch.ninecode.model.Series Series]] <em>undocumented</em>
+ * @param Series_attr      [[ch.ninecode.model.Series Series]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -2802,8 +2931,8 @@ final case class Series
     SelfSeries: List[String] = null,
     Series_attr: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2829,14 +2958,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Series.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Series.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Series.fields (position), x))
+
         emitelem (0, lastUpdateDate)
         emitelem (1, methodType)
         emitelem (2, registrationDate)
@@ -2844,6 +2979,7 @@ extends
         emitattrs (4, Series_attr)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Series rdf:ID=\"%s\">\n%s\t</cim:Series>".format (id, export_fields)
@@ -2851,10 +2987,10 @@ extends
 }
 
 object Series
-extends
-    CIMParseable[Series]
+    extends
+        CIMParseable[Series]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "lastUpdateDate",
         "methodType",
         "registrationDate",
@@ -2865,16 +3001,16 @@ extends
         CIMRelationship ("SelfSeries", "Series", "0..*", "0..*"),
         CIMRelationship ("Series_attr", "Series", "0..*", "0..*")
     )
-    val lastUpdateDate: Fielder = parse_element (element (cls, fields(0)))
-    val methodType: Fielder = parse_element (element (cls, fields(1)))
-    val registrationDate: Fielder = parse_element (element (cls, fields(2)))
-    val SelfSeries: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val Series_attr: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val lastUpdateDate: Fielder = parse_element (element (cls, fields (0)))
+    val methodType: Fielder = parse_element (element (cls, fields (1)))
+    val registrationDate: Fielder = parse_element (element (cls, fields (2)))
+    val SelfSeries: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val Series_attr: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
 
     def parse (context: CIMContext): Series =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Series (
             TimeSeries.parse (context),
             mask (lastUpdateDate (), 0),
@@ -2909,7 +3045,7 @@ object SeriesSerializer extends CIMSerializer[Series]
 
     def read (kryo: Kryo, input: Input, cls: Class[Series]): Series =
     {
-        val parent = TimeSeriesSerializer.read (kryo, input, classOf[TimeSeries])
+        val parent = TimeSeriesSerializer.read (kryo, input, classOf [TimeSeries])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Series (
             parent,
@@ -2927,32 +3063,32 @@ object SeriesSerializer extends CIMSerializer[Series]
 /**
  * A set of regular time-ordered measurements or values of quantitative nature of an individual or collective phenomenon taken at successive, in most cases equidistant, periods / points of time.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param businessType The identification of the nature of the time series.
- * @param cancelledTS An indicator stating that the TimeSeries, identified by the mRID, is cancelled as well as all the values sent in a previous version of the TimeSeries in a previous document.
- * @param curveType The coded representation of the type of curve being described.
- * @param objectAggregation Identification of the object that is the common denominator used to aggregate a time series.
- * @param product The type of the product such as Power, energy, reactive power, transport capacity that is the subject of the time series.
- * @param version Version of the time series.
- * @param AttributeInstanceComponent [[ch.ninecode.model.AttributeInstanceComponent AttributeInstanceComponent]] <em>undocumented</em>
- * @param Auction [[ch.ninecode.model.Auction Auction]] <em>undocumented</em>
- * @param ConstraintDuration [[ch.ninecode.model.ConstraintDuration ConstraintDuration]] <em>undocumented</em>
- * @param DateAndOrTime [[ch.ninecode.model.DateAndOrTime DateAndOrTime]] <em>undocumented</em>
- * @param Domain [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
+ * @param IdentifiedObject               [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param businessType                   The identification of the nature of the time series.
+ * @param cancelledTS                    An indicator stating that the TimeSeries, identified by the mRID, is cancelled as well as all the values sent in a previous version of the TimeSeries in a previous document.
+ * @param curveType                      The coded representation of the type of curve being described.
+ * @param objectAggregation              Identification of the object that is the common denominator used to aggregate a time series.
+ * @param product                        The type of the product such as Power, energy, reactive power, transport capacity that is the subject of the time series.
+ * @param version                        Version of the time series.
+ * @param AttributeInstanceComponent     [[ch.ninecode.model.AttributeInstanceComponent AttributeInstanceComponent]] <em>undocumented</em>
+ * @param Auction                        [[ch.ninecode.model.Auction Auction]] <em>undocumented</em>
+ * @param ConstraintDuration             [[ch.ninecode.model.ConstraintDuration ConstraintDuration]] <em>undocumented</em>
+ * @param DateAndOrTime                  [[ch.ninecode.model.DateAndOrTime DateAndOrTime]] <em>undocumented</em>
+ * @param Domain                         [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
  * @param EnvironmentalMonitoringStation [[ch.ninecode.model.EnvironmentalMonitoringStation EnvironmentalMonitoringStation]] <em>undocumented</em>
- * @param FlowDirection [[ch.ninecode.model.FlowDirection FlowDirection]] <em>undocumented</em>
- * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
- * @param MarketEvaluationPoint [[ch.ninecode.model.MarketEvaluationPoint MarketEvaluationPoint]] <em>undocumented</em>
- * @param MarketObjectStatus [[ch.ninecode.model.MarketObjectStatus MarketObjectStatus]] <em>undocumented</em>
- * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
- * @param MktPSRType [[ch.ninecode.model.MktPSRType MktPSRType]] <em>undocumented</em>
- * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
- * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
- * @param Price [[ch.ninecode.model.Price Price]] <em>undocumented</em>
- * @param Quantity [[ch.ninecode.model.Quantity Quantity]] <em>undocumented</em>
- * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
- * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
- * @param Unit [[ch.ninecode.model.Unit_ Unit_]] <em>undocumented</em>
+ * @param FlowDirection                  [[ch.ninecode.model.FlowDirection FlowDirection]] <em>undocumented</em>
+ * @param MarketDocument                 [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param MarketEvaluationPoint          [[ch.ninecode.model.MarketEvaluationPoint MarketEvaluationPoint]] <em>undocumented</em>
+ * @param MarketObjectStatus             [[ch.ninecode.model.MarketObjectStatus MarketObjectStatus]] <em>undocumented</em>
+ * @param MarketParticipant              [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
+ * @param MktPSRType                     [[ch.ninecode.model.MktPSRType MktPSRType]] <em>undocumented</em>
+ * @param Period                         [[ch.ninecode.model.Period Period]] <em>undocumented</em>
+ * @param Point                          [[ch.ninecode.model.Point Point]] <em>undocumented</em>
+ * @param Price                          [[ch.ninecode.model.Price Price]] <em>undocumented</em>
+ * @param Quantity                       [[ch.ninecode.model.Quantity Quantity]] <em>undocumented</em>
+ * @param Reason                         [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
+ * @param RegisteredResource             [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
+ * @param Unit                           [[ch.ninecode.model.Unit_ Unit_]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -2986,8 +3122,8 @@ final case class TimeSeries
     RegisteredResource: List[String] = null,
     Unit: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3013,14 +3149,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TimeSeries.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TimeSeries.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TimeSeries.fields (position), x))
+
         emitelem (0, businessType)
         emitelem (1, cancelledTS)
         emitelem (2, curveType)
@@ -3048,6 +3190,7 @@ extends
         emitattrs (24, Unit)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:TimeSeries rdf:ID=\"%s\">\n%s\t</cim:TimeSeries>".format (id, export_fields)
@@ -3055,10 +3198,10 @@ extends
 }
 
 object TimeSeries
-extends
-    CIMParseable[TimeSeries]
+    extends
+        CIMParseable[TimeSeries]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "businessType",
         "cancelledTS",
         "curveType",
@@ -3106,36 +3249,36 @@ extends
         CIMRelationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*"),
         CIMRelationship ("Unit", "Unit_", "0..*", "0..*")
     )
-    val businessType: Fielder = parse_element (element (cls, fields(0)))
-    val cancelledTS: Fielder = parse_element (element (cls, fields(1)))
-    val curveType: Fielder = parse_element (element (cls, fields(2)))
-    val objectAggregation: Fielder = parse_element (element (cls, fields(3)))
-    val product: Fielder = parse_element (element (cls, fields(4)))
-    val version: Fielder = parse_element (element (cls, fields(5)))
-    val AttributeInstanceComponent: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val Auction: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val ConstraintDuration: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val DateAndOrTime: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val EnvironmentalMonitoringStation: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val FlowDirection: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
-    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
-    val MarketEvaluationPoint: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
-    val MarketObjectStatus: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
-    val MarketParticipant: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
-    val MktPSRType: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
-    val Period: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
-    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
-    val Price: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
-    val Quantity: FielderMultiple = parse_attributes (attribute (cls, fields(21)))
-    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(22)))
-    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(23)))
-    val Unit: FielderMultiple = parse_attributes (attribute (cls, fields(24)))
+    val businessType: Fielder = parse_element (element (cls, fields (0)))
+    val cancelledTS: Fielder = parse_element (element (cls, fields (1)))
+    val curveType: Fielder = parse_element (element (cls, fields (2)))
+    val objectAggregation: Fielder = parse_element (element (cls, fields (3)))
+    val product: Fielder = parse_element (element (cls, fields (4)))
+    val version: Fielder = parse_element (element (cls, fields (5)))
+    val AttributeInstanceComponent: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
+    val Auction: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val ConstraintDuration: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val DateAndOrTime: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
+    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
+    val EnvironmentalMonitoringStation: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
+    val FlowDirection: FielderMultiple = parse_attributes (attribute (cls, fields (12)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields (13)))
+    val MarketEvaluationPoint: FielderMultiple = parse_attributes (attribute (cls, fields (14)))
+    val MarketObjectStatus: FielderMultiple = parse_attributes (attribute (cls, fields (15)))
+    val MarketParticipant: FielderMultiple = parse_attributes (attribute (cls, fields (16)))
+    val MktPSRType: FielderMultiple = parse_attributes (attribute (cls, fields (17)))
+    val Period: FielderMultiple = parse_attributes (attribute (cls, fields (18)))
+    val Point: FielderMultiple = parse_attributes (attribute (cls, fields (19)))
+    val Price: FielderMultiple = parse_attributes (attribute (cls, fields (20)))
+    val Quantity: FielderMultiple = parse_attributes (attribute (cls, fields (21)))
+    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields (22)))
+    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields (23)))
+    val Unit: FielderMultiple = parse_attributes (attribute (cls, fields (24)))
 
     def parse (context: CIMContext): TimeSeries =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = TimeSeries (
             IdentifiedObject.parse (context),
             mask (businessType (), 0),
@@ -3210,7 +3353,7 @@ object TimeSeriesSerializer extends CIMSerializer[TimeSeries]
 
     def read (kryo: Kryo, input: Input, cls: Class[TimeSeries]): TimeSeries =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TimeSeries (
             parent,
@@ -3248,10 +3391,10 @@ object TimeSeriesSerializer extends CIMSerializer[TimeSeries]
 /**
  * The identification of the unit name for the time series quantities.
  *
- * @param Element Reference to the superclass object.
- * @param name The coded representation of the unit.
+ * @param Element       Reference to the superclass object.
+ * @param name          The coded representation of the unit.
  * @param AceTariffType [[ch.ninecode.model.AceTariffType AceTariffType]] <em>undocumented</em>
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param TimeSeries    [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -3263,8 +3406,8 @@ final case class Unit_
     AceTariffType: List[String] = null,
     TimeSeries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3290,19 +3433,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Unit_.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Unit_.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Unit_.fields (position), x))
+
         emitelem (0, name)
         emitattrs (1, AceTariffType)
         emitattrs (2, TimeSeries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Unit rdf:ID=\"%s\">\n%s\t</cim:Unit>".format (id, export_fields)
@@ -3310,10 +3460,10 @@ extends
 }
 
 object Unit_
-extends
-    CIMParseable[Unit_]
+    extends
+        CIMParseable[Unit_]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "name",
         "AceTariffType",
         "TimeSeries"
@@ -3322,14 +3472,14 @@ extends
         CIMRelationship ("AceTariffType", "AceTariffType", "0..*", "0..*"),
         CIMRelationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
-    val name: Fielder = parse_element (element (cls, fields(0)))
-    val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val name: Fielder = parse_element (element (cls, fields (0)))
+    val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): Unit_ =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Unit_ (
             BasicElement.parse (context),
             mask (name (), 0),
@@ -3352,7 +3502,7 @@ object Unit_Serializer extends CIMSerializer[Unit_]
             () => writeList (obj.AceTariffType, output),
             () => writeList (obj.TimeSeries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -3360,7 +3510,7 @@ object Unit_Serializer extends CIMSerializer[Unit_]
 
     def read (kryo: Kryo, input: Input, cls: Class[Unit_]): Unit_ =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Unit_ (
             parent,

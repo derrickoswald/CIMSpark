@@ -21,7 +21,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
         new Unzip ().unzip (s"${FILE_DEPOT}DemoData_unknown_voltage.zip", FILE_DEPOT)
 
         // run the tests
-        val ret  = super.run (testName, args)
+        val ret = super.run (testName, args)
 
         // erase the unpacked files
         deleteRecursive (new File (s"${FILE_DEPOT}DemoData.rdf"))
@@ -57,7 +57,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val process = System.nanoTime ()
 
             assert (new_elements.count == 1897, "# elements after")
-            val nodes = get[TopologicalNode]
+            val nodes = get [TopologicalNode]
             assert (nodes != null, "no TopologicalNode RDD")
             assert (nodes.count == 151, "# nodes")
 
@@ -91,7 +91,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val process = System.nanoTime ()
 
             assert (new_elements.count == 1894, "# elements after")
-            val nodes = get[TopologicalNode]
+            val nodes = get [TopologicalNode]
             assert (nodes != null, "no TopologicalNode RDD")
             assert (nodes.count == 152, "# nodes")
             assert (nodes.filter (_.TopologicalIsland == null).isEmpty, "null islands")
@@ -128,10 +128,10 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             // 1742 + 4 + 151 = 1897
             assert (new_elements.count == 1897, "# elements after")
-            val islands = get[TopologicalIsland]
+            val islands = get [TopologicalIsland]
             assert (islands != null, "no TopologicalIsland RDD")
             assert (islands.count == 4, "# islands")
-            val nodes = get[TopologicalNode]
+            val nodes = get [TopologicalNode]
             assert (nodes != null, "no TopologicalNode RDD")
             assert (nodes.count == 151, "# nodes")
 
@@ -165,9 +165,9 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val process = System.nanoTime ()
 
             assert (new_elements.count == 1899, "# elements after")
-            val terminals = get[Terminal]
+            val terminals = get [Terminal]
             assert (terminals.filter (_.TopologicalNode == null).isEmpty, "null nodes")
-            val nodes = get[TopologicalNode]
+            val nodes = get [TopologicalNode]
             assert (nodes != null, "no TopologicalNode RDD")
             assert (nodes.count == 152, "# nodes")
             assert (nodes.filter (_.TopologicalIsland == null).isEmpty, "null islands")
@@ -181,7 +181,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             def readFileAuto (filename: String): DataFrame =
             {
-                val options = Map[String, String] (
+                val options = Map [String, String](
                     "ch.ninecode.cim.do_topo_islands" -> "true")
                 readFile (filename, options)
             }
@@ -189,17 +189,17 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val start = System.nanoTime ()
 
             val filename = s"${FILE_DEPOT}DemoData.rdf"
-            val elements= readFileAuto (filename)
+            val elements = readFileAuto (filename)
             assert (elements.count == 1806, "# elements")
 
             val read = System.nanoTime ()
-            val islands = get[TopologicalIsland]
+            val islands = get [TopologicalIsland]
             assert (null != islands, "no TopologicalIsland RDD")
             assert (islands.count == 4, "# islands")
-            val nodes = get[TopologicalNode]
+            val nodes = get [TopologicalNode]
             assert (null != nodes, "no TopologicalNode RDD")
-            assert (nodes.count == 60, "# nodes")  // 91 fewer nodes when switches and fuses aren't retained
+            assert (nodes.count == 60, "# nodes") // 91 fewer nodes when switches and fuses aren't retained
 
             info ("read and process: %s seconds".format ((read - start) / 1e9))
-        }
+    }
 }

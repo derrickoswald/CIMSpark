@@ -7,16 +7,18 @@ object LogLevels extends Enumeration
 {
     type LogLevels = Value
     val ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN = Value
+
     def toLog4j (level: Value): org.apache.log4j.Level =
-        level match {
-            case ALL   => org.apache.log4j.Level.ALL
+        level match
+        {
+            case ALL => org.apache.log4j.Level.ALL
             case DEBUG => org.apache.log4j.Level.DEBUG
             case ERROR => org.apache.log4j.Level.ERROR
             case FATAL => org.apache.log4j.Level.FATAL
-            case INFO  => org.apache.log4j.Level.INFO
-            case OFF   => org.apache.log4j.Level.ALL
+            case INFO => org.apache.log4j.Level.INFO
+            case OFF => org.apache.log4j.Level.ALL
             case TRACE => org.apache.log4j.Level.ALL
-            case WARN  => org.apache.log4j.Level.WARN
+            case WARN => org.apache.log4j.Level.WARN
         }
 }
 
@@ -47,12 +49,12 @@ final case class CIMExportOptions
     unittest: Boolean = false,
     loglevel: LogLevels.Value = LogLevels.OFF,
     master: String = "",
-    sparkopts: Map[String,String] = Map (
+    sparkopts: Map[String, String] = Map (
         "spark.graphx.pregel.checkpointInterval" -> "8",
         "spark.serializer" -> "org.apache.spark.serializer.KryoSerializer",
         "spark.ui.showConsoleProgress" -> "false",
         "spark.debug.maxToStringFields" -> "100"),
-    cimopts: Map[String,String] = Map (
+    cimopts: Map[String, String] = Map (
         "ch.ninecode.cim.do_topo_islands" -> "true"
     ),
     all: Boolean = false,
@@ -65,5 +67,5 @@ final case class CIMExportOptions
     port: Int = 9042,
     keyspace: String = "cimexport",
     replication: Int = 1,
-    files: Seq[String] = Seq()
+    files: Seq[String] = Seq ()
 )

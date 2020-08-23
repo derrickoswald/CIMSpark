@@ -23,18 +23,18 @@ import ch.ninecode.model._
 /**
  * Common Hierarchical Information Model (CHIM) for parsing CIM RDF files.
  *
- * @param xml The CIM RDF to parse.
- * @param start The initial character position in the xml to start parsing at.
- * @param finish The final character position in the xml to parse.
+ * @param xml        The CIM RDF to parse.
+ * @param start      The initial character position in the xml to start parsing at.
+ * @param finish     The final character position in the xml to parse.
  * @param first_byte The first byte offset of the xml.
- * @param last_byte The last byte offset within the xml at which to stop parsing.
+ * @param last_byte  The last byte offset within the xml at which to stop parsing.
  */
 class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val first_byte: Long = 0L, val last_byte: Long = 0L) extends Serializable
 {
     val last: Long = if (last_byte != 0L) last_byte else xml.getBytes ("UTF-8").length
     val context: CIMContext = new CIMContext (xml, start, start, first_byte)
     val matcher: Matcher = CIMParser.rddex.matcher (xml)
-    val bytes: ByteBuffer = ByteBuffer.wrap (new Array[Byte] (4 * CHIM.OVERREAD))
+    val bytes: ByteBuffer = ByteBuffer.wrap (new Array[Byte](4 * CHIM.OVERREAD))
     val encoder: CharsetEncoder = Charset.forName ("UTF-8").newEncoder ()
     var value: Element = _
 
@@ -220,8 +220,8 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
 
 object CHIM
 {
-    val CHUNK: Int = 1024*1024*64
-    val OVERREAD: Int = 1024*256 // should be large enough that no RDF element is bigger than this
+    val CHUNK: Int = 1024 * 1024 * 64
+    val OVERREAD: Int = 1024 * 256 // should be large enough that no RDF element is bigger than this
 
     def parse (parser: CHIM): (scala.collection.mutable.HashMap[String, Element], ArrayBuffer[String]) =
     {
@@ -254,13 +254,13 @@ object CHIM
                 val extra = if (in.available () > end - start) overread else 0
                 // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
                 val size = (end - start + extra).toInt
-                val buffer = new Array[Byte] (size)
+                val buffer = new Array[Byte](size)
                 val _ = in.read (buffer)
 
                 val low =
                     if (0 == start)
-                        // strip any BOM(Byte Order Mark) i.e. 0xEF,0xBB,0xBF
-                        if ((size >= 3) && (buffer(0) == 0xef) && (buffer(1) == 0xbb) && (buffer(2) == 0xbf))
+                    // strip any BOM(Byte Order Mark) i.e. 0xEF,0xBB,0xBF
+                        if ((size >= 3) && (buffer (0) == 0xef) && (buffer (1) == 0xbb) && (buffer (2) == 0xbf))
                             3
                         else
                             0
@@ -273,8 +273,8 @@ object CHIM
                         // skip to next UTF-8 non-continuation byte (high order bit zero)
                         // by advancing past at most 4 bytes
                         var i = 0
-                        if ((buffer(low + i) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
-                            while (0 != (buffer(low + i) & 0x80) && (i < Math.min (4, size)))
+                        if ((buffer (low + i) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
+                            while (0 != (buffer (low + i) & 0x80) && (i < Math.min (4, size)))
                                 i += 1
                         low + i
                     }
@@ -302,7 +302,7 @@ object CHIM
             if (args.length > 1)
             {
                 println ("Press [Return] to continue...")
-                val _ = System.console().readLine()
+                val _ = System.console ().readLine ()
             }
 
             val filename = args (0)
@@ -338,7 +338,7 @@ object CHIM
             println (f"reading ${reading / 1e6}%g seconds")
             println (f"parsing ${parsing / 1e6}%g seconds")
             println (s"${result.size} identified elements parsed")
-            val subset = result.values.filter (_.getClass == classOf[Unknown])
+            val subset = result.values.filter (_.getClass == classOf [Unknown])
             println (s"${subset.size} unknown elements")
         }
         else

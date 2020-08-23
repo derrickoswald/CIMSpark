@@ -5,13 +5,13 @@ import scala.collection._
 /**
  * CIM domain.
  *
- * @param xuid Unique identifier in the model.
- * @param name The domain name.
- * @param note Textual notes attached to the domain.
- * @param stereotype The stereotype for the domain.
- * @param pkg The package of this domain.
+ * @param xuid        Unique identifier in the model.
+ * @param name        The domain name.
+ * @param note        Textual notes attached to the domain.
+ * @param stereotype  The stereotype for the domain.
+ * @param pkg         The package of this domain.
  * @param enumeration The list of legal values for the domain.
- * @param value The domain value.
+ * @param value       The domain value.
  */
 case class Domain (
     xuid: String,

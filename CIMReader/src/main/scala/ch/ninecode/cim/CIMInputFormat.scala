@@ -10,16 +10,16 @@ import ch.ninecode.model.Element
 
 class CIMInputFormat extends FileInputFormat[String, Element]
 {
-    val log: Log = LogFactory.getLog (classOf[CIMInputFormat])
+    val log: Log = LogFactory.getLog (classOf [CIMInputFormat])
 
-//    /**
-//     * A factory that makes the split for this class. It can be overridden
-//     * by sub-classes to make sub-types
-//     */
-//    override def makeSplit (file: Path, start: Long, length: Long, hosts: Array[String]): FileSplit =
-//    {
-//        return new FileSplit (file, start, length, hosts);
-//    }
+    //    /**
+    //     * A factory that makes the split for this class. It can be overridden
+    //     * by sub-classes to make sub-types
+    //     */
+    //    override def makeSplit (file: Path, start: Long, length: Long, hosts: Array[String]): FileSplit =
+    //    {
+    //        return new FileSplit (file, start, length, hosts);
+    //    }
 
     /**
      * Generate the list of files and make them into FileSplits.
@@ -42,16 +42,17 @@ class CIMInputFormat extends FileInputFormat[String, Element]
         // which would be checked here.
         val ret = super.getSplits (context)
 
-        log.info (s"getSplits: ${ret.size()} splits returned")
+        log.info (s"getSplits: ${ret.size ()} splits returned")
         ret
     }
 
-   /**
-    * Create a record reader for a given split.
-    * @param split the split to be read
-    * @param context the information about the task
-    * @return a new record reader
-    */
+    /**
+     * Create a record reader for a given split.
+     *
+     * @param split   the split to be read
+     * @param context the information about the task
+     * @return a new record reader
+     */
     def createRecordReader (split: InputSplit, context: TaskAttemptContext): RecordReader[String, Element] =
     {
         log.info ("createRecordReader")

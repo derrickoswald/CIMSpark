@@ -5,7 +5,7 @@ import java.util.regex.Pattern
 case class JavaDoc (
     note: String,
     leftpad: Int,
-    members: Iterable[Member] = List(),
+    members: Iterable[Member] = List (),
     group: String = null,
     group_name: String = null,
     group_description: String = null)
@@ -30,8 +30,8 @@ case class JavaDoc (
             else
                 (toList (n), List ())
         }
-    else
-        (List (), List ())
+        else
+            (List (), List ())
 
     def edit (s: String): String =
     {
@@ -62,9 +62,9 @@ case class JavaDoc (
 
         val strings =
             compose ("@group", "") ::
-            compose ("@groupname", group_name) ::
-            compose ("@groupdesc", group_description) ::
-            Nil
+                compose ("@groupname", group_name) ::
+                compose ("@groupdesc", group_description) ::
+                Nil
         strings.flatten
     }
 
@@ -93,10 +93,10 @@ case class JavaDoc (
         val s = contents
         if ("" != s)
         {
-           s"""/**
-              |$s
-              | */
-              |""".stripMargin.split ("\n").map (st => s"$spaces$st").mkString ("", "\n", "\n")
+            s"""/**
+               |$s
+               | */
+               |""".stripMargin.split ("\n").map (st => s"$spaces$st").mkString ("", "\n", "\n")
         }
         else
             ""

@@ -3,18 +3,18 @@ package ch.ninecode.cim.tool
 /**
  * CIM class member
  *
- * @param name attribute name
- * @param variable variable name derived from attribute name, but safe for program declaration
- * @param over predicate for 'is an override'
- * @param comment comment text from CIM model
- * @param reference predicate for 'is a reference to another CIM class or domain
+ * @param name             attribute name
+ * @param variable         variable name derived from attribute name, but safe for program declaration
+ * @param over             predicate for 'is an override'
+ * @param comment          comment text from CIM model
+ * @param reference        predicate for 'is a reference to another CIM class or domain
  * @param this_cardinality relation cardinality on "this" side, e.g. 1 in "1:n"
  * @param mate_cardinality relation cardinality on "other" side, e.g. n in "1:n"
- * @param datatype attribute data type
- * @param initializer initializer string
- * @param function conversion function from String to <code>datatype</code>
+ * @param datatype         attribute data type
+ * @param initializer      initializer string
+ * @param function         conversion function from String to <code>datatype</code>
  * @param referenced_class referenced CIM class if <code>reference</code> is <code>true</code>
- * @param isSuper predicate for this member references the superclass
+ * @param isSuper          predicate for this member references the superclass
  */
 case class Member (
     name: String,

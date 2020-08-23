@@ -20,8 +20,8 @@ final case class BlockDispatchComponent
 (
     EnergyComponent: EnergyComponent = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -47,12 +47,16 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:BlockDispatchComponent rdf:ID=\"%s\">\n%s\t</cim:BlockDispatchComponent>".format (id, export_fields)
@@ -60,8 +64,8 @@ extends
 }
 
 object BlockDispatchComponent
-extends
-    CIMParseable[BlockDispatchComponent]
+    extends
+        CIMParseable[BlockDispatchComponent]
 {
 
     def parse (context: CIMContext): BlockDispatchComponent =
@@ -90,7 +94,7 @@ object BlockDispatchComponentSerializer extends CIMSerializer[BlockDispatchCompo
 
     def read (kryo: Kryo, input: Input, cls: Class[BlockDispatchComponent]): BlockDispatchComponent =
     {
-        val parent = EnergyComponentSerializer.read (kryo, input, classOf[EnergyComponent])
+        val parent = EnergyComponentSerializer.read (kryo, input, classOf [EnergyComponent])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = BlockDispatchComponent (
             parent
@@ -108,8 +112,8 @@ final case class BlockDispatchInstruction
 (
     IdentifiedObject: IdentifiedObject = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -135,12 +139,16 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:BlockDispatchInstruction rdf:ID=\"%s\">\n%s\t</cim:BlockDispatchInstruction>".format (id, export_fields)
@@ -148,8 +156,8 @@ extends
 }
 
 object BlockDispatchInstruction
-extends
-    CIMParseable[BlockDispatchInstruction]
+    extends
+        CIMParseable[BlockDispatchInstruction]
 {
 
     def parse (context: CIMContext): BlockDispatchInstruction =
@@ -178,7 +186,7 @@ object BlockDispatchInstructionSerializer extends CIMSerializer[BlockDispatchIns
 
     def read (kryo: Kryo, input: Input, cls: Class[BlockDispatchInstruction]): BlockDispatchInstruction =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = BlockDispatchInstruction (
             parent
@@ -198,8 +206,8 @@ final case class BlockDispatchOrder
     p: Double = 0.0,
     sequence: Int = 0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -225,17 +233,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BlockDispatchOrder.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BlockDispatchOrder.fields (position), value)
+
         emitelem (0, p)
         emitelem (1, sequence)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BlockDispatchOrder rdf:ID=\"%s\">\n%s\t</cim:BlockDispatchOrder>".format (id, export_fields)
@@ -243,20 +257,20 @@ extends
 }
 
 object BlockDispatchOrder
-extends
-    CIMParseable[BlockDispatchOrder]
+    extends
+        CIMParseable[BlockDispatchOrder]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "p",
         "sequence"
     )
-    val p: Fielder = parse_element (element (cls, fields(0)))
-    val sequence: Fielder = parse_element (element (cls, fields(1)))
+    val p: Fielder = parse_element (element (cls, fields (0)))
+    val sequence: Fielder = parse_element (element (cls, fields (1)))
 
     def parse (context: CIMContext): BlockDispatchOrder =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = BlockDispatchOrder (
             IdentifiedObject.parse (context),
             toDouble (mask (p (), 0)),
@@ -285,7 +299,7 @@ object BlockDispatchOrderSerializer extends CIMSerializer[BlockDispatchOrder]
 
     def read (kryo: Kryo, input: Input, cls: Class[BlockDispatchOrder]): BlockDispatchOrder =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = BlockDispatchOrder (
             parent,
@@ -305,8 +319,8 @@ final case class EnergyComponent
 (
     IdentifiedObject: IdentifiedObject = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -332,12 +346,16 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:EnergyComponent rdf:ID=\"%s\">\n%s\t</cim:EnergyComponent>".format (id, export_fields)
@@ -345,8 +363,8 @@ extends
 }
 
 object EnergyComponent
-extends
-    CIMParseable[EnergyComponent]
+    extends
+        CIMParseable[EnergyComponent]
 {
 
     def parse (context: CIMContext): EnergyComponent =
@@ -375,7 +393,7 @@ object EnergyComponentSerializer extends CIMSerializer[EnergyComponent]
 
     def read (kryo: Kryo, input: Input, cls: Class[EnergyComponent]): EnergyComponent =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EnergyComponent (
             parent
@@ -395,8 +413,8 @@ final case class EnergyGroup
     isSlack: Boolean = false,
     p: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -422,17 +440,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnergyGroup.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnergyGroup.fields (position), value)
+
         emitelem (0, isSlack)
         emitelem (1, p)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:EnergyGroup rdf:ID=\"%s\">\n%s\t</cim:EnergyGroup>".format (id, export_fields)
@@ -440,20 +464,20 @@ extends
 }
 
 object EnergyGroup
-extends
-    CIMParseable[EnergyGroup]
+    extends
+        CIMParseable[EnergyGroup]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "isSlack",
         "p"
     )
-    val isSlack: Fielder = parse_element (element (cls, fields(0)))
-    val p: Fielder = parse_element (element (cls, fields(1)))
+    val isSlack: Fielder = parse_element (element (cls, fields (0)))
+    val p: Fielder = parse_element (element (cls, fields (1)))
 
     def parse (context: CIMContext): EnergyGroup =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = EnergyGroup (
             PowerSystemResource.parse (context),
             toBoolean (mask (isSlack (), 0)),
@@ -482,7 +506,7 @@ object EnergyGroupSerializer extends CIMSerializer[EnergyGroup]
 
     def read (kryo: Kryo, input: Input, cls: Class[EnergyGroup]): EnergyGroup =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EnergyGroup (
             parent,
@@ -503,8 +527,8 @@ final case class EnergyTypeReference
     IdentifiedObject: IdentifiedObject = null,
     kind: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -530,16 +554,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnergyTypeReference.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergyTypeReference.fields (position), value)
+
         emitattr (0, kind)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:EnergyTypeReference rdf:ID=\"%s\">\n%s\t</cim:EnergyTypeReference>".format (id, export_fields)
@@ -547,18 +577,18 @@ extends
 }
 
 object EnergyTypeReference
-extends
-    CIMParseable[EnergyTypeReference]
+    extends
+        CIMParseable[EnergyTypeReference]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "kind"
     )
-    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): EnergyTypeReference =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = EnergyTypeReference (
             IdentifiedObject.parse (context),
             mask (kind (), 0)
@@ -585,7 +615,7 @@ object EnergyTypeReferenceSerializer extends CIMSerializer[EnergyTypeReference]
 
     def read (kryo: Kryo, input: Input, cls: Class[EnergyTypeReference]): EnergyTypeReference =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EnergyTypeReference (
             parent,
@@ -605,8 +635,8 @@ final case class ProportionalDistributionComponent
     EnergyComponent: EnergyComponent = null,
     distributionFactor: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -632,16 +662,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProportionalDistributionComponent.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProportionalDistributionComponent.fields (position), value)
+
         emitelem (0, distributionFactor)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ProportionalDistributionComponent rdf:ID=\"%s\">\n%s\t</cim:ProportionalDistributionComponent>".format (id, export_fields)
@@ -649,18 +685,18 @@ extends
 }
 
 object ProportionalDistributionComponent
-extends
-    CIMParseable[ProportionalDistributionComponent]
+    extends
+        CIMParseable[ProportionalDistributionComponent]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "distributionFactor"
     )
-    val distributionFactor: Fielder = parse_element (element (cls, fields(0)))
+    val distributionFactor: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: CIMContext): ProportionalDistributionComponent =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ProportionalDistributionComponent (
             EnergyComponent.parse (context),
             toDouble (mask (distributionFactor (), 0))
@@ -687,7 +723,7 @@ object ProportionalDistributionComponentSerializer extends CIMSerializer[Proport
 
     def read (kryo: Kryo, input: Input, cls: Class[ProportionalDistributionComponent]): ProportionalDistributionComponent =
     {
-        val parent = EnergyComponentSerializer.read (kryo, input, classOf[EnergyComponent])
+        val parent = EnergyComponentSerializer.read (kryo, input, classOf [EnergyComponent])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ProportionalDistributionComponent (
             parent,

@@ -20,7 +20,7 @@ import com.datastax.spark.connector.cql.CassandraConnector
  * $ sed --in-place 's/enable_user_defined_functions: false/enable_user_defined_functions: true/g' /etc/cassandra/cassandra.yaml \
  * $ sed --in-place 's/enable_scripted_user_defined_functions: false/enable_scripted_user_defined_functions: true/g' /etc/cassandra/cassandra.yaml
  *
- * @param session the Spark session
+ * @param session  the Spark session
  * @param resource the schema file (cqlsh commands) to process
  * @param loglevel the level to log messages at
  */
@@ -105,7 +105,7 @@ final case class Schema (session: SparkSession, resource: String, loglevel: Leve
      *   - the keyspace must be cimexport - which is changed according to <code>keyspace</code> via simple global substitution
      *   - the replication factor must be 1 - which is changed according to <code>replication</code> via simple global substitution
      *
-     * @param keyspace the target keyspace to create (if it does not exist)
+     * @param keyspace    the target keyspace to create (if it does not exist)
      * @param replication the replication factor for the keyspace (if it does not exist)
      * @return <code>true</code> if all DDL executed successfully, <code>false</code> if the schema file doesn't exist or there were errors
      */

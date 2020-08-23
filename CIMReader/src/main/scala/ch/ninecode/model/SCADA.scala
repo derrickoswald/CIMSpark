@@ -17,13 +17,13 @@ import ch.ninecode.cim.CIMSerializer
  *
  * Reduntant links may exist. The CommunicationLink class inherits PowerSystemResource. The intention is to allow CommunicationLinks to have Measurements. These Measurements can be used to model link status as operational, out of service, unit failure etc.
  *
- * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param PowerSystemResource    [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param BilateralExchangeActor [[ch.ninecode.model.BilateralExchangeActor BilateralExchangeActor]] ICCP data provider or consumer using communication addressing for a Bilateral table.
- * @param RemoteUnits [[ch.ninecode.model.RemoteUnit RemoteUnit]] RTUs may be attached to communication links.
+ * @param RemoteUnits            [[ch.ninecode.model.RemoteUnit RemoteUnit]] RTUs may be attached to communication links.
  * @group SCADA
  * @groupname SCADA Package SCADA
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
-This package also supports alarm presentation but it is not expected to be used by other applications.
+ *            This package also supports alarm presentation but it is not expected to be used by other applications.
  */
 final case class CommunicationLink
 (
@@ -31,8 +31,8 @@ final case class CommunicationLink
     BilateralExchangeActor: String = null,
     RemoteUnits: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -58,18 +58,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CommunicationLink.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CommunicationLink.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CommunicationLink.fields (position), x))
+
         emitattr (0, BilateralExchangeActor)
         emitattrs (1, RemoteUnits)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:CommunicationLink rdf:ID=\"%s\">\n%s\t</cim:CommunicationLink>".format (id, export_fields)
@@ -77,10 +84,10 @@ extends
 }
 
 object CommunicationLink
-extends
-    CIMParseable[CommunicationLink]
+    extends
+        CIMParseable[CommunicationLink]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "BilateralExchangeActor",
         "RemoteUnits"
     )
@@ -88,13 +95,13 @@ extends
         CIMRelationship ("BilateralExchangeActor", "BilateralExchangeActor", "0..1", "0..n"),
         CIMRelationship ("RemoteUnits", "RemoteUnit", "0..*", "1..*")
     )
-    val BilateralExchangeActor: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val RemoteUnits: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val BilateralExchangeActor: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val RemoteUnits: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): CommunicationLink =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = CommunicationLink (
             PowerSystemResource.parse (context),
             mask (BilateralExchangeActor (), 0),
@@ -123,7 +130,7 @@ object CommunicationLinkSerializer extends CIMSerializer[CommunicationLink]
 
     def read (kryo: Kryo, input: Input, cls: Class[CommunicationLink]): CommunicationLink =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = CommunicationLink (
             parent,
@@ -138,15 +145,15 @@ object CommunicationLinkSerializer extends CIMSerializer[CommunicationLink]
 /**
  * Remote controls are outputs that are sent by the remote unit to actuators in the process.
  *
- * @param RemotePoint [[ch.ninecode.model.RemotePoint RemotePoint]] Reference to the superclass object.
- * @param actuatorMaximum The maximum set point value accepted by the remote control point.
- * @param actuatorMinimum The minimum set point value accepted by the remote control point.
+ * @param RemotePoint      [[ch.ninecode.model.RemotePoint RemotePoint]] Reference to the superclass object.
+ * @param actuatorMaximum  The maximum set point value accepted by the remote control point.
+ * @param actuatorMinimum  The minimum set point value accepted by the remote control point.
  * @param remoteControlled Set to true if the actuator is remotely controlled.
- * @param Control [[ch.ninecode.model.Control Control]] The Control for the RemoteControl point.
+ * @param Control          [[ch.ninecode.model.Control Control]] The Control for the RemoteControl point.
  * @group SCADA
  * @groupname SCADA Package SCADA
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
-This package also supports alarm presentation but it is not expected to be used by other applications.
+ *            This package also supports alarm presentation but it is not expected to be used by other applications.
  */
 final case class RemoteControl
 (
@@ -156,8 +163,8 @@ final case class RemoteControl
     remoteControlled: Boolean = false,
     Control: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -183,20 +190,27 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteControl.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemoteControl.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteControl.fields (position), value)
+
         emitelem (0, actuatorMaximum)
         emitelem (1, actuatorMinimum)
         emitelem (2, remoteControlled)
         emitattr (3, Control)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:RemoteControl rdf:ID=\"%s\">\n%s\t</cim:RemoteControl>".format (id, export_fields)
@@ -204,10 +218,10 @@ extends
 }
 
 object RemoteControl
-extends
-    CIMParseable[RemoteControl]
+    extends
+        CIMParseable[RemoteControl]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "actuatorMaximum",
         "actuatorMinimum",
         "remoteControlled",
@@ -216,15 +230,15 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Control", "Control", "1", "0..1")
     )
-    val actuatorMaximum: Fielder = parse_element (element (cls, fields(0)))
-    val actuatorMinimum: Fielder = parse_element (element (cls, fields(1)))
-    val remoteControlled: Fielder = parse_element (element (cls, fields(2)))
-    val Control: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val actuatorMaximum: Fielder = parse_element (element (cls, fields (0)))
+    val actuatorMinimum: Fielder = parse_element (element (cls, fields (1)))
+    val remoteControlled: Fielder = parse_element (element (cls, fields (2)))
+    val Control: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): RemoteControl =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = RemoteControl (
             RemotePoint.parse (context),
             toDouble (mask (actuatorMaximum (), 0)),
@@ -257,7 +271,7 @@ object RemoteControlSerializer extends CIMSerializer[RemoteControl]
 
     def read (kryo: Kryo, input: Input, cls: Class[RemoteControl]): RemoteControl =
     {
-        val parent = RemotePointSerializer.read (kryo, input, classOf[RemotePoint])
+        val parent = RemotePointSerializer.read (kryo, input, classOf [RemotePoint])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RemoteControl (
             parent,
@@ -277,19 +291,19 @@ object RemoteControlSerializer extends CIMSerializer[RemoteControl]
  * Other units (e.g. control centres) usually also contain calculated values.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param RemoteUnit [[ch.ninecode.model.RemoteUnit RemoteUnit]] Remote unit this point belongs to.
+ * @param RemoteUnit       [[ch.ninecode.model.RemoteUnit RemoteUnit]] Remote unit this point belongs to.
  * @group SCADA
  * @groupname SCADA Package SCADA
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
-This package also supports alarm presentation but it is not expected to be used by other applications.
+ *            This package also supports alarm presentation but it is not expected to be used by other applications.
  */
 final case class RemotePoint
 (
     IdentifiedObject: IdentifiedObject = null,
     RemoteUnit: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -315,16 +329,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemotePoint.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemotePoint.fields (position), value)
+
         emitattr (0, RemoteUnit)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:RemotePoint rdf:ID=\"%s\">\n%s\t</cim:RemotePoint>".format (id, export_fields)
@@ -332,21 +352,21 @@ extends
 }
 
 object RemotePoint
-extends
-    CIMParseable[RemotePoint]
+    extends
+        CIMParseable[RemotePoint]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "RemoteUnit"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("RemoteUnit", "RemoteUnit", "1", "0..*")
     )
-    val RemoteUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RemoteUnit: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): RemotePoint =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = RemotePoint (
             IdentifiedObject.parse (context),
             mask (RemoteUnit (), 0)
@@ -373,7 +393,7 @@ object RemotePointSerializer extends CIMSerializer[RemotePoint]
 
     def read (kryo: Kryo, input: Input, cls: Class[RemotePoint]): RemotePoint =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RemotePoint (
             parent,
@@ -387,16 +407,16 @@ object RemotePointSerializer extends CIMSerializer[RemotePoint]
 /**
  * Remote sources are state variables that are telemetered or calculated within the remote unit.
  *
- * @param RemotePoint [[ch.ninecode.model.RemotePoint RemotePoint]] Reference to the superclass object.
- * @param deadband The smallest change in value to be reported.
- * @param scanInterval The time interval between scans.
- * @param sensorMaximum The maximum value the telemetry item can return.
- * @param sensorMinimum The minimum value the telemetry item can return.
+ * @param RemotePoint      [[ch.ninecode.model.RemotePoint RemotePoint]] Reference to the superclass object.
+ * @param deadband         The smallest change in value to be reported.
+ * @param scanInterval     The time interval between scans.
+ * @param sensorMaximum    The maximum value the telemetry item can return.
+ * @param sensorMinimum    The minimum value the telemetry item can return.
  * @param MeasurementValue [[ch.ninecode.model.MeasurementValue MeasurementValue]] Link to the physical telemetered point associated with this measurement.
  * @group SCADA
  * @groupname SCADA Package SCADA
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
-This package also supports alarm presentation but it is not expected to be used by other applications.
+ *            This package also supports alarm presentation but it is not expected to be used by other applications.
  */
 final case class RemoteSource
 (
@@ -407,8 +427,8 @@ final case class RemoteSource
     sensorMinimum: Double = 0.0,
     MeasurementValue: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -434,14 +454,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteSource.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemoteSource.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteSource.fields (position), value)
+
         emitelem (0, deadband)
         emitelem (1, scanInterval)
         emitelem (2, sensorMaximum)
@@ -449,6 +475,7 @@ extends
         emitattr (4, MeasurementValue)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:RemoteSource rdf:ID=\"%s\">\n%s\t</cim:RemoteSource>".format (id, export_fields)
@@ -456,10 +483,10 @@ extends
 }
 
 object RemoteSource
-extends
-    CIMParseable[RemoteSource]
+    extends
+        CIMParseable[RemoteSource]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "deadband",
         "scanInterval",
         "sensorMaximum",
@@ -469,16 +496,16 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("MeasurementValue", "MeasurementValue", "1", "0..1")
     )
-    val deadband: Fielder = parse_element (element (cls, fields(0)))
-    val scanInterval: Fielder = parse_element (element (cls, fields(1)))
-    val sensorMaximum: Fielder = parse_element (element (cls, fields(2)))
-    val sensorMinimum: Fielder = parse_element (element (cls, fields(3)))
-    val MeasurementValue: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val deadband: Fielder = parse_element (element (cls, fields (0)))
+    val scanInterval: Fielder = parse_element (element (cls, fields (1)))
+    val sensorMaximum: Fielder = parse_element (element (cls, fields (2)))
+    val sensorMinimum: Fielder = parse_element (element (cls, fields (3)))
+    val MeasurementValue: Fielder = parse_attribute (attribute (cls, fields (4)))
 
     def parse (context: CIMContext): RemoteSource =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = RemoteSource (
             RemotePoint.parse (context),
             toDouble (mask (deadband (), 0)),
@@ -513,7 +540,7 @@ object RemoteSourceSerializer extends CIMSerializer[RemoteSource]
 
     def read (kryo: Kryo, input: Input, cls: Class[RemoteSource]): RemoteSource =
     {
-        val parent = RemotePointSerializer.read (kryo, input, classOf[RemotePoint])
+        val parent = RemotePointSerializer.read (kryo, input, classOf [RemotePoint])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RemoteSource (
             parent,
@@ -534,13 +561,13 @@ object RemoteSourceSerializer extends CIMSerializer[RemoteSource]
  * The communication with the remote unit can be through various standard protocols (e.g. IEC 61870, IEC 61850) or non standard protocols (e.g. DNP, RP570, etc.). A remote unit contains remote data points that might be telemetered, collected or calculated. The RemoteUnit class inherits PowerSystemResource. The intention is to allow RemoteUnits to have Measurements. These Measurements can be used to model unit status as operational, out of service, unit failure, etc.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param remoteUnitType Type of remote unit.
- * @param CommunicationLinks [[ch.ninecode.model.CommunicationLink CommunicationLink]] RTUs may be attached to communication links.
- * @param RemotePoints [[ch.ninecode.model.RemotePoint RemotePoint]] Remote points this Remote unit contains.
+ * @param remoteUnitType      Type of remote unit.
+ * @param CommunicationLinks  [[ch.ninecode.model.CommunicationLink CommunicationLink]] RTUs may be attached to communication links.
+ * @param RemotePoints        [[ch.ninecode.model.RemotePoint RemotePoint]] Remote points this Remote unit contains.
  * @group SCADA
  * @groupname SCADA Package SCADA
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
-This package also supports alarm presentation but it is not expected to be used by other applications.
+ *            This package also supports alarm presentation but it is not expected to be used by other applications.
  */
 final case class RemoteUnit
 (
@@ -549,8 +576,8 @@ final case class RemoteUnit
     CommunicationLinks: List[String] = null,
     RemotePoints: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -576,19 +603,26 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteUnit.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteUnit.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RemoteUnit.fields (position), x))
+
         emitattr (0, remoteUnitType)
         emitattrs (1, CommunicationLinks)
         emitattrs (2, RemotePoints)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:RemoteUnit rdf:ID=\"%s\">\n%s\t</cim:RemoteUnit>".format (id, export_fields)
@@ -596,10 +630,10 @@ extends
 }
 
 object RemoteUnit
-extends
-    CIMParseable[RemoteUnit]
+    extends
+        CIMParseable[RemoteUnit]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "remoteUnitType",
         "CommunicationLinks",
         "RemotePoints"
@@ -608,14 +642,14 @@ extends
         CIMRelationship ("CommunicationLinks", "CommunicationLink", "1..*", "0..*"),
         CIMRelationship ("RemotePoints", "RemotePoint", "0..*", "1")
     )
-    val remoteUnitType: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val CommunicationLinks: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val RemotePoints: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val remoteUnitType: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val CommunicationLinks: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val RemotePoints: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): RemoteUnit =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = RemoteUnit (
             PowerSystemResource.parse (context),
             mask (remoteUnitType (), 0),
@@ -646,7 +680,7 @@ object RemoteUnitSerializer extends CIMSerializer[RemoteUnit]
 
     def read (kryo: Kryo, input: Input, cls: Class[RemoteUnit]): RemoteUnit =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RemoteUnit (
             parent,

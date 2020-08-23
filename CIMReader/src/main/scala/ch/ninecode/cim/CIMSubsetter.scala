@@ -26,19 +26,22 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
 {
     type basetype = A
     type rddtype = RDD[A]
-    val tag: universe.TypeTag[A] = typeTag[A]
-    val runtime_class: Class[_] = classTag[A].runtimeClass
+    val tag: universe.TypeTag[A] = typeTag [A]
+    val runtime_class: Class[_] = classTag [A].runtimeClass
 
     val classname: String = runtime_class.getName
 
-    val cls: String = { classname.substring (classname.lastIndexOf (".") + 1) }
+    val cls: String =
+    {
+        classname.substring (classname.lastIndexOf (".") + 1)
+    }
 
     /**
      * Alter the schema so sup has the correct superclass name.
      *
-     * @param rtc The runtime class for Typeclass A.
+     * @param rtc    The runtime class for Typeclass A.
      * @param schema The SQL schema for Typeclass A, e.g.
-     *   org.apache.spark.sql.types.StructType = StructType(StructField(sup,StructType(StructField(sup,StructType(StructField(sup,...
+     *               org.apache.spark.sql.types.StructType = StructType(StructField(sup,StructType(StructField(sup,StructType(StructField(sup,...
      */
     def modify_schema (rtc: Class[_], schema: StructType): StructType =
     {
@@ -47,7 +50,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
         val clsname = supcls.getName.substring (supcls.getName.lastIndexOf (".") + 1)
         val suptyp = sup.dataType
         val dataType = if (suptyp.typeName == "struct")
-            modify_schema (supcls, suptyp.asInstanceOf[StructType])
+            modify_schema (supcls, suptyp.asInstanceOf [StructType])
         else
             suptyp
         val supersup = StructField (clsname, dataType, sup.nullable, sup.metadata)
@@ -71,7 +74,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
      * Create the Dataframe for Typeclass A.
      *
      * @param context The SQL context for creating the views.
-     * @param rdd The raw Element RDD to subset.
+     * @param rdd     The raw Element RDD to subset.
      * @param storage The storage level to persist the subset RDD with.
      */
     def save (context: SQLContext, rdd: rddtype, storage: StorageLevel): Unit =
@@ -85,7 +88,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
         if (context.sparkSession.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
         val df = context.sparkSession.createDataFrame (rdd)(tag)
         val altered_schema = modify_schema (runtime_class, df.schema)
-        val data_frame = context.sparkSession.createDataFrame (rdd.asInstanceOf[RDD[Row]], altered_schema)
+        val data_frame = context.sparkSession.createDataFrame (rdd.asInstanceOf [RDD[Row]], altered_schema)
         data_frame.createOrReplaceTempView (cls)
     }
 
@@ -106,8 +109,9 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
 
     /**
      * Create the Dataframe for Typeclass A.
+     *
      * @param context The SQL context for creating the views.
-     * @param rdd The raw Element RDD to subset.
+     * @param rdd     The raw Element RDD to subset.
      * @param storage The storage level to persist the subset RDD with.
      */
     def make (context: SQLContext, rdd: RDD[Element], storage: StorageLevel): Unit =

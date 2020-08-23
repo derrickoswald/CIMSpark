@@ -16,10 +16,10 @@ abstract class CIMSerializer[T] extends Serializer[T]
         val size = if (bitfields.forall (x => x == (x & 0xff))) // all fit in a byte
         BYTESIZE
             else
-                if (bitfields.forall (x => x == (x & 0xffff))) // all fit in a short
-                    SHORTSIZE
+            if (bitfields.forall (x => x == (x & 0xffff))) // all fit in a short
+            SHORTSIZE
                 else
-                    INTSIZE
+                INTSIZE
         val coded = length | (size << 4)
 
         // generate the serialized bytes
@@ -27,8 +27,8 @@ abstract class CIMSerializer[T] extends Serializer[T]
         size match
         {
             case INTSIZE => output.writeInts (bitfields)
-            case SHORTSIZE => output.writeShorts (bitfields.map (_.asInstanceOf[Short]))
-            case BYTESIZE => output.writeBytes (bitfields.map (_.asInstanceOf[Byte]))
+            case SHORTSIZE => output.writeShorts (bitfields.map (_.asInstanceOf [Short]))
+            case BYTESIZE => output.writeBytes (bitfields.map (_.asInstanceOf [Byte]))
         }
     }
 
@@ -40,8 +40,8 @@ abstract class CIMSerializer[T] extends Serializer[T]
         size match
         {
             case INTSIZE => input.readInts (length)
-            case SHORTSIZE => input.readShorts (length).map (_.asInstanceOf[Int]).map (_ & 0xffff)
-            case BYTESIZE => input.readBytes (length).map (_.asInstanceOf[Int]).map (_ & 0xff)
+            case SHORTSIZE => input.readShorts (length).map (_.asInstanceOf [Int]).map (_ & 0xffff)
+            case BYTESIZE => input.readBytes (length).map (_.asInstanceOf [Int]).map (_ & 0xff)
         }
     }
 
@@ -69,12 +69,12 @@ abstract class CIMSerializer[T] extends Serializer[T]
             null
     }
 
-    def isSet (i: Int)(implicit bitfields: Array[Int]): Boolean = 0 != (bitfields(i / 32) & (1 << (i % 32)))
+    def isSet (i: Int)(implicit bitfields: Array[Int]): Boolean = 0 != (bitfields (i / 32) & (1 << (i % 32)))
 
     def writeFields (fields: Array[() => Unit])(implicit bitfields: Array[Int]): Unit =
     {
         for (i <- fields.indices)
             if (isSet (i))
-                fields(i)()
+                fields (i)()
     }
 }

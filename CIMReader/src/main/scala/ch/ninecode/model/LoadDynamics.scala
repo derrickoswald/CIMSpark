@@ -19,13 +19,13 @@ import ch.ninecode.cim.CIMSerializer
  * Standard aggregate load model comprised of static and/or dynamic components.  A static load model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage. A dynamic load model can be used to represent the aggregate response of the motor components of the load.
  *
  * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
- * @param LoadMotor [[ch.ninecode.model.LoadMotor LoadMotor]] Aggregate motor (dynamic) load associated with this aggregate load.
- * @param LoadStatic [[ch.ninecode.model.LoadStatic LoadStatic]] Aggregate static load associated with this aggregate load.
+ * @param LoadMotor    [[ch.ninecode.model.LoadMotor LoadMotor]] Aggregate motor (dynamic) load associated with this aggregate load.
+ * @param LoadStatic   [[ch.ninecode.model.LoadStatic LoadStatic]] Aggregate static load associated with this aggregate load.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
+ *            Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.
+ *            Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 final case class LoadAggregate
 (
@@ -33,8 +33,8 @@ final case class LoadAggregate
     LoadMotor: String = null,
     LoadStatic: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -60,17 +60,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadAggregate.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadAggregate.fields (position), value)
+
         emitattr (0, LoadMotor)
         emitattr (1, LoadStatic)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:LoadAggregate rdf:ID=\"%s\">\n%s\t</cim:LoadAggregate>".format (id, export_fields)
@@ -78,10 +84,10 @@ extends
 }
 
 object LoadAggregate
-extends
-    CIMParseable[LoadAggregate]
+    extends
+        CIMParseable[LoadAggregate]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "LoadMotor",
         "LoadStatic"
     )
@@ -89,13 +95,13 @@ extends
         CIMRelationship ("LoadMotor", "LoadMotor", "0..1", "1"),
         CIMRelationship ("LoadStatic", "LoadStatic", "0..1", "1")
     )
-    val LoadMotor: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val LoadStatic: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val LoadMotor: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val LoadStatic: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): LoadAggregate =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = LoadAggregate (
             LoadDynamics.parse (context),
             mask (LoadMotor (), 0),
@@ -124,7 +130,7 @@ object LoadAggregateSerializer extends CIMSerializer[LoadAggregate]
 
     def read (kryo: Kryo, input: Input, cls: Class[LoadAggregate]): LoadAggregate =
     {
-        val parent = LoadDynamicsSerializer.read (kryo, input, classOf[LoadDynamics])
+        val parent = LoadDynamicsSerializer.read (kryo, input, classOf [LoadDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = LoadAggregate (
             parent,
@@ -142,33 +148,33 @@ object LoadAggregateSerializer extends CIMSerializer[LoadAggregate]
  * The dynamics of the motor are simplified by linearizing the induction machine equations.
  *
  * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
- * @param epfd Active load-frequency dependence index (dynamic) (<i>Epfd</i>).
- *        Typical value = 1,5.
- * @param epfs Active load-frequency dependence index (static) (<i>Epfs</i>).
- *        Typical value = 1,5.
- * @param epvd Active load-voltage dependence index (dynamic) (<i>Epvd</i>).
- *        Typical value = 0,7.
- * @param epvs Active load-voltage dependence index (static) (<i>Epvs</i>).
- *        Typical value = 0,7.
- * @param eqfd Reactive load-frequency dependence index (dynamic) (<i>Eqfd</i>).
- *        Typical value = 0.
- * @param eqfs Reactive load-frequency dependence index (static) (<i>Eqfs</i>).
- *        Typical value = 0.
- * @param eqvd Reactive load-voltage dependence index (dynamic) (<i>Eqvd</i>).
- *        Typical value = 2.
- * @param eqvs Reactive load-voltage dependence index (static) (<i>Eqvs</i>).
- *        Typical value = 2.
- * @param h Inertia constant (<i>H</i>) (&gt;= 0).
- *        Typical value = 2,5.
- * @param lfac Loading factor (<i>L</i><i><sub>fac</sub></i>).
- *        The ratio of initial <i>P</i> to motor MVA base.  Typical value = 0,8.
- * @param pfrac Fraction of constant-power load to be represented by this motor model (<i>P</i><i><sub>FRAC</sub></i>) (&gt;= 0,0 and &lt;= 1,0).
- *        Typical value = 0,5.
+ * @param epfd         Active load-frequency dependence index (dynamic) (<i>Epfd</i>).
+ *                     Typical value = 1,5.
+ * @param epfs         Active load-frequency dependence index (static) (<i>Epfs</i>).
+ *                     Typical value = 1,5.
+ * @param epvd         Active load-voltage dependence index (dynamic) (<i>Epvd</i>).
+ *                     Typical value = 0,7.
+ * @param epvs         Active load-voltage dependence index (static) (<i>Epvs</i>).
+ *                     Typical value = 0,7.
+ * @param eqfd         Reactive load-frequency dependence index (dynamic) (<i>Eqfd</i>).
+ *                     Typical value = 0.
+ * @param eqfs         Reactive load-frequency dependence index (static) (<i>Eqfs</i>).
+ *                     Typical value = 0.
+ * @param eqvd         Reactive load-voltage dependence index (dynamic) (<i>Eqvd</i>).
+ *                     Typical value = 2.
+ * @param eqvs         Reactive load-voltage dependence index (static) (<i>Eqvs</i>).
+ *                     Typical value = 2.
+ * @param h            Inertia constant (<i>H</i>) (&gt;= 0).
+ *                     Typical value = 2,5.
+ * @param lfac         Loading factor (<i>L</i><i><sub>fac</sub></i>).
+ *                     The ratio of initial <i>P</i> to motor MVA base.  Typical value = 0,8.
+ * @param pfrac        Fraction of constant-power load to be represented by this motor model (<i>P</i><i><sub>FRAC</sub></i>) (&gt;= 0,0 and &lt;= 1,0).
+ *                     Typical value = 0,5.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
+ *            Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.
+ *            Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 final case class LoadComposite
 (
@@ -185,8 +191,8 @@ final case class LoadComposite
     lfac: Double = 0.0,
     pfrac: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -212,13 +218,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadComposite.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadComposite.fields (position), value)
+
         emitelem (0, epfd)
         emitelem (1, epfs)
         emitelem (2, epvd)
@@ -232,6 +243,7 @@ extends
         emitelem (10, pfrac)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:LoadComposite rdf:ID=\"%s\">\n%s\t</cim:LoadComposite>".format (id, export_fields)
@@ -239,10 +251,10 @@ extends
 }
 
 object LoadComposite
-extends
-    CIMParseable[LoadComposite]
+    extends
+        CIMParseable[LoadComposite]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "epfd",
         "epfs",
         "epvd",
@@ -255,22 +267,22 @@ extends
         "lfac",
         "pfrac"
     )
-    val epfd: Fielder = parse_element (element (cls, fields(0)))
-    val epfs: Fielder = parse_element (element (cls, fields(1)))
-    val epvd: Fielder = parse_element (element (cls, fields(2)))
-    val epvs: Fielder = parse_element (element (cls, fields(3)))
-    val eqfd: Fielder = parse_element (element (cls, fields(4)))
-    val eqfs: Fielder = parse_element (element (cls, fields(5)))
-    val eqvd: Fielder = parse_element (element (cls, fields(6)))
-    val eqvs: Fielder = parse_element (element (cls, fields(7)))
-    val h: Fielder = parse_element (element (cls, fields(8)))
-    val lfac: Fielder = parse_element (element (cls, fields(9)))
-    val pfrac: Fielder = parse_element (element (cls, fields(10)))
+    val epfd: Fielder = parse_element (element (cls, fields (0)))
+    val epfs: Fielder = parse_element (element (cls, fields (1)))
+    val epvd: Fielder = parse_element (element (cls, fields (2)))
+    val epvs: Fielder = parse_element (element (cls, fields (3)))
+    val eqfd: Fielder = parse_element (element (cls, fields (4)))
+    val eqfs: Fielder = parse_element (element (cls, fields (5)))
+    val eqvd: Fielder = parse_element (element (cls, fields (6)))
+    val eqvs: Fielder = parse_element (element (cls, fields (7)))
+    val h: Fielder = parse_element (element (cls, fields (8)))
+    val lfac: Fielder = parse_element (element (cls, fields (9)))
+    val pfrac: Fielder = parse_element (element (cls, fields (10)))
 
     def parse (context: CIMContext): LoadComposite =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = LoadComposite (
             LoadDynamics.parse (context),
             toDouble (mask (epfd (), 0)),
@@ -317,7 +329,7 @@ object LoadCompositeSerializer extends CIMSerializer[LoadComposite]
 
     def read (kryo: Kryo, input: Input, cls: Class[LoadComposite]): LoadComposite =
     {
-        val parent = LoadDynamicsSerializer.read (kryo, input, classOf[LoadDynamics])
+        val parent = LoadDynamicsSerializer.read (kryo, input, classOf [LoadDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = LoadComposite (
             parent,
@@ -345,20 +357,20 @@ object LoadCompositeSerializer extends CIMSerializer[LoadComposite]
  * The load model is always applied to individual bus loads (energy consumers).
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param EnergyConsumer [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Energy consumer to which this dynamics load model applies.
+ * @param EnergyConsumer   [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Energy consumer to which this dynamics load model applies.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
+ *            Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.
+ *            Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 final case class LoadDynamics
 (
     IdentifiedObject: IdentifiedObject = null,
     EnergyConsumer: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -384,16 +396,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadDynamics.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (LoadDynamics.fields (position), x))
+
         emitattrs (0, EnergyConsumer)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:LoadDynamics rdf:ID=\"%s\">\n%s\t</cim:LoadDynamics>".format (id, export_fields)
@@ -401,21 +419,21 @@ extends
 }
 
 object LoadDynamics
-extends
-    CIMParseable[LoadDynamics]
+    extends
+        CIMParseable[LoadDynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "EnergyConsumer"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("EnergyConsumer", "EnergyConsumer", "0..*", "0..1")
     )
-    val EnergyConsumer: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val EnergyConsumer: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): LoadDynamics =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = LoadDynamics (
             IdentifiedObject.parse (context),
             masks (EnergyConsumer (), 0)
@@ -442,7 +460,7 @@ object LoadDynamicsSerializer extends CIMSerializer[LoadDynamics]
 
     def read (kryo: Kryo, input: Input, cls: Class[LoadDynamics]): LoadDynamics =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = LoadDynamics (
             parent,
@@ -458,19 +476,19 @@ object LoadDynamicsSerializer extends CIMSerializer[LoadDynamics]
  *
  * This model can be used in mid-term and long-term voltage stability simulations (i.e., to study voltage collapse), as it can replace a more detailed representation of aggregate load, including induction motors, thermostatically controlled and static loads.
  *
- * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
- * @param bs Steady state voltage index for reactive power (<i>BS</i>).
- * @param bt Transient voltage index for reactive power (<i>BT</i>).
+ * @param LoadDynamics                  [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
+ * @param bs                            Steady state voltage index for reactive power (<i>BS</i>).
+ * @param bt                            Transient voltage index for reactive power (<i>BT</i>).
  * @param genericNonLinearLoadModelType Type of generic non-linear load model.
- * @param ls Steady state voltage index for active power (<i>LS</i>).
- * @param lt Transient voltage index for active power (<i>LT</i>).
- * @param tp Time constant of lag function of active power (<i>T</i><i><sub>P</sub></i>) (&gt; 0).
- * @param tq Time constant of lag function of reactive power (<i>T</i><i><sub>Q</sub></i>) (&gt; 0).
+ * @param ls                            Steady state voltage index for active power (<i>LS</i>).
+ * @param lt                            Transient voltage index for active power (<i>LT</i>).
+ * @param tp                            Time constant of lag function of active power (<i>T</i><i><sub>P</sub></i>) (&gt; 0).
+ * @param tq                            Time constant of lag function of reactive power (<i>T</i><i><sub>Q</sub></i>) (&gt; 0).
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
+ *            Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.
+ *            Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 final case class LoadGenericNonLinear
 (
@@ -483,8 +501,8 @@ final case class LoadGenericNonLinear
     tp: Double = 0.0,
     tq: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -510,14 +528,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadGenericNonLinear.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadGenericNonLinear.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadGenericNonLinear.fields (position), value)
+
         emitelem (0, bs)
         emitelem (1, bt)
         emitattr (2, genericNonLinearLoadModelType)
@@ -527,6 +551,7 @@ extends
         emitelem (6, tq)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:LoadGenericNonLinear rdf:ID=\"%s\">\n%s\t</cim:LoadGenericNonLinear>".format (id, export_fields)
@@ -534,10 +559,10 @@ extends
 }
 
 object LoadGenericNonLinear
-extends
-    CIMParseable[LoadGenericNonLinear]
+    extends
+        CIMParseable[LoadGenericNonLinear]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "bs",
         "bt",
         "genericNonLinearLoadModelType",
@@ -546,18 +571,18 @@ extends
         "tp",
         "tq"
     )
-    val bs: Fielder = parse_element (element (cls, fields(0)))
-    val bt: Fielder = parse_element (element (cls, fields(1)))
-    val genericNonLinearLoadModelType: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val ls: Fielder = parse_element (element (cls, fields(3)))
-    val lt: Fielder = parse_element (element (cls, fields(4)))
-    val tp: Fielder = parse_element (element (cls, fields(5)))
-    val tq: Fielder = parse_element (element (cls, fields(6)))
+    val bs: Fielder = parse_element (element (cls, fields (0)))
+    val bt: Fielder = parse_element (element (cls, fields (1)))
+    val genericNonLinearLoadModelType: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val ls: Fielder = parse_element (element (cls, fields (3)))
+    val lt: Fielder = parse_element (element (cls, fields (4)))
+    val tp: Fielder = parse_element (element (cls, fields (5)))
+    val tq: Fielder = parse_element (element (cls, fields (6)))
 
     def parse (context: CIMContext): LoadGenericNonLinear =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = LoadGenericNonLinear (
             LoadDynamics.parse (context),
             toDouble (mask (bs (), 0)),
@@ -596,7 +621,7 @@ object LoadGenericNonLinearSerializer extends CIMSerializer[LoadGenericNonLinear
 
     def read (kryo: Kryo, input: Input, cls: Class[LoadGenericNonLinear]): LoadGenericNonLinear =
     {
-        val parent = LoadDynamicsSerializer.read (kryo, input, classOf[LoadDynamics])
+        val parent = LoadDynamicsSerializer.read (kryo, input, classOf [LoadDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = LoadGenericNonLinear (
             parent,
@@ -623,38 +648,38 @@ object LoadGenericNonLinearSerializer extends CIMSerializer[LoadGenericNonLinear
  * If an induction motor load model and a static load model are both present for a load, the motor <i>Pfrac</i> is assumed to be subtracted from the power flow constant <i>P</i> load before the static load model is applied.  The remainder of the load, if any, is then represented by the static load model.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param d Damping factor (<i>D</i>).
- *        Unit = delta <i>P</i>/delta speed.  Typical value = 2.
- * @param h Inertia constant (<i>H</i>) (&gt;= 0).
- *        Typical value = 0,4.
- * @param lfac Loading factor (<i>Lfac</i>).
- *        The ratio of initial <i>P</i> to motor MVA base.  Typical value = 0,8.
- * @param lp Transient reactance (<i>Lp</i>).
- *        Typical value = 0,15.
- * @param lpp Subtransient reactance (<i>Lpp</i>).
- *        Typical value = 0,15.
- * @param ls Synchronous reactance (<i>Ls</i>).
- *        Typical value = 3,2.
- * @param pfrac Fraction of constant-power load to be represented by this motor model (<i>Pfrac</i>) (&gt;= 0,0 and &lt;= 1,0).
- *        Typical value = 0,3.
- * @param ra Stator resistance (<i>Ra</i>).
- *        Typical value = 0.
- * @param tbkr Circuit breaker operating time (<i>Tbkr</i>) (&gt;= 0).
- *        Typical value = 0,08.
- * @param tpo Transient rotor time constant (<i>Tpo</i>) (&gt;= 0).
- *        Typical value = 1.
- * @param tppo Subtransient rotor time constant (<i>Tppo</i>) (&gt;= 0).
- *        Typical value = 0,02.
- * @param tv Voltage trip pickup time (<i>Tv</i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param vt Voltage threshold for tripping (<i>Vt</i>).
- *        Typical value = 0,7.
- * @param LoadAggregate [[ch.ninecode.model.LoadAggregate LoadAggregate]] Aggregate load to which this aggregate motor (dynamic) load belongs.
+ * @param d                Damping factor (<i>D</i>).
+ *                         Unit = delta <i>P</i>/delta speed.  Typical value = 2.
+ * @param h                Inertia constant (<i>H</i>) (&gt;= 0).
+ *                         Typical value = 0,4.
+ * @param lfac             Loading factor (<i>Lfac</i>).
+ *                         The ratio of initial <i>P</i> to motor MVA base.  Typical value = 0,8.
+ * @param lp               Transient reactance (<i>Lp</i>).
+ *                         Typical value = 0,15.
+ * @param lpp              Subtransient reactance (<i>Lpp</i>).
+ *                         Typical value = 0,15.
+ * @param ls               Synchronous reactance (<i>Ls</i>).
+ *                         Typical value = 3,2.
+ * @param pfrac            Fraction of constant-power load to be represented by this motor model (<i>Pfrac</i>) (&gt;= 0,0 and &lt;= 1,0).
+ *                         Typical value = 0,3.
+ * @param ra               Stator resistance (<i>Ra</i>).
+ *                         Typical value = 0.
+ * @param tbkr             Circuit breaker operating time (<i>Tbkr</i>) (&gt;= 0).
+ *                         Typical value = 0,08.
+ * @param tpo              Transient rotor time constant (<i>Tpo</i>) (&gt;= 0).
+ *                         Typical value = 1.
+ * @param tppo             Subtransient rotor time constant (<i>Tppo</i>) (&gt;= 0).
+ *                         Typical value = 0,02.
+ * @param tv               Voltage trip pickup time (<i>Tv</i>) (&gt;= 0).
+ *                         Typical value = 0,1.
+ * @param vt               Voltage threshold for tripping (<i>Vt</i>).
+ *                         Typical value = 0,7.
+ * @param LoadAggregate    [[ch.ninecode.model.LoadAggregate LoadAggregate]] Aggregate load to which this aggregate motor (dynamic) load belongs.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
+ *            Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.
+ *            Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 final case class LoadMotor
 (
@@ -674,8 +699,8 @@ final case class LoadMotor
     vt: Double = 0.0,
     LoadAggregate: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -701,14 +726,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadMotor.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadMotor.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadMotor.fields (position), value)
+
         emitelem (0, d)
         emitelem (1, h)
         emitelem (2, lfac)
@@ -725,6 +756,7 @@ extends
         emitattr (13, LoadAggregate)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:LoadMotor rdf:ID=\"%s\">\n%s\t</cim:LoadMotor>".format (id, export_fields)
@@ -732,10 +764,10 @@ extends
 }
 
 object LoadMotor
-extends
-    CIMParseable[LoadMotor]
+    extends
+        CIMParseable[LoadMotor]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "d",
         "h",
         "lfac",
@@ -754,25 +786,25 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("LoadAggregate", "LoadAggregate", "1", "0..1")
     )
-    val d: Fielder = parse_element (element (cls, fields(0)))
-    val h: Fielder = parse_element (element (cls, fields(1)))
-    val lfac: Fielder = parse_element (element (cls, fields(2)))
-    val lp: Fielder = parse_element (element (cls, fields(3)))
-    val lpp: Fielder = parse_element (element (cls, fields(4)))
-    val ls: Fielder = parse_element (element (cls, fields(5)))
-    val pfrac: Fielder = parse_element (element (cls, fields(6)))
-    val ra: Fielder = parse_element (element (cls, fields(7)))
-    val tbkr: Fielder = parse_element (element (cls, fields(8)))
-    val tpo: Fielder = parse_element (element (cls, fields(9)))
-    val tppo: Fielder = parse_element (element (cls, fields(10)))
-    val tv: Fielder = parse_element (element (cls, fields(11)))
-    val vt: Fielder = parse_element (element (cls, fields(12)))
-    val LoadAggregate: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val d: Fielder = parse_element (element (cls, fields (0)))
+    val h: Fielder = parse_element (element (cls, fields (1)))
+    val lfac: Fielder = parse_element (element (cls, fields (2)))
+    val lp: Fielder = parse_element (element (cls, fields (3)))
+    val lpp: Fielder = parse_element (element (cls, fields (4)))
+    val ls: Fielder = parse_element (element (cls, fields (5)))
+    val pfrac: Fielder = parse_element (element (cls, fields (6)))
+    val ra: Fielder = parse_element (element (cls, fields (7)))
+    val tbkr: Fielder = parse_element (element (cls, fields (8)))
+    val tpo: Fielder = parse_element (element (cls, fields (9)))
+    val tppo: Fielder = parse_element (element (cls, fields (10)))
+    val tv: Fielder = parse_element (element (cls, fields (11)))
+    val vt: Fielder = parse_element (element (cls, fields (12)))
+    val LoadAggregate: Fielder = parse_attribute (attribute (cls, fields (13)))
 
     def parse (context: CIMContext): LoadMotor =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = LoadMotor (
             IdentifiedObject.parse (context),
             toDouble (mask (d (), 0)),
@@ -825,7 +857,7 @@ object LoadMotorSerializer extends CIMSerializer[LoadMotor]
 
     def read (kryo: Kryo, input: Input, cls: Class[LoadMotor]): LoadMotor =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = LoadMotor (
             parent,
@@ -854,47 +886,47 @@ object LoadMotorSerializer extends CIMSerializer[LoadMotor]
  *
  * This model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage.
  *
- * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param ep1 First term voltage exponent for active power (<i>Ep1</i>).
- *        Used only when .staticLoadModelType = exponential.
- * @param ep2 Second term voltage exponent for active power (<i>Ep2</i>).
- *        Used only when .staticLoadModelType = exponential.
- * @param ep3 Third term voltage exponent for active power (<i>Ep3</i>).
- *        Used only when .staticLoadModelType = exponential.
- * @param eq1 First term voltage exponent for reactive power (<i>Eq1</i>).
- *        Used only when .staticLoadModelType = exponential.
- * @param eq2 Second term voltage exponent for reactive power (<i>Eq2</i>).
- *        Used only when .staticLoadModelType = exponential.
- * @param eq3 Third term voltage exponent for reactive power (<i>Eq3</i>).
- *        Used only when .staticLoadModelType = exponential.
- * @param kp1 First term voltage coefficient for active power (<i>K</i><i><sub>p1</sub></i>).
- *        Not used when .staticLoadModelType = constantZ.
- * @param kp2 Second term voltage coefficient for active power (<i>K</i><i><sub>p2</sub></i>).
- *        Not used when .staticLoadModelType = constantZ.
- * @param kp3 Third term voltage coefficient for active power (<i>K</i><i><sub>p3</sub></i>).
- *        Not used when .staticLoadModelType = constantZ.
- * @param kp4 Frequency coefficient for active power (<i>K</i><i><sub>p4</sub></i>)  (not = 0 if .staticLoadModelType = zIP2).
- *        Used only when .staticLoadModelType = zIP2.
- * @param kpf Frequency deviation coefficient for active power (<i>K</i><i><sub>pf</sub></i>).
- *        Not used when .staticLoadModelType = constantZ.
- * @param kq1 First term voltage coefficient for reactive power (<i>K</i><i><sub>q1</sub></i>).
- *        Not used when .staticLoadModelType = constantZ.
- * @param kq2 Second term voltage coefficient for reactive power (<i>K</i><i><sub>q2</sub></i>).
- *        Not used when .staticLoadModelType = constantZ.
- * @param kq3 Third term voltage coefficient for reactive power (<i>K</i><i><sub>q3</sub></i>).
- *        Not used when .staticLoadModelType = constantZ.
- * @param kq4 Frequency coefficient for reactive power (<i>K</i><i><sub>q4</sub></i>)  (not = 0 when .staticLoadModelType = zIP2).
- *        Used only when .staticLoadModelType - zIP2.
- * @param kqf Frequency deviation coefficient for reactive power (<i>K</i><i><sub>qf</sub></i>).
- *        Not used when .staticLoadModelType = constantZ.
+ * @param IdentifiedObject    [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ep1                 First term voltage exponent for active power (<i>Ep1</i>).
+ *                            Used only when .staticLoadModelType = exponential.
+ * @param ep2                 Second term voltage exponent for active power (<i>Ep2</i>).
+ *                            Used only when .staticLoadModelType = exponential.
+ * @param ep3                 Third term voltage exponent for active power (<i>Ep3</i>).
+ *                            Used only when .staticLoadModelType = exponential.
+ * @param eq1                 First term voltage exponent for reactive power (<i>Eq1</i>).
+ *                            Used only when .staticLoadModelType = exponential.
+ * @param eq2                 Second term voltage exponent for reactive power (<i>Eq2</i>).
+ *                            Used only when .staticLoadModelType = exponential.
+ * @param eq3                 Third term voltage exponent for reactive power (<i>Eq3</i>).
+ *                            Used only when .staticLoadModelType = exponential.
+ * @param kp1                 First term voltage coefficient for active power (<i>K</i><i><sub>p1</sub></i>).
+ *                            Not used when .staticLoadModelType = constantZ.
+ * @param kp2                 Second term voltage coefficient for active power (<i>K</i><i><sub>p2</sub></i>).
+ *                            Not used when .staticLoadModelType = constantZ.
+ * @param kp3                 Third term voltage coefficient for active power (<i>K</i><i><sub>p3</sub></i>).
+ *                            Not used when .staticLoadModelType = constantZ.
+ * @param kp4                 Frequency coefficient for active power (<i>K</i><i><sub>p4</sub></i>)  (not = 0 if .staticLoadModelType = zIP2).
+ *                            Used only when .staticLoadModelType = zIP2.
+ * @param kpf                 Frequency deviation coefficient for active power (<i>K</i><i><sub>pf</sub></i>).
+ *                            Not used when .staticLoadModelType = constantZ.
+ * @param kq1                 First term voltage coefficient for reactive power (<i>K</i><i><sub>q1</sub></i>).
+ *                            Not used when .staticLoadModelType = constantZ.
+ * @param kq2                 Second term voltage coefficient for reactive power (<i>K</i><i><sub>q2</sub></i>).
+ *                            Not used when .staticLoadModelType = constantZ.
+ * @param kq3                 Third term voltage coefficient for reactive power (<i>K</i><i><sub>q3</sub></i>).
+ *                            Not used when .staticLoadModelType = constantZ.
+ * @param kq4                 Frequency coefficient for reactive power (<i>K</i><i><sub>q4</sub></i>)  (not = 0 when .staticLoadModelType = zIP2).
+ *                            Used only when .staticLoadModelType - zIP2.
+ * @param kqf                 Frequency deviation coefficient for reactive power (<i>K</i><i><sub>qf</sub></i>).
+ *                            Not used when .staticLoadModelType = constantZ.
  * @param staticLoadModelType Type of static load model.
- *        Typical value = constantZ.
- * @param LoadAggregate [[ch.ninecode.model.LoadAggregate LoadAggregate]] Aggregate load to which this aggregate static load belongs.
+ *                            Typical value = constantZ.
+ * @param LoadAggregate       [[ch.ninecode.model.LoadAggregate LoadAggregate]] Aggregate load to which this aggregate static load belongs.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
+ *            Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.
+ *            Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 final case class LoadStatic
 (
@@ -918,8 +950,8 @@ final case class LoadStatic
     staticLoadModelType: String = null,
     LoadAggregate: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -945,14 +977,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadStatic.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadStatic.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadStatic.fields (position), value)
+
         emitelem (0, ep1)
         emitelem (1, ep2)
         emitelem (2, ep3)
@@ -973,6 +1011,7 @@ extends
         emitattr (17, LoadAggregate)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:LoadStatic rdf:ID=\"%s\">\n%s\t</cim:LoadStatic>".format (id, export_fields)
@@ -980,10 +1019,10 @@ extends
 }
 
 object LoadStatic
-extends
-    CIMParseable[LoadStatic]
+    extends
+        CIMParseable[LoadStatic]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ep1",
         "ep2",
         "ep3",
@@ -1006,29 +1045,29 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("LoadAggregate", "LoadAggregate", "1", "0..1")
     )
-    val ep1: Fielder = parse_element (element (cls, fields(0)))
-    val ep2: Fielder = parse_element (element (cls, fields(1)))
-    val ep3: Fielder = parse_element (element (cls, fields(2)))
-    val eq1: Fielder = parse_element (element (cls, fields(3)))
-    val eq2: Fielder = parse_element (element (cls, fields(4)))
-    val eq3: Fielder = parse_element (element (cls, fields(5)))
-    val kp1: Fielder = parse_element (element (cls, fields(6)))
-    val kp2: Fielder = parse_element (element (cls, fields(7)))
-    val kp3: Fielder = parse_element (element (cls, fields(8)))
-    val kp4: Fielder = parse_element (element (cls, fields(9)))
-    val kpf: Fielder = parse_element (element (cls, fields(10)))
-    val kq1: Fielder = parse_element (element (cls, fields(11)))
-    val kq2: Fielder = parse_element (element (cls, fields(12)))
-    val kq3: Fielder = parse_element (element (cls, fields(13)))
-    val kq4: Fielder = parse_element (element (cls, fields(14)))
-    val kqf: Fielder = parse_element (element (cls, fields(15)))
-    val staticLoadModelType: Fielder = parse_attribute (attribute (cls, fields(16)))
-    val LoadAggregate: Fielder = parse_attribute (attribute (cls, fields(17)))
+    val ep1: Fielder = parse_element (element (cls, fields (0)))
+    val ep2: Fielder = parse_element (element (cls, fields (1)))
+    val ep3: Fielder = parse_element (element (cls, fields (2)))
+    val eq1: Fielder = parse_element (element (cls, fields (3)))
+    val eq2: Fielder = parse_element (element (cls, fields (4)))
+    val eq3: Fielder = parse_element (element (cls, fields (5)))
+    val kp1: Fielder = parse_element (element (cls, fields (6)))
+    val kp2: Fielder = parse_element (element (cls, fields (7)))
+    val kp3: Fielder = parse_element (element (cls, fields (8)))
+    val kp4: Fielder = parse_element (element (cls, fields (9)))
+    val kpf: Fielder = parse_element (element (cls, fields (10)))
+    val kq1: Fielder = parse_element (element (cls, fields (11)))
+    val kq2: Fielder = parse_element (element (cls, fields (12)))
+    val kq3: Fielder = parse_element (element (cls, fields (13)))
+    val kq4: Fielder = parse_element (element (cls, fields (14)))
+    val kqf: Fielder = parse_element (element (cls, fields (15)))
+    val staticLoadModelType: Fielder = parse_attribute (attribute (cls, fields (16)))
+    val LoadAggregate: Fielder = parse_attribute (attribute (cls, fields (17)))
 
     def parse (context: CIMContext): LoadStatic =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = LoadStatic (
             IdentifiedObject.parse (context),
             toDouble (mask (ep1 (), 0)),
@@ -1089,7 +1128,7 @@ object LoadStaticSerializer extends CIMSerializer[LoadStatic]
 
     def read (kryo: Kryo, input: Input, cls: Class[LoadStatic]): LoadStatic =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = LoadStatic (
             parent,

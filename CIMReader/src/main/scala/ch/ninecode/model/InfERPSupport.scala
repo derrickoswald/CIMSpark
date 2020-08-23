@@ -17,17 +17,17 @@ import ch.ninecode.cim.CIMSerializer
  *
  * This is used by ERP systems to transfer Bill of Material information between two business applications.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
- * @param Design [[ch.ninecode.model.Design Design]] <em>undocumented</em>
+ * @param ErpDocument     [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param Design          [[ch.ninecode.model.Design Design]] <em>undocumented</em>
  * @param ErpBomItemDatas [[ch.ninecode.model.ErpBomItemData ErpBomItemData]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpBOM
 (
@@ -35,8 +35,8 @@ final case class ErpBOM
     Design: String = null,
     ErpBomItemDatas: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -62,18 +62,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpBOM.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpBOM.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpBOM.fields (position), x))
+
         emitattr (0, Design)
         emitattrs (1, ErpBomItemDatas)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpBOM rdf:ID=\"%s\">\n%s\t</cim:ErpBOM>".format (id, export_fields)
@@ -81,10 +88,10 @@ extends
 }
 
 object ErpBOM
-extends
-    CIMParseable[ErpBOM]
+    extends
+        CIMParseable[ErpBOM]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "Design",
         "ErpBomItemDatas"
     )
@@ -92,13 +99,13 @@ extends
         CIMRelationship ("Design", "Design", "0..1", "0..*"),
         CIMRelationship ("ErpBomItemDatas", "ErpBomItemData", "0..*", "1")
     )
-    val Design: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val ErpBomItemDatas: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Design: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val ErpBomItemDatas: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): ErpBOM =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpBOM (
             ErpDocument.parse (context),
             mask (Design (), 0),
@@ -127,7 +134,7 @@ object ErpBOMSerializer extends CIMSerializer[ErpBOM]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpBOM]): ErpBOM =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpBOM (
             parent,
@@ -147,23 +154,23 @@ object ErpBOMSerializer extends CIMSerializer[ErpBOM]
  * For Payment metering, the account is associated with Bank and Supplier, reflecting details of the bank account used for depositing revenue collected by TokenVendor. The name of the account holder should be specified in 'name' attribute.
  *
  * @param BankAccount [[ch.ninecode.model.BankAccount BankAccount]] Reference to the superclass object.
- * @param bankABA Bank ABA.
+ * @param bankABA     Bank ABA.
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpBankAccount
 (
     BankAccount: BankAccount = null,
     bankABA: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -189,16 +196,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpBankAccount.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpBankAccount.fields (position), value)
+
         emitelem (0, bankABA)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpBankAccount rdf:ID=\"%s\">\n%s\t</cim:ErpBankAccount>".format (id, export_fields)
@@ -206,18 +219,18 @@ extends
 }
 
 object ErpBankAccount
-extends
-    CIMParseable[ErpBankAccount]
+    extends
+        CIMParseable[ErpBankAccount]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "bankABA"
     )
-    val bankABA: Fielder = parse_element (element (cls, fields(0)))
+    val bankABA: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: CIMContext): ErpBankAccount =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpBankAccount (
             BankAccount.parse (context),
             mask (bankABA (), 0)
@@ -244,7 +257,7 @@ object ErpBankAccountSerializer extends CIMSerializer[ErpBankAccount]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpBankAccount]): ErpBankAccount =
     {
-        val parent = BankAccountSerializer.read (kryo, input, classOf[BankAccount])
+        val parent = BankAccountSerializer.read (kryo, input, classOf [BankAccount])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpBankAccount (
             parent,
@@ -259,17 +272,17 @@ object ErpBankAccountSerializer extends CIMSerializer[ErpBankAccount]
  * An individual item on a bill of materials.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param DesignLocation [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
- * @param ErpBOM [[ch.ninecode.model.ErpBOM ErpBOM]] <em>undocumented</em>
- * @param TypeAsset [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
+ * @param DesignLocation      [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
+ * @param ErpBOM              [[ch.ninecode.model.ErpBOM ErpBOM]] <em>undocumented</em>
+ * @param TypeAsset           [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpBomItemData
 (
@@ -278,8 +291,8 @@ final case class ErpBomItemData
     ErpBOM: String = null,
     TypeAsset: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -305,18 +318,24 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpBomItemData.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpBomItemData.fields (position), value)
+
         emitattr (0, DesignLocation)
         emitattr (1, ErpBOM)
         emitattr (2, TypeAsset)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpBomItemData rdf:ID=\"%s\">\n%s\t</cim:ErpBomItemData>".format (id, export_fields)
@@ -324,10 +343,10 @@ extends
 }
 
 object ErpBomItemData
-extends
-    CIMParseable[ErpBomItemData]
+    extends
+        CIMParseable[ErpBomItemData]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "DesignLocation",
         "ErpBOM",
         "TypeAsset"
@@ -337,14 +356,14 @@ extends
         CIMRelationship ("ErpBOM", "ErpBOM", "1", "0..*"),
         CIMRelationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*")
     )
-    val DesignLocation: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val ErpBOM: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val TypeAsset: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val DesignLocation: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val ErpBOM: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val TypeAsset: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): ErpBomItemData =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpBomItemData (
             ErpIdentifiedObject.parse (context),
             mask (DesignLocation (), 0),
@@ -375,7 +394,7 @@ object ErpBomItemDataSerializer extends CIMSerializer[ErpBomItemData]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpBomItemData]): ErpBomItemData =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpBomItemData (
             parent,
@@ -397,18 +416,18 @@ object ErpBomItemDataSerializer extends CIMSerializer[ErpBomItemData]
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpChartOfAccounts
 (
     ErpDocument: ErpDocument = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -434,12 +453,16 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:ErpChartOfAccounts rdf:ID=\"%s\">\n%s\t</cim:ErpChartOfAccounts>".format (id, export_fields)
@@ -447,8 +470,8 @@ extends
 }
 
 object ErpChartOfAccounts
-extends
-    CIMParseable[ErpChartOfAccounts]
+    extends
+        CIMParseable[ErpChartOfAccounts]
 {
 
     def parse (context: CIMContext): ErpChartOfAccounts =
@@ -477,7 +500,7 @@ object ErpChartOfAccountsSerializer extends CIMSerializer[ErpChartOfAccounts]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpChartOfAccounts]): ErpChartOfAccounts =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpChartOfAccounts (
             parent
@@ -493,23 +516,23 @@ object ErpChartOfAccountsSerializer extends CIMSerializer[ErpChartOfAccounts]
  * Unlike Skills that an ErpPerson must be certified to perform before undertaking certain type of assignments (to be able to perfrom a Craft), ErpCompetency has more to do with typical Human Resource (HR) matters such as schooling, training, etc.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
+ * @param ErpPersons          [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpCompetency
 (
     ErpIdentifiedObject: ErpIdentifiedObject = null,
     ErpPersons: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -535,16 +558,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpCompetency.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpCompetency.fields (position), x))
+
         emitattrs (0, ErpPersons)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpCompetency rdf:ID=\"%s\">\n%s\t</cim:ErpCompetency>".format (id, export_fields)
@@ -552,21 +581,21 @@ extends
 }
 
 object ErpCompetency
-extends
-    CIMParseable[ErpCompetency]
+    extends
+        CIMParseable[ErpCompetency]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ErpPersons"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpPersons", "OldPerson", "0..*", "0..1")
     )
-    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ErpCompetency =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpCompetency (
             ErpIdentifiedObject.parse (context),
             masks (ErpPersons (), 0)
@@ -593,7 +622,7 @@ object ErpCompetencySerializer extends CIMSerializer[ErpCompetency]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpCompetency]): ErpCompetency =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpCompetency (
             parent,
@@ -613,18 +642,18 @@ object ErpCompetencySerializer extends CIMSerializer[ErpCompetency]
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpDocument
 (
     Document: Document = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -650,12 +679,16 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:ErpDocument rdf:ID=\"%s\">\n%s\t</cim:ErpDocument>".format (id, export_fields)
@@ -663,8 +696,8 @@ extends
 }
 
 object ErpDocument
-extends
-    CIMParseable[ErpDocument]
+    extends
+        CIMParseable[ErpDocument]
 {
 
     def parse (context: CIMContext): ErpDocument =
@@ -693,7 +726,7 @@ object ErpDocumentSerializer extends CIMSerializer[ErpDocument]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpDocument]): ErpDocument =
     {
-        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
+        val parent = DocumentSerializer.read (kryo, input, classOf [Document])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpDocument (
             parent
@@ -710,18 +743,18 @@ object ErpDocumentSerializer extends CIMSerializer[ErpDocument]
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpEngChangeOrder
 (
     ErpDocument: ErpDocument = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -747,12 +780,16 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:ErpEngChangeOrder rdf:ID=\"%s\">\n%s\t</cim:ErpEngChangeOrder>".format (id, export_fields)
@@ -760,8 +797,8 @@ extends
 }
 
 object ErpEngChangeOrder
-extends
-    CIMParseable[ErpEngChangeOrder]
+    extends
+        CIMParseable[ErpEngChangeOrder]
 {
 
     def parse (context: CIMContext): ErpEngChangeOrder =
@@ -790,7 +827,7 @@ object ErpEngChangeOrderSerializer extends CIMSerializer[ErpEngChangeOrder]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpEngChangeOrder]): ErpEngChangeOrder =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpEngChangeOrder (
             parent
@@ -809,18 +846,18 @@ object ErpEngChangeOrderSerializer extends CIMSerializer[ErpEngChangeOrder]
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpIdentifiedObject
 (
     IdentifiedObject: IdentifiedObject = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -846,12 +883,16 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:ErpIdentifiedObject rdf:ID=\"%s\">\n%s\t</cim:ErpIdentifiedObject>".format (id, export_fields)
@@ -859,8 +900,8 @@ extends
 }
 
 object ErpIdentifiedObject
-extends
-    CIMParseable[ErpIdentifiedObject]
+    extends
+        CIMParseable[ErpIdentifiedObject]
 {
 
     def parse (context: CIMContext): ErpIdentifiedObject =
@@ -889,7 +930,7 @@ object ErpIdentifiedObjectSerializer extends CIMSerializer[ErpIdentifiedObject]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpIdentifiedObject]): ErpIdentifiedObject =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpIdentifiedObject (
             parent
@@ -905,16 +946,16 @@ object ErpIdentifiedObjectSerializer extends CIMSerializer[ErpIdentifiedObject]
  * It is used by ERP applications to enable the synchronization of Inventory data that exists on separate Item Master databases. This data is not the master data that describes the attributes of the item such as dimensions, weight, or unit of measure - it describes the item as it exists at a specific location.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
- * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
+ * @param status              <em>undocumented</em>
+ * @param Asset               [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpInventory
 (
@@ -922,8 +963,8 @@ final case class ErpInventory
     status: String = null,
     Asset: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -949,17 +990,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpInventory.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpInventory.fields (position), value)
+
         emitattr (0, status)
         emitattr (1, Asset)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpInventory rdf:ID=\"%s\">\n%s\t</cim:ErpInventory>".format (id, export_fields)
@@ -967,23 +1014,23 @@ extends
 }
 
 object ErpInventory
-extends
-    CIMParseable[ErpInventory]
+    extends
+        CIMParseable[ErpInventory]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "Asset"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Asset", "Asset", "0..1", "0..1")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Asset: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val Asset: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): ErpInventory =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpInventory (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0),
@@ -1012,7 +1059,7 @@ object ErpInventorySerializer extends CIMSerializer[ErpInventory]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpInventory]): ErpInventory =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpInventory (
             parent,
@@ -1031,23 +1078,23 @@ object ErpInventorySerializer extends CIMSerializer[ErpInventory]
  * It enables ERP applications to transfer an inventory count between ERP and the actual physical inventory location. This count may be a cycle count or a physical count.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
+ * @param status              <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpInventoryCount
 (
     ErpIdentifiedObject: ErpIdentifiedObject = null,
     status: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1073,16 +1120,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpInventoryCount.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpInventoryCount.fields (position), value)
+
         emitattr (0, status)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpInventoryCount rdf:ID=\"%s\">\n%s\t</cim:ErpInventoryCount>".format (id, export_fields)
@@ -1090,18 +1143,18 @@ extends
 }
 
 object ErpInventoryCount
-extends
-    CIMParseable[ErpInventoryCount]
+    extends
+        CIMParseable[ErpInventoryCount]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status"
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ErpInventoryCount =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpInventoryCount (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0)
@@ -1128,7 +1181,7 @@ object ErpInventoryCountSerializer extends CIMSerializer[ErpInventoryCount]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpInventoryCount]): ErpInventoryCount =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpInventoryCount (
             parent,
@@ -1144,27 +1197,27 @@ object ErpInventoryCountSerializer extends CIMSerializer[ErpInventoryCount]
  *
  * The whole invoice has a due date and amount to be paid, with information such as customer, banks etc. being obtained through associations. The invoice roll up is based on individual line items that each contain amounts and descriptions for specific services or products.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
- * @param amount Total amount due on this invoice based on line items and applicable adjustments.
- * @param billMediaKind Kind of media by which the CustomerBillingInfo was delivered.
- * @param dueDate Calculated date upon which the Invoice amount is due.
- * @param kind Kind of invoice (default is 'sales').
- * @param mailedDate Date on which the customer billing statement/invoice was printed/mailed.
- * @param proForma True if payment is to be paid by a Customer to accept a particular ErpQuote (with associated Design) and have work initiated, at which time an associated ErpInvoice should automatically be generated.
- *        EprPayment.subjectStatus satisfies terms specificed in the ErpQuote.
- * @param referenceNumber Number of an invoice to be reference by this invoice.
+ * @param ErpDocument         [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param amount              Total amount due on this invoice based on line items and applicable adjustments.
+ * @param billMediaKind       Kind of media by which the CustomerBillingInfo was delivered.
+ * @param dueDate             Calculated date upon which the Invoice amount is due.
+ * @param kind                Kind of invoice (default is 'sales').
+ * @param mailedDate          Date on which the customer billing statement/invoice was printed/mailed.
+ * @param proForma            True if payment is to be paid by a Customer to accept a particular ErpQuote (with associated Design) and have work initiated, at which time an associated ErpInvoice should automatically be generated.
+ *                            EprPayment.subjectStatus satisfies terms specificed in the ErpQuote.
+ * @param referenceNumber     Number of an invoice to be reference by this invoice.
  * @param transactionDateTime Date and time when the invoice is issued.
- * @param transferType Type of invoice transfer.
- * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
+ * @param transferType        Type of invoice transfer.
+ * @param CustomerAccount     [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
  * @param ErpInvoiceLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpInvoice
 (
@@ -1181,8 +1234,8 @@ final case class ErpInvoice
     CustomerAccount: String = null,
     ErpInvoiceLineItems: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1208,15 +1261,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpInvoice.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpInvoice.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpInvoice.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpInvoice.fields (position), x))
+
         emitelem (0, amount)
         emitattr (1, billMediaKind)
         emitelem (2, dueDate)
@@ -1230,6 +1290,7 @@ extends
         emitattrs (10, ErpInvoiceLineItems)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpInvoice rdf:ID=\"%s\">\n%s\t</cim:ErpInvoice>".format (id, export_fields)
@@ -1237,10 +1298,10 @@ extends
 }
 
 object ErpInvoice
-extends
-    CIMParseable[ErpInvoice]
+    extends
+        CIMParseable[ErpInvoice]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "amount",
         "billMediaKind",
         "dueDate",
@@ -1257,22 +1318,22 @@ extends
         CIMRelationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
         CIMRelationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "1")
     )
-    val amount: Fielder = parse_element (element (cls, fields(0)))
-    val billMediaKind: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val dueDate: Fielder = parse_element (element (cls, fields(2)))
-    val kind: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val mailedDate: Fielder = parse_element (element (cls, fields(4)))
-    val proForma: Fielder = parse_element (element (cls, fields(5)))
-    val referenceNumber: Fielder = parse_element (element (cls, fields(6)))
-    val transactionDateTime: Fielder = parse_element (element (cls, fields(7)))
-    val transferType: Fielder = parse_element (element (cls, fields(8)))
-    val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val amount: Fielder = parse_element (element (cls, fields (0)))
+    val billMediaKind: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val dueDate: Fielder = parse_element (element (cls, fields (2)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val mailedDate: Fielder = parse_element (element (cls, fields (4)))
+    val proForma: Fielder = parse_element (element (cls, fields (5)))
+    val referenceNumber: Fielder = parse_element (element (cls, fields (6)))
+    val transactionDateTime: Fielder = parse_element (element (cls, fields (7)))
+    val transferType: Fielder = parse_element (element (cls, fields (8)))
+    val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields (9)))
+    val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
 
     def parse (context: CIMContext): ErpInvoice =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpInvoice (
             ErpDocument.parse (context),
             toDouble (mask (amount (), 0)),
@@ -1319,7 +1380,7 @@ object ErpInvoiceSerializer extends CIMSerializer[ErpInvoice]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpInvoice]): ErpInvoice =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpInvoice (
             parent,
@@ -1343,36 +1404,36 @@ object ErpInvoiceSerializer extends CIMSerializer[ErpInvoice]
 /**
  * An individual line item on an invoice.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
- * @param billPeriod Bill period for the line item.
- * @param glAccount General Ledger account code, must be a valid combination.
- * @param glDateTime Date and time line item will be posted to the General Ledger.
- * @param kind Kind of line item.
- * @param lineAmount Amount due for this line item.
- * @param lineNumber Line item number on invoice statement.
- * @param lineVersion Version number of the bill run.
- * @param netAmount Net line item charge amount.
- * @param previousAmount Previous line item charge amount.
+ * @param ErpDocument                  [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param billPeriod                   Bill period for the line item.
+ * @param glAccount                    General Ledger account code, must be a valid combination.
+ * @param glDateTime                   Date and time line item will be posted to the General Ledger.
+ * @param kind                         Kind of line item.
+ * @param lineAmount                   Amount due for this line item.
+ * @param lineNumber                   Line item number on invoice statement.
+ * @param lineVersion                  Version number of the bill run.
+ * @param netAmount                    Net line item charge amount.
+ * @param previousAmount               Previous line item charge amount.
  * @param ComponentErpInvoiceLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
- * @param ContainerErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
- * @param CustomerBillingInfos [[ch.ninecode.model.CustomerBillingInfo CustomerBillingInfo]] Customer billing for services rendered.
- * @param ErpInvoice [[ch.ninecode.model.ErpInvoice ErpInvoice]] <em>undocumented</em>
- * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
- * @param ErpPayableLineItem [[ch.ninecode.model.ErpPayableLineItem ErpPayableLineItem]] <em>undocumented</em>
- * @param ErpPayments [[ch.ninecode.model.ErpPayment ErpPayment]] <em>undocumented</em>
- * @param ErpQuoteLineItem [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
- * @param ErpRecDelvLineItem [[ch.ninecode.model.ErpRecDelvLineItem ErpRecDelvLineItem]] <em>undocumented</em>
- * @param ErpRecLineItem [[ch.ninecode.model.ErpRecLineItem ErpRecLineItem]] <em>undocumented</em>
- * @param UserAttributes [[ch.ninecode.model.UserAttribute UserAttribute]] <em>undocumented</em>
- * @param WorkBillingInfos [[ch.ninecode.model.WorkBillingInfo WorkBillingInfo]] <em>undocumented</em>
+ * @param ContainerErpInvoiceLineItem  [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
+ * @param CustomerBillingInfos         [[ch.ninecode.model.CustomerBillingInfo CustomerBillingInfo]] Customer billing for services rendered.
+ * @param ErpInvoice                   [[ch.ninecode.model.ErpInvoice ErpInvoice]] <em>undocumented</em>
+ * @param ErpJournalEntries            [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
+ * @param ErpPayableLineItem           [[ch.ninecode.model.ErpPayableLineItem ErpPayableLineItem]] <em>undocumented</em>
+ * @param ErpPayments                  [[ch.ninecode.model.ErpPayment ErpPayment]] <em>undocumented</em>
+ * @param ErpQuoteLineItem             [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
+ * @param ErpRecDelvLineItem           [[ch.ninecode.model.ErpRecDelvLineItem ErpRecDelvLineItem]] <em>undocumented</em>
+ * @param ErpRecLineItem               [[ch.ninecode.model.ErpRecLineItem ErpRecLineItem]] <em>undocumented</em>
+ * @param UserAttributes               [[ch.ninecode.model.UserAttribute UserAttribute]] <em>undocumented</em>
+ * @param WorkBillingInfos             [[ch.ninecode.model.WorkBillingInfo WorkBillingInfo]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpInvoiceLineItem
 (
@@ -1399,8 +1460,8 @@ final case class ErpInvoiceLineItem
     UserAttributes: List[String] = null,
     WorkBillingInfos: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1426,15 +1487,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpInvoiceLineItem.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpInvoiceLineItem.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpInvoiceLineItem.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpInvoiceLineItem.fields (position), x))
+
         emitattr (0, billPeriod)
         emitelem (1, glAccount)
         emitelem (2, glDateTime)
@@ -1458,6 +1526,7 @@ extends
         emitattrs (20, WorkBillingInfos)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpInvoiceLineItem rdf:ID=\"%s\">\n%s\t</cim:ErpInvoiceLineItem>".format (id, export_fields)
@@ -1465,10 +1534,10 @@ extends
 }
 
 object ErpInvoiceLineItem
-extends
-    CIMParseable[ErpInvoiceLineItem]
+    extends
+        CIMParseable[ErpInvoiceLineItem]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "billPeriod",
         "glAccount",
         "glDateTime",
@@ -1505,32 +1574,32 @@ extends
         CIMRelationship ("UserAttributes", "UserAttribute", "0..*", "0..*"),
         CIMRelationship ("WorkBillingInfos", "WorkBillingInfo", "0..*", "0..*")
     )
-    val billPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val glAccount: Fielder = parse_element (element (cls, fields(1)))
-    val glDateTime: Fielder = parse_element (element (cls, fields(2)))
-    val kind: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val lineAmount: Fielder = parse_element (element (cls, fields(4)))
-    val lineNumber: Fielder = parse_element (element (cls, fields(5)))
-    val lineVersion: Fielder = parse_element (element (cls, fields(6)))
-    val netAmount: Fielder = parse_element (element (cls, fields(7)))
-    val previousAmount: Fielder = parse_element (element (cls, fields(8)))
-    val ComponentErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val ContainerErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val CustomerBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val ErpInvoice: Fielder = parse_attribute (attribute (cls, fields(12)))
-    val ErpJournalEntries: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
-    val ErpPayableLineItem: Fielder = parse_attribute (attribute (cls, fields(14)))
-    val ErpPayments: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
-    val ErpQuoteLineItem: Fielder = parse_attribute (attribute (cls, fields(16)))
-    val ErpRecDelvLineItem: Fielder = parse_attribute (attribute (cls, fields(17)))
-    val ErpRecLineItem: Fielder = parse_attribute (attribute (cls, fields(18)))
-    val UserAttributes: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
-    val WorkBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
+    val billPeriod: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val glAccount: Fielder = parse_element (element (cls, fields (1)))
+    val glDateTime: Fielder = parse_element (element (cls, fields (2)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val lineAmount: Fielder = parse_element (element (cls, fields (4)))
+    val lineNumber: Fielder = parse_element (element (cls, fields (5)))
+    val lineVersion: Fielder = parse_element (element (cls, fields (6)))
+    val netAmount: Fielder = parse_element (element (cls, fields (7)))
+    val previousAmount: Fielder = parse_element (element (cls, fields (8)))
+    val ComponentErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
+    val ContainerErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields (10)))
+    val CustomerBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
+    val ErpInvoice: Fielder = parse_attribute (attribute (cls, fields (12)))
+    val ErpJournalEntries: FielderMultiple = parse_attributes (attribute (cls, fields (13)))
+    val ErpPayableLineItem: Fielder = parse_attribute (attribute (cls, fields (14)))
+    val ErpPayments: FielderMultiple = parse_attributes (attribute (cls, fields (15)))
+    val ErpQuoteLineItem: Fielder = parse_attribute (attribute (cls, fields (16)))
+    val ErpRecDelvLineItem: Fielder = parse_attribute (attribute (cls, fields (17)))
+    val ErpRecLineItem: Fielder = parse_attribute (attribute (cls, fields (18)))
+    val UserAttributes: FielderMultiple = parse_attributes (attribute (cls, fields (19)))
+    val WorkBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields (20)))
 
     def parse (context: CIMContext): ErpInvoiceLineItem =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpInvoiceLineItem (
             ErpDocument.parse (context),
             mask (billPeriod (), 0),
@@ -1597,7 +1666,7 @@ object ErpInvoiceLineItemSerializer extends CIMSerializer[ErpInvoiceLineItem]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpInvoiceLineItem]): ErpInvoiceLineItem =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpInvoiceLineItem (
             parent,
@@ -1632,17 +1701,17 @@ object ErpInvoiceLineItemSerializer extends CIMSerializer[ErpInvoiceLineItem]
  * Can be used to request an application to process an issue or request information about an issue.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
- * @param TypeAsset [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
- * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
+ * @param status              <em>undocumented</em>
+ * @param TypeAsset           [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
+ * @param TypeMaterial        [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpIssueInventory
 (
@@ -1651,8 +1720,8 @@ final case class ErpIssueInventory
     TypeAsset: String = null,
     TypeMaterial: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1678,18 +1747,24 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpIssueInventory.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpIssueInventory.fields (position), value)
+
         emitattr (0, status)
         emitattr (1, TypeAsset)
         emitattr (2, TypeMaterial)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpIssueInventory rdf:ID=\"%s\">\n%s\t</cim:ErpIssueInventory>".format (id, export_fields)
@@ -1697,10 +1772,10 @@ extends
 }
 
 object ErpIssueInventory
-extends
-    CIMParseable[ErpIssueInventory]
+    extends
+        CIMParseable[ErpIssueInventory]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "TypeAsset",
         "TypeMaterial"
@@ -1709,14 +1784,14 @@ extends
         CIMRelationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*"),
         CIMRelationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val TypeAsset: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val TypeAsset: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): ErpIssueInventory =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpIssueInventory (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0),
@@ -1747,7 +1822,7 @@ object ErpIssueInventorySerializer extends CIMSerializer[ErpIssueInventory]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpIssueInventory]): ErpIssueInventory =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpIssueInventory (
             parent,
@@ -1766,16 +1841,16 @@ object ErpIssueInventorySerializer extends CIMSerializer[ErpIssueInventory]
  * Item, as used by the OAG, refers to the basic information about an item, including its attributes, cost, and locations. It does not include item quantities. Compare to the Inventory, which includes all quantities and other location-specific information.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
- * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
+ * @param status              <em>undocumented</em>
+ * @param Asset               [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpItemMaster
 (
@@ -1783,8 +1858,8 @@ final case class ErpItemMaster
     status: String = null,
     Asset: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1810,17 +1885,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpItemMaster.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpItemMaster.fields (position), value)
+
         emitattr (0, status)
         emitattr (1, Asset)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpItemMaster rdf:ID=\"%s\">\n%s\t</cim:ErpItemMaster>".format (id, export_fields)
@@ -1828,23 +1909,23 @@ extends
 }
 
 object ErpItemMaster
-extends
-    CIMParseable[ErpItemMaster]
+    extends
+        CIMParseable[ErpItemMaster]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "Asset"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Asset", "Asset", "0..1", "0..1")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Asset: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val Asset: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): ErpItemMaster =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpItemMaster (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0),
@@ -1873,7 +1954,7 @@ object ErpItemMasterSerializer extends CIMSerializer[ErpItemMaster]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpItemMaster]): ErpItemMaster =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpItemMaster (
             parent,
@@ -1891,24 +1972,24 @@ object ErpItemMasterSerializer extends CIMSerializer[ErpItemMaster]
  * Transactions and adjustments are first recorded in a journal, which is like a diary of instructions, advising which account to be charged and by how much.
  * A journal represents a change in the balances of a business's financial accounts. Many tasks or transactions throughout an enterprise will result in the creation of a journal. Some examples are creating a customer invoice, paying a vendor, transferring inventory, or paying employees.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument       [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpJournal
 (
     ErpDocument: ErpDocument = null,
     ErpJournalEntries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -1934,16 +2015,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpJournal.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpJournal.fields (position), x))
+
         emitattrs (0, ErpJournalEntries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpJournal rdf:ID=\"%s\">\n%s\t</cim:ErpJournal>".format (id, export_fields)
@@ -1951,21 +2038,21 @@ extends
 }
 
 object ErpJournal
-extends
-    CIMParseable[ErpJournal]
+    extends
+        CIMParseable[ErpJournal]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ErpJournalEntries"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "1")
     )
-    val ErpJournalEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ErpJournalEntries: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ErpJournal =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpJournal (
             ErpDocument.parse (context),
             masks (ErpJournalEntries (), 0)
@@ -1992,7 +2079,7 @@ object ErpJournalSerializer extends CIMSerializer[ErpJournal]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpJournal]): ErpJournal =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpJournal (
             parent,
@@ -2007,26 +2094,26 @@ object ErpJournalSerializer extends CIMSerializer[ErpJournal]
  * Details of an individual entry in a journal, which is to be posted to a ledger on the posting date.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param accountID Account identifier for this entry.
- * @param amount The amount of the debit or credit for this account.
- * @param postingDateTime Date and time this entry is to be posted to the ledger.
- * @param sourceID The identifer of the source for this entry.
- * @param status <em>undocumented</em>
+ * @param accountID           Account identifier for this entry.
+ * @param amount              The amount of the debit or credit for this account.
+ * @param postingDateTime     Date and time this entry is to be posted to the ledger.
+ * @param sourceID            The identifer of the source for this entry.
+ * @param status              <em>undocumented</em>
  * @param transactionDateTime Date and time journal entry was recorded.
- * @param CostTypes [[ch.ninecode.model.CostType CostType]] <em>undocumented</em>
- * @param ErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
- * @param ErpJournal [[ch.ninecode.model.ErpJournal ErpJournal]] <em>undocumented</em>
- * @param ErpLedgerEntry [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
+ * @param CostTypes           [[ch.ninecode.model.CostType CostType]] <em>undocumented</em>
+ * @param ErpInvoiceLineItem  [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
+ * @param ErpJournal          [[ch.ninecode.model.ErpJournal ErpJournal]] <em>undocumented</em>
+ * @param ErpLedgerEntry      [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
  * @param ErpPayableLineItems [[ch.ninecode.model.ErpPayableLineItem ErpPayableLineItem]] <em>undocumented</em>
- * @param ErpRecLineItems [[ch.ninecode.model.ErpRecLineItem ErpRecLineItem]] <em>undocumented</em>
+ * @param ErpRecLineItems     [[ch.ninecode.model.ErpRecLineItem ErpRecLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpJournalEntry
 (
@@ -2044,8 +2131,8 @@ final case class ErpJournalEntry
     ErpPayableLineItems: List[String] = null,
     ErpRecLineItems: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2071,15 +2158,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpJournalEntry.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpJournalEntry.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpJournalEntry.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpJournalEntry.fields (position), x))
+
         emitelem (0, accountID)
         emitelem (1, amount)
         emitelem (2, postingDateTime)
@@ -2094,6 +2188,7 @@ extends
         emitattrs (11, ErpRecLineItems)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpJournalEntry rdf:ID=\"%s\">\n%s\t</cim:ErpJournalEntry>".format (id, export_fields)
@@ -2101,10 +2196,10 @@ extends
 }
 
 object ErpJournalEntry
-extends
-    CIMParseable[ErpJournalEntry]
+    extends
+        CIMParseable[ErpJournalEntry]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "accountID",
         "amount",
         "postingDateTime",
@@ -2126,23 +2221,23 @@ extends
         CIMRelationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "0..*"),
         CIMRelationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "0..*")
     )
-    val accountID: Fielder = parse_element (element (cls, fields(0)))
-    val amount: Fielder = parse_element (element (cls, fields(1)))
-    val postingDateTime: Fielder = parse_element (element (cls, fields(2)))
-    val sourceID: Fielder = parse_element (element (cls, fields(3)))
-    val status: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val transactionDateTime: Fielder = parse_element (element (cls, fields(5)))
-    val CostTypes: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val ErpJournal: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val ErpLedgerEntry: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val ErpPayableLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val ErpRecLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val accountID: Fielder = parse_element (element (cls, fields (0)))
+    val amount: Fielder = parse_element (element (cls, fields (1)))
+    val postingDateTime: Fielder = parse_element (element (cls, fields (2)))
+    val sourceID: Fielder = parse_element (element (cls, fields (3)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val transactionDateTime: Fielder = parse_element (element (cls, fields (5)))
+    val CostTypes: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
+    val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val ErpJournal: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val ErpLedgerEntry: Fielder = parse_attribute (attribute (cls, fields (9)))
+    val ErpPayableLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
+    val ErpRecLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
 
     def parse (context: CIMContext): ErpJournalEntry =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpJournalEntry (
             ErpIdentifiedObject.parse (context),
             mask (accountID (), 0),
@@ -2191,7 +2286,7 @@ object ErpJournalEntrySerializer extends CIMSerializer[ErpJournalEntry]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpJournalEntry]): ErpJournalEntry =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpJournalEntry (
             parent,
@@ -2216,18 +2311,18 @@ object ErpJournalEntrySerializer extends CIMSerializer[ErpJournalEntry]
 /**
  * Individual entry of a given Ledger Budget, typically containing information such as amount, accounting date, accounting period, and is associated with the applicable general ledger account.
  *
- * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
+ * @param ErpIdentifiedObject    [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param status                 <em>undocumented</em>
  * @param ErpLedBudLineItem_attr [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
- * @param ErpLedgerBudget [[ch.ninecode.model.ErpLedgerBudget ErpLedgerBudget]] <em>undocumented</em>
+ * @param ErpLedgerBudget        [[ch.ninecode.model.ErpLedgerBudget ErpLedgerBudget]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpLedBudLineItem
 (
@@ -2236,8 +2331,8 @@ final case class ErpLedBudLineItem
     ErpLedBudLineItem_attr: String = null,
     ErpLedgerBudget: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2263,18 +2358,24 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpLedBudLineItem.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpLedBudLineItem.fields (position), value)
+
         emitattr (0, status)
         emitattr (1, ErpLedBudLineItem_attr)
         emitattr (2, ErpLedgerBudget)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpLedBudLineItem rdf:ID=\"%s\">\n%s\t</cim:ErpLedBudLineItem>".format (id, export_fields)
@@ -2282,10 +2383,10 @@ extends
 }
 
 object ErpLedBudLineItem
-extends
-    CIMParseable[ErpLedBudLineItem]
+    extends
+        CIMParseable[ErpLedBudLineItem]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "ErpLedBudLineItem",
         "ErpLedgerBudget"
@@ -2294,14 +2395,14 @@ extends
         CIMRelationship ("ErpLedBudLineItem_attr", "ErpLedgerEntry", "0..1", "0..1"),
         CIMRelationship ("ErpLedgerBudget", "ErpLedgerBudget", "1", "0..*")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val ErpLedBudLineItem_attr: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val ErpLedgerBudget: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val ErpLedBudLineItem_attr: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val ErpLedgerBudget: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): ErpLedBudLineItem =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpLedBudLineItem (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0),
@@ -2332,7 +2433,7 @@ object ErpLedBudLineItemSerializer extends CIMSerializer[ErpLedBudLineItem]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpLedBudLineItem]): ErpLedBudLineItem =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpLedBudLineItem (
             parent,
@@ -2350,24 +2451,24 @@ object ErpLedBudLineItemSerializer extends CIMSerializer[ErpLedBudLineItem]
  *
  * Journal entries are periodically posted to the ledger. Ledger Actual represents actual amounts by account within ledger within company or business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument      [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpLedgerEntries [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpLedger
 (
     ErpDocument: ErpDocument = null,
     ErpLedgerEntries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2393,16 +2494,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpLedger.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpLedger.fields (position), x))
+
         emitattrs (0, ErpLedgerEntries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpLedger rdf:ID=\"%s\">\n%s\t</cim:ErpLedger>".format (id, export_fields)
@@ -2410,21 +2517,21 @@ extends
 }
 
 object ErpLedger
-extends
-    CIMParseable[ErpLedger]
+    extends
+        CIMParseable[ErpLedger]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ErpLedgerEntries"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpLedgerEntries", "ErpLedgerEntry", "0..*", "1")
     )
-    val ErpLedgerEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ErpLedgerEntries: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ErpLedger =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpLedger (
             ErpDocument.parse (context),
             masks (ErpLedgerEntries (), 0)
@@ -2451,7 +2558,7 @@ object ErpLedgerSerializer extends CIMSerializer[ErpLedger]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpLedger]): ErpLedger =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpLedger (
             parent,
@@ -2467,24 +2574,24 @@ object ErpLedgerSerializer extends CIMSerializer[ErpLedger]
  *
  * They support the transfer budget amounts between all possible source applications throughout an enterprise and a general ledger or budget application.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument        [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpLedBudLineItems [[ch.ninecode.model.ErpLedBudLineItem ErpLedBudLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpLedgerBudget
 (
     ErpDocument: ErpDocument = null,
     ErpLedBudLineItems: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2510,16 +2617,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpLedgerBudget.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpLedgerBudget.fields (position), x))
+
         emitattrs (0, ErpLedBudLineItems)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpLedgerBudget rdf:ID=\"%s\">\n%s\t</cim:ErpLedgerBudget>".format (id, export_fields)
@@ -2527,21 +2640,21 @@ extends
 }
 
 object ErpLedgerBudget
-extends
-    CIMParseable[ErpLedgerBudget]
+    extends
+        CIMParseable[ErpLedgerBudget]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ErpLedBudLineItems"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpLedBudLineItems", "ErpLedBudLineItem", "0..*", "1")
     )
-    val ErpLedBudLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ErpLedBudLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ErpLedgerBudget =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpLedgerBudget (
             ErpDocument.parse (context),
             masks (ErpLedBudLineItems (), 0)
@@ -2568,7 +2681,7 @@ object ErpLedgerBudgetSerializer extends CIMSerializer[ErpLedgerBudget]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpLedgerBudget]): ErpLedgerBudget =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpLedgerBudget (
             parent,
@@ -2583,24 +2696,24 @@ object ErpLedgerBudgetSerializer extends CIMSerializer[ErpLedgerBudget]
  * Details of an individual entry in a ledger, which was posted from a journal on the posted date.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param accountID Account identifier for this entry.
- * @param accountKind Kind of account for this entry.
- * @param amount The amount of the debit or credit for this account.
- * @param postedDateTime Date and time this entry was posted to the ledger.
- * @param status <em>undocumented</em>
+ * @param accountID           Account identifier for this entry.
+ * @param accountKind         Kind of account for this entry.
+ * @param amount              The amount of the debit or credit for this account.
+ * @param postedDateTime      Date and time this entry was posted to the ledger.
+ * @param status              <em>undocumented</em>
  * @param transactionDateTime Date and time journal entry was recorded.
- * @param ErpJounalEntry [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
- * @param ErpLedger [[ch.ninecode.model.ErpLedger ErpLedger]] <em>undocumented</em>
+ * @param ErpJounalEntry      [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
+ * @param ErpLedger           [[ch.ninecode.model.ErpLedger ErpLedger]] <em>undocumented</em>
  * @param ErpLedgerEntry_attr [[ch.ninecode.model.ErpLedBudLineItem ErpLedBudLineItem]] <em>undocumented</em>
- * @param UserAttributes [[ch.ninecode.model.UserAttribute UserAttribute]] <em>undocumented</em>
+ * @param UserAttributes      [[ch.ninecode.model.UserAttribute UserAttribute]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpLedgerEntry
 (
@@ -2616,8 +2729,8 @@ final case class ErpLedgerEntry
     ErpLedgerEntry_attr: String = null,
     UserAttributes: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2643,15 +2756,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpLedgerEntry.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpLedgerEntry.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpLedgerEntry.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpLedgerEntry.fields (position), x))
+
         emitelem (0, accountID)
         emitattr (1, accountKind)
         emitelem (2, amount)
@@ -2664,6 +2784,7 @@ extends
         emitattrs (9, UserAttributes)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpLedgerEntry rdf:ID=\"%s\">\n%s\t</cim:ErpLedgerEntry>".format (id, export_fields)
@@ -2671,10 +2792,10 @@ extends
 }
 
 object ErpLedgerEntry
-extends
-    CIMParseable[ErpLedgerEntry]
+    extends
+        CIMParseable[ErpLedgerEntry]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "accountID",
         "accountKind",
         "amount",
@@ -2692,21 +2813,21 @@ extends
         CIMRelationship ("ErpLedgerEntry_attr", "ErpLedBudLineItem", "0..1", "0..1"),
         CIMRelationship ("UserAttributes", "UserAttribute", "0..*", "0..*")
     )
-    val accountID: Fielder = parse_element (element (cls, fields(0)))
-    val accountKind: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val amount: Fielder = parse_element (element (cls, fields(2)))
-    val postedDateTime: Fielder = parse_element (element (cls, fields(3)))
-    val status: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val transactionDateTime: Fielder = parse_element (element (cls, fields(5)))
-    val ErpJounalEntry: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val ErpLedger: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val ErpLedgerEntry_attr: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val UserAttributes: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val accountID: Fielder = parse_element (element (cls, fields (0)))
+    val accountKind: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val amount: Fielder = parse_element (element (cls, fields (2)))
+    val postedDateTime: Fielder = parse_element (element (cls, fields (3)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val transactionDateTime: Fielder = parse_element (element (cls, fields (5)))
+    val ErpJounalEntry: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val ErpLedger: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val ErpLedgerEntry_attr: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val UserAttributes: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
 
     def parse (context: CIMContext): ErpLedgerEntry =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpLedgerEntry (
             ErpIdentifiedObject.parse (context),
             mask (accountID (), 0),
@@ -2751,7 +2872,7 @@ object ErpLedgerEntrySerializer extends CIMSerializer[ErpLedgerEntry]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpLedgerEntry]): ErpLedgerEntry =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpLedgerEntry (
             parent,
@@ -2774,19 +2895,19 @@ object ErpLedgerEntrySerializer extends CIMSerializer[ErpLedgerEntry]
 /**
  * Of an ErpPurchaseOrder, this is an individually ordered item or product along with the quantity, price and other descriptive information.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument             [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param AssetModelCatalogueItem [[ch.ninecode.model.AssetModelCatalogueItem AssetModelCatalogueItem]] <em>undocumented</em>
- * @param ErpPurchaseOrder [[ch.ninecode.model.ErpPurchaseOrder ErpPurchaseOrder]] <em>undocumented</em>
- * @param ErpRecDelLineItem [[ch.ninecode.model.ErpRecDelvLineItem ErpRecDelvLineItem]] <em>undocumented</em>
- * @param ErpReqLineItem [[ch.ninecode.model.ErpReqLineItem ErpReqLineItem]] <em>undocumented</em>
+ * @param ErpPurchaseOrder        [[ch.ninecode.model.ErpPurchaseOrder ErpPurchaseOrder]] <em>undocumented</em>
+ * @param ErpRecDelLineItem       [[ch.ninecode.model.ErpRecDelvLineItem ErpRecDelvLineItem]] <em>undocumented</em>
+ * @param ErpReqLineItem          [[ch.ninecode.model.ErpReqLineItem ErpReqLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpPOLineItem
 (
@@ -2796,8 +2917,8 @@ final case class ErpPOLineItem
     ErpRecDelLineItem: String = null,
     ErpReqLineItem: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2823,19 +2944,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPOLineItem.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpPOLineItem.fields (position), value)
+
         emitattr (0, AssetModelCatalogueItem)
         emitattr (1, ErpPurchaseOrder)
         emitattr (2, ErpRecDelLineItem)
         emitattr (3, ErpReqLineItem)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpPOLineItem rdf:ID=\"%s\">\n%s\t</cim:ErpPOLineItem>".format (id, export_fields)
@@ -2843,10 +2970,10 @@ extends
 }
 
 object ErpPOLineItem
-extends
-    CIMParseable[ErpPOLineItem]
+    extends
+        CIMParseable[ErpPOLineItem]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "AssetModelCatalogueItem",
         "ErpPurchaseOrder",
         "ErpRecDelLineItem",
@@ -2858,15 +2985,15 @@ extends
         CIMRelationship ("ErpRecDelLineItem", "ErpRecDelvLineItem", "0..1", "0..1"),
         CIMRelationship ("ErpReqLineItem", "ErpReqLineItem", "0..1", "0..1")
     )
-    val AssetModelCatalogueItem: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val ErpPurchaseOrder: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val ErpRecDelLineItem: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val ErpReqLineItem: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val AssetModelCatalogueItem: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val ErpPurchaseOrder: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val ErpRecDelLineItem: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val ErpReqLineItem: Fielder = parse_attribute (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): ErpPOLineItem =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpPOLineItem (
             ErpDocument.parse (context),
             mask (AssetModelCatalogueItem (), 0),
@@ -2899,7 +3026,7 @@ object ErpPOLineItemSerializer extends CIMSerializer[ErpPOLineItem]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpPOLineItem]): ErpPOLineItem =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpPOLineItem (
             parent,
@@ -2918,17 +3045,17 @@ object ErpPOLineItemSerializer extends CIMSerializer[ErpPOLineItem]
  *
  * A payable (or voucher) is an open item, approved and ready for payment, in the Accounts Payable ledger.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
- * @param ContractorItems [[ch.ninecode.model.ContractorItem ContractorItem]] <em>undocumented</em>
+ * @param ErpDocument         [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ContractorItems     [[ch.ninecode.model.ContractorItem ContractorItem]] <em>undocumented</em>
  * @param ErpPayableLineItems [[ch.ninecode.model.ErpPayableLineItem ErpPayableLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpPayable
 (
@@ -2936,8 +3063,8 @@ final case class ErpPayable
     ContractorItems: List[String] = null,
     ErpPayableLineItems: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -2963,17 +3090,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPayable.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpPayable.fields (position), x))
+
         emitattrs (0, ContractorItems)
         emitattrs (1, ErpPayableLineItems)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpPayable rdf:ID=\"%s\">\n%s\t</cim:ErpPayable>".format (id, export_fields)
@@ -2981,10 +3114,10 @@ extends
 }
 
 object ErpPayable
-extends
-    CIMParseable[ErpPayable]
+    extends
+        CIMParseable[ErpPayable]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ContractorItems",
         "ErpPayableLineItems"
     )
@@ -2992,13 +3125,13 @@ extends
         CIMRelationship ("ContractorItems", "ContractorItem", "0..*", "0..*"),
         CIMRelationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "1")
     )
-    val ContractorItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val ErpPayableLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ContractorItems: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val ErpPayableLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): ErpPayable =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpPayable (
             ErpDocument.parse (context),
             masks (ContractorItems (), 0),
@@ -3027,7 +3160,7 @@ object ErpPayableSerializer extends CIMSerializer[ErpPayable]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpPayable]): ErpPayable =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpPayable (
             parent,
@@ -3043,19 +3176,19 @@ object ErpPayableSerializer extends CIMSerializer[ErpPayable]
  * Of an ErpPayable, a line item references an ErpInvoiceLineitem or other source such as credit memos.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
- * @param ErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
- * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
- * @param ErpPayable [[ch.ninecode.model.ErpPayable ErpPayable]] <em>undocumented</em>
- * @param ErpPayments [[ch.ninecode.model.ErpPayment ErpPayment]] <em>undocumented</em>
+ * @param status              <em>undocumented</em>
+ * @param ErpInvoiceLineItem  [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
+ * @param ErpJournalEntries   [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
+ * @param ErpPayable          [[ch.ninecode.model.ErpPayable ErpPayable]] <em>undocumented</em>
+ * @param ErpPayments         [[ch.ninecode.model.ErpPayment ErpPayment]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpPayableLineItem
 (
@@ -3066,8 +3199,8 @@ final case class ErpPayableLineItem
     ErpPayable: String = null,
     ErpPayments: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3093,14 +3226,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPayableLineItem.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpPayableLineItem.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpPayableLineItem.fields (position), x))
+
         emitattr (0, status)
         emitattr (1, ErpInvoiceLineItem)
         emitattrs (2, ErpJournalEntries)
@@ -3108,6 +3247,7 @@ extends
         emitattrs (4, ErpPayments)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpPayableLineItem rdf:ID=\"%s\">\n%s\t</cim:ErpPayableLineItem>".format (id, export_fields)
@@ -3115,10 +3255,10 @@ extends
 }
 
 object ErpPayableLineItem
-extends
-    CIMParseable[ErpPayableLineItem]
+    extends
+        CIMParseable[ErpPayableLineItem]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "ErpInvoiceLineItem",
         "ErpJournalEntries",
@@ -3131,16 +3271,16 @@ extends
         CIMRelationship ("ErpPayable", "ErpPayable", "1", "0..*"),
         CIMRelationship ("ErpPayments", "ErpPayment", "0..*", "0..*")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val ErpJournalEntries: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val ErpPayable: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val ErpPayments: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val ErpJournalEntries: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val ErpPayable: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val ErpPayments: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
 
     def parse (context: CIMContext): ErpPayableLineItem =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpPayableLineItem (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0),
@@ -3175,7 +3315,7 @@ object ErpPayableLineItemSerializer extends CIMSerializer[ErpPayableLineItem]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpPayableLineItem]): ErpPayableLineItem =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpPayableLineItem (
             parent,
@@ -3195,19 +3335,19 @@ object ErpPayableLineItemSerializer extends CIMSerializer[ErpPayableLineItem]
  *
  * ErpPayable is also updated when payment is to a supplier and ErpReceivable is updated when payment is from a customer. Multiple payments can be made against a single line item and an individual payment can apply to more that one line item.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
- * @param termsPayment Payment terms (e.g., net 30).
+ * @param ErpDocument         [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param termsPayment        Payment terms (e.g., net 30).
  * @param ErpInvoiceLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @param ErpPayableLineItems [[ch.ninecode.model.ErpPayableLineItem ErpPayableLineItem]] <em>undocumented</em>
- * @param ErpRecLineItems [[ch.ninecode.model.ErpRecLineItem ErpRecLineItem]] <em>undocumented</em>
+ * @param ErpRecLineItems     [[ch.ninecode.model.ErpRecLineItem ErpRecLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpPayment
 (
@@ -3217,8 +3357,8 @@ final case class ErpPayment
     ErpPayableLineItems: List[String] = null,
     ErpRecLineItems: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3244,20 +3384,27 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPayment.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpPayment.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpPayment.fields (position), x))
+
         emitelem (0, termsPayment)
         emitattrs (1, ErpInvoiceLineItems)
         emitattrs (2, ErpPayableLineItems)
         emitattrs (3, ErpRecLineItems)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpPayment rdf:ID=\"%s\">\n%s\t</cim:ErpPayment>".format (id, export_fields)
@@ -3265,10 +3412,10 @@ extends
 }
 
 object ErpPayment
-extends
-    CIMParseable[ErpPayment]
+    extends
+        CIMParseable[ErpPayment]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "termsPayment",
         "ErpInvoiceLineItems",
         "ErpPayableLineItems",
@@ -3279,15 +3426,15 @@ extends
         CIMRelationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "0..*"),
         CIMRelationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "0..*")
     )
-    val termsPayment: Fielder = parse_element (element (cls, fields(0)))
-    val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val ErpPayableLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val ErpRecLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val termsPayment: Fielder = parse_element (element (cls, fields (0)))
+    val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val ErpPayableLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val ErpRecLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): ErpPayment =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpPayment (
             ErpDocument.parse (context),
             mask (termsPayment (), 0),
@@ -3320,7 +3467,7 @@ object ErpPaymentSerializer extends CIMSerializer[ErpPayment]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpPayment]): ErpPayment =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpPayment (
             parent,
@@ -3338,16 +3485,16 @@ object ErpPaymentSerializer extends CIMSerializer[ErpPayment]
  * Information that applies to the basic data about a utility person, used by ERP applications to transfer Personnel data for a worker.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
- * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
+ * @param status              <em>undocumented</em>
+ * @param ErpPersons          [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpPersonnel
 (
@@ -3355,8 +3502,8 @@ final case class ErpPersonnel
     status: String = null,
     ErpPersons: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3382,18 +3529,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPersonnel.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpPersonnel.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpPersonnel.fields (position), x))
+
         emitattr (0, status)
         emitattrs (1, ErpPersons)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpPersonnel rdf:ID=\"%s\">\n%s\t</cim:ErpPersonnel>".format (id, export_fields)
@@ -3401,23 +3555,23 @@ extends
 }
 
 object ErpPersonnel
-extends
-    CIMParseable[ErpPersonnel]
+    extends
+        CIMParseable[ErpPersonnel]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "ErpPersons"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpPersons", "OldPerson", "0..*", "0..1")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): ErpPersonnel =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpPersonnel (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0),
@@ -3446,7 +3600,7 @@ object ErpPersonnelSerializer extends CIMSerializer[ErpPersonnel]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpPersonnel]): ErpPersonnel =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpPersonnel (
             parent,
@@ -3463,19 +3617,19 @@ object ErpPersonnelSerializer extends CIMSerializer[ErpPersonnel]
  *
  * This would include, but not necessarily be limited to: Accounts Payable, Accounts Receivable, Budget, Order Management, Purchasing, Time and Labor, Travel and Expense.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
- * @param ErpTimeEntries [[ch.ninecode.model.ErpTimeEntry ErpTimeEntry]] <em>undocumented</em>
- * @param Projects [[ch.ninecode.model.Project Project]] <em>undocumented</em>
+ * @param ErpDocument     [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpTimeEntries  [[ch.ninecode.model.ErpTimeEntry ErpTimeEntry]] <em>undocumented</em>
+ * @param Projects        [[ch.ninecode.model.Project Project]] <em>undocumented</em>
  * @param WorkCostDetails [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
- * @param Works [[ch.ninecode.model.Work Work]] <em>undocumented</em>
+ * @param Works           [[ch.ninecode.model.Work Work]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpProjectAccounting
 (
@@ -3485,8 +3639,8 @@ final case class ErpProjectAccounting
     WorkCostDetails: List[String] = null,
     Works: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3512,19 +3666,25 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpProjectAccounting.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpProjectAccounting.fields (position), x))
+
         emitattrs (0, ErpTimeEntries)
         emitattrs (1, Projects)
         emitattrs (2, WorkCostDetails)
         emitattrs (3, Works)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpProjectAccounting rdf:ID=\"%s\">\n%s\t</cim:ErpProjectAccounting>".format (id, export_fields)
@@ -3532,10 +3692,10 @@ extends
 }
 
 object ErpProjectAccounting
-extends
-    CIMParseable[ErpProjectAccounting]
+    extends
+        CIMParseable[ErpProjectAccounting]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ErpTimeEntries",
         "Projects",
         "WorkCostDetails",
@@ -3547,15 +3707,15 @@ extends
         CIMRelationship ("WorkCostDetails", "WorkCostDetail", "0..*", "1"),
         CIMRelationship ("Works", "Work", "0..*", "0..1")
     )
-    val ErpTimeEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val Projects: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val WorkCostDetails: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val ErpTimeEntries: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val Projects: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val WorkCostDetails: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val Works: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
 
     def parse (context: CIMContext): ErpProjectAccounting =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpProjectAccounting (
             ErpDocument.parse (context),
             masks (ErpTimeEntries (), 0),
@@ -3588,7 +3748,7 @@ object ErpProjectAccountingSerializer extends CIMSerializer[ErpProjectAccounting
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpProjectAccounting]): ErpProjectAccounting =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpProjectAccounting (
             parent,
@@ -3607,24 +3767,24 @@ object ErpProjectAccountingSerializer extends CIMSerializer[ErpProjectAccounting
  *
  * The PurchaseOrder carries information to and from the buyer and supplier. It is a legally binding document once both Parties agree to the contents and the specified terms and conditions of the order.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument    [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpPOLineItems [[ch.ninecode.model.ErpPOLineItem ErpPOLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpPurchaseOrder
 (
     ErpDocument: ErpDocument = null,
     ErpPOLineItems: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3650,16 +3810,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPurchaseOrder.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpPurchaseOrder.fields (position), x))
+
         emitattrs (0, ErpPOLineItems)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpPurchaseOrder rdf:ID=\"%s\">\n%s\t</cim:ErpPurchaseOrder>".format (id, export_fields)
@@ -3667,21 +3833,21 @@ extends
 }
 
 object ErpPurchaseOrder
-extends
-    CIMParseable[ErpPurchaseOrder]
+    extends
+        CIMParseable[ErpPurchaseOrder]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ErpPOLineItems"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpPOLineItems", "ErpPOLineItem", "0..*", "1")
     )
-    val ErpPOLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ErpPOLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ErpPurchaseOrder =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpPurchaseOrder (
             ErpDocument.parse (context),
             masks (ErpPOLineItems (), 0)
@@ -3708,7 +3874,7 @@ object ErpPurchaseOrderSerializer extends CIMSerializer[ErpPurchaseOrder]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpPurchaseOrder]): ErpPurchaseOrder =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpPurchaseOrder (
             parent,
@@ -3724,24 +3890,24 @@ object ErpPurchaseOrderSerializer extends CIMSerializer[ErpPurchaseOrder]
  *
  * It includes the terms of the purchase, delivery proposals, identification of goods or services ordered, as well as their quantities.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument       [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpQuoteLineItems [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpQuote
 (
     ErpDocument: ErpDocument = null,
     ErpQuoteLineItems: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3767,16 +3933,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpQuote.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpQuote.fields (position), x))
+
         emitattrs (0, ErpQuoteLineItems)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpQuote rdf:ID=\"%s\">\n%s\t</cim:ErpQuote>".format (id, export_fields)
@@ -3784,21 +3956,21 @@ extends
 }
 
 object ErpQuote
-extends
-    CIMParseable[ErpQuote]
+    extends
+        CIMParseable[ErpQuote]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ErpQuoteLineItems"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpQuoteLineItems", "ErpQuoteLineItem", "0..*", "1")
     )
-    val ErpQuoteLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ErpQuoteLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ErpQuote =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpQuote (
             ErpDocument.parse (context),
             masks (ErpQuoteLineItems (), 0)
@@ -3825,7 +3997,7 @@ object ErpQuoteSerializer extends CIMSerializer[ErpQuote]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpQuote]): ErpQuote =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpQuote (
             parent,
@@ -3839,22 +4011,22 @@ object ErpQuoteSerializer extends CIMSerializer[ErpQuote]
 /**
  * Of an ErpQuote, the item or product quoted along with quantity, price and other descriptive information.
  *
- * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
+ * @param ErpIdentifiedObject     [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param status                  <em>undocumented</em>
  * @param AssetModelCatalogueItem [[ch.ninecode.model.AssetModelCatalogueItem AssetModelCatalogueItem]] <em>undocumented</em>
- * @param Design [[ch.ninecode.model.Design Design]] <em>undocumented</em>
- * @param ErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] Some utilities provide quotes to customer for services, where the customer accepts the quote by making a payment.
- *        An invoice is required for this to occur.
- * @param ErpQuote [[ch.ninecode.model.ErpQuote ErpQuote]] <em>undocumented</em>
- * @param ErpReqLineItem [[ch.ninecode.model.ErpReqLineItem ErpReqLineItem]] <em>undocumented</em>
+ * @param Design                  [[ch.ninecode.model.Design Design]] <em>undocumented</em>
+ * @param ErpInvoiceLineItem      [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] Some utilities provide quotes to customer for services, where the customer accepts the quote by making a payment.
+ *                                An invoice is required for this to occur.
+ * @param ErpQuote                [[ch.ninecode.model.ErpQuote ErpQuote]] <em>undocumented</em>
+ * @param ErpReqLineItem          [[ch.ninecode.model.ErpReqLineItem ErpReqLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpQuoteLineItem
 (
@@ -3866,8 +4038,8 @@ final case class ErpQuoteLineItem
     ErpQuote: String = null,
     ErpReqLineItem: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -3893,13 +4065,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpQuoteLineItem.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpQuoteLineItem.fields (position), value)
+
         emitattr (0, status)
         emitattr (1, AssetModelCatalogueItem)
         emitattr (2, Design)
@@ -3908,6 +4085,7 @@ extends
         emitattr (5, ErpReqLineItem)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpQuoteLineItem rdf:ID=\"%s\">\n%s\t</cim:ErpQuoteLineItem>".format (id, export_fields)
@@ -3915,10 +4093,10 @@ extends
 }
 
 object ErpQuoteLineItem
-extends
-    CIMParseable[ErpQuoteLineItem]
+    extends
+        CIMParseable[ErpQuoteLineItem]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "AssetModelCatalogueItem",
         "Design",
@@ -3933,17 +4111,17 @@ extends
         CIMRelationship ("ErpQuote", "ErpQuote", "1", "0..*"),
         CIMRelationship ("ErpReqLineItem", "ErpReqLineItem", "0..1", "0..1")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val AssetModelCatalogueItem: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val Design: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val ErpQuote: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val ErpReqLineItem: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val AssetModelCatalogueItem: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val Design: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val ErpQuote: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val ErpReqLineItem: Fielder = parse_attribute (attribute (cls, fields (5)))
 
     def parse (context: CIMContext): ErpQuoteLineItem =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpQuoteLineItem (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0),
@@ -3980,7 +4158,7 @@ object ErpQuoteLineItemSerializer extends CIMSerializer[ErpQuoteLineItem]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpQuoteLineItem]): ErpQuoteLineItem =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpQuoteLineItem (
             parent,
@@ -4002,19 +4180,19 @@ object ErpQuoteLineItemSerializer extends CIMSerializer[ErpQuoteLineItem]
  * It may be used to indicate receipt of goods in conjunction with a purchase order line item.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
- * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
- * @param ErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
- * @param ErpPOLineItem [[ch.ninecode.model.ErpPOLineItem ErpPOLineItem]] <em>undocumented</em>
- * @param ErpReceiveDelivery [[ch.ninecode.model.ErpReceiveDelivery ErpReceiveDelivery]] <em>undocumented</em>
+ * @param status              <em>undocumented</em>
+ * @param Assets              [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
+ * @param ErpInvoiceLineItem  [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
+ * @param ErpPOLineItem       [[ch.ninecode.model.ErpPOLineItem ErpPOLineItem]] <em>undocumented</em>
+ * @param ErpReceiveDelivery  [[ch.ninecode.model.ErpReceiveDelivery ErpReceiveDelivery]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpRecDelvLineItem
 (
@@ -4025,8 +4203,8 @@ final case class ErpRecDelvLineItem
     ErpPOLineItem: String = null,
     ErpReceiveDelivery: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4052,14 +4230,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpRecDelvLineItem.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpRecDelvLineItem.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpRecDelvLineItem.fields (position), x))
+
         emitattr (0, status)
         emitattrs (1, Assets)
         emitattr (2, ErpInvoiceLineItem)
@@ -4067,6 +4251,7 @@ extends
         emitattr (4, ErpReceiveDelivery)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpRecDelvLineItem rdf:ID=\"%s\">\n%s\t</cim:ErpRecDelvLineItem>".format (id, export_fields)
@@ -4074,10 +4259,10 @@ extends
 }
 
 object ErpRecDelvLineItem
-extends
-    CIMParseable[ErpRecDelvLineItem]
+    extends
+        CIMParseable[ErpRecDelvLineItem]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "Assets",
         "ErpInvoiceLineItem",
@@ -4090,16 +4275,16 @@ extends
         CIMRelationship ("ErpPOLineItem", "ErpPOLineItem", "0..1", "0..1"),
         CIMRelationship ("ErpReceiveDelivery", "ErpReceiveDelivery", "1", "0..*")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val ErpPOLineItem: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val ErpReceiveDelivery: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val ErpPOLineItem: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val ErpReceiveDelivery: Fielder = parse_attribute (attribute (cls, fields (4)))
 
     def parse (context: CIMContext): ErpRecDelvLineItem =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpRecDelvLineItem (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0),
@@ -4134,7 +4319,7 @@ object ErpRecDelvLineItemSerializer extends CIMSerializer[ErpRecDelvLineItem]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpRecDelvLineItem]): ErpRecDelvLineItem =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpRecDelvLineItem (
             parent,
@@ -4153,19 +4338,19 @@ object ErpRecDelvLineItemSerializer extends CIMSerializer[ErpRecDelvLineItem]
  * Individual entry of an ErpReceivable, it is a particular transaction representing an invoice, credit memo or debit memo to a customer.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
- * @param ErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
- * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
- * @param ErpPayments [[ch.ninecode.model.ErpPayment ErpPayment]] <em>undocumented</em>
- * @param ErpReceivable [[ch.ninecode.model.ErpReceivable ErpReceivable]] <em>undocumented</em>
+ * @param status              <em>undocumented</em>
+ * @param ErpInvoiceLineItem  [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
+ * @param ErpJournalEntries   [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
+ * @param ErpPayments         [[ch.ninecode.model.ErpPayment ErpPayment]] <em>undocumented</em>
+ * @param ErpReceivable       [[ch.ninecode.model.ErpReceivable ErpReceivable]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpRecLineItem
 (
@@ -4176,8 +4361,8 @@ final case class ErpRecLineItem
     ErpPayments: List[String] = null,
     ErpReceivable: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4203,14 +4388,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpRecLineItem.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpRecLineItem.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpRecLineItem.fields (position), x))
+
         emitattr (0, status)
         emitattr (1, ErpInvoiceLineItem)
         emitattrs (2, ErpJournalEntries)
@@ -4218,6 +4409,7 @@ extends
         emitattr (4, ErpReceivable)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpRecLineItem rdf:ID=\"%s\">\n%s\t</cim:ErpRecLineItem>".format (id, export_fields)
@@ -4225,10 +4417,10 @@ extends
 }
 
 object ErpRecLineItem
-extends
-    CIMParseable[ErpRecLineItem]
+    extends
+        CIMParseable[ErpRecLineItem]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "ErpInvoiceLineItem",
         "ErpJournalEntries",
@@ -4241,16 +4433,16 @@ extends
         CIMRelationship ("ErpPayments", "ErpPayment", "0..*", "0..*"),
         CIMRelationship ("ErpReceivable", "ErpReceivable", "1", "0..*")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val ErpJournalEntries: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val ErpPayments: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val ErpReceivable: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val ErpJournalEntries: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val ErpPayments: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
+    val ErpReceivable: Fielder = parse_attribute (attribute (cls, fields (4)))
 
     def parse (context: CIMContext): ErpRecLineItem =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpRecLineItem (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0),
@@ -4285,7 +4477,7 @@ object ErpRecLineItemSerializer extends CIMSerializer[ErpRecLineItem]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpRecLineItem]): ErpRecLineItem =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpRecLineItem (
             parent,
@@ -4305,24 +4497,24 @@ object ErpRecLineItemSerializer extends CIMSerializer[ErpRecLineItem]
  *
  * It is an open (unpaid) item in the Accounts Receivable ledger.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument     [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpRecLineItems [[ch.ninecode.model.ErpRecLineItem ErpRecLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpReceivable
 (
     ErpDocument: ErpDocument = null,
     ErpRecLineItems: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4348,16 +4540,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpReceivable.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpReceivable.fields (position), x))
+
         emitattrs (0, ErpRecLineItems)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpReceivable rdf:ID=\"%s\">\n%s\t</cim:ErpReceivable>".format (id, export_fields)
@@ -4365,21 +4563,21 @@ extends
 }
 
 object ErpReceivable
-extends
-    CIMParseable[ErpReceivable]
+    extends
+        CIMParseable[ErpReceivable]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ErpRecLineItems"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "1")
     )
-    val ErpRecLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ErpRecLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ErpReceivable =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpReceivable (
             ErpDocument.parse (context),
             masks (ErpRecLineItems (), 0)
@@ -4406,7 +4604,7 @@ object ErpReceivableSerializer extends CIMSerializer[ErpReceivable]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpReceivable]): ErpReceivable =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpReceivable (
             parent,
@@ -4422,24 +4620,24 @@ object ErpReceivableSerializer extends CIMSerializer[ErpReceivable]
  *
  * A receivable is an open (unpaid) item in the Accounts Receivable ledger.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument         [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpRecDelvLineItems [[ch.ninecode.model.ErpRecDelvLineItem ErpRecDelvLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpReceiveDelivery
 (
     ErpDocument: ErpDocument = null,
     ErpRecDelvLineItems: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4465,16 +4663,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpReceiveDelivery.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpReceiveDelivery.fields (position), x))
+
         emitattrs (0, ErpRecDelvLineItems)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpReceiveDelivery rdf:ID=\"%s\">\n%s\t</cim:ErpReceiveDelivery>".format (id, export_fields)
@@ -4482,21 +4686,21 @@ extends
 }
 
 object ErpReceiveDelivery
-extends
-    CIMParseable[ErpReceiveDelivery]
+    extends
+        CIMParseable[ErpReceiveDelivery]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ErpRecDelvLineItems"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpRecDelvLineItems", "ErpRecDelvLineItem", "0..*", "1")
     )
-    val ErpRecDelvLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ErpRecDelvLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ErpReceiveDelivery =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpReceiveDelivery (
             ErpDocument.parse (context),
             masks (ErpRecDelvLineItems (), 0)
@@ -4523,7 +4727,7 @@ object ErpReceiveDeliverySerializer extends CIMSerializer[ErpReceiveDelivery]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpReceiveDelivery]): ErpReceiveDelivery =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpReceiveDelivery (
             parent,
@@ -4538,24 +4742,24 @@ object ErpReceiveDeliverySerializer extends CIMSerializer[ErpReceiveDelivery]
  * Information that describes a requested item and its attributes.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param code <em>undocumented</em>
- * @param cost Cost of material.
- * @param deliveryDate <em>undocumented</em>
- * @param quantity Quantity of item requisitioned.
- * @param status <em>undocumented</em>
- * @param ErpPOLineItem [[ch.ninecode.model.ErpPOLineItem ErpPOLineItem]] <em>undocumented</em>
- * @param ErpQuoteLineItem [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
- * @param ErpRequisition [[ch.ninecode.model.ErpRequisition ErpRequisition]] <em>undocumented</em>
- * @param TypeAsset [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
- * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
+ * @param code                <em>undocumented</em>
+ * @param cost                Cost of material.
+ * @param deliveryDate        <em>undocumented</em>
+ * @param quantity            Quantity of item requisitioned.
+ * @param status              <em>undocumented</em>
+ * @param ErpPOLineItem       [[ch.ninecode.model.ErpPOLineItem ErpPOLineItem]] <em>undocumented</em>
+ * @param ErpQuoteLineItem    [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
+ * @param ErpRequisition      [[ch.ninecode.model.ErpRequisition ErpRequisition]] <em>undocumented</em>
+ * @param TypeAsset           [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
+ * @param TypeMaterial        [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpReqLineItem
 (
@@ -4571,8 +4775,8 @@ final case class ErpReqLineItem
     TypeAsset: String = null,
     TypeMaterial: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4598,14 +4802,20 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpReqLineItem.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpReqLineItem.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpReqLineItem.fields (position), value)
+
         emitelem (0, code)
         emitelem (1, cost)
         emitelem (2, deliveryDate)
@@ -4618,6 +4828,7 @@ extends
         emitattr (9, TypeMaterial)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpReqLineItem rdf:ID=\"%s\">\n%s\t</cim:ErpReqLineItem>".format (id, export_fields)
@@ -4625,10 +4836,10 @@ extends
 }
 
 object ErpReqLineItem
-extends
-    CIMParseable[ErpReqLineItem]
+    extends
+        CIMParseable[ErpReqLineItem]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "code",
         "cost",
         "deliveryDate",
@@ -4647,21 +4858,21 @@ extends
         CIMRelationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*"),
         CIMRelationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*")
     )
-    val code: Fielder = parse_element (element (cls, fields(0)))
-    val cost: Fielder = parse_element (element (cls, fields(1)))
-    val deliveryDate: Fielder = parse_element (element (cls, fields(2)))
-    val quantity: Fielder = parse_element (element (cls, fields(3)))
-    val status: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val ErpPOLineItem: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val ErpQuoteLineItem: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val ErpRequisition: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val TypeAsset: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val code: Fielder = parse_element (element (cls, fields (0)))
+    val cost: Fielder = parse_element (element (cls, fields (1)))
+    val deliveryDate: Fielder = parse_element (element (cls, fields (2)))
+    val quantity: Fielder = parse_element (element (cls, fields (3)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val ErpPOLineItem: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val ErpQuoteLineItem: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val ErpRequisition: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val TypeAsset: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields (9)))
 
     def parse (context: CIMContext): ErpReqLineItem =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpReqLineItem (
             ErpIdentifiedObject.parse (context),
             mask (code (), 0),
@@ -4706,7 +4917,7 @@ object ErpReqLineItemSerializer extends CIMSerializer[ErpReqLineItem]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpReqLineItem]): ErpReqLineItem =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpReqLineItem (
             parent,
@@ -4731,24 +4942,24 @@ object ErpReqLineItemSerializer extends CIMSerializer[ErpReqLineItem]
  *
  * Typically, a requisition leads to the creation of a purchase order to a specific supplier.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument     [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpReqLineItems [[ch.ninecode.model.ErpReqLineItem ErpReqLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpRequisition
 (
     ErpDocument: ErpDocument = null,
     ErpReqLineItems: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4774,16 +4985,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpRequisition.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpRequisition.fields (position), x))
+
         emitattrs (0, ErpReqLineItems)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpRequisition rdf:ID=\"%s\">\n%s\t</cim:ErpRequisition>".format (id, export_fields)
@@ -4791,21 +5008,21 @@ extends
 }
 
 object ErpRequisition
-extends
-    CIMParseable[ErpRequisition]
+    extends
+        CIMParseable[ErpRequisition]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ErpReqLineItems"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpReqLineItems", "ErpReqLineItem", "0..*", "1")
     )
-    val ErpReqLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ErpReqLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ErpRequisition =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpRequisition (
             ErpDocument.parse (context),
             masks (ErpReqLineItems (), 0)
@@ -4832,7 +5049,7 @@ object ErpRequisitionSerializer extends CIMSerializer[ErpRequisition]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpRequisition]): ErpRequisition =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpRequisition (
             parent,
@@ -4852,18 +5069,18 @@ object ErpRequisitionSerializer extends CIMSerializer[ErpRequisition]
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpSalesOrder
 (
     ErpDocument: ErpDocument = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4889,12 +5106,16 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
+
     override def export: String =
     {
         "\t<cim:ErpSalesOrder rdf:ID=\"%s\">\n%s\t</cim:ErpSalesOrder>".format (id, export_fields)
@@ -4902,8 +5123,8 @@ extends
 }
 
 object ErpSalesOrder
-extends
-    CIMParseable[ErpSalesOrder]
+    extends
+        CIMParseable[ErpSalesOrder]
 {
 
     def parse (context: CIMContext): ErpSalesOrder =
@@ -4932,7 +5153,7 @@ object ErpSalesOrderSerializer extends CIMSerializer[ErpSalesOrder]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpSalesOrder]): ErpSalesOrder =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpSalesOrder (
             parent
@@ -4948,16 +5169,16 @@ object ErpSalesOrderSerializer extends CIMSerializer[ErpSalesOrder]
  * This enables ERP applications to ensure that the physical location identifiers are synchronized between the business applications.
  *
  * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
- * @param LandProperty [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
+ * @param status              <em>undocumented</em>
+ * @param LandProperty        [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpSiteLevelData
 (
@@ -4965,8 +5186,8 @@ final case class ErpSiteLevelData
     status: String = null,
     LandProperty: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -4992,17 +5213,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpSiteLevelData.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpSiteLevelData.fields (position), value)
+
         emitattr (0, status)
         emitattr (1, LandProperty)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpSiteLevelData rdf:ID=\"%s\">\n%s\t</cim:ErpSiteLevelData>".format (id, export_fields)
@@ -5010,23 +5237,23 @@ extends
 }
 
 object ErpSiteLevelData
-extends
-    CIMParseable[ErpSiteLevelData]
+    extends
+        CIMParseable[ErpSiteLevelData]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "LandProperty"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("LandProperty", "LandProperty", "0..1", "0..*")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val LandProperty: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val LandProperty: Fielder = parse_attribute (attribute (cls, fields (1)))
 
     def parse (context: CIMContext): ErpSiteLevelData =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpSiteLevelData (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0),
@@ -5055,7 +5282,7 @@ object ErpSiteLevelDataSerializer extends CIMSerializer[ErpSiteLevelData]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpSiteLevelData]): ErpSiteLevelData =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpSiteLevelData (
             parent,
@@ -5070,18 +5297,18 @@ object ErpSiteLevelDataSerializer extends CIMSerializer[ErpSiteLevelData]
 /**
  * An individual entry on an ErpTimeSheet.
  *
- * @param ErpIdentifiedObject [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
- * @param status <em>undocumented</em>
+ * @param ErpIdentifiedObject  [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param status               <em>undocumented</em>
  * @param ErpProjectAccounting [[ch.ninecode.model.ErpProjectAccounting ErpProjectAccounting]] <em>undocumented</em>
- * @param ErpTimeSheet [[ch.ninecode.model.ErpTimeSheet ErpTimeSheet]] <em>undocumented</em>
+ * @param ErpTimeSheet         [[ch.ninecode.model.ErpTimeSheet ErpTimeSheet]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpTimeEntry
 (
@@ -5090,8 +5317,8 @@ final case class ErpTimeEntry
     ErpProjectAccounting: String = null,
     ErpTimeSheet: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5117,18 +5344,24 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpTimeEntry.cls
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpTimeEntry.fields (position), value)
+
         emitattr (0, status)
         emitattr (1, ErpProjectAccounting)
         emitattr (2, ErpTimeSheet)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpTimeEntry rdf:ID=\"%s\">\n%s\t</cim:ErpTimeEntry>".format (id, export_fields)
@@ -5136,10 +5369,10 @@ extends
 }
 
 object ErpTimeEntry
-extends
-    CIMParseable[ErpTimeEntry]
+    extends
+        CIMParseable[ErpTimeEntry]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "status",
         "ErpProjectAccounting",
         "ErpTimeSheet"
@@ -5148,14 +5381,14 @@ extends
         CIMRelationship ("ErpProjectAccounting", "ErpProjectAccounting", "0..1", "0..*"),
         CIMRelationship ("ErpTimeSheet", "ErpTimeSheet", "1", "0..*")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val ErpProjectAccounting: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val ErpTimeSheet: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val ErpProjectAccounting: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val ErpTimeSheet: Fielder = parse_attribute (attribute (cls, fields (2)))
 
     def parse (context: CIMContext): ErpTimeEntry =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpTimeEntry (
             ErpIdentifiedObject.parse (context),
             mask (status (), 0),
@@ -5186,7 +5419,7 @@ object ErpTimeEntrySerializer extends CIMSerializer[ErpTimeEntry]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpTimeEntry]): ErpTimeEntry =
     {
-        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf[ErpIdentifiedObject])
+        val parent = ErpIdentifiedObjectSerializer.read (kryo, input, classOf [ErpIdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpTimeEntry (
             parent,
@@ -5204,24 +5437,24 @@ object ErpTimeEntrySerializer extends CIMSerializer[ErpTimeEntry]
  *
  * Note that ErpTimeSheet inherits the relationship to ErpPerson from Document.
  *
- * @param ErpDocument [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpDocument    [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpTimeEntries [[ch.ninecode.model.ErpTimeEntry ErpTimeEntry]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
-If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeld "Erp..." should be associated with the appropriate classes of that standard. In fact, definitions of "Erp..." classes are based on OAG Nouns to facilitate this process.
+ *
+ *            TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
+ *            "The Enterprise Resource Planning (ERP) Support Package contains portions of the model defined by ERP standards like those proposed by the Open Applications Group (OAG). This package is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
+ *            If a model other that the OAG standard is used as a basis for ERP integration, the utility classes labeled "Erp..." should be associated with the appropriate classes of that standard".
  */
 final case class ErpTimeSheet
 (
     ErpDocument: ErpDocument = null,
     ErpTimeEntries: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -5247,16 +5480,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpTimeSheet.cls
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ErpTimeSheet.fields (position), x))
+
         emitattrs (0, ErpTimeEntries)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ErpTimeSheet rdf:ID=\"%s\">\n%s\t</cim:ErpTimeSheet>".format (id, export_fields)
@@ -5264,21 +5503,21 @@ extends
 }
 
 object ErpTimeSheet
-extends
-    CIMParseable[ErpTimeSheet]
+    extends
+        CIMParseable[ErpTimeSheet]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "ErpTimeEntries"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpTimeEntries", "ErpTimeEntry", "0..*", "1")
     )
-    val ErpTimeEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ErpTimeEntries: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
 
     def parse (context: CIMContext): ErpTimeSheet =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ErpTimeSheet (
             ErpDocument.parse (context),
             masks (ErpTimeEntries (), 0)
@@ -5305,7 +5544,7 @@ object ErpTimeSheetSerializer extends CIMSerializer[ErpTimeSheet]
 
     def read (kryo: Kryo, input: Input, cls: Class[ErpTimeSheet]): ErpTimeSheet =
     {
-        val parent = ErpDocumentSerializer.read (kryo, input, classOf[ErpDocument])
+        val parent = ErpDocumentSerializer.read (kryo, input, classOf [ErpDocument])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ErpTimeSheet (
             parent,

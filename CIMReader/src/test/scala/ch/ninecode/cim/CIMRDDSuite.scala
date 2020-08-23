@@ -26,7 +26,7 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite
         new Unzip ().unzip (s"${FILE_DEPOT}CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
         new Unzip ().unzip (s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", s"${FILE_DEPOT}RealGrid/")
         // run the tests
-        val ret  = super.run (testName, args)
+        val ret = super.run (testName, args)
         // erase the unpacked files
         deleteRecursive (new File (s"${FILE_DEPOT}MicroGrid/"))
         deleteRecursive (new File (s"${FILE_DEPOT}MicroGrid_Error/"))
@@ -62,10 +62,13 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite
         session.sparkContext.parallelize (result._1.values.toSeq)
     }
 
-    def rddHadoop (map: Map[String,String])(implicit session: SparkSession): RDD[Element] =
+    def rddHadoop (map: Map[String, String])(implicit session: SparkSession): RDD[Element] =
     {
-        val configuration = map.foldLeft (new Configuration (session.sparkContext.hadoopConfiguration))((c, e) => { c.set (e._1, e._2); c })
-        session.sparkContext.newAPIHadoopRDD (configuration, classOf[CIMInputFormat], classOf[String], classOf[Element]).values
+        val configuration = map.foldLeft (new Configuration (session.sparkContext.hadoopConfiguration))((c, e) =>
+        {
+            c.set (e._1, e._2); c
+        })
+        session.sparkContext.newAPIHadoopRDD (configuration, classOf [CIMInputFormat], classOf [String], classOf [Element]).values
     }
 
     test ("Create")
@@ -103,7 +106,7 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite
             val result = CHIM.parse (parser)
             assert (result._1.size === PARTIAL_MAP_SIZE)
             assert (result._2.length === 0)
-            assert (!result._1.exists (_.getClass == classOf[Unknown]))
+            assert (!result._1.exists (_.getClass == classOf [Unknown]))
     }
 
     test ("Merge Partial")
@@ -151,7 +154,7 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite
         implicit session: SparkSession =>
 
             val rdd = rddHadoop (Map ("mapreduce.input.fileinputformat.inputdir" -> FILENAME2x))
-            val unknowns = rdd.collect ({ case x: Any if x.getClass == classOf[Unknown] => x.asInstanceOf[Unknown] })
+            val unknowns = rdd.collect ({ case x: Any if x.getClass == classOf [Unknown] => x.asInstanceOf [Unknown] })
             if (unknowns.count () != 0)
             {
                 val u = unknowns.first ()

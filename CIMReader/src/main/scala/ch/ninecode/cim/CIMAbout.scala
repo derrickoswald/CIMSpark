@@ -14,14 +14,14 @@ import org.slf4j.LoggerFactory
  * For each element with id X, if there are elements with "rdf:about='X'",
  * this class merges the about elements into the "primary" element(s).
  *
- * @param spark The Spark session this class is running in.
+ * @param spark   The Spark session this class is running in.
  * @param storage The storage level to cache the resultant RDD.
  */
 class CIMAbout (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER)
-extends
-    CIMRDD
-with
-    Serializable
+    extends
+        CIMRDD
+        with
+        Serializable
 {
     implicit val session: SparkSession = spark
     implicit val storage_level: StorageLevel = storage // for put()
@@ -32,7 +32,7 @@ with
      *
      * @param arg The primary element and any rdf:about elements.
      * @return The new element if there were rdf:about elements to merge,
-     * or the original element if there were none.
+     *         or the original element if there were none.
      */
     def merge (arg: (Element, Option[Iterable[Element]])): Element =
     {
@@ -50,21 +50,21 @@ with
                 val fields = (for (i <- 0 until original.length) yield original.get (i)).toArray
                 for (about <- abouts)
                     if (clz.getCanonicalName == about.getClass.getCanonicalName) // check the class is the same
-                    {
-                        for (i <- 0 until original.length - 1)
-                            if (about.mask (i))
-                            {
-                                fields(i + 1) = about.get (i + 1) // shift by one to avoid superclass
-                                bitfields(i / 32) |= (1 << (i % 32))
-                            }
-                    }
-                    else
+                        {
+                            for (i <- 0 until original.length - 1)
+                                if (about.mask (i))
+                                {
+                                    fields (i + 1) = about.get (i + 1) // shift by one to avoid superclass
+                                    bitfields (i / 32) |= (1 << (i % 32))
+                                }
+                        }
+                        else
                         log.error ("rdf:about class %s is not the same as the reference class %s".format (about.getClass.getCanonicalName, clz.getCanonicalName))
                 // recurse for superclasses
-                fields(0) = if (null != original.sup) merge ((original.sup, Some (abouts.map (_.sup)))) else null
+                fields (0) = if (null != original.sup) merge ((original.sup, Some (abouts.map (_.sup)))) else null
                 val c = clz.getConstructors.filter (_.getParameterCount == fields.length).head
-                val n = c.newInstance (fields: _*).asInstanceOf[Element]
-                n.bitfields  = bitfields
+                val n = c.newInstance (fields: _*).asInstanceOf [Element]
+                n.bitfields = bitfields
                 n
             case None =>
                 original
@@ -88,7 +88,7 @@ with
     def do_about (): RDD[Element] =
     {
         // get the elements RDD
-        val elements = getOrElse[Element]("Elements")
+        val elements = getOrElse [Element]("Elements")
 
         // get the elements flagged as "rdf:about"
         val about_elements = elements.filter (_.about).groupBy (_.id)

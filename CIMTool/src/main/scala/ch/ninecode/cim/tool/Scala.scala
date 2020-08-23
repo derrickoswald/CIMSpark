@@ -42,26 +42,28 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
     implicit val ordering: Ordering[Member] = new Ordering[Member]
     {
         def unquote (variable: String): String = if ('`' == variable.charAt (0)) variable.substring (1, variable.length - 1) else variable
+
         def compare (a: Member, b: Member): Int =
             if (a.isSuper)
                 -1
-            else if (b.isSuper)
-                1
             else
-            {
-                val a_ = unquote (a.variable)
-                val b_ = unquote (b.variable)
-                if (a_.charAt (0).isLower)
-                    if (b_.charAt (0).isLower)
-                        a_.compareTo (b_)
-                    else
-                        -1
+                if (b.isSuper)
+                    1
                 else
-                    if (b_.charAt (0).isLower)
-                        1
+                {
+                    val a_ = unquote (a.variable)
+                    val b_ = unquote (b.variable)
+                    if (a_.charAt (0).isLower)
+                        if (b_.charAt (0).isLower)
+                            a_.compareTo (b_)
+                        else
+                            -1
                     else
-                        a_.compareTo (b_)
-            }
+                        if (b_.charAt (0).isLower)
+                            1
+                        else
+                            a_.compareTo (b_)
+                }
     }
 
     def register (pkg: Package): String =
@@ -69,7 +71,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         s"_${pkg.valid_class_name}"
     }
 
-    def details (classes: SortedSet[Class]) (attribute: Attribute): Member =
+    def details (classes: SortedSet[Class])(attribute: Attribute): Member =
     {
         val name = attribute.name
         val variable = attribute.attribute_name
@@ -156,17 +158,17 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         {
             for (product <- members.toList)
                 yield
-                {
-                    val over = if (product.over) "override val " else ""
-                    s"    $over${product.variable}: ${product.datatype} = ${product.initializer}"
-                }
+                    {
+                        val over = if (product.over) "override val " else ""
+                        s"    $over${product.variable}: ${product.datatype} = ${product.initializer}"
+                    }
         }
         s"""final case class $name
-            |(
-            |${initializers.mkString (",\n|")}
-            |)
-            |extends
-            |    Element""".stripMargin
+           |(
+           |${initializers.mkString (",\n|")}
+           |)
+           |extends
+           |    Element""".stripMargin
     }
 
     def superclass (cls: Class): String =
@@ -176,37 +178,37 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         else
             "Element"
         s"""
-            |    /**
-            |     * Return the superclass object.
-            |     *
-            |     * @return The typed superclass nested object.
-            |     * @group Hierarchy
-            |     * @groupname Hierarchy Class Hierarchy Related
-            |     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-            |     */
-            |    override def sup: $sup = $sup""".stripMargin
+           |    /**
+           |     * Return the superclass object.
+           |     *
+           |     * @return The typed superclass nested object.
+           |     * @group Hierarchy
+           |     * @groupname Hierarchy Class Hierarchy Related
+           |     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+           |     */
+           |    override def sup: $sup = $sup""".stripMargin
     }
 
     def row_overrides: String =
     {
         s"""
-            |
-            |    //
-            |    // Row overrides
-            |    //
-            |
-            |    /**
-            |     * Return a copy of this object as a Row.
-            |     *
-            |     * Creates a clone of this object for use in Row manipulations.
-            |     *
-            |     * @return The copy of the object.
-            |     * @group Row
-            |     * @groupname Row SQL Row Implementation
-            |     * @groupdesc Row Members related to implementing the SQL Row interface
-            |     */
-            |    override def copy (): Row = { clone ().asInstanceOf[Row] }
-            |""".stripMargin
+           |
+           |    //
+           |    // Row overrides
+           |    //
+           |
+           |    /**
+           |     * Return a copy of this object as a Row.
+           |     *
+           |     * Creates a clone of this object for use in Row manipulations.
+           |     *
+           |     * @return The copy of the object.
+           |     * @group Row
+           |     * @groupname Row SQL Row Implementation
+           |     * @groupdesc Row Members related to implementing the SQL Row interface
+           |     */
+           |    override def copy (): Row = { clone ().asInstanceOf[Row] }
+           |""".stripMargin
     }
 
     def exportFields (name: String, fields: SortedSet[Member]): String =
@@ -229,47 +231,48 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 val (member, index) = x
                 val emit = if (member.multiple)
                     "emitattrs"
-                else if (member.reference)
-                    "emitattr"
                 else
-                    "emitelem"
+                    if (member.reference)
+                        "emitattr"
+                    else
+                        "emitelem"
                 s"$emit ($index, ${member.variable})"
             }
         ).mkString ("        ", "\n        ", "")
         if (fields.nonEmpty)
         {
             s"""
-                |    override def export_fields: String =
-                |    {
-                |        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-                |        implicit val clz: String = $name.cls
-                |$ref$single$multiple$emits
-                |        s.toString
-                |    }""".stripMargin
+               |    override def export_fields: String =
+               |    {
+               |        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+               |        implicit val clz: String = $name.cls
+               |$ref$single$multiple$emits
+               |        s.toString
+               |    }""".stripMargin
         }
         else
             s"""
-                |    override def export_fields: String =
-                |    {
-                |        sup.export_fields
-                |    }""".stripMargin
+               |    override def export_fields: String =
+               |    {
+               |        sup.export_fields
+               |    }""".stripMargin
     }
 
     def export (cls: Class): String =
     {
         s"""
-            |    override def export: String =
-            |    {
-            |        "\\t<cim:${cls.name} rdf:ID=\\"%s\\">\\n%s\\t</cim:${cls.name}>".format (id, export_fields)
-            |    }""".stripMargin
+           |    override def export: String =
+           |    {
+           |        "\\t<cim:${cls.name} rdf:ID=\\"%s\\">\\n%s\\t</cim:${cls.name}>".format (id, export_fields)
+           |    }""".stripMargin
     }
 
     def declareObject (name: String): String =
     {
         s"""
-            |object $name
-            |extends
-            |    CIMParseable[$name]""".stripMargin
+           |object $name
+           |extends
+           |    CIMParseable[$name]""".stripMargin
     }
 
     def parseRelationships (fields: SortedSet[Member]): String =
@@ -286,7 +289,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 (for (r <- references.iterator) // need to use iterator here because SortedSet is brain dead
                     yield
                         s"""        CIMRelationship ("${r.variable}", "${r.referenced_class}", "${r.this_cardinality}", "${r.mate_cardinality}")"""
-                ).mkString ("    override val relations: List[CIMRelationship] = List (\n", ",\n", "\n    )\n")
+                    ).mkString ("    override val relations: List[CIMRelationship] = List (\n", ",\n", "\n    )\n")
             else
                 ""
 
@@ -301,14 +304,15 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 else
                     "parse_element (element"
             }
+
             val parsers = (for (x <- fields.iterator.zipWithIndex)
                 yield
-                {
-                    val (member, index) = x
-                    val fielder = if (member.multiple) "FielderMultiple" else "Fielder"
-                    s"val ${member.variable}: $fielder = ${pa (member)} (cls, fields(${index})))"
-                }
-            ).mkString ("    ", "\n    ", "\n")
+                    {
+                        val (member, index) = x
+                        val fielder = if (member.multiple) "FielderMultiple" else "Fielder"
+                        s"val ${member.variable}: $fielder = ${pa (member)} (cls, fields(${index})))"
+                    }
+                ).mkString ("    ", "\n    ", "\n")
             s"$fieldmap$relationships$parsers"
         }
         else
@@ -323,30 +327,33 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         {
             val initializer = (for (_ <- 0 until 1 + (fields.size / 32)) yield "0").mkString (",")
             s"""
-                |        implicit val ctx: CIMContext = context
-                |        implicit val bitfields: Array[Int] = Array($initializer)""".stripMargin
+               |        implicit val ctx: CIMContext = context
+               |        implicit val bitfields: Array[Int] = Array($initializer)""".stripMargin
         }
         else
             ""
         val base = if (identified_object)
             s"""
-                |        val base = BasicElement.parse (context)""".stripMargin
+               |        val base = BasicElement.parse (context)""".stripMargin
         else
             ""
 
         // add field parser calls
         def wrap (members: Iterator[(Member, String)]): String =
             members.map (x => if (x._1.function != "") s"${x._1.function} (${x._2})" else x._2).mkString ("            ", ",\n            ", "")
+
         def masker (x: (Member, Int)): String =
         {
             val (member, index) = x
             val mask = if (member.multiple) "masks" else "mask"
             s"$mask (${member.variable} (), ${index - 1})"
         }
+
         val parsers = if (identified_object)
-                wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.isSuper) "base" else if (x._1.name == "mRID") s"{val _ = ${masker (x)}; base.id}" else masker (x) )))
-            else
-                wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.isSuper) s"${x._1.datatype}.parse (context)" else masker (x))))
+            wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.isSuper) "base" else
+                if (x._1.name == "mRID") s"{val _ = ${masker (x)}; base.id}" else masker (x))))
+        else
+            wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.isSuper) s"${x._1.datatype}.parse (context)" else masker (x))))
 
         val update = if (fields.nonEmpty)
             """
@@ -373,7 +380,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
            |""".stripMargin
     }
 
-    def write (arg: (Member, Int)) (implicit identified_object: Boolean): String =
+    def write (arg: (Member, Int))(implicit identified_object: Boolean): String =
     {
         val (member, _) = arg
         if (identified_object && member.name == "mRID")
@@ -391,7 +398,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
             }
     }
 
-    def read (arg: (Member, Int)) (implicit identified_object: Boolean): String =
+    def read (arg: (Member, Int))(implicit identified_object: Boolean): String =
     {
         val (member, index) = arg
         if (identified_object && member.name == "mRID")
@@ -502,33 +509,36 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         {
             val v = new StringBuilder ()
 
-                .append (s"""package ch.ninecode.model
-                    |
-                    |import com.esotericsoftware.kryo.Kryo
-                    |import com.esotericsoftware.kryo.Serializer
-                    |import com.esotericsoftware.kryo.io.Input
-                    |import com.esotericsoftware.kryo.io.Output
-                    |import org.apache.spark.sql.Row
-                    |
-                    |import ch.ninecode.cim.CIMClassInfo
-                    |import ch.ninecode.cim.CIMContext
-                    |import ch.ninecode.cim.CIMParseable
-                    |${if (hasRelationShip) "import ch.ninecode.cim.CIMRelationship" else ""}
-                    |import ch.ninecode.cim.CIMSerializer
-                    |
-                    |""".stripMargin)
+                .append (
+                    s"""package ch.ninecode.model
+                       |
+                       |import com.esotericsoftware.kryo.Kryo
+                       |import com.esotericsoftware.kryo.Serializer
+                       |import com.esotericsoftware.kryo.io.Input
+                       |import com.esotericsoftware.kryo.io.Output
+                       |import org.apache.spark.sql.Row
+                       |
+                       |import ch.ninecode.cim.CIMClassInfo
+                       |import ch.ninecode.cim.CIMContext
+                       |import ch.ninecode.cim.CIMParseable
+                       |${if (hasRelationShip) "import ch.ninecode.cim.CIMRelationship" else ""}
+                       |import ch.ninecode.cim.CIMSerializer
+                       |
+                       |""".stripMargin)
                 .append (p.toString)
                 .append ("""private[ninecode] object """)
                 .append (register (pkg))
-                .append ("""
-                    |{
-                    |    def register: List[CIMClassInfo] =
-                    |    {
-                    |""".stripMargin)
+                .append (
+                    """
+                      |{
+                      |    def register: List[CIMClassInfo] =
+                      |    {
+                      |""".stripMargin)
                 .append (case_classes.map (cls => s"${cls.valid_class_name}.register").mkString ("        List (\n            ", ",\n            ", "\n        )"))
-                .append ("""
-                    |    }
-                    |}""".stripMargin)
+                .append (
+                    """
+                      |    }
+                      |}""".stripMargin)
 
             v.toString
         }
@@ -574,8 +584,8 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         {
             packages.add ((sc.register (pkg._2), pkg._1))
         }
-        var registers: List[String] = List[String]()
-        var package_docs: List[String] = List[String]()
+        var registers: List[String] = List [String]()
+        var package_docs: List[String] = List [String]()
         for (q <- packages)
         {
             val pkg = parser.packages (q._2)

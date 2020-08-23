@@ -51,7 +51,6 @@ import ch.ninecode.model._
  * val export = new CIMExport (spark)
  * export.exportAll ("bkw_cim_export_equipment.rdf")
  * }}}
- *
  * @example Export one transformer area (trafokreis)
  * {{{
  * // enter Spark shell environment
@@ -118,12 +117,13 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      */
     def switchClosed (switch: Switch): Boolean =
     {
-        if (0 != (switch.bitfields(openMask / 32) & (1 << (openMask % 32))))
+        if (0 != (switch.bitfields (openMask / 32) & (1 << (openMask % 32))))
             !switch.open // open valid
-        else if (0 != (switch.bitfields(normalOpenMask / 32) & (1 << (normalOpenMask % 32))))
-            !switch.normalOpen
         else
-            true
+            if (0 != (switch.bitfields (normalOpenMask / 32) & (1 << (normalOpenMask % 32))))
+                !switch.normalOpen
+            else
+                true
     }
 
     /**
@@ -159,7 +159,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         classname.substring (classname.lastIndexOf (".") + 1)
     }
 
-    def toJSON (id: String) (group: (String, Iterable[Element])): (String, String, String, (String, List[List[List[Double]]]), Iterable[(String, String)]) =
+    def toJSON (id: String)(group: (String, Iterable[Element])): (String, String, String, (String, List[List[List[Double]]]), Iterable[(String, String)]) =
     {
         type Key = String
         type Value = String
@@ -278,7 +278,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     /**
      * Merge source into destination and clean up source.
      *
-     * @param source existing directory to be copied from
+     * @param source      existing directory to be copied from
      * @param destination target file
      */
     def merge (source: String, destination: String): Unit =
@@ -293,12 +293,12 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      *
      * @param elements The elements to export.
      * @param filename The name of the file to write.
-     * @param temp The temporary directory to build the text file in.
+     * @param temp     The temporary directory to build the text file in.
      */
     def export (elements: RDD[Element], filename: String, temp: String = "/tmp/export.rdf"): Unit =
     {
         val header =
-"""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">"""
         val tailer = """</rdf:RDF>"""
 
@@ -311,8 +311,8 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         hdfs.delete (file, false)
         // write the file
         val txt = directory.toUri.toString
-        val head = spark.sparkContext.makeRDD (List[String] (header))
-        val tail = spark.sparkContext.makeRDD (List[String] (tailer))
+        val head = spark.sparkContext.makeRDD (List [String](header))
+        val tail = spark.sparkContext.makeRDD (List [String](tailer))
         val guts = elements.map (_.export)
         val all = head.union (guts).union (tail)
         all.saveAsTextFile (txt)
@@ -334,7 +334,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     def export_iterable_file (elements: Iterable[Element], filename: String): Unit =
     {
         val header =
-"""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 """
         val tailer =
@@ -348,7 +348,10 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         // write the file
         val out = hdfs.create (file, true)
         out.write (header.getBytes (StandardCharsets.UTF_8))
-        elements.map (_.export).foreach ((s: String) => { out.write (s.getBytes (StandardCharsets.UTF_8)); out.writeByte ('\n') })
+        elements.map (_.export).foreach ((s: String) =>
+        {
+            out.write (s.getBytes (StandardCharsets.UTF_8)); out.writeByte ('\n')
+        })
         out.write (tailer.getBytes (StandardCharsets.UTF_8))
         out.close ()
 
@@ -361,20 +364,23 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     /**
      * Export elements.
      *
-     * @param elements The elements to export.
+     * @param elements    The elements to export.
      * @param transformer The name of the transformer service area.
      * @return A Tuple2 with uncompressed size and compressed bytes.
      */
     def export_iterable_blob (elements: Iterable[Element], transformer: String): (Int, Array[Byte]) =
     {
         val header =
-"""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">"""
         val tailer = """</rdf:RDF>"""
 
         // create the text
         val sb = new scala.collection.mutable.StringBuilder (32768, header)
-        elements.map (_.export).foreach ((s: String) => { sb.append (s); sb.append ('\n') })
+        elements.map (_.export).foreach ((s: String) =>
+        {
+            sb.append (s); sb.append ('\n')
+        })
         sb.append (tailer)
         val data = sb.toString.getBytes (StandardCharsets.UTF_8)
 
@@ -392,32 +398,33 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
     /**
      * Make a pair RDD to access PairRDDFunctions.
+     *
      * @param s the string to duplicate
      * @return the Tuple2 pair
      */
     def pair (s: String): (String, String) = (s, s)
 
-    def keyed[T <: Element] (key: T => String = (x: T) => x.id) (implicit kt: ClassTag[T]): RDD[(String, T)] = getOrElse[T].keyBy (key)
+    def keyed[T <: Element] (key: T => String = (x: T) => x.id)(implicit kt: ClassTag[T]): RDD[(String, T)] = getOrElse [T].keyBy (key)
 
-    def foreign[T] (fn: T => String) (x: T): (String, String) = pair (fn (x))
+    def foreign[T] (fn: T => String)(x: T): (String, String) = pair (fn (x))
 
     def narrow[T] (rdd: RDD[(String, (T, String))]): RDD[(String, T)] = rdd.map (x => (x._1, x._2._1))
 
     def asIDs (rdd: RDD[(String, (String, String))]): RDD[(String, String)] = rdd.map (x => (x._1, x._2._1))
 
-    def distinct[T] (rdd: RDD[(String, T)]) (implicit kt: ClassTag[T]): RDD[(String, T)] = rdd.reduceByKey ((x, _) => x)
+    def distinct[T] (rdd: RDD[(String, T)])(implicit kt: ClassTag[T]): RDD[(String, T)] = rdd.reduceByKey ((x, _) => x)
 
     /**
-      * Export all CIM elements.
-      *
-      * Useful after doing some processing, such as stripe de-duplicating or topological processing,
-      * to avoid having to redo that processing again.
-      *
-      * @param filename The name of the file to write.
-      */
-    def exportAll (filename: String):Unit =
+     * Export all CIM elements.
+     *
+     * Useful after doing some processing, such as stripe de-duplicating or topological processing,
+     * to avoid having to redo that processing again.
+     *
+     * @param filename The name of the file to write.
+     */
+    def exportAll (filename: String): Unit =
     {
-        val elements = getOrElse[Element]("Elements")
+        val elements = getOrElse [Element]("Elements")
         export (elements, filename)
     }
 
@@ -430,16 +437,17 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
     /**
      * Find the list of dependents that should be included for the given element.
+     *
      * @param relations the list of relation descriptions
-     * @param stop a set of Terminal mRID that will limit the dependency check
-     * @param element the element to check
+     * @param stop      a set of Terminal mRID that will limit the dependency check
+     * @param element   the element to check
      * @return the dependents as pairs of mRID ("if you include me, include him")
      */
-    def dependents (relations: Map[String, List[CIMRelationship]], stop: Set[String]) (element: Element): List[(mRID, mRID)] =
+    def dependents (relations: Map[String, List[CIMRelationship]], stop: Set[String])(element: Element): List[(mRID, mRID)] =
     {
         var e = element
-        var list = List[(mRID, mRID)] ()
-        while (classOf[BasicElement] != e.getClass)
+        var list = List [(mRID, mRID)]()
+        while (classOf [BasicElement] != e.getClass)
         {
             val cls = e.getClass
             val raw = cls.getName
@@ -457,32 +465,41 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                         if ("" != mrid)
                             if (relation.field == "TopologicalIsland")
                                 List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "TopologicalNode")
-                                if (stop.contains (e.id))
-                                    None
-                                else
-                                    List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "ConnectivityNode")
-                                if (stop.contains (e.id))
-                                    None
-                                else
-                                    List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "Location")
-                                List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "PerLengthParameters")
-                                Some ((e.id, ref.asInstanceOf[List[String]].head))
-                            else if (relation.field == "PowerTransformer")
-                                List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "IdentifiedObject_attr") // DiagramObject has a special name for IdentifiedObject
-                                List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "DiagramObject")
-                                List ((e.id, mrid), (mrid, e.id))
-                            else if (relation.field == "SvStatus")
-                                Some ((e.id, ref.asInstanceOf[List[String]].head))
-                            else if (!relation.multiple)
-                                Some ((e.id, mrid))
                             else
-                                None
+                                if (relation.field == "TopologicalNode")
+                                    if (stop.contains (e.id))
+                                        None
+                                    else
+                                        List ((e.id, mrid), (mrid, e.id))
+                                else
+                                    if (relation.field == "ConnectivityNode")
+                                        if (stop.contains (e.id))
+                                            None
+                                        else
+                                            List ((e.id, mrid), (mrid, e.id))
+                                    else
+                                        if (relation.field == "Location")
+                                            List ((e.id, mrid), (mrid, e.id))
+                                        else
+                                            if (relation.field == "PerLengthParameters")
+                                                Some ((e.id, ref.asInstanceOf[List[String]].head))
+                                            else
+                                                if (relation.field == "PowerTransformer")
+                                                    List ((e.id, mrid), (mrid, e.id))
+                                                else
+                                                    if (relation.field == "IdentifiedObject_attr") // DiagramObject has a special name for IdentifiedObject
+                                                    List ((e.id, mrid), (mrid, e.id))
+                                                        else
+                                                        if (relation.field == "DiagramObject")
+                                                            List ((e.id, mrid), (mrid, e.id))
+                                                        else
+                                                            if (relation.field == "SvStatus")
+                                                                Some ((e.id, ref.asInstanceOf[List[String]].head))
+                                                            else
+                                                                if (!relation.multiple)
+                                                                    Some ((e.id, mrid))
+                                                                else
+                                                                    None
                         else
                             None
                     }
@@ -514,7 +531,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         // make a mapping of mRID to mRID
         // "if you include me, you have to include him" and vice-versa for some relations
         val relationships = classes.map (x => (x.name, x.relations)).toMap
-        val ying_yang = getOrElse[Element]("Elements").flatMap (dependents (relationships, stop.map (_._1))).persist (storage)
+        val ying_yang = getOrElse [Element]("Elements").flatMap (dependents (relationships, stop.map (_._1))).persist (storage)
 
         // done is a list of keyed PairRDD, the keys are mRID_Island and each pair is an mRID and the Island it belongs to
         var done: List[RDD[KeyedItem]] = List ()
@@ -532,23 +549,23 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         while (!todo.isEmpty)
 
         // add stopping connectivity nodes (ConnectivityNode referenced by stop Terminal)
-        val nodes: RDD[Item] = getOrElse[Terminal].flatMap (
+        val nodes: RDD[Item] = getOrElse [Terminal].flatMap (
             terminal =>
+            {
+                stop.find (_._1 == terminal.id) match
                 {
-                    stop.find (_._1 == terminal.id) match
-                    {
-                        case Some (i: Item) =>
-                            Some ((terminal.ConnectivityNode, i._2))
-                        case _ =>
-                            None
-                    }
+                    case Some (i: Item) =>
+                        Some ((terminal.ConnectivityNode, i._2))
+                    case _ =>
+                        None
                 }
+            }
         )
         done = done :+ nodes.keyBy (x => s"${x._1}${x._2}")
 
         // reduce to n executors
         val n = session.sparkContext.getExecutorMemoryStatus.size
-        val done_minimized = done.map (_.values.map (x => (x._1, Set[Island](x._2)))
+        val done_minimized = done.map (_.values.map (x => (x._1, Set [Island](x._2)))
             .reduceByKey (
                 (x, y) => x.union (y), n))
         val all_done: RDD[Item] = session.sparkContext.union (done_minimized)
@@ -557,7 +574,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
             .flatMap (p => p._2.map (q => (p._1, q)))
             .persist (storage)
 
-        val ret = getOrElse[Element]("Elements").keyBy (_.id).join (all_done).values.map (_.swap).persist (storage)
+        val ret = getOrElse [Element]("Elements").keyBy (_.id).join (all_done).values.map (_.swap).persist (storage)
         log.info (s"${ret.count} elements")
         done.foreach (_.unpersist (false))
         ying_yang.unpersist (false)
@@ -566,15 +583,16 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
     /**
      * Export elements associated to the given topological island.
-     * @param island The name of the topological island to export.
-     * @param filename The name of the file to write.
+     *
+     * @param island    The name of the topological island to export.
+     * @param filename  The name of the file to write.
      * @param directory The name of the directory to write the CIM file.
      */
     def exportIsland (island: String, filename: String, directory: String = "simulation/"): Unit =
     {
         val dir = if (directory.endsWith ("/")) directory else s"$directory/"
         // start with the island
-        val todo = getOrElse[TopologicalIsland].filter (_.id == island).map (x => (x.id, filename)).persist (storage)
+        val todo = getOrElse [TopologicalIsland].filter (_.id == island).map (x => (x.id, filename)).persist (storage)
         val labeled = labelRelated (todo)
         val file = s"$dir$filename"
         export (labeled.map (_._2), file)
@@ -583,6 +601,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
     /**
      * Export every topological island.
+     *
      * @param directory The name of the directory to write the CIM files.
      * @return the number of islands processed
      */
@@ -590,7 +609,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     {
         val dir = if (directory.endsWith ("/")) directory else s"$directory/"
         // start with all islands
-        val islands = getOrElse[TopologicalIsland].map (_.id)
+        val islands = getOrElse [TopologicalIsland].map (_.id)
         val count = islands.count
         log.info (s"exporting $count island${if (count == 1) "" else "s"}")
 
@@ -611,7 +630,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         total
     }
 
-    val voltages: Map[String, Double] = getOrElse[BaseVoltage]
+    val voltages: Map[String, Double] = getOrElse [BaseVoltage]
         .map (v => (v.id, v.nominalVoltage * 1000.0))
         .collect
         .toMap
@@ -629,9 +648,9 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     def exportAllTransformers (options: CIMExportOptions): Int =
     {
         // get transformer low voltage pins
-        val term_by_node = getOrElse[Terminal].map (y => (y.id, y.TopologicalNode))
-        val node_by_island = getOrElse[TopologicalNode].map (z => (z.id, z.TopologicalIsland))
-        val ends = getOrElse[PowerTransformerEnd]
+        val term_by_node = getOrElse [Terminal].map (y => (y.id, y.TopologicalNode))
+        val node_by_island = getOrElse [TopologicalNode].map (z => (z.id, z.TopologicalIsland))
+        val ends = getOrElse [PowerTransformerEnd]
         val transformers = ends
             .filter (end => end.TransformerEnd.endNumber != 1 && n7 (end.TransformerEnd.BaseVoltage))
             .map (x => (x.TransformerEnd.Terminal, x.PowerTransformer))

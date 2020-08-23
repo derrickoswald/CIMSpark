@@ -34,7 +34,7 @@ object CIMTool
     val APPLICATION_NAME: String = properties.getProperty ("artifactId")
     val APPLICATION_VERSION: String = properties.getProperty ("version")
 
-    def main (args : Array[String])
+    def main (args: Array[String])
     {
         val optionsparser = new CIMToolOptionsParser (APPLICATION_NAME, APPLICATION_VERSION)
 

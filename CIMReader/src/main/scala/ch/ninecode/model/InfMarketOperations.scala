@@ -15,23 +15,23 @@ import ch.ninecode.cim.CIMSerializer
 /**
  * Bilateral transaction
  *
- * @param Element Reference to the superclass object.
- * @param curtailTimeMax Maximum curtailment time in number of trading intervals
- * @param curtailTimeMin Minimum curtailment time in number of trading intervals
- * @param marketType Market type (default=DA)
- *        DA - Day Ahead
- *        RT - Real Time
- *        HA - Hour Ahead
- * @param purchaseTimeMax Maximum purchase time in number of trading intervals
- * @param purchaseTimeMin Minimum purchase time in number of trading intervals
- * @param scope Transaction scope:
- *        'Internal' (default)
- *        'External'
+ * @param Element            Reference to the superclass object.
+ * @param curtailTimeMax     Maximum curtailment time in number of trading intervals
+ * @param curtailTimeMin     Minimum curtailment time in number of trading intervals
+ * @param marketType         Market type (default=DA)
+ *                           DA - Day Ahead
+ *                           RT - Real Time
+ *                           HA - Hour Ahead
+ * @param purchaseTimeMax    Maximum purchase time in number of trading intervals
+ * @param purchaseTimeMin    Minimum purchase time in number of trading intervals
+ * @param scope              Transaction scope:
+ *                           'Internal' (default)
+ *                           'External'
  * @param totalTranChargeMax Maximum total transmission (congestion) charges in monetary units
- * @param transactionType Transaction type (default 1)
- *        1 - Fixed
- *        2 - Dispatchable continuous
- *        3 - Dispatchable block-loading
+ * @param transactionType    Transaction type (default 1)
+ *                           1 - Fixed
+ *                           2 - Dispatchable continuous
+ *                           3 - Dispatchable block-loading
  * @group InfMarketOperations
  * @groupname InfMarketOperations Package InfMarketOperations
  */
@@ -47,8 +47,8 @@ final case class BilateralTransaction
     totalTranChargeMax: Double = 0.0,
     transactionType: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -74,13 +74,18 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BilateralTransaction.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BilateralTransaction.fields (position), value)
+
         emitelem (0, curtailTimeMax)
         emitelem (1, curtailTimeMin)
         emitelem (2, marketType)
@@ -91,6 +96,7 @@ extends
         emitelem (7, transactionType)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:BilateralTransaction rdf:ID=\"%s\">\n%s\t</cim:BilateralTransaction>".format (id, export_fields)
@@ -98,10 +104,10 @@ extends
 }
 
 object BilateralTransaction
-extends
-    CIMParseable[BilateralTransaction]
+    extends
+        CIMParseable[BilateralTransaction]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "curtailTimeMax",
         "curtailTimeMin",
         "marketType",
@@ -111,19 +117,19 @@ extends
         "totalTranChargeMax",
         "transactionType"
     )
-    val curtailTimeMax: Fielder = parse_element (element (cls, fields(0)))
-    val curtailTimeMin: Fielder = parse_element (element (cls, fields(1)))
-    val marketType: Fielder = parse_element (element (cls, fields(2)))
-    val purchaseTimeMax: Fielder = parse_element (element (cls, fields(3)))
-    val purchaseTimeMin: Fielder = parse_element (element (cls, fields(4)))
-    val scope: Fielder = parse_element (element (cls, fields(5)))
-    val totalTranChargeMax: Fielder = parse_element (element (cls, fields(6)))
-    val transactionType: Fielder = parse_element (element (cls, fields(7)))
+    val curtailTimeMax: Fielder = parse_element (element (cls, fields (0)))
+    val curtailTimeMin: Fielder = parse_element (element (cls, fields (1)))
+    val marketType: Fielder = parse_element (element (cls, fields (2)))
+    val purchaseTimeMax: Fielder = parse_element (element (cls, fields (3)))
+    val purchaseTimeMin: Fielder = parse_element (element (cls, fields (4)))
+    val scope: Fielder = parse_element (element (cls, fields (5)))
+    val totalTranChargeMax: Fielder = parse_element (element (cls, fields (6)))
+    val transactionType: Fielder = parse_element (element (cls, fields (7)))
 
     def parse (context: CIMContext): BilateralTransaction =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = BilateralTransaction (
             BasicElement.parse (context),
             toInteger (mask (curtailTimeMax (), 0)),
@@ -156,7 +162,7 @@ object BilateralTransactionSerializer extends CIMSerializer[BilateralTransaction
             () => output.writeDouble (obj.totalTranChargeMax),
             () => output.writeString (obj.transactionType)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -164,7 +170,7 @@ object BilateralTransactionSerializer extends CIMSerializer[BilateralTransaction
 
     def read (kryo: Kryo, input: Input, cls: Class[BilateralTransaction]): BilateralTransaction =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = BilateralTransaction (
             parent,
@@ -186,8 +192,8 @@ object BilateralTransactionSerializer extends CIMSerializer[BilateralTransaction
  * Participation level of a given Pnode in a given AggregatePnode.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param factor Used to calculate "participation" of Pnode in an AggregatePnode.
- *        For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
+ * @param factor           Used to calculate "participation" of Pnode in an AggregatePnode.
+ *                         For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
  * @group InfMarketOperations
  * @groupname InfMarketOperations Package InfMarketOperations
  */
@@ -196,8 +202,8 @@ final case class Participation
     IdentifiedObject: IdentifiedObject = null,
     factor: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -223,16 +229,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Participation.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Participation.fields (position), value)
+
         emitelem (0, factor)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:Participation rdf:ID=\"%s\">\n%s\t</cim:Participation>".format (id, export_fields)
@@ -240,18 +252,18 @@ extends
 }
 
 object Participation
-extends
-    CIMParseable[Participation]
+    extends
+        CIMParseable[Participation]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "factor"
     )
-    val factor: Fielder = parse_element (element (cls, fields(0)))
+    val factor: Fielder = parse_element (element (cls, fields (0)))
 
     def parse (context: CIMContext): Participation =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = Participation (
             IdentifiedObject.parse (context),
             toDouble (mask (factor (), 0))
@@ -278,7 +290,7 @@ object ParticipationSerializer extends CIMSerializer[Participation]
 
     def read (kryo: Kryo, input: Input, cls: Class[Participation]): Participation =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Participation (
             parent,
@@ -294,21 +306,21 @@ object ParticipationSerializer extends CIMSerializer[Participation]
  *
  * For example, a resource is certified for Non-Spinning reserve for RTM.
  *
- * @param Element Reference to the superclass object.
- * @param certifiedDAM <em>undocumented</em>
- * @param certifiedNonspinDAM <em>undocumented</em>
+ * @param Element               Reference to the superclass object.
+ * @param certifiedDAM          <em>undocumented</em>
+ * @param certifiedNonspinDAM   <em>undocumented</em>
  * @param certifiedNonspinDAMMw <em>undocumented</em>
- * @param certifiedNonspinRTM <em>undocumented</em>
+ * @param certifiedNonspinRTM   <em>undocumented</em>
  * @param certifiedNonspinRTMMw <em>undocumented</em>
- * @param certifiedPIRP <em>undocumented</em>
- * @param certifiedRTM <em>undocumented</em>
- * @param certifiedRUC <em>undocumented</em>
- * @param certifiedRegulation <em>undocumented</em>
+ * @param certifiedPIRP         <em>undocumented</em>
+ * @param certifiedRTM          <em>undocumented</em>
+ * @param certifiedRUC          <em>undocumented</em>
+ * @param certifiedRegulation   <em>undocumented</em>
  * @param certifiedRegulationMw <em>undocumented</em>
- * @param certifiedReplaceAS <em>undocumented</em>
- * @param certifiedSpin <em>undocumented</em>
- * @param certifiedSpinMw <em>undocumented</em>
- * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
+ * @param certifiedReplaceAS    <em>undocumented</em>
+ * @param certifiedSpin         <em>undocumented</em>
+ * @param certifiedSpinMw       <em>undocumented</em>
+ * @param RegisteredResource    [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group InfMarketOperations
  * @groupname InfMarketOperations Package InfMarketOperations
  */
@@ -330,8 +342,8 @@ final case class ResourceCertification2
     certifiedSpinMw: Double = 0.0,
     RegisteredResource: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -357,15 +369,22 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ResourceCertification2.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceCertification2.fields (position), value)
+
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceCertification2.fields (position), value)
+
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ResourceCertification2.fields (position), x))
+
         emitattr (0, certifiedDAM)
         emitattr (1, certifiedNonspinDAM)
         emitelem (2, certifiedNonspinDAMMw)
@@ -382,6 +401,7 @@ extends
         emitattrs (13, RegisteredResource)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:ResourceCertification2 rdf:ID=\"%s\">\n%s\t</cim:ResourceCertification2>".format (id, export_fields)
@@ -389,10 +409,10 @@ extends
 }
 
 object ResourceCertification2
-extends
-    CIMParseable[ResourceCertification2]
+    extends
+        CIMParseable[ResourceCertification2]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "certifiedDAM",
         "certifiedNonspinDAM",
         "certifiedNonspinDAMMw",
@@ -411,25 +431,25 @@ extends
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*")
     )
-    val certifiedDAM: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val certifiedNonspinDAM: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val certifiedNonspinDAMMw: Fielder = parse_element (element (cls, fields(2)))
-    val certifiedNonspinRTM: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val certifiedNonspinRTMMw: Fielder = parse_element (element (cls, fields(4)))
-    val certifiedPIRP: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val certifiedRTM: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val certifiedRUC: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val certifiedRegulation: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val certifiedRegulationMw: Fielder = parse_element (element (cls, fields(9)))
-    val certifiedReplaceAS: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val certifiedSpin: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val certifiedSpinMw: Fielder = parse_element (element (cls, fields(12)))
-    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val certifiedDAM: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val certifiedNonspinDAM: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val certifiedNonspinDAMMw: Fielder = parse_element (element (cls, fields (2)))
+    val certifiedNonspinRTM: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val certifiedNonspinRTMMw: Fielder = parse_element (element (cls, fields (4)))
+    val certifiedPIRP: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val certifiedRTM: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val certifiedRUC: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val certifiedRegulation: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val certifiedRegulationMw: Fielder = parse_element (element (cls, fields (9)))
+    val certifiedReplaceAS: Fielder = parse_attribute (attribute (cls, fields (10)))
+    val certifiedSpin: Fielder = parse_attribute (attribute (cls, fields (11)))
+    val certifiedSpinMw: Fielder = parse_element (element (cls, fields (12)))
+    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields (13)))
 
     def parse (context: CIMContext): ResourceCertification2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = ResourceCertification2 (
             BasicElement.parse (context),
             mask (certifiedDAM (), 0),
@@ -474,7 +494,7 @@ object ResourceCertification2Serializer extends CIMSerializer[ResourceCertificat
             () => output.writeDouble (obj.certifiedSpinMw),
             () => writeList (obj.RegisteredResource, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -482,7 +502,7 @@ object ResourceCertification2Serializer extends CIMSerializer[ResourceCertificat
 
     def read (kryo: Kryo, input: Input, cls: Class[ResourceCertification2]): ResourceCertification2 =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ResourceCertification2 (
             parent,

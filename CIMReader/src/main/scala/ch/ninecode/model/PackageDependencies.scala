@@ -18,10 +18,10 @@ import ch.ninecode.cim.CIMSerializer
  * This is not the same as the combined packages version.
  *
  * @param Element Reference to the superclass object.
- * @param date Date of last change to the main package dependencies in format YYYY-MM-DD.
- *        This is updated when the version attribute is updated.
+ * @param date    Date of last change to the main package dependencies in format YYYY-MM-DD.
+ *                This is updated when the version attribute is updated.
  * @param version The version of the main subpackages of the combined CIM model.
- *        The format is simply an integer.  The version (and date) initial values should be updated any time the dependencies in the model change and require an actual change to the diagrams within this package.
+ *                The format is simply an integer.  The version (and date) initial values should be updated any time the dependencies in the model change and require an actual change to the diagrams within this package.
  * @group PackageDependencies
  * @groupname PackageDependencies Package PackageDependencies
  * @groupdesc PackageDependencies This package shows all the root level subpackage dependencies of the combined CIM model.
@@ -32,8 +32,8 @@ final case class PackageDependenciesCIMVersion
     date: String = null,
     version: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -59,17 +59,23 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone ().asInstanceOf [Row]
+    }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PackageDependenciesCIMVersion.cls
+
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PackageDependenciesCIMVersion.fields (position), value)
+
         emitelem (0, date)
         emitelem (1, version)
         s.toString
     }
+
     override def export: String =
     {
         "\t<cim:PackageDependenciesCIMVersion rdf:ID=\"%s\">\n%s\t</cim:PackageDependenciesCIMVersion>".format (id, export_fields)
@@ -77,20 +83,20 @@ extends
 }
 
 object PackageDependenciesCIMVersion
-extends
-    CIMParseable[PackageDependenciesCIMVersion]
+    extends
+        CIMParseable[PackageDependenciesCIMVersion]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array [String](
         "date",
         "version"
     )
-    val date: Fielder = parse_element (element (cls, fields(0)))
-    val version: Fielder = parse_element (element (cls, fields(1)))
+    val date: Fielder = parse_element (element (cls, fields (0)))
+    val version: Fielder = parse_element (element (cls, fields (1)))
 
     def parse (context: CIMContext): PackageDependenciesCIMVersion =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array(0)
+        implicit val bitfields: Array[Int] = Array (0)
         val ret = PackageDependenciesCIMVersion (
             BasicElement.parse (context),
             mask (date (), 0),
@@ -111,7 +117,7 @@ object PackageDependenciesCIMVersionSerializer extends CIMSerializer[PackageDepe
             () => output.writeString (obj.date),
             () => output.writeString (obj.version)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -119,7 +125,7 @@ object PackageDependenciesCIMVersionSerializer extends CIMSerializer[PackageDepe
 
     def read (kryo: Kryo, input: Input, cls: Class[PackageDependenciesCIMVersion]): PackageDependenciesCIMVersion =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PackageDependenciesCIMVersion (
             parent,

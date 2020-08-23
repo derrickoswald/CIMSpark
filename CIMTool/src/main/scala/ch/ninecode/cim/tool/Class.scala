@@ -3,10 +3,10 @@ package ch.ninecode.cim.tool
 /**
  * CIM class.
  *
- * @param xuid Unique identifier in the model.
- * @param name The class name.
- * @param note Textual notes attached to the class.
- * @param pkg Containing package.
+ * @param xuid       Unique identifier in the model.
+ * @param name       The class name.
+ * @param note       Textual notes attached to the class.
+ * @param pkg        Containing package.
  * @param stereotype UML stereotype for the class.
  */
 case class Class (
@@ -16,8 +16,8 @@ case class Class (
     var pkg: Package,
     stereotype: String,
     sup: Class = null)
-extends
-    ProgramaticName
+    extends
+        ProgramaticName
 {
     override def toString: String = "%s:%s%s%s".format (pkg.name, name, if (null != stereotype) s" ($stereotype)" else "", if (null != sup) s" subclass of ${sup.name}" else "")
 }
@@ -29,6 +29,7 @@ object Class
 
     /**
      * Override the name of "Profile" and "ResourceCertification" to avoid case class clashes
+     *
      * @param row the row of class information
      * @param pkg the package this class belongs to
      * @return normally just the name, but in conflicting cases a modified name

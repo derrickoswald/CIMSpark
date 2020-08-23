@@ -34,7 +34,7 @@ class Worker[C <: Product, P <: Product] (relation: CIMRelationship, child: Stri
         val method = cls.getDeclaredMethod (relation.field)
         method.setAccessible (true)
 
-        val items = method.invoke (obj).asInstanceOf[List[String]]
+        val items = method.invoke (obj).asInstanceOf [List[String]]
         if (null != items && items.nonEmpty)
             items.map ((_, obj))
         else
@@ -50,7 +50,7 @@ class Worker[C <: Product, P <: Product] (relation: CIMRelationship, child: Stri
         method.invoke (obj).toString // container.id
     }
 
-    def message (child: String, field: String, parent: String) (problem: (String, Product)): String =
+    def message (child: String, field: String, parent: String)(problem: (String, Product)): String =
     {
         val (key: String, obj: Product) = problem
         s"$child ${primary_key (obj)} field $field references $parent $key that is not present"
@@ -58,14 +58,17 @@ class Worker[C <: Product, P <: Product] (relation: CIMRelationship, child: Stri
 
     def run (): String =
     {
-        val children: RDD[(String, C)] forSome {type C <: Product} =
+        val children: RDD[(String, C)] forSome
+        {type C <: Product} =
             if (relation.multiple)
                 childrdd.flatMap (foreign_keys)
             else
                 childrdd.filter (filter_predicate).keyBy (foreign_key)
-        val missing: RDD[(String, X)] forSome {type X <: Product} = if (null != parentrdd)
+        val missing: RDD[(String, X)] forSome
+        {type X <: Product} = if (null != parentrdd)
         {
-            val parents: RDD[(String, P)] forSome {type P <: Product} = parentrdd.keyBy (primary_key)
+            val parents: RDD[(String, P)] forSome
+            {type P <: Product} = parentrdd.keyBy (primary_key)
 
             // equipment that say's it has a container but doesn't reference an existing element
             children.subtractByKey (parents)
@@ -86,7 +89,7 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
     implicit val session: SparkSession = spark
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
-    def check (classes: List[CIMClassInfo], info: CIMClassInfo) (relation: CIMRelationship): String =
+    def check (classes: List[CIMClassInfo], info: CIMClassInfo)(relation: CIMRelationship): String =
     {
         // val equipment: RDD[Equipment] = getOrElse[Equipment]
         // val equipment: RDD[Equipment] = spark.sparkContext.getPersistentRDDs.filter (_._2.name == "Equipment").head._2.asInstanceOf[RDD[Equipment]]
@@ -107,19 +110,27 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
                             // every instance is an error
                             new Worker (relation, info.name, rdd, companion.name, null).run ()
                         )
-                    {
-                        case pcc: parentrdd =>
-                            new Worker (relation, info.name, rdd, companion.name, pcc).run ()
-                    }
+                        {
+                            case pcc: parentrdd =>
+                                new Worker (relation, info.name, rdd, companion.name, pcc).run ()
+                        }
             }
 
     }
 
-    def checkClass (classes: List[CIMClassInfo]) (info: CIMClassInfo): Option[String] =
+    def checkClass (classes: List[CIMClassInfo])(info: CIMClassInfo): Option[String] =
     {
         if (info.relations.nonEmpty)
         {
-            val s = info.relations.map (check (classes, info)).fold ("")((a, b) => a match { case "" => b; case string1: String => b match { case "" => a; case string2: String => s"$string1\n$string2" }})
+            val s = info.relations.map (check (classes, info)).fold ("")((a, b) => a match
+            {
+                case "" => b;
+                case string1: String => b match
+                {
+                    case "" => a;
+                    case string2: String => s"$string1\n$string2"
+                }
+            })
             if (s != "")
                 Some (s)
             else
@@ -133,7 +144,15 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
     {
         val classes: List[CIMClassInfo] = new CHIM ("").classes
         val errors: Seq[Option[String]] = classes.map (checkClass (classes))
-        errors.fold (None) ((a, b) => a match { case None => b; case Some (string1) => b match { case Some (string2) => Some (s"$string1\n$string2"); case None => a }})
+        errors.fold (None)((a, b) => a match
+        {
+            case None => b;
+            case Some (string1) => b match
+            {
+                case Some (string2) => Some (s"$string1\n$string2");
+                case None => a
+            }
+        })
     }
 }
 
