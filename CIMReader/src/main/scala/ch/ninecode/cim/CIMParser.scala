@@ -77,7 +77,7 @@ trait CIMParser
     def element (cls: String, name: String): Expression =
     {
         val trigger = s"$namespace:$cls.$name"
-        (Pattern.compile ("""<""" + trigger + """>([\s\S]*?)<\/""" + trigger + """>"""), 1)
+        (Pattern.compile ("""<""" + trigger + """>([\s\S]*?)<\/""" + trigger + """>|<""" + trigger + """\/>"""), 1)
     }
 
     /**
@@ -144,7 +144,7 @@ trait CIMParser
                     val string = matcher.group (pattern._2)
                     if (CIMContext.DEBUG)
                         context.coverage.append ((matcher.start, matcher.end))
-                    Some (string)
+                    Some (if (null == string) "" else string)
                 }
                 else
                     None
