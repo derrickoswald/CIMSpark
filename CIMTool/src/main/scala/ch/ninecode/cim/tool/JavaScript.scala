@@ -92,7 +92,8 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                         val sup_pkg = cls._2.sup.pkg
                         val superclass_package = if (sup_pkg != pkg)
                         {
-                            val _ = requires.add (sup_pkg); sup_pkg.name
+                            val _ = requires.add (sup_pkg);
+                            sup_pkg.name
                         } else ""
                         val superclass = cls._2.sup.name
                         (superclass, superclass_package)
@@ -182,7 +183,8 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                                 val sup_pkg = cls.sup.pkg
                                 val superclass_package = if (sup_pkg != pkg)
                                 {
-                                    requires.add (sup_pkg); s"${sup_pkg.name}."
+                                    requires.add (sup_pkg);
+                                    s"${sup_pkg.name}."
                                 } else ""
                                 val superclass = cls.sup.name
                                 (superclass_package, superclass)

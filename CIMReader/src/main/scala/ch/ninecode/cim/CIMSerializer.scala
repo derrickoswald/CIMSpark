@@ -14,11 +14,11 @@ abstract class CIMSerializer[T] extends Serializer[T]
     {
         val length = bitfields.length // maximum of 4, so it fits in the 4 least significant bits
         val size = if (bitfields.forall (x => x == (x & 0xff))) // all fit in a byte
-        BYTESIZE
-            else
+            BYTESIZE
+        else
             if (bitfields.forall (x => x == (x & 0xffff))) // all fit in a short
-            SHORTSIZE
-                else
+                SHORTSIZE
+            else
                 INTSIZE
         val coded = length | (size << 4)
 

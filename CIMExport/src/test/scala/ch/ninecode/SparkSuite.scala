@@ -86,7 +86,8 @@ class SparkSuite extends FixtureAnyFunSuite
             var read = -1
             while (
             {
-                read = zip.read (bytesIn); read != -1
+                read = zip.read (bytesIn);
+                read != -1
             })
                 bos.write (bytesIn, 0, read)
             bos.close ()

@@ -49,7 +49,8 @@ case class Row (fields: com.healthmarketscience.jackcess.Row)
 
     def getXUID: String =
     {
-        val xuid = getString ("ea_guid"); s"_${xuid.substring (1, xuid.length - 1)}"
+        val xuid = getString ("ea_guid");
+        s"_${xuid.substring (1, xuid.length - 1)}"
     }
 
     def getName: String = getString ("Name")

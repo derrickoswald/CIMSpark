@@ -66,7 +66,8 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite
     {
         val configuration = map.foldLeft (new Configuration (session.sparkContext.hadoopConfiguration))((c, e) =>
         {
-            c.set (e._1, e._2); c
+            c.set (e._1, e._2);
+            c
         })
         session.sparkContext.newAPIHadoopRDD (configuration, classOf [CIMInputFormat], classOf [String], classOf [Element]).values
     }
