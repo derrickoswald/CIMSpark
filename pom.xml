@@ -118,6 +118,7 @@
         <version.dependency.junit>4.13</version.dependency.junit>
         <version.dependency.scalatest>3.2.0</version.dependency.scalatest>
 
+        <scaladoc.skip>false</scaladoc.skip>
     </properties>
 
     <build>
@@ -203,6 +204,7 @@
                             <args>
                                 <arg>-groups</arg>
                             </args>
+                            <skip>${scaladoc.skip}</skip>
                         </configuration>
                     </execution>
                 </executions>
