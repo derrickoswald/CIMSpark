@@ -34,9 +34,9 @@ services:
       - "8081:8081" # Standalone Worker Web UI
       - "10000:10000" # Thriftserver JDBC port
       - "10001:10001" # Thriftserver HTTP protocol JDBC port
-      - "50010:50010" # DFS Datanode data transfer
-      - "50070:50070" # DFS Namenode Web UI
-      - "50075:50075" # DFS Datanode Web UI
+      - "9866:9866" # DFS Datanode data transfer
+      - "9870:9870" # DFS Namenode Web UI
+      - "9864:9864" # DFS Datanode Web UI
     volumes:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
