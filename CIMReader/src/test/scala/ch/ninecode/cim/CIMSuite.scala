@@ -168,4 +168,35 @@ yadda yadda"""
         val asset = facility.AssetContainer.Asset
         assert (2 == asset.PowerSystemResources.length)
     }
+
+    test ("Self Closing Tag")
+    {
+        val xml =
+            """	<cim:ACLineSegment rdf:ID="LEK110315">
+		<cim:IdentifiedObject.name>unbekannt</cim:IdentifiedObject.name>
+		<cim:IdentifiedObject.aliasName>19657248:nis_el_cable</cim:IdentifiedObject.aliasName>
+		<cim:IdentifiedObject.description>unbekannt</cim:IdentifiedObject.description>
+		<cim:PowerSystemResource.Location rdf:resource="#_location_667281_1203774000_19657253"/>
+		<cim:PowerSystemResource.PSRType rdf:resource="#PSRType_Underground"/>
+		<cim:PowerSystemResource.AssetDatasheet rdf:resource="#nis_el_cable_art_ART3313"/>
+		<cim:ConductingEquipment.BaseVoltage rdf:resource="#BaseVoltage_400"/>
+		<cim:ConductingEquipment.SvStatus rdf:resource="#in_use"/>
+		<cim:Conductor.length>1.125373716</cim:Conductor.length>
+		<cim:ACLineSegment.r0/>
+		<cim:ACLineSegment.r/>
+		<cim:ACLineSegment.x0/>
+		<cim:ACLineSegment.x/>
+	</cim:ACLineSegment>"""
+
+        val parser = new CHIM (xml)
+        val result = CHIM.parse (parser)
+        assert (result._1.size === 1)
+        assert (result._2.length === 0)
+        val line = result._1 ("LEK110315").asInstanceOf [ACLineSegment]
+        assert (0 == line.r)
+        assert (0 == line.x)
+        assert (0 == line.r0)
+        assert (0 == line.x0)
+        assert (1.125373716 == line.Conductor.len)
+    }
 }

@@ -246,8 +246,8 @@ object CIMServerJDBC
                     log.info ("reading CIM files %s".format (arguments.files.mkString (",")))
                     val elements = session.read.format ("ch.ninecode.cim").options (reader_options).load (arguments.files: _*)
                     if (-1 != session.sparkContext.master.indexOf ("sandbox")) // are we in development
-                    elements.explain
-                        else
+                        elements.explain
+                    else
                         log.info (s"${elements.count} elements")
 
                     // start the thrift JDBC server

@@ -2466,7 +2466,8 @@ object IdentifiedObject
             mask (aliasName (), 0),
             mask (description (), 1),
             {
-                val _ = mask (mRID (), 2); base.id
+                val _ = mask (mRID (), 2);
+                base.id
             },
             mask (name (), 3),
             masks (DiagramObjects (), 4),

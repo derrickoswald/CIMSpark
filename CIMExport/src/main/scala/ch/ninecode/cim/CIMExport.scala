@@ -350,7 +350,8 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         out.write (header.getBytes (StandardCharsets.UTF_8))
         elements.map (_.export).foreach ((s: String) =>
         {
-            out.write (s.getBytes (StandardCharsets.UTF_8)); out.writeByte ('\n')
+            out.write (s.getBytes (StandardCharsets.UTF_8));
+            out.writeByte ('\n')
         })
         out.write (tailer.getBytes (StandardCharsets.UTF_8))
         out.close ()
@@ -379,7 +380,8 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val sb = new scala.collection.mutable.StringBuilder (32768, header)
         elements.map (_.export).foreach ((s: String) =>
         {
-            sb.append (s); sb.append ('\n')
+            sb.append (s);
+            sb.append ('\n')
         })
         sb.append (tailer)
         val data = sb.toString.getBytes (StandardCharsets.UTF_8)
@@ -488,8 +490,8 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                                                     List ((e.id, mrid), (mrid, e.id))
                                                 else
                                                     if (relation.field == "IdentifiedObject_attr") // DiagramObject has a special name for IdentifiedObject
-                                                    List ((e.id, mrid), (mrid, e.id))
-                                                        else
+                                                        List ((e.id, mrid), (mrid, e.id))
+                                                    else
                                                         if (relation.field == "DiagramObject")
                                                             List ((e.id, mrid), (mrid, e.id))
                                                         else
