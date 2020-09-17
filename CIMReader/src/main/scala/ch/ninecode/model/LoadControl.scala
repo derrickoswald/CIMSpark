@@ -15,21 +15,21 @@ import ch.ninecode.cim.CIMSerializer
 /**
  * A function that will disconnect and reconnect the customer's load under defined conditions.
  *
- * @param EndDeviceFunction    [[ch.ninecode.model.EndDeviceFunction EndDeviceFunction]] Reference to the superclass object.
- * @param eventCount           Running cumulative count of connect or disconnect events, for the lifetime of this function or until the value is cleared.
- * @param isConnected          True if this function is in the connected state.
- * @param isDelayedDiscon      If set true, the switch may disconnect the service at the end of a specified time delay after the disconnect signal has been given.
- *                             If set false, the switch may disconnect the service immediately after the disconnect signal has been given. This is typically the case for over current circuit-breakers which are classified as either instantaneous or slow acting.
- * @param isLocalAutoDisconOp  If set true and if disconnection can be operated locally, the operation happens automatically.
- *                             Otherwise it happens manually.
- * @param isLocalAutoReconOp   If set true and if reconnection can be operated locally, then the operation happens automatically.
- *                             Otherwise, it happens manually.
+ * @param EndDeviceFunction [[ch.ninecode.model.EndDeviceFunction EndDeviceFunction]] Reference to the superclass object.
+ * @param eventCount Running cumulative count of connect or disconnect events, for the lifetime of this function or until the value is cleared.
+ * @param isConnected True if this function is in the connected state.
+ * @param isDelayedDiscon If set true, the switch may disconnect the service at the end of a specified time delay after the disconnect signal has been given.
+ *        If set false, the switch may disconnect the service immediately after the disconnect signal has been given. This is typically the case for over current circuit-breakers which are classified as either instantaneous or slow acting.
+ * @param isLocalAutoDisconOp If set true and if disconnection can be operated locally, the operation happens automatically.
+ *        Otherwise it happens manually.
+ * @param isLocalAutoReconOp If set true and if reconnection can be operated locally, then the operation happens automatically.
+ *        Otherwise, it happens manually.
  * @param isRemoteAutoDisconOp If set true and if disconnection can be operated remotely, then the operation happens automatically.
- *                             If set false and if disconnection can be operated remotely, then the operation happens manually.
- * @param isRemoteAutoReconOp  If set true and if reconnection can be operated remotely, then the operation happens automatically.
- *                             If set false and if reconnection can be operated remotely, then the operation happens manually.
- * @param rcdInfo              [[ch.ninecode.model.RemoteConnectDisconnectInfo RemoteConnectDisconnectInfo]] Information on remote connect disconnect switch.
- * @param Switches             [[ch.ninecode.model.Switch Switch]] <em>undocumented</em>
+ *        If set false and if disconnection can be operated remotely, then the operation happens manually.
+ * @param isRemoteAutoReconOp If set true and if reconnection can be operated remotely, then the operation happens automatically.
+ *        If set false and if reconnection can be operated remotely, then the operation happens manually.
+ * @param rcdInfo [[ch.ninecode.model.RemoteConnectDisconnectInfo RemoteConnectDisconnectInfo]] Information on remote connect disconnect switch.
+ * @param Switches [[ch.ninecode.model.Switch Switch]] <em>undocumented</em>
  * @group LoadControl
  * @groupname LoadControl Package LoadControl
  * @groupdesc LoadControl This package is an extension of the Metering package and contains the information classes that support specialised applications such as demand-side management using load control equipment. These classes are generally associated with the point where a service is delivered to the customer.
@@ -47,8 +47,8 @@ final case class ConnectDisconnectFunction
     rcdInfo: String = null,
     Switches: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -74,22 +74,15 @@ final case class ConnectDisconnectFunction
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ConnectDisconnectFunction.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ConnectDisconnectFunction.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ConnectDisconnectFunction.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ConnectDisconnectFunction.fields (position), x))
-
         emitelem (0, eventCount)
         emitelem (1, isConnected)
         emitelem (2, isDelayedDiscon)
@@ -101,18 +94,17 @@ final case class ConnectDisconnectFunction
         emitattrs (8, Switches)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:ConnectDisconnectFunction rdf:ID=\"%s\">\n%s\t</cim:ConnectDisconnectFunction>".format (id, export_fields)
+        "\t<cim:ConnectDisconnectFunction rdf:%s=\"%s\">\n%s\t</cim:ConnectDisconnectFunction>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ConnectDisconnectFunction
-    extends
-        CIMParseable[ConnectDisconnectFunction]
+extends
+    CIMParseable[ConnectDisconnectFunction]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "eventCount",
         "isConnected",
         "isDelayedDiscon",
@@ -127,20 +119,20 @@ object ConnectDisconnectFunction
         CIMRelationship ("rcdInfo", "RemoteConnectDisconnectInfo", "0..1", "0..*"),
         CIMRelationship ("Switches", "Switch", "0..*", "0..*")
     )
-    val eventCount: Fielder = parse_element (element (cls, fields (0)))
-    val isConnected: Fielder = parse_element (element (cls, fields (1)))
-    val isDelayedDiscon: Fielder = parse_element (element (cls, fields (2)))
-    val isLocalAutoDisconOp: Fielder = parse_element (element (cls, fields (3)))
-    val isLocalAutoReconOp: Fielder = parse_element (element (cls, fields (4)))
-    val isRemoteAutoDisconOp: Fielder = parse_element (element (cls, fields (5)))
-    val isRemoteAutoReconOp: Fielder = parse_element (element (cls, fields (6)))
-    val rcdInfo: Fielder = parse_attribute (attribute (cls, fields (7)))
-    val Switches: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val eventCount: Fielder = parse_element (element (cls, fields(0)))
+    val isConnected: Fielder = parse_element (element (cls, fields(1)))
+    val isDelayedDiscon: Fielder = parse_element (element (cls, fields(2)))
+    val isLocalAutoDisconOp: Fielder = parse_element (element (cls, fields(3)))
+    val isLocalAutoReconOp: Fielder = parse_element (element (cls, fields(4)))
+    val isRemoteAutoDisconOp: Fielder = parse_element (element (cls, fields(5)))
+    val isRemoteAutoReconOp: Fielder = parse_element (element (cls, fields(6)))
+    val rcdInfo: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val Switches: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
 
     def parse (context: CIMContext): ConnectDisconnectFunction =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ConnectDisconnectFunction (
             EndDeviceFunction.parse (context),
             toInteger (mask (eventCount (), 0)),
@@ -183,7 +175,7 @@ object ConnectDisconnectFunctionSerializer extends CIMSerializer[ConnectDisconne
 
     def read (kryo: Kryo, input: Input, cls: Class[ConnectDisconnectFunction]): ConnectDisconnectFunction =
     {
-        val parent = EndDeviceFunctionSerializer.read (kryo, input, classOf [EndDeviceFunction])
+        val parent = EndDeviceFunctionSerializer.read (kryo, input, classOf[EndDeviceFunction])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ConnectDisconnectFunction (
             parent,
@@ -205,19 +197,19 @@ object ConnectDisconnectFunctionSerializer extends CIMSerializer[ConnectDisconne
 /**
  * Details of remote connect and disconnect function.
  *
- * @param Element                  Reference to the superclass object.
- * @param armedTimeout             Setting of the timeout elapsed time.
- * @param customerVoltageLimit     Voltage limit on customer side of RCD switch above which the connect should not be made.
- * @param energyLimit              Limit of energy before disconnect.
+ * @param Element Reference to the superclass object.
+ * @param armedTimeout Setting of the timeout elapsed time.
+ * @param customerVoltageLimit Voltage limit on customer side of RCD switch above which the connect should not be made.
+ * @param energyLimit Limit of energy before disconnect.
  * @param energyUsageStartDateTime Start date and time to accumulate energy for energy usage limiting.
- * @param energyUsageWarning       Warning energy limit, used to trigger event code that energy usage is nearing limit.
- * @param isArmConnect             True if the RCD switch has to be armed before a connect action can be initiated.
- * @param isArmDisconnect          True if the RCD switch has to be armed before a disconnect action can be initiated.
- * @param isEnergyLimiting         True if the energy usage is limited and the customer will be disconnected if they go over the limit.
- * @param needsPowerLimitCheck     True if load limit has to be checked to issue an immediate disconnect (after a connect) if load is over the limit.
- * @param needsVoltageLimitCheck   True if voltage limit has to be checked to prevent connect if voltage is over the limit.
- * @param powerLimit               Load limit above which the connect should either not take place or should cause an immediate disconnect.
- * @param usePushbutton            True if pushbutton has to be used for connect.
+ * @param energyUsageWarning Warning energy limit, used to trigger event code that energy usage is nearing limit.
+ * @param isArmConnect True if the RCD switch has to be armed before a connect action can be initiated.
+ * @param isArmDisconnect True if the RCD switch has to be armed before a disconnect action can be initiated.
+ * @param isEnergyLimiting True if the energy usage is limited and the customer will be disconnected if they go over the limit.
+ * @param needsPowerLimitCheck True if load limit has to be checked to issue an immediate disconnect (after a connect) if load is over the limit.
+ * @param needsVoltageLimitCheck True if voltage limit has to be checked to prevent connect if voltage is over the limit.
+ * @param powerLimit Load limit above which the connect should either not take place or should cause an immediate disconnect.
+ * @param usePushbutton True if pushbutton has to be used for connect.
  * @group LoadControl
  * @groupname LoadControl Package LoadControl
  * @groupdesc LoadControl This package is an extension of the Metering package and contains the information classes that support specialised applications such as demand-side management using load control equipment. These classes are generally associated with the point where a service is delivered to the customer.
@@ -238,8 +230,8 @@ final case class RemoteConnectDisconnectInfo
     powerLimit: Double = 0.0,
     usePushbutton: Boolean = false
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -265,18 +257,13 @@ final case class RemoteConnectDisconnectInfo
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteConnectDisconnectInfo.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemoteConnectDisconnectInfo.fields (position), value)
-
         emitelem (0, armedTimeout)
         emitelem (1, customerVoltageLimit)
         emitelem (2, energyLimit)
@@ -291,18 +278,17 @@ final case class RemoteConnectDisconnectInfo
         emitelem (11, usePushbutton)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:RemoteConnectDisconnectInfo rdf:ID=\"%s\">\n%s\t</cim:RemoteConnectDisconnectInfo>".format (id, export_fields)
+        "\t<cim:RemoteConnectDisconnectInfo rdf:%s=\"%s\">\n%s\t</cim:RemoteConnectDisconnectInfo>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object RemoteConnectDisconnectInfo
-    extends
-        CIMParseable[RemoteConnectDisconnectInfo]
+extends
+    CIMParseable[RemoteConnectDisconnectInfo]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "armedTimeout",
         "customerVoltageLimit",
         "energyLimit",
@@ -316,23 +302,23 @@ object RemoteConnectDisconnectInfo
         "powerLimit",
         "usePushbutton"
     )
-    val armedTimeout: Fielder = parse_element (element (cls, fields (0)))
-    val customerVoltageLimit: Fielder = parse_element (element (cls, fields (1)))
-    val energyLimit: Fielder = parse_element (element (cls, fields (2)))
-    val energyUsageStartDateTime: Fielder = parse_element (element (cls, fields (3)))
-    val energyUsageWarning: Fielder = parse_element (element (cls, fields (4)))
-    val isArmConnect: Fielder = parse_element (element (cls, fields (5)))
-    val isArmDisconnect: Fielder = parse_element (element (cls, fields (6)))
-    val isEnergyLimiting: Fielder = parse_element (element (cls, fields (7)))
-    val needsPowerLimitCheck: Fielder = parse_element (element (cls, fields (8)))
-    val needsVoltageLimitCheck: Fielder = parse_element (element (cls, fields (9)))
-    val powerLimit: Fielder = parse_element (element (cls, fields (10)))
-    val usePushbutton: Fielder = parse_element (element (cls, fields (11)))
+    val armedTimeout: Fielder = parse_element (element (cls, fields(0)))
+    val customerVoltageLimit: Fielder = parse_element (element (cls, fields(1)))
+    val energyLimit: Fielder = parse_element (element (cls, fields(2)))
+    val energyUsageStartDateTime: Fielder = parse_element (element (cls, fields(3)))
+    val energyUsageWarning: Fielder = parse_element (element (cls, fields(4)))
+    val isArmConnect: Fielder = parse_element (element (cls, fields(5)))
+    val isArmDisconnect: Fielder = parse_element (element (cls, fields(6)))
+    val isEnergyLimiting: Fielder = parse_element (element (cls, fields(7)))
+    val needsPowerLimitCheck: Fielder = parse_element (element (cls, fields(8)))
+    val needsVoltageLimitCheck: Fielder = parse_element (element (cls, fields(9)))
+    val powerLimit: Fielder = parse_element (element (cls, fields(10)))
+    val usePushbutton: Fielder = parse_element (element (cls, fields(11)))
 
     def parse (context: CIMContext): RemoteConnectDisconnectInfo =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = RemoteConnectDisconnectInfo (
             BasicElement.parse (context),
             toDouble (mask (armedTimeout (), 0)),
@@ -373,7 +359,7 @@ object RemoteConnectDisconnectInfoSerializer extends CIMSerializer[RemoteConnect
             () => output.writeDouble (obj.powerLimit),
             () => output.writeBoolean (obj.usePushbutton)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -381,7 +367,7 @@ object RemoteConnectDisconnectInfoSerializer extends CIMSerializer[RemoteConnect
 
     def read (kryo: Kryo, input: Input, cls: Class[RemoteConnectDisconnectInfo]): RemoteConnectDisconnectInfo =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RemoteConnectDisconnectInfo (
             parent,

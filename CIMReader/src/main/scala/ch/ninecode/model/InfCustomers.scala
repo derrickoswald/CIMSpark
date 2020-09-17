@@ -19,7 +19,7 @@ import ch.ninecode.cim.CIMSerializer
  * Use inherited 'type' to indicate that, for example, expected performance will not be met or reported as mandated.
  *
  * @param ActivityRecord [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
- * @param deadline       The deadline for compliance.
+ * @param deadline The deadline for compliance.
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
  * @groupdesc InfCustomers The package is used to define detailed customer models.
@@ -29,8 +29,8 @@ final case class ComplianceEvent
     ActivityRecord: ActivityRecord = null,
     deadline: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -56,41 +56,35 @@ final case class ComplianceEvent
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ComplianceEvent.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ComplianceEvent.fields (position), value)
-
         emitelem (0, deadline)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:ComplianceEvent rdf:ID=\"%s\">\n%s\t</cim:ComplianceEvent>".format (id, export_fields)
+        "\t<cim:ComplianceEvent rdf:%s=\"%s\">\n%s\t</cim:ComplianceEvent>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ComplianceEvent
-    extends
-        CIMParseable[ComplianceEvent]
+extends
+    CIMParseable[ComplianceEvent]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "deadline"
     )
-    val deadline: Fielder = parse_element (element (cls, fields (0)))
+    val deadline: Fielder = parse_element (element (cls, fields(0)))
 
     def parse (context: CIMContext): ComplianceEvent =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ComplianceEvent (
             ActivityRecord.parse (context),
             mask (deadline (), 0)
@@ -117,7 +111,7 @@ object ComplianceEventSerializer extends CIMSerializer[ComplianceEvent]
 
     def read (kryo: Kryo, input: Input, cls: Class[ComplianceEvent]): ComplianceEvent =
     {
-        val parent = ActivityRecordSerializer.read (kryo, input, classOf [ActivityRecord])
+        val parent = ActivityRecordSerializer.read (kryo, input, classOf[ActivityRecord])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ComplianceEvent (
             parent,
@@ -136,19 +130,19 @@ object ComplianceEventSerializer extends CIMSerializer[ComplianceEvent]
  * One Customer Billing Statement is produced for all Agreements under a CustomerAccount per billing cycle date defined in 'CustomerAccount.billingCycle'.
  * The history of CustomerBillingInfo, Invoices and Payments is to be maintained in associated ActivityRecords.
  *
- * @param Document            [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param billingDate         Business date designated for the billing run which produced this CustomerBillingInfo.
- * @param dueDate             Calculated date upon which a customer billing amount is due, used in the invoicing process to determine when a Customer's Payment is delinquent.
- *                            It takes into consideration the regulatory criteria and the Customer's requested due date. In the absence of a Customer requested due date, the due date is typically calculated from the regulated number of days and the 'billingDate'.
- * @param kind                Kind of bill customer receives.
- * @param lastPaymentAmt      Amount of the last payment received from the customer.
- *                            It is retained in the Customer Billing system, although the details of each payment are tracked in the ERP system.
- * @param lastPaymentDate     Date of the last payment received from the customer.
- *                            It is retained in the Customer Billing system, although the details of each payment are tracked in the ERP system.
- * @param outBalance          Outstanding balance on the CustomerAccount as of the statement date.
- * @param pymtPlanAmt         Monthly amortized amount due during each billing cycle for the CustomerAccount balance for which the Payment Plan is set-up.
- * @param pymtPlanType        Type of payment plan.
- * @param CustomerAccount     [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param billingDate Business date designated for the billing run which produced this CustomerBillingInfo.
+ * @param dueDate Calculated date upon which a customer billing amount is due, used in the invoicing process to determine when a Customer's Payment is delinquent.
+ *        It takes into consideration the regulatory criteria and the Customer's requested due date. In the absence of a Customer requested due date, the due date is typically calculated from the regulated number of days and the 'billingDate'.
+ * @param kind Kind of bill customer receives.
+ * @param lastPaymentAmt Amount of the last payment received from the customer.
+ *        It is retained in the Customer Billing system, although the details of each payment are tracked in the ERP system.
+ * @param lastPaymentDate Date of the last payment received from the customer.
+ *        It is retained in the Customer Billing system, although the details of each payment are tracked in the ERP system.
+ * @param outBalance Outstanding balance on the CustomerAccount as of the statement date.
+ * @param pymtPlanAmt Monthly amortized amount due during each billing cycle for the CustomerAccount balance for which the Payment Plan is set-up.
+ * @param pymtPlanType Type of payment plan.
+ * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
  * @param ErpInvoiceLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
@@ -168,8 +162,8 @@ final case class CustomerBillingInfo
     CustomerAccount: String = null,
     ErpInvoiceLineItems: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -195,22 +189,15 @@ final case class CustomerBillingInfo
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CustomerBillingInfo.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CustomerBillingInfo.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CustomerBillingInfo.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CustomerBillingInfo.fields (position), x))
-
         emitelem (0, billingDate)
         emitelem (1, dueDate)
         emitattr (2, kind)
@@ -223,18 +210,17 @@ final case class CustomerBillingInfo
         emitattrs (9, ErpInvoiceLineItems)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:CustomerBillingInfo rdf:ID=\"%s\">\n%s\t</cim:CustomerBillingInfo>".format (id, export_fields)
+        "\t<cim:CustomerBillingInfo rdf:%s=\"%s\">\n%s\t</cim:CustomerBillingInfo>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object CustomerBillingInfo
-    extends
-        CIMParseable[CustomerBillingInfo]
+extends
+    CIMParseable[CustomerBillingInfo]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "billingDate",
         "dueDate",
         "kind",
@@ -250,21 +236,21 @@ object CustomerBillingInfo
         CIMRelationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
         CIMRelationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..*")
     )
-    val billingDate: Fielder = parse_element (element (cls, fields (0)))
-    val dueDate: Fielder = parse_element (element (cls, fields (1)))
-    val kind: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val lastPaymentAmt: Fielder = parse_element (element (cls, fields (3)))
-    val lastPaymentDate: Fielder = parse_element (element (cls, fields (4)))
-    val outBalance: Fielder = parse_element (element (cls, fields (5)))
-    val pymtPlanAmt: Fielder = parse_element (element (cls, fields (6)))
-    val pymtPlanType: Fielder = parse_element (element (cls, fields (7)))
-    val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields (8)))
-    val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
+    val billingDate: Fielder = parse_element (element (cls, fields(0)))
+    val dueDate: Fielder = parse_element (element (cls, fields(1)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val lastPaymentAmt: Fielder = parse_element (element (cls, fields(3)))
+    val lastPaymentDate: Fielder = parse_element (element (cls, fields(4)))
+    val outBalance: Fielder = parse_element (element (cls, fields(5)))
+    val pymtPlanAmt: Fielder = parse_element (element (cls, fields(6)))
+    val pymtPlanType: Fielder = parse_element (element (cls, fields(7)))
+    val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: CIMContext): CustomerBillingInfo =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = CustomerBillingInfo (
             Document.parse (context),
             mask (billingDate (), 0),
@@ -309,7 +295,7 @@ object CustomerBillingInfoSerializer extends CIMSerializer[CustomerBillingInfo]
 
     def read (kryo: Kryo, input: Input, cls: Class[CustomerBillingInfo]): CustomerBillingInfo =
     {
-        val parent = DocumentSerializer.read (kryo, input, classOf [Document])
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = CustomerBillingInfo (
             parent,
@@ -343,8 +329,8 @@ final case class ExternalCustomerAgreement
 (
     Agreement: Agreement = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -370,25 +356,21 @@ final case class ExternalCustomerAgreement
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:ExternalCustomerAgreement rdf:ID=\"%s\">\n%s\t</cim:ExternalCustomerAgreement>".format (id, export_fields)
+        "\t<cim:ExternalCustomerAgreement rdf:%s=\"%s\">\n%s\t</cim:ExternalCustomerAgreement>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ExternalCustomerAgreement
-    extends
-        CIMParseable[ExternalCustomerAgreement]
+extends
+    CIMParseable[ExternalCustomerAgreement]
 {
 
     def parse (context: CIMContext): ExternalCustomerAgreement =
@@ -417,7 +399,7 @@ object ExternalCustomerAgreementSerializer extends CIMSerializer[ExternalCustome
 
     def read (kryo: Kryo, input: Input, cls: Class[ExternalCustomerAgreement]): ExternalCustomerAgreement =
     {
-        val parent = AgreementSerializer.read (kryo, input, classOf [Agreement])
+        val parent = AgreementSerializer.read (kryo, input, classOf[Agreement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExternalCustomerAgreement (
             parent
@@ -430,16 +412,16 @@ object ExternalCustomerAgreementSerializer extends CIMSerializer[ExternalCustome
 /**
  * Pricing can be based on power quality.
  *
- * @param Document                        [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param emergencyHighVoltLimit          Emergency high voltage limit.
- * @param emergencyLowVoltLimit           Emergency low voltage limit.
- * @param normalHighVoltLimit             Normal high voltage limit.
- * @param normalLowVoltLimit              Normal low voltage limit.
- * @param powerFactorMin                  Threshold minimum power factor for this PricingStructure, specified in instances where a special charge is levied if the actual power factor for a Service falls below the value specified here.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param emergencyHighVoltLimit Emergency high voltage limit.
+ * @param emergencyLowVoltLimit Emergency low voltage limit.
+ * @param normalHighVoltLimit Normal high voltage limit.
+ * @param normalLowVoltLimit Normal low voltage limit.
+ * @param powerFactorMin Threshold minimum power factor for this PricingStructure, specified in instances where a special charge is levied if the actual power factor for a Service falls below the value specified here.
  * @param valueUninterruptedServiceEnergy Value of uninterrupted service (Cost per energy).
- * @param valueUninterruptedServiceP      Value of uninterrupted service (Cost per active power).
- * @param voltImbalanceViolCost           Voltage imbalance violation cost (Cost per unit Voltage).
- * @param voltLimitViolCost               Voltage limit violation cost (Cost per unit Voltage).
+ * @param valueUninterruptedServiceP Value of uninterrupted service (Cost per active power).
+ * @param voltImbalanceViolCost Voltage imbalance violation cost (Cost per unit Voltage).
+ * @param voltLimitViolCost Voltage limit violation cost (Cost per unit Voltage).
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
  * @groupdesc InfCustomers The package is used to define detailed customer models.
@@ -457,8 +439,8 @@ final case class PowerQualityPricing
     voltImbalanceViolCost: Double = 0.0,
     voltLimitViolCost: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -484,18 +466,13 @@ final case class PowerQualityPricing
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerQualityPricing.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerQualityPricing.fields (position), value)
-
         emitelem (0, emergencyHighVoltLimit)
         emitelem (1, emergencyLowVoltLimit)
         emitelem (2, normalHighVoltLimit)
@@ -507,18 +484,17 @@ final case class PowerQualityPricing
         emitelem (8, voltLimitViolCost)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PowerQualityPricing rdf:ID=\"%s\">\n%s\t</cim:PowerQualityPricing>".format (id, export_fields)
+        "\t<cim:PowerQualityPricing rdf:%s=\"%s\">\n%s\t</cim:PowerQualityPricing>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PowerQualityPricing
-    extends
-        CIMParseable[PowerQualityPricing]
+extends
+    CIMParseable[PowerQualityPricing]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "emergencyHighVoltLimit",
         "emergencyLowVoltLimit",
         "normalHighVoltLimit",
@@ -529,20 +505,20 @@ object PowerQualityPricing
         "voltImbalanceViolCost",
         "voltLimitViolCost"
     )
-    val emergencyHighVoltLimit: Fielder = parse_element (element (cls, fields (0)))
-    val emergencyLowVoltLimit: Fielder = parse_element (element (cls, fields (1)))
-    val normalHighVoltLimit: Fielder = parse_element (element (cls, fields (2)))
-    val normalLowVoltLimit: Fielder = parse_element (element (cls, fields (3)))
-    val powerFactorMin: Fielder = parse_element (element (cls, fields (4)))
-    val valueUninterruptedServiceEnergy: Fielder = parse_element (element (cls, fields (5)))
-    val valueUninterruptedServiceP: Fielder = parse_element (element (cls, fields (6)))
-    val voltImbalanceViolCost: Fielder = parse_element (element (cls, fields (7)))
-    val voltLimitViolCost: Fielder = parse_element (element (cls, fields (8)))
+    val emergencyHighVoltLimit: Fielder = parse_element (element (cls, fields(0)))
+    val emergencyLowVoltLimit: Fielder = parse_element (element (cls, fields(1)))
+    val normalHighVoltLimit: Fielder = parse_element (element (cls, fields(2)))
+    val normalLowVoltLimit: Fielder = parse_element (element (cls, fields(3)))
+    val powerFactorMin: Fielder = parse_element (element (cls, fields(4)))
+    val valueUninterruptedServiceEnergy: Fielder = parse_element (element (cls, fields(5)))
+    val valueUninterruptedServiceP: Fielder = parse_element (element (cls, fields(6)))
+    val voltImbalanceViolCost: Fielder = parse_element (element (cls, fields(7)))
+    val voltLimitViolCost: Fielder = parse_element (element (cls, fields(8)))
 
     def parse (context: CIMContext): PowerQualityPricing =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerQualityPricing (
             Document.parse (context),
             toDouble (mask (emergencyHighVoltLimit (), 0)),
@@ -585,7 +561,7 @@ object PowerQualityPricingSerializer extends CIMSerializer[PowerQualityPricing]
 
     def read (kryo: Kryo, input: Input, cls: Class[PowerQualityPricing]): PowerQualityPricing =
     {
-        val parent = DocumentSerializer.read (kryo, input, classOf [Document])
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PowerQualityPricing (
             parent,
@@ -612,10 +588,10 @@ object PowerQualityPricingSerializer extends CIMSerializer[PowerQualityPricing]
  * 1) If power is not restored within 24 hours, customers can claim \$50 for residential customers or \$100 for commercial and industrial customers. In addition for each extra period of 12 hours the customer's supply has not been activated, the customer can claim \$25.
  * 2) If a customer has a question about their electricity bill, the utility will investigate and respond to the inquiry within 15 working days. If utility fails to meet its guarantee, utility will automatically pay the customer \$50.
  *
- * @param Document           [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param applicationPeriod  Period in which this service guantee applies.
- * @param automaticPay       True if utility must autmatically pay the specified amount whenever the condition is not satisified, otherwise customer must make a claim to receive payment.
- * @param payAmount          Amount to be paid by the service provider to the customer for each violation of the 'serviceRequirement'.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param applicationPeriod Period in which this service guantee applies.
+ * @param automaticPay True if utility must autmatically pay the specified amount whenever the condition is not satisified, otherwise customer must make a claim to receive payment.
+ * @param payAmount Amount to be paid by the service provider to the customer for each violation of the 'serviceRequirement'.
  * @param serviceRequirement Explanation of the requirement and conditions for satisfying it.
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
@@ -629,8 +605,8 @@ final case class ServiceGuarantee
     payAmount: Double = 0.0,
     serviceRequirement: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -656,52 +632,45 @@ final case class ServiceGuarantee
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ServiceGuarantee.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ServiceGuarantee.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ServiceGuarantee.fields (position), value)
-
         emitattr (0, applicationPeriod)
         emitelem (1, automaticPay)
         emitelem (2, payAmount)
         emitelem (3, serviceRequirement)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:ServiceGuarantee rdf:ID=\"%s\">\n%s\t</cim:ServiceGuarantee>".format (id, export_fields)
+        "\t<cim:ServiceGuarantee rdf:%s=\"%s\">\n%s\t</cim:ServiceGuarantee>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ServiceGuarantee
-    extends
-        CIMParseable[ServiceGuarantee]
+extends
+    CIMParseable[ServiceGuarantee]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "applicationPeriod",
         "automaticPay",
         "payAmount",
         "serviceRequirement"
     )
-    val applicationPeriod: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val automaticPay: Fielder = parse_element (element (cls, fields (1)))
-    val payAmount: Fielder = parse_element (element (cls, fields (2)))
-    val serviceRequirement: Fielder = parse_element (element (cls, fields (3)))
+    val applicationPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val automaticPay: Fielder = parse_element (element (cls, fields(1)))
+    val payAmount: Fielder = parse_element (element (cls, fields(2)))
+    val serviceRequirement: Fielder = parse_element (element (cls, fields(3)))
 
     def parse (context: CIMContext): ServiceGuarantee =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ServiceGuarantee (
             Document.parse (context),
             mask (applicationPeriod (), 0),
@@ -734,7 +703,7 @@ object ServiceGuaranteeSerializer extends CIMSerializer[ServiceGuarantee]
 
     def read (kryo: Kryo, input: Input, cls: Class[ServiceGuarantee]): ServiceGuarantee =
     {
-        val parent = DocumentSerializer.read (kryo, input, classOf [Document])
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ServiceGuarantee (
             parent,
@@ -754,8 +723,8 @@ object ServiceGuaranteeSerializer extends CIMSerializer[ServiceGuarantee]
  * For example, in the USA these codes are located by the federal government, and then published in a book entitled "The Standard Industrial Classification Manual". The codes are arranged in a hierarchical structure.
  * Note that Residential Service Agreements are not classified according to the SIC codes.
  *
- * @param Document           [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param code               Standard alphanumeric code assigned to a particular product/service within an industry.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param code Standard alphanumeric code assigned to a particular product/service within an industry.
  * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] <em>undocumented</em>
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
@@ -767,8 +736,8 @@ final case class StandardIndustryCode
     code: String = null,
     CustomerAgreements: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -794,49 +763,42 @@ final case class StandardIndustryCode
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StandardIndustryCode.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (StandardIndustryCode.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (StandardIndustryCode.fields (position), x))
-
         emitelem (0, code)
         emitattrs (1, CustomerAgreements)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:StandardIndustryCode rdf:ID=\"%s\">\n%s\t</cim:StandardIndustryCode>".format (id, export_fields)
+        "\t<cim:StandardIndustryCode rdf:%s=\"%s\">\n%s\t</cim:StandardIndustryCode>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object StandardIndustryCode
-    extends
-        CIMParseable[StandardIndustryCode]
+extends
+    CIMParseable[StandardIndustryCode]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "code",
         "CustomerAgreements"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("CustomerAgreements", "CustomerAgreement", "0..*", "0..1")
     )
-    val code: Fielder = parse_element (element (cls, fields (0)))
-    val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val code: Fielder = parse_element (element (cls, fields(0)))
+    val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): StandardIndustryCode =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = StandardIndustryCode (
             Document.parse (context),
             mask (code (), 0),
@@ -865,7 +827,7 @@ object StandardIndustryCodeSerializer extends CIMSerializer[StandardIndustryCode
 
     def read (kryo: Kryo, input: Input, cls: Class[StandardIndustryCode]): StandardIndustryCode =
     {
-        val parent = DocumentSerializer.read (kryo, input, classOf [Document])
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = StandardIndustryCode (
             parent,
@@ -889,8 +851,8 @@ final case class SubscribePowerCurve
 (
     Curve: Curve = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -916,25 +878,21 @@ final case class SubscribePowerCurve
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:SubscribePowerCurve rdf:ID=\"%s\">\n%s\t</cim:SubscribePowerCurve>".format (id, export_fields)
+        "\t<cim:SubscribePowerCurve rdf:%s=\"%s\">\n%s\t</cim:SubscribePowerCurve>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object SubscribePowerCurve
-    extends
-        CIMParseable[SubscribePowerCurve]
+extends
+    CIMParseable[SubscribePowerCurve]
 {
 
     def parse (context: CIMContext): SubscribePowerCurve =
@@ -963,7 +921,7 @@ object SubscribePowerCurveSerializer extends CIMSerializer[SubscribePowerCurve]
 
     def read (kryo: Kryo, input: Input, cls: Class[SubscribePowerCurve]): SubscribePowerCurve =
     {
-        val parent = CurveSerializer.read (kryo, input, classOf [Curve])
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = SubscribePowerCurve (
             parent
@@ -978,17 +936,17 @@ object SubscribePowerCurveSerializer extends CIMSerializer[SubscribePowerCurve]
  *
  * The history of Work Billing Info, Invoices, and Payments is to be maintained in associated ActivityRecords.
  *
- * @param Document         [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param costEstimate     Estimated cost for work.
- * @param deposit          Amount of price on deposit.
- * @param discount         Discount from standard price.
- * @param dueDateTime      Date and time by which payment for bill is expected from client.
- * @param issueDateTime    Date and time bill was issued to client.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param costEstimate Estimated cost for work.
+ * @param deposit Amount of price on deposit.
+ * @param discount Discount from standard price.
+ * @param dueDateTime Date and time by which payment for bill is expected from client.
+ * @param issueDateTime Date and time bill was issued to client.
  * @param receivedDateTime Date payment was received from client.
- * @param workPrice        Amount of bill.
- * @param CustomerAccount  [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
- * @param ErpLineItems     [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
- * @param Works            [[ch.ninecode.model.Work Work]] <em>undocumented</em>
+ * @param workPrice Amount of bill.
+ * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
+ * @param ErpLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
+ * @param Works [[ch.ninecode.model.Work Work]] <em>undocumented</em>
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
  * @groupdesc InfCustomers The package is used to define detailed customer models.
@@ -1007,8 +965,8 @@ final case class WorkBillingInfo
     ErpLineItems: List[String] = null,
     Works: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1034,22 +992,15 @@ final case class WorkBillingInfo
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WorkBillingInfo.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WorkBillingInfo.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkBillingInfo.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WorkBillingInfo.fields (position), x))
-
         emitelem (0, costEstimate)
         emitelem (1, deposit)
         emitelem (2, discount)
@@ -1062,18 +1013,17 @@ final case class WorkBillingInfo
         emitattrs (9, Works)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:WorkBillingInfo rdf:ID=\"%s\">\n%s\t</cim:WorkBillingInfo>".format (id, export_fields)
+        "\t<cim:WorkBillingInfo rdf:%s=\"%s\">\n%s\t</cim:WorkBillingInfo>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object WorkBillingInfo
-    extends
-        CIMParseable[WorkBillingInfo]
+extends
+    CIMParseable[WorkBillingInfo]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "costEstimate",
         "deposit",
         "discount",
@@ -1090,21 +1040,21 @@ object WorkBillingInfo
         CIMRelationship ("ErpLineItems", "ErpInvoiceLineItem", "0..*", "0..*"),
         CIMRelationship ("Works", "Work", "0..*", "0..1")
     )
-    val costEstimate: Fielder = parse_element (element (cls, fields (0)))
-    val deposit: Fielder = parse_element (element (cls, fields (1)))
-    val discount: Fielder = parse_element (element (cls, fields (2)))
-    val dueDateTime: Fielder = parse_element (element (cls, fields (3)))
-    val issueDateTime: Fielder = parse_element (element (cls, fields (4)))
-    val receivedDateTime: Fielder = parse_element (element (cls, fields (5)))
-    val workPrice: Fielder = parse_element (element (cls, fields (6)))
-    val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields (7)))
-    val ErpLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
-    val Works: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
+    val costEstimate: Fielder = parse_element (element (cls, fields(0)))
+    val deposit: Fielder = parse_element (element (cls, fields(1)))
+    val discount: Fielder = parse_element (element (cls, fields(2)))
+    val dueDateTime: Fielder = parse_element (element (cls, fields(3)))
+    val issueDateTime: Fielder = parse_element (element (cls, fields(4)))
+    val receivedDateTime: Fielder = parse_element (element (cls, fields(5)))
+    val workPrice: Fielder = parse_element (element (cls, fields(6)))
+    val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val ErpLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: CIMContext): WorkBillingInfo =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = WorkBillingInfo (
             Document.parse (context),
             toDouble (mask (costEstimate (), 0)),
@@ -1149,7 +1099,7 @@ object WorkBillingInfoSerializer extends CIMSerializer[WorkBillingInfo]
 
     def read (kryo: Kryo, input: Input, cls: Class[WorkBillingInfo]): WorkBillingInfo =
     {
-        val parent = DocumentSerializer.read (kryo, input, classOf [Document])
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WorkBillingInfo (
             parent,

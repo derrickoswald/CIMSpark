@@ -162,6 +162,23 @@ $voltage
             assert (cleanString (facility.export) == cleanString (xml))
     }
 
+    test ("About")
+    {
+        _: SparkSession =>
+            val xml =
+                """	<cim:Terminal rdf:about="KLE120953_terminal_1">
+		<cim:Terminal.TopologicalNode rdf:resource="#MUF129829_topo"/>
+	</cim:Terminal>"""
+
+            val parser = new CHIM (xml)
+            val result = CHIM.parse (parser)
+            assert (result._1.size === 1)
+            assert (result._2.length === 0)
+            val terminal = result._1 ("KLE120953_terminal_1").asInstanceOf [Terminal]
+            assert (terminal.about)
+            assert (cleanString (terminal.export) == cleanString (xml))
+    }
+
     test ("Convex Hull")
     {
         _: SparkSession =>

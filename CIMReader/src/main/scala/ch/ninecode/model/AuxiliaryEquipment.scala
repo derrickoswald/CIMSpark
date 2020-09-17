@@ -18,7 +18,7 @@ import ch.ninecode.cim.CIMSerializer
  * AuxiliaryEquipment is attached to primary equipment via an association with Terminal.
  *
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
- * @param Terminal  [[ch.ninecode.model.Terminal Terminal]] The Terminal at the equipment where the AuxiliaryEquipment is attached.
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The Terminal at the equipment where the AuxiliaryEquipment is attached.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
@@ -28,8 +28,8 @@ final case class AuxiliaryEquipment
     Equipment: Equipment = null,
     Terminal: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -55,44 +55,38 @@ final case class AuxiliaryEquipment
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AuxiliaryEquipment.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AuxiliaryEquipment.fields (position), value)
-
         emitattr (0, Terminal)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:AuxiliaryEquipment rdf:ID=\"%s\">\n%s\t</cim:AuxiliaryEquipment>".format (id, export_fields)
+        "\t<cim:AuxiliaryEquipment rdf:%s=\"%s\">\n%s\t</cim:AuxiliaryEquipment>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object AuxiliaryEquipment
-    extends
-        CIMParseable[AuxiliaryEquipment]
+extends
+    CIMParseable[AuxiliaryEquipment]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Terminal"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Terminal", "Terminal", "1", "0..*")
     )
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): AuxiliaryEquipment =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = AuxiliaryEquipment (
             Equipment.parse (context),
             mask (Terminal (), 0)
@@ -119,7 +113,7 @@ object AuxiliaryEquipmentSerializer extends CIMSerializer[AuxiliaryEquipment]
 
     def read (kryo: Kryo, input: Input, cls: Class[AuxiliaryEquipment]): AuxiliaryEquipment =
     {
-        val parent = EquipmentSerializer.read (kryo, input, classOf [Equipment])
+        val parent = EquipmentSerializer.read (kryo, input, classOf[Equipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = AuxiliaryEquipment (
             parent,
@@ -135,12 +129,12 @@ object AuxiliaryEquipmentSerializer extends CIMSerializer[AuxiliaryEquipment]
  *
  * Typically used as current transducer for the purpose of metering or protection. A typical secondary current rating would be 5A.
  *
- * @param Sensor        [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
+ * @param Sensor [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
  * @param accuracyClass CT accuracy classification.
  * @param accuracyLimit Percent of rated current for which the CT remains accurate within specified limits.
- * @param coreBurden    Power burden of the CT core.
- * @param ctClass       CT classification; i.e. class 10P.
- * @param usage         Intended usage of the CT; i.e. metering, protection.
+ * @param coreBurden Power burden of the CT core.
+ * @param ctClass CT classification; i.e. class 10P.
+ * @param usage Intended usage of the CT; i.e. metering, protection.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
@@ -154,8 +148,8 @@ final case class CurrentTransformer
     ctClass: String = null,
     usage: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -181,18 +175,13 @@ final case class CurrentTransformer
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CurrentTransformer.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CurrentTransformer.fields (position), value)
-
         emitelem (0, accuracyClass)
         emitelem (1, accuracyLimit)
         emitelem (2, coreBurden)
@@ -200,34 +189,33 @@ final case class CurrentTransformer
         emitelem (4, usage)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:CurrentTransformer rdf:ID=\"%s\">\n%s\t</cim:CurrentTransformer>".format (id, export_fields)
+        "\t<cim:CurrentTransformer rdf:%s=\"%s\">\n%s\t</cim:CurrentTransformer>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object CurrentTransformer
-    extends
-        CIMParseable[CurrentTransformer]
+extends
+    CIMParseable[CurrentTransformer]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "accuracyClass",
         "accuracyLimit",
         "coreBurden",
         "ctClass",
         "usage"
     )
-    val accuracyClass: Fielder = parse_element (element (cls, fields (0)))
-    val accuracyLimit: Fielder = parse_element (element (cls, fields (1)))
-    val coreBurden: Fielder = parse_element (element (cls, fields (2)))
-    val ctClass: Fielder = parse_element (element (cls, fields (3)))
-    val usage: Fielder = parse_element (element (cls, fields (4)))
+    val accuracyClass: Fielder = parse_element (element (cls, fields(0)))
+    val accuracyLimit: Fielder = parse_element (element (cls, fields(1)))
+    val coreBurden: Fielder = parse_element (element (cls, fields(2)))
+    val ctClass: Fielder = parse_element (element (cls, fields(3)))
+    val usage: Fielder = parse_element (element (cls, fields(4)))
 
     def parse (context: CIMContext): CurrentTransformer =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = CurrentTransformer (
             Sensor.parse (context),
             mask (accuracyClass (), 0),
@@ -262,7 +250,7 @@ object CurrentTransformerSerializer extends CIMSerializer[CurrentTransformer]
 
     def read (kryo: Kryo, input: Input, cls: Class[CurrentTransformer]): CurrentTransformer =
     {
-        val parent = SensorSerializer.read (kryo, input, classOf [Sensor])
+        val parent = SensorSerializer.read (kryo, input, classOf[Sensor])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = CurrentTransformer (
             parent,
@@ -291,8 +279,8 @@ final case class FaultIndicator
 (
     AuxiliaryEquipment: AuxiliaryEquipment = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -318,25 +306,21 @@ final case class FaultIndicator
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:FaultIndicator rdf:ID=\"%s\">\n%s\t</cim:FaultIndicator>".format (id, export_fields)
+        "\t<cim:FaultIndicator rdf:%s=\"%s\">\n%s\t</cim:FaultIndicator>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object FaultIndicator
-    extends
-        CIMParseable[FaultIndicator]
+extends
+    CIMParseable[FaultIndicator]
 {
 
     def parse (context: CIMContext): FaultIndicator =
@@ -365,7 +349,7 @@ object FaultIndicatorSerializer extends CIMSerializer[FaultIndicator]
 
     def read (kryo: Kryo, input: Input, cls: Class[FaultIndicator]): FaultIndicator =
     {
-        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf [AuxiliaryEquipment])
+        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf[AuxiliaryEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = FaultIndicator (
             parent
@@ -387,8 +371,8 @@ final case class PostLineSensor
 (
     Sensor: Sensor = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -414,25 +398,21 @@ final case class PostLineSensor
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:PostLineSensor rdf:ID=\"%s\">\n%s\t</cim:PostLineSensor>".format (id, export_fields)
+        "\t<cim:PostLineSensor rdf:%s=\"%s\">\n%s\t</cim:PostLineSensor>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PostLineSensor
-    extends
-        CIMParseable[PostLineSensor]
+extends
+    CIMParseable[PostLineSensor]
 {
 
     def parse (context: CIMContext): PostLineSensor =
@@ -461,7 +441,7 @@ object PostLineSensorSerializer extends CIMSerializer[PostLineSensor]
 
     def read (kryo: Kryo, input: Input, cls: Class[PostLineSensor]): PostLineSensor =
     {
-        val parent = SensorSerializer.read (kryo, input, classOf [Sensor])
+        val parent = SensorSerializer.read (kryo, input, classOf[Sensor])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PostLineSensor (
             parent
@@ -476,11 +456,11 @@ object PostLineSensorSerializer extends CIMSerializer[PostLineSensor]
  *
  * Typically used as voltage transducer for the purpose of metering, protection, or sometimes auxiliary substation supply. A typical secondary voltage rating would be 120V.
  *
- * @param Sensor        [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
+ * @param Sensor [[ch.ninecode.model.Sensor Sensor]] Reference to the superclass object.
  * @param accuracyClass PT accuracy classification.
- * @param nominalRatio  Nominal ratio between the primary and secondary voltage.
- * @param ptClass       Potential transformer (PT) classification covering burden.
- * @param type          Potential transformer construction type.
+ * @param nominalRatio Nominal ratio between the primary and secondary voltage.
+ * @param ptClass Potential transformer (PT) classification covering burden.
+ * @param type Potential transformer construction type.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
@@ -493,8 +473,8 @@ final case class PotentialTransformer
     ptClass: String = null,
     `type`: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -520,52 +500,45 @@ final case class PotentialTransformer
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PotentialTransformer.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PotentialTransformer.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PotentialTransformer.fields (position), value)
-
         emitelem (0, accuracyClass)
         emitelem (1, nominalRatio)
         emitelem (2, ptClass)
         emitattr (3, `type`)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PotentialTransformer rdf:ID=\"%s\">\n%s\t</cim:PotentialTransformer>".format (id, export_fields)
+        "\t<cim:PotentialTransformer rdf:%s=\"%s\">\n%s\t</cim:PotentialTransformer>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PotentialTransformer
-    extends
-        CIMParseable[PotentialTransformer]
+extends
+    CIMParseable[PotentialTransformer]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "accuracyClass",
         "nominalRatio",
         "ptClass",
         "type"
     )
-    val accuracyClass: Fielder = parse_element (element (cls, fields (0)))
-    val nominalRatio: Fielder = parse_element (element (cls, fields (1)))
-    val ptClass: Fielder = parse_element (element (cls, fields (2)))
-    val `type`: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val accuracyClass: Fielder = parse_element (element (cls, fields(0)))
+    val nominalRatio: Fielder = parse_element (element (cls, fields(1)))
+    val ptClass: Fielder = parse_element (element (cls, fields(2)))
+    val `type`: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: CIMContext): PotentialTransformer =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PotentialTransformer (
             Sensor.parse (context),
             mask (accuracyClass (), 0),
@@ -598,7 +571,7 @@ object PotentialTransformerSerializer extends CIMSerializer[PotentialTransformer
 
     def read (kryo: Kryo, input: Input, cls: Class[PotentialTransformer]): PotentialTransformer =
     {
-        val parent = SensorSerializer.read (kryo, input, classOf [Sensor])
+        val parent = SensorSerializer.read (kryo, input, classOf[Sensor])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PotentialTransformer (
             parent,
@@ -624,8 +597,8 @@ final case class Sensor
 (
     AuxiliaryEquipment: AuxiliaryEquipment = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -651,25 +624,21 @@ final case class Sensor
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:Sensor rdf:ID=\"%s\">\n%s\t</cim:Sensor>".format (id, export_fields)
+        "\t<cim:Sensor rdf:%s=\"%s\">\n%s\t</cim:Sensor>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Sensor
-    extends
-        CIMParseable[Sensor]
+extends
+    CIMParseable[Sensor]
 {
 
     def parse (context: CIMContext): Sensor =
@@ -698,7 +667,7 @@ object SensorSerializer extends CIMSerializer[Sensor]
 
     def read (kryo: Kryo, input: Input, cls: Class[Sensor]): Sensor =
     {
-        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf [AuxiliaryEquipment])
+        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf[AuxiliaryEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Sensor (
             parent
@@ -720,8 +689,8 @@ final case class SurgeArrester
 (
     AuxiliaryEquipment: AuxiliaryEquipment = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -747,25 +716,21 @@ final case class SurgeArrester
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:SurgeArrester rdf:ID=\"%s\">\n%s\t</cim:SurgeArrester>".format (id, export_fields)
+        "\t<cim:SurgeArrester rdf:%s=\"%s\">\n%s\t</cim:SurgeArrester>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object SurgeArrester
-    extends
-        CIMParseable[SurgeArrester]
+extends
+    CIMParseable[SurgeArrester]
 {
 
     def parse (context: CIMContext): SurgeArrester =
@@ -794,7 +759,7 @@ object SurgeArresterSerializer extends CIMSerializer[SurgeArrester]
 
     def read (kryo: Kryo, input: Input, cls: Class[SurgeArrester]): SurgeArrester =
     {
-        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf [AuxiliaryEquipment])
+        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf[AuxiliaryEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = SurgeArrester (
             parent
@@ -816,8 +781,8 @@ final case class WaveTrap
 (
     AuxiliaryEquipment: AuxiliaryEquipment = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -843,25 +808,21 @@ final case class WaveTrap
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:WaveTrap rdf:ID=\"%s\">\n%s\t</cim:WaveTrap>".format (id, export_fields)
+        "\t<cim:WaveTrap rdf:%s=\"%s\">\n%s\t</cim:WaveTrap>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object WaveTrap
-    extends
-        CIMParseable[WaveTrap]
+extends
+    CIMParseable[WaveTrap]
 {
 
     def parse (context: CIMContext): WaveTrap =
@@ -890,7 +851,7 @@ object WaveTrapSerializer extends CIMSerializer[WaveTrap]
 
     def read (kryo: Kryo, input: Input, cls: Class[WaveTrap]): WaveTrap =
     {
-        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf [AuxiliaryEquipment])
+        val parent = AuxiliaryEquipmentSerializer.read (kryo, input, classOf[AuxiliaryEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WaveTrap (
             parent

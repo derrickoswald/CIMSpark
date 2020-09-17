@@ -16,16 +16,16 @@ import ch.ninecode.cim.CIMSerializer
  * Interval between two dates.
  *
  * @param Element Reference to the superclass object.
- * @param end     End date of this interval.
- * @param start   Start date of this interval.
+ * @param end End date of this interval.
+ * @param start Start date of this interval.
  * @group Domain
  * @groupname Domain Package Domain
  * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
- *            &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
- *            &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
- *            &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
- *            &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
- *            For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 final case class DateInterval
 (
@@ -33,8 +33,8 @@ final case class DateInterval
     end: String = null,
     start: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -60,44 +60,38 @@ final case class DateInterval
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DateInterval.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DateInterval.fields (position), value)
-
         emitelem (0, end)
         emitelem (1, start)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:DateInterval rdf:ID=\"%s\">\n%s\t</cim:DateInterval>".format (id, export_fields)
+        "\t<cim:DateInterval rdf:%s=\"%s\">\n%s\t</cim:DateInterval>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object DateInterval
-    extends
-        CIMParseable[DateInterval]
+extends
+    CIMParseable[DateInterval]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "end",
         "start"
     )
-    val end: Fielder = parse_element (element (cls, fields (0)))
-    val start: Fielder = parse_element (element (cls, fields (1)))
+    val end: Fielder = parse_element (element (cls, fields(0)))
+    val start: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: CIMContext): DateInterval =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = DateInterval (
             BasicElement.parse (context),
             mask (end (), 0),
@@ -118,7 +112,7 @@ object DateIntervalSerializer extends CIMSerializer[DateInterval]
             () => output.writeString (obj.end),
             () => output.writeString (obj.start)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -126,7 +120,7 @@ object DateIntervalSerializer extends CIMSerializer[DateInterval]
 
     def read (kryo: Kryo, input: Input, cls: Class[DateInterval]): DateInterval =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DateInterval (
             parent,
@@ -142,18 +136,18 @@ object DateIntervalSerializer extends CIMSerializer[DateInterval]
  * Interval between two date and time points, where the interval includes the start time but excludes end time.
  *
  * @param Element Reference to the superclass object.
- * @param end     End date and time of this interval.
- *                The end date and time where the interval is defined up to, but excluded.
- * @param start   Start date and time of this interval.
- *                The start date and time is included in the defined interval.
+ * @param end End date and time of this interval.
+ *        The end date and time where the interval is defined up to, but excluded.
+ * @param start Start date and time of this interval.
+ *        The start date and time is included in the defined interval.
  * @group Domain
  * @groupname Domain Package Domain
  * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
- *            &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
- *            &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
- *            &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
- *            &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
- *            For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 final case class DateTimeInterval
 (
@@ -161,8 +155,8 @@ final case class DateTimeInterval
     end: String = null,
     start: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -188,44 +182,38 @@ final case class DateTimeInterval
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DateTimeInterval.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DateTimeInterval.fields (position), value)
-
         emitelem (0, end)
         emitelem (1, start)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:DateTimeInterval rdf:ID=\"%s\">\n%s\t</cim:DateTimeInterval>".format (id, export_fields)
+        "\t<cim:DateTimeInterval rdf:%s=\"%s\">\n%s\t</cim:DateTimeInterval>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object DateTimeInterval
-    extends
-        CIMParseable[DateTimeInterval]
+extends
+    CIMParseable[DateTimeInterval]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "end",
         "start"
     )
-    val end: Fielder = parse_element (element (cls, fields (0)))
-    val start: Fielder = parse_element (element (cls, fields (1)))
+    val end: Fielder = parse_element (element (cls, fields(0)))
+    val start: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: CIMContext): DateTimeInterval =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = DateTimeInterval (
             BasicElement.parse (context),
             mask (end (), 0),
@@ -246,7 +234,7 @@ object DateTimeIntervalSerializer extends CIMSerializer[DateTimeInterval]
             () => output.writeString (obj.end),
             () => output.writeString (obj.start)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -254,7 +242,7 @@ object DateTimeIntervalSerializer extends CIMSerializer[DateTimeInterval]
 
     def read (kryo: Kryo, input: Input, cls: Class[DateTimeInterval]): DateTimeInterval =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DateTimeInterval (
             parent,
@@ -269,19 +257,19 @@ object DateTimeIntervalSerializer extends CIMSerializer[DateTimeInterval]
 /**
  * Quantity with decimal value and associated unit or currency information.
  *
- * @param Element    Reference to the superclass object.
- * @param currency   Currency of this quantity.
+ * @param Element Reference to the superclass object.
+ * @param currency Currency of this quantity.
  * @param multiplier Unit multiplier of this quantity.
- * @param unit       Unit of this quantity.
- * @param value      Value of this quantity.
+ * @param unit Unit of this quantity.
+ * @param value Value of this quantity.
  * @group Domain
  * @groupname Domain Package Domain
  * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
- *            &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
- *            &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
- *            &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
- *            &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
- *            For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 final case class DecimalQuantity
 (
@@ -291,8 +279,8 @@ final case class DecimalQuantity
     unit: String = null,
     value: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -318,52 +306,45 @@ final case class DecimalQuantity
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DecimalQuantity.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DecimalQuantity.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DecimalQuantity.fields (position), value)
-
         emitattr (0, currency)
         emitattr (1, multiplier)
         emitattr (2, unit)
         emitelem (3, value)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:DecimalQuantity rdf:ID=\"%s\">\n%s\t</cim:DecimalQuantity>".format (id, export_fields)
+        "\t<cim:DecimalQuantity rdf:%s=\"%s\">\n%s\t</cim:DecimalQuantity>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object DecimalQuantity
-    extends
-        CIMParseable[DecimalQuantity]
+extends
+    CIMParseable[DecimalQuantity]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "currency",
         "multiplier",
         "unit",
         "value"
     )
-    val currency: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val multiplier: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val unit: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val value: Fielder = parse_element (element (cls, fields (3)))
+    val currency: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val multiplier: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val unit: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val value: Fielder = parse_element (element (cls, fields(3)))
 
     def parse (context: CIMContext): DecimalQuantity =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = DecimalQuantity (
             BasicElement.parse (context),
             mask (currency (), 0),
@@ -388,7 +369,7 @@ object DecimalQuantitySerializer extends CIMSerializer[DecimalQuantity]
             () => output.writeString (obj.unit),
             () => output.writeDouble (obj.value)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -396,7 +377,7 @@ object DecimalQuantitySerializer extends CIMSerializer[DecimalQuantity]
 
     def read (kryo: Kryo, input: Input, cls: Class[DecimalQuantity]): DecimalQuantity =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DecimalQuantity (
             parent,
@@ -413,18 +394,18 @@ object DecimalQuantitySerializer extends CIMSerializer[DecimalQuantity]
 /**
  * Quantity with float value and associated unit information.
  *
- * @param Element    Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param multiplier Unit multiplier of this quantity.
- * @param unit       Unit of this quantity.
- * @param value      Value of this quantity.
+ * @param unit Unit of this quantity.
+ * @param value Value of this quantity.
  * @group Domain
  * @groupname Domain Package Domain
  * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
- *            &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
- *            &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
- *            &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
- *            &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
- *            For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 final case class FloatQuantity
 (
@@ -433,8 +414,8 @@ final case class FloatQuantity
     unit: String = null,
     value: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -460,49 +441,42 @@ final case class FloatQuantity
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FloatQuantity.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FloatQuantity.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FloatQuantity.fields (position), value)
-
         emitattr (0, multiplier)
         emitattr (1, unit)
         emitelem (2, value)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:FloatQuantity rdf:ID=\"%s\">\n%s\t</cim:FloatQuantity>".format (id, export_fields)
+        "\t<cim:FloatQuantity rdf:%s=\"%s\">\n%s\t</cim:FloatQuantity>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object FloatQuantity
-    extends
-        CIMParseable[FloatQuantity]
+extends
+    CIMParseable[FloatQuantity]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "multiplier",
         "unit",
         "value"
     )
-    val multiplier: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val unit: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val value: Fielder = parse_element (element (cls, fields (2)))
+    val multiplier: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val unit: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val value: Fielder = parse_element (element (cls, fields(2)))
 
     def parse (context: CIMContext): FloatQuantity =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = FloatQuantity (
             BasicElement.parse (context),
             mask (multiplier (), 0),
@@ -525,7 +499,7 @@ object FloatQuantitySerializer extends CIMSerializer[FloatQuantity]
             () => output.writeString (obj.unit),
             () => output.writeDouble (obj.value)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -533,7 +507,7 @@ object FloatQuantitySerializer extends CIMSerializer[FloatQuantity]
 
     def read (kryo: Kryo, input: Input, cls: Class[FloatQuantity]): FloatQuantity =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = FloatQuantity (
             parent,
@@ -549,18 +523,18 @@ object FloatQuantitySerializer extends CIMSerializer[FloatQuantity]
 /**
  * Quantity with integer value and associated unit information.
  *
- * @param Element    Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param multiplier Unit multiplier of this quantity.
- * @param unit       Unit of this quantity.
- * @param value      Value of this quantity.
+ * @param unit Unit of this quantity.
+ * @param value Value of this quantity.
  * @group Domain
  * @groupname Domain Package Domain
  * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
- *            &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
- *            &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
- *            &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
- *            &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
- *            For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 final case class IntegerQuantity
 (
@@ -569,8 +543,8 @@ final case class IntegerQuantity
     unit: String = null,
     value: Int = 0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -596,49 +570,42 @@ final case class IntegerQuantity
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IntegerQuantity.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (IntegerQuantity.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (IntegerQuantity.fields (position), value)
-
         emitattr (0, multiplier)
         emitattr (1, unit)
         emitelem (2, value)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:IntegerQuantity rdf:ID=\"%s\">\n%s\t</cim:IntegerQuantity>".format (id, export_fields)
+        "\t<cim:IntegerQuantity rdf:%s=\"%s\">\n%s\t</cim:IntegerQuantity>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object IntegerQuantity
-    extends
-        CIMParseable[IntegerQuantity]
+extends
+    CIMParseable[IntegerQuantity]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "multiplier",
         "unit",
         "value"
     )
-    val multiplier: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val unit: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val value: Fielder = parse_element (element (cls, fields (2)))
+    val multiplier: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val unit: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val value: Fielder = parse_element (element (cls, fields(2)))
 
     def parse (context: CIMContext): IntegerQuantity =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = IntegerQuantity (
             BasicElement.parse (context),
             mask (multiplier (), 0),
@@ -661,7 +628,7 @@ object IntegerQuantitySerializer extends CIMSerializer[IntegerQuantity]
             () => output.writeString (obj.unit),
             () => output.writeInt (obj.value)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -669,7 +636,7 @@ object IntegerQuantitySerializer extends CIMSerializer[IntegerQuantity]
 
     def read (kryo: Kryo, input: Input, cls: Class[IntegerQuantity]): IntegerQuantity =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = IntegerQuantity (
             parent,
@@ -686,16 +653,16 @@ object IntegerQuantitySerializer extends CIMSerializer[IntegerQuantity]
  * Interval between two times specified as month and day.
  *
  * @param Element Reference to the superclass object.
- * @param end     End time of this interval.
- * @param start   Start time of this interval.
+ * @param end End time of this interval.
+ * @param start Start time of this interval.
  * @group Domain
  * @groupname Domain Package Domain
  * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
- *            &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
- *            &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
- *            &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
- *            &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
- *            For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 final case class MonthDayInterval
 (
@@ -703,8 +670,8 @@ final case class MonthDayInterval
     end: String = null,
     start: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -730,44 +697,38 @@ final case class MonthDayInterval
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MonthDayInterval.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MonthDayInterval.fields (position), value)
-
         emitelem (0, end)
         emitelem (1, start)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MonthDayInterval rdf:ID=\"%s\">\n%s\t</cim:MonthDayInterval>".format (id, export_fields)
+        "\t<cim:MonthDayInterval rdf:%s=\"%s\">\n%s\t</cim:MonthDayInterval>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MonthDayInterval
-    extends
-        CIMParseable[MonthDayInterval]
+extends
+    CIMParseable[MonthDayInterval]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "end",
         "start"
     )
-    val end: Fielder = parse_element (element (cls, fields (0)))
-    val start: Fielder = parse_element (element (cls, fields (1)))
+    val end: Fielder = parse_element (element (cls, fields(0)))
+    val start: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: CIMContext): MonthDayInterval =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MonthDayInterval (
             BasicElement.parse (context),
             mask (end (), 0),
@@ -788,7 +749,7 @@ object MonthDayIntervalSerializer extends CIMSerializer[MonthDayInterval]
             () => output.writeString (obj.end),
             () => output.writeString (obj.start)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -796,7 +757,7 @@ object MonthDayIntervalSerializer extends CIMSerializer[MonthDayInterval]
 
     def read (kryo: Kryo, input: Input, cls: Class[MonthDayInterval]): MonthDayInterval =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MonthDayInterval (
             parent,
@@ -811,18 +772,18 @@ object MonthDayIntervalSerializer extends CIMSerializer[MonthDayInterval]
 /**
  * Quantity with string value (when it is not important whether it is an integral or a floating point number) and associated unit information.
  *
- * @param Element    Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param multiplier Unit multiplier of this quantity.
- * @param unit       Unit of this quantity.
- * @param value      Value of this quantity.
+ * @param unit Unit of this quantity.
+ * @param value Value of this quantity.
  * @group Domain
  * @groupname Domain Package Domain
  * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
- *            &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
- *            &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
- *            &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
- *            &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
- *            For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 final case class StringQuantity
 (
@@ -831,8 +792,8 @@ final case class StringQuantity
     unit: String = null,
     value: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -858,49 +819,42 @@ final case class StringQuantity
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StringQuantity.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (StringQuantity.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (StringQuantity.fields (position), value)
-
         emitattr (0, multiplier)
         emitattr (1, unit)
         emitelem (2, value)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:StringQuantity rdf:ID=\"%s\">\n%s\t</cim:StringQuantity>".format (id, export_fields)
+        "\t<cim:StringQuantity rdf:%s=\"%s\">\n%s\t</cim:StringQuantity>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object StringQuantity
-    extends
-        CIMParseable[StringQuantity]
+extends
+    CIMParseable[StringQuantity]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "multiplier",
         "unit",
         "value"
     )
-    val multiplier: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val unit: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val value: Fielder = parse_element (element (cls, fields (2)))
+    val multiplier: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val unit: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val value: Fielder = parse_element (element (cls, fields(2)))
 
     def parse (context: CIMContext): StringQuantity =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = StringQuantity (
             BasicElement.parse (context),
             mask (multiplier (), 0),
@@ -923,7 +877,7 @@ object StringQuantitySerializer extends CIMSerializer[StringQuantity]
             () => output.writeString (obj.unit),
             () => output.writeString (obj.value)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -931,7 +885,7 @@ object StringQuantitySerializer extends CIMSerializer[StringQuantity]
 
     def read (kryo: Kryo, input: Input, cls: Class[StringQuantity]): StringQuantity =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = StringQuantity (
             parent,
@@ -948,16 +902,16 @@ object StringQuantitySerializer extends CIMSerializer[StringQuantity]
  * Interval between two times.
  *
  * @param Element Reference to the superclass object.
- * @param end     End time of this interval.
- * @param start   Start time of this interval.
+ * @param end End time of this interval.
+ * @param start Start time of this interval.
  * @group Domain
  * @groupname Domain Package Domain
  * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
- *            &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
- *            &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
- *            &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
- *            &lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
- *            For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
+&lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
+&lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
+&lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 final case class TimeInterval
 (
@@ -965,8 +919,8 @@ final case class TimeInterval
     end: String = null,
     start: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -992,44 +946,38 @@ final case class TimeInterval
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TimeInterval.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TimeInterval.fields (position), value)
-
         emitelem (0, end)
         emitelem (1, start)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TimeInterval rdf:ID=\"%s\">\n%s\t</cim:TimeInterval>".format (id, export_fields)
+        "\t<cim:TimeInterval rdf:%s=\"%s\">\n%s\t</cim:TimeInterval>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TimeInterval
-    extends
-        CIMParseable[TimeInterval]
+extends
+    CIMParseable[TimeInterval]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "end",
         "start"
     )
-    val end: Fielder = parse_element (element (cls, fields (0)))
-    val start: Fielder = parse_element (element (cls, fields (1)))
+    val end: Fielder = parse_element (element (cls, fields(0)))
+    val start: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: CIMContext): TimeInterval =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TimeInterval (
             BasicElement.parse (context),
             mask (end (), 0),
@@ -1050,7 +998,7 @@ object TimeIntervalSerializer extends CIMSerializer[TimeInterval]
             () => output.writeString (obj.end),
             () => output.writeString (obj.start)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -1058,7 +1006,7 @@ object TimeIntervalSerializer extends CIMSerializer[TimeInterval]
 
     def read (kryo: Kryo, input: Input, cls: Class[TimeInterval]): TimeInterval =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TimeInterval (
             parent,

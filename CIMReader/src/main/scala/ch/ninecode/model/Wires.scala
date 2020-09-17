@@ -18,26 +18,26 @@ import ch.ninecode.cim.CIMSerializer
  * For symmetrical, transposed three phase lines, it is sufficient to use attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.
  * The BaseVoltage at the two ends of ACLineSegments in a Line shall have the same BaseVoltage.nominalVoltage. However, boundary lines may have slightly different BaseVoltage.nominalVoltages and variation is allowed. Larger voltage difference in general requires use of an equivalent branch.
  *
- * @param Conductor                  [[ch.ninecode.model.Conductor Conductor]] Reference to the superclass object.
- * @param b0ch                       Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
- * @param bch                        Positive sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
- *                                   This value represents the full charging over the full length of the line.
- * @param g0ch                       Zero sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
- * @param gch                        Positive sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
- * @param r                          Positive sequence series resistance of the entire line section.
- * @param r0                         Zero sequence series resistance of the entire line section.
+ * @param Conductor [[ch.ninecode.model.Conductor Conductor]] Reference to the superclass object.
+ * @param b0ch Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
+ * @param bch Positive sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
+ *        This value represents the full charging over the full length of the line.
+ * @param g0ch Zero sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
+ * @param gch Positive sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
+ * @param r Positive sequence series resistance of the entire line section.
+ * @param r0 Zero sequence series resistance of the entire line section.
  * @param shortCircuitEndTemperature Maximum permitted temperature at the end of SC for the calculation of minimum short-circuit currents.
- *                                   Used for short circuit data exchange according to IEC 60909.
- * @param x                          Positive sequence series reactance of the entire line section.
- * @param x0                         Zero sequence series reactance of the entire line section.
- * @param ACLineSegmentPhases        [[ch.ninecode.model.ACLineSegmentPhase ACLineSegmentPhase]] The line segment phases which belong to the line segment.
- * @param Clamp                      [[ch.ninecode.model.Clamp Clamp]] The clamps connected to the line segment.
- * @param Cut                        [[ch.ninecode.model.Cut Cut]] Cuts applied to the line segment.
- * @param LineFaults                 [[ch.ninecode.model.LineFault LineFault]] The line faults of the line segment.
- * @param LineGroundingAction        [[ch.ninecode.model.GroundAction GroundAction]] Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).
- * @param LineJumpingAction          [[ch.ninecode.model.JumperAction JumperAction]] Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).
- * @param PerLengthImpedance         [[ch.ninecode.model.PerLengthImpedance PerLengthImpedance]] Per-length impedance of this line segment.
- * @param WireSpacingInfo            [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] <em>undocumented</em>
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param x Positive sequence series reactance of the entire line section.
+ * @param x0 Zero sequence series reactance of the entire line section.
+ * @param ACLineSegmentPhases [[ch.ninecode.model.ACLineSegmentPhase ACLineSegmentPhase]] The line segment phases which belong to the line segment.
+ * @param Clamp [[ch.ninecode.model.Clamp Clamp]] The clamps connected to the line segment.
+ * @param Cut [[ch.ninecode.model.Cut Cut]] Cuts applied to the line segment.
+ * @param LineFaults [[ch.ninecode.model.LineFault LineFault]] The line faults of the line segment.
+ * @param LineGroundingAction [[ch.ninecode.model.GroundAction GroundAction]] Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).
+ * @param LineJumpingAction [[ch.ninecode.model.JumperAction JumperAction]] Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).
+ * @param PerLengthImpedance [[ch.ninecode.model.PerLengthImpedance PerLengthImpedance]] Per-length impedance of this line segment.
+ * @param WireSpacingInfo [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] <em>undocumented</em>
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -63,8 +63,8 @@ final case class ACLineSegment
     PerLengthImpedance: String = null,
     WireSpacingInfo: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -90,22 +90,15 @@ final case class ACLineSegment
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ACLineSegment.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ACLineSegment.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ACLineSegment.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ACLineSegment.fields (position), x))
-
         emitelem (0, b0ch)
         emitelem (1, bch)
         emitelem (2, g0ch)
@@ -125,18 +118,17 @@ final case class ACLineSegment
         emitattr (16, WireSpacingInfo)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:ACLineSegment rdf:ID=\"%s\">\n%s\t</cim:ACLineSegment>".format (id, export_fields)
+        "\t<cim:ACLineSegment rdf:%s=\"%s\">\n%s\t</cim:ACLineSegment>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ACLineSegment
-    extends
-        CIMParseable[ACLineSegment]
+extends
+    CIMParseable[ACLineSegment]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "b0ch",
         "bch",
         "g0ch",
@@ -165,28 +157,28 @@ object ACLineSegment
         CIMRelationship ("PerLengthImpedance", "PerLengthImpedance", "0..1", "0..*"),
         CIMRelationship ("WireSpacingInfo", "WireSpacingInfo", "0..1", "0..*")
     )
-    val b0ch: Fielder = parse_element (element (cls, fields (0)))
-    val bch: Fielder = parse_element (element (cls, fields (1)))
-    val g0ch: Fielder = parse_element (element (cls, fields (2)))
-    val gch: Fielder = parse_element (element (cls, fields (3)))
-    val r: Fielder = parse_element (element (cls, fields (4)))
-    val r0: Fielder = parse_element (element (cls, fields (5)))
-    val shortCircuitEndTemperature: Fielder = parse_element (element (cls, fields (6)))
-    val x: Fielder = parse_element (element (cls, fields (7)))
-    val x0: Fielder = parse_element (element (cls, fields (8)))
-    val ACLineSegmentPhases: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
-    val Clamp: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
-    val Cut: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
-    val LineFaults: FielderMultiple = parse_attributes (attribute (cls, fields (12)))
-    val LineGroundingAction: Fielder = parse_attribute (attribute (cls, fields (13)))
-    val LineJumpingAction: Fielder = parse_attribute (attribute (cls, fields (14)))
-    val PerLengthImpedance: Fielder = parse_attribute (attribute (cls, fields (15)))
-    val WireSpacingInfo: Fielder = parse_attribute (attribute (cls, fields (16)))
+    val b0ch: Fielder = parse_element (element (cls, fields(0)))
+    val bch: Fielder = parse_element (element (cls, fields(1)))
+    val g0ch: Fielder = parse_element (element (cls, fields(2)))
+    val gch: Fielder = parse_element (element (cls, fields(3)))
+    val r: Fielder = parse_element (element (cls, fields(4)))
+    val r0: Fielder = parse_element (element (cls, fields(5)))
+    val shortCircuitEndTemperature: Fielder = parse_element (element (cls, fields(6)))
+    val x: Fielder = parse_element (element (cls, fields(7)))
+    val x0: Fielder = parse_element (element (cls, fields(8)))
+    val ACLineSegmentPhases: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val Clamp: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val Cut: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val LineFaults: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val LineGroundingAction: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val LineJumpingAction: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val PerLengthImpedance: Fielder = parse_attribute (attribute (cls, fields(15)))
+    val WireSpacingInfo: Fielder = parse_attribute (attribute (cls, fields(16)))
 
     def parse (context: CIMContext): ACLineSegment =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ACLineSegment (
             Conductor.parse (context),
             toDouble (mask (b0ch (), 0)),
@@ -245,7 +237,7 @@ object ACLineSegmentSerializer extends CIMSerializer[ACLineSegment]
 
     def read (kryo: Kryo, input: Input, cls: Class[ACLineSegment]): ACLineSegment =
     {
-        val parent = ConductorSerializer.read (kryo, input, classOf [Conductor])
+        val parent = ConductorSerializer.read (kryo, input, classOf[Conductor])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ACLineSegment (
             parent,
@@ -276,11 +268,11 @@ object ACLineSegmentSerializer extends CIMSerializer[ACLineSegment]
  * Represents a single wire of an alternating current line segment.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param phase               The phase connection of the wire at both ends.
- * @param sequenceNumber      Number designation for this line segment phase.
- *                            Each line segment phase within a line segment should have a unique sequence number. This is useful for unbalanced modelling to bind the mathematical model (PhaseImpedanceData of PerLengthPhaseImpedance) with the connectivity model (this class) and the physical model (WirePosition) without tight coupling.
- * @param ACLineSegment       [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the phase belongs.
- * @param WireInfo            [[ch.ninecode.model.WireInfo WireInfo]] <em>undocumented</em>
+ * @param phase The phase connection of the wire at both ends.
+ * @param sequenceNumber Number designation for this line segment phase.
+ *        Each line segment phase within a line segment should have a unique sequence number. This is useful for unbalanced modelling to bind the mathematical model (PhaseImpedanceData of PerLengthPhaseImpedance) with the connectivity model (this class) and the physical model (WirePosition) without tight coupling.
+ * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the phase belongs.
+ * @param WireInfo [[ch.ninecode.model.WireInfo WireInfo]] <em>undocumented</em>
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -293,8 +285,8 @@ final case class ACLineSegmentPhase
     ACLineSegment: String = null,
     WireInfo: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -320,38 +312,31 @@ final case class ACLineSegmentPhase
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ACLineSegmentPhase.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ACLineSegmentPhase.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ACLineSegmentPhase.fields (position), value)
-
         emitattr (0, phase)
         emitelem (1, sequenceNumber)
         emitattr (2, ACLineSegment)
         emitattr (3, WireInfo)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:ACLineSegmentPhase rdf:ID=\"%s\">\n%s\t</cim:ACLineSegmentPhase>".format (id, export_fields)
+        "\t<cim:ACLineSegmentPhase rdf:%s=\"%s\">\n%s\t</cim:ACLineSegmentPhase>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ACLineSegmentPhase
-    extends
-        CIMParseable[ACLineSegmentPhase]
+extends
+    CIMParseable[ACLineSegmentPhase]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "phase",
         "sequenceNumber",
         "ACLineSegment",
@@ -361,15 +346,15 @@ object ACLineSegmentPhase
         CIMRelationship ("ACLineSegment", "ACLineSegment", "1", "0..*"),
         CIMRelationship ("WireInfo", "WireInfo", "0..1", "0..*")
     )
-    val phase: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val sequenceNumber: Fielder = parse_element (element (cls, fields (1)))
-    val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val WireInfo: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val sequenceNumber: Fielder = parse_element (element (cls, fields(1)))
+    val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val WireInfo: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: CIMContext): ACLineSegmentPhase =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ACLineSegmentPhase (
             PowerSystemResource.parse (context),
             mask (phase (), 0),
@@ -402,7 +387,7 @@ object ACLineSegmentPhaseSerializer extends CIMSerializer[ACLineSegmentPhase]
 
     def read (kryo: Kryo, input: Input, cls: Class[ACLineSegmentPhase]): ACLineSegmentPhase =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ACLineSegmentPhase (
             parent,
@@ -421,35 +406,35 @@ object ACLineSegmentPhaseSerializer extends CIMSerializer[ACLineSegmentPhase]
  *
  * Also known as an induction machine with no external connection to the rotor windings, e.g. squirrel-cage induction machine.
  *
- * @param RotatingMachine             [[ch.ninecode.model.RotatingMachine RotatingMachine]] Reference to the superclass object.
- * @param asynchronousMachineType     Indicates the type of Asynchronous Machine (motor or generator).
- * @param converterFedDrive           Indicates whether the machine is a converter fed drive.
- *                                    Used for short circuit data exchange according to IEC 60909.
- * @param efficiency                  Efficiency of the asynchronous machine at nominal operation as a percentage.
- *                                    Indicator for converter drive motors. Used for short circuit data exchange according to IEC 60909.
- * @param iaIrRatio                   Ratio of locked-rotor current to the rated current of the motor (Ia/Ir).
- *                                    Used for short circuit data exchange according to IEC 60909.
- * @param nominalFrequency            Nameplate data indicates if the machine is 50 Hz or 60 Hz.
- * @param nominalSpeed                Nameplate data.
- *                                    Depends on the slip and number of pole pairs.
- * @param polePairNumber              Number of pole pairs of stator.
- *                                    Used for short circuit data exchange according to IEC 60909.
- * @param ratedMechanicalPower        Rated mechanical power (Pr in IEC 60909-0).
- *                                    Used for short circuit data exchange according to IEC 60909.
- * @param reversible                  Indicates for converter drive motors if the power can be reversible.
- *                                    Used for short circuit data exchange according to IEC 60909.
- * @param rr1                         Damper 1 winding resistance.
- * @param rr2                         Damper 2 winding resistance.
- * @param rxLockedRotorRatio          Locked rotor ratio (R/X).
- *                                    Used for short circuit data exchange according to IEC 60909.
- * @param tpo                         Transient rotor time constant (greater than tppo).
- * @param tppo                        Sub-transient rotor time constant (greater than 0).
- * @param xlr1                        Damper 1 winding leakage reactance.
- * @param xlr2                        Damper 2 winding leakage reactance.
- * @param xm                          Magnetizing reactance.
- * @param xp                          Transient reactance (unsaturated) (greater than or equal to xpp).
- * @param xpp                         Sub-transient reactance (unsaturated).
- * @param xs                          Synchronous reactance (greater than xp).
+ * @param RotatingMachine [[ch.ninecode.model.RotatingMachine RotatingMachine]] Reference to the superclass object.
+ * @param asynchronousMachineType Indicates the type of Asynchronous Machine (motor or generator).
+ * @param converterFedDrive Indicates whether the machine is a converter fed drive.
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param efficiency Efficiency of the asynchronous machine at nominal operation as a percentage.
+ *        Indicator for converter drive motors. Used for short circuit data exchange according to IEC 60909.
+ * @param iaIrRatio Ratio of locked-rotor current to the rated current of the motor (Ia/Ir).
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param nominalFrequency Nameplate data indicates if the machine is 50 Hz or 60 Hz.
+ * @param nominalSpeed Nameplate data.
+ *        Depends on the slip and number of pole pairs.
+ * @param polePairNumber Number of pole pairs of stator.
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param ratedMechanicalPower Rated mechanical power (Pr in IEC 60909-0).
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param reversible Indicates for converter drive motors if the power can be reversible.
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param rr1 Damper 1 winding resistance.
+ * @param rr2 Damper 2 winding resistance.
+ * @param rxLockedRotorRatio Locked rotor ratio (R/X).
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param tpo Transient rotor time constant (greater than tppo).
+ * @param tppo Sub-transient rotor time constant (greater than 0).
+ * @param xlr1 Damper 1 winding leakage reactance.
+ * @param xlr2 Damper 2 winding leakage reactance.
+ * @param xm Magnetizing reactance.
+ * @param xp Transient reactance (unsaturated) (greater than or equal to xpp).
+ * @param xpp Sub-transient reactance (unsaturated).
+ * @param xs Synchronous reactance (greater than xp).
  * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine dynamics model used to describe dynamic behaviour of this asynchronous machine.
  * @group Wires
  * @groupname Wires Package Wires
@@ -480,8 +465,8 @@ final case class AsynchronousMachine
     xs: Double = 0.0,
     AsynchronousMachineDynamics: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -507,20 +492,14 @@ final case class AsynchronousMachine
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AsynchronousMachine.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AsynchronousMachine.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AsynchronousMachine.fields (position), value)
-
         emitattr (0, asynchronousMachineType)
         emitelem (1, converterFedDrive)
         emitelem (2, efficiency)
@@ -544,18 +523,17 @@ final case class AsynchronousMachine
         emitattr (20, AsynchronousMachineDynamics)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:AsynchronousMachine rdf:ID=\"%s\">\n%s\t</cim:AsynchronousMachine>".format (id, export_fields)
+        "\t<cim:AsynchronousMachine rdf:%s=\"%s\">\n%s\t</cim:AsynchronousMachine>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object AsynchronousMachine
-    extends
-        CIMParseable[AsynchronousMachine]
+extends
+    CIMParseable[AsynchronousMachine]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "asynchronousMachineType",
         "converterFedDrive",
         "efficiency",
@@ -581,32 +559,32 @@ object AsynchronousMachine
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "1")
     )
-    val asynchronousMachineType: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val converterFedDrive: Fielder = parse_element (element (cls, fields (1)))
-    val efficiency: Fielder = parse_element (element (cls, fields (2)))
-    val iaIrRatio: Fielder = parse_element (element (cls, fields (3)))
-    val nominalFrequency: Fielder = parse_element (element (cls, fields (4)))
-    val nominalSpeed: Fielder = parse_element (element (cls, fields (5)))
-    val polePairNumber: Fielder = parse_element (element (cls, fields (6)))
-    val ratedMechanicalPower: Fielder = parse_element (element (cls, fields (7)))
-    val reversible: Fielder = parse_element (element (cls, fields (8)))
-    val rr1: Fielder = parse_element (element (cls, fields (9)))
-    val rr2: Fielder = parse_element (element (cls, fields (10)))
-    val rxLockedRotorRatio: Fielder = parse_element (element (cls, fields (11)))
-    val tpo: Fielder = parse_element (element (cls, fields (12)))
-    val tppo: Fielder = parse_element (element (cls, fields (13)))
-    val xlr1: Fielder = parse_element (element (cls, fields (14)))
-    val xlr2: Fielder = parse_element (element (cls, fields (15)))
-    val xm: Fielder = parse_element (element (cls, fields (16)))
-    val xp: Fielder = parse_element (element (cls, fields (17)))
-    val xpp: Fielder = parse_element (element (cls, fields (18)))
-    val xs: Fielder = parse_element (element (cls, fields (19)))
-    val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields (20)))
+    val asynchronousMachineType: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val converterFedDrive: Fielder = parse_element (element (cls, fields(1)))
+    val efficiency: Fielder = parse_element (element (cls, fields(2)))
+    val iaIrRatio: Fielder = parse_element (element (cls, fields(3)))
+    val nominalFrequency: Fielder = parse_element (element (cls, fields(4)))
+    val nominalSpeed: Fielder = parse_element (element (cls, fields(5)))
+    val polePairNumber: Fielder = parse_element (element (cls, fields(6)))
+    val ratedMechanicalPower: Fielder = parse_element (element (cls, fields(7)))
+    val reversible: Fielder = parse_element (element (cls, fields(8)))
+    val rr1: Fielder = parse_element (element (cls, fields(9)))
+    val rr2: Fielder = parse_element (element (cls, fields(10)))
+    val rxLockedRotorRatio: Fielder = parse_element (element (cls, fields(11)))
+    val tpo: Fielder = parse_element (element (cls, fields(12)))
+    val tppo: Fielder = parse_element (element (cls, fields(13)))
+    val xlr1: Fielder = parse_element (element (cls, fields(14)))
+    val xlr2: Fielder = parse_element (element (cls, fields(15)))
+    val xm: Fielder = parse_element (element (cls, fields(16)))
+    val xp: Fielder = parse_element (element (cls, fields(17)))
+    val xpp: Fielder = parse_element (element (cls, fields(18)))
+    val xs: Fielder = parse_element (element (cls, fields(19)))
+    val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(20)))
 
     def parse (context: CIMContext): AsynchronousMachine =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = AsynchronousMachine (
             RotatingMachine.parse (context),
             mask (asynchronousMachineType (), 0),
@@ -673,7 +651,7 @@ object AsynchronousMachineSerializer extends CIMSerializer[AsynchronousMachine]
 
     def read (kryo: Kryo, input: Input, cls: Class[AsynchronousMachine]): AsynchronousMachine =
     {
-        val parent = RotatingMachineSerializer.read (kryo, input, classOf [RotatingMachine])
+        val parent = RotatingMachineSerializer.read (kryo, input, classOf[RotatingMachine])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = AsynchronousMachine (
             parent,
@@ -708,7 +686,7 @@ object AsynchronousMachineSerializer extends CIMSerializer[AsynchronousMachine]
  * A mechanical switching device capable of making, carrying, and breaking currents under normal circuit conditions and also making, carrying for a specified time, and breaking currents under specified abnormal circuit conditions e.g.  those of short circuit.
  *
  * @param ProtectedSwitch [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] Reference to the superclass object.
- * @param inTransitTime   The transition time from open to close.
+ * @param inTransitTime The transition time from open to close.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -718,8 +696,8 @@ final case class Breaker
     ProtectedSwitch: ProtectedSwitch = null,
     inTransitTime: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -745,41 +723,35 @@ final case class Breaker
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Breaker.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Breaker.fields (position), value)
-
         emitelem (0, inTransitTime)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Breaker rdf:ID=\"%s\">\n%s\t</cim:Breaker>".format (id, export_fields)
+        "\t<cim:Breaker rdf:%s=\"%s\">\n%s\t</cim:Breaker>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Breaker
-    extends
-        CIMParseable[Breaker]
+extends
+    CIMParseable[Breaker]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "inTransitTime"
     )
-    val inTransitTime: Fielder = parse_element (element (cls, fields (0)))
+    val inTransitTime: Fielder = parse_element (element (cls, fields(0)))
 
     def parse (context: CIMContext): Breaker =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Breaker (
             ProtectedSwitch.parse (context),
             toDouble (mask (inTransitTime (), 0))
@@ -806,7 +778,7 @@ object BreakerSerializer extends CIMSerializer[Breaker]
 
     def read (kryo: Kryo, input: Input, cls: Class[Breaker]): Breaker =
     {
-        val parent = ProtectedSwitchSerializer.read (kryo, input, classOf [ProtectedSwitch])
+        val parent = ProtectedSwitchSerializer.read (kryo, input, classOf[ProtectedSwitch])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Breaker (
             parent,
@@ -822,9 +794,9 @@ object BreakerSerializer extends CIMSerializer[Breaker]
  *
  * Voltage measurements are typically obtained from voltage transformers that are connected to busbar sections. A bus bar section may have many physical terminals but for analysis is modelled with exactly one logical terminal.
  *
- * @param Connector          [[ch.ninecode.model.Connector Connector]] Reference to the superclass object.
- * @param ipMax              Maximum allowable peak short-circuit current of busbar (Ipmax in IEC 60909-0).
- *                           Mechanical limit of the busbar in the substation itself. Used for short circuit data exchange according to IEC 60909.
+ * @param Connector [[ch.ninecode.model.Connector Connector]] Reference to the superclass object.
+ * @param ipMax Maximum allowable peak short-circuit current of busbar (Ipmax in IEC 60909-0).
+ *        Mechanical limit of the busbar in the substation itself. Used for short circuit data exchange according to IEC 60909.
  * @param VoltageControlZone [[ch.ninecode.model.VoltageControlZone VoltageControlZone]] A VoltageControlZone is controlled by a designated BusbarSection.
  * @group Wires
  * @groupname Wires Package Wires
@@ -836,8 +808,8 @@ final case class BusbarSection
     ipMax: Double = 0.0,
     VoltageControlZone: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -863,49 +835,42 @@ final case class BusbarSection
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BusbarSection.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BusbarSection.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BusbarSection.fields (position), value)
-
         emitelem (0, ipMax)
         emitattr (1, VoltageControlZone)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:BusbarSection rdf:ID=\"%s\">\n%s\t</cim:BusbarSection>".format (id, export_fields)
+        "\t<cim:BusbarSection rdf:%s=\"%s\">\n%s\t</cim:BusbarSection>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object BusbarSection
-    extends
-        CIMParseable[BusbarSection]
+extends
+    CIMParseable[BusbarSection]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "ipMax",
         "VoltageControlZone"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("VoltageControlZone", "VoltageControlZone", "0..1", "1")
     )
-    val ipMax: Fielder = parse_element (element (cls, fields (0)))
-    val VoltageControlZone: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val ipMax: Fielder = parse_element (element (cls, fields(0)))
+    val VoltageControlZone: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): BusbarSection =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = BusbarSection (
             Connector.parse (context),
             toDouble (mask (ipMax (), 0)),
@@ -934,7 +899,7 @@ object BusbarSectionSerializer extends CIMSerializer[BusbarSection]
 
     def read (kryo: Kryo, input: Input, cls: Class[BusbarSection]): BusbarSection =
     {
-        val parent = ConnectorSerializer.read (kryo, input, classOf [Connector])
+        val parent = ConnectorSerializer.read (kryo, input, classOf[Connector])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = BusbarSection (
             parent,
@@ -954,9 +919,9 @@ object BusbarSectionSerializer extends CIMSerializer[BusbarSection]
  *
  * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the clamp is located starting from side one of the line segment, i.e. the line segment terminal with sequence number equal to 1.
- * @param ACLineSegment       [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the clamp is connected.
- * @param ClampAction         [[ch.ninecode.model.ClampAction ClampAction]] <em>undocumented</em>
- * @param JumperAction        [[ch.ninecode.model.JumperAction JumperAction]] <em>undocumented</em>
+ * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the clamp is connected.
+ * @param ClampAction [[ch.ninecode.model.ClampAction ClampAction]] <em>undocumented</em>
+ * @param JumperAction [[ch.ninecode.model.JumperAction JumperAction]] <em>undocumented</em>
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -969,8 +934,8 @@ final case class Clamp
     ClampAction: String = null,
     JumperAction: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -996,38 +961,31 @@ final case class Clamp
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Clamp.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Clamp.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Clamp.fields (position), value)
-
         emitelem (0, lengthFromTerminal1)
         emitattr (1, ACLineSegment)
         emitattr (2, ClampAction)
         emitattr (3, JumperAction)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Clamp rdf:ID=\"%s\">\n%s\t</cim:Clamp>".format (id, export_fields)
+        "\t<cim:Clamp rdf:%s=\"%s\">\n%s\t</cim:Clamp>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Clamp
-    extends
-        CIMParseable[Clamp]
+extends
+    CIMParseable[Clamp]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "lengthFromTerminal1",
         "ACLineSegment",
         "ClampAction",
@@ -1038,15 +996,15 @@ object Clamp
         CIMRelationship ("ClampAction", "ClampAction", "0..1", "0..1"),
         CIMRelationship ("JumperAction", "JumperAction", "0..1", "0..1")
     )
-    val lengthFromTerminal1: Fielder = parse_element (element (cls, fields (0)))
-    val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val ClampAction: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val JumperAction: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val lengthFromTerminal1: Fielder = parse_element (element (cls, fields(0)))
+    val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val ClampAction: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val JumperAction: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: CIMContext): Clamp =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Clamp (
             ConductingEquipment.parse (context),
             toDouble (mask (lengthFromTerminal1 (), 0)),
@@ -1079,7 +1037,7 @@ object ClampSerializer extends CIMSerializer[Clamp]
 
     def read (kryo: Kryo, input: Input, cls: Class[Clamp]): Clamp =
     {
-        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf [ConductingEquipment])
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Clamp (
             parent,
@@ -1099,9 +1057,9 @@ object ClampSerializer extends CIMSerializer[Clamp]
  * These are typically found in medium voltage distribution networks.
  * A CompositeSwitch could represent a Ring-Main-Unit (RMU), or pad-mounted switchgear, with primitive internal devices such as an internal bus-bar plus 3 or 4 internal switches each of which may individually be open or closed. A CompositeSwitch and a set of contained Switches can also be used to represent a multi-position switch e.g. a switch that can connect a circuit to Ground, Open or Busbar.
  *
- * @param Equipment           [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param compositeSwitchType An alphanumeric code that can be used as a reference to extra information such as the description of the interlocking scheme if any.
- * @param Switches            [[ch.ninecode.model.Switch Switch]] Switches contained in this Composite switch.
+ * @param Switches [[ch.ninecode.model.Switch Switch]] Switches contained in this Composite switch.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1112,8 +1070,8 @@ final case class CompositeSwitch
     compositeSwitchType: String = null,
     Switches: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1139,49 +1097,42 @@ final case class CompositeSwitch
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CompositeSwitch.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CompositeSwitch.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (CompositeSwitch.fields (position), x))
-
         emitelem (0, compositeSwitchType)
         emitattrs (1, Switches)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:CompositeSwitch rdf:ID=\"%s\">\n%s\t</cim:CompositeSwitch>".format (id, export_fields)
+        "\t<cim:CompositeSwitch rdf:%s=\"%s\">\n%s\t</cim:CompositeSwitch>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object CompositeSwitch
-    extends
-        CIMParseable[CompositeSwitch]
+extends
+    CIMParseable[CompositeSwitch]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "compositeSwitchType",
         "Switches"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Switches", "Switch", "0..*", "0..1")
     )
-    val compositeSwitchType: Fielder = parse_element (element (cls, fields (0)))
-    val Switches: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val compositeSwitchType: Fielder = parse_element (element (cls, fields(0)))
+    val Switches: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): CompositeSwitch =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = CompositeSwitch (
             Equipment.parse (context),
             mask (compositeSwitchType (), 0),
@@ -1210,7 +1161,7 @@ object CompositeSwitchSerializer extends CIMSerializer[CompositeSwitch]
 
     def read (kryo: Kryo, input: Input, cls: Class[CompositeSwitch]): CompositeSwitch =
     {
-        val parent = EquipmentSerializer.read (kryo, input, classOf [Equipment])
+        val parent = EquipmentSerializer.read (kryo, input, classOf[Equipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = CompositeSwitch (
             parent,
@@ -1226,7 +1177,7 @@ object CompositeSwitchSerializer extends CIMSerializer[CompositeSwitch]
  * Combination of conducting material with consistent electrical characteristics, building a single electrical system, used to carry current between points in the power system.
  *
  * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
- * @param len                 Segment length for calculating line section capabilities.
+ * @param len Segment length for calculating line section capabilities.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1236,8 +1187,8 @@ final case class Conductor
     ConductingEquipment: ConductingEquipment = null,
     len: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1263,41 +1214,35 @@ final case class Conductor
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Conductor.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Conductor.fields (position), value)
-
         emitelem (0, len)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Conductor rdf:ID=\"%s\">\n%s\t</cim:Conductor>".format (id, export_fields)
+        "\t<cim:Conductor rdf:%s=\"%s\">\n%s\t</cim:Conductor>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Conductor
-    extends
-        CIMParseable[Conductor]
+extends
+    CIMParseable[Conductor]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "length"
     )
-    val len: Fielder = parse_element (element (cls, fields (0)))
+    val len: Fielder = parse_element (element (cls, fields(0)))
 
     def parse (context: CIMContext): Conductor =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Conductor (
             ConductingEquipment.parse (context),
             toDouble (mask (len (), 0))
@@ -1324,7 +1269,7 @@ object ConductorSerializer extends CIMSerializer[Conductor]
 
     def read (kryo: Kryo, input: Input, cls: Class[Conductor]): Conductor =
     {
-        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf [ConductingEquipment])
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Conductor (
             parent,
@@ -1347,8 +1292,8 @@ final case class Connector
 (
     ConductingEquipment: ConductingEquipment = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1374,25 +1319,21 @@ final case class Connector
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:Connector rdf:ID=\"%s\">\n%s\t</cim:Connector>".format (id, export_fields)
+        "\t<cim:Connector rdf:%s=\"%s\">\n%s\t</cim:Connector>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Connector
-    extends
-        CIMParseable[Connector]
+extends
+    CIMParseable[Connector]
 {
 
     def parse (context: CIMContext): Connector =
@@ -1421,7 +1362,7 @@ object ConnectorSerializer extends CIMSerializer[Connector]
 
     def read (kryo: Kryo, input: Input, cls: Class[Connector]): Connector =
     {
-        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf [ConductingEquipment])
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Connector (
             parent
@@ -1438,10 +1379,10 @@ object ConnectorSerializer extends CIMSerializer[Connector]
  * The cut terminals are oriented towards the line segment terminals with the same sequence number. Hence the cut terminal with sequence number equal to 1 is oriented to the line segment's terminal with sequence number equal to 1.
  * The cut terminals also act as connection points for jumpers and other equipment, e.g. a mobile generator. To enable this, connectivity nodes are placed at the cut terminals. Once the connectivity nodes are in place any conducting equipment can be connected at them.
  *
- * @param Switch              [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
+ * @param Switch [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the cut is located starting from side one of the cut line segment, i.e. the line segment Terminal with sequenceNumber equal to 1.
- * @param ACLineSegment       [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the cut is applied.
- * @param CutAction           [[ch.ninecode.model.CutAction CutAction]] Action taken with this cut.
+ * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the cut is applied.
+ * @param CutAction [[ch.ninecode.model.CutAction CutAction]] Action taken with this cut.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1453,8 +1394,8 @@ final case class Cut
     ACLineSegment: String = null,
     CutAction: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1480,37 +1421,30 @@ final case class Cut
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Cut.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Cut.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Cut.fields (position), value)
-
         emitelem (0, lengthFromTerminal1)
         emitattr (1, ACLineSegment)
         emitattr (2, CutAction)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Cut rdf:ID=\"%s\">\n%s\t</cim:Cut>".format (id, export_fields)
+        "\t<cim:Cut rdf:%s=\"%s\">\n%s\t</cim:Cut>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Cut
-    extends
-        CIMParseable[Cut]
+extends
+    CIMParseable[Cut]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "lengthFromTerminal1",
         "ACLineSegment",
         "CutAction"
@@ -1519,14 +1453,14 @@ object Cut
         CIMRelationship ("ACLineSegment", "ACLineSegment", "1", "0..*"),
         CIMRelationship ("CutAction", "CutAction", "0..1", "0..1")
     )
-    val lengthFromTerminal1: Fielder = parse_element (element (cls, fields (0)))
-    val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val CutAction: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val lengthFromTerminal1: Fielder = parse_element (element (cls, fields(0)))
+    val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val CutAction: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: CIMContext): Cut =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Cut (
             Switch.parse (context),
             toDouble (mask (lengthFromTerminal1 (), 0)),
@@ -1557,7 +1491,7 @@ object CutSerializer extends CIMSerializer[Cut]
 
     def read (kryo: Kryo, input: Input, cls: Class[Cut]): Cut =
     {
-        val parent = SwitchSerializer.read (kryo, input, classOf [Switch])
+        val parent = SwitchSerializer.read (kryo, input, classOf[Switch])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Cut (
             parent,
@@ -1582,8 +1516,8 @@ final case class DisconnectingCircuitBreaker
 (
     Breaker: Breaker = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1609,25 +1543,21 @@ final case class DisconnectingCircuitBreaker
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:DisconnectingCircuitBreaker rdf:ID=\"%s\">\n%s\t</cim:DisconnectingCircuitBreaker>".format (id, export_fields)
+        "\t<cim:DisconnectingCircuitBreaker rdf:%s=\"%s\">\n%s\t</cim:DisconnectingCircuitBreaker>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object DisconnectingCircuitBreaker
-    extends
-        CIMParseable[DisconnectingCircuitBreaker]
+extends
+    CIMParseable[DisconnectingCircuitBreaker]
 {
 
     def parse (context: CIMContext): DisconnectingCircuitBreaker =
@@ -1656,7 +1586,7 @@ object DisconnectingCircuitBreakerSerializer extends CIMSerializer[Disconnecting
 
     def read (kryo: Kryo, input: Input, cls: Class[DisconnectingCircuitBreaker]): DisconnectingCircuitBreaker =
     {
-        val parent = BreakerSerializer.read (kryo, input, classOf [Breaker])
+        val parent = BreakerSerializer.read (kryo, input, classOf[Breaker])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DisconnectingCircuitBreaker (
             parent
@@ -1680,8 +1610,8 @@ final case class Disconnector
 (
     Switch: Switch = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1707,25 +1637,21 @@ final case class Disconnector
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:Disconnector rdf:ID=\"%s\">\n%s\t</cim:Disconnector>".format (id, export_fields)
+        "\t<cim:Disconnector rdf:%s=\"%s\">\n%s\t</cim:Disconnector>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Disconnector
-    extends
-        CIMParseable[Disconnector]
+extends
+    CIMParseable[Disconnector]
 {
 
     def parse (context: CIMContext): Disconnector =
@@ -1754,7 +1680,7 @@ object DisconnectorSerializer extends CIMSerializer[Disconnector]
 
     def read (kryo: Kryo, input: Input, cls: Class[Disconnector]): Disconnector =
     {
-        val parent = SwitchSerializer.read (kryo, input, classOf [Switch])
+        val parent = SwitchSerializer.read (kryo, input, classOf[Switch])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Disconnector (
             parent
@@ -1770,7 +1696,7 @@ object DisconnectorSerializer extends CIMSerializer[Disconnector]
  * An earth fault compensator device modelled with a single terminal implies a second terminal solidly connected to ground.  If two terminals are modelled, the ground is not assumed and normal connection rules apply.
  *
  * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
- * @param r                   Nominal resistance of device.
+ * @param r Nominal resistance of device.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1780,8 +1706,8 @@ final case class EarthFaultCompensator
     ConductingEquipment: ConductingEquipment = null,
     r: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1807,41 +1733,35 @@ final case class EarthFaultCompensator
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EarthFaultCompensator.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EarthFaultCompensator.fields (position), value)
-
         emitelem (0, r)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:EarthFaultCompensator rdf:ID=\"%s\">\n%s\t</cim:EarthFaultCompensator>".format (id, export_fields)
+        "\t<cim:EarthFaultCompensator rdf:%s=\"%s\">\n%s\t</cim:EarthFaultCompensator>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object EarthFaultCompensator
-    extends
-        CIMParseable[EarthFaultCompensator]
+extends
+    CIMParseable[EarthFaultCompensator]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "r"
     )
-    val r: Fielder = parse_element (element (cls, fields (0)))
+    val r: Fielder = parse_element (element (cls, fields(0)))
 
     def parse (context: CIMContext): EarthFaultCompensator =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = EarthFaultCompensator (
             ConductingEquipment.parse (context),
             toDouble (mask (r (), 0))
@@ -1868,7 +1788,7 @@ object EarthFaultCompensatorSerializer extends CIMSerializer[EarthFaultCompensat
 
     def read (kryo: Kryo, input: Input, cls: Class[EarthFaultCompensator]): EarthFaultCompensator =
     {
-        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf [ConductingEquipment])
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EarthFaultCompensator (
             parent,
@@ -1891,8 +1811,8 @@ final case class EnergyConnection
 (
     ConductingEquipment: ConductingEquipment = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1918,25 +1838,21 @@ final case class EnergyConnection
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:EnergyConnection rdf:ID=\"%s\">\n%s\t</cim:EnergyConnection>".format (id, export_fields)
+        "\t<cim:EnergyConnection rdf:%s=\"%s\">\n%s\t</cim:EnergyConnection>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object EnergyConnection
-    extends
-        CIMParseable[EnergyConnection]
+extends
+    CIMParseable[EnergyConnection]
 {
 
     def parse (context: CIMContext): EnergyConnection =
@@ -1965,7 +1881,7 @@ object EnergyConnectionSerializer extends CIMSerializer[EnergyConnection]
 
     def read (kryo: Kryo, input: Input, cls: Class[EnergyConnection]): EnergyConnection =
     {
-        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf [ConductingEquipment])
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EnergyConnection (
             parent
@@ -1980,33 +1896,33 @@ object EnergyConnectionSerializer extends CIMSerializer[EnergyConnection]
  *
  * EnergyConsumer.pfixed, .qfixed, .pfixedPct and .qfixedPct have meaning only if there is no LoadResponseCharacteristic associated with EnergyConsumer or if LoadResponseCharacteristic.exponentModel is set to False.
  *
- * @param EnergyConnection     [[ch.ninecode.model.EnergyConnection EnergyConnection]] Reference to the superclass object.
- * @param customerCount        Number of individual customers represented by this demand.
- * @param grounded             Used for Yn and Zn connections.
- *                             True if the neutral is solidly grounded.
- * @param p                    Active power of the load.
- *                             Load sign convention is used, i.e. positive sign means flow out from a node.
- *                             For voltage dependent loads the value is at rated voltage.
- *                             Starting value for a steady state solution.
- * @param pfixed               Active power of the load that is a fixed quantity and does not vary as load group value varies.
- *                             Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param pfixedPct            Fixed active power as a percentage of load group fixed active power.
- *                             Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param phaseConnection      The type of phase connection, such as wye or delta.
- * @param q                    Reactive power of the load.
- *                             Load sign convention is used, i.e. positive sign means flow out from a node.
- *                             For voltage dependent loads the value is at rated voltage.
- *                             Starting value for a steady state solution.
- * @param qfixed               Reactive power of the load that is a fixed quantity and does not vary as load group value varies.
- *                             Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param qfixedPct            Fixed reactive power as a percentage of load group fixed reactive power.
- *                             Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param EnergyConnection [[ch.ninecode.model.EnergyConnection EnergyConnection]] Reference to the superclass object.
+ * @param customerCount Number of individual customers represented by this demand.
+ * @param grounded Used for Yn and Zn connections.
+ *        True if the neutral is solidly grounded.
+ * @param p Active power of the load.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        For voltage dependent loads the value is at rated voltage.
+ *        Starting value for a steady state solution.
+ * @param pfixed Active power of the load that is a fixed quantity and does not vary as load group value varies.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param pfixedPct Fixed active power as a percentage of load group fixed active power.
+ *        Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param phaseConnection The type of phase connection, such as wye or delta.
+ * @param q Reactive power of the load.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        For voltage dependent loads the value is at rated voltage.
+ *        Starting value for a steady state solution.
+ * @param qfixed Reactive power of the load that is a fixed quantity and does not vary as load group value varies.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param qfixedPct Fixed reactive power as a percentage of load group fixed reactive power.
+ *        Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param EnergyConsumerAction [[ch.ninecode.model.EnergyConsumerAction EnergyConsumerAction]] <em>undocumented</em>
- * @param EnergyConsumerPhase  [[ch.ninecode.model.EnergyConsumerPhase EnergyConsumerPhase]] The individual phase models for this energy consumer.
- * @param LoadDynamics         [[ch.ninecode.model.LoadDynamics LoadDynamics]] Load dynamics model used to describe dynamic behaviour of this energy consumer.
- * @param LoadResponse         [[ch.ninecode.model.LoadResponseCharacteristic LoadResponseCharacteristic]] The load response characteristic of this load.
- *                             If missing, this load is assumed to be constant power.
- * @param PowerCutZone         [[ch.ninecode.model.PowerCutZone PowerCutZone]] The  energy consumer is assigned to this power cut zone.
+ * @param EnergyConsumerPhase [[ch.ninecode.model.EnergyConsumerPhase EnergyConsumerPhase]] The individual phase models for this energy consumer.
+ * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Load dynamics model used to describe dynamic behaviour of this energy consumer.
+ * @param LoadResponse [[ch.ninecode.model.LoadResponseCharacteristic LoadResponseCharacteristic]] The load response characteristic of this load.
+ *        If missing, this load is assumed to be constant power.
+ * @param PowerCutZone [[ch.ninecode.model.PowerCutZone PowerCutZone]] The  energy consumer is assigned to this power cut zone.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2029,8 +1945,8 @@ final case class EnergyConsumer
     LoadResponse: String = null,
     PowerCutZone: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -2056,22 +1972,15 @@ final case class EnergyConsumer
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnergyConsumer.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnergyConsumer.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergyConsumer.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnergyConsumer.fields (position), x))
-
         emitelem (0, customerCount)
         emitelem (1, grounded)
         emitelem (2, p)
@@ -2088,18 +1997,17 @@ final case class EnergyConsumer
         emitattr (13, PowerCutZone)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:EnergyConsumer rdf:ID=\"%s\">\n%s\t</cim:EnergyConsumer>".format (id, export_fields)
+        "\t<cim:EnergyConsumer rdf:%s=\"%s\">\n%s\t</cim:EnergyConsumer>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object EnergyConsumer
-    extends
-        CIMParseable[EnergyConsumer]
+extends
+    CIMParseable[EnergyConsumer]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "customerCount",
         "grounded",
         "p",
@@ -2122,25 +2030,25 @@ object EnergyConsumer
         CIMRelationship ("LoadResponse", "LoadResponseCharacteristic", "0..1", "0..*"),
         CIMRelationship ("PowerCutZone", "PowerCutZone", "0..1", "1..*")
     )
-    val customerCount: Fielder = parse_element (element (cls, fields (0)))
-    val grounded: Fielder = parse_element (element (cls, fields (1)))
-    val p: Fielder = parse_element (element (cls, fields (2)))
-    val pfixed: Fielder = parse_element (element (cls, fields (3)))
-    val pfixedPct: Fielder = parse_element (element (cls, fields (4)))
-    val phaseConnection: Fielder = parse_attribute (attribute (cls, fields (5)))
-    val q: Fielder = parse_element (element (cls, fields (6)))
-    val qfixed: Fielder = parse_element (element (cls, fields (7)))
-    val qfixedPct: Fielder = parse_element (element (cls, fields (8)))
-    val EnergyConsumerAction: Fielder = parse_attribute (attribute (cls, fields (9)))
-    val EnergyConsumerPhase: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
-    val LoadDynamics: Fielder = parse_attribute (attribute (cls, fields (11)))
-    val LoadResponse: Fielder = parse_attribute (attribute (cls, fields (12)))
-    val PowerCutZone: Fielder = parse_attribute (attribute (cls, fields (13)))
+    val customerCount: Fielder = parse_element (element (cls, fields(0)))
+    val grounded: Fielder = parse_element (element (cls, fields(1)))
+    val p: Fielder = parse_element (element (cls, fields(2)))
+    val pfixed: Fielder = parse_element (element (cls, fields(3)))
+    val pfixedPct: Fielder = parse_element (element (cls, fields(4)))
+    val phaseConnection: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val q: Fielder = parse_element (element (cls, fields(6)))
+    val qfixed: Fielder = parse_element (element (cls, fields(7)))
+    val qfixedPct: Fielder = parse_element (element (cls, fields(8)))
+    val EnergyConsumerAction: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val EnergyConsumerPhase: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val LoadDynamics: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val LoadResponse: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val PowerCutZone: Fielder = parse_attribute (attribute (cls, fields(13)))
 
     def parse (context: CIMContext): EnergyConsumer =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = EnergyConsumer (
             EnergyConnection.parse (context),
             toInteger (mask (customerCount (), 0)),
@@ -2193,7 +2101,7 @@ object EnergyConsumerSerializer extends CIMSerializer[EnergyConsumer]
 
     def read (kryo: Kryo, input: Input, cls: Class[EnergyConsumer]): EnergyConsumer =
     {
-        val parent = EnergyConnectionSerializer.read (kryo, input, classOf [EnergyConnection])
+        val parent = EnergyConnectionSerializer.read (kryo, input, classOf[EnergyConnection])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EnergyConsumer (
             parent,
@@ -2221,25 +2129,25 @@ object EnergyConsumerSerializer extends CIMSerializer[EnergyConsumer]
  * A single phase of an energy consumer.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param p                   Active power of the load.
- *                            Load sign convention is used, i.e. positive sign means flow out from a node.
- *                            For voltage dependent loads the value is at rated voltage.
- *                            Starting value for a steady state solution.
- * @param pfixed              Active power of the load that is a fixed quantity.
- *                            Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param pfixedPct           Fixed active power as per cent of load group fixed active power.
- *                            Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param phase               Phase of this energy consumer component.
- *                            If the energy consumer is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy consumer is delta connected, the phase indicates an energy consumer connected from the indicated phase to the next logical non-neutral phase.
- * @param q                   Reactive power of the load.
- *                            Load sign convention is used, i.e. positive sign means flow out from a node.
- *                            For voltage dependent loads the value is at rated voltage.
- *                            Starting value for a steady state solution.
- * @param qfixed              Reactive power of the load that is a fixed quantity.
- *                            Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param qfixedPct           Fixed reactive power as per cent of load group fixed reactive power.
- *                            Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param EnergyConsumer      [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] The energy consumer to which this phase belongs.
+ * @param p Active power of the load.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        For voltage dependent loads the value is at rated voltage.
+ *        Starting value for a steady state solution.
+ * @param pfixed Active power of the load that is a fixed quantity.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param pfixedPct Fixed active power as per cent of load group fixed active power.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param phase Phase of this energy consumer component.
+ *        If the energy consumer is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy consumer is delta connected, the phase indicates an energy consumer connected from the indicated phase to the next logical non-neutral phase.
+ * @param q Reactive power of the load.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        For voltage dependent loads the value is at rated voltage.
+ *        Starting value for a steady state solution.
+ * @param qfixed Reactive power of the load that is a fixed quantity.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param qfixedPct Fixed reactive power as per cent of load group fixed reactive power.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param EnergyConsumer [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] The energy consumer to which this phase belongs.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2256,8 +2164,8 @@ final case class EnergyConsumerPhase
     qfixedPct: Double = 0.0,
     EnergyConsumer: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -2283,20 +2191,14 @@ final case class EnergyConsumerPhase
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnergyConsumerPhase.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnergyConsumerPhase.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergyConsumerPhase.fields (position), value)
-
         emitelem (0, p)
         emitelem (1, pfixed)
         emitelem (2, pfixedPct)
@@ -2307,18 +2209,17 @@ final case class EnergyConsumerPhase
         emitattr (7, EnergyConsumer)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:EnergyConsumerPhase rdf:ID=\"%s\">\n%s\t</cim:EnergyConsumerPhase>".format (id, export_fields)
+        "\t<cim:EnergyConsumerPhase rdf:%s=\"%s\">\n%s\t</cim:EnergyConsumerPhase>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object EnergyConsumerPhase
-    extends
-        CIMParseable[EnergyConsumerPhase]
+extends
+    CIMParseable[EnergyConsumerPhase]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "p",
         "pfixed",
         "pfixedPct",
@@ -2331,19 +2232,19 @@ object EnergyConsumerPhase
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("EnergyConsumer", "EnergyConsumer", "1", "0..*")
     )
-    val p: Fielder = parse_element (element (cls, fields (0)))
-    val pfixed: Fielder = parse_element (element (cls, fields (1)))
-    val pfixedPct: Fielder = parse_element (element (cls, fields (2)))
-    val phase: Fielder = parse_attribute (attribute (cls, fields (3)))
-    val q: Fielder = parse_element (element (cls, fields (4)))
-    val qfixed: Fielder = parse_element (element (cls, fields (5)))
-    val qfixedPct: Fielder = parse_element (element (cls, fields (6)))
-    val EnergyConsumer: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val p: Fielder = parse_element (element (cls, fields(0)))
+    val pfixed: Fielder = parse_element (element (cls, fields(1)))
+    val pfixedPct: Fielder = parse_element (element (cls, fields(2)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val q: Fielder = parse_element (element (cls, fields(4)))
+    val qfixed: Fielder = parse_element (element (cls, fields(5)))
+    val qfixedPct: Fielder = parse_element (element (cls, fields(6)))
+    val EnergyConsumer: Fielder = parse_attribute (attribute (cls, fields(7)))
 
     def parse (context: CIMContext): EnergyConsumerPhase =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = EnergyConsumerPhase (
             PowerSystemResource.parse (context),
             toDouble (mask (p (), 0)),
@@ -2384,7 +2285,7 @@ object EnergyConsumerPhaseSerializer extends CIMSerializer[EnergyConsumerPhase]
 
     def read (kryo: Kryo, input: Input, cls: Class[EnergyConsumerPhase]): EnergyConsumerPhase =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EnergyConsumerPhase (
             parent,
@@ -2406,7 +2307,7 @@ object EnergyConsumerPhaseSerializer extends CIMSerializer[EnergyConsumerPhase]
  * Used to define the type of generation for scheduling purposes.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param EnergySource     [[ch.ninecode.model.EnergySource EnergySource]] Energy Source of a particular Energy Scheduling Type.
+ * @param EnergySource [[ch.ninecode.model.EnergySource EnergySource]] Energy Source of a particular Energy Scheduling Type.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2416,8 +2317,8 @@ final case class EnergySchedulingType
     IdentifiedObject: IdentifiedObject = null,
     EnergySource: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -2443,44 +2344,38 @@ final case class EnergySchedulingType
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnergySchedulingType.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnergySchedulingType.fields (position), x))
-
         emitattrs (0, EnergySource)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:EnergySchedulingType rdf:ID=\"%s\">\n%s\t</cim:EnergySchedulingType>".format (id, export_fields)
+        "\t<cim:EnergySchedulingType rdf:%s=\"%s\">\n%s\t</cim:EnergySchedulingType>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object EnergySchedulingType
-    extends
-        CIMParseable[EnergySchedulingType]
+extends
+    CIMParseable[EnergySchedulingType]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "EnergySource"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("EnergySource", "EnergySource", "0..*", "0..1")
     )
-    val EnergySource: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val EnergySource: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): EnergySchedulingType =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = EnergySchedulingType (
             IdentifiedObject.parse (context),
             masks (EnergySource (), 0)
@@ -2507,7 +2402,7 @@ object EnergySchedulingTypeSerializer extends CIMSerializer[EnergySchedulingType
 
     def read (kryo: Kryo, input: Input, cls: Class[EnergySchedulingType]): EnergySchedulingType =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EnergySchedulingType (
             parent,
@@ -2521,31 +2416,31 @@ object EnergySchedulingTypeSerializer extends CIMSerializer[EnergySchedulingType
 /**
  * A generic equivalent for an energy supplier on a transmission or distribution voltage level.
  *
- * @param EnergyConnection     [[ch.ninecode.model.EnergyConnection EnergyConnection]] Reference to the superclass object.
- * @param activePower          High voltage source active injection.
- *                             Load sign convention is used, i.e. positive sign means flow out from a node.
- *                             Starting value for steady state solutions.
- * @param nominalVoltage       Phase-to-phase nominal voltage.
- * @param pMax                 This is the maximum active power that can be produced by the source.
- *                             Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
- * @param pMin                 This is the minimum active power that can be produced by the source.
- *                             Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
- * @param r                    Positive sequence Thevenin resistance.
- * @param r0                   Zero sequence Thevenin resistance.
- * @param reactivePower        High voltage source reactive injection.
- *                             Load sign convention is used, i.e. positive sign means flow out from a node.
- *                             Starting value for steady state solutions.
- * @param rn                   Negative sequence Thevenin resistance.
- * @param voltageAngle         Phase angle of a-phase open circuit used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network.
- *                             The attribute shall be a positive value or zero.
- * @param voltageMagnitude     Phase-to-phase open circuit voltage magnitude used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network.
- *                             The attribute shall be a positive value or zero.
- * @param x                    Positive sequence Thevenin reactance.
- * @param x0                   Zero sequence Thevenin reactance.
- * @param xn                   Negative sequence Thevenin reactance.
+ * @param EnergyConnection [[ch.ninecode.model.EnergyConnection EnergyConnection]] Reference to the superclass object.
+ * @param activePower High voltage source active injection.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for steady state solutions.
+ * @param nominalVoltage Phase-to-phase nominal voltage.
+ * @param pMax This is the maximum active power that can be produced by the source.
+ *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+ * @param pMin This is the minimum active power that can be produced by the source.
+ *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+ * @param r Positive sequence Thevenin resistance.
+ * @param r0 Zero sequence Thevenin resistance.
+ * @param reactivePower High voltage source reactive injection.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for steady state solutions.
+ * @param rn Negative sequence Thevenin resistance.
+ * @param voltageAngle Phase angle of a-phase open circuit used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network.
+ *        The attribute shall be a positive value or zero.
+ * @param voltageMagnitude Phase-to-phase open circuit voltage magnitude used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network.
+ *        The attribute shall be a positive value or zero.
+ * @param x Positive sequence Thevenin reactance.
+ * @param x0 Zero sequence Thevenin reactance.
+ * @param xn Negative sequence Thevenin reactance.
  * @param EnergySchedulingType [[ch.ninecode.model.EnergySchedulingType EnergySchedulingType]] Energy Scheduling Type of an Energy Source.
- * @param EnergySourceAction   [[ch.ninecode.model.EnergySourceAction EnergySourceAction]] Action taken with this energy source.
- * @param EnergySourcePhase    [[ch.ninecode.model.EnergySourcePhase EnergySourcePhase]] The individual phase information of the energy source.
+ * @param EnergySourceAction [[ch.ninecode.model.EnergySourceAction EnergySourceAction]] Action taken with this energy source.
+ * @param EnergySourcePhase [[ch.ninecode.model.EnergySourcePhase EnergySourcePhase]] The individual phase information of the energy source.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2570,8 +2465,8 @@ final case class EnergySource
     EnergySourceAction: String = null,
     EnergySourcePhase: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -2597,22 +2492,15 @@ final case class EnergySource
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnergySource.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnergySource.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergySource.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (EnergySource.fields (position), x))
-
         emitelem (0, activePower)
         emitelem (1, nominalVoltage)
         emitelem (2, pMax)
@@ -2631,18 +2519,17 @@ final case class EnergySource
         emitattrs (15, EnergySourcePhase)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:EnergySource rdf:ID=\"%s\">\n%s\t</cim:EnergySource>".format (id, export_fields)
+        "\t<cim:EnergySource rdf:%s=\"%s\">\n%s\t</cim:EnergySource>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object EnergySource
-    extends
-        CIMParseable[EnergySource]
+extends
+    CIMParseable[EnergySource]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "activePower",
         "nominalVoltage",
         "pMax",
@@ -2665,27 +2552,27 @@ object EnergySource
         CIMRelationship ("EnergySourceAction", "EnergySourceAction", "0..1", "0..1"),
         CIMRelationship ("EnergySourcePhase", "EnergySourcePhase", "0..*", "1")
     )
-    val activePower: Fielder = parse_element (element (cls, fields (0)))
-    val nominalVoltage: Fielder = parse_element (element (cls, fields (1)))
-    val pMax: Fielder = parse_element (element (cls, fields (2)))
-    val pMin: Fielder = parse_element (element (cls, fields (3)))
-    val r: Fielder = parse_element (element (cls, fields (4)))
-    val r0: Fielder = parse_element (element (cls, fields (5)))
-    val reactivePower: Fielder = parse_element (element (cls, fields (6)))
-    val rn: Fielder = parse_element (element (cls, fields (7)))
-    val voltageAngle: Fielder = parse_element (element (cls, fields (8)))
-    val voltageMagnitude: Fielder = parse_element (element (cls, fields (9)))
-    val x: Fielder = parse_element (element (cls, fields (10)))
-    val x0: Fielder = parse_element (element (cls, fields (11)))
-    val xn: Fielder = parse_element (element (cls, fields (12)))
-    val EnergySchedulingType: Fielder = parse_attribute (attribute (cls, fields (13)))
-    val EnergySourceAction: Fielder = parse_attribute (attribute (cls, fields (14)))
-    val EnergySourcePhase: FielderMultiple = parse_attributes (attribute (cls, fields (15)))
+    val activePower: Fielder = parse_element (element (cls, fields(0)))
+    val nominalVoltage: Fielder = parse_element (element (cls, fields(1)))
+    val pMax: Fielder = parse_element (element (cls, fields(2)))
+    val pMin: Fielder = parse_element (element (cls, fields(3)))
+    val r: Fielder = parse_element (element (cls, fields(4)))
+    val r0: Fielder = parse_element (element (cls, fields(5)))
+    val reactivePower: Fielder = parse_element (element (cls, fields(6)))
+    val rn: Fielder = parse_element (element (cls, fields(7)))
+    val voltageAngle: Fielder = parse_element (element (cls, fields(8)))
+    val voltageMagnitude: Fielder = parse_element (element (cls, fields(9)))
+    val x: Fielder = parse_element (element (cls, fields(10)))
+    val x0: Fielder = parse_element (element (cls, fields(11)))
+    val xn: Fielder = parse_element (element (cls, fields(12)))
+    val EnergySchedulingType: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val EnergySourceAction: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val EnergySourcePhase: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
 
     def parse (context: CIMContext): EnergySource =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = EnergySource (
             EnergyConnection.parse (context),
             toDouble (mask (activePower (), 0)),
@@ -2742,7 +2629,7 @@ object EnergySourceSerializer extends CIMSerializer[EnergySource]
 
     def read (kryo: Kryo, input: Input, cls: Class[EnergySource]): EnergySource =
     {
-        val parent = EnergyConnectionSerializer.read (kryo, input, classOf [EnergyConnection])
+        val parent = EnergyConnectionSerializer.read (kryo, input, classOf[EnergyConnection])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EnergySource (
             parent,
@@ -2772,9 +2659,9 @@ object EnergySourceSerializer extends CIMSerializer[EnergySource]
  * Represents the single phase information of an unbalanced energy source.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param phase               Phase of this energy source component.
- *                            If the energy source wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy source is delta connected, the phase indicates an energy source connected from the indicated phase to the next logical non-neutral phase.
- * @param EnergySource        [[ch.ninecode.model.EnergySource EnergySource]] The energy sourceto which the phase belongs.
+ * @param phase Phase of this energy source component.
+ *        If the energy source wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy source is delta connected, the phase indicates an energy source connected from the indicated phase to the next logical non-neutral phase.
+ * @param EnergySource [[ch.ninecode.model.EnergySource EnergySource]] The energy sourceto which the phase belongs.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2785,8 +2672,8 @@ final case class EnergySourcePhase
     phase: String = null,
     EnergySource: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -2812,47 +2699,41 @@ final case class EnergySourcePhase
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EnergySourcePhase.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergySourcePhase.fields (position), value)
-
         emitattr (0, phase)
         emitattr (1, EnergySource)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:EnergySourcePhase rdf:ID=\"%s\">\n%s\t</cim:EnergySourcePhase>".format (id, export_fields)
+        "\t<cim:EnergySourcePhase rdf:%s=\"%s\">\n%s\t</cim:EnergySourcePhase>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object EnergySourcePhase
-    extends
-        CIMParseable[EnergySourcePhase]
+extends
+    CIMParseable[EnergySourcePhase]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "phase",
         "EnergySource"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("EnergySource", "EnergySource", "1", "0..*")
     )
-    val phase: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val EnergySource: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val EnergySource: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): EnergySourcePhase =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = EnergySourcePhase (
             PowerSystemResource.parse (context),
             mask (phase (), 0),
@@ -2881,7 +2762,7 @@ object EnergySourcePhaseSerializer extends CIMSerializer[EnergySourcePhase]
 
     def read (kryo: Kryo, input: Input, cls: Class[EnergySourcePhase]): EnergySourcePhase =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = EnergySourcePhase (
             parent,
@@ -2896,42 +2777,42 @@ object EnergySourcePhaseSerializer extends CIMSerializer[EnergySourcePhase]
 /**
  * This class represents the external network and it is used for IEC 60909 calculations.
  *
- * @param RegulatingCondEq        [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
- * @param governorSCD             Power Frequency Bias.
- *                                This is the change in power injection divided by the change in frequency and negated.  A positive value of the power frequency bias provides additional power injection upon a drop in frequency.
- * @param ikSecond                Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
- *                                Used only if short circuit calculations are done according to superposition method.
+ * @param RegulatingCondEq [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
+ * @param governorSCD Power Frequency Bias.
+ *        This is the change in power injection divided by the change in frequency and negated.  A positive value of the power frequency bias provides additional power injection upon a drop in frequency.
+ * @param ikSecond Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
+ *        Used only if short circuit calculations are done according to superposition method.
  * @param maxInitialSymShCCurrent Maximum initial symmetrical short-circuit currents (Ik" max) in A (Ik" = Sk"/(SQRT(3) Un)).
- *                                Used for short circuit data exchange according to IEC 60909.
- * @param maxP                    Maximum active power of the injection.
- * @param maxQ                    Maximum reactive power limit.
- *                                It is used for modelling of infeed for load flow exchange and not for short circuit modelling.
- * @param maxR0ToX0Ratio          Maximum ratio of zero sequence resistance of Network Feeder to its zero sequence reactance (R(0)/X(0) max).
- *                                Used for short circuit data exchange according to IEC 60909.
- * @param maxR1ToX1Ratio          Maximum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) max).
- *                                Used for short circuit data exchange according to IEC 60909.
- * @param maxZ0ToZ1Ratio          Maximum ratio of zero sequence impedance to its positive sequence impedance (Z(0)/Z(1) max).
- *                                Used for short circuit data exchange according to IEC 60909.
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param maxP Maximum active power of the injection.
+ * @param maxQ Maximum reactive power limit.
+ *        It is used for modelling of infeed for load flow exchange and not for short circuit modelling.
+ * @param maxR0ToX0Ratio Maximum ratio of zero sequence resistance of Network Feeder to its zero sequence reactance (R(0)/X(0) max).
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param maxR1ToX1Ratio Maximum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) max).
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param maxZ0ToZ1Ratio Maximum ratio of zero sequence impedance to its positive sequence impedance (Z(0)/Z(1) max).
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param minInitialSymShCCurrent Minimum initial symmetrical short-circuit currents (Ik" min) in A (Ik" = Sk"/(SQRT(3) Un)).
- *                                Used for short circuit data exchange according to IEC 60909.
- * @param minP                    Minimum active power of the injection.
- * @param minQ                    Minimum reactive power limit.
- *                                It is used for modelling of infeed for load flow exchange and not for short circuit modelling.
- * @param minR0ToX0Ratio          Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
- *                                Used for short circuit data exchange according to IEC 6090.
- * @param minR1ToX1Ratio          Minimum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) min).
- *                                Used for short circuit data exchange according to IEC 60909.
- * @param minZ0ToZ1Ratio          Minimum ratio of zero sequence impedance to its positive sequence impedance (Z(0)/Z(1) min).
- *                                Used for short circuit data exchange according to IEC 60909.
- * @param p                       Active power injection.
- *                                Load sign convention is used, i.e. positive sign means flow out from a node.
- *                                Starting value for steady state solutions.
- * @param q                       Reactive power injection.
- *                                Load sign convention is used, i.e. positive sign means flow out from a node.
- *                                Starting value for steady state solutions.
- * @param referencePriority       Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
- * @param voltageFactor           Voltage factor in pu, which was used to calculate short-circuit current Ik" and power Sk".
- *                                Used only if short circuit calculations are done according to superposition method.
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param minP Minimum active power of the injection.
+ * @param minQ Minimum reactive power limit.
+ *        It is used for modelling of infeed for load flow exchange and not for short circuit modelling.
+ * @param minR0ToX0Ratio Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
+ *        Used for short circuit data exchange according to IEC 6090.
+ * @param minR1ToX1Ratio Minimum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) min).
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param minZ0ToZ1Ratio Minimum ratio of zero sequence impedance to its positive sequence impedance (Z(0)/Z(1) min).
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param p Active power injection.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for steady state solutions.
+ * @param q Reactive power injection.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for steady state solutions.
+ * @param referencePriority Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
+ * @param voltageFactor Voltage factor in pu, which was used to calculate short-circuit current Ik" and power Sk".
+ *        Used only if short circuit calculations are done according to superposition method.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2958,8 +2839,8 @@ final case class ExternalNetworkInjection
     referencePriority: Int = 0,
     voltageFactor: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -2985,18 +2866,13 @@ final case class ExternalNetworkInjection
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExternalNetworkInjection.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExternalNetworkInjection.fields (position), value)
-
         emitelem (0, governorSCD)
         emitelem (1, ikSecond)
         emitelem (2, maxInitialSymShCCurrent)
@@ -3017,18 +2893,17 @@ final case class ExternalNetworkInjection
         emitelem (17, voltageFactor)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:ExternalNetworkInjection rdf:ID=\"%s\">\n%s\t</cim:ExternalNetworkInjection>".format (id, export_fields)
+        "\t<cim:ExternalNetworkInjection rdf:%s=\"%s\">\n%s\t</cim:ExternalNetworkInjection>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ExternalNetworkInjection
-    extends
-        CIMParseable[ExternalNetworkInjection]
+extends
+    CIMParseable[ExternalNetworkInjection]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "governorSCD",
         "ikSecond",
         "maxInitialSymShCCurrent",
@@ -3048,29 +2923,29 @@ object ExternalNetworkInjection
         "referencePriority",
         "voltageFactor"
     )
-    val governorSCD: Fielder = parse_element (element (cls, fields (0)))
-    val ikSecond: Fielder = parse_element (element (cls, fields (1)))
-    val maxInitialSymShCCurrent: Fielder = parse_element (element (cls, fields (2)))
-    val maxP: Fielder = parse_element (element (cls, fields (3)))
-    val maxQ: Fielder = parse_element (element (cls, fields (4)))
-    val maxR0ToX0Ratio: Fielder = parse_element (element (cls, fields (5)))
-    val maxR1ToX1Ratio: Fielder = parse_element (element (cls, fields (6)))
-    val maxZ0ToZ1Ratio: Fielder = parse_element (element (cls, fields (7)))
-    val minInitialSymShCCurrent: Fielder = parse_element (element (cls, fields (8)))
-    val minP: Fielder = parse_element (element (cls, fields (9)))
-    val minQ: Fielder = parse_element (element (cls, fields (10)))
-    val minR0ToX0Ratio: Fielder = parse_element (element (cls, fields (11)))
-    val minR1ToX1Ratio: Fielder = parse_element (element (cls, fields (12)))
-    val minZ0ToZ1Ratio: Fielder = parse_element (element (cls, fields (13)))
-    val p: Fielder = parse_element (element (cls, fields (14)))
-    val q: Fielder = parse_element (element (cls, fields (15)))
-    val referencePriority: Fielder = parse_element (element (cls, fields (16)))
-    val voltageFactor: Fielder = parse_element (element (cls, fields (17)))
+    val governorSCD: Fielder = parse_element (element (cls, fields(0)))
+    val ikSecond: Fielder = parse_element (element (cls, fields(1)))
+    val maxInitialSymShCCurrent: Fielder = parse_element (element (cls, fields(2)))
+    val maxP: Fielder = parse_element (element (cls, fields(3)))
+    val maxQ: Fielder = parse_element (element (cls, fields(4)))
+    val maxR0ToX0Ratio: Fielder = parse_element (element (cls, fields(5)))
+    val maxR1ToX1Ratio: Fielder = parse_element (element (cls, fields(6)))
+    val maxZ0ToZ1Ratio: Fielder = parse_element (element (cls, fields(7)))
+    val minInitialSymShCCurrent: Fielder = parse_element (element (cls, fields(8)))
+    val minP: Fielder = parse_element (element (cls, fields(9)))
+    val minQ: Fielder = parse_element (element (cls, fields(10)))
+    val minR0ToX0Ratio: Fielder = parse_element (element (cls, fields(11)))
+    val minR1ToX1Ratio: Fielder = parse_element (element (cls, fields(12)))
+    val minZ0ToZ1Ratio: Fielder = parse_element (element (cls, fields(13)))
+    val p: Fielder = parse_element (element (cls, fields(14)))
+    val q: Fielder = parse_element (element (cls, fields(15)))
+    val referencePriority: Fielder = parse_element (element (cls, fields(16)))
+    val voltageFactor: Fielder = parse_element (element (cls, fields(17)))
 
     def parse (context: CIMContext): ExternalNetworkInjection =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ExternalNetworkInjection (
             RegulatingCondEq.parse (context),
             toDouble (mask (governorSCD (), 0)),
@@ -3131,7 +3006,7 @@ object ExternalNetworkInjectionSerializer extends CIMSerializer[ExternalNetworkI
 
     def read (kryo: Kryo, input: Input, cls: Class[ExternalNetworkInjection]): ExternalNetworkInjection =
     {
-        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf [RegulatingCondEq])
+        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf[RegulatingCondEq])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ExternalNetworkInjection (
             parent,
@@ -3165,11 +3040,11 @@ object ExternalNetworkInjectionSerializer extends CIMSerializer[ExternalNetworkI
  * One converts from F1 to DC, the other converts the DC to F2.
  *
  * @param RegulatingCondEq [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
- * @param frequency        Frequency on the AC side.
- * @param maxP             The maximum active power on the DC side at which the frequency converter should operate.
- * @param maxU             The maximum voltage on the DC side at which the frequency converter should operate.
- * @param minP             The minimum active power on the DC side at which the frequency converter should operate.
- * @param minU             The minimum voltage on the DC side at which the frequency converter should operate.
+ * @param frequency Frequency on the AC side.
+ * @param maxP The maximum active power on the DC side at which the frequency converter should operate.
+ * @param maxU The maximum voltage on the DC side at which the frequency converter should operate.
+ * @param minP The minimum active power on the DC side at which the frequency converter should operate.
+ * @param minU The minimum voltage on the DC side at which the frequency converter should operate.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3183,8 +3058,8 @@ final case class FrequencyConverter
     minP: Double = 0.0,
     minU: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -3210,18 +3085,13 @@ final case class FrequencyConverter
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FrequencyConverter.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FrequencyConverter.fields (position), value)
-
         emitelem (0, frequency)
         emitelem (1, maxP)
         emitelem (2, maxU)
@@ -3229,34 +3099,33 @@ final case class FrequencyConverter
         emitelem (4, minU)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:FrequencyConverter rdf:ID=\"%s\">\n%s\t</cim:FrequencyConverter>".format (id, export_fields)
+        "\t<cim:FrequencyConverter rdf:%s=\"%s\">\n%s\t</cim:FrequencyConverter>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object FrequencyConverter
-    extends
-        CIMParseable[FrequencyConverter]
+extends
+    CIMParseable[FrequencyConverter]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "frequency",
         "maxP",
         "maxU",
         "minP",
         "minU"
     )
-    val frequency: Fielder = parse_element (element (cls, fields (0)))
-    val maxP: Fielder = parse_element (element (cls, fields (1)))
-    val maxU: Fielder = parse_element (element (cls, fields (2)))
-    val minP: Fielder = parse_element (element (cls, fields (3)))
-    val minU: Fielder = parse_element (element (cls, fields (4)))
+    val frequency: Fielder = parse_element (element (cls, fields(0)))
+    val maxP: Fielder = parse_element (element (cls, fields(1)))
+    val maxU: Fielder = parse_element (element (cls, fields(2)))
+    val minP: Fielder = parse_element (element (cls, fields(3)))
+    val minU: Fielder = parse_element (element (cls, fields(4)))
 
     def parse (context: CIMContext): FrequencyConverter =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = FrequencyConverter (
             RegulatingCondEq.parse (context),
             toDouble (mask (frequency (), 0)),
@@ -3291,7 +3160,7 @@ object FrequencyConverterSerializer extends CIMSerializer[FrequencyConverter]
 
     def read (kryo: Kryo, input: Input, cls: Class[FrequencyConverter]): FrequencyConverter =
     {
-        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf [RegulatingCondEq])
+        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf[RegulatingCondEq])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = FrequencyConverter (
             parent,
@@ -3320,8 +3189,8 @@ final case class Fuse
 (
     Switch: Switch = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -3347,25 +3216,21 @@ final case class Fuse
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:Fuse rdf:ID=\"%s\">\n%s\t</cim:Fuse>".format (id, export_fields)
+        "\t<cim:Fuse rdf:%s=\"%s\">\n%s\t</cim:Fuse>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Fuse
-    extends
-        CIMParseable[Fuse]
+extends
+    CIMParseable[Fuse]
 {
 
     def parse (context: CIMContext): Fuse =
@@ -3394,7 +3259,7 @@ object FuseSerializer extends CIMSerializer[Fuse]
 
     def read (kryo: Kryo, input: Input, cls: Class[Fuse]): Fuse =
     {
-        val parent = SwitchSerializer.read (kryo, input, classOf [Switch])
+        val parent = SwitchSerializer.read (kryo, input, classOf[Switch])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Fuse (
             parent
@@ -3410,7 +3275,7 @@ object FuseSerializer extends CIMSerializer[Fuse]
  * The power system model can have any number of grounds.
  *
  * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
- * @param GroundAction        [[ch.ninecode.model.GroundAction GroundAction]] Action taken with this ground.
+ * @param GroundAction [[ch.ninecode.model.GroundAction GroundAction]] Action taken with this ground.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3420,8 +3285,8 @@ final case class Ground
     ConductingEquipment: ConductingEquipment = null,
     GroundAction: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -3447,44 +3312,38 @@ final case class Ground
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Ground.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Ground.fields (position), value)
-
         emitattr (0, GroundAction)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Ground rdf:ID=\"%s\">\n%s\t</cim:Ground>".format (id, export_fields)
+        "\t<cim:Ground rdf:%s=\"%s\">\n%s\t</cim:Ground>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Ground
-    extends
-        CIMParseable[Ground]
+extends
+    CIMParseable[Ground]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "GroundAction"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("GroundAction", "GroundAction", "0..1", "0..1")
     )
-    val GroundAction: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val GroundAction: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): Ground =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Ground (
             ConductingEquipment.parse (context),
             mask (GroundAction (), 0)
@@ -3511,7 +3370,7 @@ object GroundSerializer extends CIMSerializer[Ground]
 
     def read (kryo: Kryo, input: Input, cls: Class[Ground]): Ground =
     {
-        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf [ConductingEquipment])
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Ground (
             parent,
@@ -3534,8 +3393,8 @@ final case class GroundDisconnector
 (
     Switch: Switch = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -3561,25 +3420,21 @@ final case class GroundDisconnector
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:GroundDisconnector rdf:ID=\"%s\">\n%s\t</cim:GroundDisconnector>".format (id, export_fields)
+        "\t<cim:GroundDisconnector rdf:%s=\"%s\">\n%s\t</cim:GroundDisconnector>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object GroundDisconnector
-    extends
-        CIMParseable[GroundDisconnector]
+extends
+    CIMParseable[GroundDisconnector]
 {
 
     def parse (context: CIMContext): GroundDisconnector =
@@ -3608,7 +3463,7 @@ object GroundDisconnectorSerializer extends CIMSerializer[GroundDisconnector]
 
     def read (kryo: Kryo, input: Input, cls: Class[GroundDisconnector]): GroundDisconnector =
     {
-        val parent = SwitchSerializer.read (kryo, input, classOf [Switch])
+        val parent = SwitchSerializer.read (kryo, input, classOf[Switch])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GroundDisconnector (
             parent
@@ -3622,7 +3477,7 @@ object GroundDisconnectorSerializer extends CIMSerializer[GroundDisconnector]
  * A fixed impedance device used for grounding.
  *
  * @param EarthFaultCompensator [[ch.ninecode.model.EarthFaultCompensator EarthFaultCompensator]] Reference to the superclass object.
- * @param x                     Reactance of device.
+ * @param x Reactance of device.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3632,8 +3487,8 @@ final case class GroundingImpedance
     EarthFaultCompensator: EarthFaultCompensator = null,
     x: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -3659,41 +3514,35 @@ final case class GroundingImpedance
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GroundingImpedance.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GroundingImpedance.fields (position), value)
-
         emitelem (0, x)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:GroundingImpedance rdf:ID=\"%s\">\n%s\t</cim:GroundingImpedance>".format (id, export_fields)
+        "\t<cim:GroundingImpedance rdf:%s=\"%s\">\n%s\t</cim:GroundingImpedance>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object GroundingImpedance
-    extends
-        CIMParseable[GroundingImpedance]
+extends
+    CIMParseable[GroundingImpedance]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "x"
     )
-    val x: Fielder = parse_element (element (cls, fields (0)))
+    val x: Fielder = parse_element (element (cls, fields(0)))
 
     def parse (context: CIMContext): GroundingImpedance =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = GroundingImpedance (
             EarthFaultCompensator.parse (context),
             toDouble (mask (x (), 0))
@@ -3720,7 +3569,7 @@ object GroundingImpedanceSerializer extends CIMSerializer[GroundingImpedance]
 
     def read (kryo: Kryo, input: Input, cls: Class[GroundingImpedance]): GroundingImpedance =
     {
-        val parent = EarthFaultCompensatorSerializer.read (kryo, input, classOf [EarthFaultCompensator])
+        val parent = EarthFaultCompensatorSerializer.read (kryo, input, classOf[EarthFaultCompensator])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = GroundingImpedance (
             parent,
@@ -3736,7 +3585,7 @@ object GroundingImpedanceSerializer extends CIMSerializer[GroundingImpedance]
  *
  * Note that zero-impedance branches can potentially be modelled by other equipment types.
  *
- * @param Switch       [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
+ * @param Switch [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
  * @param JumperAction [[ch.ninecode.model.JumperAction JumperAction]] Action taken with this jumper.
  * @group Wires
  * @groupname Wires Package Wires
@@ -3747,8 +3596,8 @@ final case class Jumper
     Switch: Switch = null,
     JumperAction: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -3774,44 +3623,38 @@ final case class Jumper
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Jumper.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Jumper.fields (position), value)
-
         emitattr (0, JumperAction)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Jumper rdf:ID=\"%s\">\n%s\t</cim:Jumper>".format (id, export_fields)
+        "\t<cim:Jumper rdf:%s=\"%s\">\n%s\t</cim:Jumper>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Jumper
-    extends
-        CIMParseable[Jumper]
+extends
+    CIMParseable[Jumper]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "JumperAction"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("JumperAction", "JumperAction", "0..1", "0..1")
     )
-    val JumperAction: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val JumperAction: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): Jumper =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Jumper (
             Switch.parse (context),
             mask (JumperAction (), 0)
@@ -3838,7 +3681,7 @@ object JumperSerializer extends CIMSerializer[Jumper]
 
     def read (kryo: Kryo, input: Input, cls: Class[Jumper]): Jumper =
     {
-        val parent = SwitchSerializer.read (kryo, input, classOf [Switch])
+        val parent = SwitchSerializer.read (kryo, input, classOf[Switch])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Jumper (
             parent,
@@ -3861,8 +3704,8 @@ final case class Junction
 (
     Connector: Connector = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -3888,25 +3731,21 @@ final case class Junction
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:Junction rdf:ID=\"%s\">\n%s\t</cim:Junction>".format (id, export_fields)
+        "\t<cim:Junction rdf:%s=\"%s\">\n%s\t</cim:Junction>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Junction
-    extends
-        CIMParseable[Junction]
+extends
+    CIMParseable[Junction]
 {
 
     def parse (context: CIMContext): Junction =
@@ -3935,7 +3774,7 @@ object JunctionSerializer extends CIMSerializer[Junction]
 
     def read (kryo: Kryo, input: Input, cls: Class[Junction]): Junction =
     {
-        val parent = ConnectorSerializer.read (kryo, input, classOf [Connector])
+        val parent = ConnectorSerializer.read (kryo, input, classOf[Connector])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Junction (
             parent
@@ -3949,7 +3788,7 @@ object JunctionSerializer extends CIMSerializer[Junction]
  * Contains equipment beyond a substation belonging to a power transmission line.
  *
  * @param EquipmentContainer [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
- * @param Region             [[ch.ninecode.model.SubGeographicalRegion SubGeographicalRegion]] The sub-geographical region of the line.
+ * @param Region [[ch.ninecode.model.SubGeographicalRegion SubGeographicalRegion]] The sub-geographical region of the line.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3959,8 +3798,8 @@ final case class Line
     EquipmentContainer: EquipmentContainer = null,
     Region: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -3986,44 +3825,38 @@ final case class Line
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Line.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Line.fields (position), value)
-
         emitattr (0, Region)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Line rdf:ID=\"%s\">\n%s\t</cim:Line>".format (id, export_fields)
+        "\t<cim:Line rdf:%s=\"%s\">\n%s\t</cim:Line>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Line
-    extends
-        CIMParseable[Line]
+extends
+    CIMParseable[Line]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Region"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Region", "SubGeographicalRegion", "0..1", "0..*")
     )
-    val Region: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val Region: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): Line =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Line (
             EquipmentContainer.parse (context),
             mask (Region (), 0)
@@ -4050,7 +3883,7 @@ object LineSerializer extends CIMSerializer[Line]
 
     def read (kryo: Kryo, input: Input, cls: Class[Line]): Line =
     {
-        val parent = EquipmentContainerSerializer.read (kryo, input, classOf [EquipmentContainer])
+        val parent = EquipmentContainerSerializer.read (kryo, input, classOf[EquipmentContainer])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Line (
             parent,
@@ -4065,10 +3898,10 @@ object LineSerializer extends CIMSerializer[Line]
  * A linear shunt compensator has banks or sections with equal admittance values.
  *
  * @param ShuntCompensator [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
- * @param b0PerSection     Zero sequence shunt (charging) susceptance per section.
- * @param bPerSection      Positive sequence shunt (charging) susceptance per section.
- * @param g0PerSection     Zero sequence shunt (charging) conductance per section.
- * @param gPerSection      Positive sequence shunt (charging) conductance per section.
+ * @param b0PerSection Zero sequence shunt (charging) susceptance per section.
+ * @param bPerSection Positive sequence shunt (charging) susceptance per section.
+ * @param g0PerSection Zero sequence shunt (charging) conductance per section.
+ * @param gPerSection Positive sequence shunt (charging) conductance per section.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4081,8 +3914,8 @@ final case class LinearShuntCompensator
     g0PerSection: Double = 0.0,
     gPerSection: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4108,50 +3941,44 @@ final case class LinearShuntCompensator
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LinearShuntCompensator.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LinearShuntCompensator.fields (position), value)
-
         emitelem (0, b0PerSection)
         emitelem (1, bPerSection)
         emitelem (2, g0PerSection)
         emitelem (3, gPerSection)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:LinearShuntCompensator rdf:ID=\"%s\">\n%s\t</cim:LinearShuntCompensator>".format (id, export_fields)
+        "\t<cim:LinearShuntCompensator rdf:%s=\"%s\">\n%s\t</cim:LinearShuntCompensator>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object LinearShuntCompensator
-    extends
-        CIMParseable[LinearShuntCompensator]
+extends
+    CIMParseable[LinearShuntCompensator]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "b0PerSection",
         "bPerSection",
         "g0PerSection",
         "gPerSection"
     )
-    val b0PerSection: Fielder = parse_element (element (cls, fields (0)))
-    val bPerSection: Fielder = parse_element (element (cls, fields (1)))
-    val g0PerSection: Fielder = parse_element (element (cls, fields (2)))
-    val gPerSection: Fielder = parse_element (element (cls, fields (3)))
+    val b0PerSection: Fielder = parse_element (element (cls, fields(0)))
+    val bPerSection: Fielder = parse_element (element (cls, fields(1)))
+    val g0PerSection: Fielder = parse_element (element (cls, fields(2)))
+    val gPerSection: Fielder = parse_element (element (cls, fields(3)))
 
     def parse (context: CIMContext): LinearShuntCompensator =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = LinearShuntCompensator (
             ShuntCompensator.parse (context),
             toDouble (mask (b0PerSection (), 0)),
@@ -4184,7 +4011,7 @@ object LinearShuntCompensatorSerializer extends CIMSerializer[LinearShuntCompens
 
     def read (kryo: Kryo, input: Input, cls: Class[LinearShuntCompensator]): LinearShuntCompensator =
     {
-        val parent = ShuntCompensatorSerializer.read (kryo, input, classOf [ShuntCompensator])
+        val parent = ShuntCompensatorSerializer.read (kryo, input, classOf[ShuntCompensator])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = LinearShuntCompensator (
             parent,
@@ -4202,10 +4029,10 @@ object LinearShuntCompensatorSerializer extends CIMSerializer[LinearShuntCompens
  * A per phase linear shunt compensator has banks or sections with equal admittance values.
  *
  * @param ShuntCompensatorPhase [[ch.ninecode.model.ShuntCompensatorPhase ShuntCompensatorPhase]] Reference to the superclass object.
- * @param bPerSection           Susceptance per section of the phase if shunt compensator is wye connected.
- *                              Susceptance per section phase to phase if shunt compensator is delta connected.
- * @param gPerSection           Conductance per section for this phase if shunt compensator is wye connected.
- *                              Conductance per section phase to phase if shunt compensator is delta connected.
+ * @param bPerSection Susceptance per section of the phase if shunt compensator is wye connected.
+ *        Susceptance per section phase to phase if shunt compensator is delta connected.
+ * @param gPerSection Conductance per section for this phase if shunt compensator is wye connected.
+ *        Conductance per section phase to phase if shunt compensator is delta connected.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4216,8 +4043,8 @@ final case class LinearShuntCompensatorPhase
     bPerSection: Double = 0.0,
     gPerSection: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4243,44 +4070,38 @@ final case class LinearShuntCompensatorPhase
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LinearShuntCompensatorPhase.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LinearShuntCompensatorPhase.fields (position), value)
-
         emitelem (0, bPerSection)
         emitelem (1, gPerSection)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:LinearShuntCompensatorPhase rdf:ID=\"%s\">\n%s\t</cim:LinearShuntCompensatorPhase>".format (id, export_fields)
+        "\t<cim:LinearShuntCompensatorPhase rdf:%s=\"%s\">\n%s\t</cim:LinearShuntCompensatorPhase>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object LinearShuntCompensatorPhase
-    extends
-        CIMParseable[LinearShuntCompensatorPhase]
+extends
+    CIMParseable[LinearShuntCompensatorPhase]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "bPerSection",
         "gPerSection"
     )
-    val bPerSection: Fielder = parse_element (element (cls, fields (0)))
-    val gPerSection: Fielder = parse_element (element (cls, fields (1)))
+    val bPerSection: Fielder = parse_element (element (cls, fields(0)))
+    val gPerSection: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: CIMContext): LinearShuntCompensatorPhase =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = LinearShuntCompensatorPhase (
             ShuntCompensatorPhase.parse (context),
             toDouble (mask (bPerSection (), 0)),
@@ -4309,7 +4130,7 @@ object LinearShuntCompensatorPhaseSerializer extends CIMSerializer[LinearShuntCo
 
     def read (kryo: Kryo, input: Input, cls: Class[LinearShuntCompensatorPhase]): LinearShuntCompensatorPhase =
     {
-        val parent = ShuntCompensatorPhaseSerializer.read (kryo, input, classOf [ShuntCompensatorPhase])
+        val parent = ShuntCompensatorPhaseSerializer.read (kryo, input, classOf[ShuntCompensatorPhase])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = LinearShuntCompensatorPhase (
             parent,
@@ -4333,8 +4154,8 @@ final case class LoadBreakSwitch
 (
     ProtectedSwitch: ProtectedSwitch = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4360,25 +4181,21 @@ final case class LoadBreakSwitch
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:LoadBreakSwitch rdf:ID=\"%s\">\n%s\t</cim:LoadBreakSwitch>".format (id, export_fields)
+        "\t<cim:LoadBreakSwitch rdf:%s=\"%s\">\n%s\t</cim:LoadBreakSwitch>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object LoadBreakSwitch
-    extends
-        CIMParseable[LoadBreakSwitch]
+extends
+    CIMParseable[LoadBreakSwitch]
 {
 
     def parse (context: CIMContext): LoadBreakSwitch =
@@ -4407,7 +4224,7 @@ object LoadBreakSwitchSerializer extends CIMSerializer[LoadBreakSwitch]
 
     def read (kryo: Kryo, input: Input, cls: Class[LoadBreakSwitch]): LoadBreakSwitch =
     {
-        val parent = ProtectedSwitchSerializer.read (kryo, input, classOf [ProtectedSwitch])
+        val parent = ProtectedSwitchSerializer.read (kryo, input, classOf[ProtectedSwitch])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = LoadBreakSwitch (
             parent
@@ -4421,17 +4238,17 @@ object LoadBreakSwitchSerializer extends CIMSerializer[LoadBreakSwitch]
  * This class represents the zero sequence line mutual coupling.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param b0ch             Zero sequence mutual coupling shunt (charging) susceptance, uniformly distributed, of the entire line section.
- * @param distance11       Distance to the start of the coupled region from the first line's terminal having sequence number equal to 1.
- * @param distance12       Distance to the end of the coupled region from the first line's terminal with sequence number equal to 1.
- * @param distance21       Distance to the start of coupled region from the second line's terminal with sequence number equal to 1.
- * @param distance22       Distance to the end of coupled region from the second line's terminal with sequence number equal to 1.
- * @param g0ch             Zero sequence mutual coupling shunt (charging) conductance, uniformly distributed, of the entire line section.
- * @param r0               Zero sequence branch-to-branch mutual impedance coupling, resistance.
- * @param x0               Zero sequence branch-to-branch mutual impedance coupling, reactance.
- * @param First_Terminal   [[ch.ninecode.model.Terminal Terminal]] The starting terminal for the calculation of distances along the first branch of the mutual coupling.
- *                         Normally MutualCoupling would only be used for terminals of AC line segments.  The first and second terminals of a mutual coupling should point to different AC line segments.
- * @param Second_Terminal  [[ch.ninecode.model.Terminal Terminal]] The starting terminal for the calculation of distances along the second branch of the mutual coupling.
+ * @param b0ch Zero sequence mutual coupling shunt (charging) susceptance, uniformly distributed, of the entire line section.
+ * @param distance11 Distance to the start of the coupled region from the first line's terminal having sequence number equal to 1.
+ * @param distance12 Distance to the end of the coupled region from the first line's terminal with sequence number equal to 1.
+ * @param distance21 Distance to the start of coupled region from the second line's terminal with sequence number equal to 1.
+ * @param distance22 Distance to the end of coupled region from the second line's terminal with sequence number equal to 1.
+ * @param g0ch Zero sequence mutual coupling shunt (charging) conductance, uniformly distributed, of the entire line section.
+ * @param r0 Zero sequence branch-to-branch mutual impedance coupling, resistance.
+ * @param x0 Zero sequence branch-to-branch mutual impedance coupling, reactance.
+ * @param First_Terminal [[ch.ninecode.model.Terminal Terminal]] The starting terminal for the calculation of distances along the first branch of the mutual coupling.
+ *        Normally MutualCoupling would only be used for terminals of AC line segments.  The first and second terminals of a mutual coupling should point to different AC line segments.
+ * @param Second_Terminal [[ch.ninecode.model.Terminal Terminal]] The starting terminal for the calculation of distances along the second branch of the mutual coupling.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4450,8 +4267,8 @@ final case class MutualCoupling
     First_Terminal: String = null,
     Second_Terminal: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4477,20 +4294,14 @@ final case class MutualCoupling
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MutualCoupling.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MutualCoupling.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MutualCoupling.fields (position), value)
-
         emitelem (0, b0ch)
         emitelem (1, distance11)
         emitelem (2, distance12)
@@ -4503,18 +4314,17 @@ final case class MutualCoupling
         emitattr (9, Second_Terminal)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MutualCoupling rdf:ID=\"%s\">\n%s\t</cim:MutualCoupling>".format (id, export_fields)
+        "\t<cim:MutualCoupling rdf:%s=\"%s\">\n%s\t</cim:MutualCoupling>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MutualCoupling
-    extends
-        CIMParseable[MutualCoupling]
+extends
+    CIMParseable[MutualCoupling]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "b0ch",
         "distance11",
         "distance12",
@@ -4530,21 +4340,21 @@ object MutualCoupling
         CIMRelationship ("First_Terminal", "Terminal", "1", "0..*"),
         CIMRelationship ("Second_Terminal", "Terminal", "1", "0..*")
     )
-    val b0ch: Fielder = parse_element (element (cls, fields (0)))
-    val distance11: Fielder = parse_element (element (cls, fields (1)))
-    val distance12: Fielder = parse_element (element (cls, fields (2)))
-    val distance21: Fielder = parse_element (element (cls, fields (3)))
-    val distance22: Fielder = parse_element (element (cls, fields (4)))
-    val g0ch: Fielder = parse_element (element (cls, fields (5)))
-    val r0: Fielder = parse_element (element (cls, fields (6)))
-    val x0: Fielder = parse_element (element (cls, fields (7)))
-    val First_Terminal: Fielder = parse_attribute (attribute (cls, fields (8)))
-    val Second_Terminal: Fielder = parse_attribute (attribute (cls, fields (9)))
+    val b0ch: Fielder = parse_element (element (cls, fields(0)))
+    val distance11: Fielder = parse_element (element (cls, fields(1)))
+    val distance12: Fielder = parse_element (element (cls, fields(2)))
+    val distance21: Fielder = parse_element (element (cls, fields(3)))
+    val distance22: Fielder = parse_element (element (cls, fields(4)))
+    val g0ch: Fielder = parse_element (element (cls, fields(5)))
+    val r0: Fielder = parse_element (element (cls, fields(6)))
+    val x0: Fielder = parse_element (element (cls, fields(7)))
+    val First_Terminal: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val Second_Terminal: Fielder = parse_attribute (attribute (cls, fields(9)))
 
     def parse (context: CIMContext): MutualCoupling =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MutualCoupling (
             IdentifiedObject.parse (context),
             toDouble (mask (b0ch (), 0)),
@@ -4589,7 +4399,7 @@ object MutualCouplingSerializer extends CIMSerializer[MutualCoupling]
 
     def read (kryo: Kryo, input: Input, cls: Class[MutualCoupling]): MutualCoupling =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MutualCoupling (
             parent,
@@ -4614,7 +4424,7 @@ object MutualCouplingSerializer extends CIMSerializer[MutualCoupling]
  *
  * The attributes g, b, g0 and b0 of the associated NonlinearShuntCompensatorPoint describe the total conductance and admittance of a NonlinearShuntCompensatorPoint at a section number specified by NonlinearShuntCompensatorPoint.sectionNumber.
  *
- * @param ShuntCompensator                [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
+ * @param ShuntCompensator [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
  * @param NonlinearShuntCompensatorPoints [[ch.ninecode.model.NonlinearShuntCompensatorPoint NonlinearShuntCompensatorPoint]] All points of the non-linear shunt compensator.
  * @group Wires
  * @groupname Wires Package Wires
@@ -4625,8 +4435,8 @@ final case class NonlinearShuntCompensator
     ShuntCompensator: ShuntCompensator = null,
     NonlinearShuntCompensatorPoints: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4652,44 +4462,38 @@ final case class NonlinearShuntCompensator
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NonlinearShuntCompensator.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NonlinearShuntCompensator.fields (position), x))
-
         emitattrs (0, NonlinearShuntCompensatorPoints)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NonlinearShuntCompensator rdf:ID=\"%s\">\n%s\t</cim:NonlinearShuntCompensator>".format (id, export_fields)
+        "\t<cim:NonlinearShuntCompensator rdf:%s=\"%s\">\n%s\t</cim:NonlinearShuntCompensator>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NonlinearShuntCompensator
-    extends
-        CIMParseable[NonlinearShuntCompensator]
+extends
+    CIMParseable[NonlinearShuntCompensator]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "NonlinearShuntCompensatorPoints"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("NonlinearShuntCompensatorPoints", "NonlinearShuntCompensatorPoint", "1..*", "1")
     )
-    val NonlinearShuntCompensatorPoints: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val NonlinearShuntCompensatorPoints: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): NonlinearShuntCompensator =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NonlinearShuntCompensator (
             ShuntCompensator.parse (context),
             masks (NonlinearShuntCompensatorPoints (), 0)
@@ -4716,7 +4520,7 @@ object NonlinearShuntCompensatorSerializer extends CIMSerializer[NonlinearShuntC
 
     def read (kryo: Kryo, input: Input, cls: Class[NonlinearShuntCompensator]): NonlinearShuntCompensator =
     {
-        val parent = ShuntCompensatorSerializer.read (kryo, input, classOf [ShuntCompensator])
+        val parent = ShuntCompensatorSerializer.read (kryo, input, classOf[ShuntCompensator])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NonlinearShuntCompensator (
             parent,
@@ -4732,7 +4536,7 @@ object NonlinearShuntCompensatorSerializer extends CIMSerializer[NonlinearShuntC
  *
  * The attributes g and b of the associated NonlinearShuntCompensatorPhasePoint describe the total conductance and admittance of a NonlinearShuntCompensatorPhasePoint at a section number specified by NonlinearShuntCompensatorPhasePoint.sectionNumber.
  *
- * @param ShuntCompensatorPhase                [[ch.ninecode.model.ShuntCompensatorPhase ShuntCompensatorPhase]] Reference to the superclass object.
+ * @param ShuntCompensatorPhase [[ch.ninecode.model.ShuntCompensatorPhase ShuntCompensatorPhase]] Reference to the superclass object.
  * @param NonlinearShuntCompensatorPhasePoints [[ch.ninecode.model.NonlinearShuntCompensatorPhasePoint NonlinearShuntCompensatorPhasePoint]] All points of the non-linear shunt compensator phase.
  * @group Wires
  * @groupname Wires Package Wires
@@ -4743,8 +4547,8 @@ final case class NonlinearShuntCompensatorPhase
     ShuntCompensatorPhase: ShuntCompensatorPhase = null,
     NonlinearShuntCompensatorPhasePoints: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4770,44 +4574,38 @@ final case class NonlinearShuntCompensatorPhase
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NonlinearShuntCompensatorPhase.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NonlinearShuntCompensatorPhase.fields (position), x))
-
         emitattrs (0, NonlinearShuntCompensatorPhasePoints)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NonlinearShuntCompensatorPhase rdf:ID=\"%s\">\n%s\t</cim:NonlinearShuntCompensatorPhase>".format (id, export_fields)
+        "\t<cim:NonlinearShuntCompensatorPhase rdf:%s=\"%s\">\n%s\t</cim:NonlinearShuntCompensatorPhase>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NonlinearShuntCompensatorPhase
-    extends
-        CIMParseable[NonlinearShuntCompensatorPhase]
+extends
+    CIMParseable[NonlinearShuntCompensatorPhase]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "NonlinearShuntCompensatorPhasePoints"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("NonlinearShuntCompensatorPhasePoints", "NonlinearShuntCompensatorPhasePoint", "1..*", "1")
     )
-    val NonlinearShuntCompensatorPhasePoints: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val NonlinearShuntCompensatorPhasePoints: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): NonlinearShuntCompensatorPhase =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NonlinearShuntCompensatorPhase (
             ShuntCompensatorPhase.parse (context),
             masks (NonlinearShuntCompensatorPhasePoints (), 0)
@@ -4834,7 +4632,7 @@ object NonlinearShuntCompensatorPhaseSerializer extends CIMSerializer[NonlinearS
 
     def read (kryo: Kryo, input: Input, cls: Class[NonlinearShuntCompensatorPhase]): NonlinearShuntCompensatorPhase =
     {
-        val parent = ShuntCompensatorPhaseSerializer.read (kryo, input, classOf [ShuntCompensatorPhase])
+        val parent = ShuntCompensatorPhaseSerializer.read (kryo, input, classOf[ShuntCompensatorPhase])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NonlinearShuntCompensatorPhase (
             parent,
@@ -4850,10 +4648,10 @@ object NonlinearShuntCompensatorPhaseSerializer extends CIMSerializer[NonlinearS
  *
  * The number of NonlinearShuntCompenstorPhasePoint instances associated with a NonlinearShuntCompensatorPhase shall be equal to ShuntCompensatorPhase.maximumSections. ShuntCompensator.sections shall only be set to one of the NonlinearShuntCompenstorPhasePoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPhasePoint-s.
  *
- * @param Element                        Reference to the superclass object.
- * @param b                              Positive sequence shunt (charging) susceptance per section.
- * @param g                              Positive sequence shunt (charging) conductance per section.
- * @param sectionNumber                  The number of the section.
+ * @param Element Reference to the superclass object.
+ * @param b Positive sequence shunt (charging) susceptance per section.
+ * @param g Positive sequence shunt (charging) conductance per section.
+ * @param sectionNumber The number of the section.
  * @param NonlinearShuntCompensatorPhase [[ch.ninecode.model.NonlinearShuntCompensatorPhase NonlinearShuntCompensatorPhase]] Non-linear shunt compensator phase owning this point.
  * @group Wires
  * @groupname Wires Package Wires
@@ -4867,8 +4665,8 @@ final case class NonlinearShuntCompensatorPhasePoint
     sectionNumber: Int = 0,
     NonlinearShuntCompensatorPhase: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4894,38 +4692,31 @@ final case class NonlinearShuntCompensatorPhasePoint
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NonlinearShuntCompensatorPhasePoint.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (NonlinearShuntCompensatorPhasePoint.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (NonlinearShuntCompensatorPhasePoint.fields (position), value)
-
         emitelem (0, b)
         emitelem (1, g)
         emitelem (2, sectionNumber)
         emitattr (3, NonlinearShuntCompensatorPhase)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NonlinearShuntCompensatorPhasePoint rdf:ID=\"%s\">\n%s\t</cim:NonlinearShuntCompensatorPhasePoint>".format (id, export_fields)
+        "\t<cim:NonlinearShuntCompensatorPhasePoint rdf:%s=\"%s\">\n%s\t</cim:NonlinearShuntCompensatorPhasePoint>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NonlinearShuntCompensatorPhasePoint
-    extends
-        CIMParseable[NonlinearShuntCompensatorPhasePoint]
+extends
+    CIMParseable[NonlinearShuntCompensatorPhasePoint]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "b",
         "g",
         "sectionNumber",
@@ -4934,15 +4725,15 @@ object NonlinearShuntCompensatorPhasePoint
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("NonlinearShuntCompensatorPhase", "NonlinearShuntCompensatorPhase", "1", "1..*")
     )
-    val b: Fielder = parse_element (element (cls, fields (0)))
-    val g: Fielder = parse_element (element (cls, fields (1)))
-    val sectionNumber: Fielder = parse_element (element (cls, fields (2)))
-    val NonlinearShuntCompensatorPhase: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val b: Fielder = parse_element (element (cls, fields(0)))
+    val g: Fielder = parse_element (element (cls, fields(1)))
+    val sectionNumber: Fielder = parse_element (element (cls, fields(2)))
+    val NonlinearShuntCompensatorPhase: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: CIMContext): NonlinearShuntCompensatorPhasePoint =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NonlinearShuntCompensatorPhasePoint (
             BasicElement.parse (context),
             toDouble (mask (b (), 0)),
@@ -4967,7 +4758,7 @@ object NonlinearShuntCompensatorPhasePointSerializer extends CIMSerializer[Nonli
             () => output.writeInt (obj.sectionNumber),
             () => output.writeString (obj.NonlinearShuntCompensatorPhase)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -4975,7 +4766,7 @@ object NonlinearShuntCompensatorPhasePointSerializer extends CIMSerializer[Nonli
 
     def read (kryo: Kryo, input: Input, cls: Class[NonlinearShuntCompensatorPhasePoint]): NonlinearShuntCompensatorPhasePoint =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NonlinearShuntCompensatorPhasePoint (
             parent,
@@ -4994,12 +4785,12 @@ object NonlinearShuntCompensatorPhasePointSerializer extends CIMSerializer[Nonli
  *
  * The number of NonlinearShuntCompenstorPoint instances associated with a NonlinearShuntCompensator shall be equal to ShuntCompensator.maximumSections. ShuntCompensator.sections shall only be set to one of the NonlinearShuntCompenstorPoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPoint-s.
  *
- * @param Element                   Reference to the superclass object.
- * @param b                         Positive sequence shunt (charging) susceptance per section.
- * @param b0                        Zero sequence shunt (charging) susceptance per section.
- * @param g                         Positive sequence shunt (charging) conductance per section.
- * @param g0                        Zero sequence shunt (charging) conductance per section.
- * @param sectionNumber             The number of the section.
+ * @param Element Reference to the superclass object.
+ * @param b Positive sequence shunt (charging) susceptance per section.
+ * @param b0 Zero sequence shunt (charging) susceptance per section.
+ * @param g Positive sequence shunt (charging) conductance per section.
+ * @param g0 Zero sequence shunt (charging) conductance per section.
+ * @param sectionNumber The number of the section.
  * @param NonlinearShuntCompensator [[ch.ninecode.model.NonlinearShuntCompensator NonlinearShuntCompensator]] Non-linear shunt compensator owning this point.
  * @group Wires
  * @groupname Wires Package Wires
@@ -5015,8 +4806,8 @@ final case class NonlinearShuntCompensatorPoint
     sectionNumber: Int = 0,
     NonlinearShuntCompensator: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -5042,20 +4833,14 @@ final case class NonlinearShuntCompensatorPoint
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NonlinearShuntCompensatorPoint.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (NonlinearShuntCompensatorPoint.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (NonlinearShuntCompensatorPoint.fields (position), value)
-
         emitelem (0, b)
         emitelem (1, b0)
         emitelem (2, g)
@@ -5064,18 +4849,17 @@ final case class NonlinearShuntCompensatorPoint
         emitattr (5, NonlinearShuntCompensator)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NonlinearShuntCompensatorPoint rdf:ID=\"%s\">\n%s\t</cim:NonlinearShuntCompensatorPoint>".format (id, export_fields)
+        "\t<cim:NonlinearShuntCompensatorPoint rdf:%s=\"%s\">\n%s\t</cim:NonlinearShuntCompensatorPoint>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NonlinearShuntCompensatorPoint
-    extends
-        CIMParseable[NonlinearShuntCompensatorPoint]
+extends
+    CIMParseable[NonlinearShuntCompensatorPoint]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "b",
         "b0",
         "g",
@@ -5086,17 +4870,17 @@ object NonlinearShuntCompensatorPoint
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("NonlinearShuntCompensator", "NonlinearShuntCompensator", "1", "1..*")
     )
-    val b: Fielder = parse_element (element (cls, fields (0)))
-    val b0: Fielder = parse_element (element (cls, fields (1)))
-    val g: Fielder = parse_element (element (cls, fields (2)))
-    val g0: Fielder = parse_element (element (cls, fields (3)))
-    val sectionNumber: Fielder = parse_element (element (cls, fields (4)))
-    val NonlinearShuntCompensator: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val b: Fielder = parse_element (element (cls, fields(0)))
+    val b0: Fielder = parse_element (element (cls, fields(1)))
+    val g: Fielder = parse_element (element (cls, fields(2)))
+    val g0: Fielder = parse_element (element (cls, fields(3)))
+    val sectionNumber: Fielder = parse_element (element (cls, fields(4)))
+    val NonlinearShuntCompensator: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: CIMContext): NonlinearShuntCompensatorPoint =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NonlinearShuntCompensatorPoint (
             BasicElement.parse (context),
             toDouble (mask (b (), 0)),
@@ -5125,7 +4909,7 @@ object NonlinearShuntCompensatorPointSerializer extends CIMSerializer[NonlinearS
             () => output.writeInt (obj.sectionNumber),
             () => output.writeString (obj.NonlinearShuntCompensator)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -5133,7 +4917,7 @@ object NonlinearShuntCompensatorPointSerializer extends CIMSerializer[NonlinearS
 
     def read (kryo: Kryo, input: Input, cls: Class[NonlinearShuntCompensatorPoint]): NonlinearShuntCompensatorPoint =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NonlinearShuntCompensatorPoint (
             parent,
@@ -5153,7 +4937,7 @@ object NonlinearShuntCompensatorPointSerializer extends CIMSerializer[NonlinearS
  * Common type for per-length impedance electrical catalogues.
  *
  * @param PerLengthLineParameter [[ch.ninecode.model.PerLengthLineParameter PerLengthLineParameter]] Reference to the superclass object.
- * @param ACLineSegments         [[ch.ninecode.model.ACLineSegment ACLineSegment]] All line segments described by this per-length impedance.
+ * @param ACLineSegments [[ch.ninecode.model.ACLineSegment ACLineSegment]] All line segments described by this per-length impedance.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5163,8 +4947,8 @@ final case class PerLengthImpedance
     PerLengthLineParameter: PerLengthLineParameter = null,
     ACLineSegments: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -5190,44 +4974,38 @@ final case class PerLengthImpedance
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PerLengthImpedance.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PerLengthImpedance.fields (position), x))
-
         emitattrs (0, ACLineSegments)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PerLengthImpedance rdf:ID=\"%s\">\n%s\t</cim:PerLengthImpedance>".format (id, export_fields)
+        "\t<cim:PerLengthImpedance rdf:%s=\"%s\">\n%s\t</cim:PerLengthImpedance>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PerLengthImpedance
-    extends
-        CIMParseable[PerLengthImpedance]
+extends
+    CIMParseable[PerLengthImpedance]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "ACLineSegments"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ACLineSegments", "ACLineSegment", "0..*", "0..1")
     )
-    val ACLineSegments: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val ACLineSegments: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): PerLengthImpedance =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PerLengthImpedance (
             PerLengthLineParameter.parse (context),
             masks (ACLineSegments (), 0)
@@ -5254,7 +5032,7 @@ object PerLengthImpedanceSerializer extends CIMSerializer[PerLengthImpedance]
 
     def read (kryo: Kryo, input: Input, cls: Class[PerLengthImpedance]): PerLengthImpedance =
     {
-        val parent = PerLengthLineParameterSerializer.read (kryo, input, classOf [PerLengthLineParameter])
+        val parent = PerLengthLineParameterSerializer.read (kryo, input, classOf[PerLengthLineParameter])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PerLengthImpedance (
             parent,
@@ -5279,8 +5057,8 @@ final case class PerLengthLineParameter
     IdentifiedObject: IdentifiedObject = null,
     WireAssemblyInfo: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -5306,44 +5084,38 @@ final case class PerLengthLineParameter
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PerLengthLineParameter.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PerLengthLineParameter.fields (position), value)
-
         emitattr (0, WireAssemblyInfo)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PerLengthLineParameter rdf:ID=\"%s\">\n%s\t</cim:PerLengthLineParameter>".format (id, export_fields)
+        "\t<cim:PerLengthLineParameter rdf:%s=\"%s\">\n%s\t</cim:PerLengthLineParameter>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PerLengthLineParameter
-    extends
-        CIMParseable[PerLengthLineParameter]
+extends
+    CIMParseable[PerLengthLineParameter]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "WireAssemblyInfo"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WireAssemblyInfo", "WireAssemblyInfo", "0..1", "0..*")
     )
-    val WireAssemblyInfo: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val WireAssemblyInfo: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): PerLengthLineParameter =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PerLengthLineParameter (
             IdentifiedObject.parse (context),
             mask (WireAssemblyInfo (), 0)
@@ -5370,7 +5142,7 @@ object PerLengthLineParameterSerializer extends CIMSerializer[PerLengthLineParam
 
     def read (kryo: Kryo, input: Input, cls: Class[PerLengthLineParameter]): PerLengthLineParameter =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PerLengthLineParameter (
             parent,
@@ -5385,8 +5157,8 @@ object PerLengthLineParameterSerializer extends CIMSerializer[PerLengthLineParam
  * Impedance and admittance parameters per unit length for n-wire unbalanced lines, in matrix form.
  *
  * @param PerLengthImpedance [[ch.ninecode.model.PerLengthImpedance PerLengthImpedance]] Reference to the superclass object.
- * @param conductorCount     Number of phase, neutral, and other wires retained.
- *                           Constrains the number of matrix elements and the phase codes that can be used with this matrix.
+ * @param conductorCount Number of phase, neutral, and other wires retained.
+ *        Constrains the number of matrix elements and the phase codes that can be used with this matrix.
  * @param PhaseImpedanceData [[ch.ninecode.model.PhaseImpedanceData PhaseImpedanceData]] All data that belong to this conductor phase impedance.
  * @group Wires
  * @groupname Wires Package Wires
@@ -5398,8 +5170,8 @@ final case class PerLengthPhaseImpedance
     conductorCount: Int = 0,
     PhaseImpedanceData: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -5425,49 +5197,42 @@ final case class PerLengthPhaseImpedance
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PerLengthPhaseImpedance.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PerLengthPhaseImpedance.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PerLengthPhaseImpedance.fields (position), x))
-
         emitelem (0, conductorCount)
         emitattrs (1, PhaseImpedanceData)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PerLengthPhaseImpedance rdf:ID=\"%s\">\n%s\t</cim:PerLengthPhaseImpedance>".format (id, export_fields)
+        "\t<cim:PerLengthPhaseImpedance rdf:%s=\"%s\">\n%s\t</cim:PerLengthPhaseImpedance>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PerLengthPhaseImpedance
-    extends
-        CIMParseable[PerLengthPhaseImpedance]
+extends
+    CIMParseable[PerLengthPhaseImpedance]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "conductorCount",
         "PhaseImpedanceData"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("PhaseImpedanceData", "PhaseImpedanceData", "1..*", "1")
     )
-    val conductorCount: Fielder = parse_element (element (cls, fields (0)))
-    val PhaseImpedanceData: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val conductorCount: Fielder = parse_element (element (cls, fields(0)))
+    val PhaseImpedanceData: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): PerLengthPhaseImpedance =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PerLengthPhaseImpedance (
             PerLengthImpedance.parse (context),
             toInteger (mask (conductorCount (), 0)),
@@ -5496,7 +5261,7 @@ object PerLengthPhaseImpedanceSerializer extends CIMSerializer[PerLengthPhaseImp
 
     def read (kryo: Kryo, input: Input, cls: Class[PerLengthPhaseImpedance]): PerLengthPhaseImpedance =
     {
-        val parent = PerLengthImpedanceSerializer.read (kryo, input, classOf [PerLengthImpedance])
+        val parent = PerLengthImpedanceSerializer.read (kryo, input, classOf[PerLengthImpedance])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PerLengthPhaseImpedance (
             parent,
@@ -5514,14 +5279,14 @@ object PerLengthPhaseImpedanceSerializer extends CIMSerializer[PerLengthPhaseImp
  * For 1-phase lines, define x=x0=xself. For 2-phase lines, define x=xs-xm and x0=xs+xm.
  *
  * @param PerLengthImpedance [[ch.ninecode.model.PerLengthImpedance PerLengthImpedance]] Reference to the superclass object.
- * @param b0ch               Zero sequence shunt (charging) susceptance, per unit of length.
- * @param bch                Positive sequence shunt (charging) susceptance, per unit of length.
- * @param g0ch               Zero sequence shunt (charging) conductance, per unit of length.
- * @param gch                Positive sequence shunt (charging) conductance, per unit of length.
- * @param r                  Positive sequence series resistance, per unit of length.
- * @param r0                 Zero sequence series resistance, per unit of length.
- * @param x                  Positive sequence series reactance, per unit of length.
- * @param x0                 Zero sequence series reactance, per unit of length.
+ * @param b0ch Zero sequence shunt (charging) susceptance, per unit of length.
+ * @param bch Positive sequence shunt (charging) susceptance, per unit of length.
+ * @param g0ch Zero sequence shunt (charging) conductance, per unit of length.
+ * @param gch Positive sequence shunt (charging) conductance, per unit of length.
+ * @param r Positive sequence series resistance, per unit of length.
+ * @param r0 Zero sequence series resistance, per unit of length.
+ * @param x Positive sequence series reactance, per unit of length.
+ * @param x0 Zero sequence series reactance, per unit of length.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5538,8 +5303,8 @@ final case class PerLengthSequenceImpedance
     x: Double = 0.0,
     x0: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -5565,18 +5330,13 @@ final case class PerLengthSequenceImpedance
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PerLengthSequenceImpedance.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PerLengthSequenceImpedance.fields (position), value)
-
         emitelem (0, b0ch)
         emitelem (1, bch)
         emitelem (2, g0ch)
@@ -5587,18 +5347,17 @@ final case class PerLengthSequenceImpedance
         emitelem (7, x0)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PerLengthSequenceImpedance rdf:ID=\"%s\">\n%s\t</cim:PerLengthSequenceImpedance>".format (id, export_fields)
+        "\t<cim:PerLengthSequenceImpedance rdf:%s=\"%s\">\n%s\t</cim:PerLengthSequenceImpedance>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PerLengthSequenceImpedance
-    extends
-        CIMParseable[PerLengthSequenceImpedance]
+extends
+    CIMParseable[PerLengthSequenceImpedance]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "b0ch",
         "bch",
         "g0ch",
@@ -5608,19 +5367,19 @@ object PerLengthSequenceImpedance
         "x",
         "x0"
     )
-    val b0ch: Fielder = parse_element (element (cls, fields (0)))
-    val bch: Fielder = parse_element (element (cls, fields (1)))
-    val g0ch: Fielder = parse_element (element (cls, fields (2)))
-    val gch: Fielder = parse_element (element (cls, fields (3)))
-    val r: Fielder = parse_element (element (cls, fields (4)))
-    val r0: Fielder = parse_element (element (cls, fields (5)))
-    val x: Fielder = parse_element (element (cls, fields (6)))
-    val x0: Fielder = parse_element (element (cls, fields (7)))
+    val b0ch: Fielder = parse_element (element (cls, fields(0)))
+    val bch: Fielder = parse_element (element (cls, fields(1)))
+    val g0ch: Fielder = parse_element (element (cls, fields(2)))
+    val gch: Fielder = parse_element (element (cls, fields(3)))
+    val r: Fielder = parse_element (element (cls, fields(4)))
+    val r0: Fielder = parse_element (element (cls, fields(5)))
+    val x: Fielder = parse_element (element (cls, fields(6)))
+    val x0: Fielder = parse_element (element (cls, fields(7)))
 
     def parse (context: CIMContext): PerLengthSequenceImpedance =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PerLengthSequenceImpedance (
             PerLengthImpedance.parse (context),
             toDouble (mask (b0ch (), 0)),
@@ -5661,7 +5420,7 @@ object PerLengthSequenceImpedanceSerializer extends CIMSerializer[PerLengthSeque
 
     def read (kryo: Kryo, input: Input, cls: Class[PerLengthSequenceImpedance]): PerLengthSequenceImpedance =
     {
-        val parent = PerLengthImpedanceSerializer.read (kryo, input, classOf [PerLengthImpedance])
+        val parent = PerLengthImpedanceSerializer.read (kryo, input, classOf[PerLengthImpedance])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PerLengthSequenceImpedance (
             parent,
@@ -5683,16 +5442,16 @@ object PerLengthSequenceImpedanceSerializer extends CIMSerializer[PerLengthSeque
  * A variable impedance device normally used to offset line charging during single line faults in an ungrounded section of network.
  *
  * @param EarthFaultCompensator [[ch.ninecode.model.EarthFaultCompensator EarthFaultCompensator]] Reference to the superclass object.
- * @param mode                  The mode of operation of the Petersen coil.
- * @param nominalU              The nominal voltage for which the coil is designed.
- * @param offsetCurrent         The offset current that the Petersen coil controller is operating from the resonant point.
- *                              This is normally a fixed amount for which the controller is configured and could be positive or negative.  Typically 0 to 60 A depending on voltage and resonance conditions.
- * @param positionCurrent       The control current used to control the Petersen coil also known as the position current.
- *                              Typically in the range of 20 mA to 200 mA.
- * @param xGroundMax            The maximum reactance.
- * @param xGroundMin            The minimum reactance.
- * @param xGroundNominal        The nominal reactance.
- *                              This is the operating point (normally over compensation) that is defined based on the resonance point in the healthy network condition.  The impedance is calculated based on nominal voltage divided by position current.
+ * @param mode The mode of operation of the Petersen coil.
+ * @param nominalU The nominal voltage for which the coil is designed.
+ * @param offsetCurrent The offset current that the Petersen coil controller is operating from the resonant point.
+ *        This is normally a fixed amount for which the controller is configured and could be positive or negative.  Typically 0 to 60 A depending on voltage and resonance conditions.
+ * @param positionCurrent The control current used to control the Petersen coil also known as the position current.
+ *        Typically in the range of 20 mA to 200 mA.
+ * @param xGroundMax The maximum reactance.
+ * @param xGroundMin The minimum reactance.
+ * @param xGroundNominal The nominal reactance.
+ *        This is the operating point (normally over compensation) that is defined based on the resonance point in the healthy network condition.  The impedance is calculated based on nominal voltage divided by position current.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5708,8 +5467,8 @@ final case class PetersenCoil
     xGroundMin: Double = 0.0,
     xGroundNominal: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -5735,20 +5494,14 @@ final case class PetersenCoil
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PetersenCoil.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PetersenCoil.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PetersenCoil.fields (position), value)
-
         emitattr (0, mode)
         emitelem (1, nominalU)
         emitelem (2, offsetCurrent)
@@ -5758,18 +5511,17 @@ final case class PetersenCoil
         emitelem (6, xGroundNominal)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PetersenCoil rdf:ID=\"%s\">\n%s\t</cim:PetersenCoil>".format (id, export_fields)
+        "\t<cim:PetersenCoil rdf:%s=\"%s\">\n%s\t</cim:PetersenCoil>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PetersenCoil
-    extends
-        CIMParseable[PetersenCoil]
+extends
+    CIMParseable[PetersenCoil]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "mode",
         "nominalU",
         "offsetCurrent",
@@ -5778,18 +5530,18 @@ object PetersenCoil
         "xGroundMin",
         "xGroundNominal"
     )
-    val mode: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val nominalU: Fielder = parse_element (element (cls, fields (1)))
-    val offsetCurrent: Fielder = parse_element (element (cls, fields (2)))
-    val positionCurrent: Fielder = parse_element (element (cls, fields (3)))
-    val xGroundMax: Fielder = parse_element (element (cls, fields (4)))
-    val xGroundMin: Fielder = parse_element (element (cls, fields (5)))
-    val xGroundNominal: Fielder = parse_element (element (cls, fields (6)))
+    val mode: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val nominalU: Fielder = parse_element (element (cls, fields(1)))
+    val offsetCurrent: Fielder = parse_element (element (cls, fields(2)))
+    val positionCurrent: Fielder = parse_element (element (cls, fields(3)))
+    val xGroundMax: Fielder = parse_element (element (cls, fields(4)))
+    val xGroundMin: Fielder = parse_element (element (cls, fields(5)))
+    val xGroundNominal: Fielder = parse_element (element (cls, fields(6)))
 
     def parse (context: CIMContext): PetersenCoil =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PetersenCoil (
             EarthFaultCompensator.parse (context),
             mask (mode (), 0),
@@ -5828,7 +5580,7 @@ object PetersenCoilSerializer extends CIMSerializer[PetersenCoil]
 
     def read (kryo: Kryo, input: Input, cls: Class[PetersenCoil]): PetersenCoil =
     {
-        val parent = EarthFaultCompensatorSerializer.read (kryo, input, classOf [EarthFaultCompensator])
+        val parent = EarthFaultCompensatorSerializer.read (kryo, input, classOf[EarthFaultCompensator])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PetersenCoil (
             parent,
@@ -5850,17 +5602,17 @@ object PetersenCoilSerializer extends CIMSerializer[PetersenCoil]
  *
  * The diagonal elements are described by the elements having the same toPhase and fromPhase value and the off diagonal elements have different toPhase and fromPhase values.  The matrix can also be stored in symmetric lower triangular format using the row and column attributes, which map to ACLineSegmentPhase.sequenceNumber.
  *
- * @param Element        Reference to the superclass object.
- * @param b              Susceptance matrix element value, per length of unit.
- * @param column         The matrix element's column number, in the range 1 to row.
- *                       Only the lower triangle needs to be stored. This column number matches ACLineSegmentPhase.sequenceNumber.
- * @param fromPhase      Refer to the class description.
- * @param g              Conductance matrix element value, per length of unit.
- * @param r              Resistance matrix element value, per length of unit.
- * @param row            The matrix element’s row number, in the range 1 to PerLengthPhaseImpedance.conductorCount.
- *                       Only the lower triangle needs to be stored. This row number matches ACLineSegmentPhase.sequenceNumber.
- * @param toPhase        Refer to the class description.
- * @param x              Reactance matrix element value, per length of unit.
+ * @param Element Reference to the superclass object.
+ * @param b Susceptance matrix element value, per length of unit.
+ * @param column The matrix element's column number, in the range 1 to row.
+ *        Only the lower triangle needs to be stored. This column number matches ACLineSegmentPhase.sequenceNumber.
+ * @param fromPhase Refer to the class description.
+ * @param g Conductance matrix element value, per length of unit.
+ * @param r Resistance matrix element value, per length of unit.
+ * @param row The matrix element’s row number, in the range 1 to PerLengthPhaseImpedance.conductorCount.
+ *        Only the lower triangle needs to be stored. This row number matches ACLineSegmentPhase.sequenceNumber.
+ * @param toPhase Refer to the class description.
+ * @param x Reactance matrix element value, per length of unit.
  * @param PhaseImpedance [[ch.ninecode.model.PerLengthPhaseImpedance PerLengthPhaseImpedance]] Conductor phase impedance to which this data belongs.
  * @group Wires
  * @groupname Wires Package Wires
@@ -5879,8 +5631,8 @@ final case class PhaseImpedanceData
     x: Double = 0.0,
     PhaseImpedance: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -5906,20 +5658,14 @@ final case class PhaseImpedanceData
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PhaseImpedanceData.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PhaseImpedanceData.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PhaseImpedanceData.fields (position), value)
-
         emitelem (0, b)
         emitelem (1, column)
         emitattr (2, fromPhase)
@@ -5931,18 +5677,17 @@ final case class PhaseImpedanceData
         emitattr (8, PhaseImpedance)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PhaseImpedanceData rdf:ID=\"%s\">\n%s\t</cim:PhaseImpedanceData>".format (id, export_fields)
+        "\t<cim:PhaseImpedanceData rdf:%s=\"%s\">\n%s\t</cim:PhaseImpedanceData>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PhaseImpedanceData
-    extends
-        CIMParseable[PhaseImpedanceData]
+extends
+    CIMParseable[PhaseImpedanceData]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "b",
         "column",
         "fromPhase",
@@ -5956,20 +5701,20 @@ object PhaseImpedanceData
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("PhaseImpedance", "PerLengthPhaseImpedance", "1", "1..*")
     )
-    val b: Fielder = parse_element (element (cls, fields (0)))
-    val column: Fielder = parse_element (element (cls, fields (1)))
-    val fromPhase: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val g: Fielder = parse_element (element (cls, fields (3)))
-    val r: Fielder = parse_element (element (cls, fields (4)))
-    val row: Fielder = parse_element (element (cls, fields (5)))
-    val toPhase: Fielder = parse_attribute (attribute (cls, fields (6)))
-    val x: Fielder = parse_element (element (cls, fields (7)))
-    val PhaseImpedance: Fielder = parse_attribute (attribute (cls, fields (8)))
+    val b: Fielder = parse_element (element (cls, fields(0)))
+    val column: Fielder = parse_element (element (cls, fields(1)))
+    val fromPhase: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val g: Fielder = parse_element (element (cls, fields(3)))
+    val r: Fielder = parse_element (element (cls, fields(4)))
+    val row: Fielder = parse_element (element (cls, fields(5)))
+    val toPhase: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val x: Fielder = parse_element (element (cls, fields(7)))
+    val PhaseImpedance: Fielder = parse_attribute (attribute (cls, fields(8)))
 
     def parse (context: CIMContext): PhaseImpedanceData =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PhaseImpedanceData (
             BasicElement.parse (context),
             toDouble (mask (b (), 0)),
@@ -6004,7 +5749,7 @@ object PhaseImpedanceDataSerializer extends CIMSerializer[PhaseImpedanceData]
             () => output.writeDouble (obj.x),
             () => output.writeString (obj.PhaseImpedance)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -6012,7 +5757,7 @@ object PhaseImpedanceDataSerializer extends CIMSerializer[PhaseImpedanceData]
 
     def read (kryo: Kryo, input: Input, cls: Class[PhaseImpedanceData]): PhaseImpedanceData =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PhaseImpedanceData (
             parent,
@@ -6036,7 +5781,7 @@ object PhaseImpedanceDataSerializer extends CIMSerializer[PhaseImpedanceData]
  *
  * This phase tap model may also impact the voltage magnitude.
  *
- * @param TapChanger     [[ch.ninecode.model.TapChanger TapChanger]] Reference to the superclass object.
+ * @param TapChanger [[ch.ninecode.model.TapChanger TapChanger]] Reference to the superclass object.
  * @param TransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] Transformer end to which this phase tap changer belongs.
  * @group Wires
  * @groupname Wires Package Wires
@@ -6047,8 +5792,8 @@ final case class PhaseTapChanger
     TapChanger: TapChanger = null,
     TransformerEnd: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -6074,44 +5819,38 @@ final case class PhaseTapChanger
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PhaseTapChanger.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PhaseTapChanger.fields (position), value)
-
         emitattr (0, TransformerEnd)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PhaseTapChanger rdf:ID=\"%s\">\n%s\t</cim:PhaseTapChanger>".format (id, export_fields)
+        "\t<cim:PhaseTapChanger rdf:%s=\"%s\">\n%s\t</cim:PhaseTapChanger>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PhaseTapChanger
-    extends
-        CIMParseable[PhaseTapChanger]
+extends
+    CIMParseable[PhaseTapChanger]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "TransformerEnd"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("TransformerEnd", "TransformerEnd", "1", "0..1")
     )
-    val TransformerEnd: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val TransformerEnd: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): PhaseTapChanger =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PhaseTapChanger (
             TapChanger.parse (context),
             mask (TransformerEnd (), 0)
@@ -6138,7 +5877,7 @@ object PhaseTapChangerSerializer extends CIMSerializer[PhaseTapChanger]
 
     def read (kryo: Kryo, input: Input, cls: Class[PhaseTapChanger]): PhaseTapChanger =
     {
-        val parent = TapChangerSerializer.read (kryo, input, classOf [TapChanger])
+        val parent = TapChangerSerializer.read (kryo, input, classOf[TapChanger])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PhaseTapChanger (
             parent,
@@ -6155,8 +5894,8 @@ object PhaseTapChangerSerializer extends CIMSerializer[PhaseTapChanger]
  * The out-of-phase winding is the transformer end where the tap changer is located.  The angle between the in-phase and out-of-phase windings is named the winding connection angle. The phase shift depends on both the difference voltage magnitude and the winding connection angle.
  *
  * @param PhaseTapChangerNonLinear [[ch.ninecode.model.PhaseTapChangerNonLinear PhaseTapChangerNonLinear]] Reference to the superclass object.
- * @param windingConnectionAngle   The phase angle between the in-phase winding and the out-of -phase winding used for creating phase shift.
- *                                 The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmetrical transformer. The attribute can only be multiples of 30 degrees.  The allowed range is -150 degrees to 150 degrees excluding 0.
+ * @param windingConnectionAngle The phase angle between the in-phase winding and the out-of -phase winding used for creating phase shift.
+ *        The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmetrical transformer. The attribute can only be multiples of 30 degrees.  The allowed range is -150 degrees to 150 degrees excluding 0.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6166,8 +5905,8 @@ final case class PhaseTapChangerAsymmetrical
     PhaseTapChangerNonLinear: PhaseTapChangerNonLinear = null,
     windingConnectionAngle: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -6193,41 +5932,35 @@ final case class PhaseTapChangerAsymmetrical
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PhaseTapChangerAsymmetrical.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PhaseTapChangerAsymmetrical.fields (position), value)
-
         emitelem (0, windingConnectionAngle)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PhaseTapChangerAsymmetrical rdf:ID=\"%s\">\n%s\t</cim:PhaseTapChangerAsymmetrical>".format (id, export_fields)
+        "\t<cim:PhaseTapChangerAsymmetrical rdf:%s=\"%s\">\n%s\t</cim:PhaseTapChangerAsymmetrical>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PhaseTapChangerAsymmetrical
-    extends
-        CIMParseable[PhaseTapChangerAsymmetrical]
+extends
+    CIMParseable[PhaseTapChangerAsymmetrical]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "windingConnectionAngle"
     )
-    val windingConnectionAngle: Fielder = parse_element (element (cls, fields (0)))
+    val windingConnectionAngle: Fielder = parse_element (element (cls, fields(0)))
 
     def parse (context: CIMContext): PhaseTapChangerAsymmetrical =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PhaseTapChangerAsymmetrical (
             PhaseTapChangerNonLinear.parse (context),
             toDouble (mask (windingConnectionAngle (), 0))
@@ -6254,7 +5987,7 @@ object PhaseTapChangerAsymmetricalSerializer extends CIMSerializer[PhaseTapChang
 
     def read (kryo: Kryo, input: Input, cls: Class[PhaseTapChangerAsymmetrical]): PhaseTapChangerAsymmetrical =
     {
-        val parent = PhaseTapChangerNonLinearSerializer.read (kryo, input, classOf [PhaseTapChangerNonLinear])
+        val parent = PhaseTapChangerNonLinearSerializer.read (kryo, input, classOf[PhaseTapChangerNonLinear])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PhaseTapChangerAsymmetrical (
             parent,
@@ -6272,14 +6005,14 @@ object PhaseTapChangerAsymmetricalSerializer extends CIMSerializer[PhaseTapChang
  * The phase angle is computed as stepPhaseShiftIncrement times the tap position.
  * The voltage magnitude of both sides is the same.
  *
- * @param PhaseTapChanger         [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
+ * @param PhaseTapChanger [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
  * @param stepPhaseShiftIncrement Phase shift per step position.
- *                                A positive value indicates a positive angle variation from the Terminal at the  PowerTransformerEnd,  where the TapChanger is located, into the transformer.
- *                                The actual phase shift increment might be more accurately computed from the symmetrical or asymmetrical models or a tap step table lookup if those are available.
- * @param xMax                    The reactance depends on the tap position according to a "u" shaped curve.
- *                                The maximum reactance (xMax) appears at the low and high tap positions. Depending on the “u” curve the attribute can be either higher or lower than PowerTransformerEnd.x.
- * @param xMin                    The reactance depends on the tap position according to a "u" shaped curve.
- *                                The minimum reactance (xMin) appears at the mid tap position.  PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.
+ *        A positive value indicates a positive angle variation from the Terminal at the  PowerTransformerEnd,  where the TapChanger is located, into the transformer.
+ *        The actual phase shift increment might be more accurately computed from the symmetrical or asymmetrical models or a tap step table lookup if those are available.
+ * @param xMax The reactance depends on the tap position according to a "u" shaped curve.
+ *        The maximum reactance (xMax) appears at the low and high tap positions. Depending on the “u” curve the attribute can be either higher or lower than PowerTransformerEnd.x.
+ * @param xMin The reactance depends on the tap position according to a "u" shaped curve.
+ *        The minimum reactance (xMin) appears at the mid tap position.  PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6291,8 +6024,8 @@ final case class PhaseTapChangerLinear
     xMax: Double = 0.0,
     xMin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -6318,47 +6051,41 @@ final case class PhaseTapChangerLinear
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PhaseTapChangerLinear.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PhaseTapChangerLinear.fields (position), value)
-
         emitelem (0, stepPhaseShiftIncrement)
         emitelem (1, xMax)
         emitelem (2, xMin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PhaseTapChangerLinear rdf:ID=\"%s\">\n%s\t</cim:PhaseTapChangerLinear>".format (id, export_fields)
+        "\t<cim:PhaseTapChangerLinear rdf:%s=\"%s\">\n%s\t</cim:PhaseTapChangerLinear>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PhaseTapChangerLinear
-    extends
-        CIMParseable[PhaseTapChangerLinear]
+extends
+    CIMParseable[PhaseTapChangerLinear]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "stepPhaseShiftIncrement",
         "xMax",
         "xMin"
     )
-    val stepPhaseShiftIncrement: Fielder = parse_element (element (cls, fields (0)))
-    val xMax: Fielder = parse_element (element (cls, fields (1)))
-    val xMin: Fielder = parse_element (element (cls, fields (2)))
+    val stepPhaseShiftIncrement: Fielder = parse_element (element (cls, fields(0)))
+    val xMax: Fielder = parse_element (element (cls, fields(1)))
+    val xMin: Fielder = parse_element (element (cls, fields(2)))
 
     def parse (context: CIMContext): PhaseTapChangerLinear =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PhaseTapChangerLinear (
             PhaseTapChanger.parse (context),
             toDouble (mask (stepPhaseShiftIncrement (), 0)),
@@ -6389,7 +6116,7 @@ object PhaseTapChangerLinearSerializer extends CIMSerializer[PhaseTapChangerLine
 
     def read (kryo: Kryo, input: Input, cls: Class[PhaseTapChangerLinear]): PhaseTapChangerLinear =
     {
-        val parent = PhaseTapChangerSerializer.read (kryo, input, classOf [PhaseTapChanger])
+        val parent = PhaseTapChangerSerializer.read (kryo, input, classOf[PhaseTapChanger])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PhaseTapChangerLinear (
             parent,
@@ -6407,14 +6134,14 @@ object PhaseTapChangerLinearSerializer extends CIMSerializer[PhaseTapChangerLine
  *
  * This is a base class for the symmetrical and asymmetrical phase tap changer models. The details of these models can be found in IEC 61970-301.
  *
- * @param PhaseTapChanger      [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
+ * @param PhaseTapChanger [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
  * @param voltageStepIncrement The voltage step increment on the out of phase winding (the PowerTransformerEnd where the TapChanger is located) specified in percent of rated voltage of the PowerTransformerEnd.
- *                             A positive value means a positive voltage variation from the Terminal at the PowerTransformerEnd, where the TapChanger is located, into the transformer.
- *                             When the increment is negative, the voltage decreases when the tap step increases.
- * @param xMax                 The reactance depends on the tap position according to a "u" shaped curve.
- *                             The maximum reactance (xMax) appears at the low and high tap positions. Depending on the “u” curve the attribute can be either higher or lower than PowerTransformerEnd.x.
- * @param xMin                 The reactance depend on the tap position according to a "u" shaped curve.
- *                             The minimum reactance (xMin) appear at the mid tap position.   PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.
+ *        A positive value means a positive voltage variation from the Terminal at the PowerTransformerEnd, where the TapChanger is located, into the transformer.
+ *        When the increment is negative, the voltage decreases when the tap step increases.
+ * @param xMax The reactance depends on the tap position according to a "u" shaped curve.
+ *        The maximum reactance (xMax) appears at the low and high tap positions. Depending on the “u” curve the attribute can be either higher or lower than PowerTransformerEnd.x.
+ * @param xMin The reactance depend on the tap position according to a "u" shaped curve.
+ *        The minimum reactance (xMin) appear at the mid tap position.   PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6426,8 +6153,8 @@ final case class PhaseTapChangerNonLinear
     xMax: Double = 0.0,
     xMin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -6453,47 +6180,41 @@ final case class PhaseTapChangerNonLinear
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PhaseTapChangerNonLinear.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PhaseTapChangerNonLinear.fields (position), value)
-
         emitelem (0, voltageStepIncrement)
         emitelem (1, xMax)
         emitelem (2, xMin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PhaseTapChangerNonLinear rdf:ID=\"%s\">\n%s\t</cim:PhaseTapChangerNonLinear>".format (id, export_fields)
+        "\t<cim:PhaseTapChangerNonLinear rdf:%s=\"%s\">\n%s\t</cim:PhaseTapChangerNonLinear>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PhaseTapChangerNonLinear
-    extends
-        CIMParseable[PhaseTapChangerNonLinear]
+extends
+    CIMParseable[PhaseTapChangerNonLinear]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "voltageStepIncrement",
         "xMax",
         "xMin"
     )
-    val voltageStepIncrement: Fielder = parse_element (element (cls, fields (0)))
-    val xMax: Fielder = parse_element (element (cls, fields (1)))
-    val xMin: Fielder = parse_element (element (cls, fields (2)))
+    val voltageStepIncrement: Fielder = parse_element (element (cls, fields(0)))
+    val xMax: Fielder = parse_element (element (cls, fields(1)))
+    val xMin: Fielder = parse_element (element (cls, fields(2)))
 
     def parse (context: CIMContext): PhaseTapChangerNonLinear =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PhaseTapChangerNonLinear (
             PhaseTapChanger.parse (context),
             toDouble (mask (voltageStepIncrement (), 0)),
@@ -6524,7 +6245,7 @@ object PhaseTapChangerNonLinearSerializer extends CIMSerializer[PhaseTapChangerN
 
     def read (kryo: Kryo, input: Input, cls: Class[PhaseTapChangerNonLinear]): PhaseTapChangerNonLinear =
     {
-        val parent = PhaseTapChangerSerializer.read (kryo, input, classOf [PhaseTapChanger])
+        val parent = PhaseTapChangerSerializer.read (kryo, input, classOf[PhaseTapChanger])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PhaseTapChangerNonLinear (
             parent,
@@ -6551,8 +6272,8 @@ final case class PhaseTapChangerSymmetrical
 (
     PhaseTapChangerNonLinear: PhaseTapChangerNonLinear = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -6578,25 +6299,21 @@ final case class PhaseTapChangerSymmetrical
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:PhaseTapChangerSymmetrical rdf:ID=\"%s\">\n%s\t</cim:PhaseTapChangerSymmetrical>".format (id, export_fields)
+        "\t<cim:PhaseTapChangerSymmetrical rdf:%s=\"%s\">\n%s\t</cim:PhaseTapChangerSymmetrical>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PhaseTapChangerSymmetrical
-    extends
-        CIMParseable[PhaseTapChangerSymmetrical]
+extends
+    CIMParseable[PhaseTapChangerSymmetrical]
 {
 
     def parse (context: CIMContext): PhaseTapChangerSymmetrical =
@@ -6625,7 +6342,7 @@ object PhaseTapChangerSymmetricalSerializer extends CIMSerializer[PhaseTapChange
 
     def read (kryo: Kryo, input: Input, cls: Class[PhaseTapChangerSymmetrical]): PhaseTapChangerSymmetrical =
     {
-        val parent = PhaseTapChangerNonLinearSerializer.read (kryo, input, classOf [PhaseTapChangerNonLinear])
+        val parent = PhaseTapChangerNonLinearSerializer.read (kryo, input, classOf[PhaseTapChangerNonLinear])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PhaseTapChangerSymmetrical (
             parent
@@ -6638,9 +6355,9 @@ object PhaseTapChangerSymmetricalSerializer extends CIMSerializer[PhaseTapChange
 /**
  * Describes a tabular curve for how the phase angle difference and impedance varies with the tap step.
  *
- * @param IdentifiedObject          [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param PhaseTapChangerTablePoint [[ch.ninecode.model.PhaseTapChangerTablePoint PhaseTapChangerTablePoint]] The points of this table.
- * @param PhaseTapChangerTabular    [[ch.ninecode.model.PhaseTapChangerTabular PhaseTapChangerTabular]] The phase tap changers to which this phase tap table applies.
+ * @param PhaseTapChangerTabular [[ch.ninecode.model.PhaseTapChangerTabular PhaseTapChangerTabular]] The phase tap changers to which this phase tap table applies.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6651,8 +6368,8 @@ final case class PhaseTapChangerTable
     PhaseTapChangerTablePoint: List[String] = null,
     PhaseTapChangerTabular: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -6678,34 +6395,28 @@ final case class PhaseTapChangerTable
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PhaseTapChangerTable.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PhaseTapChangerTable.fields (position), x))
-
         emitattrs (0, PhaseTapChangerTablePoint)
         emitattrs (1, PhaseTapChangerTabular)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PhaseTapChangerTable rdf:ID=\"%s\">\n%s\t</cim:PhaseTapChangerTable>".format (id, export_fields)
+        "\t<cim:PhaseTapChangerTable rdf:%s=\"%s\">\n%s\t</cim:PhaseTapChangerTable>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PhaseTapChangerTable
-    extends
-        CIMParseable[PhaseTapChangerTable]
+extends
+    CIMParseable[PhaseTapChangerTable]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "PhaseTapChangerTablePoint",
         "PhaseTapChangerTabular"
     )
@@ -6713,13 +6424,13 @@ object PhaseTapChangerTable
         CIMRelationship ("PhaseTapChangerTablePoint", "PhaseTapChangerTablePoint", "1..*", "1"),
         CIMRelationship ("PhaseTapChangerTabular", "PhaseTapChangerTabular", "0..*", "0..1")
     )
-    val PhaseTapChangerTablePoint: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
-    val PhaseTapChangerTabular: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val PhaseTapChangerTablePoint: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val PhaseTapChangerTabular: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): PhaseTapChangerTable =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PhaseTapChangerTable (
             IdentifiedObject.parse (context),
             masks (PhaseTapChangerTablePoint (), 0),
@@ -6748,7 +6459,7 @@ object PhaseTapChangerTableSerializer extends CIMSerializer[PhaseTapChangerTable
 
     def read (kryo: Kryo, input: Input, cls: Class[PhaseTapChangerTable]): PhaseTapChangerTable =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PhaseTapChangerTable (
             parent,
@@ -6764,8 +6475,8 @@ object PhaseTapChangerTableSerializer extends CIMSerializer[PhaseTapChangerTable
  * Describes each tap step in the phase tap changer tabular curve.
  *
  * @param TapChangerTablePoint [[ch.ninecode.model.TapChangerTablePoint TapChangerTablePoint]] Reference to the superclass object.
- * @param angle                The angle difference in degrees.
- *                             A positive value indicates a positive angle variation from the Terminal at the  PowerTransformerEnd,  where the TapChanger is located, into the transformer.
+ * @param angle The angle difference in degrees.
+ *        A positive value indicates a positive angle variation from the Terminal at the  PowerTransformerEnd,  where the TapChanger is located, into the transformer.
  * @param PhaseTapChangerTable [[ch.ninecode.model.PhaseTapChangerTable PhaseTapChangerTable]] The table of this point.
  * @group Wires
  * @groupname Wires Package Wires
@@ -6777,8 +6488,8 @@ final case class PhaseTapChangerTablePoint
     angle: Double = 0.0,
     PhaseTapChangerTable: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -6804,49 +6515,42 @@ final case class PhaseTapChangerTablePoint
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PhaseTapChangerTablePoint.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PhaseTapChangerTablePoint.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PhaseTapChangerTablePoint.fields (position), value)
-
         emitelem (0, angle)
         emitattr (1, PhaseTapChangerTable)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PhaseTapChangerTablePoint rdf:ID=\"%s\">\n%s\t</cim:PhaseTapChangerTablePoint>".format (id, export_fields)
+        "\t<cim:PhaseTapChangerTablePoint rdf:%s=\"%s\">\n%s\t</cim:PhaseTapChangerTablePoint>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PhaseTapChangerTablePoint
-    extends
-        CIMParseable[PhaseTapChangerTablePoint]
+extends
+    CIMParseable[PhaseTapChangerTablePoint]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "angle",
         "PhaseTapChangerTable"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("PhaseTapChangerTable", "PhaseTapChangerTable", "1", "1..*")
     )
-    val angle: Fielder = parse_element (element (cls, fields (0)))
-    val PhaseTapChangerTable: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val angle: Fielder = parse_element (element (cls, fields(0)))
+    val PhaseTapChangerTable: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): PhaseTapChangerTablePoint =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PhaseTapChangerTablePoint (
             TapChangerTablePoint.parse (context),
             toDouble (mask (angle (), 0)),
@@ -6875,7 +6579,7 @@ object PhaseTapChangerTablePointSerializer extends CIMSerializer[PhaseTapChanger
 
     def read (kryo: Kryo, input: Input, cls: Class[PhaseTapChangerTablePoint]): PhaseTapChangerTablePoint =
     {
-        val parent = TapChangerTablePointSerializer.read (kryo, input, classOf [TapChangerTablePoint])
+        val parent = TapChangerTablePointSerializer.read (kryo, input, classOf[TapChangerTablePoint])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PhaseTapChangerTablePoint (
             parent,
@@ -6890,7 +6594,7 @@ object PhaseTapChangerTablePointSerializer extends CIMSerializer[PhaseTapChanger
 /**
  * Describes a tap changer with a table defining the relation between the tap step and the phase angle difference across the transformer.
  *
- * @param PhaseTapChanger      [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
+ * @param PhaseTapChanger [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
  * @param PhaseTapChangerTable [[ch.ninecode.model.PhaseTapChangerTable PhaseTapChangerTable]] The phase tap changer table for this phase tap changer.
  * @group Wires
  * @groupname Wires Package Wires
@@ -6901,8 +6605,8 @@ final case class PhaseTapChangerTabular
     PhaseTapChanger: PhaseTapChanger = null,
     PhaseTapChangerTable: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -6928,44 +6632,38 @@ final case class PhaseTapChangerTabular
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PhaseTapChangerTabular.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PhaseTapChangerTabular.fields (position), value)
-
         emitattr (0, PhaseTapChangerTable)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PhaseTapChangerTabular rdf:ID=\"%s\">\n%s\t</cim:PhaseTapChangerTabular>".format (id, export_fields)
+        "\t<cim:PhaseTapChangerTabular rdf:%s=\"%s\">\n%s\t</cim:PhaseTapChangerTabular>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PhaseTapChangerTabular
-    extends
-        CIMParseable[PhaseTapChangerTabular]
+extends
+    CIMParseable[PhaseTapChangerTabular]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "PhaseTapChangerTable"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("PhaseTapChangerTable", "PhaseTapChangerTable", "0..1", "0..*")
     )
-    val PhaseTapChangerTable: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val PhaseTapChangerTable: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): PhaseTapChangerTabular =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PhaseTapChangerTabular (
             PhaseTapChanger.parse (context),
             mask (PhaseTapChangerTable (), 0)
@@ -6992,7 +6690,7 @@ object PhaseTapChangerTabularSerializer extends CIMSerializer[PhaseTapChangerTab
 
     def read (kryo: Kryo, input: Input, cls: Class[PhaseTapChangerTabular]): PhaseTapChangerTabular =
     {
-        val parent = PhaseTapChangerSerializer.read (kryo, input, classOf [PhaseTapChanger])
+        val parent = PhaseTapChangerSerializer.read (kryo, input, classOf[PhaseTapChanger])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PhaseTapChangerTabular (
             parent,
@@ -7015,8 +6713,8 @@ final case class Plant
 (
     EquipmentContainer: EquipmentContainer = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -7042,25 +6740,21 @@ final case class Plant
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:Plant rdf:ID=\"%s\">\n%s\t</cim:Plant>".format (id, export_fields)
+        "\t<cim:Plant rdf:%s=\"%s\">\n%s\t</cim:Plant>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Plant
-    extends
-        CIMParseable[Plant]
+extends
+    CIMParseable[Plant]
 {
 
     def parse (context: CIMContext): Plant =
@@ -7089,7 +6783,7 @@ object PlantSerializer extends CIMSerializer[Plant]
 
     def read (kryo: Kryo, input: Input, cls: Class[Plant]): Plant =
     {
-        val parent = EquipmentContainerSerializer.read (kryo, input, classOf [EquipmentContainer])
+        val parent = EquipmentContainerSerializer.read (kryo, input, classOf[EquipmentContainer])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Plant (
             parent
@@ -7102,33 +6796,33 @@ object PlantSerializer extends CIMSerializer[Plant]
 /**
  * A connection to the AC network for energy production or consumption that uses power electronics rather than rotating machines.
  *
- * @param RegulatingCondEq                [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
- * @param maxIFault                       Maximum fault current this device will contribute, in per-unit of rated current, before the converter protection will trip or bypass.
- * @param maxQ                            Maximum reactive power limit.
- *                                        This is the maximum (nameplate) limit for the unit.
- * @param minQ                            Minimum reactive power limit for the unit.
- *                                        This is the minimum (nameplate) limit for the unit.
- * @param p                               Active power injection.
- *                                        Load sign convention is used, i.e. positive sign means flow out from a node.
- *                                        Starting value for a steady state solution.
- * @param q                               Reactive power injection.
- *                                        Load sign convention is used, i.e. positive sign means flow out from a node.
- *                                        Starting value for a steady state solution.
- * @param r                               Equivalent resistance (RG) of generator.
- *                                        RG is considered for the calculation of all currents, except for the calculation of the peak current ip. Used for short circuit data exchange according to IEC 60909.
- * @param r0                              Zero sequence resistance of the synchronous machine.
- * @param ratedS                          Nameplate apparent power rating for the unit.
- *                                        The attribute shall have a positive value.
- * @param ratedU                          Rated voltage (nameplate data, Ur in IEC 60909-0).
- *                                        It is primarily used for short circuit data exchange according to IEC 60909.
- *                                        The attribute shall be a positive value.
- * @param rn                              Negative sequence Thevenin resistance.
- * @param x                               Positive sequence Thevenin reactance.
- * @param x0                              Zero sequence Thevenin reactance.
- * @param xn                              Negative sequence Thevenin reactance.
+ * @param RegulatingCondEq [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
+ * @param maxIFault Maximum fault current this device will contribute, in per-unit of rated current, before the converter protection will trip or bypass.
+ * @param maxQ Maximum reactive power limit.
+ *        This is the maximum (nameplate) limit for the unit.
+ * @param minQ Minimum reactive power limit for the unit.
+ *        This is the minimum (nameplate) limit for the unit.
+ * @param p Active power injection.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution.
+ * @param q Reactive power injection.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution.
+ * @param r Equivalent resistance (RG) of generator.
+ *        RG is considered for the calculation of all currents, except for the calculation of the peak current ip. Used for short circuit data exchange according to IEC 60909.
+ * @param r0 Zero sequence resistance of the synchronous machine.
+ * @param ratedS Nameplate apparent power rating for the unit.
+ *        The attribute shall have a positive value.
+ * @param ratedU Rated voltage (nameplate data, Ur in IEC 60909-0).
+ *        It is primarily used for short circuit data exchange according to IEC 60909.
+ *        The attribute shall be a positive value.
+ * @param rn Negative sequence Thevenin resistance.
+ * @param x Positive sequence Thevenin reactance.
+ * @param x0 Zero sequence Thevenin reactance.
+ * @param xn Negative sequence Thevenin reactance.
  * @param PowerElectronicsConnectionPhase [[ch.ninecode.model.PowerElectronicsConnectionPhase PowerElectronicsConnectionPhase]] The individual phases models for the power electronics connection.
- * @param PowerElectronicsUnit            [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] An AC network connection may have several power electronics units connecting through it.
- * @param WindTurbineType3or4Dynamics     [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] The wind turbine type 3 or type 4 dynamics model associated with this power electronics connection.
+ * @param PowerElectronicsUnit [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] An AC network connection may have several power electronics units connecting through it.
+ * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] The wind turbine type 3 or type 4 dynamics model associated with this power electronics connection.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -7153,8 +6847,8 @@ final case class PowerElectronicsConnection
     PowerElectronicsUnit: List[String] = null,
     WindTurbineType3or4Dynamics: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -7180,22 +6874,15 @@ final case class PowerElectronicsConnection
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerElectronicsConnection.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerElectronicsConnection.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerElectronicsConnection.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PowerElectronicsConnection.fields (position), x))
-
         emitelem (0, maxIFault)
         emitelem (1, maxQ)
         emitelem (2, minQ)
@@ -7214,18 +6901,17 @@ final case class PowerElectronicsConnection
         emitattr (15, WindTurbineType3or4Dynamics)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PowerElectronicsConnection rdf:ID=\"%s\">\n%s\t</cim:PowerElectronicsConnection>".format (id, export_fields)
+        "\t<cim:PowerElectronicsConnection rdf:%s=\"%s\">\n%s\t</cim:PowerElectronicsConnection>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PowerElectronicsConnection
-    extends
-        CIMParseable[PowerElectronicsConnection]
+extends
+    CIMParseable[PowerElectronicsConnection]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "maxIFault",
         "maxQ",
         "minQ",
@@ -7248,27 +6934,27 @@ object PowerElectronicsConnection
         CIMRelationship ("PowerElectronicsUnit", "PowerElectronicsUnit", "0..*", "1"),
         CIMRelationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "0..1", "1")
     )
-    val maxIFault: Fielder = parse_element (element (cls, fields (0)))
-    val maxQ: Fielder = parse_element (element (cls, fields (1)))
-    val minQ: Fielder = parse_element (element (cls, fields (2)))
-    val p: Fielder = parse_element (element (cls, fields (3)))
-    val q: Fielder = parse_element (element (cls, fields (4)))
-    val r: Fielder = parse_element (element (cls, fields (5)))
-    val r0: Fielder = parse_element (element (cls, fields (6)))
-    val ratedS: Fielder = parse_element (element (cls, fields (7)))
-    val ratedU: Fielder = parse_element (element (cls, fields (8)))
-    val rn: Fielder = parse_element (element (cls, fields (9)))
-    val x: Fielder = parse_element (element (cls, fields (10)))
-    val x0: Fielder = parse_element (element (cls, fields (11)))
-    val xn: Fielder = parse_element (element (cls, fields (12)))
-    val PowerElectronicsConnectionPhase: FielderMultiple = parse_attributes (attribute (cls, fields (13)))
-    val PowerElectronicsUnit: FielderMultiple = parse_attributes (attribute (cls, fields (14)))
-    val WindTurbineType3or4Dynamics: Fielder = parse_attribute (attribute (cls, fields (15)))
+    val maxIFault: Fielder = parse_element (element (cls, fields(0)))
+    val maxQ: Fielder = parse_element (element (cls, fields(1)))
+    val minQ: Fielder = parse_element (element (cls, fields(2)))
+    val p: Fielder = parse_element (element (cls, fields(3)))
+    val q: Fielder = parse_element (element (cls, fields(4)))
+    val r: Fielder = parse_element (element (cls, fields(5)))
+    val r0: Fielder = parse_element (element (cls, fields(6)))
+    val ratedS: Fielder = parse_element (element (cls, fields(7)))
+    val ratedU: Fielder = parse_element (element (cls, fields(8)))
+    val rn: Fielder = parse_element (element (cls, fields(9)))
+    val x: Fielder = parse_element (element (cls, fields(10)))
+    val x0: Fielder = parse_element (element (cls, fields(11)))
+    val xn: Fielder = parse_element (element (cls, fields(12)))
+    val PowerElectronicsConnectionPhase: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val PowerElectronicsUnit: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
+    val WindTurbineType3or4Dynamics: Fielder = parse_attribute (attribute (cls, fields(15)))
 
     def parse (context: CIMContext): PowerElectronicsConnection =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerElectronicsConnection (
             RegulatingCondEq.parse (context),
             toDouble (mask (maxIFault (), 0)),
@@ -7325,7 +7011,7 @@ object PowerElectronicsConnectionSerializer extends CIMSerializer[PowerElectroni
 
     def read (kryo: Kryo, input: Input, cls: Class[PowerElectronicsConnection]): PowerElectronicsConnection =
     {
-        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf [RegulatingCondEq])
+        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf[RegulatingCondEq])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PowerElectronicsConnection (
             parent,
@@ -7354,13 +7040,13 @@ object PowerElectronicsConnectionSerializer extends CIMSerializer[PowerElectroni
 /**
  * A single phase of a power electronics connection.
  *
- * @param PowerSystemResource        [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param p                          Active power injection.
- *                                   Load sign convention is used, i.e. positive sign means flow into the equipment from the network.
- * @param phase                      Phase of this energy producer component.
- *                                   If the energy producer is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy producer is delta connected, the phase indicates an energy producer connected from the indicated phase to the next logical non-neutral phase.
- * @param q                          Reactive power injection.
- *                                   Load sign convention is used, i.e. positive sign means flow into the equipment from the network.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param p Active power injection.
+ *        Load sign convention is used, i.e. positive sign means flow into the equipment from the network.
+ * @param phase Phase of this energy producer component.
+ *        If the energy producer is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy producer is delta connected, the phase indicates an energy producer connected from the indicated phase to the next logical non-neutral phase.
+ * @param q Reactive power injection.
+ *        Load sign convention is used, i.e. positive sign means flow into the equipment from the network.
  * @param PowerElectronicsConnection [[ch.ninecode.model.PowerElectronicsConnection PowerElectronicsConnection]] Power electronics connection of this power electronics connection phase.
  * @group Wires
  * @groupname Wires Package Wires
@@ -7374,8 +7060,8 @@ final case class PowerElectronicsConnectionPhase
     q: Double = 0.0,
     PowerElectronicsConnection: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -7401,38 +7087,31 @@ final case class PowerElectronicsConnectionPhase
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerElectronicsConnectionPhase.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerElectronicsConnectionPhase.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerElectronicsConnectionPhase.fields (position), value)
-
         emitelem (0, p)
         emitattr (1, phase)
         emitelem (2, q)
         emitattr (3, PowerElectronicsConnection)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PowerElectronicsConnectionPhase rdf:ID=\"%s\">\n%s\t</cim:PowerElectronicsConnectionPhase>".format (id, export_fields)
+        "\t<cim:PowerElectronicsConnectionPhase rdf:%s=\"%s\">\n%s\t</cim:PowerElectronicsConnectionPhase>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PowerElectronicsConnectionPhase
-    extends
-        CIMParseable[PowerElectronicsConnectionPhase]
+extends
+    CIMParseable[PowerElectronicsConnectionPhase]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "p",
         "phase",
         "q",
@@ -7441,15 +7120,15 @@ object PowerElectronicsConnectionPhase
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("PowerElectronicsConnection", "PowerElectronicsConnection", "1", "0..*")
     )
-    val p: Fielder = parse_element (element (cls, fields (0)))
-    val phase: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val q: Fielder = parse_element (element (cls, fields (2)))
-    val PowerElectronicsConnection: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val p: Fielder = parse_element (element (cls, fields(0)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val q: Fielder = parse_element (element (cls, fields(2)))
+    val PowerElectronicsConnection: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: CIMContext): PowerElectronicsConnectionPhase =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerElectronicsConnectionPhase (
             PowerSystemResource.parse (context),
             toDouble (mask (p (), 0)),
@@ -7482,7 +7161,7 @@ object PowerElectronicsConnectionPhaseSerializer extends CIMSerializer[PowerElec
 
     def read (kryo: Kryo, input: Input, cls: Class[PowerElectronicsConnectionPhase]): PowerElectronicsConnectionPhase =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PowerElectronicsConnectionPhase (
             parent,
@@ -7504,28 +7183,28 @@ object PowerElectronicsConnectionPhaseSerializer extends CIMSerializer[PowerElec
  * A power transformer can be modelled with or without tanks and is intended for use in both balanced and unbalanced representations.   A power transformer typically has two terminals, but may have one (grounding), three or more terminals.
  * The inherited association ConductingEquipment.BaseVoltage should not be used.  The association from TransformerEnd to BaseVoltage should be used instead.
  *
- * @param ConductingEquipment                    [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param beforeShCircuitHighestOperatingCurrent The highest operating current (Ib in IEC 60909-0) before short circuit (depends on network configuration and relevant reliability philosophy).
- *                                               It is used for calculation of the impedance correction factor KT defined in IEC 60909-0.
+ *        It is used for calculation of the impedance correction factor KT defined in IEC 60909-0.
  * @param beforeShCircuitHighestOperatingVoltage The highest operating voltage (Ub in IEC 60909-0) before short circuit.
- *                                               It is used for calculation of the impedance correction factor KT defined in IEC 60909-0. This is worst case voltage on the low side winding (3.7.1 of IEC 60909:2001). Used to define operating conditions.
- * @param beforeShortCircuitAnglePf              The angle of power factor before short circuit (phib in IEC 60909-0).
- *                                               It is used for calculation of the impedance correction factor KT defined in IEC 60909-0. This is the worst case power factor. Used to define operating conditions.
- * @param highSideMinOperatingU                  The minimum operating voltage (uQmin in IEC 60909-0) at the high voltage side (Q side) of the unit transformer of the power station unit.
- *                                               A value well established from long-term operating experience of the system. It is used for calculation of the impedance correction factor KG defined in IEC 60909-0.
- * @param isPartOfGeneratorUnit                  Indicates whether the machine is part of a power station unit.
- *                                               Used for short circuit data exchange according to IEC 60909.  It has an impact on how the correction factors are calculated for transformers, since the transformer is not necessarily part of a synchronous machine and generating unit. It is not always possible to derive this information from the model. This is why the attribute is necessary.
- * @param operationalValuesConsidered            It is used to define if the data (other attributes related to short circuit data exchange) defines long term operational conditions or not.
- *                                               Used for short circuit data exchange according to IEC 60909.
- * @param vectorGroup                            Vector group of the transformer for protective relaying, e.g., Dyn1.
- *                                               For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle displacements.
- *
- *                                               The vectorGroup string consists of the following components in the order listed: high voltage winding connection, mid voltage winding connection (for three winding transformers), phase displacement clock number from 0 to 11,  low voltage winding connection
- *                                               phase displacement clock number from 0 to 11.   The winding connections are D (delta), Y (wye), YN (wye with neutral), Z (zigzag), ZN (zigzag with neutral), A (auto transformer). Upper case means the high voltage, lower case mid or low. The high voltage winding always has clock position 0 and is not included in the vector group string.  Some examples: YNy0 (two winding wye to wye with no phase displacement), YNd11 (two winding wye to delta with 330 degrees phase displacement), YNyn0d5 (three winding transformer wye with neutral high voltage, wye with neutral mid voltage and no phase displacement, delta low voltage with 150 degrees displacement).
- *
- *                                               Phase displacement is defined as the angular difference between the phasors representing the voltages between the neutral point (real or imaginary) and the corresponding terminals of two windings, a positive sequence voltage system being applied to the high-voltage terminals, following each other in alphabetical sequence if they are lettered, or in numerical sequence if they are numbered: the phasors are assumed to rotate in a counter-clockwise sense.
- * @param PowerTransformerEnd                    [[ch.ninecode.model.PowerTransformerEnd PowerTransformerEnd]] The ends of this power transformer.
- * @param TransformerTanks                       [[ch.ninecode.model.TransformerTank TransformerTank]] All transformers that belong to this bank.
+ *        It is used for calculation of the impedance correction factor KT defined in IEC 60909-0. This is worst case voltage on the low side winding (3.7.1 of IEC 60909:2001). Used to define operating conditions.
+ * @param beforeShortCircuitAnglePf The angle of power factor before short circuit (phib in IEC 60909-0).
+ *        It is used for calculation of the impedance correction factor KT defined in IEC 60909-0. This is the worst case power factor. Used to define operating conditions.
+ * @param highSideMinOperatingU The minimum operating voltage (uQmin in IEC 60909-0) at the high voltage side (Q side) of the unit transformer of the power station unit.
+ *        A value well established from long-term operating experience of the system. It is used for calculation of the impedance correction factor KG defined in IEC 60909-0.
+ * @param isPartOfGeneratorUnit Indicates whether the machine is part of a power station unit.
+ *        Used for short circuit data exchange according to IEC 60909.  It has an impact on how the correction factors are calculated for transformers, since the transformer is not necessarily part of a synchronous machine and generating unit. It is not always possible to derive this information from the model. This is why the attribute is necessary.
+ * @param operationalValuesConsidered It is used to define if the data (other attributes related to short circuit data exchange) defines long term operational conditions or not.
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param vectorGroup Vector group of the transformer for protective relaying, e.g., Dyn1.
+ *        For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle displacements.
+ *        
+ *        The vectorGroup string consists of the following components in the order listed: high voltage winding connection, mid voltage winding connection (for three winding transformers), phase displacement clock number from 0 to 11,  low voltage winding connection
+ *        phase displacement clock number from 0 to 11.   The winding connections are D (delta), Y (wye), YN (wye with neutral), Z (zigzag), ZN (zigzag with neutral), A (auto transformer). Upper case means the high voltage, lower case mid or low. The high voltage winding always has clock position 0 and is not included in the vector group string.  Some examples: YNy0 (two winding wye to wye with no phase displacement), YNd11 (two winding wye to delta with 330 degrees phase displacement), YNyn0d5 (three winding transformer wye with neutral high voltage, wye with neutral mid voltage and no phase displacement, delta low voltage with 150 degrees displacement).
+ *        
+ *        Phase displacement is defined as the angular difference between the phasors representing the voltages between the neutral point (real or imaginary) and the corresponding terminals of two windings, a positive sequence voltage system being applied to the high-voltage terminals, following each other in alphabetical sequence if they are lettered, or in numerical sequence if they are numbered: the phasors are assumed to rotate in a counter-clockwise sense.
+ * @param PowerTransformerEnd [[ch.ninecode.model.PowerTransformerEnd PowerTransformerEnd]] The ends of this power transformer.
+ * @param TransformerTanks [[ch.ninecode.model.TransformerTank TransformerTank]] All transformers that belong to this bank.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -7543,8 +7222,8 @@ final case class PowerTransformer
     PowerTransformerEnd: List[String] = null,
     TransformerTanks: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -7570,20 +7249,14 @@ final case class PowerTransformer
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerTransformer.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerTransformer.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PowerTransformer.fields (position), x))
-
         emitelem (0, beforeShCircuitHighestOperatingCurrent)
         emitelem (1, beforeShCircuitHighestOperatingVoltage)
         emitelem (2, beforeShortCircuitAnglePf)
@@ -7595,18 +7268,17 @@ final case class PowerTransformer
         emitattrs (8, TransformerTanks)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PowerTransformer rdf:ID=\"%s\">\n%s\t</cim:PowerTransformer>".format (id, export_fields)
+        "\t<cim:PowerTransformer rdf:%s=\"%s\">\n%s\t</cim:PowerTransformer>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PowerTransformer
-    extends
-        CIMParseable[PowerTransformer]
+extends
+    CIMParseable[PowerTransformer]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "beforeShCircuitHighestOperatingCurrent",
         "beforeShCircuitHighestOperatingVoltage",
         "beforeShortCircuitAnglePf",
@@ -7621,20 +7293,20 @@ object PowerTransformer
         CIMRelationship ("PowerTransformerEnd", "PowerTransformerEnd", "0..*", "0..1"),
         CIMRelationship ("TransformerTanks", "TransformerTank", "0..*", "0..1")
     )
-    val beforeShCircuitHighestOperatingCurrent: Fielder = parse_element (element (cls, fields (0)))
-    val beforeShCircuitHighestOperatingVoltage: Fielder = parse_element (element (cls, fields (1)))
-    val beforeShortCircuitAnglePf: Fielder = parse_element (element (cls, fields (2)))
-    val highSideMinOperatingU: Fielder = parse_element (element (cls, fields (3)))
-    val isPartOfGeneratorUnit: Fielder = parse_element (element (cls, fields (4)))
-    val operationalValuesConsidered: Fielder = parse_element (element (cls, fields (5)))
-    val vectorGroup: Fielder = parse_element (element (cls, fields (6)))
-    val PowerTransformerEnd: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
-    val TransformerTanks: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
+    val beforeShCircuitHighestOperatingCurrent: Fielder = parse_element (element (cls, fields(0)))
+    val beforeShCircuitHighestOperatingVoltage: Fielder = parse_element (element (cls, fields(1)))
+    val beforeShortCircuitAnglePf: Fielder = parse_element (element (cls, fields(2)))
+    val highSideMinOperatingU: Fielder = parse_element (element (cls, fields(3)))
+    val isPartOfGeneratorUnit: Fielder = parse_element (element (cls, fields(4)))
+    val operationalValuesConsidered: Fielder = parse_element (element (cls, fields(5)))
+    val vectorGroup: Fielder = parse_element (element (cls, fields(6)))
+    val PowerTransformerEnd: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val TransformerTanks: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
 
     def parse (context: CIMContext): PowerTransformer =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerTransformer (
             ConductingEquipment.parse (context),
             toDouble (mask (beforeShCircuitHighestOperatingCurrent (), 0)),
@@ -7677,7 +7349,7 @@ object PowerTransformerSerializer extends CIMSerializer[PowerTransformer]
 
     def read (kryo: Kryo, input: Input, cls: Class[PowerTransformer]): PowerTransformer =
     {
-        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf [ConductingEquipment])
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PowerTransformer (
             parent,
@@ -7706,25 +7378,25 @@ object PowerTransformerSerializer extends CIMSerializer[PowerTransformer]
  * 4) for a PowerTransformer with more than three Terminals the PowerTransformerEnd impedance values cannot be used. Instead use the TransformerMeshImpedance or split the transformer into multiple PowerTransformers.
  * Each PowerTransformerEnd must be contained by a PowerTransformer. Because a PowerTransformerEnd (or any other object) can not be contained by more than one parent, a PowerTransformerEnd can not have an association to an EquipmentContainer (Substation, VoltageLevel, etc).
  *
- * @param TransformerEnd   [[ch.ninecode.model.TransformerEnd TransformerEnd]] Reference to the superclass object.
- * @param b                Magnetizing branch susceptance (B mag).
- *                         The value can be positive or negative.
- * @param b0               Zero sequence magnetizing branch susceptance.
- * @param connectionKind   Kind of connection.
- * @param g                Magnetizing branch conductance.
- * @param g0               Zero sequence magnetizing branch conductance (star-model).
- * @param phaseAngleClock  Terminal voltage phase angle displacement where 360 degrees are represented with clock hours.
- *                         The valid values are 0 to 11. For example, for the secondary side end of a transformer with vector group code of 'Dyn11', specify the connection kind as wye with neutral and specify the phase angle of the clock as 11.  The clock value of the transformer end number specified as 1, is assumed to be zero.  Note the transformer end number is not assumed to be the same as the terminal sequence number.
- * @param r                Resistance (star-model) of the transformer end.
- *                         The attribute shall be equal to or greater than zero for non-equivalent transformers.
- * @param r0               Zero sequence series resistance (star-model) of the transformer end.
- * @param ratedS           Normal apparent power rating.
- *                         The attribute shall be a positive value. For a two-winding transformer the values for the high and low voltage sides shall be identical.
- * @param ratedU           Rated voltage: phase-phase for three-phase windings, and either phase-phase or phase-neutral for single-phase windings.
- *                         A high voltage side, as given by TransformerEnd.endNumber, shall have a ratedU that is greater than or equal to ratedU for the lower voltage sides.
- *                         The attribute shall be a positive value.
- * @param x                Positive sequence series reactance (star-model) of the transformer end.
- * @param x0               Zero sequence series reactance of the transformer end.
+ * @param TransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] Reference to the superclass object.
+ * @param b Magnetizing branch susceptance (B mag).
+ *        The value can be positive or negative.
+ * @param b0 Zero sequence magnetizing branch susceptance.
+ * @param connectionKind Kind of connection.
+ * @param g Magnetizing branch conductance.
+ * @param g0 Zero sequence magnetizing branch conductance (star-model).
+ * @param phaseAngleClock Terminal voltage phase angle displacement where 360 degrees are represented with clock hours.
+ *        The valid values are 0 to 11. For example, for the secondary side end of a transformer with vector group code of 'Dyn11', specify the connection kind as wye with neutral and specify the phase angle of the clock as 11.  The clock value of the transformer end number specified as 1, is assumed to be zero.  Note the transformer end number is not assumed to be the same as the terminal sequence number.
+ * @param r Resistance (star-model) of the transformer end.
+ *        The attribute shall be equal to or greater than zero for non-equivalent transformers.
+ * @param r0 Zero sequence series resistance (star-model) of the transformer end.
+ * @param ratedS Normal apparent power rating.
+ *        The attribute shall be a positive value. For a two-winding transformer the values for the high and low voltage sides shall be identical.
+ * @param ratedU Rated voltage: phase-phase for three-phase windings, and either phase-phase or phase-neutral for single-phase windings.
+ *        A high voltage side, as given by TransformerEnd.endNumber, shall have a ratedU that is greater than or equal to ratedU for the lower voltage sides.
+ *        The attribute shall be a positive value.
+ * @param x Positive sequence series reactance (star-model) of the transformer end.
+ * @param x0 Zero sequence series reactance of the transformer end.
  * @param PowerTransformer [[ch.ninecode.model.PowerTransformer PowerTransformer]] The power transformer of this power transformer end.
  * @group Wires
  * @groupname Wires Package Wires
@@ -7747,8 +7419,8 @@ final case class PowerTransformerEnd
     x0: Double = 0.0,
     PowerTransformer: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -7774,20 +7446,14 @@ final case class PowerTransformerEnd
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerTransformerEnd.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerTransformerEnd.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerTransformerEnd.fields (position), value)
-
         emitelem (0, b)
         emitelem (1, b0)
         emitattr (2, connectionKind)
@@ -7803,18 +7469,17 @@ final case class PowerTransformerEnd
         emitattr (12, PowerTransformer)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PowerTransformerEnd rdf:ID=\"%s\">\n%s\t</cim:PowerTransformerEnd>".format (id, export_fields)
+        "\t<cim:PowerTransformerEnd rdf:%s=\"%s\">\n%s\t</cim:PowerTransformerEnd>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PowerTransformerEnd
-    extends
-        CIMParseable[PowerTransformerEnd]
+extends
+    CIMParseable[PowerTransformerEnd]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "b",
         "b0",
         "connectionKind",
@@ -7832,24 +7497,24 @@ object PowerTransformerEnd
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("PowerTransformer", "PowerTransformer", "0..1", "0..*")
     )
-    val b: Fielder = parse_element (element (cls, fields (0)))
-    val b0: Fielder = parse_element (element (cls, fields (1)))
-    val connectionKind: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val g: Fielder = parse_element (element (cls, fields (3)))
-    val g0: Fielder = parse_element (element (cls, fields (4)))
-    val phaseAngleClock: Fielder = parse_element (element (cls, fields (5)))
-    val r: Fielder = parse_element (element (cls, fields (6)))
-    val r0: Fielder = parse_element (element (cls, fields (7)))
-    val ratedS: Fielder = parse_element (element (cls, fields (8)))
-    val ratedU: Fielder = parse_element (element (cls, fields (9)))
-    val x: Fielder = parse_element (element (cls, fields (10)))
-    val x0: Fielder = parse_element (element (cls, fields (11)))
-    val PowerTransformer: Fielder = parse_attribute (attribute (cls, fields (12)))
+    val b: Fielder = parse_element (element (cls, fields(0)))
+    val b0: Fielder = parse_element (element (cls, fields(1)))
+    val connectionKind: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val g: Fielder = parse_element (element (cls, fields(3)))
+    val g0: Fielder = parse_element (element (cls, fields(4)))
+    val phaseAngleClock: Fielder = parse_element (element (cls, fields(5)))
+    val r: Fielder = parse_element (element (cls, fields(6)))
+    val r0: Fielder = parse_element (element (cls, fields(7)))
+    val ratedS: Fielder = parse_element (element (cls, fields(8)))
+    val ratedU: Fielder = parse_element (element (cls, fields(9)))
+    val x: Fielder = parse_element (element (cls, fields(10)))
+    val x0: Fielder = parse_element (element (cls, fields(11)))
+    val PowerTransformer: Fielder = parse_attribute (attribute (cls, fields(12)))
 
     def parse (context: CIMContext): PowerTransformerEnd =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerTransformerEnd (
             TransformerEnd.parse (context),
             toDouble (mask (b (), 0)),
@@ -7900,7 +7565,7 @@ object PowerTransformerEndSerializer extends CIMSerializer[PowerTransformerEnd]
 
     def read (kryo: Kryo, input: Input, cls: Class[PowerTransformerEnd]): PowerTransformerEnd =
     {
-        val parent = TransformerEndSerializer.read (kryo, input, classOf [TransformerEnd])
+        val parent = TransformerEndSerializer.read (kryo, input, classOf[TransformerEnd])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PowerTransformerEnd (
             parent,
@@ -7926,10 +7591,10 @@ object PowerTransformerEndSerializer extends CIMSerializer[PowerTransformerEnd]
 /**
  * A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
  *
- * @param Switch                        [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
- * @param breakingCapacity              The maximum fault current a breaking device can break safely under prescribed conditions of use.
+ * @param Switch [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
+ * @param breakingCapacity The maximum fault current a breaking device can break safely under prescribed conditions of use.
  * @param OperatedByProtectionEquipment [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Protection equipments that operate this ProtectedSwitch.
- * @param RecloseSequences              [[ch.ninecode.model.RecloseSequence RecloseSequence]] A breaker may have zero or more automatic reclosures after a trip occurs.
+ * @param RecloseSequences [[ch.ninecode.model.RecloseSequence RecloseSequence]] A breaker may have zero or more automatic reclosures after a trip occurs.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -7941,8 +7606,8 @@ final case class ProtectedSwitch
     OperatedByProtectionEquipment: List[String] = null,
     RecloseSequences: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -7968,37 +7633,30 @@ final case class ProtectedSwitch
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProtectedSwitch.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProtectedSwitch.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ProtectedSwitch.fields (position), x))
-
         emitelem (0, breakingCapacity)
         emitattrs (1, OperatedByProtectionEquipment)
         emitattrs (2, RecloseSequences)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:ProtectedSwitch rdf:ID=\"%s\">\n%s\t</cim:ProtectedSwitch>".format (id, export_fields)
+        "\t<cim:ProtectedSwitch rdf:%s=\"%s\">\n%s\t</cim:ProtectedSwitch>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ProtectedSwitch
-    extends
-        CIMParseable[ProtectedSwitch]
+extends
+    CIMParseable[ProtectedSwitch]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "breakingCapacity",
         "OperatedByProtectionEquipment",
         "RecloseSequences"
@@ -8007,14 +7665,14 @@ object ProtectedSwitch
         CIMRelationship ("OperatedByProtectionEquipment", "ProtectionEquipment", "0..*", "0..*"),
         CIMRelationship ("RecloseSequences", "RecloseSequence", "0..*", "1")
     )
-    val breakingCapacity: Fielder = parse_element (element (cls, fields (0)))
-    val OperatedByProtectionEquipment: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
-    val RecloseSequences: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val breakingCapacity: Fielder = parse_element (element (cls, fields(0)))
+    val OperatedByProtectionEquipment: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val RecloseSequences: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: CIMContext): ProtectedSwitch =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ProtectedSwitch (
             Switch.parse (context),
             toDouble (mask (breakingCapacity (), 0)),
@@ -8045,7 +7703,7 @@ object ProtectedSwitchSerializer extends CIMSerializer[ProtectedSwitch]
 
     def read (kryo: Kryo, input: Input, cls: Class[ProtectedSwitch]): ProtectedSwitch =
     {
-        val parent = SwitchSerializer.read (kryo, input, classOf [Switch])
+        val parent = SwitchSerializer.read (kryo, input, classOf[Switch])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ProtectedSwitch (
             parent,
@@ -8063,12 +7721,12 @@ object ProtectedSwitchSerializer extends CIMSerializer[ProtectedSwitch]
  *
  * Angle sign convention (general): Positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
  *
- * @param TapChanger           [[ch.ninecode.model.TapChanger TapChanger]] Reference to the superclass object.
+ * @param TapChanger [[ch.ninecode.model.TapChanger TapChanger]] Reference to the superclass object.
  * @param stepVoltageIncrement Tap step increment, in per cent of rated voltage of the power transformer end, per step position.
- *                             When the increment is negative, the voltage decreases when the tap step increases.
- * @param tculControlMode      Specifies the regulation control mode (voltage or reactive) of the RatioTapChanger.
+ *        When the increment is negative, the voltage decreases when the tap step increases.
+ * @param tculControlMode Specifies the regulation control mode (voltage or reactive) of the RatioTapChanger.
  * @param RatioTapChangerTable [[ch.ninecode.model.RatioTapChangerTable RatioTapChangerTable]] The tap ratio table for this ratio  tap changer.
- * @param TransformerEnd       [[ch.ninecode.model.TransformerEnd TransformerEnd]] Transformer end to which this ratio tap changer belongs.
+ * @param TransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] Transformer end to which this ratio tap changer belongs.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -8081,8 +7739,8 @@ final case class RatioTapChanger
     RatioTapChangerTable: String = null,
     TransformerEnd: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -8108,38 +7766,31 @@ final case class RatioTapChanger
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RatioTapChanger.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RatioTapChanger.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RatioTapChanger.fields (position), value)
-
         emitelem (0, stepVoltageIncrement)
         emitattr (1, tculControlMode)
         emitattr (2, RatioTapChangerTable)
         emitattr (3, TransformerEnd)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:RatioTapChanger rdf:ID=\"%s\">\n%s\t</cim:RatioTapChanger>".format (id, export_fields)
+        "\t<cim:RatioTapChanger rdf:%s=\"%s\">\n%s\t</cim:RatioTapChanger>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object RatioTapChanger
-    extends
-        CIMParseable[RatioTapChanger]
+extends
+    CIMParseable[RatioTapChanger]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "stepVoltageIncrement",
         "tculControlMode",
         "RatioTapChangerTable",
@@ -8149,15 +7800,15 @@ object RatioTapChanger
         CIMRelationship ("RatioTapChangerTable", "RatioTapChangerTable", "0..1", "0..*"),
         CIMRelationship ("TransformerEnd", "TransformerEnd", "1", "0..1")
     )
-    val stepVoltageIncrement: Fielder = parse_element (element (cls, fields (0)))
-    val tculControlMode: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val RatioTapChangerTable: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val TransformerEnd: Fielder = parse_attribute (attribute (cls, fields (3)))
+    val stepVoltageIncrement: Fielder = parse_element (element (cls, fields(0)))
+    val tculControlMode: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val RatioTapChangerTable: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val TransformerEnd: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: CIMContext): RatioTapChanger =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = RatioTapChanger (
             TapChanger.parse (context),
             toDouble (mask (stepVoltageIncrement (), 0)),
@@ -8190,7 +7841,7 @@ object RatioTapChangerSerializer extends CIMSerializer[RatioTapChanger]
 
     def read (kryo: Kryo, input: Input, cls: Class[RatioTapChanger]): RatioTapChanger =
     {
-        val parent = TapChangerSerializer.read (kryo, input, classOf [TapChanger])
+        val parent = TapChangerSerializer.read (kryo, input, classOf[TapChanger])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RatioTapChanger (
             parent,
@@ -8207,8 +7858,8 @@ object RatioTapChangerSerializer extends CIMSerializer[RatioTapChanger]
 /**
  * Describes a curve for how the voltage magnitude and impedance varies with the tap step.
  *
- * @param IdentifiedObject          [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param RatioTapChanger           [[ch.ninecode.model.RatioTapChanger RatioTapChanger]] The ratio tap changer of this tap ratio table.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param RatioTapChanger [[ch.ninecode.model.RatioTapChanger RatioTapChanger]] The ratio tap changer of this tap ratio table.
  * @param RatioTapChangerTablePoint [[ch.ninecode.model.RatioTapChangerTablePoint RatioTapChangerTablePoint]] Points of this table.
  * @group Wires
  * @groupname Wires Package Wires
@@ -8220,8 +7871,8 @@ final case class RatioTapChangerTable
     RatioTapChanger: List[String] = null,
     RatioTapChangerTablePoint: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -8247,34 +7898,28 @@ final case class RatioTapChangerTable
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RatioTapChangerTable.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RatioTapChangerTable.fields (position), x))
-
         emitattrs (0, RatioTapChanger)
         emitattrs (1, RatioTapChangerTablePoint)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:RatioTapChangerTable rdf:ID=\"%s\">\n%s\t</cim:RatioTapChangerTable>".format (id, export_fields)
+        "\t<cim:RatioTapChangerTable rdf:%s=\"%s\">\n%s\t</cim:RatioTapChangerTable>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object RatioTapChangerTable
-    extends
-        CIMParseable[RatioTapChangerTable]
+extends
+    CIMParseable[RatioTapChangerTable]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "RatioTapChanger",
         "RatioTapChangerTablePoint"
     )
@@ -8282,13 +7927,13 @@ object RatioTapChangerTable
         CIMRelationship ("RatioTapChanger", "RatioTapChanger", "0..*", "0..1"),
         CIMRelationship ("RatioTapChangerTablePoint", "RatioTapChangerTablePoint", "1..*", "1")
     )
-    val RatioTapChanger: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
-    val RatioTapChangerTablePoint: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val RatioTapChanger: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val RatioTapChangerTablePoint: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): RatioTapChangerTable =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = RatioTapChangerTable (
             IdentifiedObject.parse (context),
             masks (RatioTapChanger (), 0),
@@ -8317,7 +7962,7 @@ object RatioTapChangerTableSerializer extends CIMSerializer[RatioTapChangerTable
 
     def read (kryo: Kryo, input: Input, cls: Class[RatioTapChangerTable]): RatioTapChangerTable =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RatioTapChangerTable (
             parent,
@@ -8343,8 +7988,8 @@ final case class RatioTapChangerTablePoint
     TapChangerTablePoint: TapChangerTablePoint = null,
     RatioTapChangerTable: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -8370,44 +8015,38 @@ final case class RatioTapChangerTablePoint
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RatioTapChangerTablePoint.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RatioTapChangerTablePoint.fields (position), value)
-
         emitattr (0, RatioTapChangerTable)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:RatioTapChangerTablePoint rdf:ID=\"%s\">\n%s\t</cim:RatioTapChangerTablePoint>".format (id, export_fields)
+        "\t<cim:RatioTapChangerTablePoint rdf:%s=\"%s\">\n%s\t</cim:RatioTapChangerTablePoint>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object RatioTapChangerTablePoint
-    extends
-        CIMParseable[RatioTapChangerTablePoint]
+extends
+    CIMParseable[RatioTapChangerTablePoint]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "RatioTapChangerTable"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("RatioTapChangerTable", "RatioTapChangerTable", "1", "1..*")
     )
-    val RatioTapChangerTable: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val RatioTapChangerTable: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): RatioTapChangerTablePoint =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = RatioTapChangerTablePoint (
             TapChangerTablePoint.parse (context),
             mask (RatioTapChangerTable (), 0)
@@ -8434,7 +8073,7 @@ object RatioTapChangerTablePointSerializer extends CIMSerializer[RatioTapChanger
 
     def read (kryo: Kryo, input: Input, cls: Class[RatioTapChangerTablePoint]): RatioTapChangerTablePoint =
     {
-        val parent = TapChangerTablePointSerializer.read (kryo, input, classOf [TapChangerTablePoint])
+        val parent = TapChangerTablePointSerializer.read (kryo, input, classOf[TapChangerTablePoint])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RatioTapChangerTablePoint (
             parent,
@@ -8450,12 +8089,12 @@ object RatioTapChangerTablePointSerializer extends CIMSerializer[RatioTapChanger
  *
  * For each active power value there is a corresponding high and low reactive power limit  value. Typically there will be a separate curve for each coolant condition, such as hydrogen pressure.  The Y1 axis values represent reactive minimum and the Y2 axis values represent reactive maximum.
  *
- * @param Curve                              [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
- * @param coolantTemperature                 The machine's coolant temperature (e.g., ambient air or stator circulating water).
- * @param hydrogenPressure                   The hydrogen coolant pressure.
- * @param EquivalentInjection                [[ch.ninecode.model.EquivalentInjection EquivalentInjection]] The equivalent injection using this reactive capability curve.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param coolantTemperature The machine's coolant temperature (e.g., ambient air or stator circulating water).
+ * @param hydrogenPressure The hydrogen coolant pressure.
+ * @param EquivalentInjection [[ch.ninecode.model.EquivalentInjection EquivalentInjection]] The equivalent injection using this reactive capability curve.
  * @param InitiallyUsedBySynchronousMachines [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machines using this curve as default.
- * @param SynchronousMachines                [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machines using this curve.
+ * @param SynchronousMachines [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machines using this curve.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -8469,8 +8108,8 @@ final case class ReactiveCapabilityCurve
     InitiallyUsedBySynchronousMachines: List[String] = null,
     SynchronousMachines: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -8496,20 +8135,14 @@ final case class ReactiveCapabilityCurve
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ReactiveCapabilityCurve.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ReactiveCapabilityCurve.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ReactiveCapabilityCurve.fields (position), x))
-
         emitelem (0, coolantTemperature)
         emitelem (1, hydrogenPressure)
         emitattrs (2, EquivalentInjection)
@@ -8517,18 +8150,17 @@ final case class ReactiveCapabilityCurve
         emitattrs (4, SynchronousMachines)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:ReactiveCapabilityCurve rdf:ID=\"%s\">\n%s\t</cim:ReactiveCapabilityCurve>".format (id, export_fields)
+        "\t<cim:ReactiveCapabilityCurve rdf:%s=\"%s\">\n%s\t</cim:ReactiveCapabilityCurve>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ReactiveCapabilityCurve
-    extends
-        CIMParseable[ReactiveCapabilityCurve]
+extends
+    CIMParseable[ReactiveCapabilityCurve]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "coolantTemperature",
         "hydrogenPressure",
         "EquivalentInjection",
@@ -8540,16 +8172,16 @@ object ReactiveCapabilityCurve
         CIMRelationship ("InitiallyUsedBySynchronousMachines", "SynchronousMachine", "1..*", "0..1"),
         CIMRelationship ("SynchronousMachines", "SynchronousMachine", "1..*", "0..*")
     )
-    val coolantTemperature: Fielder = parse_element (element (cls, fields (0)))
-    val hydrogenPressure: Fielder = parse_element (element (cls, fields (1)))
-    val EquivalentInjection: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
-    val InitiallyUsedBySynchronousMachines: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
-    val SynchronousMachines: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val coolantTemperature: Fielder = parse_element (element (cls, fields(0)))
+    val hydrogenPressure: Fielder = parse_element (element (cls, fields(1)))
+    val EquivalentInjection: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val InitiallyUsedBySynchronousMachines: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val SynchronousMachines: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: CIMContext): ReactiveCapabilityCurve =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ReactiveCapabilityCurve (
             Curve.parse (context),
             toDouble (mask (coolantTemperature (), 0)),
@@ -8584,7 +8216,7 @@ object ReactiveCapabilityCurveSerializer extends CIMSerializer[ReactiveCapabilit
 
     def read (kryo: Kryo, input: Input, cls: Class[ReactiveCapabilityCurve]): ReactiveCapabilityCurve =
     {
-        val parent = CurveSerializer.read (kryo, input, classOf [Curve])
+        val parent = CurveSerializer.read (kryo, input, classOf[Curve])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ReactiveCapabilityCurve (
             parent,
@@ -8611,8 +8243,8 @@ final case class Recloser
 (
     ProtectedSwitch: ProtectedSwitch = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -8638,25 +8270,21 @@ final case class Recloser
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:Recloser rdf:ID=\"%s\">\n%s\t</cim:Recloser>".format (id, export_fields)
+        "\t<cim:Recloser rdf:%s=\"%s\">\n%s\t</cim:Recloser>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Recloser
-    extends
-        CIMParseable[Recloser]
+extends
+    CIMParseable[Recloser]
 {
 
     def parse (context: CIMContext): Recloser =
@@ -8685,7 +8313,7 @@ object RecloserSerializer extends CIMSerializer[Recloser]
 
     def read (kryo: Kryo, input: Input, cls: Class[Recloser]): Recloser =
     {
-        val parent = ProtectedSwitchSerializer.read (kryo, input, classOf [ProtectedSwitch])
+        val parent = ProtectedSwitchSerializer.read (kryo, input, classOf[ProtectedSwitch])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Recloser (
             parent
@@ -8698,9 +8326,9 @@ object RecloserSerializer extends CIMSerializer[Recloser]
 /**
  * A type of conducting equipment that can regulate a quantity (i.e. voltage or flow) at a specific point in the network.
  *
- * @param EnergyConnection  [[ch.ninecode.model.EnergyConnection EnergyConnection]] Reference to the superclass object.
- * @param controlEnabled    Specifies the regulation status of the equipment.
- *                          True is regulating, false is not regulating.
+ * @param EnergyConnection [[ch.ninecode.model.EnergyConnection EnergyConnection]] Reference to the superclass object.
+ * @param controlEnabled Specifies the regulation status of the equipment.
+ *        True is regulating, false is not regulating.
  * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] The regulating control scheme in which this equipment participates.
  * @group Wires
  * @groupname Wires Package Wires
@@ -8712,8 +8340,8 @@ final case class RegulatingCondEq
     controlEnabled: Boolean = false,
     RegulatingControl: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -8739,49 +8367,42 @@ final case class RegulatingCondEq
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RegulatingCondEq.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RegulatingCondEq.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RegulatingCondEq.fields (position), value)
-
         emitelem (0, controlEnabled)
         emitattr (1, RegulatingControl)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:RegulatingCondEq rdf:ID=\"%s\">\n%s\t</cim:RegulatingCondEq>".format (id, export_fields)
+        "\t<cim:RegulatingCondEq rdf:%s=\"%s\">\n%s\t</cim:RegulatingCondEq>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object RegulatingCondEq
-    extends
-        CIMParseable[RegulatingCondEq]
+extends
+    CIMParseable[RegulatingCondEq]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "controlEnabled",
         "RegulatingControl"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("RegulatingControl", "RegulatingControl", "0..1", "1..*")
     )
-    val controlEnabled: Fielder = parse_element (element (cls, fields (0)))
-    val RegulatingControl: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val controlEnabled: Fielder = parse_element (element (cls, fields(0)))
+    val RegulatingControl: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): RegulatingCondEq =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = RegulatingCondEq (
             EnergyConnection.parse (context),
             toBoolean (mask (controlEnabled (), 0)),
@@ -8810,7 +8431,7 @@ object RegulatingCondEqSerializer extends CIMSerializer[RegulatingCondEq]
 
     def read (kryo: Kryo, input: Input, cls: Class[RegulatingCondEq]): RegulatingCondEq =
     {
-        val parent = EnergyConnectionSerializer.read (kryo, input, classOf [EnergyConnection])
+        val parent = EnergyConnectionSerializer.read (kryo, input, classOf[EnergyConnection])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RegulatingCondEq (
             parent,
@@ -8833,26 +8454,26 @@ object RegulatingCondEqSerializer extends CIMSerializer[RegulatingCondEq]
  * - Whenever it is necessary to have an off center target voltage for the tap changer regulator. For instance, due to long cables to off shore wind farms and the need to have a simpler setup at the off shore transformer platform, the voltage is controlled from the land at the connection point for the off shore wind farm. Since there usually is a voltage rise along the cable, there is typical and overvoltage of up 3-4 kV compared to the on shore station. Thus in normal operation the tap changer on the on shore station is operated with a target set point, which is in the lower parts of the dead band.
  * The attributes minAllowedTargetValue and maxAllowedTargetValue are not related to the attribute targetDeadband and thus they are not treated as an alternative of the targetDeadband. They are needed due to limitations in the local substation controller. The attribute targetDeadband is used to prevent the power flow from move the tap position in circles (hunting) that is to be used regardless of the attributes minAllowedTargetValue and maxAllowedTargetValue.
  *
- * @param PowerSystemResource        [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param discrete                   The regulation is performed in a discrete mode.
- *                                   This applies to equipment with discrete controls, e.g. tap changers and shunt compensators.
- * @param enabled                    The flag tells if regulation is enabled.
- * @param maxAllowedTargetValue      Maximum allowed target value (RegulatingControl.targetValue).
- * @param minAllowedTargetValue      Minimum allowed target value (RegulatingControl.targetValue).
- * @param mode                       The regulating control mode presently available.
- *                                   This specification allows for determining the kind of regulation without need for obtaining the units from a schedule.
- * @param monitoredPhase             Phase voltage controlling this regulator, measured at regulator location.
- * @param targetDeadband             This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating.
- *                                   The units of those appropriate for the mode. The attribute shall be a positive value or zero. If RegulatingControl.discrete is set to "false", the RegulatingControl.targetDeadband is to be ignored.
- *                                   Note that for instance, if the targetValue is 100 kV and the targetDeadband is 2 kV the range is from 99 to 101 kV.
- * @param targetValue                The target value specified for case input.
- *                                   This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.
- * @param targetValueUnitMultiplier  Specify the multiplier for used for the targetValue.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param discrete The regulation is performed in a discrete mode.
+ *        This applies to equipment with discrete controls, e.g. tap changers and shunt compensators.
+ * @param enabled The flag tells if regulation is enabled.
+ * @param maxAllowedTargetValue Maximum allowed target value (RegulatingControl.targetValue).
+ * @param minAllowedTargetValue Minimum allowed target value (RegulatingControl.targetValue).
+ * @param mode The regulating control mode presently available.
+ *        This specification allows for determining the kind of regulation without need for obtaining the units from a schedule.
+ * @param monitoredPhase Phase voltage controlling this regulator, measured at regulator location.
+ * @param targetDeadband This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating.
+ *        The units of those appropriate for the mode. The attribute shall be a positive value or zero. If RegulatingControl.discrete is set to "false", the RegulatingControl.targetDeadband is to be ignored.
+ *        Note that for instance, if the targetValue is 100 kV and the targetDeadband is 2 kV the range is from 99 to 101 kV.
+ * @param targetValue The target value specified for case input.
+ *        This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.
+ * @param targetValueUnitMultiplier Specify the multiplier for used for the targetValue.
  * @param ProtectiveActionRegulation [[ch.ninecode.model.ProtectiveActionRegulation ProtectiveActionRegulation]] Enable/disable a regulating control or set new target value.
- * @param RegulatingCondEq           [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] The equipment that participates in this regulating control scheme.
- * @param RegulationSchedule         [[ch.ninecode.model.RegulationSchedule RegulationSchedule]] Schedule for this regulating control.
- * @param Terminal                   [[ch.ninecode.model.Terminal Terminal]] The terminal associated with this regulating control.
- *                                   The terminal is associated instead of a node, since the terminal could connect into either a topological node or a connectivity node.  Sometimes it is useful to model regulation at a terminal of a bus bar object.
+ * @param RegulatingCondEq [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] The equipment that participates in this regulating control scheme.
+ * @param RegulationSchedule [[ch.ninecode.model.RegulationSchedule RegulationSchedule]] Schedule for this regulating control.
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal associated with this regulating control.
+ *        The terminal is associated instead of a node, since the terminal could connect into either a topological node or a connectivity node.  Sometimes it is useful to model regulation at a terminal of a bus bar object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -8874,8 +8495,8 @@ final case class RegulatingControl
     RegulationSchedule: List[String] = null,
     Terminal: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -8901,22 +8522,15 @@ final case class RegulatingControl
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RegulatingControl.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RegulatingControl.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RegulatingControl.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RegulatingControl.fields (position), x))
-
         emitelem (0, discrete)
         emitelem (1, enabled)
         emitelem (2, maxAllowedTargetValue)
@@ -8932,18 +8546,17 @@ final case class RegulatingControl
         emitattr (12, Terminal)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:RegulatingControl rdf:ID=\"%s\">\n%s\t</cim:RegulatingControl>".format (id, export_fields)
+        "\t<cim:RegulatingControl rdf:%s=\"%s\">\n%s\t</cim:RegulatingControl>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object RegulatingControl
-    extends
-        CIMParseable[RegulatingControl]
+extends
+    CIMParseable[RegulatingControl]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "discrete",
         "enabled",
         "maxAllowedTargetValue",
@@ -8964,24 +8577,24 @@ object RegulatingControl
         CIMRelationship ("RegulationSchedule", "RegulationSchedule", "0..*", "1"),
         CIMRelationship ("Terminal", "Terminal", "0..1", "0..*")
     )
-    val discrete: Fielder = parse_element (element (cls, fields (0)))
-    val enabled: Fielder = parse_element (element (cls, fields (1)))
-    val maxAllowedTargetValue: Fielder = parse_element (element (cls, fields (2)))
-    val minAllowedTargetValue: Fielder = parse_element (element (cls, fields (3)))
-    val mode: Fielder = parse_attribute (attribute (cls, fields (4)))
-    val monitoredPhase: Fielder = parse_attribute (attribute (cls, fields (5)))
-    val targetDeadband: Fielder = parse_element (element (cls, fields (6)))
-    val targetValue: Fielder = parse_element (element (cls, fields (7)))
-    val targetValueUnitMultiplier: Fielder = parse_attribute (attribute (cls, fields (8)))
-    val ProtectiveActionRegulation: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
-    val RegulatingCondEq: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
-    val RegulationSchedule: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields (12)))
+    val discrete: Fielder = parse_element (element (cls, fields(0)))
+    val enabled: Fielder = parse_element (element (cls, fields(1)))
+    val maxAllowedTargetValue: Fielder = parse_element (element (cls, fields(2)))
+    val minAllowedTargetValue: Fielder = parse_element (element (cls, fields(3)))
+    val mode: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val monitoredPhase: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val targetDeadband: Fielder = parse_element (element (cls, fields(6)))
+    val targetValue: Fielder = parse_element (element (cls, fields(7)))
+    val targetValueUnitMultiplier: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val ProtectiveActionRegulation: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val RegulatingCondEq: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val RegulationSchedule: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(12)))
 
     def parse (context: CIMContext): RegulatingControl =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = RegulatingControl (
             PowerSystemResource.parse (context),
             toBoolean (mask (discrete (), 0)),
@@ -9032,7 +8645,7 @@ object RegulatingControlSerializer extends CIMSerializer[RegulatingControl]
 
     def read (kryo: Kryo, input: Input, cls: Class[RegulatingControl]): RegulatingControl =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RegulatingControl (
             parent,
@@ -9059,8 +8672,8 @@ object RegulatingControlSerializer extends CIMSerializer[RegulatingControl]
  * A pre-established pattern over time for a controlled variable, e.g., busbar voltage.
  *
  * @param SeasonDayTypeSchedule [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Reference to the superclass object.
- * @param RegulatingControl     [[ch.ninecode.model.RegulatingControl RegulatingControl]] Regulating controls that have this schedule.
- * @param VoltageControlZones   [[ch.ninecode.model.VoltageControlZone VoltageControlZone]] A VoltageControlZone may have a  voltage regulation schedule.
+ * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] Regulating controls that have this schedule.
+ * @param VoltageControlZones [[ch.ninecode.model.VoltageControlZone VoltageControlZone]] A VoltageControlZone may have a  voltage regulation schedule.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -9071,8 +8684,8 @@ final case class RegulationSchedule
     RegulatingControl: String = null,
     VoltageControlZones: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -9098,36 +8711,29 @@ final case class RegulationSchedule
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RegulationSchedule.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RegulationSchedule.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (RegulationSchedule.fields (position), x))
-
         emitattr (0, RegulatingControl)
         emitattrs (1, VoltageControlZones)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:RegulationSchedule rdf:ID=\"%s\">\n%s\t</cim:RegulationSchedule>".format (id, export_fields)
+        "\t<cim:RegulationSchedule rdf:%s=\"%s\">\n%s\t</cim:RegulationSchedule>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object RegulationSchedule
-    extends
-        CIMParseable[RegulationSchedule]
+extends
+    CIMParseable[RegulationSchedule]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "RegulatingControl",
         "VoltageControlZones"
     )
@@ -9135,13 +8741,13 @@ object RegulationSchedule
         CIMRelationship ("RegulatingControl", "RegulatingControl", "1", "0..*"),
         CIMRelationship ("VoltageControlZones", "VoltageControlZone", "0..*", "0..1")
     )
-    val RegulatingControl: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val VoltageControlZones: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val RegulatingControl: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val VoltageControlZones: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): RegulationSchedule =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = RegulationSchedule (
             SeasonDayTypeSchedule.parse (context),
             mask (RegulatingControl (), 0),
@@ -9170,7 +8776,7 @@ object RegulationScheduleSerializer extends CIMSerializer[RegulationSchedule]
 
     def read (kryo: Kryo, input: Input, cls: Class[RegulationSchedule]): RegulationSchedule =
     {
-        val parent = SeasonDayTypeScheduleSerializer.read (kryo, input, classOf [SeasonDayTypeSchedule])
+        val parent = SeasonDayTypeScheduleSerializer.read (kryo, input, classOf[SeasonDayTypeSchedule])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RegulationSchedule (
             parent,
@@ -9186,22 +8792,22 @@ object RegulationScheduleSerializer extends CIMSerializer[RegulationSchedule]
  * A rotating machine which may be used as a generator or motor.
  *
  * @param RegulatingCondEq [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
- * @param p                Active power injection.
- *                         Load sign convention is used, i.e. positive sign means flow out from a node.
- *                         Starting value for a steady state solution.
- * @param q                Reactive power injection.
- *                         Load sign convention is used, i.e. positive sign means flow out from a node.
- *                         Starting value for a steady state solution.
+ * @param p Active power injection.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution.
+ * @param q Reactive power injection.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution.
  * @param ratedPowerFactor Power factor (nameplate data).
- *                         It is primarily used for short circuit data exchange according to IEC 60909. The attribute cannot be a negative value.
- * @param ratedS           Nameplate apparent power rating for the unit.
- *                         The attribute shall have a positive value.
- * @param ratedU           Rated voltage (nameplate data, Ur in IEC 60909-0).
- *                         It is primarily used for short circuit data exchange according to IEC 60909.
- *                         The attribute shall be a positive value.
- * @param GeneratingUnit   [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] A synchronous machine may operate as a generator and as such becomes a member of a generating unit.
- * @param HydroPump        [[ch.ninecode.model.HydroPump HydroPump]] The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
- *                         The direction of machine rotation for pumping may or may not be the same as for generating.
+ *        It is primarily used for short circuit data exchange according to IEC 60909. The attribute cannot be a negative value.
+ * @param ratedS Nameplate apparent power rating for the unit.
+ *        The attribute shall have a positive value.
+ * @param ratedU Rated voltage (nameplate data, Ur in IEC 60909-0).
+ *        It is primarily used for short circuit data exchange according to IEC 60909.
+ *        The attribute shall be a positive value.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] A synchronous machine may operate as a generator and as such becomes a member of a generating unit.
+ * @param HydroPump [[ch.ninecode.model.HydroPump HydroPump]] The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
+ *        The direction of machine rotation for pumping may or may not be the same as for generating.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -9217,8 +8823,8 @@ final case class RotatingMachine
     GeneratingUnit: String = null,
     HydroPump: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -9244,20 +8850,14 @@ final case class RotatingMachine
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RotatingMachine.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RotatingMachine.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RotatingMachine.fields (position), value)
-
         emitelem (0, p)
         emitelem (1, q)
         emitelem (2, ratedPowerFactor)
@@ -9267,18 +8867,17 @@ final case class RotatingMachine
         emitattr (6, HydroPump)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:RotatingMachine rdf:ID=\"%s\">\n%s\t</cim:RotatingMachine>".format (id, export_fields)
+        "\t<cim:RotatingMachine rdf:%s=\"%s\">\n%s\t</cim:RotatingMachine>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object RotatingMachine
-    extends
-        CIMParseable[RotatingMachine]
+extends
+    CIMParseable[RotatingMachine]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "p",
         "q",
         "ratedPowerFactor",
@@ -9291,18 +8890,18 @@ object RotatingMachine
         CIMRelationship ("GeneratingUnit", "GeneratingUnit", "0..1", "0..*"),
         CIMRelationship ("HydroPump", "HydroPump", "0..1", "1")
     )
-    val p: Fielder = parse_element (element (cls, fields (0)))
-    val q: Fielder = parse_element (element (cls, fields (1)))
-    val ratedPowerFactor: Fielder = parse_element (element (cls, fields (2)))
-    val ratedS: Fielder = parse_element (element (cls, fields (3)))
-    val ratedU: Fielder = parse_element (element (cls, fields (4)))
-    val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields (5)))
-    val HydroPump: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val p: Fielder = parse_element (element (cls, fields(0)))
+    val q: Fielder = parse_element (element (cls, fields(1)))
+    val ratedPowerFactor: Fielder = parse_element (element (cls, fields(2)))
+    val ratedS: Fielder = parse_element (element (cls, fields(3)))
+    val ratedU: Fielder = parse_element (element (cls, fields(4)))
+    val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val HydroPump: Fielder = parse_attribute (attribute (cls, fields(6)))
 
     def parse (context: CIMContext): RotatingMachine =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = RotatingMachine (
             RegulatingCondEq.parse (context),
             toDouble (mask (p (), 0)),
@@ -9341,7 +8940,7 @@ object RotatingMachineSerializer extends CIMSerializer[RotatingMachine]
 
     def read (kryo: Kryo, input: Input, cls: Class[RotatingMachine]): RotatingMachine =
     {
-        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf [RegulatingCondEq])
+        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf[RegulatingCondEq])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = RotatingMachine (
             parent,
@@ -9372,8 +8971,8 @@ final case class Sectionaliser
 (
     Switch: Switch = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -9399,25 +8998,21 @@ final case class Sectionaliser
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:Sectionaliser rdf:ID=\"%s\">\n%s\t</cim:Sectionaliser>".format (id, export_fields)
+        "\t<cim:Sectionaliser rdf:%s=\"%s\">\n%s\t</cim:Sectionaliser>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Sectionaliser
-    extends
-        CIMParseable[Sectionaliser]
+extends
+    CIMParseable[Sectionaliser]
 {
 
     def parse (context: CIMContext): Sectionaliser =
@@ -9446,7 +9041,7 @@ object SectionaliserSerializer extends CIMSerializer[Sectionaliser]
 
     def read (kryo: Kryo, input: Input, cls: Class[Sectionaliser]): Sectionaliser =
     {
-        val parent = SwitchSerializer.read (kryo, input, classOf [Switch])
+        val parent = SwitchSerializer.read (kryo, input, classOf[Switch])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Sectionaliser (
             parent
@@ -9461,18 +9056,18 @@ object SectionaliserSerializer extends CIMSerializer[Sectionaliser]
  *
  * It is a two terminal device.
  *
- * @param ConductingEquipment      [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
- * @param r                        Positive sequence resistance.
- * @param r0                       Zero sequence resistance.
- * @param varistorPresent          Describe if a metal oxide varistor (mov) for over voltage protection is configured in parallel with the series compensator.
- *                                 It is used for short circuit calculations.
- * @param varistorRatedCurrent     The maximum current the varistor is designed to handle at specified duration.
- *                                 It is used for short circuit calculations and exchanged only if SeriesCompensator.varistorPresent is true.
- *                                 The attribute shall be a positive value.
+ * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @param r Positive sequence resistance.
+ * @param r0 Zero sequence resistance.
+ * @param varistorPresent Describe if a metal oxide varistor (mov) for over voltage protection is configured in parallel with the series compensator.
+ *        It is used for short circuit calculations.
+ * @param varistorRatedCurrent The maximum current the varistor is designed to handle at specified duration.
+ *        It is used for short circuit calculations and exchanged only if SeriesCompensator.varistorPresent is true.
+ *        The attribute shall be a positive value.
  * @param varistorVoltageThreshold The dc voltage at which the varistor starts conducting.
- *                                 It is used for short circuit calculations and exchanged only if SeriesCompensator.varistorPresent is true.
- * @param x                        Positive sequence reactance.
- * @param x0                       Zero sequence reactance.
+ *        It is used for short circuit calculations and exchanged only if SeriesCompensator.varistorPresent is true.
+ * @param x Positive sequence reactance.
+ * @param x0 Zero sequence reactance.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -9488,8 +9083,8 @@ final case class SeriesCompensator
     x: Double = 0.0,
     x0: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -9515,18 +9110,13 @@ final case class SeriesCompensator
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SeriesCompensator.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SeriesCompensator.fields (position), value)
-
         emitelem (0, r)
         emitelem (1, r0)
         emitelem (2, varistorPresent)
@@ -9536,18 +9126,17 @@ final case class SeriesCompensator
         emitelem (6, x0)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:SeriesCompensator rdf:ID=\"%s\">\n%s\t</cim:SeriesCompensator>".format (id, export_fields)
+        "\t<cim:SeriesCompensator rdf:%s=\"%s\">\n%s\t</cim:SeriesCompensator>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object SeriesCompensator
-    extends
-        CIMParseable[SeriesCompensator]
+extends
+    CIMParseable[SeriesCompensator]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "r",
         "r0",
         "varistorPresent",
@@ -9556,18 +9145,18 @@ object SeriesCompensator
         "x",
         "x0"
     )
-    val r: Fielder = parse_element (element (cls, fields (0)))
-    val r0: Fielder = parse_element (element (cls, fields (1)))
-    val varistorPresent: Fielder = parse_element (element (cls, fields (2)))
-    val varistorRatedCurrent: Fielder = parse_element (element (cls, fields (3)))
-    val varistorVoltageThreshold: Fielder = parse_element (element (cls, fields (4)))
-    val x: Fielder = parse_element (element (cls, fields (5)))
-    val x0: Fielder = parse_element (element (cls, fields (6)))
+    val r: Fielder = parse_element (element (cls, fields(0)))
+    val r0: Fielder = parse_element (element (cls, fields(1)))
+    val varistorPresent: Fielder = parse_element (element (cls, fields(2)))
+    val varistorRatedCurrent: Fielder = parse_element (element (cls, fields(3)))
+    val varistorVoltageThreshold: Fielder = parse_element (element (cls, fields(4)))
+    val x: Fielder = parse_element (element (cls, fields(5)))
+    val x0: Fielder = parse_element (element (cls, fields(6)))
 
     def parse (context: CIMContext): SeriesCompensator =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = SeriesCompensator (
             ConductingEquipment.parse (context),
             toDouble (mask (r (), 0)),
@@ -9606,7 +9195,7 @@ object SeriesCompensatorSerializer extends CIMSerializer[SeriesCompensator]
 
     def read (kryo: Kryo, input: Input, cls: Class[SeriesCompensator]): SeriesCompensator =
     {
-        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf [ConductingEquipment])
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = SeriesCompensator (
             parent,
@@ -9628,26 +9217,26 @@ object SeriesCompensatorSerializer extends CIMSerializer[SeriesCompensator]
  *
  * A section of a shunt compensator is an individual capacitor or reactor.  A negative value for reactivePerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device.  Ground is implied.
  *
- * @param RegulatingCondEq           [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
- * @param aVRDelay                   An automatic voltage regulation delay (AVRDelay) which is the time delay from a change in voltage to when the capacitor is allowed to change state.
- *                                   This filters out temporary changes in voltage.
- * @param grounded                   Used for Yn and Zn connections.
- *                                   True if the neutral is solidly grounded.
- * @param maximumSections            The maximum number of sections that may be switched in.
- * @param nomU                       The voltage at which the nominal reactive power may be calculated.
- *                                   This should normally be within 10% of the voltage at which the capacitor is connected to the network.
- * @param normalSections             The normal number of sections switched in.
- *                                   The value shall be between zero and ShuntCompensator.maximumSections.
- * @param phaseConnection            The type of phase connection, such as wye or delta.
- * @param sections                   Shunt compensator sections in use.
- *                                   Starting value for steady state solution. The attribute shall be a positive value or zero. Non integer values are allowed to support continuous variables. The reasons for continuous value are to support study cases where no discrete shunt compensators has yet been designed, a solutions where a narrow voltage band force the sections to oscillate or accommodate for a continuous solution as input.
- *                                   For LinearShuntConpensator the value shall be between zero and ShuntCompensator.maximumSections. At value zero the shunt compensator conductance and admittance is zero. Linear interpolation of conductance and admittance between the previous and next integer section is applied in case of non-integer values.
- *                                   For NonlinearShuntCompensator-s shall only be set to one of the NonlinearShuntCompenstorPoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPoint-s.
- * @param switchOnCount              The switch on count since the capacitor count was last reset or initialized.
- * @param switchOnDate               The date and time when the capacitor bank was last switched on.
- * @param voltageSensitivity         Voltage sensitivity required for the device to regulate the bus voltage, in voltage/reactive power.
- * @param ShuntCompensatorAction     [[ch.ninecode.model.ShuntCompensatorAction ShuntCompensatorAction]] <em>undocumented</em>
- * @param ShuntCompensatorPhase      [[ch.ninecode.model.ShuntCompensatorPhase ShuntCompensatorPhase]] The individual phases models for the shunt compensator.
+ * @param RegulatingCondEq [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
+ * @param aVRDelay An automatic voltage regulation delay (AVRDelay) which is the time delay from a change in voltage to when the capacitor is allowed to change state.
+ *        This filters out temporary changes in voltage.
+ * @param grounded Used for Yn and Zn connections.
+ *        True if the neutral is solidly grounded.
+ * @param maximumSections The maximum number of sections that may be switched in.
+ * @param nomU The voltage at which the nominal reactive power may be calculated.
+ *        This should normally be within 10% of the voltage at which the capacitor is connected to the network.
+ * @param normalSections The normal number of sections switched in.
+ *        The value shall be between zero and ShuntCompensator.maximumSections.
+ * @param phaseConnection The type of phase connection, such as wye or delta.
+ * @param sections Shunt compensator sections in use.
+ *        Starting value for steady state solution. The attribute shall be a positive value or zero. Non integer values are allowed to support continuous variables. The reasons for continuous value are to support study cases where no discrete shunt compensators has yet been designed, a solutions where a narrow voltage band force the sections to oscillate or accommodate for a continuous solution as input.
+ *        For LinearShuntConpensator the value shall be between zero and ShuntCompensator.maximumSections. At value zero the shunt compensator conductance and admittance is zero. Linear interpolation of conductance and admittance between the previous and next integer section is applied in case of non-integer values.
+ *        For NonlinearShuntCompensator-s shall only be set to one of the NonlinearShuntCompenstorPoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPoint-s.
+ * @param switchOnCount The switch on count since the capacitor count was last reset or initialized.
+ * @param switchOnDate The date and time when the capacitor bank was last switched on.
+ * @param voltageSensitivity Voltage sensitivity required for the device to regulate the bus voltage, in voltage/reactive power.
+ * @param ShuntCompensatorAction [[ch.ninecode.model.ShuntCompensatorAction ShuntCompensatorAction]] <em>undocumented</em>
+ * @param ShuntCompensatorPhase [[ch.ninecode.model.ShuntCompensatorPhase ShuntCompensatorPhase]] The individual phases models for the shunt compensator.
  * @param SvShuntCompensatorSections [[ch.ninecode.model.SvShuntCompensatorSections SvShuntCompensatorSections]] The state for the number of shunt compensator sections in service.
  * @group Wires
  * @groupname Wires Package Wires
@@ -9670,8 +9259,8 @@ final case class ShuntCompensator
     ShuntCompensatorPhase: List[String] = null,
     SvShuntCompensatorSections: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -9697,22 +9286,15 @@ final case class ShuntCompensator
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ShuntCompensator.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ShuntCompensator.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ShuntCompensator.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (ShuntCompensator.fields (position), x))
-
         emitelem (0, aVRDelay)
         emitelem (1, grounded)
         emitelem (2, maximumSections)
@@ -9728,18 +9310,17 @@ final case class ShuntCompensator
         emitattrs (12, SvShuntCompensatorSections)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:ShuntCompensator rdf:ID=\"%s\">\n%s\t</cim:ShuntCompensator>".format (id, export_fields)
+        "\t<cim:ShuntCompensator rdf:%s=\"%s\">\n%s\t</cim:ShuntCompensator>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ShuntCompensator
-    extends
-        CIMParseable[ShuntCompensator]
+extends
+    CIMParseable[ShuntCompensator]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "aVRDelay",
         "grounded",
         "maximumSections",
@@ -9759,24 +9340,24 @@ object ShuntCompensator
         CIMRelationship ("ShuntCompensatorPhase", "ShuntCompensatorPhase", "0..*", "1"),
         CIMRelationship ("SvShuntCompensatorSections", "SvShuntCompensatorSections", "0..*", "1")
     )
-    val aVRDelay: Fielder = parse_element (element (cls, fields (0)))
-    val grounded: Fielder = parse_element (element (cls, fields (1)))
-    val maximumSections: Fielder = parse_element (element (cls, fields (2)))
-    val nomU: Fielder = parse_element (element (cls, fields (3)))
-    val normalSections: Fielder = parse_element (element (cls, fields (4)))
-    val phaseConnection: Fielder = parse_attribute (attribute (cls, fields (5)))
-    val sections: Fielder = parse_element (element (cls, fields (6)))
-    val switchOnCount: Fielder = parse_element (element (cls, fields (7)))
-    val switchOnDate: Fielder = parse_element (element (cls, fields (8)))
-    val voltageSensitivity: Fielder = parse_element (element (cls, fields (9)))
-    val ShuntCompensatorAction: Fielder = parse_attribute (attribute (cls, fields (10)))
-    val ShuntCompensatorPhase: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
-    val SvShuntCompensatorSections: FielderMultiple = parse_attributes (attribute (cls, fields (12)))
+    val aVRDelay: Fielder = parse_element (element (cls, fields(0)))
+    val grounded: Fielder = parse_element (element (cls, fields(1)))
+    val maximumSections: Fielder = parse_element (element (cls, fields(2)))
+    val nomU: Fielder = parse_element (element (cls, fields(3)))
+    val normalSections: Fielder = parse_element (element (cls, fields(4)))
+    val phaseConnection: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val sections: Fielder = parse_element (element (cls, fields(6)))
+    val switchOnCount: Fielder = parse_element (element (cls, fields(7)))
+    val switchOnDate: Fielder = parse_element (element (cls, fields(8)))
+    val voltageSensitivity: Fielder = parse_element (element (cls, fields(9)))
+    val ShuntCompensatorAction: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val ShuntCompensatorPhase: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val SvShuntCompensatorSections: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
 
     def parse (context: CIMContext): ShuntCompensator =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ShuntCompensator (
             RegulatingCondEq.parse (context),
             toDouble (mask (aVRDelay (), 0)),
@@ -9827,7 +9408,7 @@ object ShuntCompensatorSerializer extends CIMSerializer[ShuntCompensator]
 
     def read (kryo: Kryo, input: Input, cls: Class[ShuntCompensator]): ShuntCompensator =
     {
-        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf [RegulatingCondEq])
+        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf[RegulatingCondEq])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ShuntCompensator (
             parent,
@@ -9854,16 +9435,16 @@ object ShuntCompensatorSerializer extends CIMSerializer[ShuntCompensator]
  * Single phase of a multi-phase shunt compensator when its attributes might be different per phase.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param maximumSections     The maximum number of sections that may be switched in for this phase.
- * @param normalSections      For the capacitor phase, the normal number of sections switched in.
- *                            The value shall be between zero and ShuntCompensatorPhase.maximumSections.
- * @param phase               Phase of this shunt compensator component.
- *                            If the shunt compensator is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the shunt compensator is delta connected, the phase indicates a shunt compensator connected from the indicated phase to the next logical non-neutral phase.
- * @param sections            Shunt compensator sections in use.
- *                            Starting value for steady state solution. The attribute shall be a positive value or zero. Non integer values are allowed to support continuous variables. The reasons for continuous value are to support study cases where no discrete shunt compensators has yet been designed, a solutions where a narrow voltage band force the sections to oscillate or accommodate for a continuous solution as input.
- *                            For LinearShuntConpensator the value shall be between zero and ShuntCompensatorPhase.maximumSections. At value zero the shunt compensator conductance and admittance is zero. Linear interpolation of conductance and admittance between the previous and next integer section is applied in case of non-integer values.
- *                            For NonlinearShuntCompensator-s shall only be set to one of the NonlinearShuntCompenstorPhasePoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPhasePoint-s.
- * @param ShuntCompensator    [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Shunt compensator of this shunt compensator phase.
+ * @param maximumSections The maximum number of sections that may be switched in for this phase.
+ * @param normalSections For the capacitor phase, the normal number of sections switched in.
+ *        The value shall be between zero and ShuntCompensatorPhase.maximumSections.
+ * @param phase Phase of this shunt compensator component.
+ *        If the shunt compensator is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the shunt compensator is delta connected, the phase indicates a shunt compensator connected from the indicated phase to the next logical non-neutral phase.
+ * @param sections Shunt compensator sections in use.
+ *        Starting value for steady state solution. The attribute shall be a positive value or zero. Non integer values are allowed to support continuous variables. The reasons for continuous value are to support study cases where no discrete shunt compensators has yet been designed, a solutions where a narrow voltage band force the sections to oscillate or accommodate for a continuous solution as input.
+ *        For LinearShuntConpensator the value shall be between zero and ShuntCompensatorPhase.maximumSections. At value zero the shunt compensator conductance and admittance is zero. Linear interpolation of conductance and admittance between the previous and next integer section is applied in case of non-integer values.
+ *        For NonlinearShuntCompensator-s shall only be set to one of the NonlinearShuntCompenstorPhasePoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPhasePoint-s.
+ * @param ShuntCompensator [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Shunt compensator of this shunt compensator phase.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -9877,8 +9458,8 @@ final case class ShuntCompensatorPhase
     sections: Double = 0.0,
     ShuntCompensator: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -9904,20 +9485,14 @@ final case class ShuntCompensatorPhase
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ShuntCompensatorPhase.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ShuntCompensatorPhase.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ShuntCompensatorPhase.fields (position), value)
-
         emitelem (0, maximumSections)
         emitelem (1, normalSections)
         emitattr (2, phase)
@@ -9925,18 +9500,17 @@ final case class ShuntCompensatorPhase
         emitattr (4, ShuntCompensator)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:ShuntCompensatorPhase rdf:ID=\"%s\">\n%s\t</cim:ShuntCompensatorPhase>".format (id, export_fields)
+        "\t<cim:ShuntCompensatorPhase rdf:%s=\"%s\">\n%s\t</cim:ShuntCompensatorPhase>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ShuntCompensatorPhase
-    extends
-        CIMParseable[ShuntCompensatorPhase]
+extends
+    CIMParseable[ShuntCompensatorPhase]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "maximumSections",
         "normalSections",
         "phase",
@@ -9946,16 +9520,16 @@ object ShuntCompensatorPhase
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ShuntCompensator", "ShuntCompensator", "1", "0..*")
     )
-    val maximumSections: Fielder = parse_element (element (cls, fields (0)))
-    val normalSections: Fielder = parse_element (element (cls, fields (1)))
-    val phase: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val sections: Fielder = parse_element (element (cls, fields (3)))
-    val ShuntCompensator: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val maximumSections: Fielder = parse_element (element (cls, fields(0)))
+    val normalSections: Fielder = parse_element (element (cls, fields(1)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val sections: Fielder = parse_element (element (cls, fields(3)))
+    val ShuntCompensator: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: CIMContext): ShuntCompensatorPhase =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = ShuntCompensatorPhase (
             PowerSystemResource.parse (context),
             toInteger (mask (maximumSections (), 0)),
@@ -9990,7 +9564,7 @@ object ShuntCompensatorPhaseSerializer extends CIMSerializer[ShuntCompensatorPha
 
     def read (kryo: Kryo, input: Input, cls: Class[ShuntCompensatorPhase]): ShuntCompensatorPhase =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ShuntCompensatorPhase (
             parent,
@@ -10012,19 +9586,19 @@ object ShuntCompensatorPhaseSerializer extends CIMSerializer[ShuntCompensatorPha
  *
  * The SVC may operate in fixed MVar output mode or in voltage control mode. When in voltage control mode, the output of the SVC will be proportional to the deviation of voltage at the controlled bus from the voltage setpoint.  The SVC characteristic slope defines the proportion.  If the voltage at the controlled bus is equal to the voltage setpoint, the SVC MVar output is zero.
  *
- * @param RegulatingCondEq             [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
- * @param capacitiveRating             Capacitive reactance at maximum capacitive reactive power.
- *                                     Shall always be positive.
- * @param inductiveRating              Inductive reactance at maximum inductive reactive power.
- *                                     Shall always be negative.
- * @param q                            Reactive power injection.
- *                                     Load sign convention is used, i.e. positive sign means flow out from a node.
- *                                     Starting value for a steady state solution.
- * @param sVCControlMode               SVC control mode.
- * @param slope                        The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.
- *                                     The attribute shall be a positive value or zero.
- * @param voltageSetPoint              The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
- *                                     When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.
+ * @param RegulatingCondEq [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
+ * @param capacitiveRating Capacitive reactance at maximum capacitive reactive power.
+ *        Shall always be positive.
+ * @param inductiveRating Inductive reactance at maximum inductive reactive power.
+ *        Shall always be negative.
+ * @param q Reactive power injection.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution.
+ * @param sVCControlMode SVC control mode.
+ * @param slope The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.
+ *        The attribute shall be a positive value or zero.
+ * @param voltageSetPoint The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
+ *        When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.
  * @param StaticVarCompensatorDynamics [[ch.ninecode.model.StaticVarCompensatorDynamics StaticVarCompensatorDynamics]] Static Var Compensator dynamics model used to describe dynamic behaviour of this Static Var Compensator.
  * @group Wires
  * @groupname Wires Package Wires
@@ -10041,8 +9615,8 @@ final case class StaticVarCompensator
     voltageSetPoint: Double = 0.0,
     StaticVarCompensatorDynamics: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -10068,20 +9642,14 @@ final case class StaticVarCompensator
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StaticVarCompensator.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (StaticVarCompensator.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (StaticVarCompensator.fields (position), value)
-
         emitelem (0, capacitiveRating)
         emitelem (1, inductiveRating)
         emitelem (2, q)
@@ -10091,18 +9659,17 @@ final case class StaticVarCompensator
         emitattr (6, StaticVarCompensatorDynamics)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:StaticVarCompensator rdf:ID=\"%s\">\n%s\t</cim:StaticVarCompensator>".format (id, export_fields)
+        "\t<cim:StaticVarCompensator rdf:%s=\"%s\">\n%s\t</cim:StaticVarCompensator>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object StaticVarCompensator
-    extends
-        CIMParseable[StaticVarCompensator]
+extends
+    CIMParseable[StaticVarCompensator]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "capacitiveRating",
         "inductiveRating",
         "q",
@@ -10114,18 +9681,18 @@ object StaticVarCompensator
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("StaticVarCompensatorDynamics", "StaticVarCompensatorDynamics", "0..1", "1")
     )
-    val capacitiveRating: Fielder = parse_element (element (cls, fields (0)))
-    val inductiveRating: Fielder = parse_element (element (cls, fields (1)))
-    val q: Fielder = parse_element (element (cls, fields (2)))
-    val sVCControlMode: Fielder = parse_attribute (attribute (cls, fields (3)))
-    val slope: Fielder = parse_element (element (cls, fields (4)))
-    val voltageSetPoint: Fielder = parse_element (element (cls, fields (5)))
-    val StaticVarCompensatorDynamics: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val capacitiveRating: Fielder = parse_element (element (cls, fields(0)))
+    val inductiveRating: Fielder = parse_element (element (cls, fields(1)))
+    val q: Fielder = parse_element (element (cls, fields(2)))
+    val sVCControlMode: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val slope: Fielder = parse_element (element (cls, fields(4)))
+    val voltageSetPoint: Fielder = parse_element (element (cls, fields(5)))
+    val StaticVarCompensatorDynamics: Fielder = parse_attribute (attribute (cls, fields(6)))
 
     def parse (context: CIMContext): StaticVarCompensator =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = StaticVarCompensator (
             RegulatingCondEq.parse (context),
             toDouble (mask (capacitiveRating (), 0)),
@@ -10164,7 +9731,7 @@ object StaticVarCompensatorSerializer extends CIMSerializer[StaticVarCompensator
 
     def read (kryo: Kryo, input: Input, cls: Class[StaticVarCompensator]): StaticVarCompensator =
     {
-        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf [RegulatingCondEq])
+        val parent = RegulatingCondEqSerializer.read (kryo, input, classOf[RegulatingCondEq])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = StaticVarCompensator (
             parent,
@@ -10186,29 +9753,29 @@ object StaticVarCompensatorSerializer extends CIMSerializer[StaticVarCompensator
  *
  * All switches are two terminal devices including grounding switches. The ACDCTerminal.connected at the two sides of the switch shall not be considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen and .locked are relevant.
  *
- * @param ConductingEquipment        [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
- * @param locked                     If true, the switch is locked.
- *                                   The resulting switch state is a combination of locked and Switch.open attributes as follows:
- *                                   <ul>
- *                                   <li>locked=true and Switch.open=true. The resulting state is open and locked;</li>
- *                                   <li>locked=false and Switch.open=true. The resulting state is open;</li>
- *                                   <li>locked=false and Switch.open=false. The resulting state is closed.</li>
- *                                   </ul>
- * @param normalOpen                 The attribute is used in cases when no Measurement for the status value is present.
- *                                   If the Switch has a status measurement the Discrete.normalValue is expected to match with the Switch.normalOpen.
- * @param open                       The attribute tells if the switch is considered open when used as input to topology processing.
- * @param ratedCurrent               The maximum continuous current carrying capacity in amps governed by the device material and construction.
- *                                   The attribute shall be a positive value.
- * @param retained                   Branch is retained in the topological solution.
- *                                   The flow through retained switches will normally be calculated in power flow.
- * @param switchOnCount              The switch on count since the switch was last reset or initialized.
- * @param switchOnDate               The date and time when the switch was last switched on.
- * @param CompositeSwitch            [[ch.ninecode.model.CompositeSwitch CompositeSwitch]] Composite switch to which this Switch belongs.
+ * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @param locked If true, the switch is locked.
+ *        The resulting switch state is a combination of locked and Switch.open attributes as follows:
+ *        <ul>
+ *        <li>locked=true and Switch.open=true. The resulting state is open and locked;</li>
+ *        <li>locked=false and Switch.open=true. The resulting state is open;</li>
+ *        <li>locked=false and Switch.open=false. The resulting state is closed.</li>
+ *        </ul>
+ * @param normalOpen The attribute is used in cases when no Measurement for the status value is present.
+ *        If the Switch has a status measurement the Discrete.normalValue is expected to match with the Switch.normalOpen.
+ * @param open The attribute tells if the switch is considered open when used as input to topology processing.
+ * @param ratedCurrent The maximum continuous current carrying capacity in amps governed by the device material and construction.
+ *        The attribute shall be a positive value.
+ * @param retained Branch is retained in the topological solution.
+ *        The flow through retained switches will normally be calculated in power flow.
+ * @param switchOnCount The switch on count since the switch was last reset or initialized.
+ * @param switchOnDate The date and time when the switch was last switched on.
+ * @param CompositeSwitch [[ch.ninecode.model.CompositeSwitch CompositeSwitch]] Composite switch to which this Switch belongs.
  * @param ConnectDisconnectFunctions [[ch.ninecode.model.ConnectDisconnectFunction ConnectDisconnectFunction]] <em>undocumented</em>
- * @param SvSwitch                   [[ch.ninecode.model.SvSwitch SvSwitch]] The switch state associated with the switch.
- * @param SwitchAction               [[ch.ninecode.model.SwitchAction SwitchAction]] Action changing status of this switch.
- * @param SwitchPhase                [[ch.ninecode.model.SwitchPhase SwitchPhase]] The individual switch phases for the switch.
- * @param SwitchSchedules            [[ch.ninecode.model.SwitchSchedule SwitchSchedule]] A Switch can be associated with SwitchSchedules.
+ * @param SvSwitch [[ch.ninecode.model.SvSwitch SvSwitch]] The switch state associated with the switch.
+ * @param SwitchAction [[ch.ninecode.model.SwitchAction SwitchAction]] Action changing status of this switch.
+ * @param SwitchPhase [[ch.ninecode.model.SwitchPhase SwitchPhase]] The individual switch phases for the switch.
+ * @param SwitchSchedules [[ch.ninecode.model.SwitchSchedule SwitchSchedule]] A Switch can be associated with SwitchSchedules.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -10230,8 +9797,8 @@ final case class Switch
     SwitchPhase: List[String] = null,
     SwitchSchedules: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -10257,22 +9824,15 @@ final case class Switch
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Switch.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Switch.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Switch.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Switch.fields (position), x))
-
         emitelem (0, locked)
         emitelem (1, normalOpen)
         emitelem (2, open)
@@ -10288,18 +9848,17 @@ final case class Switch
         emitattrs (12, SwitchSchedules)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Switch rdf:ID=\"%s\">\n%s\t</cim:Switch>".format (id, export_fields)
+        "\t<cim:Switch rdf:%s=\"%s\">\n%s\t</cim:Switch>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Switch
-    extends
-        CIMParseable[Switch]
+extends
+    CIMParseable[Switch]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "locked",
         "normalOpen",
         "open",
@@ -10322,24 +9881,24 @@ object Switch
         CIMRelationship ("SwitchPhase", "SwitchPhase", "0..*", "1"),
         CIMRelationship ("SwitchSchedules", "SwitchSchedule", "0..*", "1")
     )
-    val locked: Fielder = parse_element (element (cls, fields (0)))
-    val normalOpen: Fielder = parse_element (element (cls, fields (1)))
-    val open: Fielder = parse_element (element (cls, fields (2)))
-    val ratedCurrent: Fielder = parse_element (element (cls, fields (3)))
-    val retained: Fielder = parse_element (element (cls, fields (4)))
-    val switchOnCount: Fielder = parse_element (element (cls, fields (5)))
-    val switchOnDate: Fielder = parse_element (element (cls, fields (6)))
-    val CompositeSwitch: Fielder = parse_attribute (attribute (cls, fields (7)))
-    val ConnectDisconnectFunctions: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
-    val SvSwitch: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
-    val SwitchAction: Fielder = parse_attribute (attribute (cls, fields (10)))
-    val SwitchPhase: FielderMultiple = parse_attributes (attribute (cls, fields (11)))
-    val SwitchSchedules: FielderMultiple = parse_attributes (attribute (cls, fields (12)))
+    val locked: Fielder = parse_element (element (cls, fields(0)))
+    val normalOpen: Fielder = parse_element (element (cls, fields(1)))
+    val open: Fielder = parse_element (element (cls, fields(2)))
+    val ratedCurrent: Fielder = parse_element (element (cls, fields(3)))
+    val retained: Fielder = parse_element (element (cls, fields(4)))
+    val switchOnCount: Fielder = parse_element (element (cls, fields(5)))
+    val switchOnDate: Fielder = parse_element (element (cls, fields(6)))
+    val CompositeSwitch: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val ConnectDisconnectFunctions: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val SvSwitch: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val SwitchAction: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val SwitchPhase: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val SwitchSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
 
     def parse (context: CIMContext): Switch =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Switch (
             ConductingEquipment.parse (context),
             toBoolean (mask (locked (), 0)),
@@ -10390,7 +9949,7 @@ object SwitchSerializer extends CIMSerializer[Switch]
 
     def read (kryo: Kryo, input: Input, cls: Class[Switch]): Switch =
     {
-        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf [ConductingEquipment])
+        val parent = ConductingEquipmentSerializer.read (kryo, input, classOf[ConductingEquipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Switch (
             parent,
@@ -10417,16 +9976,16 @@ object SwitchSerializer extends CIMSerializer[Switch]
  * Single phase of a multi-phase switch when its attributes might be different per phase.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param closed              The attribute tells if the switch is considered closed when used as input to topology processing.
- * @param normalOpen          Used in cases when no Measurement for the status value is present.
- *                            If the SwitchPhase has a status measurement the Discrete.normalValue is expected to match with this value.
- * @param phaseSide1          Phase of this SwitchPhase on the side with terminal sequence number equal to 1.
- *                            Should be a phase contained in that terminal’s phases attribute.
- * @param phaseSide2          Phase of this SwitchPhase on the side with terminal sequence number equal to 2.
- *                            Should be a phase contained in that terminal’s Terminal.phases attribute.
- * @param ratedCurrent        The maximum continuous current carrying capacity in amps governed by the device material and construction.
- *                            The attribute shall be a positive value.
- * @param Switch              [[ch.ninecode.model.Switch Switch]] The switch of the switch phase.
+ * @param closed The attribute tells if the switch is considered closed when used as input to topology processing.
+ * @param normalOpen Used in cases when no Measurement for the status value is present.
+ *        If the SwitchPhase has a status measurement the Discrete.normalValue is expected to match with this value.
+ * @param phaseSide1 Phase of this SwitchPhase on the side with terminal sequence number equal to 1.
+ *        Should be a phase contained in that terminal’s phases attribute.
+ * @param phaseSide2 Phase of this SwitchPhase on the side with terminal sequence number equal to 2.
+ *        Should be a phase contained in that terminal’s Terminal.phases attribute.
+ * @param ratedCurrent The maximum continuous current carrying capacity in amps governed by the device material and construction.
+ *        The attribute shall be a positive value.
+ * @param Switch [[ch.ninecode.model.Switch Switch]] The switch of the switch phase.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -10441,8 +10000,8 @@ final case class SwitchPhase
     ratedCurrent: Double = 0.0,
     Switch: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -10468,20 +10027,14 @@ final case class SwitchPhase
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SwitchPhase.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchPhase.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchPhase.fields (position), value)
-
         emitelem (0, closed)
         emitelem (1, normalOpen)
         emitattr (2, phaseSide1)
@@ -10490,18 +10043,17 @@ final case class SwitchPhase
         emitattr (5, Switch)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:SwitchPhase rdf:ID=\"%s\">\n%s\t</cim:SwitchPhase>".format (id, export_fields)
+        "\t<cim:SwitchPhase rdf:%s=\"%s\">\n%s\t</cim:SwitchPhase>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object SwitchPhase
-    extends
-        CIMParseable[SwitchPhase]
+extends
+    CIMParseable[SwitchPhase]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "closed",
         "normalOpen",
         "phaseSide1",
@@ -10512,17 +10064,17 @@ object SwitchPhase
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Switch", "Switch", "1", "0..*")
     )
-    val closed: Fielder = parse_element (element (cls, fields (0)))
-    val normalOpen: Fielder = parse_element (element (cls, fields (1)))
-    val phaseSide1: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val phaseSide2: Fielder = parse_attribute (attribute (cls, fields (3)))
-    val ratedCurrent: Fielder = parse_element (element (cls, fields (4)))
-    val Switch: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val closed: Fielder = parse_element (element (cls, fields(0)))
+    val normalOpen: Fielder = parse_element (element (cls, fields(1)))
+    val phaseSide1: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val phaseSide2: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ratedCurrent: Fielder = parse_element (element (cls, fields(4)))
+    val Switch: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: CIMContext): SwitchPhase =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = SwitchPhase (
             PowerSystemResource.parse (context),
             toBoolean (mask (closed (), 0)),
@@ -10559,7 +10111,7 @@ object SwitchPhaseSerializer extends CIMSerializer[SwitchPhase]
 
     def read (kryo: Kryo, input: Input, cls: Class[SwitchPhase]): SwitchPhase =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = SwitchPhase (
             parent,
@@ -10581,7 +10133,7 @@ object SwitchPhaseSerializer extends CIMSerializer[SwitchPhase]
  * If RegularTimePoint.value1 is 0, the switch is open.  If 1, the switch is closed.
  *
  * @param SeasonDayTypeSchedule [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Reference to the superclass object.
- * @param Switch                [[ch.ninecode.model.Switch Switch]] A SwitchSchedule is associated with a Switch.
+ * @param Switch [[ch.ninecode.model.Switch Switch]] A SwitchSchedule is associated with a Switch.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -10591,8 +10143,8 @@ final case class SwitchSchedule
     SeasonDayTypeSchedule: SeasonDayTypeSchedule = null,
     Switch: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -10618,44 +10170,38 @@ final case class SwitchSchedule
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SwitchSchedule.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchSchedule.fields (position), value)
-
         emitattr (0, Switch)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:SwitchSchedule rdf:ID=\"%s\">\n%s\t</cim:SwitchSchedule>".format (id, export_fields)
+        "\t<cim:SwitchSchedule rdf:%s=\"%s\">\n%s\t</cim:SwitchSchedule>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object SwitchSchedule
-    extends
-        CIMParseable[SwitchSchedule]
+extends
+    CIMParseable[SwitchSchedule]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Switch"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Switch", "Switch", "1", "0..*")
     )
-    val Switch: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val Switch: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): SwitchSchedule =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = SwitchSchedule (
             SeasonDayTypeSchedule.parse (context),
             mask (Switch (), 0)
@@ -10682,7 +10228,7 @@ object SwitchScheduleSerializer extends CIMSerializer[SwitchSchedule]
 
     def read (kryo: Kryo, input: Input, cls: Class[SwitchSchedule]): SwitchSchedule =
     {
-        val parent = SeasonDayTypeScheduleSerializer.read (kryo, input, classOf [SeasonDayTypeSchedule])
+        val parent = SeasonDayTypeScheduleSerializer.read (kryo, input, classOf[SeasonDayTypeSchedule])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = SwitchSchedule (
             parent,
@@ -10698,58 +10244,58 @@ object SwitchScheduleSerializer extends CIMSerializer[SwitchSchedule]
  *
  * It is a single machine operating either as a generator or synchronous condenser or pump.
  *
- * @param RotatingMachine                [[ch.ninecode.model.RotatingMachine RotatingMachine]] Reference to the superclass object.
- * @param aVRToManualLag                 Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a lagging MVAr violation.
- * @param aVRToManualLead                Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a leading MVAr violation.
- * @param baseQ                          Default base reactive power value.
- *                                       This value represents the initial reactive power that can be used by any application function.
- * @param condenserP                     Active power consumed when in condenser mode operation.
- * @param coolantCondition               Temperature or pressure of coolant medium.
- * @param coolantType                    Method of cooling the machine.
- * @param earthing                       Indicates whether or not the generator is earthed.
- *                                       Used for short circuit data exchange according to IEC 60909.
- * @param earthingStarPointR             Generator star point earthing resistance (Re).
- *                                       Used for short circuit data exchange according to IEC 60909.
- * @param earthingStarPointX             Generator star point earthing reactance (Xe).
- *                                       Used for short circuit data exchange according to IEC 60909.
- * @param ikk                            Steady-state short-circuit current (in A for the profile) of generator with compound excitation during 3-phase short circuit.
+ * @param RotatingMachine [[ch.ninecode.model.RotatingMachine RotatingMachine]] Reference to the superclass object.
+ * @param aVRToManualLag Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a lagging MVAr violation.
+ * @param aVRToManualLead Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a leading MVAr violation.
+ * @param baseQ Default base reactive power value.
+ *        This value represents the initial reactive power that can be used by any application function.
+ * @param condenserP Active power consumed when in condenser mode operation.
+ * @param coolantCondition Temperature or pressure of coolant medium.
+ * @param coolantType Method of cooling the machine.
+ * @param earthing Indicates whether or not the generator is earthed.
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param earthingStarPointR Generator star point earthing resistance (Re).
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param earthingStarPointX Generator star point earthing reactance (Xe).
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param ikk Steady-state short-circuit current (in A for the profile) of generator with compound excitation during 3-phase short circuit.
  *        - Ikk=0: Generator with no compound excitation.
  *        - Ikk&lt;&gt;0: Generator with compound excitation.
- *          Ikk is used to calculate the minimum steady-state short-circuit current for generators with compound excitation.
- *          (4.6.1.2 in IEC 60909-0:2001).
- *          Used only for single fed short circuit on a generator. (4.3.4.2. in IEC 60909-0:2001).
- * @param manualToAVR                    Time delay required when switching from Manual to Automatic Voltage Regulation.
- *                                       This value is used in the accelerating power reference frame for powerflow solutions.
- * @param maxQ                           Maximum reactive power limit.
- *                                       This is the maximum (nameplate) limit for the unit.
- * @param maxU                           Maximum voltage limit for the unit.
- * @param minQ                           Minimum reactive power limit for the unit.
- * @param minU                           Minimum voltage  limit for the unit.
- * @param mu                             Factor to calculate the breaking current (Section 4.5.2.1 in IEC 60909-0).
- *                                       Used only for single fed short circuit on a generator (Section 4.3.4.2. in IEC 60909-0).
- * @param operatingMode                  Current mode of operation.
- * @param qPercent                       Part of the coordinated reactive control that comes from this machine.
- *                                       The attribute is used as a participation factor not necessarily summing up to 100% for the participating devices in the control.
- * @param r                              Equivalent resistance (RG) of generator.
- *                                       RG is considered for the calculation of all currents, except for the calculation of the peak current ip. Used for short circuit data exchange according to IEC 60909.
- * @param r0                             Zero sequence resistance of the synchronous machine.
- * @param r2                             Negative sequence resistance.
- * @param referencePriority              Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
- * @param satDirectSubtransX             Direct-axis subtransient reactance saturated, also known as Xd"sat.
- * @param satDirectSyncX                 Direct-axes saturated synchronous reactance (xdsat); reciprocal of short-circuit ration.
- *                                       Used for short circuit data exchange, only for single fed short circuit on a generator. (4.3.4.2. in IEC 60909-0:2001).
- * @param satDirectTransX                Saturated Direct-axis transient reactance.
- *                                       The attribute is primarily used for short circuit calculations according to ANSI.
- * @param shortCircuitRotorType          Type of rotor, used by short circuit applications, only for single fed short circuit according to IEC 60909.
- * @param type                           Modes that this synchronous machine can operate in.
- * @param voltageRegulationRange         Range of generator voltage regulation (PG in IEC 60909-0) used for calculation of the impedance correction factor KG defined in IEC 60909-0.
- *                                       This attribute is used to describe the operating voltage of the generating unit.
- * @param x0                             Zero sequence reactance of the synchronous machine.
- * @param x2                             Negative sequence reactance.
+ *        Ikk is used to calculate the minimum steady-state short-circuit current for generators with compound excitation.
+ *        (4.6.1.2 in IEC 60909-0:2001).
+ *        Used only for single fed short circuit on a generator. (4.3.4.2. in IEC 60909-0:2001).
+ * @param manualToAVR Time delay required when switching from Manual to Automatic Voltage Regulation.
+ *        This value is used in the accelerating power reference frame for powerflow solutions.
+ * @param maxQ Maximum reactive power limit.
+ *        This is the maximum (nameplate) limit for the unit.
+ * @param maxU Maximum voltage limit for the unit.
+ * @param minQ Minimum reactive power limit for the unit.
+ * @param minU Minimum voltage  limit for the unit.
+ * @param mu Factor to calculate the breaking current (Section 4.5.2.1 in IEC 60909-0).
+ *        Used only for single fed short circuit on a generator (Section 4.3.4.2. in IEC 60909-0).
+ * @param operatingMode Current mode of operation.
+ * @param qPercent Part of the coordinated reactive control that comes from this machine.
+ *        The attribute is used as a participation factor not necessarily summing up to 100% for the participating devices in the control.
+ * @param r Equivalent resistance (RG) of generator.
+ *        RG is considered for the calculation of all currents, except for the calculation of the peak current ip. Used for short circuit data exchange according to IEC 60909.
+ * @param r0 Zero sequence resistance of the synchronous machine.
+ * @param r2 Negative sequence resistance.
+ * @param referencePriority Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
+ * @param satDirectSubtransX Direct-axis subtransient reactance saturated, also known as Xd"sat.
+ * @param satDirectSyncX Direct-axes saturated synchronous reactance (xdsat); reciprocal of short-circuit ration.
+ *        Used for short circuit data exchange, only for single fed short circuit on a generator. (4.3.4.2. in IEC 60909-0:2001).
+ * @param satDirectTransX Saturated Direct-axis transient reactance.
+ *        The attribute is primarily used for short circuit calculations according to ANSI.
+ * @param shortCircuitRotorType Type of rotor, used by short circuit applications, only for single fed short circuit according to IEC 60909.
+ * @param type Modes that this synchronous machine can operate in.
+ * @param voltageRegulationRange Range of generator voltage regulation (PG in IEC 60909-0) used for calculation of the impedance correction factor KG defined in IEC 60909-0.
+ *        This attribute is used to describe the operating voltage of the generating unit.
+ * @param x0 Zero sequence reactance of the synchronous machine.
+ * @param x2 Negative sequence reactance.
  * @param InitialReactiveCapabilityCurve [[ch.ninecode.model.ReactiveCapabilityCurve ReactiveCapabilityCurve]] The default reactive capability curve for use by a synchronous machine.
- * @param PrimeMovers                    [[ch.ninecode.model.PrimeMover PrimeMover]] Prime movers that drive this SynchronousMachine.
- * @param ReactiveCapabilityCurves       [[ch.ninecode.model.ReactiveCapabilityCurve ReactiveCapabilityCurve]] All available reactive capability curves for this synchronous machine.
- * @param SynchronousMachineDynamics     [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine dynamics model used to describe dynamic behaviour of this synchronous machine.
+ * @param PrimeMovers [[ch.ninecode.model.PrimeMover PrimeMover]] Prime movers that drive this SynchronousMachine.
+ * @param ReactiveCapabilityCurves [[ch.ninecode.model.ReactiveCapabilityCurve ReactiveCapabilityCurve]] All available reactive capability curves for this synchronous machine.
+ * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine dynamics model used to describe dynamic behaviour of this synchronous machine.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -10792,8 +10338,8 @@ final case class SynchronousMachine
     ReactiveCapabilityCurves: List[String] = null,
     SynchronousMachineDynamics: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -10819,22 +10365,15 @@ final case class SynchronousMachine
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SynchronousMachine.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchronousMachine.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SynchronousMachine.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (SynchronousMachine.fields (position), x))
-
         emitelem (0, aVRToManualLag)
         emitelem (1, aVRToManualLead)
         emitelem (2, baseQ)
@@ -10871,18 +10410,17 @@ final case class SynchronousMachine
         emitattr (33, SynchronousMachineDynamics)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:SynchronousMachine rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachine>".format (id, export_fields)
+        "\t<cim:SynchronousMachine rdf:%s=\"%s\">\n%s\t</cim:SynchronousMachine>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object SynchronousMachine
-    extends
-        CIMParseable[SynchronousMachine]
+extends
+    CIMParseable[SynchronousMachine]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "aVRToManualLag",
         "aVRToManualLead",
         "baseQ",
@@ -10924,45 +10462,45 @@ object SynchronousMachine
         CIMRelationship ("ReactiveCapabilityCurves", "ReactiveCapabilityCurve", "0..*", "1..*"),
         CIMRelationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..1", "1")
     )
-    val aVRToManualLag: Fielder = parse_element (element (cls, fields (0)))
-    val aVRToManualLead: Fielder = parse_element (element (cls, fields (1)))
-    val baseQ: Fielder = parse_element (element (cls, fields (2)))
-    val condenserP: Fielder = parse_element (element (cls, fields (3)))
-    val coolantCondition: Fielder = parse_element (element (cls, fields (4)))
-    val coolantType: Fielder = parse_attribute (attribute (cls, fields (5)))
-    val earthing: Fielder = parse_element (element (cls, fields (6)))
-    val earthingStarPointR: Fielder = parse_element (element (cls, fields (7)))
-    val earthingStarPointX: Fielder = parse_element (element (cls, fields (8)))
-    val ikk: Fielder = parse_element (element (cls, fields (9)))
-    val manualToAVR: Fielder = parse_element (element (cls, fields (10)))
-    val maxQ: Fielder = parse_element (element (cls, fields (11)))
-    val maxU: Fielder = parse_element (element (cls, fields (12)))
-    val minQ: Fielder = parse_element (element (cls, fields (13)))
-    val minU: Fielder = parse_element (element (cls, fields (14)))
-    val mu: Fielder = parse_element (element (cls, fields (15)))
-    val operatingMode: Fielder = parse_attribute (attribute (cls, fields (16)))
-    val qPercent: Fielder = parse_element (element (cls, fields (17)))
-    val r: Fielder = parse_element (element (cls, fields (18)))
-    val r0: Fielder = parse_element (element (cls, fields (19)))
-    val r2: Fielder = parse_element (element (cls, fields (20)))
-    val referencePriority: Fielder = parse_element (element (cls, fields (21)))
-    val satDirectSubtransX: Fielder = parse_element (element (cls, fields (22)))
-    val satDirectSyncX: Fielder = parse_element (element (cls, fields (23)))
-    val satDirectTransX: Fielder = parse_element (element (cls, fields (24)))
-    val shortCircuitRotorType: Fielder = parse_attribute (attribute (cls, fields (25)))
-    val `type`: Fielder = parse_attribute (attribute (cls, fields (26)))
-    val voltageRegulationRange: Fielder = parse_element (element (cls, fields (27)))
-    val x0: Fielder = parse_element (element (cls, fields (28)))
-    val x2: Fielder = parse_element (element (cls, fields (29)))
-    val InitialReactiveCapabilityCurve: Fielder = parse_attribute (attribute (cls, fields (30)))
-    val PrimeMovers: FielderMultiple = parse_attributes (attribute (cls, fields (31)))
-    val ReactiveCapabilityCurves: FielderMultiple = parse_attributes (attribute (cls, fields (32)))
-    val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields (33)))
+    val aVRToManualLag: Fielder = parse_element (element (cls, fields(0)))
+    val aVRToManualLead: Fielder = parse_element (element (cls, fields(1)))
+    val baseQ: Fielder = parse_element (element (cls, fields(2)))
+    val condenserP: Fielder = parse_element (element (cls, fields(3)))
+    val coolantCondition: Fielder = parse_element (element (cls, fields(4)))
+    val coolantType: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val earthing: Fielder = parse_element (element (cls, fields(6)))
+    val earthingStarPointR: Fielder = parse_element (element (cls, fields(7)))
+    val earthingStarPointX: Fielder = parse_element (element (cls, fields(8)))
+    val ikk: Fielder = parse_element (element (cls, fields(9)))
+    val manualToAVR: Fielder = parse_element (element (cls, fields(10)))
+    val maxQ: Fielder = parse_element (element (cls, fields(11)))
+    val maxU: Fielder = parse_element (element (cls, fields(12)))
+    val minQ: Fielder = parse_element (element (cls, fields(13)))
+    val minU: Fielder = parse_element (element (cls, fields(14)))
+    val mu: Fielder = parse_element (element (cls, fields(15)))
+    val operatingMode: Fielder = parse_attribute (attribute (cls, fields(16)))
+    val qPercent: Fielder = parse_element (element (cls, fields(17)))
+    val r: Fielder = parse_element (element (cls, fields(18)))
+    val r0: Fielder = parse_element (element (cls, fields(19)))
+    val r2: Fielder = parse_element (element (cls, fields(20)))
+    val referencePriority: Fielder = parse_element (element (cls, fields(21)))
+    val satDirectSubtransX: Fielder = parse_element (element (cls, fields(22)))
+    val satDirectSyncX: Fielder = parse_element (element (cls, fields(23)))
+    val satDirectTransX: Fielder = parse_element (element (cls, fields(24)))
+    val shortCircuitRotorType: Fielder = parse_attribute (attribute (cls, fields(25)))
+    val `type`: Fielder = parse_attribute (attribute (cls, fields(26)))
+    val voltageRegulationRange: Fielder = parse_element (element (cls, fields(27)))
+    val x0: Fielder = parse_element (element (cls, fields(28)))
+    val x2: Fielder = parse_element (element (cls, fields(29)))
+    val InitialReactiveCapabilityCurve: Fielder = parse_attribute (attribute (cls, fields(30)))
+    val PrimeMovers: FielderMultiple = parse_attributes (attribute (cls, fields(31)))
+    val ReactiveCapabilityCurves: FielderMultiple = parse_attributes (attribute (cls, fields(32)))
+    val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(33)))
 
     def parse (context: CIMContext): SynchronousMachine =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0, 0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = SynchronousMachine (
             RotatingMachine.parse (context),
             toDouble (mask (aVRToManualLag (), 0)),
@@ -11055,7 +10593,7 @@ object SynchronousMachineSerializer extends CIMSerializer[SynchronousMachine]
 
     def read (kryo: Kryo, input: Input, cls: Class[SynchronousMachine]): SynchronousMachine =
     {
-        val parent = RotatingMachineSerializer.read (kryo, input, classOf [RotatingMachine])
+        val parent = RotatingMachineSerializer.read (kryo, input, classOf[RotatingMachine])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = SynchronousMachine (
             parent,
@@ -11103,29 +10641,29 @@ object SynchronousMachineSerializer extends CIMSerializer[SynchronousMachine]
  * Mechanism for changing transformer winding tap positions.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param controlEnabled      Specifies the regulation status of the equipment.
- *                            True is regulating, false is not regulating.
- * @param highStep            Highest possible tap step position, advance from neutral.
- *                            The attribute shall be greater than lowStep.
- * @param initialDelay        For an LTC, the delay for initial tap changer operation (first step change).
- * @param lowStep             Lowest possible tap step position, retard from neutral.
- * @param ltcFlag             Specifies whether or not a TapChanger has load tap changing capabilities.
- * @param neutralStep         The neutral tap step position for this winding.
- *                            The attribute shall be equal to or greater than lowStep and equal or less than highStep.
- *                            It is the step position where the voltage is neutralU when the other terminals of the transformer are at the ratedU.  If there are other tap changers on the transformer those taps are kept constant at their neutralStep.
- * @param neutralU            Voltage at which the winding operates at the neutral tap setting.
- *                            It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.
- *                            This attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical and PhaseTapChangerLinear.
- * @param normalStep          The tap step position used in "normal" network operation for this winding.
- *                            For a "Fixed" tap changer indicates the current physical tap setting.
- *                            The attribute shall be equal to or greater than lowStep and equal to or less than highStep.
- * @param step                Tap changer position.
- *                            Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changer has yet been designed, a solution where a narrow voltage band forces the tap step to oscillate or to accommodate for a continuous solution as input.
- *                            The attribute shall be equal to or greater than lowStep and equal to or less than highStep.
- * @param subsequentDelay     For an LTC, the delay for subsequent tap changer operation (second and later step changes).
- * @param SvTapStep           [[ch.ninecode.model.SvTapStep SvTapStep]] The tap step state associated with the tap changer.
- * @param TapChangerControl   [[ch.ninecode.model.TapChangerControl TapChangerControl]] The regulating control scheme in which this tap changer participates.
- * @param TapSchedules        [[ch.ninecode.model.TapSchedule TapSchedule]] A TapChanger can have TapSchedules.
+ * @param controlEnabled Specifies the regulation status of the equipment.
+ *        True is regulating, false is not regulating.
+ * @param highStep Highest possible tap step position, advance from neutral.
+ *        The attribute shall be greater than lowStep.
+ * @param initialDelay For an LTC, the delay for initial tap changer operation (first step change).
+ * @param lowStep Lowest possible tap step position, retard from neutral.
+ * @param ltcFlag Specifies whether or not a TapChanger has load tap changing capabilities.
+ * @param neutralStep The neutral tap step position for this winding.
+ *        The attribute shall be equal to or greater than lowStep and equal or less than highStep.
+ *        It is the step position where the voltage is neutralU when the other terminals of the transformer are at the ratedU.  If there are other tap changers on the transformer those taps are kept constant at their neutralStep.
+ * @param neutralU Voltage at which the winding operates at the neutral tap setting.
+ *        It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.
+ *        This attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical and PhaseTapChangerLinear.
+ * @param normalStep The tap step position used in "normal" network operation for this winding.
+ *        For a "Fixed" tap changer indicates the current physical tap setting.
+ *        The attribute shall be equal to or greater than lowStep and equal to or less than highStep.
+ * @param step Tap changer position.
+ *        Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changer has yet been designed, a solution where a narrow voltage band forces the tap step to oscillate or to accommodate for a continuous solution as input.
+ *        The attribute shall be equal to or greater than lowStep and equal to or less than highStep.
+ * @param subsequentDelay For an LTC, the delay for subsequent tap changer operation (second and later step changes).
+ * @param SvTapStep [[ch.ninecode.model.SvTapStep SvTapStep]] The tap step state associated with the tap changer.
+ * @param TapChangerControl [[ch.ninecode.model.TapChangerControl TapChangerControl]] The regulating control scheme in which this tap changer participates.
+ * @param TapSchedules [[ch.ninecode.model.TapSchedule TapSchedule]] A TapChanger can have TapSchedules.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -11147,8 +10685,8 @@ final case class TapChanger
     TapChangerControl: String = null,
     TapSchedules: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -11174,22 +10712,15 @@ final case class TapChanger
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TapChanger.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TapChanger.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TapChanger.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TapChanger.fields (position), x))
-
         emitelem (0, controlEnabled)
         emitelem (1, highStep)
         emitelem (2, initialDelay)
@@ -11205,18 +10736,17 @@ final case class TapChanger
         emitattrs (12, TapSchedules)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TapChanger rdf:ID=\"%s\">\n%s\t</cim:TapChanger>".format (id, export_fields)
+        "\t<cim:TapChanger rdf:%s=\"%s\">\n%s\t</cim:TapChanger>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TapChanger
-    extends
-        CIMParseable[TapChanger]
+extends
+    CIMParseable[TapChanger]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "controlEnabled",
         "highStep",
         "initialDelay",
@@ -11236,24 +10766,24 @@ object TapChanger
         CIMRelationship ("TapChangerControl", "TapChangerControl", "0..1", "1..*"),
         CIMRelationship ("TapSchedules", "TapSchedule", "0..*", "1")
     )
-    val controlEnabled: Fielder = parse_element (element (cls, fields (0)))
-    val highStep: Fielder = parse_element (element (cls, fields (1)))
-    val initialDelay: Fielder = parse_element (element (cls, fields (2)))
-    val lowStep: Fielder = parse_element (element (cls, fields (3)))
-    val ltcFlag: Fielder = parse_element (element (cls, fields (4)))
-    val neutralStep: Fielder = parse_element (element (cls, fields (5)))
-    val neutralU: Fielder = parse_element (element (cls, fields (6)))
-    val normalStep: Fielder = parse_element (element (cls, fields (7)))
-    val step: Fielder = parse_element (element (cls, fields (8)))
-    val subsequentDelay: Fielder = parse_element (element (cls, fields (9)))
-    val SvTapStep: Fielder = parse_attribute (attribute (cls, fields (10)))
-    val TapChangerControl: Fielder = parse_attribute (attribute (cls, fields (11)))
-    val TapSchedules: FielderMultiple = parse_attributes (attribute (cls, fields (12)))
+    val controlEnabled: Fielder = parse_element (element (cls, fields(0)))
+    val highStep: Fielder = parse_element (element (cls, fields(1)))
+    val initialDelay: Fielder = parse_element (element (cls, fields(2)))
+    val lowStep: Fielder = parse_element (element (cls, fields(3)))
+    val ltcFlag: Fielder = parse_element (element (cls, fields(4)))
+    val neutralStep: Fielder = parse_element (element (cls, fields(5)))
+    val neutralU: Fielder = parse_element (element (cls, fields(6)))
+    val normalStep: Fielder = parse_element (element (cls, fields(7)))
+    val step: Fielder = parse_element (element (cls, fields(8)))
+    val subsequentDelay: Fielder = parse_element (element (cls, fields(9)))
+    val SvTapStep: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val TapChangerControl: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val TapSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
 
     def parse (context: CIMContext): TapChanger =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TapChanger (
             PowerSystemResource.parse (context),
             toBoolean (mask (controlEnabled (), 0)),
@@ -11304,7 +10834,7 @@ object TapChangerSerializer extends CIMSerializer[TapChanger]
 
     def read (kryo: Kryo, input: Input, cls: Class[TapChanger]): TapChanger =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TapChanger (
             parent,
@@ -11330,15 +10860,15 @@ object TapChangerSerializer extends CIMSerializer[TapChanger]
 /**
  * Describes behaviour specific to tap changers, e.g. how the voltage at the end of a line varies with the load level and compensation of the voltage drop by tap adjustment.
  *
- * @param RegulatingControl    [[ch.ninecode.model.RegulatingControl RegulatingControl]] Reference to the superclass object.
- * @param limitVoltage         Maximum allowed regulated voltage on the PT secondary, regardless of line drop compensation.
- *                             Sometimes referred to as first-house protection.
+ * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] Reference to the superclass object.
+ * @param limitVoltage Maximum allowed regulated voltage on the PT secondary, regardless of line drop compensation.
+ *        Sometimes referred to as first-house protection.
  * @param lineDropCompensation If true, the line drop compensation is to be applied.
- * @param lineDropR            Line drop compensator resistance setting for normal (forward) power flow.
- * @param lineDropX            Line drop compensator reactance setting for normal (forward) power flow.
- * @param reverseLineDropR     Line drop compensator resistance setting for reverse power flow.
- * @param reverseLineDropX     Line drop compensator reactance setting for reverse power flow.
- * @param TapChanger           [[ch.ninecode.model.TapChanger TapChanger]] The tap changers that participates in this regulating tap control scheme.
+ * @param lineDropR Line drop compensator resistance setting for normal (forward) power flow.
+ * @param lineDropX Line drop compensator reactance setting for normal (forward) power flow.
+ * @param reverseLineDropR Line drop compensator resistance setting for reverse power flow.
+ * @param reverseLineDropX Line drop compensator reactance setting for reverse power flow.
+ * @param TapChanger [[ch.ninecode.model.TapChanger TapChanger]] The tap changers that participates in this regulating tap control scheme.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -11354,8 +10884,8 @@ final case class TapChangerControl
     reverseLineDropX: Double = 0.0,
     TapChanger: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -11381,20 +10911,14 @@ final case class TapChangerControl
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TapChangerControl.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TapChangerControl.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TapChangerControl.fields (position), x))
-
         emitelem (0, limitVoltage)
         emitelem (1, lineDropCompensation)
         emitelem (2, lineDropR)
@@ -11404,18 +10928,17 @@ final case class TapChangerControl
         emitattrs (6, TapChanger)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TapChangerControl rdf:ID=\"%s\">\n%s\t</cim:TapChangerControl>".format (id, export_fields)
+        "\t<cim:TapChangerControl rdf:%s=\"%s\">\n%s\t</cim:TapChangerControl>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TapChangerControl
-    extends
-        CIMParseable[TapChangerControl]
+extends
+    CIMParseable[TapChangerControl]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "limitVoltage",
         "lineDropCompensation",
         "lineDropR",
@@ -11427,18 +10950,18 @@ object TapChangerControl
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("TapChanger", "TapChanger", "1..*", "0..1")
     )
-    val limitVoltage: Fielder = parse_element (element (cls, fields (0)))
-    val lineDropCompensation: Fielder = parse_element (element (cls, fields (1)))
-    val lineDropR: Fielder = parse_element (element (cls, fields (2)))
-    val lineDropX: Fielder = parse_element (element (cls, fields (3)))
-    val reverseLineDropR: Fielder = parse_element (element (cls, fields (4)))
-    val reverseLineDropX: Fielder = parse_element (element (cls, fields (5)))
-    val TapChanger: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
+    val limitVoltage: Fielder = parse_element (element (cls, fields(0)))
+    val lineDropCompensation: Fielder = parse_element (element (cls, fields(1)))
+    val lineDropR: Fielder = parse_element (element (cls, fields(2)))
+    val lineDropX: Fielder = parse_element (element (cls, fields(3)))
+    val reverseLineDropR: Fielder = parse_element (element (cls, fields(4)))
+    val reverseLineDropX: Fielder = parse_element (element (cls, fields(5)))
+    val TapChanger: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: CIMContext): TapChangerControl =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TapChangerControl (
             RegulatingControl.parse (context),
             toDouble (mask (limitVoltage (), 0)),
@@ -11477,7 +11000,7 @@ object TapChangerControlSerializer extends CIMSerializer[TapChangerControl]
 
     def read (kryo: Kryo, input: Input, cls: Class[TapChangerControl]): TapChangerControl =
     {
-        val parent = RegulatingControlSerializer.read (kryo, input, classOf [RegulatingControl])
+        val parent = RegulatingControlSerializer.read (kryo, input, classOf[RegulatingControl])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TapChangerControl (
             parent,
@@ -11498,22 +11021,22 @@ object TapChangerControlSerializer extends CIMSerializer[TapChangerControl]
  * Describes each tap step in the tabular curve.
  *
  * @param Element Reference to the superclass object.
- * @param b       The magnetizing branch susceptance deviation as a percentage of nominal value.
- *                The actual susceptance is calculated as follows:
- *                calculated magnetizing susceptance = b(nominal) * (1 + b(from this class)/100).   The b(nominal) is defined as the static magnetizing susceptance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
- * @param g       The magnetizing branch conductance deviation as a percentage of nominal value.
- *                The actual conductance is calculated as follows:
- *                calculated magnetizing conductance = g(nominal) * (1 + g(from this class)/100).   The g(nominal) is defined as the static magnetizing conductance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
- * @param r       The resistance deviation as a percentage of nominal value.
- *                The actual reactance is calculated as follows:
- *                calculated resistance = r(nominal) * (1 + r(from this class)/100).   The r(nominal) is defined as the static resistance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
- * @param ratio   The voltage at the tap step divided by rated voltage of the transformer end having the tap changer.
- *                Hence this is a value close to one.
- *                For example, if the ratio at step 1 is 1.01, and the rated voltage of the transformer end is 110kV, then the voltage obtained by setting the tap changer to step 1 to is 111.1kV.
- * @param step    The tap step.
- * @param x       The series reactance deviation as a percentage of nominal value.
- *                The actual reactance is calculated as follows:
- *                calculated reactance = x(nominal) * (1 + x(from this class)/100).   The x(nominal) is defined as the static series reactance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
+ * @param b The magnetizing branch susceptance deviation as a percentage of nominal value.
+ *        The actual susceptance is calculated as follows:
+ *        calculated magnetizing susceptance = b(nominal) * (1 + b(from this class)/100).   The b(nominal) is defined as the static magnetizing susceptance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
+ * @param g The magnetizing branch conductance deviation as a percentage of nominal value.
+ *        The actual conductance is calculated as follows:
+ *        calculated magnetizing conductance = g(nominal) * (1 + g(from this class)/100).   The g(nominal) is defined as the static magnetizing conductance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
+ * @param r The resistance deviation as a percentage of nominal value.
+ *        The actual reactance is calculated as follows:
+ *        calculated resistance = r(nominal) * (1 + r(from this class)/100).   The r(nominal) is defined as the static resistance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
+ * @param ratio The voltage at the tap step divided by rated voltage of the transformer end having the tap changer.
+ *        Hence this is a value close to one.
+ *        For example, if the ratio at step 1 is 1.01, and the rated voltage of the transformer end is 110kV, then the voltage obtained by setting the tap changer to step 1 to is 111.1kV.
+ * @param step The tap step.
+ * @param x The series reactance deviation as a percentage of nominal value.
+ *        The actual reactance is calculated as follows:
+ *        calculated reactance = x(nominal) * (1 + x(from this class)/100).   The x(nominal) is defined as the static series reactance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -11528,8 +11051,8 @@ final case class TapChangerTablePoint
     step: Int = 0,
     x: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -11555,18 +11078,13 @@ final case class TapChangerTablePoint
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TapChangerTablePoint.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TapChangerTablePoint.fields (position), value)
-
         emitelem (0, b)
         emitelem (1, g)
         emitelem (2, r)
@@ -11575,18 +11093,17 @@ final case class TapChangerTablePoint
         emitelem (5, x)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TapChangerTablePoint rdf:ID=\"%s\">\n%s\t</cim:TapChangerTablePoint>".format (id, export_fields)
+        "\t<cim:TapChangerTablePoint rdf:%s=\"%s\">\n%s\t</cim:TapChangerTablePoint>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TapChangerTablePoint
-    extends
-        CIMParseable[TapChangerTablePoint]
+extends
+    CIMParseable[TapChangerTablePoint]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "b",
         "g",
         "r",
@@ -11594,17 +11111,17 @@ object TapChangerTablePoint
         "step",
         "x"
     )
-    val b: Fielder = parse_element (element (cls, fields (0)))
-    val g: Fielder = parse_element (element (cls, fields (1)))
-    val r: Fielder = parse_element (element (cls, fields (2)))
-    val ratio: Fielder = parse_element (element (cls, fields (3)))
-    val step: Fielder = parse_element (element (cls, fields (4)))
-    val x: Fielder = parse_element (element (cls, fields (5)))
+    val b: Fielder = parse_element (element (cls, fields(0)))
+    val g: Fielder = parse_element (element (cls, fields(1)))
+    val r: Fielder = parse_element (element (cls, fields(2)))
+    val ratio: Fielder = parse_element (element (cls, fields(3)))
+    val step: Fielder = parse_element (element (cls, fields(4)))
+    val x: Fielder = parse_element (element (cls, fields(5)))
 
     def parse (context: CIMContext): TapChangerTablePoint =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TapChangerTablePoint (
             BasicElement.parse (context),
             toDouble (mask (b (), 0)),
@@ -11633,7 +11150,7 @@ object TapChangerTablePointSerializer extends CIMSerializer[TapChangerTablePoint
             () => output.writeInt (obj.step),
             () => output.writeDouble (obj.x)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -11641,7 +11158,7 @@ object TapChangerTablePointSerializer extends CIMSerializer[TapChangerTablePoint
 
     def read (kryo: Kryo, input: Input, cls: Class[TapChangerTablePoint]): TapChangerTablePoint =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TapChangerTablePoint (
             parent,
@@ -11661,7 +11178,7 @@ object TapChangerTablePointSerializer extends CIMSerializer[TapChangerTablePoint
  * A pre-established pattern over time for a tap step.
  *
  * @param SeasonDayTypeSchedule [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Reference to the superclass object.
- * @param TapChanger            [[ch.ninecode.model.TapChanger TapChanger]] A TapSchedule is associated with a TapChanger.
+ * @param TapChanger [[ch.ninecode.model.TapChanger TapChanger]] A TapSchedule is associated with a TapChanger.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -11671,8 +11188,8 @@ final case class TapSchedule
     SeasonDayTypeSchedule: SeasonDayTypeSchedule = null,
     TapChanger: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -11698,44 +11215,38 @@ final case class TapSchedule
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TapSchedule.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TapSchedule.fields (position), value)
-
         emitattr (0, TapChanger)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TapSchedule rdf:ID=\"%s\">\n%s\t</cim:TapSchedule>".format (id, export_fields)
+        "\t<cim:TapSchedule rdf:%s=\"%s\">\n%s\t</cim:TapSchedule>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TapSchedule
-    extends
-        CIMParseable[TapSchedule]
+extends
+    CIMParseable[TapSchedule]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "TapChanger"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("TapChanger", "TapChanger", "1", "0..*")
     )
-    val TapChanger: Fielder = parse_attribute (attribute (cls, fields (0)))
+    val TapChanger: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): TapSchedule =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TapSchedule (
             SeasonDayTypeSchedule.parse (context),
             mask (TapChanger (), 0)
@@ -11762,7 +11273,7 @@ object TapScheduleSerializer extends CIMSerializer[TapSchedule]
 
     def read (kryo: Kryo, input: Input, cls: Class[TapSchedule]): TapSchedule =
     {
-        val parent = SeasonDayTypeScheduleSerializer.read (kryo, input, classOf [SeasonDayTypeSchedule])
+        val parent = SeasonDayTypeScheduleSerializer.read (kryo, input, classOf[SeasonDayTypeSchedule])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TapSchedule (
             parent,
@@ -11778,13 +11289,13 @@ object TapScheduleSerializer extends CIMSerializer[TapSchedule]
  *
  * Used to specify the core admittance of a transformer in a manner that can be shared among power transformers.
  *
- * @param IdentifiedObject   [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param b                  Magnetizing branch susceptance (B mag).
- *                           The value can be positive or negative.
- * @param b0                 Zero sequence magnetizing branch susceptance.
- * @param g                  Magnetizing branch conductance (G mag).
- * @param g0                 Zero sequence magnetizing branch conductance.
- * @param TransformerEnd     [[ch.ninecode.model.TransformerEnd TransformerEnd]] All transformer ends having this core admittance.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param b Magnetizing branch susceptance (B mag).
+ *        The value can be positive or negative.
+ * @param b0 Zero sequence magnetizing branch susceptance.
+ * @param g Magnetizing branch conductance (G mag).
+ * @param g0 Zero sequence magnetizing branch conductance.
+ * @param TransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] All transformer ends having this core admittance.
  * @param TransformerEndInfo [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] Transformer end datasheet used to calculate this core admittance.
  * @group Wires
  * @groupname Wires Package Wires
@@ -11800,8 +11311,8 @@ final case class TransformerCoreAdmittance
     TransformerEnd: List[String] = null,
     TransformerEndInfo: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -11827,22 +11338,15 @@ final case class TransformerCoreAdmittance
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransformerCoreAdmittance.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerCoreAdmittance.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerCoreAdmittance.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransformerCoreAdmittance.fields (position), x))
-
         emitelem (0, b)
         emitelem (1, b0)
         emitelem (2, g)
@@ -11851,18 +11355,17 @@ final case class TransformerCoreAdmittance
         emitattr (5, TransformerEndInfo)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TransformerCoreAdmittance rdf:ID=\"%s\">\n%s\t</cim:TransformerCoreAdmittance>".format (id, export_fields)
+        "\t<cim:TransformerCoreAdmittance rdf:%s=\"%s\">\n%s\t</cim:TransformerCoreAdmittance>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TransformerCoreAdmittance
-    extends
-        CIMParseable[TransformerCoreAdmittance]
+extends
+    CIMParseable[TransformerCoreAdmittance]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "b",
         "b0",
         "g",
@@ -11874,17 +11377,17 @@ object TransformerCoreAdmittance
         CIMRelationship ("TransformerEnd", "TransformerEnd", "0..*", "0..1"),
         CIMRelationship ("TransformerEndInfo", "TransformerEndInfo", "0..1", "0..1")
     )
-    val b: Fielder = parse_element (element (cls, fields (0)))
-    val b0: Fielder = parse_element (element (cls, fields (1)))
-    val g: Fielder = parse_element (element (cls, fields (2)))
-    val g0: Fielder = parse_element (element (cls, fields (3)))
-    val TransformerEnd: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
-    val TransformerEndInfo: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val b: Fielder = parse_element (element (cls, fields(0)))
+    val b0: Fielder = parse_element (element (cls, fields(1)))
+    val g: Fielder = parse_element (element (cls, fields(2)))
+    val g0: Fielder = parse_element (element (cls, fields(3)))
+    val TransformerEnd: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val TransformerEndInfo: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: CIMContext): TransformerCoreAdmittance =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TransformerCoreAdmittance (
             IdentifiedObject.parse (context),
             toDouble (mask (b (), 0)),
@@ -11921,7 +11424,7 @@ object TransformerCoreAdmittanceSerializer extends CIMSerializer[TransformerCore
 
     def read (kryo: Kryo, input: Input, cls: Class[TransformerCoreAdmittance]): TransformerCoreAdmittance =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TransformerCoreAdmittance (
             parent,
@@ -11942,28 +11445,28 @@ object TransformerCoreAdmittanceSerializer extends CIMSerializer[TransformerCore
  *
  * It corresponds to a physical transformer winding terminal.  In earlier CIM versions, the TransformerWinding class served a similar purpose, but this class is more flexible because it associates to terminal but is not a specialization of ConductingEquipment.
  *
- * @param IdentifiedObject       [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param bmagSat                Core shunt magnetizing susceptance in the saturation region.
- * @param endNumber              Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.
- *                               Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.
- * @param grounded               (for Yn and Zn connections) True if the neutral is solidly grounded.
- * @param magBaseU               The reference voltage at which the magnetizing saturation measurements were made.
- * @param magSatFlux             Core magnetizing saturation curve knee flux level.
- * @param rground                (for Yn and Zn connections) Resistance part of neutral impedance where 'grounded' is true.
- * @param xground                (for Yn and Zn connections) Reactive part of neutral impedance where 'grounded' is true.
- * @param BaseVoltage            [[ch.ninecode.model.BaseVoltage BaseVoltage]] Base voltage of the transformer end.
- *                               This is essential for PU calculation.
- * @param CoreAdmittance         [[ch.ninecode.model.TransformerCoreAdmittance TransformerCoreAdmittance]] Core admittance of this transformer end, representing magnetising current and core losses.
- *                               The full values of the transformer should be supplied for one transformer end only.
- * @param FromMeshImpedance      [[ch.ninecode.model.TransformerMeshImpedance TransformerMeshImpedance]] All mesh impedances between this 'to' and other 'from' transformer ends.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param bmagSat Core shunt magnetizing susceptance in the saturation region.
+ * @param endNumber Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.
+ *        Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.
+ * @param grounded (for Yn and Zn connections) True if the neutral is solidly grounded.
+ * @param magBaseU The reference voltage at which the magnetizing saturation measurements were made.
+ * @param magSatFlux Core magnetizing saturation curve knee flux level.
+ * @param rground (for Yn and Zn connections) Resistance part of neutral impedance where 'grounded' is true.
+ * @param xground (for Yn and Zn connections) Reactive part of neutral impedance where 'grounded' is true.
+ * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] Base voltage of the transformer end.
+ *        This is essential for PU calculation.
+ * @param CoreAdmittance [[ch.ninecode.model.TransformerCoreAdmittance TransformerCoreAdmittance]] Core admittance of this transformer end, representing magnetising current and core losses.
+ *        The full values of the transformer should be supplied for one transformer end only.
+ * @param FromMeshImpedance [[ch.ninecode.model.TransformerMeshImpedance TransformerMeshImpedance]] All mesh impedances between this 'to' and other 'from' transformer ends.
  * @param FromWindingInsulations [[ch.ninecode.model.WindingInsulation WindingInsulation]] <em>undocumented</em>
- * @param PhaseTapChanger        [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Phase tap changer associated with this transformer end.
- * @param RatioTapChanger        [[ch.ninecode.model.RatioTapChanger RatioTapChanger]] Ratio tap changer associated with this transformer end.
- * @param StarImpedance          [[ch.ninecode.model.TransformerStarImpedance TransformerStarImpedance]] (accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
- *                               By convention, for a two winding transformer, the full values of the transformer should be entered on the high voltage end (endNumber=1).
- * @param Terminal               [[ch.ninecode.model.Terminal Terminal]] Terminal of the power transformer to which this transformer end belongs.
- * @param ToMeshImpedance        [[ch.ninecode.model.TransformerMeshImpedance TransformerMeshImpedance]] All mesh impedances between this 'from' and other 'to' transformer ends.
- * @param ToWindingInsulations   [[ch.ninecode.model.WindingInsulation WindingInsulation]] <em>undocumented</em>
+ * @param PhaseTapChanger [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Phase tap changer associated with this transformer end.
+ * @param RatioTapChanger [[ch.ninecode.model.RatioTapChanger RatioTapChanger]] Ratio tap changer associated with this transformer end.
+ * @param StarImpedance [[ch.ninecode.model.TransformerStarImpedance TransformerStarImpedance]] (accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
+ *        By convention, for a two winding transformer, the full values of the transformer should be entered on the high voltage end (endNumber=1).
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] Terminal of the power transformer to which this transformer end belongs.
+ * @param ToMeshImpedance [[ch.ninecode.model.TransformerMeshImpedance TransformerMeshImpedance]] All mesh impedances between this 'from' and other 'to' transformer ends.
+ * @param ToWindingInsulations [[ch.ninecode.model.WindingInsulation WindingInsulation]] <em>undocumented</em>
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -11989,8 +11492,8 @@ final case class TransformerEnd
     ToMeshImpedance: List[String] = null,
     ToWindingInsulations: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -12016,22 +11519,15 @@ final case class TransformerEnd
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransformerEnd.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerEnd.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerEnd.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransformerEnd.fields (position), x))
-
         emitelem (0, bmagSat)
         emitelem (1, endNumber)
         emitelem (2, grounded)
@@ -12051,18 +11547,17 @@ final case class TransformerEnd
         emitattrs (16, ToWindingInsulations)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TransformerEnd rdf:ID=\"%s\">\n%s\t</cim:TransformerEnd>".format (id, export_fields)
+        "\t<cim:TransformerEnd rdf:%s=\"%s\">\n%s\t</cim:TransformerEnd>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TransformerEnd
-    extends
-        CIMParseable[TransformerEnd]
+extends
+    CIMParseable[TransformerEnd]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "bmagSat",
         "endNumber",
         "grounded",
@@ -12093,28 +11588,28 @@ object TransformerEnd
         CIMRelationship ("ToMeshImpedance", "TransformerMeshImpedance", "0..*", "1..*"),
         CIMRelationship ("ToWindingInsulations", "WindingInsulation", "0..*", "1")
     )
-    val bmagSat: Fielder = parse_element (element (cls, fields (0)))
-    val endNumber: Fielder = parse_element (element (cls, fields (1)))
-    val grounded: Fielder = parse_element (element (cls, fields (2)))
-    val magBaseU: Fielder = parse_element (element (cls, fields (3)))
-    val magSatFlux: Fielder = parse_element (element (cls, fields (4)))
-    val rground: Fielder = parse_element (element (cls, fields (5)))
-    val xground: Fielder = parse_element (element (cls, fields (6)))
-    val BaseVoltage: Fielder = parse_attribute (attribute (cls, fields (7)))
-    val CoreAdmittance: Fielder = parse_attribute (attribute (cls, fields (8)))
-    val FromMeshImpedance: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
-    val FromWindingInsulations: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
-    val PhaseTapChanger: Fielder = parse_attribute (attribute (cls, fields (11)))
-    val RatioTapChanger: Fielder = parse_attribute (attribute (cls, fields (12)))
-    val StarImpedance: Fielder = parse_attribute (attribute (cls, fields (13)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields (14)))
-    val ToMeshImpedance: FielderMultiple = parse_attributes (attribute (cls, fields (15)))
-    val ToWindingInsulations: FielderMultiple = parse_attributes (attribute (cls, fields (16)))
+    val bmagSat: Fielder = parse_element (element (cls, fields(0)))
+    val endNumber: Fielder = parse_element (element (cls, fields(1)))
+    val grounded: Fielder = parse_element (element (cls, fields(2)))
+    val magBaseU: Fielder = parse_element (element (cls, fields(3)))
+    val magSatFlux: Fielder = parse_element (element (cls, fields(4)))
+    val rground: Fielder = parse_element (element (cls, fields(5)))
+    val xground: Fielder = parse_element (element (cls, fields(6)))
+    val BaseVoltage: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val CoreAdmittance: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val FromMeshImpedance: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val FromWindingInsulations: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val PhaseTapChanger: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val RatioTapChanger: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val StarImpedance: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val ToMeshImpedance: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val ToWindingInsulations: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
 
     def parse (context: CIMContext): TransformerEnd =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TransformerEnd (
             IdentifiedObject.parse (context),
             toDouble (mask (bmagSat (), 0)),
@@ -12173,7 +11668,7 @@ object TransformerEndSerializer extends CIMSerializer[TransformerEnd]
 
     def read (kryo: Kryo, input: Input, cls: Class[TransformerEnd]): TransformerEnd =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TransformerEnd (
             parent,
@@ -12205,17 +11700,17 @@ object TransformerEndSerializer extends CIMSerializer[TransformerEnd]
  *
  * The typical case is that this class describes the impedance between two transformer ends pair-wise, i.e. the cardinalities at both transformer end associations are 1. However, in cases where two or more transformer ends are modelled the cardinalities are larger than 1.
  *
- * @param IdentifiedObject       [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param r                      Resistance between the 'from' and the 'to' end, seen from the 'from' end.
- * @param r0                     Zero-sequence resistance between the 'from' and the 'to' end, seen from the 'from' end.
- * @param x                      Reactance between the 'from' and the 'to' end, seen from the 'from' end.
- * @param x0                     Zero-sequence reactance between the 'from' and the 'to' end, seen from the 'from' end.
- * @param FromTransformerEnd     [[ch.ninecode.model.TransformerEnd TransformerEnd]] From end this mesh impedance is connected to.
- *                               It determines the voltage reference.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param r Resistance between the 'from' and the 'to' end, seen from the 'from' end.
+ * @param r0 Zero-sequence resistance between the 'from' and the 'to' end, seen from the 'from' end.
+ * @param x Reactance between the 'from' and the 'to' end, seen from the 'from' end.
+ * @param x0 Zero-sequence reactance between the 'from' and the 'to' end, seen from the 'from' end.
+ * @param FromTransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] From end this mesh impedance is connected to.
+ *        It determines the voltage reference.
  * @param FromTransformerEndInfo [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] 'from' transformer end datasheet this mesh impedance is calculated from.
- *                               It determines the voltage reference.
- * @param ToTransformerEnd       [[ch.ninecode.model.TransformerEnd TransformerEnd]] All transformer ends this mesh impedance is connected to.
- * @param ToTransformerEndInfos  [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] All 'to' transformer end datasheets this mesh impedance for 'from' transformer end is calculated from.
+ *        It determines the voltage reference.
+ * @param ToTransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] All transformer ends this mesh impedance is connected to.
+ * @param ToTransformerEndInfos [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] All 'to' transformer end datasheets this mesh impedance for 'from' transformer end is calculated from.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -12232,8 +11727,8 @@ final case class TransformerMeshImpedance
     ToTransformerEnd: List[String] = null,
     ToTransformerEndInfos: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -12259,22 +11754,15 @@ final case class TransformerMeshImpedance
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransformerMeshImpedance.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerMeshImpedance.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerMeshImpedance.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransformerMeshImpedance.fields (position), x))
-
         emitelem (0, r)
         emitelem (1, r0)
         emitelem (2, x)
@@ -12285,18 +11773,17 @@ final case class TransformerMeshImpedance
         emitattrs (7, ToTransformerEndInfos)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TransformerMeshImpedance rdf:ID=\"%s\">\n%s\t</cim:TransformerMeshImpedance>".format (id, export_fields)
+        "\t<cim:TransformerMeshImpedance rdf:%s=\"%s\">\n%s\t</cim:TransformerMeshImpedance>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TransformerMeshImpedance
-    extends
-        CIMParseable[TransformerMeshImpedance]
+extends
+    CIMParseable[TransformerMeshImpedance]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "r",
         "r0",
         "x",
@@ -12312,19 +11799,19 @@ object TransformerMeshImpedance
         CIMRelationship ("ToTransformerEnd", "TransformerEnd", "1..*", "0..*"),
         CIMRelationship ("ToTransformerEndInfos", "TransformerEndInfo", "0..*", "0..*")
     )
-    val r: Fielder = parse_element (element (cls, fields (0)))
-    val r0: Fielder = parse_element (element (cls, fields (1)))
-    val x: Fielder = parse_element (element (cls, fields (2)))
-    val x0: Fielder = parse_element (element (cls, fields (3)))
-    val FromTransformerEnd: Fielder = parse_attribute (attribute (cls, fields (4)))
-    val FromTransformerEndInfo: Fielder = parse_attribute (attribute (cls, fields (5)))
-    val ToTransformerEnd: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
-    val ToTransformerEndInfos: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val r: Fielder = parse_element (element (cls, fields(0)))
+    val r0: Fielder = parse_element (element (cls, fields(1)))
+    val x: Fielder = parse_element (element (cls, fields(2)))
+    val x0: Fielder = parse_element (element (cls, fields(3)))
+    val FromTransformerEnd: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val FromTransformerEndInfo: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val ToTransformerEnd: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ToTransformerEndInfos: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: CIMContext): TransformerMeshImpedance =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TransformerMeshImpedance (
             IdentifiedObject.parse (context),
             toDouble (mask (r (), 0)),
@@ -12365,7 +11852,7 @@ object TransformerMeshImpedanceSerializer extends CIMSerializer[TransformerMeshI
 
     def read (kryo: Kryo, input: Input, cls: Class[TransformerMeshImpedance]): TransformerMeshImpedance =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TransformerMeshImpedance (
             parent,
@@ -12389,12 +11876,12 @@ object TransformerMeshImpedanceSerializer extends CIMSerializer[TransformerMeshI
  * For transformers with 4 or more windings, TransformerMeshImpedance class shall be used.
  * For transmission networks use PowerTransformerEnd impedances (r, r0, x, x0, b, b0, g and g0).
  *
- * @param IdentifiedObject   [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param r                  Resistance of the transformer end.
- * @param r0                 Zero sequence series resistance of the transformer end.
- * @param x                  Positive sequence series reactance of the transformer end.
- * @param x0                 Zero sequence series reactance of the transformer end.
- * @param TransformerEnd     [[ch.ninecode.model.TransformerEnd TransformerEnd]] All transformer ends having this star impedance.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param r Resistance of the transformer end.
+ * @param r0 Zero sequence series resistance of the transformer end.
+ * @param x Positive sequence series reactance of the transformer end.
+ * @param x0 Zero sequence series reactance of the transformer end.
+ * @param TransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] All transformer ends having this star impedance.
  * @param TransformerEndInfo [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] Transformer end datasheet used to calculate this transformer star impedance.
  * @group Wires
  * @groupname Wires Package Wires
@@ -12410,8 +11897,8 @@ final case class TransformerStarImpedance
     TransformerEnd: List[String] = null,
     TransformerEndInfo: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -12437,22 +11924,15 @@ final case class TransformerStarImpedance
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransformerStarImpedance.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerStarImpedance.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerStarImpedance.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransformerStarImpedance.fields (position), x))
-
         emitelem (0, r)
         emitelem (1, r0)
         emitelem (2, x)
@@ -12461,18 +11941,17 @@ final case class TransformerStarImpedance
         emitattr (5, TransformerEndInfo)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TransformerStarImpedance rdf:ID=\"%s\">\n%s\t</cim:TransformerStarImpedance>".format (id, export_fields)
+        "\t<cim:TransformerStarImpedance rdf:%s=\"%s\">\n%s\t</cim:TransformerStarImpedance>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TransformerStarImpedance
-    extends
-        CIMParseable[TransformerStarImpedance]
+extends
+    CIMParseable[TransformerStarImpedance]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "r",
         "r0",
         "x",
@@ -12484,17 +11963,17 @@ object TransformerStarImpedance
         CIMRelationship ("TransformerEnd", "TransformerEnd", "0..*", "0..1"),
         CIMRelationship ("TransformerEndInfo", "TransformerEndInfo", "0..1", "0..1")
     )
-    val r: Fielder = parse_element (element (cls, fields (0)))
-    val r0: Fielder = parse_element (element (cls, fields (1)))
-    val x: Fielder = parse_element (element (cls, fields (2)))
-    val x0: Fielder = parse_element (element (cls, fields (3)))
-    val TransformerEnd: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
-    val TransformerEndInfo: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val r: Fielder = parse_element (element (cls, fields(0)))
+    val r0: Fielder = parse_element (element (cls, fields(1)))
+    val x: Fielder = parse_element (element (cls, fields(2)))
+    val x0: Fielder = parse_element (element (cls, fields(3)))
+    val TransformerEnd: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val TransformerEndInfo: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: CIMContext): TransformerStarImpedance =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TransformerStarImpedance (
             IdentifiedObject.parse (context),
             toDouble (mask (r (), 0)),
@@ -12531,7 +12010,7 @@ object TransformerStarImpedanceSerializer extends CIMSerializer[TransformerStarI
 
     def read (kryo: Kryo, input: Input, cls: Class[TransformerStarImpedance]): TransformerStarImpedance =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TransformerStarImpedance (
             parent,
@@ -12552,10 +12031,10 @@ object TransformerStarImpedanceSerializer extends CIMSerializer[TransformerStarI
  *
  * These windings are bound on a common core and placed in the same tank. Transformer tank can be used to model both single-phase and 3-phase transformers.
  *
- * @param Equipment               [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
- * @param PowerTransformer        [[ch.ninecode.model.PowerTransformer PowerTransformer]] Bank this transformer belongs to.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param PowerTransformer [[ch.ninecode.model.PowerTransformer PowerTransformer]] Bank this transformer belongs to.
  * @param TransformerObservations [[ch.ninecode.model.TransformerObservation TransformerObservation]] <em>undocumented</em>
- * @param TransformerTankEnds     [[ch.ninecode.model.TransformerTankEnd TransformerTankEnd]] All windings of this transformer.
+ * @param TransformerTankEnds [[ch.ninecode.model.TransformerTankEnd TransformerTankEnd]] All windings of this transformer.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -12567,8 +12046,8 @@ final case class TransformerTank
     TransformerObservations: List[String] = null,
     TransformerTankEnds: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -12594,37 +12073,30 @@ final case class TransformerTank
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransformerTank.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerTank.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TransformerTank.fields (position), x))
-
         emitattr (0, PowerTransformer)
         emitattrs (1, TransformerObservations)
         emitattrs (2, TransformerTankEnds)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TransformerTank rdf:ID=\"%s\">\n%s\t</cim:TransformerTank>".format (id, export_fields)
+        "\t<cim:TransformerTank rdf:%s=\"%s\">\n%s\t</cim:TransformerTank>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TransformerTank
-    extends
-        CIMParseable[TransformerTank]
+extends
+    CIMParseable[TransformerTank]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "PowerTransformer",
         "TransformerObservations",
         "TransformerTankEnds"
@@ -12634,14 +12106,14 @@ object TransformerTank
         CIMRelationship ("TransformerObservations", "TransformerObservation", "0..*", "0..1"),
         CIMRelationship ("TransformerTankEnds", "TransformerTankEnd", "1..*", "0..1")
     )
-    val PowerTransformer: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val TransformerObservations: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
-    val TransformerTankEnds: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val PowerTransformer: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val TransformerObservations: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val TransformerTankEnds: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: CIMContext): TransformerTank =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TransformerTank (
             Equipment.parse (context),
             mask (PowerTransformer (), 0),
@@ -12672,7 +12144,7 @@ object TransformerTankSerializer extends CIMSerializer[TransformerTank]
 
     def read (kryo: Kryo, input: Input, cls: Class[TransformerTank]): TransformerTank =
     {
-        val parent = EquipmentSerializer.read (kryo, input, classOf [Equipment])
+        val parent = EquipmentSerializer.read (kryo, input, classOf[Equipment])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TransformerTank (
             parent,
@@ -12688,8 +12160,8 @@ object TransformerTankSerializer extends CIMSerializer[TransformerTank]
 /**
  * Transformer tank end represents an individual winding for unbalanced models or for transformer tanks connected into a bank (and bank is modelled with the PowerTransformer).
  *
- * @param TransformerEnd  [[ch.ninecode.model.TransformerEnd TransformerEnd]] Reference to the superclass object.
- * @param phases          Describes the phases carried by a conducting equipment.
+ * @param TransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] Reference to the superclass object.
+ * @param phases Describes the phases carried by a conducting equipment.
  * @param TransformerTank [[ch.ninecode.model.TransformerTank TransformerTank]] Transformer this winding belongs to.
  * @group Wires
  * @groupname Wires Package Wires
@@ -12701,8 +12173,8 @@ final case class TransformerTankEnd
     phases: String = null,
     TransformerTank: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -12728,47 +12200,41 @@ final case class TransformerTankEnd
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransformerTankEnd.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerTankEnd.fields (position), value)
-
         emitattr (0, phases)
         emitattr (1, TransformerTank)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TransformerTankEnd rdf:ID=\"%s\">\n%s\t</cim:TransformerTankEnd>".format (id, export_fields)
+        "\t<cim:TransformerTankEnd rdf:%s=\"%s\">\n%s\t</cim:TransformerTankEnd>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TransformerTankEnd
-    extends
-        CIMParseable[TransformerTankEnd]
+extends
+    CIMParseable[TransformerTankEnd]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "phases",
         "TransformerTank"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("TransformerTank", "TransformerTank", "0..1", "1..*")
     )
-    val phases: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val TransformerTank: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val phases: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val TransformerTank: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): TransformerTankEnd =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TransformerTankEnd (
             TransformerEnd.parse (context),
             mask (phases (), 0),
@@ -12797,7 +12263,7 @@ object TransformerTankEndSerializer extends CIMSerializer[TransformerTankEnd]
 
     def read (kryo: Kryo, input: Input, cls: Class[TransformerTankEnd]): TransformerTankEnd =
     {
-        val parent = TransformerEndSerializer.read (kryo, input, classOf [TransformerEnd])
+        val parent = TransformerEndSerializer.read (kryo, input, classOf[TransformerEnd])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TransformerTankEnd (
             parent,
@@ -12815,8 +12281,8 @@ object TransformerTankEndSerializer extends CIMSerializer[TransformerTankEnd]
  * A voltage control zone consists of a collection of substations with a designated bus bar section whose voltage will be controlled.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param BusbarSection       [[ch.ninecode.model.BusbarSection BusbarSection]] A VoltageControlZone is controlled by a designated BusbarSection.
- * @param RegulationSchedule  [[ch.ninecode.model.RegulationSchedule RegulationSchedule]] A VoltageControlZone may have a  voltage regulation schedule.
+ * @param BusbarSection [[ch.ninecode.model.BusbarSection BusbarSection]] A VoltageControlZone is controlled by a designated BusbarSection.
+ * @param RegulationSchedule [[ch.ninecode.model.RegulationSchedule RegulationSchedule]] A VoltageControlZone may have a  voltage regulation schedule.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -12827,8 +12293,8 @@ final case class VoltageControlZone
     BusbarSection: String = null,
     RegulationSchedule: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -12854,34 +12320,28 @@ final case class VoltageControlZone
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VoltageControlZone.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (VoltageControlZone.fields (position), value)
-
         emitattr (0, BusbarSection)
         emitattr (1, RegulationSchedule)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:VoltageControlZone rdf:ID=\"%s\">\n%s\t</cim:VoltageControlZone>".format (id, export_fields)
+        "\t<cim:VoltageControlZone rdf:%s=\"%s\">\n%s\t</cim:VoltageControlZone>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object VoltageControlZone
-    extends
-        CIMParseable[VoltageControlZone]
+extends
+    CIMParseable[VoltageControlZone]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "BusbarSection",
         "RegulationSchedule"
     )
@@ -12889,13 +12349,13 @@ object VoltageControlZone
         CIMRelationship ("BusbarSection", "BusbarSection", "1", "0..1"),
         CIMRelationship ("RegulationSchedule", "RegulationSchedule", "0..1", "0..*")
     )
-    val BusbarSection: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val RegulationSchedule: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val BusbarSection: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RegulationSchedule: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): VoltageControlZone =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = VoltageControlZone (
             PowerSystemResource.parse (context),
             mask (BusbarSection (), 0),
@@ -12924,7 +12384,7 @@ object VoltageControlZoneSerializer extends CIMSerializer[VoltageControlZone]
 
     def read (kryo: Kryo, input: Input, cls: Class[VoltageControlZone]): VoltageControlZone =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = VoltageControlZone (
             parent,
@@ -12939,7 +12399,7 @@ object VoltageControlZoneSerializer extends CIMSerializer[VoltageControlZone]
 /**
  * A two terminal and power conducting device of negligible impedance and length represented as zero impedance device that can be used to connect auxiliary equipment to its terminals.
  *
- * @param Conductor         [[ch.ninecode.model.Conductor Conductor]] Reference to the superclass object.
+ * @param Conductor [[ch.ninecode.model.Conductor Conductor]] Reference to the superclass object.
  * @param WireSegmentPhases [[ch.ninecode.model.WireSegmentPhase WireSegmentPhase]] The wire segment phases which belong to the wire segment.
  * @group Wires
  * @groupname Wires Package Wires
@@ -12950,8 +12410,8 @@ final case class WireSegment
     Conductor: Conductor = null,
     WireSegmentPhases: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -12977,44 +12437,38 @@ final case class WireSegment
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WireSegment.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (WireSegment.fields (position), x))
-
         emitattrs (0, WireSegmentPhases)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:WireSegment rdf:ID=\"%s\">\n%s\t</cim:WireSegment>".format (id, export_fields)
+        "\t<cim:WireSegment rdf:%s=\"%s\">\n%s\t</cim:WireSegment>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object WireSegment
-    extends
-        CIMParseable[WireSegment]
+extends
+    CIMParseable[WireSegment]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "WireSegmentPhases"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WireSegmentPhases", "WireSegmentPhase", "0..*", "1")
     )
-    val WireSegmentPhases: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val WireSegmentPhases: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): WireSegment =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = WireSegment (
             Conductor.parse (context),
             masks (WireSegmentPhases (), 0)
@@ -13041,7 +12495,7 @@ object WireSegmentSerializer extends CIMSerializer[WireSegment]
 
     def read (kryo: Kryo, input: Input, cls: Class[WireSegment]): WireSegment =
     {
-        val parent = ConductorSerializer.read (kryo, input, classOf [Conductor])
+        val parent = ConductorSerializer.read (kryo, input, classOf[Conductor])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WireSegment (
             parent,
@@ -13056,10 +12510,10 @@ object WireSegmentSerializer extends CIMSerializer[WireSegment]
  * Represents a single wire of an alternating current wire segment.
  *
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
- * @param phase               The phase connection of the wire at both ends.
- * @param sequenceNumber      Number designation for this wire segment phase.
- *                            Each wire segment phase within a wire segment should have a unique sequence number.
- * @param WireSegment         [[ch.ninecode.model.WireSegment WireSegment]] The wire segment to which the phase belongs.
+ * @param phase The phase connection of the wire at both ends.
+ * @param sequenceNumber Number designation for this wire segment phase.
+ *        Each wire segment phase within a wire segment should have a unique sequence number.
+ * @param WireSegment [[ch.ninecode.model.WireSegment WireSegment]] The wire segment to which the phase belongs.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -13071,8 +12525,8 @@ final case class WireSegmentPhase
     sequenceNumber: Int = 0,
     WireSegment: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -13098,37 +12552,30 @@ final case class WireSegmentPhase
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WireSegmentPhase.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WireSegmentPhase.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WireSegmentPhase.fields (position), value)
-
         emitattr (0, phase)
         emitelem (1, sequenceNumber)
         emitattr (2, WireSegment)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:WireSegmentPhase rdf:ID=\"%s\">\n%s\t</cim:WireSegmentPhase>".format (id, export_fields)
+        "\t<cim:WireSegmentPhase rdf:%s=\"%s\">\n%s\t</cim:WireSegmentPhase>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object WireSegmentPhase
-    extends
-        CIMParseable[WireSegmentPhase]
+extends
+    CIMParseable[WireSegmentPhase]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "phase",
         "sequenceNumber",
         "WireSegment"
@@ -13136,14 +12583,14 @@ object WireSegmentPhase
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("WireSegment", "WireSegment", "1", "0..*")
     )
-    val phase: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val sequenceNumber: Fielder = parse_element (element (cls, fields (1)))
-    val WireSegment: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val sequenceNumber: Fielder = parse_element (element (cls, fields(1)))
+    val WireSegment: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: CIMContext): WireSegmentPhase =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = WireSegmentPhase (
             PowerSystemResource.parse (context),
             mask (phase (), 0),
@@ -13174,7 +12621,7 @@ object WireSegmentPhaseSerializer extends CIMSerializer[WireSegmentPhase]
 
     def read (kryo: Kryo, input: Input, cls: Class[WireSegmentPhase]): WireSegmentPhase =
     {
-        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf [PowerSystemResource])
+        val parent = PowerSystemResourceSerializer.read (kryo, input, classOf[PowerSystemResource])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WireSegmentPhase (
             parent,

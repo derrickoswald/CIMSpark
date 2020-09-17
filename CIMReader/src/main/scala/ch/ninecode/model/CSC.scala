@@ -20,8 +20,8 @@ final case class CCAinverter
 (
     Element: BasicElement = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -47,25 +47,21 @@ final case class CCAinverter
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:CCAinverter rdf:ID=\"%s\">\n%s\t</cim:CCAinverter>".format (id, export_fields)
+        "\t<cim:CCAinverter rdf:%s=\"%s\">\n%s\t</cim:CCAinverter>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object CCAinverter
-    extends
-        CIMParseable[CCAinverter]
+extends
+    CIMParseable[CCAinverter]
 {
 
     def parse (context: CIMContext): CCAinverter =
@@ -86,7 +82,7 @@ object CCAinverterSerializer extends CIMSerializer[CCAinverter]
         val toSerialize: Array[() => Unit] = Array (
 
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -94,7 +90,7 @@ object CCAinverterSerializer extends CIMSerializer[CCAinverter]
 
     def read (kryo: Kryo, input: Input, cls: Class[CCAinverter]): CCAinverter =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = CCAinverter (
             parent
@@ -112,8 +108,8 @@ final case class CCArectifierControl
 (
     Element: BasicElement = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -139,25 +135,21 @@ final case class CCArectifierControl
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:CCArectifierControl rdf:ID=\"%s\">\n%s\t</cim:CCArectifierControl>".format (id, export_fields)
+        "\t<cim:CCArectifierControl rdf:%s=\"%s\">\n%s\t</cim:CCArectifierControl>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object CCArectifierControl
-    extends
-        CIMParseable[CCArectifierControl]
+extends
+    CIMParseable[CCArectifierControl]
 {
 
     def parse (context: CIMContext): CCArectifierControl =
@@ -178,7 +170,7 @@ object CCArectifierControlSerializer extends CIMSerializer[CCArectifierControl]
         val toSerialize: Array[() => Unit] = Array (
 
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -186,7 +178,7 @@ object CCArectifierControlSerializer extends CIMSerializer[CCArectifierControl]
 
     def read (kryo: Kryo, input: Input, cls: Class[CCArectifierControl]): CCArectifierControl =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = CCArectifierControl (
             parent
@@ -204,8 +196,8 @@ final case class CSCtype1
 (
     CSCDynamics: CSCDynamics = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -231,25 +223,21 @@ final case class CSCtype1
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:CSCtype1 rdf:ID=\"%s\">\n%s\t</cim:CSCtype1>".format (id, export_fields)
+        "\t<cim:CSCtype1 rdf:%s=\"%s\">\n%s\t</cim:CSCtype1>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object CSCtype1
-    extends
-        CIMParseable[CSCtype1]
+extends
+    CIMParseable[CSCtype1]
 {
 
     def parse (context: CIMContext): CSCtype1 =
@@ -278,7 +266,7 @@ object CSCtype1Serializer extends CIMSerializer[CSCtype1]
 
     def read (kryo: Kryo, input: Input, cls: Class[CSCtype1]): CSCtype1 =
     {
-        val parent = CSCDynamicsSerializer.read (kryo, input, classOf [CSCDynamics])
+        val parent = CSCDynamicsSerializer.read (kryo, input, classOf[CSCDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = CSCtype1 (
             parent
@@ -296,8 +284,8 @@ final case class IdcInverterControl
 (
     Element: BasicElement = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -323,25 +311,21 @@ final case class IdcInverterControl
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:IdcInverterControl rdf:ID=\"%s\">\n%s\t</cim:IdcInverterControl>".format (id, export_fields)
+        "\t<cim:IdcInverterControl rdf:%s=\"%s\">\n%s\t</cim:IdcInverterControl>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object IdcInverterControl
-    extends
-        CIMParseable[IdcInverterControl]
+extends
+    CIMParseable[IdcInverterControl]
 {
 
     def parse (context: CIMContext): IdcInverterControl =
@@ -362,7 +346,7 @@ object IdcInverterControlSerializer extends CIMSerializer[IdcInverterControl]
         val toSerialize: Array[() => Unit] = Array (
 
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -370,7 +354,7 @@ object IdcInverterControlSerializer extends CIMSerializer[IdcInverterControl]
 
     def read (kryo: Kryo, input: Input, cls: Class[IdcInverterControl]): IdcInverterControl =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = IdcInverterControl (
             parent
@@ -388,8 +372,8 @@ final case class IgnAngleContInverter
 (
     Element: BasicElement = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -415,25 +399,21 @@ final case class IgnAngleContInverter
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:IgnAngleContInverter rdf:ID=\"%s\">\n%s\t</cim:IgnAngleContInverter>".format (id, export_fields)
+        "\t<cim:IgnAngleContInverter rdf:%s=\"%s\">\n%s\t</cim:IgnAngleContInverter>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object IgnAngleContInverter
-    extends
-        CIMParseable[IgnAngleContInverter]
+extends
+    CIMParseable[IgnAngleContInverter]
 {
 
     def parse (context: CIMContext): IgnAngleContInverter =
@@ -454,7 +434,7 @@ object IgnAngleContInverterSerializer extends CIMSerializer[IgnAngleContInverter
         val toSerialize: Array[() => Unit] = Array (
 
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -462,7 +442,7 @@ object IgnAngleContInverterSerializer extends CIMSerializer[IgnAngleContInverter
 
     def read (kryo: Kryo, input: Input, cls: Class[IgnAngleContInverter]): IgnAngleContInverter =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = IgnAngleContInverter (
             parent
@@ -480,8 +460,8 @@ final case class VDCOL
 (
     Element: BasicElement = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -507,25 +487,21 @@ final case class VDCOL
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:VDCOL rdf:ID=\"%s\">\n%s\t</cim:VDCOL>".format (id, export_fields)
+        "\t<cim:VDCOL rdf:%s=\"%s\">\n%s\t</cim:VDCOL>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object VDCOL
-    extends
-        CIMParseable[VDCOL]
+extends
+    CIMParseable[VDCOL]
 {
 
     def parse (context: CIMContext): VDCOL =
@@ -546,7 +522,7 @@ object VDCOLSerializer extends CIMSerializer[VDCOL]
         val toSerialize: Array[() => Unit] = Array (
 
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -554,7 +530,7 @@ object VDCOLSerializer extends CIMSerializer[VDCOL]
 
     def read (kryo: Kryo, input: Input, cls: Class[VDCOL]): VDCOL =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = VDCOL (
             parent

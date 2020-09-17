@@ -24,8 +24,8 @@ final case class AnnotatedProjectDependency
     DependentOnStage: String = null,
     DependingStage: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -51,35 +51,29 @@ final case class AnnotatedProjectDependency
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AnnotatedProjectDependency.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AnnotatedProjectDependency.fields (position), value)
-
         emitattr (0, dependencyType)
         emitattr (1, DependentOnStage)
         emitattr (2, DependingStage)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:AnnotatedProjectDependency rdf:ID=\"%s\">\n%s\t</cim:AnnotatedProjectDependency>".format (id, export_fields)
+        "\t<cim:AnnotatedProjectDependency rdf:%s=\"%s\">\n%s\t</cim:AnnotatedProjectDependency>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object AnnotatedProjectDependency
-    extends
-        CIMParseable[AnnotatedProjectDependency]
+extends
+    CIMParseable[AnnotatedProjectDependency]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "dependencyType",
         "DependentOnStage",
         "DependingStage"
@@ -88,14 +82,14 @@ object AnnotatedProjectDependency
         CIMRelationship ("DependentOnStage", "NetworkModelProjectStage", "1", "0..1"),
         CIMRelationship ("DependingStage", "NetworkModelProjectStage", "1", "0..*")
     )
-    val dependencyType: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val DependentOnStage: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val DependingStage: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val dependencyType: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val DependentOnStage: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val DependingStage: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: CIMContext): AnnotatedProjectDependency =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = AnnotatedProjectDependency (
             IdentifiedObject.parse (context),
             mask (dependencyType (), 0),
@@ -126,7 +120,7 @@ object AnnotatedProjectDependencySerializer extends CIMSerializer[AnnotatedProje
 
     def read (kryo: Kryo, input: Input, cls: Class[AnnotatedProjectDependency]): AnnotatedProjectDependency =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = AnnotatedProjectDependency (
             parent,
@@ -148,8 +142,8 @@ final case class CurrentState
 (
     IdentifiedObject: IdentifiedObject = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -175,25 +169,21 @@ final case class CurrentState
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:CurrentState rdf:ID=\"%s\">\n%s\t</cim:CurrentState>".format (id, export_fields)
+        "\t<cim:CurrentState rdf:%s=\"%s\">\n%s\t</cim:CurrentState>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object CurrentState
-    extends
-        CIMParseable[CurrentState]
+extends
+    CIMParseable[CurrentState]
 {
 
     def parse (context: CIMContext): CurrentState =
@@ -222,7 +212,7 @@ object CurrentStateSerializer extends CIMSerializer[CurrentState]
 
     def read (kryo: Kryo, input: Input, cls: Class[CurrentState]): CurrentState =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = CurrentState (
             parent
@@ -246,8 +236,8 @@ final case class DifferentialModel
 (
     Element: BasicElement = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -273,25 +263,21 @@ final case class DifferentialModel
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:DifferentialModel rdf:ID=\"%s\">\n%s\t</cim:DifferentialModel>".format (id, export_fields)
+        "\t<cim:DifferentialModel rdf:%s=\"%s\">\n%s\t</cim:DifferentialModel>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object DifferentialModel
-    extends
-        CIMParseable[DifferentialModel]
+extends
+    CIMParseable[DifferentialModel]
 {
 
     def parse (context: CIMContext): DifferentialModel =
@@ -312,7 +298,7 @@ object DifferentialModelSerializer extends CIMSerializer[DifferentialModel]
         val toSerialize: Array[() => Unit] = Array (
 
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -320,7 +306,7 @@ object DifferentialModelSerializer extends CIMSerializer[DifferentialModel]
 
     def read (kryo: Kryo, input: Input, cls: Class[DifferentialModel]): DifferentialModel =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DifferentialModel (
             parent
@@ -336,7 +322,7 @@ object DifferentialModelSerializer extends CIMSerializer[DifferentialModel]
  * Primarily used to organize the phases of an overall project.
  *
  * @param NetworkModelProjectComponent [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] Reference to the superclass object.
- * @param ContainedProject             [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] Projects that are included in this parent project.
+ * @param ContainedProject [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] Projects that are included in this parent project.
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
@@ -346,8 +332,8 @@ final case class NetworkModelProject
     NetworkModelProjectComponent: NetworkModelProjectComponent = null,
     ContainedProject: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -373,44 +359,38 @@ final case class NetworkModelProject
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProject.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProject.fields (position), x))
-
         emitattrs (0, ContainedProject)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NetworkModelProject rdf:ID=\"%s\">\n%s\t</cim:NetworkModelProject>".format (id, export_fields)
+        "\t<cim:NetworkModelProject rdf:%s=\"%s\">\n%s\t</cim:NetworkModelProject>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NetworkModelProject
-    extends
-        CIMParseable[NetworkModelProject]
+extends
+    CIMParseable[NetworkModelProject]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "ContainedProject"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ContainedProject", "NetworkModelProjectComponent", "0..*", "1")
     )
-    val ContainedProject: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val ContainedProject: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): NetworkModelProject =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProject (
             NetworkModelProjectComponent.parse (context),
             masks (ContainedProject (), 0)
@@ -437,7 +417,7 @@ object NetworkModelProjectSerializer extends CIMSerializer[NetworkModelProject]
 
     def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProject]): NetworkModelProject =
     {
-        val parent = NetworkModelProjectComponentSerializer.read (kryo, input, classOf [NetworkModelProjectComponent])
+        val parent = NetworkModelProjectComponentSerializer.read (kryo, input, classOf[NetworkModelProjectComponent])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NetworkModelProject (
             parent,
@@ -458,8 +438,8 @@ final case class NetworkModelProject2
     NetworkModelProjectComponent2: NetworkModelProjectComponent2 = null,
     Child: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -485,44 +465,38 @@ final case class NetworkModelProject2
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProject2.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProject2.fields (position), x))
-
         emitattrs (0, Child)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NetworkModelProject2 rdf:ID=\"%s\">\n%s\t</cim:NetworkModelProject2>".format (id, export_fields)
+        "\t<cim:NetworkModelProject2 rdf:%s=\"%s\">\n%s\t</cim:NetworkModelProject2>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NetworkModelProject2
-    extends
-        CIMParseable[NetworkModelProject2]
+extends
+    CIMParseable[NetworkModelProject2]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Child"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Child", "NetworkModelProjectComponent2", "0..*", "0..1")
     )
-    val Child: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val Child: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): NetworkModelProject2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProject2 (
             NetworkModelProjectComponent2.parse (context),
             masks (Child (), 0)
@@ -549,7 +523,7 @@ object NetworkModelProject2Serializer extends CIMSerializer[NetworkModelProject2
 
     def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProject2]): NetworkModelProject2 =
     {
-        val parent = NetworkModelProjectComponent2Serializer.read (kryo, input, classOf [NetworkModelProjectComponent2])
+        val parent = NetworkModelProjectComponent2Serializer.read (kryo, input, classOf[NetworkModelProjectComponent2])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NetworkModelProject2 (
             parent,
@@ -565,7 +539,7 @@ object NetworkModelProject2Serializer extends CIMSerializer[NetworkModelProject2
  *
  * Has persistent identity over multiple versions of the associated change set.
  *
- * @param NetworkModelProjectComponent     [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] Reference to the superclass object.
+ * @param NetworkModelProjectComponent [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] Reference to the superclass object.
  * @param NetworkModelProjectChangeVersion [[ch.ninecode.model.NetworkModelProjectChangeVersion NetworkModelProjectChangeVersion]] A specific version of the network model project change.
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
@@ -576,8 +550,8 @@ final case class NetworkModelProjectChange
     NetworkModelProjectComponent: NetworkModelProjectComponent = null,
     NetworkModelProjectChangeVersion: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -603,44 +577,38 @@ final case class NetworkModelProjectChange
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProjectChange.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProjectChange.fields (position), x))
-
         emitattrs (0, NetworkModelProjectChangeVersion)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NetworkModelProjectChange rdf:ID=\"%s\">\n%s\t</cim:NetworkModelProjectChange>".format (id, export_fields)
+        "\t<cim:NetworkModelProjectChange rdf:%s=\"%s\">\n%s\t</cim:NetworkModelProjectChange>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NetworkModelProjectChange
-    extends
-        CIMParseable[NetworkModelProjectChange]
+extends
+    CIMParseable[NetworkModelProjectChange]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "NetworkModelProjectChangeVersion"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("NetworkModelProjectChangeVersion", "NetworkModelProjectChangeVersion", "1..*", "1")
     )
-    val NetworkModelProjectChangeVersion: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val NetworkModelProjectChangeVersion: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): NetworkModelProjectChange =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectChange (
             NetworkModelProjectComponent.parse (context),
             masks (NetworkModelProjectChangeVersion (), 0)
@@ -667,7 +635,7 @@ object NetworkModelProjectChangeSerializer extends CIMSerializer[NetworkModelPro
 
     def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectChange]): NetworkModelProjectChange =
     {
-        val parent = NetworkModelProjectComponentSerializer.read (kryo, input, classOf [NetworkModelProjectComponent])
+        val parent = NetworkModelProjectComponentSerializer.read (kryo, input, classOf[NetworkModelProjectComponent])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NetworkModelProjectChange (
             parent,
@@ -683,16 +651,16 @@ object NetworkModelProjectChangeSerializer extends CIMSerializer[NetworkModelPro
  *
  * New instances of this class with new identity are instantiated upon changes to the content of this class or changes to the associated change set.  Instances of this class are considered immutable.  The case audit trail can reference this immutable data to exactly reproduce a case.
  *
- * @param IdentifiedObject          [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param comment                   A user provided comment describing the changes in this version from the previous version.
- * @param effectiveDateTime         The date/time the change set is included in the model.
- * @param timeStamp                 The date/time this version was finalized and thus made immutable.
- * @param ChangeSet                 [[ch.ninecode.model.ChangeSet ChangeSet]] The details of model changes for this project.
- *                                  The change set should have a new identifier if it changes.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param comment A user provided comment describing the changes in this version from the previous version.
+ * @param effectiveDateTime The date/time the change set is included in the model.
+ * @param timeStamp The date/time this version was finalized and thus made immutable.
+ * @param ChangeSet [[ch.ninecode.model.ChangeSet ChangeSet]] The details of model changes for this project.
+ *        The change set should have a new identifier if it changes.
  * @param NetworkModelProjectChange [[ch.ninecode.model.NetworkModelProjectChange NetworkModelProjectChange]] The persistent network model project change to which this version applies.
- * @param NetworkModelProjectState  [[ch.ninecode.model.NetworkModelProjectState NetworkModelProjectState]] The state of this network model project version.
- * @param SupercededBy              [[ch.ninecode.model.NetworkModelProjectChangeVersion NetworkModelProjectChangeVersion]] The project version that will supercede this project version.
- * @param Supercedes                [[ch.ninecode.model.NetworkModelProjectChangeVersion NetworkModelProjectChangeVersion]] Project version that is being superceded.
+ * @param NetworkModelProjectState [[ch.ninecode.model.NetworkModelProjectState NetworkModelProjectState]] The state of this network model project version.
+ * @param SupercededBy [[ch.ninecode.model.NetworkModelProjectChangeVersion NetworkModelProjectChangeVersion]] The project version that will supercede this project version.
+ * @param Supercedes [[ch.ninecode.model.NetworkModelProjectChangeVersion NetworkModelProjectChangeVersion]] Project version that is being superceded.
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
@@ -709,8 +677,8 @@ final case class NetworkModelProjectChangeVersion
     SupercededBy: String = null,
     Supercedes: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -736,20 +704,14 @@ final case class NetworkModelProjectChangeVersion
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProjectChangeVersion.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (NetworkModelProjectChangeVersion.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (NetworkModelProjectChangeVersion.fields (position), value)
-
         emitelem (0, comment)
         emitelem (1, effectiveDateTime)
         emitelem (2, timeStamp)
@@ -760,18 +722,17 @@ final case class NetworkModelProjectChangeVersion
         emitattr (7, Supercedes)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NetworkModelProjectChangeVersion rdf:ID=\"%s\">\n%s\t</cim:NetworkModelProjectChangeVersion>".format (id, export_fields)
+        "\t<cim:NetworkModelProjectChangeVersion rdf:%s=\"%s\">\n%s\t</cim:NetworkModelProjectChangeVersion>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NetworkModelProjectChangeVersion
-    extends
-        CIMParseable[NetworkModelProjectChangeVersion]
+extends
+    CIMParseable[NetworkModelProjectChangeVersion]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "comment",
         "effectiveDateTime",
         "timeStamp",
@@ -788,19 +749,19 @@ object NetworkModelProjectChangeVersion
         CIMRelationship ("SupercededBy", "NetworkModelProjectChangeVersion", "0..1", "0..1"),
         CIMRelationship ("Supercedes", "NetworkModelProjectChangeVersion", "0..1", "0..1")
     )
-    val comment: Fielder = parse_element (element (cls, fields (0)))
-    val effectiveDateTime: Fielder = parse_element (element (cls, fields (1)))
-    val timeStamp: Fielder = parse_element (element (cls, fields (2)))
-    val ChangeSet: Fielder = parse_attribute (attribute (cls, fields (3)))
-    val NetworkModelProjectChange: Fielder = parse_attribute (attribute (cls, fields (4)))
-    val NetworkModelProjectState: Fielder = parse_attribute (attribute (cls, fields (5)))
-    val SupercededBy: Fielder = parse_attribute (attribute (cls, fields (6)))
-    val Supercedes: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val comment: Fielder = parse_element (element (cls, fields(0)))
+    val effectiveDateTime: Fielder = parse_element (element (cls, fields(1)))
+    val timeStamp: Fielder = parse_element (element (cls, fields(2)))
+    val ChangeSet: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val NetworkModelProjectChange: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val NetworkModelProjectState: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val SupercededBy: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val Supercedes: Fielder = parse_attribute (attribute (cls, fields(7)))
 
     def parse (context: CIMContext): NetworkModelProjectChangeVersion =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectChangeVersion (
             IdentifiedObject.parse (context),
             mask (comment (), 0),
@@ -841,7 +802,7 @@ object NetworkModelProjectChangeVersionSerializer extends CIMSerializer[NetworkM
 
     def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectChangeVersion]): NetworkModelProjectChangeVersion =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NetworkModelProjectChangeVersion (
             parent,
@@ -868,8 +829,8 @@ final case class NetworkModelProjectCollection
 (
     Element: BasicElement = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -895,25 +856,21 @@ final case class NetworkModelProjectCollection
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:NetworkModelProjectCollection rdf:ID=\"%s\">\n%s\t</cim:NetworkModelProjectCollection>".format (id, export_fields)
+        "\t<cim:NetworkModelProjectCollection rdf:%s=\"%s\">\n%s\t</cim:NetworkModelProjectCollection>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NetworkModelProjectCollection
-    extends
-        CIMParseable[NetworkModelProjectCollection]
+extends
+    CIMParseable[NetworkModelProjectCollection]
 {
 
     def parse (context: CIMContext): NetworkModelProjectCollection =
@@ -934,7 +891,7 @@ object NetworkModelProjectCollectionSerializer extends CIMSerializer[NetworkMode
         val toSerialize: Array[() => Unit] = Array (
 
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -942,7 +899,7 @@ object NetworkModelProjectCollectionSerializer extends CIMSerializer[NetworkMode
 
     def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectCollection]): NetworkModelProjectCollection =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NetworkModelProjectCollection (
             parent
@@ -955,8 +912,8 @@ object NetworkModelProjectCollectionSerializer extends CIMSerializer[NetworkMode
 /**
  * Abstract class for both a network model project and network model change.
  *
- * @param IdentifiedObject      [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param ContainingProject     [[ch.ninecode.model.NetworkModelProject NetworkModelProject]] The parent project of this project.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ContainingProject [[ch.ninecode.model.NetworkModelProject NetworkModelProject]] The parent project of this project.
  * @param ProjectARelationships [[ch.ninecode.model.NetworkModelProjectRelationship NetworkModelProjectRelationship]] <em>undocumented</em>
  * @param ProjectBRelationships [[ch.ninecode.model.NetworkModelProjectRelationship NetworkModelProjectRelationship]] <em>undocumented</em>
  * @group NetworkModelProjects
@@ -970,8 +927,8 @@ final case class NetworkModelProjectComponent
     ProjectARelationships: List[String] = null,
     ProjectBRelationships: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -997,37 +954,30 @@ final case class NetworkModelProjectComponent
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProjectComponent.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (NetworkModelProjectComponent.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProjectComponent.fields (position), x))
-
         emitattr (0, ContainingProject)
         emitattrs (1, ProjectARelationships)
         emitattrs (2, ProjectBRelationships)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NetworkModelProjectComponent rdf:ID=\"%s\">\n%s\t</cim:NetworkModelProjectComponent>".format (id, export_fields)
+        "\t<cim:NetworkModelProjectComponent rdf:%s=\"%s\">\n%s\t</cim:NetworkModelProjectComponent>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NetworkModelProjectComponent
-    extends
-        CIMParseable[NetworkModelProjectComponent]
+extends
+    CIMParseable[NetworkModelProjectComponent]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "ContainingProject",
         "ProjectARelationships",
         "ProjectBRelationships"
@@ -1037,14 +987,14 @@ object NetworkModelProjectComponent
         CIMRelationship ("ProjectARelationships", "NetworkModelProjectRelationship", "0..*", "1"),
         CIMRelationship ("ProjectBRelationships", "NetworkModelProjectRelationship", "0..*", "1")
     )
-    val ContainingProject: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val ProjectARelationships: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
-    val ProjectBRelationships: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val ContainingProject: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val ProjectARelationships: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ProjectBRelationships: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: CIMContext): NetworkModelProjectComponent =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectComponent (
             IdentifiedObject.parse (context),
             mask (ContainingProject (), 0),
@@ -1075,7 +1025,7 @@ object NetworkModelProjectComponentSerializer extends CIMSerializer[NetworkModel
 
     def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectComponent]): NetworkModelProjectComponent =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NetworkModelProjectComponent (
             parent,
@@ -1102,8 +1052,8 @@ final case class NetworkModelProjectComponent2
     version: Int = 0,
     Parent: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1129,20 +1079,14 @@ final case class NetworkModelProjectComponent2
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProjectComponent2.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (NetworkModelProjectComponent2.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (NetworkModelProjectComponent2.fields (position), value)
-
         emitelem (0, closed)
         emitelem (1, created)
         emitelem (2, updated)
@@ -1150,18 +1094,17 @@ final case class NetworkModelProjectComponent2
         emitattr (4, Parent)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NetworkModelProjectComponent2 rdf:ID=\"%s\">\n%s\t</cim:NetworkModelProjectComponent2>".format (id, export_fields)
+        "\t<cim:NetworkModelProjectComponent2 rdf:%s=\"%s\">\n%s\t</cim:NetworkModelProjectComponent2>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NetworkModelProjectComponent2
-    extends
-        CIMParseable[NetworkModelProjectComponent2]
+extends
+    CIMParseable[NetworkModelProjectComponent2]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "closed",
         "created",
         "updated",
@@ -1171,16 +1114,16 @@ object NetworkModelProjectComponent2
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("Parent", "NetworkModelProject2", "0..1", "0..*")
     )
-    val closed: Fielder = parse_element (element (cls, fields (0)))
-    val created: Fielder = parse_element (element (cls, fields (1)))
-    val updated: Fielder = parse_element (element (cls, fields (2)))
-    val version: Fielder = parse_element (element (cls, fields (3)))
-    val Parent: Fielder = parse_attribute (attribute (cls, fields (4)))
+    val closed: Fielder = parse_element (element (cls, fields(0)))
+    val created: Fielder = parse_element (element (cls, fields(1)))
+    val updated: Fielder = parse_element (element (cls, fields(2)))
+    val version: Fielder = parse_element (element (cls, fields(3)))
+    val Parent: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: CIMContext): NetworkModelProjectComponent2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectComponent2 (
             IdentifiedObject.parse (context),
             mask (closed (), 0),
@@ -1215,7 +1158,7 @@ object NetworkModelProjectComponent2Serializer extends CIMSerializer[NetworkMode
 
     def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectComponent2]): NetworkModelProjectComponent2 =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NetworkModelProjectComponent2 (
             parent,
@@ -1239,8 +1182,8 @@ final case class NetworkModelProjectDocument
 (
     Element: BasicElement = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1266,25 +1209,21 @@ final case class NetworkModelProjectDocument
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:NetworkModelProjectDocument rdf:ID=\"%s\">\n%s\t</cim:NetworkModelProjectDocument>".format (id, export_fields)
+        "\t<cim:NetworkModelProjectDocument rdf:%s=\"%s\">\n%s\t</cim:NetworkModelProjectDocument>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NetworkModelProjectDocument
-    extends
-        CIMParseable[NetworkModelProjectDocument]
+extends
+    CIMParseable[NetworkModelProjectDocument]
 {
 
     def parse (context: CIMContext): NetworkModelProjectDocument =
@@ -1305,7 +1244,7 @@ object NetworkModelProjectDocumentSerializer extends CIMSerializer[NetworkModelP
         val toSerialize: Array[() => Unit] = Array (
 
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -1313,7 +1252,7 @@ object NetworkModelProjectDocumentSerializer extends CIMSerializer[NetworkModelP
 
     def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectDocument]): NetworkModelProjectDocument =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NetworkModelProjectDocument (
             parent
@@ -1329,8 +1268,8 @@ object NetworkModelProjectDocumentSerializer extends CIMSerializer[NetworkModelP
  * This class may be specialized to create specific types of relationships.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param ProjectA         [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] <em>undocumented</em>
- * @param ProjectB         [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] <em>undocumented</em>
+ * @param ProjectA [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] <em>undocumented</em>
+ * @param ProjectB [[ch.ninecode.model.NetworkModelProjectComponent NetworkModelProjectComponent]] <em>undocumented</em>
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
@@ -1341,8 +1280,8 @@ final case class NetworkModelProjectRelationship
     ProjectA: String = null,
     ProjectB: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1368,34 +1307,28 @@ final case class NetworkModelProjectRelationship
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProjectRelationship.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (NetworkModelProjectRelationship.fields (position), value)
-
         emitattr (0, ProjectA)
         emitattr (1, ProjectB)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NetworkModelProjectRelationship rdf:ID=\"%s\">\n%s\t</cim:NetworkModelProjectRelationship>".format (id, export_fields)
+        "\t<cim:NetworkModelProjectRelationship rdf:%s=\"%s\">\n%s\t</cim:NetworkModelProjectRelationship>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NetworkModelProjectRelationship
-    extends
-        CIMParseable[NetworkModelProjectRelationship]
+extends
+    CIMParseable[NetworkModelProjectRelationship]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "ProjectA",
         "ProjectB"
     )
@@ -1403,13 +1336,13 @@ object NetworkModelProjectRelationship
         CIMRelationship ("ProjectA", "NetworkModelProjectComponent", "1", "0..*"),
         CIMRelationship ("ProjectB", "NetworkModelProjectComponent", "1", "0..*")
     )
-    val ProjectA: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val ProjectB: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val ProjectA: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val ProjectB: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): NetworkModelProjectRelationship =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectRelationship (
             IdentifiedObject.parse (context),
             mask (ProjectA (), 0),
@@ -1438,7 +1371,7 @@ object NetworkModelProjectRelationshipSerializer extends CIMSerializer[NetworkMo
 
     def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectRelationship]): NetworkModelProjectRelationship =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NetworkModelProjectRelationship (
             parent,
@@ -1465,8 +1398,8 @@ final case class NetworkModelProjectStage
     DenpendecyDependingStage: List[String] = null,
     DependencyDependentOnStage: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1492,22 +1425,15 @@ final case class NetworkModelProjectStage
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProjectStage.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (NetworkModelProjectStage.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (NetworkModelProjectStage.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProjectStage.fields (position), x))
-
         emitelem (0, changesetVersion)
         emitelem (1, commissionedDate)
         emitelem (2, plannedCommissionedDate)
@@ -1516,18 +1442,17 @@ final case class NetworkModelProjectStage
         emitattr (5, DependencyDependentOnStage)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NetworkModelProjectStage rdf:ID=\"%s\">\n%s\t</cim:NetworkModelProjectStage>".format (id, export_fields)
+        "\t<cim:NetworkModelProjectStage rdf:%s=\"%s\">\n%s\t</cim:NetworkModelProjectStage>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NetworkModelProjectStage
-    extends
-        CIMParseable[NetworkModelProjectStage]
+extends
+    CIMParseable[NetworkModelProjectStage]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "changesetVersion",
         "commissionedDate",
         "plannedCommissionedDate",
@@ -1540,17 +1465,17 @@ object NetworkModelProjectStage
         CIMRelationship ("DenpendecyDependingStage", "AnnotatedProjectDependency", "0..*", "1"),
         CIMRelationship ("DependencyDependentOnStage", "AnnotatedProjectDependency", "0..1", "1")
     )
-    val changesetVersion: Fielder = parse_element (element (cls, fields (0)))
-    val commissionedDate: Fielder = parse_element (element (cls, fields (1)))
-    val plannedCommissionedDate: Fielder = parse_element (element (cls, fields (2)))
-    val ChangeSets: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
-    val DenpendecyDependingStage: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
-    val DependencyDependentOnStage: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val changesetVersion: Fielder = parse_element (element (cls, fields(0)))
+    val commissionedDate: Fielder = parse_element (element (cls, fields(1)))
+    val plannedCommissionedDate: Fielder = parse_element (element (cls, fields(2)))
+    val ChangeSets: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val DenpendecyDependingStage: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val DependencyDependentOnStage: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: CIMContext): NetworkModelProjectStage =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectStage (
             NetworkModelProjectComponent2.parse (context),
             toInteger (mask (changesetVersion (), 0)),
@@ -1587,7 +1512,7 @@ object NetworkModelProjectStageSerializer extends CIMSerializer[NetworkModelProj
 
     def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectStage]): NetworkModelProjectStage =
     {
-        val parent = NetworkModelProjectComponent2Serializer.read (kryo, input, classOf [NetworkModelProjectComponent2])
+        val parent = NetworkModelProjectComponent2Serializer.read (kryo, input, classOf[NetworkModelProjectComponent2])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NetworkModelProjectStage (
             parent,
@@ -1608,7 +1533,7 @@ object NetworkModelProjectStageSerializer extends CIMSerializer[NetworkModelProj
  *
  * States are agreed upon by the exchange community.  Examples are "approved", "proposed", "withdrawn", "committed" etc.
  *
- * @param IdentifiedObject                 [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param NetworkModelProjectChangeVersion [[ch.ninecode.model.NetworkModelProjectChangeVersion NetworkModelProjectChangeVersion]] The change versions that are at this state.
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
@@ -1619,8 +1544,8 @@ final case class NetworkModelProjectState
     IdentifiedObject: IdentifiedObject = null,
     NetworkModelProjectChangeVersion: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1646,44 +1571,38 @@ final case class NetworkModelProjectState
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NetworkModelProjectState.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (NetworkModelProjectState.fields (position), x))
-
         emitattrs (0, NetworkModelProjectChangeVersion)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:NetworkModelProjectState rdf:ID=\"%s\">\n%s\t</cim:NetworkModelProjectState>".format (id, export_fields)
+        "\t<cim:NetworkModelProjectState rdf:%s=\"%s\">\n%s\t</cim:NetworkModelProjectState>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object NetworkModelProjectState
-    extends
-        CIMParseable[NetworkModelProjectState]
+extends
+    CIMParseable[NetworkModelProjectState]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "NetworkModelProjectChangeVersion"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("NetworkModelProjectChangeVersion", "NetworkModelProjectChangeVersion", "0..*", "0..1")
     )
-    val NetworkModelProjectChangeVersion: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val NetworkModelProjectChangeVersion: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): NetworkModelProjectState =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = NetworkModelProjectState (
             IdentifiedObject.parse (context),
             masks (NetworkModelProjectChangeVersion (), 0)
@@ -1710,7 +1629,7 @@ object NetworkModelProjectStateSerializer extends CIMSerializer[NetworkModelProj
 
     def read (kryo: Kryo, input: Input, cls: Class[NetworkModelProjectState]): NetworkModelProjectState =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = NetworkModelProjectState (
             parent,
@@ -1724,11 +1643,11 @@ object NetworkModelProjectStateSerializer extends CIMSerializer[NetworkModelProj
 /**
  * Represent the base lifecycle of a functional model change that could be a construction of new elements.
  *
- * @param Element   Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param cancelled The date the Power System Project is in cancelled stage.
  * @param committed The date Power System Project is in committed stage.
- * @param inBuild   The date Power System Project is in build stage.
- * @param inPlan    The date Power System Project is in planning stage.
+ * @param inBuild The date Power System Project is in build stage.
+ * @param inPlan The date Power System Project is in planning stage.
  * @group NetworkModelProjects
  * @groupname NetworkModelProjects Package NetworkModelProjects
  * @groupdesc NetworkModelProjects Defining meta-data for a change set in the functional Power System model.
@@ -1741,8 +1660,8 @@ final case class PowerSystemProjectLifecycleToBeDeleted
     inBuild: String = null,
     inPlan: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1768,50 +1687,44 @@ final case class PowerSystemProjectLifecycleToBeDeleted
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerSystemProjectLifecycleToBeDeleted.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerSystemProjectLifecycleToBeDeleted.fields (position), value)
-
         emitelem (0, cancelled)
         emitelem (1, committed)
         emitelem (2, inBuild)
         emitelem (3, inPlan)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PowerSystemProjectLifecycleToBeDeleted rdf:ID=\"%s\">\n%s\t</cim:PowerSystemProjectLifecycleToBeDeleted>".format (id, export_fields)
+        "\t<cim:PowerSystemProjectLifecycleToBeDeleted rdf:%s=\"%s\">\n%s\t</cim:PowerSystemProjectLifecycleToBeDeleted>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PowerSystemProjectLifecycleToBeDeleted
-    extends
-        CIMParseable[PowerSystemProjectLifecycleToBeDeleted]
+extends
+    CIMParseable[PowerSystemProjectLifecycleToBeDeleted]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "cancelled",
         "committed",
         "inBuild",
         "inPlan"
     )
-    val cancelled: Fielder = parse_element (element (cls, fields (0)))
-    val committed: Fielder = parse_element (element (cls, fields (1)))
-    val inBuild: Fielder = parse_element (element (cls, fields (2)))
-    val inPlan: Fielder = parse_element (element (cls, fields (3)))
+    val cancelled: Fielder = parse_element (element (cls, fields(0)))
+    val committed: Fielder = parse_element (element (cls, fields(1)))
+    val inBuild: Fielder = parse_element (element (cls, fields(2)))
+    val inPlan: Fielder = parse_element (element (cls, fields(3)))
 
     def parse (context: CIMContext): PowerSystemProjectLifecycleToBeDeleted =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerSystemProjectLifecycleToBeDeleted (
             BasicElement.parse (context),
             mask (cancelled (), 0),
@@ -1836,7 +1749,7 @@ object PowerSystemProjectLifecycleToBeDeletedSerializer extends CIMSerializer[Po
             () => output.writeString (obj.inBuild),
             () => output.writeString (obj.inPlan)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -1844,7 +1757,7 @@ object PowerSystemProjectLifecycleToBeDeletedSerializer extends CIMSerializer[Po
 
     def read (kryo: Kryo, input: Input, cls: Class[PowerSystemProjectLifecycleToBeDeleted]): PowerSystemProjectLifecycleToBeDeleted =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PowerSystemProjectLifecycleToBeDeleted (
             parent,
@@ -1873,8 +1786,8 @@ final case class ProjectAlternative
 (
     NetworkModelProjectRelationship: NetworkModelProjectRelationship = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1900,25 +1813,21 @@ final case class ProjectAlternative
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:ProjectAlternative rdf:ID=\"%s\">\n%s\t</cim:ProjectAlternative>".format (id, export_fields)
+        "\t<cim:ProjectAlternative rdf:%s=\"%s\">\n%s\t</cim:ProjectAlternative>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ProjectAlternative
-    extends
-        CIMParseable[ProjectAlternative]
+extends
+    CIMParseable[ProjectAlternative]
 {
 
     def parse (context: CIMContext): ProjectAlternative =
@@ -1947,7 +1856,7 @@ object ProjectAlternativeSerializer extends CIMSerializer[ProjectAlternative]
 
     def read (kryo: Kryo, input: Input, cls: Class[ProjectAlternative]): ProjectAlternative =
     {
-        val parent = NetworkModelProjectRelationshipSerializer.read (kryo, input, classOf [NetworkModelProjectRelationship])
+        val parent = NetworkModelProjectRelationshipSerializer.read (kryo, input, classOf[NetworkModelProjectRelationship])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ProjectAlternative (
             parent
@@ -1969,8 +1878,8 @@ final case class ProjectDependency
 (
     NetworkModelProjectRelationship: NetworkModelProjectRelationship = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1996,25 +1905,21 @@ final case class ProjectDependency
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:ProjectDependency rdf:ID=\"%s\">\n%s\t</cim:ProjectDependency>".format (id, export_fields)
+        "\t<cim:ProjectDependency rdf:%s=\"%s\">\n%s\t</cim:ProjectDependency>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object ProjectDependency
-    extends
-        CIMParseable[ProjectDependency]
+extends
+    CIMParseable[ProjectDependency]
 {
 
     def parse (context: CIMContext): ProjectDependency =
@@ -2043,7 +1948,7 @@ object ProjectDependencySerializer extends CIMSerializer[ProjectDependency]
 
     def read (kryo: Kryo, input: Input, cls: Class[ProjectDependency]): ProjectDependency =
     {
-        val parent = NetworkModelProjectRelationshipSerializer.read (kryo, input, classOf [NetworkModelProjectRelationship])
+        val parent = NetworkModelProjectRelationshipSerializer.read (kryo, input, classOf[NetworkModelProjectRelationship])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = ProjectDependency (
             parent
