@@ -223,10 +223,62 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         }
     }
 
+    def truncateTopology (nodes: Set[String], elements: Iterable[Element]): Iterable[Element] =
+    {
+        elements.flatMap
+        {
+            case terminal: Terminal =>
+                if (nodes.contains (terminal.TopologicalNode))
+                    Some (
+                        // since Element extends Row and Row defines copy(), terminal.copy (TopologicalNode = null) becomes:
+                        Terminal (
+                            terminal.ACDCTerminal,
+                            phases = terminal.phases,
+                            AuxiliaryEquipment = terminal.AuxiliaryEquipment,
+                            BranchGroupTerminal = terminal.BranchGroupTerminal,
+                            Bushing = terminal.Bushing,
+                            Circuit = terminal.Circuit,
+                            ConductingEquipment = terminal.ConductingEquipment,
+                            ConnectivityNode = terminal.ConnectivityNode,
+                            ConverterDCSides = terminal.ConverterDCSides,
+                            EquipmentFaults = terminal.EquipmentFaults,
+                            HasFirstMutualCoupling = terminal.HasFirstMutualCoupling,
+                            HasSecondMutualCoupling = terminal.HasSecondMutualCoupling,
+                            NormalHeadFeeder = terminal.NormalHeadFeeder,
+                            PinTerminal = terminal.PinTerminal,
+                            RegulatingControl = terminal.RegulatingControl,
+                            RemoteInputSignal = terminal.RemoteInputSignal,
+                            SvPowerFlow = terminal.SvPowerFlow,
+                            TieFlow = terminal.TieFlow,
+                            TopologicalNode = null, // null out node reference
+                            TransformerEnd = terminal.TransformerEnd
+                        )
+                    )
+                else
+                    Some (terminal)
+
+            case node: ConnectivityNode =>
+                if (nodes.contains (node.TopologicalNode))
+                    Some (
+                        ConnectivityNode (
+                            node.IdentifiedObject,
+                            ConnectivityNodeContainer = node.ConnectivityNodeContainer,
+                            Terminals = node.Terminals,
+                            TopologicalNode = null // null out node reference
+                        )
+                    )
+                else
+                    Some (node)
+
+            case element => Some (element)
+        }
+    }
+
     def saveToCassandra (
         options: CIMExportOptions,
         trafokreise: RDD[(Island, Iterable[Element])],
-        labeled: RDD[(Island, Element)]): Int =
+        labeled: RDD[(Island, Element)],
+        nodes: Set[String]): Int =
     {
         val schema = Schema (session, """/export_schema.sql""", LogLevels.toLog4j (options.loglevel))
         if (schema.make (keyspace = options.keyspace, replication = options.replication))
@@ -251,7 +303,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                 group =>
                 {
                     val (transformer, elements) = group
-                    val fixed_elements = removeTopology (elements)
+                    val fixed_elements = if (options.topology) truncateTopology (nodes, elements) else removeTopology (elements)
                     log.info (s"exporting $transformer")
                     val (filesize, zipdata) = export_iterable_blob (fixed_elements, transformer)
                     (id, transformer, fixed_elements.map (x ⇒ (x.id, class_name (x))).toMap, filesize, zipdata.length, zipdata)
@@ -685,8 +737,15 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val labeled = labelRelated (start, stopTerminals)
         val trafokreise = labeled.groupByKey
 
+        val terminals = stopTerminals.map (_._1)
+        val nodes = getOrElse [Terminal].flatMap (
+            terminal =>
+            {
+                if (terminals.contains (terminal.id)) Some (terminal.TopologicalNode) else None
+            }
+        ).collect.toSet
         val total = if (options.cassandra)
-            saveToCassandra (options, trafokreise, labeled)
+            saveToCassandra (options, trafokreise, labeled, nodes)
         else
         {
             val dir = if (options.outputdir.endsWith ("/")) options.outputdir else s"${options.outputdir}/"
@@ -694,7 +753,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                 group =>
                 {
                     val (transformer, elements) = group
-                    val fixed_elements = removeTopology (elements)
+                    val fixed_elements = if (options.topology) truncateTopology (nodes, elements) else removeTopology (elements)
                     val filename = s"$dir$transformer.rdf"
                     log.info (s"exporting $filename")
                     export_iterable_file (fixed_elements, filename)

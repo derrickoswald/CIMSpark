@@ -67,5 +67,6 @@ final case class CIMExportOptions
     port: Int = 9042,
     keyspace: String = "cimexport",
     replication: Int = 1,
+    topology: Boolean = false,
     files: Seq[String] = Seq ()
 )
