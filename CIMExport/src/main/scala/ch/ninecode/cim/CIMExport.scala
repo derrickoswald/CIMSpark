@@ -11,8 +11,10 @@ import scala.reflect.ClassTag
 
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
-import org.apache.hadoop.fs.FileUtil
+import org.apache.hadoop.fs.LocatedFileStatus
 import org.apache.hadoop.fs.Path
+import org.apache.hadoop.fs.permission.FsAction
+import org.apache.hadoop.fs.permission.FsPermission
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SparkSession
@@ -97,12 +99,42 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     /**
      * Index of open field in Switch bitmask.
      */
-    val openMask: Int = Switch.fields.indexOf ("open")
+    lazy val openMask: Int = Switch.fields.indexOf ("open")
 
     /**
      * Index of normalOpen field in Switch bitmask.
      */
-    val normalOpenMask: Int = Switch.fields.indexOf ("normalOpen")
+    lazy val normalOpenMask: Int = Switch.fields.indexOf ("normalOpen")
+
+    /**
+     * Permission mask for complete access.
+     */
+    lazy val wideOpen = new FsPermission (FsAction.ALL, FsAction.ALL, FsAction.ALL)
+
+    /**
+     * CIM file header.
+     */
+    lazy val header =
+        """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">"""
+    lazy val header_bytes: Array[Byte] = header.getBytes ("UTF-8")
+
+    /**
+     * CIM file tail.
+     */
+    lazy val tailer = """</rdf:RDF>"""
+    lazy val tailer_bytes: Array[Byte] = tailer.getBytes ("UTF-8")
+
+    /**
+     * A suitable file system configuration.
+     */
+    lazy val hdfs_configuration: Configuration =
+    {
+        val configuration = new Configuration ()
+        configuration.set ("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem")
+        configuration.set ("fs.file.impl", "org.apache.hadoop.fs.LocalFileSystem")
+        configuration
+    }
 
     /*
      * Method to determine if a switch is closed (both terminals are the same topological node).
@@ -328,16 +360,52 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     }
 
     /**
-     * Merge source into destination and clean up source.
+     * Merge a directory of files into a single file.
      *
-     * @param source      existing directory to be copied from
-     * @param destination target file
+     * @param src the source directory name
+     * @param dst the target file name
      */
-    def merge (source: String, destination: String): Unit =
+    def merge (src: String, dst: String): Unit =
     {
-        val configuration: Configuration = spark.sparkContext.hadoopConfiguration
-        val hdfs: FileSystem = FileSystem.get (configuration)
-        FileUtil.copyMerge (hdfs, new Path (source), hdfs, new Path (destination), true, configuration, null)
+        // get a list of paths
+        val dir = new Path (src)
+        val srcfs = FileSystem.get (dir.toUri, hdfs_configuration)
+        val r = srcfs.listFiles (dir, false)
+        var files: List[Path] = List ()
+        while (r.hasNext)
+        {
+            val f: LocatedFileStatus = r.next
+            if (f.getPath.getName != "_SUCCESS")
+                files = f.getPath :: files
+        }
+        files = files.reverse
+
+        // delete any existing file and make required directories
+        val file = new Path (dst)
+        val dstfs = FileSystem.get (file.toUri, hdfs_configuration)
+        dstfs.delete (file, false)
+        val parent = file.getParent
+        if (dstfs.mkdirs (parent, wideOpen))
+            dstfs.setPermission (parent, wideOpen)
+
+        // manually copy all the partition parts
+        val out = dstfs.create (file)
+        out.write (header_bytes)
+        val buf = new Array[Byte] (1048576)
+        for (f <- files)
+        {
+            val in = srcfs.open (f)
+            var length = in.available
+            while (length > 0)
+            {
+                val count = in.read (buf)
+                out.write (buf, 0, count)
+                length = length - count
+            }
+            in.close ()
+        }
+        out.write (tailer_bytes)
+        out.close ()
     }
 
     /**
@@ -349,32 +417,21 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      */
     def export (elements: RDD[Element], filename: String, temp: String = "/tmp/export.rdf"): Unit =
     {
-        val header =
-            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">"""
-        val tailer = """</rdf:RDF>"""
-
         // setup
-        val configuration: Configuration = spark.sparkContext.hadoopConfiguration
-        val hdfs = FileSystem.get (URI.create (configuration.get ("fs.defaultFS")), configuration)
-        val directory: Path = new Path (hdfs.getWorkingDirectory, temp)
-        hdfs.delete (directory, true)
-        val file = new Path (filename)
-        hdfs.delete (file, false)
+        val dstfs = FileSystem.get (new Path (filename).toUri, hdfs_configuration)
+        val directory: Path = new Path (dstfs.getWorkingDirectory, temp)
+        dstfs.delete (directory, true)
+
         // write the file
         val txt = directory.toUri.toString
-        val head = spark.sparkContext.makeRDD (List [String](header))
-        val tail = spark.sparkContext.makeRDD (List [String](tailer))
         val guts = elements.map (_.export)
-        val all = head.union (guts).union (tail)
-        all.saveAsTextFile (txt)
-        merge (txt, file.toUri.toString)
+        guts.saveAsTextFile (txt)
+
+        // combine all the partition parts
+        merge (txt, filename)
+
         // clean up temporary directory
-        hdfs.delete (directory, true)
-        // delete the stupid .crc file
-        val index = filename.lastIndexOf ("/")
-        val crc = if (-1 != index) s"${filename.substring (0, index + 1)}.${filename.substring (index + 1)}.crc" else s".$filename.crc"
-        hdfs.delete (new Path (crc), false)
+        dstfs.delete (directory, true)
     }
 
     /**
@@ -385,13 +442,6 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      */
     def export_iterable_file (elements: Iterable[Element], filename: String): Unit =
     {
-        val header =
-            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-"""
-        val tailer =
-            """</rdf:RDF>"""
-
         // setup
         val configuration: Configuration = new Configuration ()
         val hdfs: FileSystem = FileSystem.get (URI.create (configuration.get ("fs.defaultFS")), configuration)
@@ -399,13 +449,15 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
         // write the file
         val out = hdfs.create (file, true)
-        out.write (header.getBytes (StandardCharsets.UTF_8))
-        elements.map (_.export).foreach ((s: String) =>
-        {
-            out.write (s.getBytes (StandardCharsets.UTF_8));
-            out.writeByte ('\n')
-        })
-        out.write (tailer.getBytes (StandardCharsets.UTF_8))
+        out.write (header_bytes)
+        elements.map (_.export).foreach (
+            (s: String) =>
+            {
+                out.write (s.getBytes (StandardCharsets.UTF_8))
+                out.writeByte ('\n')
+            }
+        )
+        out.write (tailer_bytes)
         out.close ()
 
         // delete the stupid .crc file
@@ -423,18 +475,16 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      */
     def export_iterable_blob (elements: Iterable[Element], transformer: String): (Int, Array[Byte]) =
     {
-        val header =
-            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">"""
-        val tailer = """</rdf:RDF>"""
-
         // create the text
-        val sb = new scala.collection.mutable.StringBuilder (32768, header)
-        elements.map (_.export).foreach ((s: String) =>
-        {
-            sb.append (s);
-            sb.append ('\n')
-        })
+        val sb = new scala.collection.mutable.StringBuilder (32768)
+        sb.append (header)
+        elements.map (_.export).foreach (
+            (s: String) =>
+            {
+                sb.append (s)
+                sb.append ('\n')
+            }
+        )
         sb.append (tailer)
         val data = sb.toString.getBytes (StandardCharsets.UTF_8)
 

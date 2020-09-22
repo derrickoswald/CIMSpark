@@ -202,13 +202,15 @@ $voltage
     {
         implicit spark: SparkSession =>
 
+            val output = new File ("target/_TI-1_island.rdf")
+            val _ = output.delete
             val elements = readFile (
                 filenames_real.mkString (","),
                 Map ("ch.ninecode.cim.do_about" -> "true", "ch.ninecode.cim.do_normalize" -> "true"))
             println (s"${elements.count} elements")
             val export = new CIMExport (spark)
             export.exportIsland ("_TI-1", "_TI-1_island.rdf", "target/")
-            assert (new File ("target/_TI-1_island.rdf").exists, "island _TI-1")
+            assert (output.exists, "island _TI-1")
     }
 
     test ("ExportAllIslands")
