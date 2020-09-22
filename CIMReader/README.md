@@ -233,6 +233,8 @@ The expression "spark.read.cim" in the above example is shorthand for the full D
 
 ```scala
 val element = spark.read.format ("ch.ninecode.cim").options (opts).load (file1, file2, ...)
+or
+val elements = spark.read.options (opts).cim (file1, file2, ...)
 ```
 
 where:
