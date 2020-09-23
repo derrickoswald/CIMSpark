@@ -14,11 +14,11 @@ case class Package (
     name: String,
     global: Boolean,
     notes: String,
-    parent: Package = null)
-    extends
-        ProgramaticName
+    parent: Package)
+extends
+    ProgramaticName
 {
-    override def toString: String = "%s%s%s".format (if (null != parent) s"${parent.name}:" else "", name, if (global) " global" else "")
+    override def toString: String = s"${if (null != parent) s"${parent.name}:" else ""}$name${if (global) " global" else ""}"
 }
 
 object Package

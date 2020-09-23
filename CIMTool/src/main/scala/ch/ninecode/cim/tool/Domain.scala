@@ -22,5 +22,5 @@ case class Domain (
     enumeration: immutable.Set[String],
     value: String)
 {
-    override def toString: String = "%s:%s%s".format (pkg.name, name, if (null != stereotype) s" stereotype: $stereotype" else "")
+    override def toString: String = s"${pkg.name}:$name${if (null != stereotype) s" stereotype: $stereotype" else ""}"
 }
