@@ -22,8 +22,8 @@ final case class BlockingFunction
     Delay: String = null,
     VSCtype1: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -49,34 +49,28 @@ final case class BlockingFunction
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BlockingFunction.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BlockingFunction.fields (position), value)
-
         emitattr (0, Delay)
         emitattr (1, VSCtype1)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:BlockingFunction rdf:ID=\"%s\">\n%s\t</cim:BlockingFunction>".format (id, export_fields)
+        "\t<cim:BlockingFunction rdf:%s=\"%s\">\n%s\t</cim:BlockingFunction>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object BlockingFunction
-    extends
-        CIMParseable[BlockingFunction]
+extends
+    CIMParseable[BlockingFunction]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
@@ -84,13 +78,13 @@ object BlockingFunction
         CIMRelationship ("Delay", "Delay", "1", "0..1"),
         CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
-    val Delay: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): BlockingFunction =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = BlockingFunction (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -111,7 +105,7 @@ object BlockingFunctionSerializer extends CIMSerializer[BlockingFunction]
             () => output.writeString (obj.Delay),
             () => output.writeString (obj.VSCtype1)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -119,7 +113,7 @@ object BlockingFunctionSerializer extends CIMSerializer[BlockingFunction]
 
     def read (kryo: Kryo, input: Input, cls: Class[BlockingFunction]): BlockingFunction =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = BlockingFunction (
             parent,
@@ -134,12 +128,12 @@ object BlockingFunctionSerializer extends CIMSerializer[BlockingFunction]
 /**
  * DC voltage control used for voltage regulation.
  *
- * @param Element  Reference to the superclass object.
- * @param kivdc    Integral gain of the DC voltage regulator (Kivdc).
- * @param kpvdc    Proportional gain of the DC voltage regulator (Kpvdc).
- * @param vdcmax   Maximum DC voltage (Vdcmax).
- * @param vdcmin   Minimum DC voltage (Vdcmin).
- * @param Delay    [[ch.ninecode.model.Delay Delay]] <em>undocumented</em>
+ * @param Element Reference to the superclass object.
+ * @param kivdc Integral gain of the DC voltage regulator (Kivdc).
+ * @param kpvdc Proportional gain of the DC voltage regulator (Kpvdc).
+ * @param vdcmax Maximum DC voltage (Vdcmax).
+ * @param vdcmin Minimum DC voltage (Vdcmin).
+ * @param Delay [[ch.ninecode.model.Delay Delay]] <em>undocumented</em>
  * @param VSCtype1 [[ch.ninecode.model.VSCtype1 VSCtype1]] <em>undocumented</em>
  * @group VSC
  * @groupname VSC Package VSC
@@ -154,8 +148,8 @@ final case class DCvoltageControl
     Delay: String = null,
     VSCtype1: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -181,20 +175,14 @@ final case class DCvoltageControl
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCvoltageControl.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DCvoltageControl.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DCvoltageControl.fields (position), value)
-
         emitelem (0, kivdc)
         emitelem (1, kpvdc)
         emitelem (2, vdcmax)
@@ -203,18 +191,17 @@ final case class DCvoltageControl
         emitattr (5, VSCtype1)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:DCvoltageControl rdf:ID=\"%s\">\n%s\t</cim:DCvoltageControl>".format (id, export_fields)
+        "\t<cim:DCvoltageControl rdf:%s=\"%s\">\n%s\t</cim:DCvoltageControl>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object DCvoltageControl
-    extends
-        CIMParseable[DCvoltageControl]
+extends
+    CIMParseable[DCvoltageControl]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "kivdc",
         "kpvdc",
         "vdcmax",
@@ -226,17 +213,17 @@ object DCvoltageControl
         CIMRelationship ("Delay", "Delay", "1", "0..1"),
         CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
-    val kivdc: Fielder = parse_element (element (cls, fields (0)))
-    val kpvdc: Fielder = parse_element (element (cls, fields (1)))
-    val vdcmax: Fielder = parse_element (element (cls, fields (2)))
-    val vdcmin: Fielder = parse_element (element (cls, fields (3)))
-    val Delay: Fielder = parse_attribute (attribute (cls, fields (4)))
-    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields (5)))
+    val kivdc: Fielder = parse_element (element (cls, fields(0)))
+    val kpvdc: Fielder = parse_element (element (cls, fields(1)))
+    val vdcmax: Fielder = parse_element (element (cls, fields(2)))
+    val vdcmin: Fielder = parse_element (element (cls, fields(3)))
+    val Delay: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: CIMContext): DCvoltageControl =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = DCvoltageControl (
             BasicElement.parse (context),
             toDouble (mask (kivdc (), 0)),
@@ -265,7 +252,7 @@ object DCvoltageControlSerializer extends CIMSerializer[DCvoltageControl]
             () => output.writeString (obj.Delay),
             () => output.writeString (obj.VSCtype1)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -273,7 +260,7 @@ object DCvoltageControlSerializer extends CIMSerializer[DCvoltageControl]
 
     def read (kryo: Kryo, input: Input, cls: Class[DCvoltageControl]): DCvoltageControl =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DCvoltageControl (
             parent,
@@ -299,8 +286,8 @@ final case class PFmode
     Delay: String = null,
     VSCtype1: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -326,34 +313,28 @@ final case class PFmode
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PFmode.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PFmode.fields (position), value)
-
         emitattr (0, Delay)
         emitattr (1, VSCtype1)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PFmode rdf:ID=\"%s\">\n%s\t</cim:PFmode>".format (id, export_fields)
+        "\t<cim:PFmode rdf:%s=\"%s\">\n%s\t</cim:PFmode>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PFmode
-    extends
-        CIMParseable[PFmode]
+extends
+    CIMParseable[PFmode]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
@@ -361,13 +342,13 @@ object PFmode
         CIMRelationship ("Delay", "Delay", "1", "0..1"),
         CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
-    val Delay: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): PFmode =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PFmode (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -388,7 +369,7 @@ object PFmodeSerializer extends CIMSerializer[PFmode]
             () => output.writeString (obj.Delay),
             () => output.writeString (obj.VSCtype1)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -396,7 +377,7 @@ object PFmodeSerializer extends CIMSerializer[PFmode]
 
     def read (kryo: Kryo, input: Input, cls: Class[PFmode]): PFmode =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PFmode (
             parent,
@@ -418,8 +399,8 @@ final case class Pcontrol
     Delay: String = null,
     VSCtype1: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -445,34 +426,28 @@ final case class Pcontrol
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Pcontrol.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Pcontrol.fields (position), value)
-
         emitattr (0, Delay)
         emitattr (1, VSCtype1)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Pcontrol rdf:ID=\"%s\">\n%s\t</cim:Pcontrol>".format (id, export_fields)
+        "\t<cim:Pcontrol rdf:%s=\"%s\">\n%s\t</cim:Pcontrol>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Pcontrol
-    extends
-        CIMParseable[Pcontrol]
+extends
+    CIMParseable[Pcontrol]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
@@ -480,13 +455,13 @@ object Pcontrol
         CIMRelationship ("Delay", "Delay", "1", "0..1"),
         CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
-    val Delay: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): Pcontrol =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Pcontrol (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -507,7 +482,7 @@ object PcontrolSerializer extends CIMSerializer[Pcontrol]
             () => output.writeString (obj.Delay),
             () => output.writeString (obj.VSCtype1)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -515,7 +490,7 @@ object PcontrolSerializer extends CIMSerializer[Pcontrol]
 
     def read (kryo: Kryo, input: Input, cls: Class[Pcontrol]): Pcontrol =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Pcontrol (
             parent,
@@ -537,8 +512,8 @@ final case class Qlimiter
     Delay: String = null,
     VSCtype1: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -564,34 +539,28 @@ final case class Qlimiter
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Qlimiter.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Qlimiter.fields (position), value)
-
         emitattr (0, Delay)
         emitattr (1, VSCtype1)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Qlimiter rdf:ID=\"%s\">\n%s\t</cim:Qlimiter>".format (id, export_fields)
+        "\t<cim:Qlimiter rdf:%s=\"%s\">\n%s\t</cim:Qlimiter>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Qlimiter
-    extends
-        CIMParseable[Qlimiter]
+extends
+    CIMParseable[Qlimiter]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
@@ -599,13 +568,13 @@ object Qlimiter
         CIMRelationship ("Delay", "Delay", "1", "0..1"),
         CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
-    val Delay: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): Qlimiter =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Qlimiter (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -626,7 +595,7 @@ object QlimiterSerializer extends CIMSerializer[Qlimiter]
             () => output.writeString (obj.Delay),
             () => output.writeString (obj.VSCtype1)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -634,7 +603,7 @@ object QlimiterSerializer extends CIMSerializer[Qlimiter]
 
     def read (kryo: Kryo, input: Input, cls: Class[Qlimiter]): Qlimiter =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Qlimiter (
             parent,
@@ -656,8 +625,8 @@ final case class Qmode
     Delay: String = null,
     VSCtype1: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -683,34 +652,28 @@ final case class Qmode
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Qmode.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Qmode.fields (position), value)
-
         emitattr (0, Delay)
         emitattr (1, VSCtype1)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Qmode rdf:ID=\"%s\">\n%s\t</cim:Qmode>".format (id, export_fields)
+        "\t<cim:Qmode rdf:%s=\"%s\">\n%s\t</cim:Qmode>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Qmode
-    extends
-        CIMParseable[Qmode]
+extends
+    CIMParseable[Qmode]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
@@ -718,13 +681,13 @@ object Qmode
         CIMRelationship ("Delay", "Delay", "1", "0..1"),
         CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
-    val Delay: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): Qmode =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Qmode (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -745,7 +708,7 @@ object QmodeSerializer extends CIMSerializer[Qmode]
             () => output.writeString (obj.Delay),
             () => output.writeString (obj.VSCtype1)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -753,7 +716,7 @@ object QmodeSerializer extends CIMSerializer[Qmode]
 
     def read (kryo: Kryo, input: Input, cls: Class[Qmode]): Qmode =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Qmode (
             parent,
@@ -776,8 +739,8 @@ final case class Qregulator
     HVDClookUpTable: List[String] = null,
     VSCtype1: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -803,37 +766,30 @@ final case class Qregulator
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Qregulator.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Qregulator.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Qregulator.fields (position), x))
-
         emitattr (0, Delay)
         emitattrs (1, HVDClookUpTable)
         emitattr (2, VSCtype1)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Qregulator rdf:ID=\"%s\">\n%s\t</cim:Qregulator>".format (id, export_fields)
+        "\t<cim:Qregulator rdf:%s=\"%s\">\n%s\t</cim:Qregulator>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Qregulator
-    extends
-        CIMParseable[Qregulator]
+extends
+    CIMParseable[Qregulator]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Delay",
         "HVDClookUpTable",
         "VSCtype1"
@@ -843,14 +799,14 @@ object Qregulator
         CIMRelationship ("HVDClookUpTable", "HVDCLookUpTable", "1..*", "0..1"),
         CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
-    val Delay: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val HVDClookUpTable: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
-    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val HVDClookUpTable: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: CIMContext): Qregulator =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Qregulator (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -873,7 +829,7 @@ object QregulatorSerializer extends CIMSerializer[Qregulator]
             () => writeList (obj.HVDClookUpTable, output),
             () => output.writeString (obj.VSCtype1)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -881,7 +837,7 @@ object QregulatorSerializer extends CIMSerializer[Qregulator]
 
     def read (kryo: Kryo, input: Input, cls: Class[Qregulator]): Qregulator =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Qregulator (
             parent,
@@ -904,8 +860,8 @@ final case class Umode
     Delay: String = null,
     VSCtype1: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -931,34 +887,28 @@ final case class Umode
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Umode.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Umode.fields (position), value)
-
         emitattr (0, Delay)
         emitattr (1, VSCtype1)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Umode rdf:ID=\"%s\">\n%s\t</cim:Umode>".format (id, export_fields)
+        "\t<cim:Umode rdf:%s=\"%s\">\n%s\t</cim:Umode>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Umode
-    extends
-        CIMParseable[Umode]
+extends
+    CIMParseable[Umode]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Delay",
         "VSCtype1"
     )
@@ -966,13 +916,13 @@ object Umode
         CIMRelationship ("Delay", "Delay", "1", "0..1"),
         CIMRelationship ("VSCtype1", "VSCtype1", "0..1", "1")
     )
-    val Delay: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val Delay: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val VSCtype1: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): Umode =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Umode (
             BasicElement.parse (context),
             mask (Delay (), 0),
@@ -993,7 +943,7 @@ object UmodeSerializer extends CIMSerializer[Umode]
             () => output.writeString (obj.Delay),
             () => output.writeString (obj.VSCtype1)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -1001,7 +951,7 @@ object UmodeSerializer extends CIMSerializer[Umode]
 
     def read (kryo: Kryo, input: Input, cls: Class[Umode]): Umode =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Umode (
             parent,
@@ -1029,8 +979,8 @@ final case class VSCtype1
     Qregulator: String = null,
     Umode: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1056,18 +1006,13 @@ final case class VSCtype1
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VSCtype1.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (VSCtype1.fields (position), value)
-
         emitattr (0, BlockingFunction)
         emitattr (1, DCvoltageControl)
         emitattr (2, PFmodel)
@@ -1078,18 +1023,17 @@ final case class VSCtype1
         emitattr (7, Umode)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:VSCtype1 rdf:ID=\"%s\">\n%s\t</cim:VSCtype1>".format (id, export_fields)
+        "\t<cim:VSCtype1 rdf:%s=\"%s\">\n%s\t</cim:VSCtype1>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object VSCtype1
-    extends
-        CIMParseable[VSCtype1]
+extends
+    CIMParseable[VSCtype1]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "BlockingFunction",
         "DCvoltageControl",
         "PFmodel",
@@ -1109,19 +1053,19 @@ object VSCtype1
         CIMRelationship ("Qregulator", "Qregulator", "1", "0..1"),
         CIMRelationship ("Umode", "Umode", "1", "0..1")
     )
-    val BlockingFunction: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val DCvoltageControl: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val PFmodel: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val Pcontrol: Fielder = parse_attribute (attribute (cls, fields (3)))
-    val Qlimiter: Fielder = parse_attribute (attribute (cls, fields (4)))
-    val Qmode: Fielder = parse_attribute (attribute (cls, fields (5)))
-    val Qregulator: Fielder = parse_attribute (attribute (cls, fields (6)))
-    val Umode: Fielder = parse_attribute (attribute (cls, fields (7)))
+    val BlockingFunction: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val DCvoltageControl: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val PFmodel: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val Pcontrol: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val Qlimiter: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val Qmode: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val Qregulator: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val Umode: Fielder = parse_attribute (attribute (cls, fields(7)))
 
     def parse (context: CIMContext): VSCtype1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = VSCtype1 (
             VSCDynamics.parse (context),
             mask (BlockingFunction (), 0),
@@ -1162,7 +1106,7 @@ object VSCtype1Serializer extends CIMSerializer[VSCtype1]
 
     def read (kryo: Kryo, input: Input, cls: Class[VSCtype1]): VSCtype1 =
     {
-        val parent = VSCDynamicsSerializer.read (kryo, input, classOf [VSCDynamics])
+        val parent = VSCDynamicsSerializer.read (kryo, input, classOf[VSCDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = VSCtype1 (
             parent,

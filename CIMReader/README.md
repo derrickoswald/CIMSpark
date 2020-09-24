@@ -107,11 +107,11 @@ The jars for the packages stored in: /root/.ivy2/jars
 ch.ninecode.cim#CIMReader added as a dependency
 :: resolving dependencies :: org.apache.spark#spark-submit-parent-69ac0dfd-a56d-46a5-9b45-b9754495a263;1.0
 	confs: [default]
-	found ch.ninecode.cim#CIMReader;2.12-3.0.0-5.0.3 in local-m2-cache
+	found ch.ninecode.cim#CIMReader;<cimspark_version> in local-m2-cache
 	found com.github.scopt#scopt_2.12;4.0.0-RC2 in spark-list
 :: resolution report :: resolve 195ms :: artifacts dl 6ms
 	:: modules in use:
-	ch.ninecode.cim#CIMReader;2.12-3.0.0-5.0.3 from local-m2-cache in [default]
+	ch.ninecode.cim#CIMReader;<cimspark_version> from local-m2-cache in [default]
 	com.github.scopt#scopt_2.12;4.0.0-RC2 from spark-list in [default]
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
@@ -233,6 +233,8 @@ The expression "spark.read.cim" in the above example is shorthand for the full D
 
 ```scala
 val element = spark.read.format ("ch.ninecode.cim").options (opts).load (file1, file2, ...)
+or
+val elements = spark.read.options (opts).cim (file1, file2, ...)
 ```
 
 where:

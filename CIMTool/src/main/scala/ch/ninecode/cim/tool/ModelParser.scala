@@ -42,9 +42,9 @@ case class ModelParser (model: File)
         // adjust parent values
         val global = packs.values.map (_._2).find (_.global).orNull
         packs.mapValues (
-            row =>
+            pack =>
             {
-                val (parent, pkg) = row
+                val (parent, pkg) = pack
                 if (pkg.global)
                     pkg
                 else
@@ -69,7 +69,7 @@ case class ModelParser (model: File)
                     val pkg = packages.getOrElse (row.getPackageID, globalPackage)
                     val typ = row.getObjectType
                     if (!typ.equals ("Class") && !typ.equals ("Enumeration"))
-                        throw new Exception ("pkg: %s name: %s unhandled type: %s".format (pkg.name, row.getName, typ))
+                        throw new Exception (s"pkg: ${pkg.name} name: ${row.getName} unhandled type: $typ")
                     Class (row, pkg)
                 }
             )

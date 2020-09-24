@@ -17,9 +17,9 @@ import ch.ninecode.cim.CIMSerializer
  *
  * The tie point can be a network branch (e.g., transmission line or transformer) or a switching device. For transmission lines, the interchange area boundary is usually at a designated point such as the middle of the line. Line end metering is then corrected for line losses.
  *
- * @param IdentifiedObject  [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param tiePointMWRating  The MW rating of the tie point.
- * @param ByMktMeasurement  [[ch.ninecode.model.MktMeasurement MktMeasurement]] A measurement is made on the B side of a tie point
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param tiePointMWRating The MW rating of the tie point.
+ * @param ByMktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] A measurement is made on the B side of a tie point
  * @param ForMktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] A measurement is made on the A side of a tie point
  * @group InfReservation
  * @groupname InfReservation Package InfReservation
@@ -31,8 +31,8 @@ final case class TiePoint
     ByMktMeasurement: List[String] = null,
     ForMktMeasurement: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -58,37 +58,30 @@ final case class TiePoint
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TiePoint.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TiePoint.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (TiePoint.fields (position), x))
-
         emitelem (0, tiePointMWRating)
         emitattrs (1, ByMktMeasurement)
         emitattrs (2, ForMktMeasurement)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:TiePoint rdf:ID=\"%s\">\n%s\t</cim:TiePoint>".format (id, export_fields)
+        "\t<cim:TiePoint rdf:%s=\"%s\">\n%s\t</cim:TiePoint>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TiePoint
-    extends
-        CIMParseable[TiePoint]
+extends
+    CIMParseable[TiePoint]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "tiePointMWRating",
         "ByMktMeasurement",
         "ForMktMeasurement"
@@ -97,14 +90,14 @@ object TiePoint
         CIMRelationship ("ByMktMeasurement", "MktMeasurement", "1..*", "1"),
         CIMRelationship ("ForMktMeasurement", "MktMeasurement", "1..*", "1")
     )
-    val tiePointMWRating: Fielder = parse_element (element (cls, fields (0)))
-    val ByMktMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
-    val ForMktMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val tiePointMWRating: Fielder = parse_element (element (cls, fields(0)))
+    val ByMktMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ForMktMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: CIMContext): TiePoint =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = TiePoint (
             IdentifiedObject.parse (context),
             toDouble (mask (tiePointMWRating (), 0)),
@@ -135,7 +128,7 @@ object TiePointSerializer extends CIMSerializer[TiePoint]
 
     def read (kryo: Kryo, input: Input, cls: Class[TiePoint]): TiePoint =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = TiePoint (
             parent,

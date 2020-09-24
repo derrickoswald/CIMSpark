@@ -263,7 +263,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         s"""
            |    override def export: String =
            |    {
-           |        "\\t<cim:${cls.name} rdf:ID=\\"%s\\">\\n%s\\t</cim:${cls.name}>".format (id, export_fields)
+           |        "\\t<cim:${cls.name} rdf:%s=\\"%s\\">\\n%s\\t</cim:${cls.name}>".format (if (about) \"about\" else \"ID\", id, export_fields)
            |    }""".stripMargin
     }
 

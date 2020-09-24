@@ -7,7 +7,8 @@ package ch.ninecode.cim.tool
  * @param name       The class name.
  * @param note       Textual notes attached to the class.
  * @param pkg        Containing package.
- * @param stereotype UML stereotype for the class.
+ * @param stereotype UML stereotype for the class if any, otherwise <code>null</code>.
+ * @param sup        The superclass if any, otherwise <code>null</code>.
  */
 case class Class (
     xuid: String,
@@ -15,11 +16,11 @@ case class Class (
     note: String,
     var pkg: Package,
     stereotype: String,
-    sup: Class = null)
-    extends
-        ProgramaticName
+    sup: Class)
+extends
+    ProgramaticName
 {
-    override def toString: String = "%s:%s%s%s".format (pkg.name, name, if (null != stereotype) s" ($stereotype)" else "", if (null != sup) s" subclass of ${sup.name}" else "")
+    override def toString: String = s"${pkg.name}:$name${if (null != stereotype) s" ($stereotype)" else ""}${if (null != sup) s" subclass of ${sup.name}" else ""}"
 }
 
 object Class

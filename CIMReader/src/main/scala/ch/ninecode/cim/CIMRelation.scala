@@ -203,11 +203,18 @@ class CIMRelation (
             configuration.set (FileInputFormat.INPUT_DIR, path)
             configuration.setLong (FileInputFormat.SPLIT_MAXSIZE, _SplitSize)
 
-            var rdd = spark.sparkContext.newAPIHadoopRDD (
-                configuration,
-                classOf [CIMInputFormat],
-                classOf [String],
-                classOf [Element]).values
+            var rdd = if (_Debug)
+                spark.sparkContext.newAPIHadoopRDD (
+                    configuration,
+                    classOf [CIMInputFormatDebug],
+                    classOf [String],
+                    classOf [Element]).values
+            else
+                spark.sparkContext.newAPIHadoopRDD (
+                    configuration,
+                    classOf [CIMInputFormat],
+                    classOf [String],
+                    classOf [Element]).values
 
             put (rdd, "Elements", true)
             ret = rdd.asInstanceOf [RDD[Row]]

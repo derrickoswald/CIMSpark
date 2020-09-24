@@ -20,7 +20,7 @@ import ch.ninecode.cim.CIMSerializer
  * This schedule is assocated with the hourly parameters in a resource bid.
  *
  * @param BidHourlySchedule [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
- * @param value             <em>undocumented</em>
+ * @param value <em>undocumented</em>
  * @group InfParticipantInterfaces
  * @groupname InfParticipantInterfaces Package InfParticipantInterfaces
  */
@@ -29,8 +29,8 @@ final case class WheelingReferenceSchedule
     BidHourlySchedule: BidHourlySchedule = null,
     value: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -56,41 +56,35 @@ final case class WheelingReferenceSchedule
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WheelingReferenceSchedule.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WheelingReferenceSchedule.fields (position), value)
-
         emitelem (0, value)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:WheelingReferenceSchedule rdf:ID=\"%s\">\n%s\t</cim:WheelingReferenceSchedule>".format (id, export_fields)
+        "\t<cim:WheelingReferenceSchedule rdf:%s=\"%s\">\n%s\t</cim:WheelingReferenceSchedule>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object WheelingReferenceSchedule
-    extends
-        CIMParseable[WheelingReferenceSchedule]
+extends
+    CIMParseable[WheelingReferenceSchedule]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "value"
     )
-    val value: Fielder = parse_element (element (cls, fields (0)))
+    val value: Fielder = parse_element (element (cls, fields(0)))
 
     def parse (context: CIMContext): WheelingReferenceSchedule =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = WheelingReferenceSchedule (
             BidHourlySchedule.parse (context),
             mask (value (), 0)
@@ -117,7 +111,7 @@ object WheelingReferenceScheduleSerializer extends CIMSerializer[WheelingReferen
 
     def read (kryo: Kryo, input: Input, cls: Class[WheelingReferenceSchedule]): WheelingReferenceSchedule =
     {
-        val parent = BidHourlyScheduleSerializer.read (kryo, input, classOf [BidHourlySchedule])
+        val parent = BidHourlyScheduleSerializer.read (kryo, input, classOf[BidHourlySchedule])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = WheelingReferenceSchedule (
             parent,

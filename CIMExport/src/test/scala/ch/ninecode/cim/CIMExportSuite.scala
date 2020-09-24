@@ -68,7 +68,7 @@ class CIMExportSuite extends SparkSuite
 
     test ("Basic")
     {
-        _: SparkSession ⇒
+        _: SparkSession =>
             val psr =
                 """<cim:PSRType rdf:ID="PSRType_Substation">
                   |	<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
@@ -87,7 +87,7 @@ class CIMExportSuite extends SparkSuite
 
     test ("Attribute")
     {
-        _: SparkSession ⇒
+        _: SparkSession =>
             val loc =
                 """<cim:Location rdf:ID="_location_1623670528_427088716_224817700">
                   |	<cim:Location.type>geographic</cim:Location.type>
@@ -107,7 +107,7 @@ class CIMExportSuite extends SparkSuite
 
     test ("Double")
     {
-        _: SparkSession ⇒
+        _: SparkSession =>
             val voltage =
                 """<cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
 	<cim:IdentifiedObject.name>400.000 V</cim:IdentifiedObject.name>
@@ -136,7 +136,7 @@ $voltage
 
     test ("Multiple")
     {
-        _: SparkSession ⇒
+        _: SparkSession =>
             val xml =
                 """	<cim:Facility rdf:ID="STA196_asset">
 		<cim:IdentifiedObject.aliasName>187674625:nis_el_station</cim:IdentifiedObject.aliasName>
@@ -162,9 +162,26 @@ $voltage
             assert (cleanString (facility.export) == cleanString (xml))
     }
 
+    test ("About")
+    {
+        _: SparkSession =>
+            val xml =
+                """	<cim:Terminal rdf:about="KLE120953_terminal_1">
+		<cim:Terminal.TopologicalNode rdf:resource="#MUF129829_topo"/>
+	</cim:Terminal>"""
+
+            val parser = new CHIM (xml)
+            val result = CHIM.parse (parser)
+            assert (result._1.size === 1)
+            assert (result._2.length === 0)
+            val terminal = result._1 ("KLE120953_terminal_1").asInstanceOf [Terminal]
+            assert (terminal.about)
+            assert (cleanString (terminal.export) == cleanString (xml))
+    }
+
     test ("Convex Hull")
     {
-        _: SparkSession ⇒
+        _: SparkSession =>
             val pp = Array [(Double, Double)]((8, 9), (3, 5), (4, 4), (1, 7), (3, 4), (4, 5), (6, 6), (5, 7), (3, 8))
             val hull = Hull.scan (pp.toList).toArray [(Double, Double)]
             assert ("(3.0,4.0)(1.0,7.0)(3.0,8.0)(8.0,9.0)(6.0,6.0)(4.0,4.0)(3.0,4.0)" == hull.mkString)
@@ -172,7 +189,7 @@ $voltage
 
     test ("Export")
     {
-        implicit spark: SparkSession ⇒
+        implicit spark: SparkSession =>
 
             val elements = readFile (filenames_micro.mkString (","), Map ("ch.ninecode.cim.do_about" -> "true"))
             println (s"${elements.count} elements")
@@ -183,20 +200,22 @@ $voltage
 
     test ("ExportIsland")
     {
-        implicit spark: SparkSession ⇒
+        implicit spark: SparkSession =>
 
+            val output = new File ("target/_TI-1_island.rdf")
+            val _ = output.delete
             val elements = readFile (
                 filenames_real.mkString (","),
                 Map ("ch.ninecode.cim.do_about" -> "true", "ch.ninecode.cim.do_normalize" -> "true"))
             println (s"${elements.count} elements")
             val export = new CIMExport (spark)
             export.exportIsland ("_TI-1", "_TI-1_island.rdf", "target/")
-            assert (new File ("target/_TI-1_island.rdf").exists, "island _TI-1")
+            assert (output.exists, "island _TI-1")
     }
 
     test ("ExportAllIslands")
     {
-        implicit spark: SparkSession ⇒
+        implicit spark: SparkSession =>
 
             val elements = readFile (DEMO_DATA1, Map ("ch.ninecode.cim.do_topo_islands" -> "true"))
             println (s"${elements.count} elements")
@@ -208,10 +227,10 @@ $voltage
             println (s"process: ${(System.nanoTime - start) / 1e9} seconds")
 
             islands.foreach (
-                island ⇒
+                island =>
                 {
                     // remove all RDD to start from scratch
-                    spark.sparkContext.getPersistentRDDs.foreach (x ⇒
+                    spark.sparkContext.getPersistentRDDs.foreach (x =>
                     {
                         x._2.unpersist (true)
                         x._2.name = null
@@ -231,7 +250,7 @@ $voltage
 
     test ("ExportAllTransformersFile")
     {
-        implicit spark: SparkSession ⇒
+        implicit spark: SparkSession =>
 
             val elements = readFile (DEMO_DATA1, Map ("ch.ninecode.cim.do_topo_islands" -> "true"))
             println (s"${elements.count} elements")
@@ -239,14 +258,14 @@ $voltage
 
             val start = System.nanoTime
             val export = new CIMExport (spark)
-            export.exportAllTransformers (CIMExportOptions (files = Seq (DEMO_DATA1), outputdir = "target/"))
+            export.exportAllTransformers (CIMExportOptions (files = Seq (DEMO_DATA1), topology = true, outputdir = "target/"))
             println (s"process: ${(System.nanoTime - start) / 1e9} seconds")
 
             transformers.foreach (
-                transformer ⇒
+                transformer =>
                 {
                     // remove all RDD to start from scratch
-                    spark.sparkContext.getPersistentRDDs.foreach (x ⇒
+                    spark.sparkContext.getPersistentRDDs.foreach (x =>
                     {
                         x._2.unpersist (true)
                         x._2.name = null
@@ -266,7 +285,7 @@ $voltage
 
     test ("ExportAllTransformersFileGanged")
     {
-        implicit spark: SparkSession ⇒
+        implicit spark: SparkSession =>
 
             val elements = readFile (DEMO_DATA2, Map ("ch.ninecode.cim.do_topo_islands" -> "true"))
             println (s"${elements.count} elements")
@@ -278,10 +297,10 @@ $voltage
             println (s"process: ${(System.nanoTime - start) / 1e9} seconds")
 
             transformers.foreach (
-                transformer ⇒
+                transformer =>
                 {
                     // remove all RDD to start from scratch
-                    spark.sparkContext.getPersistentRDDs.foreach (x ⇒
+                    spark.sparkContext.getPersistentRDDs.foreach (x =>
                     {
                         x._2.unpersist (true)
                         x._2.name = null

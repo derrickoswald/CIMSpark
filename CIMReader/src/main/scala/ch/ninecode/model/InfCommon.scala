@@ -16,9 +16,9 @@ import ch.ninecode.cim.CIMSerializer
  * Organisation that is a commercial bank, agency, or other institution that offers a similar service.
  *
  * @param OrganisationRole [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
- * @param bic              Bank identifier code as defined in ISO 9362; for use in countries wher IBAN is not yet in operation.
- * @param iban             International bank account number defined in ISO 13616; for countries where IBAN is not in operation, the existing BIC or SWIFT codes may be used instead (see ISO 9362).
- * @param BankAccounts     [[ch.ninecode.model.BankAccount BankAccount]] All BankAccounts this Bank provides.
+ * @param bic Bank identifier code as defined in ISO 9362; for use in countries wher IBAN is not yet in operation.
+ * @param iban International bank account number defined in ISO 13616; for countries where IBAN is not in operation, the existing BIC or SWIFT codes may be used instead (see ISO 9362).
+ * @param BankAccounts [[ch.ninecode.model.BankAccount BankAccount]] All BankAccounts this Bank provides.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -30,8 +30,8 @@ final case class Bank
     iban: String = null,
     BankAccounts: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -57,37 +57,30 @@ final case class Bank
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Bank.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Bank.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Bank.fields (position), x))
-
         emitelem (0, bic)
         emitelem (1, iban)
         emitattrs (2, BankAccounts)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Bank rdf:ID=\"%s\">\n%s\t</cim:Bank>".format (id, export_fields)
+        "\t<cim:Bank rdf:%s=\"%s\">\n%s\t</cim:Bank>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Bank
-    extends
-        CIMParseable[Bank]
+extends
+    CIMParseable[Bank]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "bic",
         "iban",
         "BankAccounts"
@@ -95,14 +88,14 @@ object Bank
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("BankAccounts", "BankAccount", "0..*", "0..1")
     )
-    val bic: Fielder = parse_element (element (cls, fields (0)))
-    val iban: Fielder = parse_element (element (cls, fields (1)))
-    val BankAccounts: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val bic: Fielder = parse_element (element (cls, fields(0)))
+    val iban: Fielder = parse_element (element (cls, fields(1)))
+    val BankAccounts: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: CIMContext): Bank =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Bank (
             OrganisationRole.parse (context),
             mask (bic (), 0),
@@ -133,7 +126,7 @@ object BankSerializer extends CIMSerializer[Bank]
 
     def read (kryo: Kryo, input: Input, cls: Class[Bank]): Bank =
     {
-        val parent = OrganisationRoleSerializer.read (kryo, input, classOf [OrganisationRole])
+        val parent = OrganisationRoleSerializer.read (kryo, input, classOf[OrganisationRole])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Bank (
             parent,
@@ -149,9 +142,9 @@ object BankSerializer extends CIMSerializer[Bank]
 /**
  * Bank account.
  *
- * @param Document        [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param accountNumber   Account reference number.
- * @param Bank            [[ch.ninecode.model.Bank Bank]] Bank that provides this BankAccount.
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param accountNumber Account reference number.
+ * @param Bank [[ch.ninecode.model.Bank Bank]] Bank that provides this BankAccount.
  * @param ServiceSupplier [[ch.ninecode.model.ServiceSupplier ServiceSupplier]] ServiceSupplier that is owner of this BankAccount.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -164,8 +157,8 @@ final case class BankAccount
     Bank: String = null,
     ServiceSupplier: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -191,37 +184,30 @@ final case class BankAccount
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BankAccount.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BankAccount.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BankAccount.fields (position), value)
-
         emitelem (0, accountNumber)
         emitattr (1, Bank)
         emitattr (2, ServiceSupplier)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:BankAccount rdf:ID=\"%s\">\n%s\t</cim:BankAccount>".format (id, export_fields)
+        "\t<cim:BankAccount rdf:%s=\"%s\">\n%s\t</cim:BankAccount>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object BankAccount
-    extends
-        CIMParseable[BankAccount]
+extends
+    CIMParseable[BankAccount]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "accountNumber",
         "Bank",
         "ServiceSupplier"
@@ -230,14 +216,14 @@ object BankAccount
         CIMRelationship ("Bank", "Bank", "0..1", "0..*"),
         CIMRelationship ("ServiceSupplier", "ServiceSupplier", "0..1", "0..*")
     )
-    val accountNumber: Fielder = parse_element (element (cls, fields (0)))
-    val Bank: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields (2)))
+    val accountNumber: Fielder = parse_element (element (cls, fields(0)))
+    val Bank: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: CIMContext): BankAccount =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = BankAccount (
             Document.parse (context),
             mask (accountNumber (), 0),
@@ -268,7 +254,7 @@ object BankAccountSerializer extends CIMSerializer[BankAccount]
 
     def read (kryo: Kryo, input: Input, cls: Class[BankAccount]): BankAccount =
     {
-        val parent = DocumentSerializer.read (kryo, input, classOf [Document])
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = BankAccount (
             parent,
@@ -295,8 +281,8 @@ final case class BusinessPlan
 (
     Document: Document = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -322,25 +308,21 @@ final case class BusinessPlan
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:BusinessPlan rdf:ID=\"%s\">\n%s\t</cim:BusinessPlan>".format (id, export_fields)
+        "\t<cim:BusinessPlan rdf:%s=\"%s\">\n%s\t</cim:BusinessPlan>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object BusinessPlan
-    extends
-        CIMParseable[BusinessPlan]
+extends
+    CIMParseable[BusinessPlan]
 {
 
     def parse (context: CIMContext): BusinessPlan =
@@ -369,7 +351,7 @@ object BusinessPlanSerializer extends CIMSerializer[BusinessPlan]
 
     def read (kryo: Kryo, input: Input, cls: Class[BusinessPlan]): BusinessPlan =
     {
-        val parent = DocumentSerializer.read (kryo, input, classOf [Document])
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = BusinessPlan (
             parent
@@ -385,8 +367,8 @@ object BusinessPlanSerializer extends CIMSerializer[BusinessPlan]
  * A single organisation typically performs many functions, each one described as a role.
  *
  * @param OrganisationRole [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
- * @param status           <em>undocumented</em>
- * @param type             Classification by utility's corporate standards and practices.
+ * @param status <em>undocumented</em>
+ * @param type Classification by utility's corporate standards and practices.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -397,8 +379,8 @@ final case class BusinessRole
     status: String = null,
     `type`: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -424,46 +406,39 @@ final case class BusinessRole
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BusinessRole.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BusinessRole.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BusinessRole.fields (position), value)
-
         emitattr (0, status)
         emitelem (1, `type`)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:BusinessRole rdf:ID=\"%s\">\n%s\t</cim:BusinessRole>".format (id, export_fields)
+        "\t<cim:BusinessRole rdf:%s=\"%s\">\n%s\t</cim:BusinessRole>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object BusinessRole
-    extends
-        CIMParseable[BusinessRole]
+extends
+    CIMParseable[BusinessRole]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "status",
         "type"
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val `type`: Fielder = parse_element (element (cls, fields (1)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val `type`: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: CIMContext): BusinessRole =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = BusinessRole (
             OrganisationRole.parse (context),
             mask (status (), 0),
@@ -492,7 +467,7 @@ object BusinessRoleSerializer extends CIMSerializer[BusinessRole]
 
     def read (kryo: Kryo, input: Input, cls: Class[BusinessRole]): BusinessRole =
     {
-        val parent = OrganisationRoleSerializer.read (kryo, input, classOf [OrganisationRole])
+        val parent = OrganisationRoleSerializer.read (kryo, input, classOf[OrganisationRole])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = BusinessRole (
             parent,
@@ -510,11 +485,11 @@ object BusinessRoleSerializer extends CIMSerializer[BusinessRole]
  * Examples include overhead electric, underground electric, high pressure gas, etc. This ensures necessary knowledge and skills before being allowed to perform certain types of work.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param status           <em>undocumented</em>
- * @param type             Classification by utility's work mangement standards and practices.
- * @param Capabilities     [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
- * @param ErpPersons       [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
- * @param Skills           [[ch.ninecode.model.Skill Skill]] <em>undocumented</em>
+ * @param status <em>undocumented</em>
+ * @param type Classification by utility's work mangement standards and practices.
+ * @param Capabilities [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
+ * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
+ * @param Skills [[ch.ninecode.model.Skill Skill]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -528,8 +503,8 @@ final case class Craft
     ErpPersons: List[String] = null,
     Skills: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -555,22 +530,15 @@ final case class Craft
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Craft.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Craft.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Craft.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Craft.fields (position), x))
-
         emitattr (0, status)
         emitelem (1, `type`)
         emitattrs (2, Capabilities)
@@ -578,18 +546,17 @@ final case class Craft
         emitattrs (4, Skills)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Craft rdf:ID=\"%s\">\n%s\t</cim:Craft>".format (id, export_fields)
+        "\t<cim:Craft rdf:%s=\"%s\">\n%s\t</cim:Craft>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Craft
-    extends
-        CIMParseable[Craft]
+extends
+    CIMParseable[Craft]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "status",
         "type",
         "Capabilities",
@@ -601,16 +568,16 @@ object Craft
         CIMRelationship ("ErpPersons", "OldPerson", "0..*", "0..*"),
         CIMRelationship ("Skills", "Skill", "0..*", "0..*")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val `type`: Fielder = parse_element (element (cls, fields (1)))
-    val Capabilities: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
-    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
-    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val `type`: Fielder = parse_element (element (cls, fields(1)))
+    val Capabilities: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: CIMContext): Craft =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Craft (
             IdentifiedObject.parse (context),
             mask (status (), 0),
@@ -645,7 +612,7 @@ object CraftSerializer extends CIMSerializer[Craft]
 
     def read (kryo: Kryo, input: Input, cls: Class[Craft]): Craft =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Craft (
             parent,
@@ -672,8 +639,8 @@ final case class DocumentOrganisationRole
 (
     OrganisationRole: OrganisationRole = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -699,25 +666,21 @@ final case class DocumentOrganisationRole
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         sup.export_fields
     }
-
     override def export: String =
     {
-        "\t<cim:DocumentOrganisationRole rdf:ID=\"%s\">\n%s\t</cim:DocumentOrganisationRole>".format (id, export_fields)
+        "\t<cim:DocumentOrganisationRole rdf:%s=\"%s\">\n%s\t</cim:DocumentOrganisationRole>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object DocumentOrganisationRole
-    extends
-        CIMParseable[DocumentOrganisationRole]
+extends
+    CIMParseable[DocumentOrganisationRole]
 {
 
     def parse (context: CIMContext): DocumentOrganisationRole =
@@ -746,7 +709,7 @@ object DocumentOrganisationRoleSerializer extends CIMSerializer[DocumentOrganisa
 
     def read (kryo: Kryo, input: Input, cls: Class[DocumentOrganisationRole]): DocumentOrganisationRole =
     {
-        val parent = OrganisationRoleSerializer.read (kryo, input, classOf [OrganisationRole])
+        val parent = OrganisationRoleSerializer.read (kryo, input, classOf[OrganisationRole])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = DocumentOrganisationRole (
             parent
@@ -759,12 +722,12 @@ object DocumentOrganisationRoleSerializer extends CIMSerializer[DocumentOrganisa
 /**
  * A crew is a group of people with specific skills, tools, and vehicles.
  *
- * @param Crew          [[ch.ninecode.model.Crew Crew]] Reference to the superclass object.
- * @param type          Classification by utility's work management standards and practices.
- * @param Assignments   [[ch.ninecode.model.Assignment Assignment]] All Assignments for this Crew.
- * @param Capabilities  [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
- * @param Locations     [[ch.ninecode.model.Location Location]] <em>undocumented</em>
- * @param Route         [[ch.ninecode.model.Route Route]] <em>undocumented</em>
+ * @param Crew [[ch.ninecode.model.Crew Crew]] Reference to the superclass object.
+ * @param type Classification by utility's work management standards and practices.
+ * @param Assignments [[ch.ninecode.model.Assignment Assignment]] All Assignments for this Crew.
+ * @param Capabilities [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
+ * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
+ * @param Route [[ch.ninecode.model.Route Route]] <em>undocumented</em>
  * @param ShiftPatterns [[ch.ninecode.model.ShiftPattern ShiftPattern]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -780,8 +743,8 @@ final case class OldCrew
     Route: String = null,
     ShiftPatterns: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -807,22 +770,15 @@ final case class OldCrew
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OldCrew.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OldCrew.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OldCrew.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OldCrew.fields (position), x))
-
         emitelem (0, `type`)
         emitattrs (1, Assignments)
         emitattrs (2, Capabilities)
@@ -831,18 +787,17 @@ final case class OldCrew
         emitattrs (5, ShiftPatterns)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:OldCrew rdf:ID=\"%s\">\n%s\t</cim:OldCrew>".format (id, export_fields)
+        "\t<cim:OldCrew rdf:%s=\"%s\">\n%s\t</cim:OldCrew>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object OldCrew
-    extends
-        CIMParseable[OldCrew]
+extends
+    CIMParseable[OldCrew]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "type",
         "Assignments",
         "Capabilities",
@@ -857,17 +812,17 @@ object OldCrew
         CIMRelationship ("Route", "Route", "0..1", "0..*"),
         CIMRelationship ("ShiftPatterns", "ShiftPattern", "0..*", "0..*")
     )
-    val `type`: Fielder = parse_element (element (cls, fields (0)))
-    val Assignments: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
-    val Capabilities: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
-    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
-    val Route: Fielder = parse_attribute (attribute (cls, fields (4)))
-    val ShiftPatterns: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val `type`: Fielder = parse_element (element (cls, fields(0)))
+    val Assignments: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Capabilities: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Route: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ShiftPatterns: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: CIMContext): OldCrew =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OldCrew (
             Crew.parse (context),
             mask (`type` (), 0),
@@ -904,7 +859,7 @@ object OldCrewSerializer extends CIMSerializer[OldCrew]
 
     def read (kryo: Kryo, input: Input, cls: Class[OldCrew]): OldCrew =
     {
-        val parent = CrewSerializer.read (kryo, input, classOf [Crew])
+        val parent = CrewSerializer.read (kryo, input, classOf[Crew])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = OldCrew (
             parent,
@@ -923,20 +878,20 @@ object OldCrewSerializer extends CIMSerializer[OldCrew]
 /**
  * General purpose information for name and other information to contact people.
  *
- * @param Person            [[ch.ninecode.model.Person Person]] Reference to the superclass object.
- * @param status            <em>undocumented</em>
- * @param type              Utility-specific classification for this person, according to the utility's corporate standards and practices.
- *                          Examples include employee, contractor, agent, not affiliated, etc.
- *                          Note that this field is not used to indicate whether this person is a customer of the utility. Often an employee or contractor is also a customer. Customer information is gained with relationship to Organisation and CustomerData. In similar fashion, this field does not indicate the various roles this person may fill as part of utility operations.
- * @param Crafts            [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
- * @param CustomerData      [[ch.ninecode.model.Customer Customer]] <em>undocumented</em>
- * @param ErpCompetency     [[ch.ninecode.model.ErpCompetency ErpCompetency]] <em>undocumented</em>
- * @param ErpPersonnel      [[ch.ninecode.model.ErpPersonnel ErpPersonnel]] <em>undocumented</em>
- * @param LaborItems        [[ch.ninecode.model.LaborItem LaborItem]] <em>undocumented</em>
+ * @param Person [[ch.ninecode.model.Person Person]] Reference to the superclass object.
+ * @param status <em>undocumented</em>
+ * @param type Utility-specific classification for this person, according to the utility's corporate standards and practices.
+ *        Examples include employee, contractor, agent, not affiliated, etc.
+ *        Note that this field is not used to indicate whether this person is a customer of the utility. Often an employee or contractor is also a customer. Customer information is gained with relationship to Organisation and CustomerData. In similar fashion, this field does not indicate the various roles this person may fill as part of utility operations.
+ * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
+ * @param CustomerData [[ch.ninecode.model.Customer Customer]] <em>undocumented</em>
+ * @param ErpCompetency [[ch.ninecode.model.ErpCompetency ErpCompetency]] <em>undocumented</em>
+ * @param ErpPersonnel [[ch.ninecode.model.ErpPersonnel ErpPersonnel]] <em>undocumented</em>
+ * @param LaborItems [[ch.ninecode.model.LaborItem LaborItem]] <em>undocumented</em>
  * @param LandPropertyRoles [[ch.ninecode.model.PersonPropertyRole PersonPropertyRole]] <em>undocumented</em>
  * @param MeasurementValues [[ch.ninecode.model.MeasurementValue MeasurementValue]] <em>undocumented</em>
  * @param OrganisationRoles [[ch.ninecode.model.PersonOrganisationRole PersonOrganisationRole]] <em>undocumented</em>
- * @param Skills            [[ch.ninecode.model.Skill Skill]] <em>undocumented</em>
+ * @param Skills [[ch.ninecode.model.Skill Skill]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -956,8 +911,8 @@ final case class OldPerson
     OrganisationRoles: List[String] = null,
     Skills: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -983,22 +938,15 @@ final case class OldPerson
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OldPerson.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OldPerson.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OldPerson.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (OldPerson.fields (position), x))
-
         emitattr (0, status)
         emitelem (1, `type`)
         emitattrs (2, Crafts)
@@ -1012,18 +960,17 @@ final case class OldPerson
         emitattrs (10, Skills)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:OldPerson rdf:ID=\"%s\">\n%s\t</cim:OldPerson>".format (id, export_fields)
+        "\t<cim:OldPerson rdf:%s=\"%s\">\n%s\t</cim:OldPerson>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object OldPerson
-    extends
-        CIMParseable[OldPerson]
+extends
+    CIMParseable[OldPerson]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "status",
         "type",
         "Crafts",
@@ -1047,22 +994,22 @@ object OldPerson
         CIMRelationship ("OrganisationRoles", "PersonOrganisationRole", "0..*", "1"),
         CIMRelationship ("Skills", "Skill", "0..*", "0..1")
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val `type`: Fielder = parse_element (element (cls, fields (1)))
-    val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
-    val CustomerData: Fielder = parse_attribute (attribute (cls, fields (3)))
-    val ErpCompetency: Fielder = parse_attribute (attribute (cls, fields (4)))
-    val ErpPersonnel: Fielder = parse_attribute (attribute (cls, fields (5)))
-    val LaborItems: FielderMultiple = parse_attributes (attribute (cls, fields (6)))
-    val LandPropertyRoles: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
-    val MeasurementValues: FielderMultiple = parse_attributes (attribute (cls, fields (8)))
-    val OrganisationRoles: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
-    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val `type`: Fielder = parse_element (element (cls, fields(1)))
+    val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val CustomerData: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ErpCompetency: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ErpPersonnel: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val LaborItems: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val LandPropertyRoles: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val MeasurementValues: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val OrganisationRoles: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
 
     def parse (context: CIMContext): OldPerson =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OldPerson (
             Person.parse (context),
             mask (status (), 0),
@@ -1109,7 +1056,7 @@ object OldPersonSerializer extends CIMSerializer[OldPerson]
 
     def read (kryo: Kryo, input: Input, cls: Class[OldPerson]): OldPerson =
     {
-        val parent = PersonSerializer.read (kryo, input, classOf [Person])
+        val parent = PersonSerializer.read (kryo, input, classOf[Person])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = OldPerson (
             parent,
@@ -1137,7 +1084,7 @@ object OldPersonSerializer extends CIMSerializer[OldPerson]
  * Note that the parent and child relationship is indicated by the name on each end of the association.
  *
  * @param OrganisationRole [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
- * @param clientID         Identifiers of the organisation held by another organisation, such as a government agency (federal, state, province, city, county), financial institution (Dun and Bradstreet), etc.
+ * @param clientID Identifiers of the organisation held by another organisation, such as a government agency (federal, state, province, city, county), financial institution (Dun and Bradstreet), etc.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1147,8 +1094,8 @@ final case class OrgOrgRole
     OrganisationRole: OrganisationRole = null,
     clientID: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1174,41 +1121,35 @@ final case class OrgOrgRole
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OrgOrgRole.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OrgOrgRole.fields (position), value)
-
         emitelem (0, clientID)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:OrgOrgRole rdf:ID=\"%s\">\n%s\t</cim:OrgOrgRole>".format (id, export_fields)
+        "\t<cim:OrgOrgRole rdf:%s=\"%s\">\n%s\t</cim:OrgOrgRole>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object OrgOrgRole
-    extends
-        CIMParseable[OrgOrgRole]
+extends
+    CIMParseable[OrgOrgRole]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "clientID"
     )
-    val clientID: Fielder = parse_element (element (cls, fields (0)))
+    val clientID: Fielder = parse_element (element (cls, fields(0)))
 
     def parse (context: CIMContext): OrgOrgRole =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = OrgOrgRole (
             OrganisationRole.parse (context),
             mask (clientID (), 0)
@@ -1235,7 +1176,7 @@ object OrgOrgRoleSerializer extends CIMSerializer[OrgOrgRole]
 
     def read (kryo: Kryo, input: Input, cls: Class[OrgOrgRole]): OrgOrgRole =
     {
-        val parent = OrganisationRoleSerializer.read (kryo, input, classOf [OrganisationRole])
+        val parent = OrganisationRoleSerializer.read (kryo, input, classOf[OrganisationRole])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = OrgOrgRole (
             parent,
@@ -1250,8 +1191,8 @@ object OrgOrgRoleSerializer extends CIMSerializer[OrgOrgRole]
  * Role an organisation plays with respect to persons.
  *
  * @param OrganisationRole [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
- * @param clientID         Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
- * @param ErpPerson        [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
+ * @param clientID Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
+ * @param ErpPerson [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1262,8 +1203,8 @@ final case class PersonOrganisationRole
     clientID: String = null,
     ErpPerson: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1289,49 +1230,42 @@ final case class PersonOrganisationRole
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PersonOrganisationRole.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PersonOrganisationRole.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PersonOrganisationRole.fields (position), value)
-
         emitelem (0, clientID)
         emitattr (1, ErpPerson)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PersonOrganisationRole rdf:ID=\"%s\">\n%s\t</cim:PersonOrganisationRole>".format (id, export_fields)
+        "\t<cim:PersonOrganisationRole rdf:%s=\"%s\">\n%s\t</cim:PersonOrganisationRole>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PersonOrganisationRole
-    extends
-        CIMParseable[PersonOrganisationRole]
+extends
+    CIMParseable[PersonOrganisationRole]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "clientID",
         "ErpPerson"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("ErpPerson", "OldPerson", "1", "0..*")
     )
-    val clientID: Fielder = parse_element (element (cls, fields (0)))
-    val ErpPerson: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val clientID: Fielder = parse_element (element (cls, fields(0)))
+    val ErpPerson: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): PersonOrganisationRole =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PersonOrganisationRole (
             OrganisationRole.parse (context),
             mask (clientID (), 0),
@@ -1360,7 +1294,7 @@ object PersonOrganisationRoleSerializer extends CIMSerializer[PersonOrganisation
 
     def read (kryo: Kryo, input: Input, cls: Class[PersonOrganisationRole]): PersonOrganisationRole =
     {
-        val parent = OrganisationRoleSerializer.read (kryo, input, classOf [OrganisationRole])
+        val parent = OrganisationRoleSerializer.read (kryo, input, classOf[OrganisationRole])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PersonOrganisationRole (
             parent,
@@ -1377,9 +1311,9 @@ object PersonOrganisationRoleSerializer extends CIMSerializer[PersonOrganisation
  *
  * Examples of roles include: owner, renter, contractor, etc.
  *
- * @param Role         [[ch.ninecode.model.Role Role]] Reference to the superclass object.
+ * @param Role [[ch.ninecode.model.Role Role]] Reference to the superclass object.
  * @param LandProperty [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
- * @param Person       [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
+ * @param Person [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1390,8 +1324,8 @@ final case class PersonPropertyRole
     LandProperty: String = null,
     Person: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1417,34 +1351,28 @@ final case class PersonPropertyRole
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PersonPropertyRole.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PersonPropertyRole.fields (position), value)
-
         emitattr (0, LandProperty)
         emitattr (1, Person)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PersonPropertyRole rdf:ID=\"%s\">\n%s\t</cim:PersonPropertyRole>".format (id, export_fields)
+        "\t<cim:PersonPropertyRole rdf:%s=\"%s\">\n%s\t</cim:PersonPropertyRole>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PersonPropertyRole
-    extends
-        CIMParseable[PersonPropertyRole]
+extends
+    CIMParseable[PersonPropertyRole]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "LandProperty",
         "Person"
     )
@@ -1452,13 +1380,13 @@ object PersonPropertyRole
         CIMRelationship ("LandProperty", "LandProperty", "1", "0..*"),
         CIMRelationship ("Person", "OldPerson", "1", "0..*")
     )
-    val LandProperty: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val Person: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val LandProperty: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val Person: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): PersonPropertyRole =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PersonPropertyRole (
             Role.parse (context),
             mask (LandProperty (), 0),
@@ -1487,7 +1415,7 @@ object PersonPropertyRoleSerializer extends CIMSerializer[PersonPropertyRole]
 
     def read (kryo: Kryo, input: Input, cls: Class[PersonPropertyRole]): PersonPropertyRole =
     {
-        val parent = RoleSerializer.read (kryo, input, classOf [Role])
+        val parent = RoleSerializer.read (kryo, input, classOf[Role])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PersonPropertyRole (
             parent,
@@ -1503,7 +1431,7 @@ object PersonPropertyRoleSerializer extends CIMSerializer[PersonPropertyRole]
  * Role an organisation plays with respect to property (for example, the organisation may be the owner, renter, occupier, taxiing authority, etc.).
  *
  * @param OrganisationRole [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
- * @param LandProperty     [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
+ * @param LandProperty [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1513,8 +1441,8 @@ final case class PropertyOrganisationRole
     OrganisationRole: OrganisationRole = null,
     LandProperty: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1540,44 +1468,38 @@ final case class PropertyOrganisationRole
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PropertyOrganisationRole.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PropertyOrganisationRole.fields (position), x))
-
         emitattrs (0, LandProperty)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PropertyOrganisationRole rdf:ID=\"%s\">\n%s\t</cim:PropertyOrganisationRole>".format (id, export_fields)
+        "\t<cim:PropertyOrganisationRole rdf:%s=\"%s\">\n%s\t</cim:PropertyOrganisationRole>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PropertyOrganisationRole
-    extends
-        CIMParseable[PropertyOrganisationRole]
+extends
+    CIMParseable[PropertyOrganisationRole]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "LandProperty"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("LandProperty", "LandProperty", "1..", "0..*")
     )
-    val LandProperty: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val LandProperty: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): PropertyOrganisationRole =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PropertyOrganisationRole (
             OrganisationRole.parse (context),
             masks (LandProperty (), 0)
@@ -1604,7 +1526,7 @@ object PropertyOrganisationRoleSerializer extends CIMSerializer[PropertyOrganisa
 
     def read (kryo: Kryo, input: Input, cls: Class[PropertyOrganisationRole]): PropertyOrganisationRole =
     {
-        val parent = OrganisationRoleSerializer.read (kryo, input, classOf [OrganisationRole])
+        val parent = OrganisationRoleSerializer.read (kryo, input, classOf[OrganisationRole])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PropertyOrganisationRole (
             parent,
@@ -1618,9 +1540,9 @@ object PropertyOrganisationRoleSerializer extends CIMSerializer[PropertyOrganisa
 /**
  * Fraction specified explicitly with a numerator and denominator, which can be used to calculate the quotient.
  *
- * @param Element     Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param denominator The part of a fraction that is below the line and that functions as the divisor of the numerator.
- * @param numerator   The part of a fraction that is above the line and signifies the number to be divided by the denominator.
+ * @param numerator The part of a fraction that is above the line and signifies the number to be divided by the denominator.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1631,8 +1553,8 @@ final case class Ratio
     denominator: Double = 0.0,
     numerator: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1658,44 +1580,38 @@ final case class Ratio
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Ratio.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Ratio.fields (position), value)
-
         emitelem (0, denominator)
         emitelem (1, numerator)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Ratio rdf:ID=\"%s\">\n%s\t</cim:Ratio>".format (id, export_fields)
+        "\t<cim:Ratio rdf:%s=\"%s\">\n%s\t</cim:Ratio>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Ratio
-    extends
-        CIMParseable[Ratio]
+extends
+    CIMParseable[Ratio]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "denominator",
         "numerator"
     )
-    val denominator: Fielder = parse_element (element (cls, fields (0)))
-    val numerator: Fielder = parse_element (element (cls, fields (1)))
+    val denominator: Fielder = parse_element (element (cls, fields(0)))
+    val numerator: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: CIMContext): Ratio =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Ratio (
             BasicElement.parse (context),
             toDouble (mask (denominator (), 0)),
@@ -1716,7 +1632,7 @@ object RatioSerializer extends CIMSerializer[Ratio]
             () => output.writeDouble (obj.denominator),
             () => output.writeDouble (obj.numerator)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -1724,7 +1640,7 @@ object RatioSerializer extends CIMSerializer[Ratio]
 
     def read (kryo: Kryo, input: Input, cls: Class[Ratio]): Ratio =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Ratio (
             parent,
@@ -1740,8 +1656,8 @@ object RatioSerializer extends CIMSerializer[Ratio]
  * Enumeration of potential roles that might be played by one object relative to another.
  *
  * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param status           <em>undocumented</em>
- * @param type             Type of role.
+ * @param status <em>undocumented</em>
+ * @param type Type of role.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1752,8 +1668,8 @@ final case class Role
     status: String = null,
     `type`: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1779,46 +1695,39 @@ final case class Role
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Role.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Role.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Role.fields (position), value)
-
         emitattr (0, status)
         emitelem (1, `type`)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Role rdf:ID=\"%s\">\n%s\t</cim:Role>".format (id, export_fields)
+        "\t<cim:Role rdf:%s=\"%s\">\n%s\t</cim:Role>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Role
-    extends
-        CIMParseable[Role]
+extends
+    CIMParseable[Role]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "status",
         "type"
     )
-    val status: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val `type`: Fielder = parse_element (element (cls, fields (1)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val `type`: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: CIMContext): Role =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Role (
             IdentifiedObject.parse (context),
             mask (status (), 0),
@@ -1847,7 +1756,7 @@ object RoleSerializer extends CIMSerializer[Role]
 
     def read (kryo: Kryo, input: Input, cls: Class[Role]): Role =
     {
-        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf [IdentifiedObject])
+        val parent = IdentifiedObjectSerializer.read (kryo, input, classOf[IdentifiedObject])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Role (
             parent,
@@ -1862,12 +1771,12 @@ object RoleSerializer extends CIMSerializer[Role]
 /**
  * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
  *
- * @param Document                  [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param certificationPeriod       Interval between the certification and its expiry.
- * @param effectiveDateTime         Date and time the skill became effective.
- * @param level                     Level of skill for a Craft.
- * @param Crafts                    [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
- * @param ErpPerson                 [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
+ * @param Document [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param certificationPeriod Interval between the certification and its expiry.
+ * @param effectiveDateTime Date and time the skill became effective.
+ * @param level Level of skill for a Craft.
+ * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
+ * @param ErpPerson [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @param QualificationRequirements [[ch.ninecode.model.QualificationRequirement QualificationRequirement]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -1883,8 +1792,8 @@ final case class Skill
     ErpPerson: String = null,
     QualificationRequirements: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1910,22 +1819,15 @@ final case class Skill
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Skill.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Skill.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Skill.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Skill.fields (position), x))
-
         emitattr (0, certificationPeriod)
         emitelem (1, effectiveDateTime)
         emitattr (2, level)
@@ -1934,18 +1836,17 @@ final case class Skill
         emitattrs (5, QualificationRequirements)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Skill rdf:ID=\"%s\">\n%s\t</cim:Skill>".format (id, export_fields)
+        "\t<cim:Skill rdf:%s=\"%s\">\n%s\t</cim:Skill>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Skill
-    extends
-        CIMParseable[Skill]
+extends
+    CIMParseable[Skill]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "certificationPeriod",
         "effectiveDateTime",
         "level",
@@ -1958,17 +1859,17 @@ object Skill
         CIMRelationship ("ErpPerson", "OldPerson", "0..1", "0..*"),
         CIMRelationship ("QualificationRequirements", "QualificationRequirement", "0..*", "0..*")
     )
-    val certificationPeriod: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val effectiveDateTime: Fielder = parse_element (element (cls, fields (1)))
-    val level: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
-    val ErpPerson: Fielder = parse_attribute (attribute (cls, fields (4)))
-    val QualificationRequirements: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val certificationPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val effectiveDateTime: Fielder = parse_element (element (cls, fields(1)))
+    val level: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val ErpPerson: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val QualificationRequirements: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: CIMContext): Skill =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Skill (
             Document.parse (context),
             mask (certificationPeriod (), 0),
@@ -2005,7 +1906,7 @@ object SkillSerializer extends CIMSerializer[Skill]
 
     def read (kryo: Kryo, input: Input, cls: Class[Skill]): Skill =
     {
-        val parent = DocumentSerializer.read (kryo, input, classOf [Document])
+        val parent = DocumentSerializer.read (kryo, input, classOf[Document])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Skill (
             parent,

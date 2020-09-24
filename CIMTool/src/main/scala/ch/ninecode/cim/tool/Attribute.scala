@@ -21,8 +21,8 @@ case class Attribute (
     typ: String,
     classifier: Class,
     dflt: String)
-    extends
-        ProgramaticName
+extends
+    ProgramaticName
 {
     lazy val attribute_name: String =
     {

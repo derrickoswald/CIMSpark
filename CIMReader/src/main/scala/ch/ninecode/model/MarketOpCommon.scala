@@ -17,18 +17,18 @@ import ch.ninecode.cim.CIMSerializer
  *
  * The whole invoice has a due date and amount to be paid, with information such as customer, banks etc. being obtained through associations. The invoice roll up is based on individual line items that each contain amounts and descriptions for specific services or products.
  *
- * @param Element                Reference to the superclass object.
- * @param amount                 Total amount due on this invoice based on line items and applicable adjustments.
- * @param billMediaKind          Kind of media by which the CustomerBillingInfo was delivered.
- * @param dueDate                Calculated date upon which the Invoice amount is due.
- * @param kind                   Kind of invoice (default is 'sales').
- * @param mailedDate             Date on which the customer billing statement/invoice was printed/mailed.
- * @param proForma               True if payment is to be paid by a Customer to accept a particular ErpQuote (with associated Design) and have work initiated, at which time an associated ErpInvoice should automatically be generated.
- *                               EprPayment.subjectStatus satisfies terms specificed in the ErpQuote.
- * @param referenceNumber        Number of an invoice to be reference by this invoice.
- * @param transactionDateTime    Date and time when the invoice is issued.
- * @param transferType           Type of invoice transfer.
- * @param MajorChargeGroup       [[ch.ninecode.model.MajorChargeGroup MajorChargeGroup]] <em>undocumented</em>
+ * @param Element Reference to the superclass object.
+ * @param amount Total amount due on this invoice based on line items and applicable adjustments.
+ * @param billMediaKind Kind of media by which the CustomerBillingInfo was delivered.
+ * @param dueDate Calculated date upon which the Invoice amount is due.
+ * @param kind Kind of invoice (default is 'sales').
+ * @param mailedDate Date on which the customer billing statement/invoice was printed/mailed.
+ * @param proForma True if payment is to be paid by a Customer to accept a particular ErpQuote (with associated Design) and have work initiated, at which time an associated ErpInvoice should automatically be generated.
+ *        EprPayment.subjectStatus satisfies terms specificed in the ErpQuote.
+ * @param referenceNumber Number of an invoice to be reference by this invoice.
+ * @param transactionDateTime Date and time when the invoice is issued.
+ * @param transferType Type of invoice transfer.
+ * @param MajorChargeGroup [[ch.ninecode.model.MajorChargeGroup MajorChargeGroup]] <em>undocumented</em>
  * @param MarketInvoiceLineItems [[ch.ninecode.model.MarketInvoiceLineItem MarketInvoiceLineItem]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
@@ -49,8 +49,8 @@ final case class MarketInvoice
     MajorChargeGroup: List[String] = null,
     MarketInvoiceLineItems: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -76,22 +76,15 @@ final case class MarketInvoice
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketInvoice.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketInvoice.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketInvoice.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketInvoice.fields (position), x))
-
         emitelem (0, amount)
         emitattr (1, billMediaKind)
         emitelem (2, dueDate)
@@ -105,18 +98,17 @@ final case class MarketInvoice
         emitattrs (10, MarketInvoiceLineItems)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MarketInvoice rdf:ID=\"%s\">\n%s\t</cim:MarketInvoice>".format (id, export_fields)
+        "\t<cim:MarketInvoice rdf:%s=\"%s\">\n%s\t</cim:MarketInvoice>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MarketInvoice
-    extends
-        CIMParseable[MarketInvoice]
+extends
+    CIMParseable[MarketInvoice]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "amount",
         "billMediaKind",
         "dueDate",
@@ -133,22 +125,22 @@ object MarketInvoice
         CIMRelationship ("MajorChargeGroup", "MajorChargeGroup", "1..*", "0..*"),
         CIMRelationship ("MarketInvoiceLineItems", "MarketInvoiceLineItem", "0..*", "1")
     )
-    val amount: Fielder = parse_element (element (cls, fields (0)))
-    val billMediaKind: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val dueDate: Fielder = parse_element (element (cls, fields (2)))
-    val kind: Fielder = parse_attribute (attribute (cls, fields (3)))
-    val mailedDate: Fielder = parse_element (element (cls, fields (4)))
-    val proForma: Fielder = parse_element (element (cls, fields (5)))
-    val referenceNumber: Fielder = parse_element (element (cls, fields (6)))
-    val transactionDateTime: Fielder = parse_element (element (cls, fields (7)))
-    val transferType: Fielder = parse_element (element (cls, fields (8)))
-    val MajorChargeGroup: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
-    val MarketInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (10)))
+    val amount: Fielder = parse_element (element (cls, fields(0)))
+    val billMediaKind: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val dueDate: Fielder = parse_element (element (cls, fields(2)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val mailedDate: Fielder = parse_element (element (cls, fields(4)))
+    val proForma: Fielder = parse_element (element (cls, fields(5)))
+    val referenceNumber: Fielder = parse_element (element (cls, fields(6)))
+    val transactionDateTime: Fielder = parse_element (element (cls, fields(7)))
+    val transferType: Fielder = parse_element (element (cls, fields(8)))
+    val MajorChargeGroup: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val MarketInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
 
     def parse (context: CIMContext): MarketInvoice =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketInvoice (
             BasicElement.parse (context),
             toDouble (mask (amount (), 0)),
@@ -187,7 +179,7 @@ object MarketInvoiceSerializer extends CIMSerializer[MarketInvoice]
             () => writeList (obj.MajorChargeGroup, output),
             () => writeList (obj.MarketInvoiceLineItems, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -195,7 +187,7 @@ object MarketInvoiceSerializer extends CIMSerializer[MarketInvoice]
 
     def read (kryo: Kryo, input: Input, cls: Class[MarketInvoice]): MarketInvoice =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MarketInvoice (
             parent,
@@ -219,20 +211,20 @@ object MarketInvoiceSerializer extends CIMSerializer[MarketInvoice]
 /**
  * An individual line item on an invoice.
  *
- * @param Element                         Reference to the superclass object.
- * @param billPeriod                      Bill period for the line item.
- * @param glAccount                       General Ledger account code, shall be a valid combination.
- * @param glDateTime                      Date and time line item will be posted to the General Ledger.
- * @param kind                            Kind of line item.
- * @param lineAmount                      Amount due for this line item.
- * @param lineNumber                      Line item number on invoice statement.
- * @param lineVersion                     Version number of the bill run.
- * @param netAmount                       Net line item charge amount.
- * @param previousAmount                  Previous line item charge amount.
+ * @param Element Reference to the superclass object.
+ * @param billPeriod Bill period for the line item.
+ * @param glAccount General Ledger account code, shall be a valid combination.
+ * @param glDateTime Date and time line item will be posted to the General Ledger.
+ * @param kind Kind of line item.
+ * @param lineAmount Amount due for this line item.
+ * @param lineNumber Line item number on invoice statement.
+ * @param lineVersion Version number of the bill run.
+ * @param netAmount Net line item charge amount.
+ * @param previousAmount Previous line item charge amount.
  * @param ComponentMarketInvoiceLineItems [[ch.ninecode.model.MarketInvoiceLineItem MarketInvoiceLineItem]] <em>undocumented</em>
- * @param ContainerMarketInvoiceLineItem  [[ch.ninecode.model.MarketInvoiceLineItem MarketInvoiceLineItem]] <em>undocumented</em>
- * @param MarketInvoice                   [[ch.ninecode.model.MarketInvoice MarketInvoice]] <em>undocumented</em>
- * @param Settlement                      [[ch.ninecode.model.Settlement Settlement]] <em>undocumented</em>
+ * @param ContainerMarketInvoiceLineItem [[ch.ninecode.model.MarketInvoiceLineItem MarketInvoiceLineItem]] <em>undocumented</em>
+ * @param MarketInvoice [[ch.ninecode.model.MarketInvoice MarketInvoice]] <em>undocumented</em>
+ * @param Settlement [[ch.ninecode.model.Settlement Settlement]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -254,8 +246,8 @@ final case class MarketInvoiceLineItem
     MarketInvoice: String = null,
     Settlement: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -281,22 +273,15 @@ final case class MarketInvoiceLineItem
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketInvoiceLineItem.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketInvoiceLineItem.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketInvoiceLineItem.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketInvoiceLineItem.fields (position), x))
-
         emitattr (0, billPeriod)
         emitelem (1, glAccount)
         emitelem (2, glDateTime)
@@ -312,18 +297,17 @@ final case class MarketInvoiceLineItem
         emitattrs (12, Settlement)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MarketInvoiceLineItem rdf:ID=\"%s\">\n%s\t</cim:MarketInvoiceLineItem>".format (id, export_fields)
+        "\t<cim:MarketInvoiceLineItem rdf:%s=\"%s\">\n%s\t</cim:MarketInvoiceLineItem>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MarketInvoiceLineItem
-    extends
-        CIMParseable[MarketInvoiceLineItem]
+extends
+    CIMParseable[MarketInvoiceLineItem]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "billPeriod",
         "glAccount",
         "glDateTime",
@@ -344,24 +328,24 @@ object MarketInvoiceLineItem
         CIMRelationship ("MarketInvoice", "MarketInvoice", "1", "0..*"),
         CIMRelationship ("Settlement", "Settlement", "0..*", "0..*")
     )
-    val billPeriod: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val glAccount: Fielder = parse_element (element (cls, fields (1)))
-    val glDateTime: Fielder = parse_element (element (cls, fields (2)))
-    val kind: Fielder = parse_attribute (attribute (cls, fields (3)))
-    val lineAmount: Fielder = parse_element (element (cls, fields (4)))
-    val lineNumber: Fielder = parse_element (element (cls, fields (5)))
-    val lineVersion: Fielder = parse_element (element (cls, fields (6)))
-    val netAmount: Fielder = parse_element (element (cls, fields (7)))
-    val previousAmount: Fielder = parse_element (element (cls, fields (8)))
-    val ComponentMarketInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields (9)))
-    val ContainerMarketInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields (10)))
-    val MarketInvoice: Fielder = parse_attribute (attribute (cls, fields (11)))
-    val Settlement: FielderMultiple = parse_attributes (attribute (cls, fields (12)))
+    val billPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val glAccount: Fielder = parse_element (element (cls, fields(1)))
+    val glDateTime: Fielder = parse_element (element (cls, fields(2)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val lineAmount: Fielder = parse_element (element (cls, fields(4)))
+    val lineNumber: Fielder = parse_element (element (cls, fields(5)))
+    val lineVersion: Fielder = parse_element (element (cls, fields(6)))
+    val netAmount: Fielder = parse_element (element (cls, fields(7)))
+    val previousAmount: Fielder = parse_element (element (cls, fields(8)))
+    val ComponentMarketInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val ContainerMarketInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val MarketInvoice: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val Settlement: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
 
     def parse (context: CIMContext): MarketInvoiceLineItem =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketInvoiceLineItem (
             BasicElement.parse (context),
             mask (billPeriod (), 0),
@@ -404,7 +388,7 @@ object MarketInvoiceLineItemSerializer extends CIMSerializer[MarketInvoiceLineIt
             () => output.writeString (obj.MarketInvoice),
             () => writeList (obj.Settlement, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -412,7 +396,7 @@ object MarketInvoiceLineItemSerializer extends CIMSerializer[MarketInvoiceLineIt
 
     def read (kryo: Kryo, input: Input, cls: Class[MarketInvoiceLineItem]): MarketInvoiceLineItem =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MarketInvoiceLineItem (
             parent,
@@ -440,7 +424,7 @@ object MarketInvoiceLineItemSerializer extends CIMSerializer[MarketInvoiceLineIt
  *
  * Journal entries are periodically posted to the ledger. Ledger actual represents actual amounts by account within ledger within company or within business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
  *
- * @param Element             Reference to the superclass object.
+ * @param Element Reference to the superclass object.
  * @param MarketLedgerEntries [[ch.ninecode.model.MarketLedgerEntry MarketLedgerEntry]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
@@ -451,8 +435,8 @@ final case class MarketLedger
     Element: BasicElement = null,
     MarketLedgerEntries: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -478,44 +462,38 @@ final case class MarketLedger
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketLedger.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketLedger.fields (position), x))
-
         emitattrs (0, MarketLedgerEntries)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MarketLedger rdf:ID=\"%s\">\n%s\t</cim:MarketLedger>".format (id, export_fields)
+        "\t<cim:MarketLedger rdf:%s=\"%s\">\n%s\t</cim:MarketLedger>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MarketLedger
-    extends
-        CIMParseable[MarketLedger]
+extends
+    CIMParseable[MarketLedger]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "MarketLedgerEntries"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("MarketLedgerEntries", "MarketLedgerEntry", "0..*", "1")
     )
-    val MarketLedgerEntries: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val MarketLedgerEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): MarketLedger =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketLedger (
             BasicElement.parse (context),
             masks (MarketLedgerEntries (), 0)
@@ -534,7 +512,7 @@ object MarketLedgerSerializer extends CIMSerializer[MarketLedger]
         val toSerialize: Array[() => Unit] = Array (
             () => writeList (obj.MarketLedgerEntries, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -542,7 +520,7 @@ object MarketLedgerSerializer extends CIMSerializer[MarketLedger]
 
     def read (kryo: Kryo, input: Input, cls: Class[MarketLedger]): MarketLedger =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MarketLedger (
             parent,
@@ -556,15 +534,15 @@ object MarketLedgerSerializer extends CIMSerializer[MarketLedger]
 /**
  * Details of an individual entry in a ledger, which was posted from a journal on the posted date.
  *
- * @param Element             Reference to the superclass object.
- * @param accountID           Account identifier for this entry.
- * @param accountKind         Kind of account for this entry.
- * @param amount              The amount of the debit or credit for this account.
- * @param postedDateTime      Date and time this entry was posted to the ledger.
- * @param status              Status of ledger entry.
+ * @param Element Reference to the superclass object.
+ * @param accountID Account identifier for this entry.
+ * @param accountKind Kind of account for this entry.
+ * @param amount The amount of the debit or credit for this account.
+ * @param postedDateTime Date and time this entry was posted to the ledger.
+ * @param status Status of ledger entry.
  * @param transactionDateTime Date and time journal entry was recorded.
- * @param MarketLedger        [[ch.ninecode.model.MarketLedger MarketLedger]] <em>undocumented</em>
- * @param Settlement          [[ch.ninecode.model.Settlement Settlement]] <em>undocumented</em>
+ * @param MarketLedger [[ch.ninecode.model.MarketLedger MarketLedger]] <em>undocumented</em>
+ * @param Settlement [[ch.ninecode.model.Settlement Settlement]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -581,8 +559,8 @@ final case class MarketLedgerEntry
     MarketLedger: String = null,
     Settlement: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -608,22 +586,15 @@ final case class MarketLedgerEntry
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketLedgerEntry.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketLedgerEntry.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketLedgerEntry.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MarketLedgerEntry.fields (position), x))
-
         emitelem (0, accountID)
         emitattr (1, accountKind)
         emitelem (2, amount)
@@ -634,18 +605,17 @@ final case class MarketLedgerEntry
         emitattrs (7, Settlement)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MarketLedgerEntry rdf:ID=\"%s\">\n%s\t</cim:MarketLedgerEntry>".format (id, export_fields)
+        "\t<cim:MarketLedgerEntry rdf:%s=\"%s\">\n%s\t</cim:MarketLedgerEntry>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MarketLedgerEntry
-    extends
-        CIMParseable[MarketLedgerEntry]
+extends
+    CIMParseable[MarketLedgerEntry]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "accountID",
         "accountKind",
         "amount",
@@ -659,19 +629,19 @@ object MarketLedgerEntry
         CIMRelationship ("MarketLedger", "MarketLedger", "1", "0..*"),
         CIMRelationship ("Settlement", "Settlement", "0..*", "0..*")
     )
-    val accountID: Fielder = parse_element (element (cls, fields (0)))
-    val accountKind: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val amount: Fielder = parse_element (element (cls, fields (2)))
-    val postedDateTime: Fielder = parse_element (element (cls, fields (3)))
-    val status: Fielder = parse_attribute (attribute (cls, fields (4)))
-    val transactionDateTime: Fielder = parse_element (element (cls, fields (5)))
-    val MarketLedger: Fielder = parse_attribute (attribute (cls, fields (6)))
-    val Settlement: FielderMultiple = parse_attributes (attribute (cls, fields (7)))
+    val accountID: Fielder = parse_element (element (cls, fields(0)))
+    val accountKind: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val amount: Fielder = parse_element (element (cls, fields(2)))
+    val postedDateTime: Fielder = parse_element (element (cls, fields(3)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val transactionDateTime: Fielder = parse_element (element (cls, fields(5)))
+    val MarketLedger: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val Settlement: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: CIMContext): MarketLedgerEntry =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MarketLedgerEntry (
             BasicElement.parse (context),
             mask (accountID (), 0),
@@ -704,7 +674,7 @@ object MarketLedgerEntrySerializer extends CIMSerializer[MarketLedgerEntry]
             () => output.writeString (obj.MarketLedger),
             () => writeList (obj.Settlement, output)
         )
-        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf [BasicElement])
+        BasicElementSerializer.write (kryo, output, obj.sup.asInstanceOf[BasicElement])
         implicit val bitfields: Array[Int] = obj.bitfields
         writeBitfields (output)
         writeFields (toSerialize)
@@ -712,7 +682,7 @@ object MarketLedgerEntrySerializer extends CIMSerializer[MarketLedgerEntry]
 
     def read (kryo: Kryo, input: Input, cls: Class[MarketLedgerEntry]): MarketLedgerEntry =
     {
-        val parent = BasicElementSerializer.read (kryo, input, classOf [BasicElement])
+        val parent = BasicElementSerializer.read (kryo, input, classOf[BasicElement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MarketLedgerEntry (
             parent,
@@ -734,7 +704,7 @@ object MarketLedgerEntrySerializer extends CIMSerializer[MarketLedgerEntry]
  * Subclass of IEC61968: Common:ActivityRecord.
  *
  * @param ActivityRecord [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
- * @param MarketFactors  [[ch.ninecode.model.MarketFactors MarketFactors]] <em>undocumented</em>
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -744,8 +714,8 @@ final case class MktActivityRecord
     ActivityRecord: ActivityRecord = null,
     MarketFactors: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -771,44 +741,38 @@ final case class MktActivityRecord
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktActivityRecord.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MktActivityRecord.fields (position), x))
-
         emitattrs (0, MarketFactors)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MktActivityRecord rdf:ID=\"%s\">\n%s\t</cim:MktActivityRecord>".format (id, export_fields)
+        "\t<cim:MktActivityRecord rdf:%s=\"%s\">\n%s\t</cim:MktActivityRecord>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MktActivityRecord
-    extends
-        CIMParseable[MktActivityRecord]
+extends
+    CIMParseable[MktActivityRecord]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "MarketFactors"
     )
     override val relations: List[CIMRelationship] = List (
         CIMRelationship ("MarketFactors", "MarketFactors", "0..*", "0..*")
     )
-    val MarketFactors: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
+    val MarketFactors: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: CIMContext): MktActivityRecord =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MktActivityRecord (
             ActivityRecord.parse (context),
             masks (MarketFactors (), 0)
@@ -835,7 +799,7 @@ object MktActivityRecordSerializer extends CIMSerializer[MktActivityRecord]
 
     def read (kryo: Kryo, input: Input, cls: Class[MktActivityRecord]): MktActivityRecord =
     {
-        val parent = ActivityRecordSerializer.read (kryo, input, classOf [ActivityRecord])
+        val parent = ActivityRecordSerializer.read (kryo, input, classOf[ActivityRecord])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MktActivityRecord (
             parent,
@@ -849,14 +813,14 @@ object MktActivityRecordSerializer extends CIMSerializer[MktActivityRecord]
 /**
  * Subclass of IEC61970:Topology:ConnectivityNode.
  *
- * @param ConnectivityNode        [[ch.ninecode.model.ConnectivityNode ConnectivityNode]] Reference to the superclass object.
+ * @param ConnectivityNode [[ch.ninecode.model.ConnectivityNode ConnectivityNode]] Reference to the superclass object.
  * @param CnodeDistributionFactor [[ch.ninecode.model.CnodeDistributionFactor CnodeDistributionFactor]] <em>undocumented</em>
- * @param IndividualPnode         [[ch.ninecode.model.IndividualPnode IndividualPnode]] <em>undocumented</em>
- * @param LossPenaltyFactor       [[ch.ninecode.model.LossSensitivity LossSensitivity]] <em>undocumented</em>
- * @param NodeConstraintTerm      [[ch.ninecode.model.NodeConstraintTerm NodeConstraintTerm]] <em>undocumented</em>
- * @param RTO                     [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
- * @param RegisteredResource      [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
- * @param SysLoadDistribuFactor   [[ch.ninecode.model.SysLoadDistributionFactor SysLoadDistributionFactor]] <em>undocumented</em>
+ * @param IndividualPnode [[ch.ninecode.model.IndividualPnode IndividualPnode]] <em>undocumented</em>
+ * @param LossPenaltyFactor [[ch.ninecode.model.LossSensitivity LossSensitivity]] <em>undocumented</em>
+ * @param NodeConstraintTerm [[ch.ninecode.model.NodeConstraintTerm NodeConstraintTerm]] <em>undocumented</em>
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
+ * @param SysLoadDistribuFactor [[ch.ninecode.model.SysLoadDistributionFactor SysLoadDistributionFactor]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -872,8 +836,8 @@ final case class MktConnectivityNode
     RegisteredResource: List[String] = null,
     SysLoadDistribuFactor: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -899,20 +863,14 @@ final case class MktConnectivityNode
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktConnectivityNode.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktConnectivityNode.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MktConnectivityNode.fields (position), x))
-
         emitattrs (0, CnodeDistributionFactor)
         emitattr (1, IndividualPnode)
         emitattrs (2, LossPenaltyFactor)
@@ -922,18 +880,17 @@ final case class MktConnectivityNode
         emitattr (6, SysLoadDistribuFactor)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MktConnectivityNode rdf:ID=\"%s\">\n%s\t</cim:MktConnectivityNode>".format (id, export_fields)
+        "\t<cim:MktConnectivityNode rdf:%s=\"%s\">\n%s\t</cim:MktConnectivityNode>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MktConnectivityNode
-    extends
-        CIMParseable[MktConnectivityNode]
+extends
+    CIMParseable[MktConnectivityNode]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "CnodeDistributionFactor",
         "IndividualPnode",
         "LossPenaltyFactor",
@@ -951,18 +908,18 @@ object MktConnectivityNode
         CIMRelationship ("RegisteredResource", "RegisteredResource", "0..*", "0..1"),
         CIMRelationship ("SysLoadDistribuFactor", "SysLoadDistributionFactor", "0..1", "1")
     )
-    val CnodeDistributionFactor: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
-    val IndividualPnode: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val LossPenaltyFactor: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
-    val NodeConstraintTerm: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
-    val RTO: Fielder = parse_attribute (attribute (cls, fields (4)))
-    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
-    val SysLoadDistribuFactor: Fielder = parse_attribute (attribute (cls, fields (6)))
+    val CnodeDistributionFactor: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val IndividualPnode: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val LossPenaltyFactor: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val NodeConstraintTerm: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val RTO: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val SysLoadDistribuFactor: Fielder = parse_attribute (attribute (cls, fields(6)))
 
     def parse (context: CIMContext): MktConnectivityNode =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MktConnectivityNode (
             ConnectivityNode.parse (context),
             masks (CnodeDistributionFactor (), 0),
@@ -1001,7 +958,7 @@ object MktConnectivityNodeSerializer extends CIMSerializer[MktConnectivityNode]
 
     def read (kryo: Kryo, input: Input, cls: Class[MktConnectivityNode]): MktConnectivityNode =
     {
-        val parent = ConnectivityNodeSerializer.read (kryo, input, classOf [ConnectivityNode])
+        val parent = ConnectivityNodeSerializer.read (kryo, input, classOf[ConnectivityNode])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MktConnectivityNode (
             parent,
@@ -1021,8 +978,8 @@ object MktConnectivityNodeSerializer extends CIMSerializer[MktConnectivityNode]
 /**
  * Subclass for IEC61970:Wires:Line.
  *
- * @param Line                   [[ch.ninecode.model.Line Line]] Reference to the superclass object.
- * @param Flowgate               [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param Line [[ch.ninecode.model.Line Line]] Reference to the superclass object.
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @param TransmissionRightOfWay [[ch.ninecode.model.TransmissionRightOfWay TransmissionRightOfWay]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
@@ -1034,8 +991,8 @@ final case class MktLine
     Flowgate: List[String] = null,
     TransmissionRightOfWay: String = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1061,36 +1018,29 @@ final case class MktLine
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktLine.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktLine.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MktLine.fields (position), x))
-
         emitattrs (0, Flowgate)
         emitattr (1, TransmissionRightOfWay)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MktLine rdf:ID=\"%s\">\n%s\t</cim:MktLine>".format (id, export_fields)
+        "\t<cim:MktLine rdf:%s=\"%s\">\n%s\t</cim:MktLine>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MktLine
-    extends
-        CIMParseable[MktLine]
+extends
+    CIMParseable[MktLine]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Flowgate",
         "TransmissionRightOfWay"
     )
@@ -1098,13 +1048,13 @@ object MktLine
         CIMRelationship ("Flowgate", "Flowgate", "0..*", "0..*"),
         CIMRelationship ("TransmissionRightOfWay", "TransmissionRightOfWay", "0..1", "0..*")
     )
-    val Flowgate: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
-    val TransmissionRightOfWay: Fielder = parse_attribute (attribute (cls, fields (1)))
+    val Flowgate: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val TransmissionRightOfWay: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): MktLine =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MktLine (
             Line.parse (context),
             masks (Flowgate (), 0),
@@ -1133,7 +1083,7 @@ object MktLineSerializer extends CIMSerializer[MktLine]
 
     def read (kryo: Kryo, input: Input, cls: Class[MktLine]): MktLine =
     {
-        val parent = LineSerializer.read (kryo, input, classOf [Line])
+        val parent = LineSerializer.read (kryo, input, classOf[Line])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MktLine (
             parent,
@@ -1148,12 +1098,12 @@ object MktLineSerializer extends CIMSerializer[MktLine]
 /**
  * Subclass of IEC61970:Meas:Measurement.
  *
- * @param Measurement     [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
- * @param ByTiePoint      [[ch.ninecode.model.TiePoint TiePoint]] A measurement is made on the B side of a tie point
+ * @param Measurement [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
+ * @param ByTiePoint [[ch.ninecode.model.TiePoint TiePoint]] A measurement is made on the B side of a tie point
  * @param DynamicSchedule [[ch.ninecode.model.DynamicSchedule DynamicSchedule]] <em>undocumented</em>
- * @param ForTiePoint     [[ch.ninecode.model.TiePoint TiePoint]] A measurement is made on the A side of a tie point
- * @param Pnode           [[ch.ninecode.model.Pnode Pnode]] Allows Pnode an association to aggregated resources external DC ties or psuedo tie measurements.
- * @param ViolationLimit  [[ch.ninecode.model.ViolationLimit ViolationLimit]] <em>undocumented</em>
+ * @param ForTiePoint [[ch.ninecode.model.TiePoint TiePoint]] A measurement is made on the A side of a tie point
+ * @param Pnode [[ch.ninecode.model.Pnode Pnode]] Allows Pnode an association to aggregated resources external DC ties or psuedo tie measurements.
+ * @param ViolationLimit [[ch.ninecode.model.ViolationLimit ViolationLimit]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -1167,8 +1117,8 @@ final case class MktMeasurement
     Pnode: String = null,
     ViolationLimit: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1194,20 +1144,14 @@ final case class MktMeasurement
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktMeasurement.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktMeasurement.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MktMeasurement.fields (position), x))
-
         emitattr (0, ByTiePoint)
         emitattrs (1, DynamicSchedule)
         emitattr (2, ForTiePoint)
@@ -1215,18 +1159,17 @@ final case class MktMeasurement
         emitattrs (4, ViolationLimit)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MktMeasurement rdf:ID=\"%s\">\n%s\t</cim:MktMeasurement>".format (id, export_fields)
+        "\t<cim:MktMeasurement rdf:%s=\"%s\">\n%s\t</cim:MktMeasurement>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MktMeasurement
-    extends
-        CIMParseable[MktMeasurement]
+extends
+    CIMParseable[MktMeasurement]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "ByTiePoint",
         "DynamicSchedule",
         "ForTiePoint",
@@ -1240,16 +1183,16 @@ object MktMeasurement
         CIMRelationship ("Pnode", "Pnode", "0..1", "0..*"),
         CIMRelationship ("ViolationLimit", "ViolationLimit", "0..*", "0..1")
     )
-    val ByTiePoint: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val DynamicSchedule: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
-    val ForTiePoint: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val Pnode: Fielder = parse_attribute (attribute (cls, fields (3)))
-    val ViolationLimit: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
+    val ByTiePoint: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val DynamicSchedule: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ForTiePoint: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val Pnode: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ViolationLimit: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: CIMContext): MktMeasurement =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MktMeasurement (
             Measurement.parse (context),
             mask (ByTiePoint (), 0),
@@ -1284,7 +1227,7 @@ object MktMeasurementSerializer extends CIMSerializer[MktMeasurement]
 
     def read (kryo: Kryo, input: Input, cls: Class[MktMeasurement]): MktMeasurement =
     {
-        val parent = MeasurementSerializer.read (kryo, input, classOf [Measurement])
+        val parent = MeasurementSerializer.read (kryo, input, classOf[Measurement])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MktMeasurement (
             parent,
@@ -1303,9 +1246,9 @@ object MktMeasurementSerializer extends CIMSerializer[MktMeasurement]
  * Subclass of IEC61970:Wires:PowerTransformer.
  *
  * @param PowerTransformer [[ch.ninecode.model.PowerTransformer PowerTransformer]] Reference to the superclass object.
- * @param EndAFlow         [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
- * @param EndBFlow         [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
- * @param Flowgate         [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param EndAFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
+ * @param EndBFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -1317,8 +1260,8 @@ final case class MktPowerTransformer
     EndBFlow: String = null,
     Flowgate: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1344,37 +1287,30 @@ final case class MktPowerTransformer
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktPowerTransformer.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktPowerTransformer.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MktPowerTransformer.fields (position), x))
-
         emitattr (0, EndAFlow)
         emitattr (1, EndBFlow)
         emitattrs (2, Flowgate)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MktPowerTransformer rdf:ID=\"%s\">\n%s\t</cim:MktPowerTransformer>".format (id, export_fields)
+        "\t<cim:MktPowerTransformer rdf:%s=\"%s\">\n%s\t</cim:MktPowerTransformer>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MktPowerTransformer
-    extends
-        CIMParseable[MktPowerTransformer]
+extends
+    CIMParseable[MktPowerTransformer]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "EndAFlow",
         "EndBFlow",
         "Flowgate"
@@ -1384,14 +1320,14 @@ object MktPowerTransformer
         CIMRelationship ("EndBFlow", "BranchEndFlow", "0..1", "0..*"),
         CIMRelationship ("Flowgate", "Flowgate", "0..*", "0..*")
     )
-    val EndAFlow: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val EndBFlow: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val Flowgate: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
+    val EndAFlow: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val EndBFlow: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val Flowgate: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: CIMContext): MktPowerTransformer =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MktPowerTransformer (
             PowerTransformer.parse (context),
             mask (EndAFlow (), 0),
@@ -1422,7 +1358,7 @@ object MktPowerTransformerSerializer extends CIMSerializer[MktPowerTransformer]
 
     def read (kryo: Kryo, input: Input, cls: Class[MktPowerTransformer]): MktPowerTransformer =
     {
-        val parent = PowerTransformerSerializer.read (kryo, input, classOf [PowerTransformer])
+        val parent = PowerTransformerSerializer.read (kryo, input, classOf[PowerTransformer])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MktPowerTransformer (
             parent,
@@ -1438,8 +1374,8 @@ object MktPowerTransformerSerializer extends CIMSerializer[MktPowerTransformer]
 /**
  * Subclass of IEC61970:Core:Terminal.
  *
- * @param Terminal               [[ch.ninecode.model.Terminal Terminal]] Reference to the superclass object.
- * @param Flowgate               [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] Reference to the superclass object.
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @param TerminalConstraintTerm [[ch.ninecode.model.TerminalConstraintTerm TerminalConstraintTerm]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
@@ -1451,8 +1387,8 @@ final case class MktTerminal
     Flowgate: String = null,
     TerminalConstraintTerm: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1478,36 +1414,29 @@ final case class MktTerminal
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktTerminal.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktTerminal.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MktTerminal.fields (position), x))
-
         emitattr (0, Flowgate)
         emitattrs (1, TerminalConstraintTerm)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MktTerminal rdf:ID=\"%s\">\n%s\t</cim:MktTerminal>".format (id, export_fields)
+        "\t<cim:MktTerminal rdf:%s=\"%s\">\n%s\t</cim:MktTerminal>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MktTerminal
-    extends
-        CIMParseable[MktTerminal]
+extends
+    CIMParseable[MktTerminal]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "Flowgate",
         "TerminalConstraintTerm"
     )
@@ -1515,13 +1444,13 @@ object MktTerminal
         CIMRelationship ("Flowgate", "Flowgate", "0..1", "0..*"),
         CIMRelationship ("TerminalConstraintTerm", "TerminalConstraintTerm", "0..*", "1")
     )
-    val Flowgate: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val TerminalConstraintTerm: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val TerminalConstraintTerm: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): MktTerminal =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MktTerminal (
             Terminal.parse (context),
             mask (Flowgate (), 0),
@@ -1550,7 +1479,7 @@ object MktTerminalSerializer extends CIMSerializer[MktTerminal]
 
     def read (kryo: Kryo, input: Input, cls: Class[MktTerminal]): MktTerminal =
     {
-        val parent = TerminalSerializer.read (kryo, input, classOf [Terminal])
+        val parent = TerminalSerializer.read (kryo, input, classOf[Terminal])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MktTerminal (
             parent,
@@ -1565,13 +1494,13 @@ object MktTerminalSerializer extends CIMSerializer[MktTerminal]
 /**
  * Subclass of IEC61968:Domain2:UserAttribute.
  *
- * @param UserAttribute           [[ch.ninecode.model.UserAttribute UserAttribute]] Reference to the superclass object.
- * @param AttributeProperty       [[ch.ninecode.model.AttributeProperty AttributeProperty]] <em>undocumented</em>
- * @param BillDeterminant         [[ch.ninecode.model.BillDeterminant BillDeterminant]] <em>undocumented</em>
- * @param ChargeGroup             [[ch.ninecode.model.ChargeGroup ChargeGroup]] <em>undocumented</em>
- * @param ChargeType              [[ch.ninecode.model.ChargeType ChargeType]] <em>undocumented</em>
+ * @param UserAttribute [[ch.ninecode.model.UserAttribute UserAttribute]] Reference to the superclass object.
+ * @param AttributeProperty [[ch.ninecode.model.AttributeProperty AttributeProperty]] <em>undocumented</em>
+ * @param BillDeterminant [[ch.ninecode.model.BillDeterminant BillDeterminant]] <em>undocumented</em>
+ * @param ChargeGroup [[ch.ninecode.model.ChargeGroup ChargeGroup]] <em>undocumented</em>
+ * @param ChargeType [[ch.ninecode.model.ChargeType ChargeType]] <em>undocumented</em>
  * @param MarketStatementLineItem [[ch.ninecode.model.MarketStatementLineItem MarketStatementLineItem]] <em>undocumented</em>
- * @param PassThroughBill         [[ch.ninecode.model.PassThroughBill PassThroughBill]] <em>undocumented</em>
+ * @param PassThroughBill [[ch.ninecode.model.PassThroughBill PassThroughBill]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -1586,8 +1515,8 @@ final case class MktUserAttribute
     MarketStatementLineItem: List[String] = null,
     PassThroughBill: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1613,18 +1542,13 @@ final case class MktUserAttribute
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktUserAttribute.cls
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (MktUserAttribute.fields (position), x))
-
         emitattrs (0, AttributeProperty)
         emitattrs (1, BillDeterminant)
         emitattrs (2, ChargeGroup)
@@ -1633,18 +1557,17 @@ final case class MktUserAttribute
         emitattrs (5, PassThroughBill)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:MktUserAttribute rdf:ID=\"%s\">\n%s\t</cim:MktUserAttribute>".format (id, export_fields)
+        "\t<cim:MktUserAttribute rdf:%s=\"%s\">\n%s\t</cim:MktUserAttribute>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object MktUserAttribute
-    extends
-        CIMParseable[MktUserAttribute]
+extends
+    CIMParseable[MktUserAttribute]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "AttributeProperty",
         "BillDeterminant",
         "ChargeGroup",
@@ -1660,17 +1583,17 @@ object MktUserAttribute
         CIMRelationship ("MarketStatementLineItem", "MarketStatementLineItem", "0..*", "0..*"),
         CIMRelationship ("PassThroughBill", "PassThroughBill", "0..*", "0..*")
     )
-    val AttributeProperty: FielderMultiple = parse_attributes (attribute (cls, fields (0)))
-    val BillDeterminant: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
-    val ChargeGroup: FielderMultiple = parse_attributes (attribute (cls, fields (2)))
-    val ChargeType: FielderMultiple = parse_attributes (attribute (cls, fields (3)))
-    val MarketStatementLineItem: FielderMultiple = parse_attributes (attribute (cls, fields (4)))
-    val PassThroughBill: FielderMultiple = parse_attributes (attribute (cls, fields (5)))
+    val AttributeProperty: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val BillDeterminant: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ChargeGroup: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val ChargeType: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val MarketStatementLineItem: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val PassThroughBill: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: CIMContext): MktUserAttribute =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = MktUserAttribute (
             UserAttribute.parse (context),
             masks (AttributeProperty (), 0),
@@ -1707,7 +1630,7 @@ object MktUserAttributeSerializer extends CIMSerializer[MktUserAttribute]
 
     def read (kryo: Kryo, input: Input, cls: Class[MktUserAttribute]): MktUserAttribute =
     {
-        val parent = UserAttributeSerializer.read (kryo, input, classOf [UserAttribute])
+        val parent = UserAttributeSerializer.read (kryo, input, classOf[UserAttribute])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = MktUserAttribute (
             parent,

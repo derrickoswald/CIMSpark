@@ -15,9 +15,9 @@ import ch.ninecode.cim.CIMSerializer
 /**
  * Power system stabilizer function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param DynamicsFunctionBlock    [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this power system stabilizer model is associated.
- * @param RemoteInputSignal        [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this power system stabilizer model.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this power system stabilizer model.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -28,8 +28,8 @@ final case class PowerSystemStabilizerDynamics
     ExcitationSystemDynamics: String = null,
     RemoteInputSignal: List[String] = null
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -55,36 +55,29 @@ final case class PowerSystemStabilizerDynamics
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerSystemStabilizerDynamics.cls
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerSystemStabilizerDynamics.fields (position), value)
-
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (PowerSystemStabilizerDynamics.fields (position), x))
-
         emitattr (0, ExcitationSystemDynamics)
         emitattrs (1, RemoteInputSignal)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PowerSystemStabilizerDynamics rdf:ID=\"%s\">\n%s\t</cim:PowerSystemStabilizerDynamics>".format (id, export_fields)
+        "\t<cim:PowerSystemStabilizerDynamics rdf:%s=\"%s\">\n%s\t</cim:PowerSystemStabilizerDynamics>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PowerSystemStabilizerDynamics
-    extends
-        CIMParseable[PowerSystemStabilizerDynamics]
+extends
+    CIMParseable[PowerSystemStabilizerDynamics]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics",
         "RemoteInputSignal"
     )
@@ -92,13 +85,13 @@ object PowerSystemStabilizerDynamics
         CIMRelationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
         CIMRelationship ("RemoteInputSignal", "RemoteInputSignal", "0..*", "0..1")
     )
-    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val RemoteInputSignal: FielderMultiple = parse_attributes (attribute (cls, fields (1)))
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RemoteInputSignal: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: CIMContext): PowerSystemStabilizerDynamics =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PowerSystemStabilizerDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (ExcitationSystemDynamics (), 0),
@@ -127,7 +120,7 @@ object PowerSystemStabilizerDynamicsSerializer extends CIMSerializer[PowerSystem
 
     def read (kryo: Kryo, input: Input, cls: Class[PowerSystemStabilizerDynamics]): PowerSystemStabilizerDynamics =
     {
-        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf [DynamicsFunctionBlock])
+        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PowerSystemStabilizerDynamics (
             parent,
@@ -143,38 +136,38 @@ object PowerSystemStabilizerDynamicsSerializer extends CIMSerializer[PowerSystem
  * Italian PSS with three inputs (speed, frequency, power).
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param kf                            Frequency power input gain (<i>K</i><i><sub>F</sub></i>).
- *                                      Typical value = 5.
- * @param komega                        Shaft speed power input gain (<i>K</i><i><sub>omega</sub></i>).
- *                                      Typical value = 0.
- * @param kpe                           Electric power input gain (<i>K</i><i><sub>PE</sub></i>).
- *                                      Typical value = 0,3.
- * @param ks                            PSS gain (<i>Ks</i>).
- *                                      Typical value = 1.
- * @param pmin                          Minimum power PSS enabling (<i>Pmin</i>).
- *                                      Typical value = 0,25.
- * @param t10                           Lead/lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param t5                            Washout (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
- *                                      Typical value = 3,5.
- * @param t6                            Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param t7                            Lead/lag time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
- *                                      If = 0, both blocks are bypassed.  Typical value = 0.
- * @param t8                            Lead/lag time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param t9                            Lead/lag time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
- *                                      If = 0, both blocks are bypassed.  Typical value = 0.
- * @param tpe                           Electric power filter time constant (<i>T</i><i><sub>PE</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,05.
- * @param vadat                         <font color="#0f0f0f">Signal selector (<i>V</i><i><sub>ADAT</sub></i>).</font>
- *                                      <font color="#0f0f0f">true = closed (generator power is greater than <i>Pmin</i>)</font>
- *                                      <font color="#0f0f0f">false = open (<i>Pe</i> is smaller than <i>Pmin</i>).</font>
- *                                      <font color="#0f0f0f">Typical value = true.</font>
- * @param vsmn                          Stabilizer output maximum limit (<i>V</i><i><sub>SMN</sub></i>).
- *                                      Typical value = -0,06.
- * @param vsmx                          Stabilizer output minimum limit (<i>V</i><i><sub>SMX</sub></i>).
- *                                      Typical value = 0,06.
+ * @param kf Frequency power input gain (<i>K</i><i><sub>F</sub></i>).
+ *        Typical value = 5.
+ * @param komega Shaft speed power input gain (<i>K</i><i><sub>omega</sub></i>).
+ *        Typical value = 0.
+ * @param kpe Electric power input gain (<i>K</i><i><sub>PE</sub></i>).
+ *        Typical value = 0,3.
+ * @param ks PSS gain (<i>Ks</i>).
+ *        Typical value = 1.
+ * @param pmin Minimum power PSS enabling (<i>Pmin</i>).
+ *        Typical value = 0,25.
+ * @param t10 Lead/lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t5 Washout (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ *        Typical value = 3,5.
+ * @param t6 Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t7 Lead/lag time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
+ *        If = 0, both blocks are bypassed.  Typical value = 0.
+ * @param t8 Lead/lag time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t9 Lead/lag time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
+ *        If = 0, both blocks are bypassed.  Typical value = 0.
+ * @param tpe Electric power filter time constant (<i>T</i><i><sub>PE</sub></i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param vadat <font color="#0f0f0f">Signal selector (<i>V</i><i><sub>ADAT</sub></i>).</font>
+ *        <font color="#0f0f0f">true = closed (generator power is greater than <i>Pmin</i>)</font>
+ *        <font color="#0f0f0f">false = open (<i>Pe</i> is smaller than <i>Pmin</i>).</font>
+ *        <font color="#0f0f0f">Typical value = true.</font>
+ * @param vsmn Stabilizer output maximum limit (<i>V</i><i><sub>SMN</sub></i>).
+ *        Typical value = -0,06.
+ * @param vsmx Stabilizer output minimum limit (<i>V</i><i><sub>SMX</sub></i>).
+ *        Typical value = 0,06.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -198,8 +191,8 @@ final case class Pss1
     vsmn: Double = 0.0,
     vsmx: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -225,18 +218,13 @@ final case class Pss1
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Pss1.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss1.fields (position), value)
-
         emitelem (0, kf)
         emitelem (1, komega)
         emitelem (2, kpe)
@@ -254,18 +242,17 @@ final case class Pss1
         emitelem (14, vsmx)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Pss1 rdf:ID=\"%s\">\n%s\t</cim:Pss1>".format (id, export_fields)
+        "\t<cim:Pss1 rdf:%s=\"%s\">\n%s\t</cim:Pss1>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Pss1
-    extends
-        CIMParseable[Pss1]
+extends
+    CIMParseable[Pss1]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "kf",
         "komega",
         "kpe",
@@ -282,26 +269,26 @@ object Pss1
         "vsmn",
         "vsmx"
     )
-    val kf: Fielder = parse_element (element (cls, fields (0)))
-    val komega: Fielder = parse_element (element (cls, fields (1)))
-    val kpe: Fielder = parse_element (element (cls, fields (2)))
-    val ks: Fielder = parse_element (element (cls, fields (3)))
-    val pmin: Fielder = parse_element (element (cls, fields (4)))
-    val t10: Fielder = parse_element (element (cls, fields (5)))
-    val t5: Fielder = parse_element (element (cls, fields (6)))
-    val t6: Fielder = parse_element (element (cls, fields (7)))
-    val t7: Fielder = parse_element (element (cls, fields (8)))
-    val t8: Fielder = parse_element (element (cls, fields (9)))
-    val t9: Fielder = parse_element (element (cls, fields (10)))
-    val tpe: Fielder = parse_element (element (cls, fields (11)))
-    val vadat: Fielder = parse_element (element (cls, fields (12)))
-    val vsmn: Fielder = parse_element (element (cls, fields (13)))
-    val vsmx: Fielder = parse_element (element (cls, fields (14)))
+    val kf: Fielder = parse_element (element (cls, fields(0)))
+    val komega: Fielder = parse_element (element (cls, fields(1)))
+    val kpe: Fielder = parse_element (element (cls, fields(2)))
+    val ks: Fielder = parse_element (element (cls, fields(3)))
+    val pmin: Fielder = parse_element (element (cls, fields(4)))
+    val t10: Fielder = parse_element (element (cls, fields(5)))
+    val t5: Fielder = parse_element (element (cls, fields(6)))
+    val t6: Fielder = parse_element (element (cls, fields(7)))
+    val t7: Fielder = parse_element (element (cls, fields(8)))
+    val t8: Fielder = parse_element (element (cls, fields(9)))
+    val t9: Fielder = parse_element (element (cls, fields(10)))
+    val tpe: Fielder = parse_element (element (cls, fields(11)))
+    val vadat: Fielder = parse_element (element (cls, fields(12)))
+    val vsmn: Fielder = parse_element (element (cls, fields(13)))
+    val vsmx: Fielder = parse_element (element (cls, fields(14)))
 
     def parse (context: CIMContext): Pss1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Pss1 (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (kf (), 0)),
@@ -356,7 +343,7 @@ object Pss1Serializer extends CIMSerializer[Pss1]
 
     def read (kryo: Kryo, input: Input, cls: Class[Pss1]): Pss1 =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Pss1 (
             parent,
@@ -387,30 +374,30 @@ object Pss1Serializer extends CIMSerializer[Pss1]
  * It is a modified version in order to allow representation of various vendors' implementations on PSS type 1A.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param a1                            Notch filter parameter (<i>A</i><i><sub>1</sub></i>).
- * @param a2                            Notch filter parameter (<i>A</i><i><sub>2</sub></i>).
- * @param a3                            Notch filter parameter (<i>A</i><i><sub>3</sub></i>).
- * @param a4                            Notch filter parameter (<i>A</i><i><sub>4</sub></i>).
- * @param a5                            Notch filter parameter (<i>A</i><i><sub>5</sub></i>).
- * @param a6                            Notch filter parameter (<i>A</i><i><sub>6</sub></i>).
- * @param a7                            Notch filter parameter (<i>A</i><i><sub>7</sub></i>).
- * @param a8                            Notch filter parameter (<i>A</i><i><sub>8</sub></i>).
- * @param inputSignalType               Type of input signal (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative).
- * @param kd                            Selector (<i>Kd</i>).
- *                                      true = e<sup>-sTdelay</sup> used
- *                                      false = e<sup>-sTdelay</sup> not used.
- * @param ks                            Stabilizer gain (<i>K</i><i><sub>s</sub></i>).
- * @param t1                            Lead/lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
- * @param t2                            Lead/lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
- * @param t3                            Lead/lag time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
- * @param t4                            Lead/lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
- * @param t5                            Washout time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
- * @param t6                            Transducer time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
- * @param tdelay                        Time constant (<i>Tdelay</i>) (&gt;= 0).
- * @param vcl                           Stabilizer input cutoff threshold (<i>Vcl</i>).
- * @param vcu                           Stabilizer input cutoff threshold (<i>Vcu</i>).
- * @param vrmax                         Maximum stabilizer output (<i>Vrmax</i>) (&gt; Pss1A.vrmin).
- * @param vrmin                         Minimum stabilizer output (<i>Vrmin</i>) (&lt; Pss1A.vrmax).
+ * @param a1 Notch filter parameter (<i>A</i><i><sub>1</sub></i>).
+ * @param a2 Notch filter parameter (<i>A</i><i><sub>2</sub></i>).
+ * @param a3 Notch filter parameter (<i>A</i><i><sub>3</sub></i>).
+ * @param a4 Notch filter parameter (<i>A</i><i><sub>4</sub></i>).
+ * @param a5 Notch filter parameter (<i>A</i><i><sub>5</sub></i>).
+ * @param a6 Notch filter parameter (<i>A</i><i><sub>6</sub></i>).
+ * @param a7 Notch filter parameter (<i>A</i><i><sub>7</sub></i>).
+ * @param a8 Notch filter parameter (<i>A</i><i><sub>8</sub></i>).
+ * @param inputSignalType Type of input signal (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative).
+ * @param kd Selector (<i>Kd</i>).
+ *        true = e<sup>-sTdelay</sup> used
+ *        false = e<sup>-sTdelay</sup> not used.
+ * @param ks Stabilizer gain (<i>K</i><i><sub>s</sub></i>).
+ * @param t1 Lead/lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ * @param t2 Lead/lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ * @param t3 Lead/lag time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ * @param t4 Lead/lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ * @param t5 Washout time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ * @param t6 Transducer time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ * @param tdelay Time constant (<i>Tdelay</i>) (&gt;= 0).
+ * @param vcl Stabilizer input cutoff threshold (<i>Vcl</i>).
+ * @param vcu Stabilizer input cutoff threshold (<i>Vcu</i>).
+ * @param vrmax Maximum stabilizer output (<i>Vrmax</i>) (&gt; Pss1A.vrmin).
+ * @param vrmin Minimum stabilizer output (<i>Vrmin</i>) (&lt; Pss1A.vrmax).
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -441,8 +428,8 @@ final case class Pss1A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -468,20 +455,14 @@ final case class Pss1A
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Pss1A.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss1A.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Pss1A.fields (position), value)
-
         emitelem (0, a1)
         emitelem (1, a2)
         emitelem (2, a3)
@@ -506,18 +487,17 @@ final case class Pss1A
         emitelem (21, vrmin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Pss1A rdf:ID=\"%s\">\n%s\t</cim:Pss1A>".format (id, export_fields)
+        "\t<cim:Pss1A rdf:%s=\"%s\">\n%s\t</cim:Pss1A>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Pss1A
-    extends
-        CIMParseable[Pss1A]
+extends
+    CIMParseable[Pss1A]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "a1",
         "a2",
         "a3",
@@ -541,33 +521,33 @@ object Pss1A
         "vrmax",
         "vrmin"
     )
-    val a1: Fielder = parse_element (element (cls, fields (0)))
-    val a2: Fielder = parse_element (element (cls, fields (1)))
-    val a3: Fielder = parse_element (element (cls, fields (2)))
-    val a4: Fielder = parse_element (element (cls, fields (3)))
-    val a5: Fielder = parse_element (element (cls, fields (4)))
-    val a6: Fielder = parse_element (element (cls, fields (5)))
-    val a7: Fielder = parse_element (element (cls, fields (6)))
-    val a8: Fielder = parse_element (element (cls, fields (7)))
-    val inputSignalType: Fielder = parse_attribute (attribute (cls, fields (8)))
-    val kd: Fielder = parse_element (element (cls, fields (9)))
-    val ks: Fielder = parse_element (element (cls, fields (10)))
-    val t1: Fielder = parse_element (element (cls, fields (11)))
-    val t2: Fielder = parse_element (element (cls, fields (12)))
-    val t3: Fielder = parse_element (element (cls, fields (13)))
-    val t4: Fielder = parse_element (element (cls, fields (14)))
-    val t5: Fielder = parse_element (element (cls, fields (15)))
-    val t6: Fielder = parse_element (element (cls, fields (16)))
-    val tdelay: Fielder = parse_element (element (cls, fields (17)))
-    val vcl: Fielder = parse_element (element (cls, fields (18)))
-    val vcu: Fielder = parse_element (element (cls, fields (19)))
-    val vrmax: Fielder = parse_element (element (cls, fields (20)))
-    val vrmin: Fielder = parse_element (element (cls, fields (21)))
+    val a1: Fielder = parse_element (element (cls, fields(0)))
+    val a2: Fielder = parse_element (element (cls, fields(1)))
+    val a3: Fielder = parse_element (element (cls, fields(2)))
+    val a4: Fielder = parse_element (element (cls, fields(3)))
+    val a5: Fielder = parse_element (element (cls, fields(4)))
+    val a6: Fielder = parse_element (element (cls, fields(5)))
+    val a7: Fielder = parse_element (element (cls, fields(6)))
+    val a8: Fielder = parse_element (element (cls, fields(7)))
+    val inputSignalType: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val kd: Fielder = parse_element (element (cls, fields(9)))
+    val ks: Fielder = parse_element (element (cls, fields(10)))
+    val t1: Fielder = parse_element (element (cls, fields(11)))
+    val t2: Fielder = parse_element (element (cls, fields(12)))
+    val t3: Fielder = parse_element (element (cls, fields(13)))
+    val t4: Fielder = parse_element (element (cls, fields(14)))
+    val t5: Fielder = parse_element (element (cls, fields(15)))
+    val t6: Fielder = parse_element (element (cls, fields(16)))
+    val tdelay: Fielder = parse_element (element (cls, fields(17)))
+    val vcl: Fielder = parse_element (element (cls, fields(18)))
+    val vcu: Fielder = parse_element (element (cls, fields(19)))
+    val vrmax: Fielder = parse_element (element (cls, fields(20)))
+    val vrmin: Fielder = parse_element (element (cls, fields(21)))
 
     def parse (context: CIMContext): Pss1A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Pss1A (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (a1 (), 0)),
@@ -636,7 +616,7 @@ object Pss1ASerializer extends CIMSerializer[Pss1A]
 
     def read (kryo: Kryo, input: Input, cls: Class[Pss1A]): Pss1A =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Pss1A (
             parent,
@@ -674,64 +654,64 @@ object Pss1ASerializer extends CIMSerializer[Pss1A]
  * Extra lead/lag (or rate) block added at end (up to 4 lead/lags total).
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param a                             Numerator constant (<i>a</i>).
- *                                      Typical value = 1.
- * @param ks1                           Stabilizer gain (<i>Ks1</i>).
- *                                      Typical value = 12.
- * @param ks2                           Gain on signal #2 (<i>Ks2</i>).
- *                                      Typical value = 0,2.
- * @param ks3                           Gain on signal #2 input before ramp-tracking filter (<i>Ks3</i>).
- *                                      Typical value = 1.
- * @param ks4                           Gain on signal #2 input after ramp-tracking filter (<i>Ks4</i>).
- *                                      Typical value = 1.
- * @param m                             Denominator order of ramp tracking filter (<i>m</i>).
- *                                      Typical value = 5.
- * @param n                             Order of ramp tracking filter (<i>n</i>).
- *                                      Typical value = 1.
- * @param t1                            Lead/lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,12.
- * @param t10                           Lead/lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param t11                           Lead/lag time constant (<i>T</i><i><sub>11</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param t2                            Lead/lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,02.
- * @param t3                            Lead/lag time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,3.
- * @param t4                            Lead/lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,02.
- * @param t6                            Time constant on signal #1 (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param t7                            Time constant on signal #2 (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
- *                                      Typical value = 2.
- * @param t8                            Lead of ramp tracking filter (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,2.
- * @param t9                            Lag of ramp tracking filter (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,1.
- * @param ta                            Lead constant (<i>T</i><i><sub>a</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tb                            Lag time constant (<i>T</i><i><sub>b</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tw1                           First washout on signal #1 (<i>T</i><i><sub>w1</sub></i>) (&gt;= 0).
- *                                      Typical value = 2.
- * @param tw2                           Second washout on signal #1 (<i>T</i><i><sub>w2</sub></i>) (&gt;= 0).
- *                                      Typical value = 2.
- * @param tw3                           First washout on signal #2 (<i>T</i><i><sub>w3</sub></i>) (&gt;= 0).
- *                                      Typical value = 2.
- * @param tw4                           Second washout on signal #2 (<i>T</i><i><sub>w4</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param vsi1max                       Input signal #1 maximum limit (<i>Vsi1max</i>) (&gt; Pss2B.vsi1min).
- *                                      Typical value = 2.
- * @param vsi1min                       Input signal #1 minimum limit (<i>Vsi1min</i>) (&lt; Pss2B.vsi1max).
- *                                      Typical value = -2.
- * @param vsi2max                       Input signal #2 maximum limit (<i>Vsi2max</i>) (&gt; Pss2B.vsi2min).
- *                                      Typical value = 2.
- * @param vsi2min                       Input signal #2 minimum limit (<i>Vsi2min</i>) (&lt; Pss2B.vsi2max).
- *                                      Typical value = -2.
- * @param vstmax                        Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; Pss2B.vstmin).
- *                                      Typical value = 0,1.
- * @param vstmin                        Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; Pss2B.vstmax).
- *                                      Typical value = -0,1.
+ * @param a Numerator constant (<i>a</i>).
+ *        Typical value = 1.
+ * @param ks1 Stabilizer gain (<i>Ks1</i>).
+ *        Typical value = 12.
+ * @param ks2 Gain on signal #2 (<i>Ks2</i>).
+ *        Typical value = 0,2.
+ * @param ks3 Gain on signal #2 input before ramp-tracking filter (<i>Ks3</i>).
+ *        Typical value = 1.
+ * @param ks4 Gain on signal #2 input after ramp-tracking filter (<i>Ks4</i>).
+ *        Typical value = 1.
+ * @param m Denominator order of ramp tracking filter (<i>m</i>).
+ *        Typical value = 5.
+ * @param n Order of ramp tracking filter (<i>n</i>).
+ *        Typical value = 1.
+ * @param t1 Lead/lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,12.
+ * @param t10 Lead/lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t11 Lead/lag time constant (<i>T</i><i><sub>11</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t2 Lead/lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param t3 Lead/lag time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t4 Lead/lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param t6 Time constant on signal #1 (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t7 Time constant on signal #2 (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param t8 Lead of ramp tracking filter (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param t9 Lag of ramp tracking filter (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ta Lead constant (<i>T</i><i><sub>a</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tb Lag time constant (<i>T</i><i><sub>b</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tw1 First washout on signal #1 (<i>T</i><i><sub>w1</sub></i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw2 Second washout on signal #1 (<i>T</i><i><sub>w2</sub></i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw3 First washout on signal #2 (<i>T</i><i><sub>w3</sub></i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw4 Second washout on signal #2 (<i>T</i><i><sub>w4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vsi1max Input signal #1 maximum limit (<i>Vsi1max</i>) (&gt; Pss2B.vsi1min).
+ *        Typical value = 2.
+ * @param vsi1min Input signal #1 minimum limit (<i>Vsi1min</i>) (&lt; Pss2B.vsi1max).
+ *        Typical value = -2.
+ * @param vsi2max Input signal #2 maximum limit (<i>Vsi2max</i>) (&gt; Pss2B.vsi2min).
+ *        Typical value = 2.
+ * @param vsi2min Input signal #2 minimum limit (<i>Vsi2min</i>) (&lt; Pss2B.vsi2max).
+ *        Typical value = -2.
+ * @param vstmax Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; Pss2B.vstmin).
+ *        Typical value = 0,1.
+ * @param vstmin Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; Pss2B.vstmax).
+ *        Typical value = -0,1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -769,8 +749,8 @@ final case class Pss2B
     vstmax: Double = 0.0,
     vstmin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -796,18 +776,13 @@ final case class Pss2B
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Pss2B.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss2B.fields (position), value)
-
         emitelem (0, a)
         emitelem (1, ks1)
         emitelem (2, ks2)
@@ -839,18 +814,17 @@ final case class Pss2B
         emitelem (28, vstmin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Pss2B rdf:ID=\"%s\">\n%s\t</cim:Pss2B>".format (id, export_fields)
+        "\t<cim:Pss2B rdf:%s=\"%s\">\n%s\t</cim:Pss2B>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Pss2B
-    extends
-        CIMParseable[Pss2B]
+extends
+    CIMParseable[Pss2B]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "a",
         "ks1",
         "ks2",
@@ -881,40 +855,40 @@ object Pss2B
         "vstmax",
         "vstmin"
     )
-    val a: Fielder = parse_element (element (cls, fields (0)))
-    val ks1: Fielder = parse_element (element (cls, fields (1)))
-    val ks2: Fielder = parse_element (element (cls, fields (2)))
-    val ks3: Fielder = parse_element (element (cls, fields (3)))
-    val ks4: Fielder = parse_element (element (cls, fields (4)))
-    val m: Fielder = parse_element (element (cls, fields (5)))
-    val n: Fielder = parse_element (element (cls, fields (6)))
-    val t1: Fielder = parse_element (element (cls, fields (7)))
-    val t10: Fielder = parse_element (element (cls, fields (8)))
-    val t11: Fielder = parse_element (element (cls, fields (9)))
-    val t2: Fielder = parse_element (element (cls, fields (10)))
-    val t3: Fielder = parse_element (element (cls, fields (11)))
-    val t4: Fielder = parse_element (element (cls, fields (12)))
-    val t6: Fielder = parse_element (element (cls, fields (13)))
-    val t7: Fielder = parse_element (element (cls, fields (14)))
-    val t8: Fielder = parse_element (element (cls, fields (15)))
-    val t9: Fielder = parse_element (element (cls, fields (16)))
-    val ta: Fielder = parse_element (element (cls, fields (17)))
-    val tb: Fielder = parse_element (element (cls, fields (18)))
-    val tw1: Fielder = parse_element (element (cls, fields (19)))
-    val tw2: Fielder = parse_element (element (cls, fields (20)))
-    val tw3: Fielder = parse_element (element (cls, fields (21)))
-    val tw4: Fielder = parse_element (element (cls, fields (22)))
-    val vsi1max: Fielder = parse_element (element (cls, fields (23)))
-    val vsi1min: Fielder = parse_element (element (cls, fields (24)))
-    val vsi2max: Fielder = parse_element (element (cls, fields (25)))
-    val vsi2min: Fielder = parse_element (element (cls, fields (26)))
-    val vstmax: Fielder = parse_element (element (cls, fields (27)))
-    val vstmin: Fielder = parse_element (element (cls, fields (28)))
+    val a: Fielder = parse_element (element (cls, fields(0)))
+    val ks1: Fielder = parse_element (element (cls, fields(1)))
+    val ks2: Fielder = parse_element (element (cls, fields(2)))
+    val ks3: Fielder = parse_element (element (cls, fields(3)))
+    val ks4: Fielder = parse_element (element (cls, fields(4)))
+    val m: Fielder = parse_element (element (cls, fields(5)))
+    val n: Fielder = parse_element (element (cls, fields(6)))
+    val t1: Fielder = parse_element (element (cls, fields(7)))
+    val t10: Fielder = parse_element (element (cls, fields(8)))
+    val t11: Fielder = parse_element (element (cls, fields(9)))
+    val t2: Fielder = parse_element (element (cls, fields(10)))
+    val t3: Fielder = parse_element (element (cls, fields(11)))
+    val t4: Fielder = parse_element (element (cls, fields(12)))
+    val t6: Fielder = parse_element (element (cls, fields(13)))
+    val t7: Fielder = parse_element (element (cls, fields(14)))
+    val t8: Fielder = parse_element (element (cls, fields(15)))
+    val t9: Fielder = parse_element (element (cls, fields(16)))
+    val ta: Fielder = parse_element (element (cls, fields(17)))
+    val tb: Fielder = parse_element (element (cls, fields(18)))
+    val tw1: Fielder = parse_element (element (cls, fields(19)))
+    val tw2: Fielder = parse_element (element (cls, fields(20)))
+    val tw3: Fielder = parse_element (element (cls, fields(21)))
+    val tw4: Fielder = parse_element (element (cls, fields(22)))
+    val vsi1max: Fielder = parse_element (element (cls, fields(23)))
+    val vsi1min: Fielder = parse_element (element (cls, fields(24)))
+    val vsi2max: Fielder = parse_element (element (cls, fields(25)))
+    val vsi2min: Fielder = parse_element (element (cls, fields(26)))
+    val vstmax: Fielder = parse_element (element (cls, fields(27)))
+    val vstmin: Fielder = parse_element (element (cls, fields(28)))
 
     def parse (context: CIMContext): Pss2B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Pss2B (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (a (), 0)),
@@ -997,7 +971,7 @@ object Pss2BSerializer extends CIMSerializer[Pss2B]
 
     def read (kryo: Kryo, input: Input, cls: Class[Pss2B]): Pss2B =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Pss2B (
             parent,
@@ -1040,26 +1014,26 @@ object Pss2BSerializer extends CIMSerializer[Pss2B]
  * PTI microprocessor-based stabilizer type 1.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param inputSignal1Type              Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal2Type).
- *                                      Typical value = rotorAngularFrequencyDeviation.
- * @param inputSignal2Type              Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal1Type).
- *                                      Typical value = busVoltageDerivative.
- * @param k1                            Gain (<i>K</i><i><sub>1</sub></i>).
- * @param k2                            Gain (<i>K</i><i><sub>2</sub></i>).
- * @param lsmax                         Limiter (<i>L</i><i><sub>SMAX</sub></i>) (&gt; Pss2ST.lsmin).
- * @param lsmin                         Limiter (<i>L</i><i><sub>SMIN</sub></i>) (&lt; Pss2ST.lsmax).
- * @param t1                            Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
- * @param t10                           Time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
- * @param t2                            Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
- * @param t3                            Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
- * @param t4                            Time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
- * @param t5                            Time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
- * @param t6                            Time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
- * @param t7                            Time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
- * @param t8                            Time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
- * @param t9                            Time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
- * @param vcl                           Cutoff limiter (<i>V</i><i><sub>CL</sub></i>).
- * @param vcu                           Cutoff limiter (<i>V</i><i><sub>CU</sub></i>).
+ * @param inputSignal1Type Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal2Type).
+ *        Typical value = rotorAngularFrequencyDeviation.
+ * @param inputSignal2Type Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal1Type).
+ *        Typical value = busVoltageDerivative.
+ * @param k1 Gain (<i>K</i><i><sub>1</sub></i>).
+ * @param k2 Gain (<i>K</i><i><sub>2</sub></i>).
+ * @param lsmax Limiter (<i>L</i><i><sub>SMAX</sub></i>) (&gt; Pss2ST.lsmin).
+ * @param lsmin Limiter (<i>L</i><i><sub>SMIN</sub></i>) (&lt; Pss2ST.lsmax).
+ * @param t1 Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ * @param t10 Time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
+ * @param t2 Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ * @param t3 Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ * @param t4 Time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ * @param t5 Time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ * @param t6 Time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ * @param t7 Time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
+ * @param t8 Time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
+ * @param t9 Time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
+ * @param vcl Cutoff limiter (<i>V</i><i><sub>CL</sub></i>).
+ * @param vcu Cutoff limiter (<i>V</i><i><sub>CU</sub></i>).
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -1086,8 +1060,8 @@ final case class Pss2ST
     vcl: Double = 0.0,
     vcu: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1113,20 +1087,14 @@ final case class Pss2ST
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Pss2ST.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss2ST.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Pss2ST.fields (position), value)
-
         emitattr (0, inputSignal1Type)
         emitattr (1, inputSignal2Type)
         emitelem (2, k1)
@@ -1147,18 +1115,17 @@ final case class Pss2ST
         emitelem (17, vcu)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Pss2ST rdf:ID=\"%s\">\n%s\t</cim:Pss2ST>".format (id, export_fields)
+        "\t<cim:Pss2ST rdf:%s=\"%s\">\n%s\t</cim:Pss2ST>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Pss2ST
-    extends
-        CIMParseable[Pss2ST]
+extends
+    CIMParseable[Pss2ST]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "inputSignal1Type",
         "inputSignal2Type",
         "k1",
@@ -1178,29 +1145,29 @@ object Pss2ST
         "vcl",
         "vcu"
     )
-    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val k1: Fielder = parse_element (element (cls, fields (2)))
-    val k2: Fielder = parse_element (element (cls, fields (3)))
-    val lsmax: Fielder = parse_element (element (cls, fields (4)))
-    val lsmin: Fielder = parse_element (element (cls, fields (5)))
-    val t1: Fielder = parse_element (element (cls, fields (6)))
-    val t10: Fielder = parse_element (element (cls, fields (7)))
-    val t2: Fielder = parse_element (element (cls, fields (8)))
-    val t3: Fielder = parse_element (element (cls, fields (9)))
-    val t4: Fielder = parse_element (element (cls, fields (10)))
-    val t5: Fielder = parse_element (element (cls, fields (11)))
-    val t6: Fielder = parse_element (element (cls, fields (12)))
-    val t7: Fielder = parse_element (element (cls, fields (13)))
-    val t8: Fielder = parse_element (element (cls, fields (14)))
-    val t9: Fielder = parse_element (element (cls, fields (15)))
-    val vcl: Fielder = parse_element (element (cls, fields (16)))
-    val vcu: Fielder = parse_element (element (cls, fields (17)))
+    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val k1: Fielder = parse_element (element (cls, fields(2)))
+    val k2: Fielder = parse_element (element (cls, fields(3)))
+    val lsmax: Fielder = parse_element (element (cls, fields(4)))
+    val lsmin: Fielder = parse_element (element (cls, fields(5)))
+    val t1: Fielder = parse_element (element (cls, fields(6)))
+    val t10: Fielder = parse_element (element (cls, fields(7)))
+    val t2: Fielder = parse_element (element (cls, fields(8)))
+    val t3: Fielder = parse_element (element (cls, fields(9)))
+    val t4: Fielder = parse_element (element (cls, fields(10)))
+    val t5: Fielder = parse_element (element (cls, fields(11)))
+    val t6: Fielder = parse_element (element (cls, fields(12)))
+    val t7: Fielder = parse_element (element (cls, fields(13)))
+    val t8: Fielder = parse_element (element (cls, fields(14)))
+    val t9: Fielder = parse_element (element (cls, fields(15)))
+    val vcl: Fielder = parse_element (element (cls, fields(16)))
+    val vcu: Fielder = parse_element (element (cls, fields(17)))
 
     def parse (context: CIMContext): Pss2ST =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Pss2ST (
             PowerSystemStabilizerDynamics.parse (context),
             mask (inputSignal1Type (), 0),
@@ -1261,7 +1228,7 @@ object Pss2STSerializer extends CIMSerializer[Pss2ST]
 
     def read (kryo: Kryo, input: Input, cls: Class[Pss2ST]): Pss2ST =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Pss2ST (
             parent,
@@ -1293,46 +1260,46 @@ object Pss2STSerializer extends CIMSerializer[Pss2ST]
  * Detailed Italian PSS.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param ctw2                          Selector for second washout enabling (<i>C</i><i><sub>TW2</sub></i>).
- *                                      true = second washout filter is bypassed
- *                                      false = second washout filter in use.
- *                                      Typical value = true.
- * @param deadband                      Stabilizer output deadband (<i>DEADBAND</i>).
- *                                      Typical value = 0.
- * @param isfreq                        Selector for frequency/shaft speed input (<i>isFreq</i>).
- *                                      true = speed (same meaning as InputSignaKind.rotorSpeed)
- *                                      false = frequency (same meaning as InputSignalKind.busFrequency).
- *                                      Typical value = true (same meaning as InputSignalKind.rotorSpeed).
- * @param kf                            Frequency/shaft speed input gain (<i>K</i><i><sub>F</sub></i>).
- *                                      Typical value = 5.
- * @param kpe                           Electric power input gain (<i>K</i><i><sub>PE</sub></i>).
- *                                      Typical value = 0,3.
- * @param kpss                          PSS gain (<i>K</i><i><sub>PSS</sub></i>).
- *                                      Typical value = 1.
- * @param pmin                          Minimum power PSS enabling (<i>Pmin</i>).
- *                                      Typical value = 0,25.
- * @param tl1                           Lead/lag time constant (<i>T</i><i><sub>L1</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tl2                           Lead/lag time constant (<i>T</i><i><sub>L2</sub></i>) (&gt;= 0).
- *                                      If = 0, both blocks are bypassed.  Typical value = 0.
- * @param tl3                           Lead/lag time constant (<i>T</i><i><sub>L3</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tl4                           Lead/lag time constant (T<sub>L4</sub>) (&gt;= 0).
- *                                      If = 0, both blocks are bypassed.  Typical value = 0.
- * @param tpe                           Electric power filter time constant (<i>T</i><i><sub>PE</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,05.
- * @param tw1                           First washout (<i>T</i><i><sub>W1</sub></i>) (&gt;= 0).
- *                                      Typical value = 3,5.
- * @param tw2                           Second washout (<i>T</i><i><sub>W2</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param vadat                         <font color="#0f0f0f">Signal selector (<i>V</i><i><sub>adAtt</sub></i>).</font>
- *                                      <font color="#0f0f0f">true = closed (generator power is greater than <i>Pmin</i>)</font>
- *                                      <font color="#0f0f0f">false = open (<i>Pe</i> is smaller than <i>Pmin</i>).</font>
- *                                      <font color="#0f0f0f">Typical value = true.</font>
- * @param vsmn                          Stabilizer output maximum limit (<i>V</i><i><sub>SMN</sub></i>).
- *                                      Typical value = -0,1.
- * @param vsmx                          Stabilizer output minimum limit (<i>V</i><i><sub>SMX</sub></i>).
- *                                      Typical value = 0,1.
+ * @param ctw2 Selector for second washout enabling (<i>C</i><i><sub>TW2</sub></i>).
+ *        true = second washout filter is bypassed
+ *        false = second washout filter in use.
+ *        Typical value = true.
+ * @param deadband Stabilizer output deadband (<i>DEADBAND</i>).
+ *        Typical value = 0.
+ * @param isfreq Selector for frequency/shaft speed input (<i>isFreq</i>).
+ *        true = speed (same meaning as InputSignaKind.rotorSpeed)
+ *        false = frequency (same meaning as InputSignalKind.busFrequency).
+ *        Typical value = true (same meaning as InputSignalKind.rotorSpeed).
+ * @param kf Frequency/shaft speed input gain (<i>K</i><i><sub>F</sub></i>).
+ *        Typical value = 5.
+ * @param kpe Electric power input gain (<i>K</i><i><sub>PE</sub></i>).
+ *        Typical value = 0,3.
+ * @param kpss PSS gain (<i>K</i><i><sub>PSS</sub></i>).
+ *        Typical value = 1.
+ * @param pmin Minimum power PSS enabling (<i>Pmin</i>).
+ *        Typical value = 0,25.
+ * @param tl1 Lead/lag time constant (<i>T</i><i><sub>L1</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl2 Lead/lag time constant (<i>T</i><i><sub>L2</sub></i>) (&gt;= 0).
+ *        If = 0, both blocks are bypassed.  Typical value = 0.
+ * @param tl3 Lead/lag time constant (<i>T</i><i><sub>L3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl4 Lead/lag time constant (T<sub>L4</sub>) (&gt;= 0).
+ *        If = 0, both blocks are bypassed.  Typical value = 0.
+ * @param tpe Electric power filter time constant (<i>T</i><i><sub>PE</sub></i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param tw1 First washout (<i>T</i><i><sub>W1</sub></i>) (&gt;= 0).
+ *        Typical value = 3,5.
+ * @param tw2 Second washout (<i>T</i><i><sub>W2</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vadat <font color="#0f0f0f">Signal selector (<i>V</i><i><sub>adAtt</sub></i>).</font>
+ *        <font color="#0f0f0f">true = closed (generator power is greater than <i>Pmin</i>)</font>
+ *        <font color="#0f0f0f">false = open (<i>Pe</i> is smaller than <i>Pmin</i>).</font>
+ *        <font color="#0f0f0f">Typical value = true.</font>
+ * @param vsmn Stabilizer output maximum limit (<i>V</i><i><sub>SMN</sub></i>).
+ *        Typical value = -0,1.
+ * @param vsmx Stabilizer output minimum limit (<i>V</i><i><sub>SMX</sub></i>).
+ *        Typical value = 0,1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -1358,8 +1325,8 @@ final case class Pss5
     vsmn: Double = 0.0,
     vsmx: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1385,18 +1352,13 @@ final case class Pss5
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Pss5.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss5.fields (position), value)
-
         emitelem (0, ctw2)
         emitelem (1, deadband)
         emitelem (2, isfreq)
@@ -1416,18 +1378,17 @@ final case class Pss5
         emitelem (16, vsmx)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:Pss5 rdf:ID=\"%s\">\n%s\t</cim:Pss5>".format (id, export_fields)
+        "\t<cim:Pss5 rdf:%s=\"%s\">\n%s\t</cim:Pss5>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Pss5
-    extends
-        CIMParseable[Pss5]
+extends
+    CIMParseable[Pss5]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "ctw2",
         "deadband",
         "isfreq",
@@ -1446,28 +1407,28 @@ object Pss5
         "vsmn",
         "vsmx"
     )
-    val ctw2: Fielder = parse_element (element (cls, fields (0)))
-    val deadband: Fielder = parse_element (element (cls, fields (1)))
-    val isfreq: Fielder = parse_element (element (cls, fields (2)))
-    val kf: Fielder = parse_element (element (cls, fields (3)))
-    val kpe: Fielder = parse_element (element (cls, fields (4)))
-    val kpss: Fielder = parse_element (element (cls, fields (5)))
-    val pmin: Fielder = parse_element (element (cls, fields (6)))
-    val tl1: Fielder = parse_element (element (cls, fields (7)))
-    val tl2: Fielder = parse_element (element (cls, fields (8)))
-    val tl3: Fielder = parse_element (element (cls, fields (9)))
-    val tl4: Fielder = parse_element (element (cls, fields (10)))
-    val tpe: Fielder = parse_element (element (cls, fields (11)))
-    val tw1: Fielder = parse_element (element (cls, fields (12)))
-    val tw2: Fielder = parse_element (element (cls, fields (13)))
-    val vadat: Fielder = parse_element (element (cls, fields (14)))
-    val vsmn: Fielder = parse_element (element (cls, fields (15)))
-    val vsmx: Fielder = parse_element (element (cls, fields (16)))
+    val ctw2: Fielder = parse_element (element (cls, fields(0)))
+    val deadband: Fielder = parse_element (element (cls, fields(1)))
+    val isfreq: Fielder = parse_element (element (cls, fields(2)))
+    val kf: Fielder = parse_element (element (cls, fields(3)))
+    val kpe: Fielder = parse_element (element (cls, fields(4)))
+    val kpss: Fielder = parse_element (element (cls, fields(5)))
+    val pmin: Fielder = parse_element (element (cls, fields(6)))
+    val tl1: Fielder = parse_element (element (cls, fields(7)))
+    val tl2: Fielder = parse_element (element (cls, fields(8)))
+    val tl3: Fielder = parse_element (element (cls, fields(9)))
+    val tl4: Fielder = parse_element (element (cls, fields(10)))
+    val tpe: Fielder = parse_element (element (cls, fields(11)))
+    val tw1: Fielder = parse_element (element (cls, fields(12)))
+    val tw2: Fielder = parse_element (element (cls, fields(13)))
+    val vadat: Fielder = parse_element (element (cls, fields(14)))
+    val vsmn: Fielder = parse_element (element (cls, fields(15)))
+    val vsmx: Fielder = parse_element (element (cls, fields(16)))
 
     def parse (context: CIMContext): Pss5 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = Pss5 (
             PowerSystemStabilizerDynamics.parse (context),
             toBoolean (mask (ctw2 (), 0)),
@@ -1526,7 +1487,7 @@ object Pss5Serializer extends CIMSerializer[Pss5]
 
     def read (kryo: Kryo, input: Input, cls: Class[Pss5]): Pss5 =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = Pss5 (
             parent,
@@ -1557,28 +1518,28 @@ object Pss5Serializer extends CIMSerializer[Pss5]
  * Power system stabilizer typically associated with ExcELIN2 (though PssIEEE2B or Pss2B can also be used).
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param apss                          Coefficient (<i>a_PSS</i>).
- *                                      Typical value = 0,1.
- * @param ks1                           Gain (<i>Ks1</i>).
- *                                      Typical value = 1.
- * @param ks2                           Gain (<i>Ks2</i>).
- *                                      Typical value = 0,1.
- * @param ppss                          Coefficient (<i>p_PSS</i>) (&gt;= 0 and &lt;= 4).
- *                                      Typical value = 0,1.
- * @param psslim                        PSS limiter (<i>psslim</i>).
- *                                      Typical value = 0,1.
- * @param ts1                           Time constant (<i>Ts1</i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param ts2                           Time constant (<i>Ts2</i>) (&gt;= 0).
- *                                      Typical value = 1.
- * @param ts3                           Time constant (<i>Ts3</i>) (&gt;= 0).
- *                                      Typical value = 1.
- * @param ts4                           Time constant (<i>Ts4</i>) (&gt;= 0).
- *                                      Typical value = 0,1.
- * @param ts5                           Time constant (<i>Ts5</i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param ts6                           Time constant (<i>Ts6</i>) (&gt;= 0).
- *                                      Typical value = 1.
+ * @param apss Coefficient (<i>a_PSS</i>).
+ *        Typical value = 0,1.
+ * @param ks1 Gain (<i>Ks1</i>).
+ *        Typical value = 1.
+ * @param ks2 Gain (<i>Ks2</i>).
+ *        Typical value = 0,1.
+ * @param ppss Coefficient (<i>p_PSS</i>) (&gt;= 0 and &lt;= 4).
+ *        Typical value = 0,1.
+ * @param psslim PSS limiter (<i>psslim</i>).
+ *        Typical value = 0,1.
+ * @param ts1 Time constant (<i>Ts1</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ts2 Time constant (<i>Ts2</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param ts3 Time constant (<i>Ts3</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param ts4 Time constant (<i>Ts4</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ts5 Time constant (<i>Ts5</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ts6 Time constant (<i>Ts6</i>) (&gt;= 0).
+ *        Typical value = 1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -1598,8 +1559,8 @@ final case class PssELIN2
     ts5: Double = 0.0,
     ts6: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1625,18 +1586,13 @@ final case class PssELIN2
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssELIN2.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssELIN2.fields (position), value)
-
         emitelem (0, apss)
         emitelem (1, ks1)
         emitelem (2, ks2)
@@ -1650,18 +1606,17 @@ final case class PssELIN2
         emitelem (10, ts6)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssELIN2 rdf:ID=\"%s\">\n%s\t</cim:PssELIN2>".format (id, export_fields)
+        "\t<cim:PssELIN2 rdf:%s=\"%s\">\n%s\t</cim:PssELIN2>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssELIN2
-    extends
-        CIMParseable[PssELIN2]
+extends
+    CIMParseable[PssELIN2]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "apss",
         "ks1",
         "ks2",
@@ -1674,22 +1629,22 @@ object PssELIN2
         "ts5",
         "ts6"
     )
-    val apss: Fielder = parse_element (element (cls, fields (0)))
-    val ks1: Fielder = parse_element (element (cls, fields (1)))
-    val ks2: Fielder = parse_element (element (cls, fields (2)))
-    val ppss: Fielder = parse_element (element (cls, fields (3)))
-    val psslim: Fielder = parse_element (element (cls, fields (4)))
-    val ts1: Fielder = parse_element (element (cls, fields (5)))
-    val ts2: Fielder = parse_element (element (cls, fields (6)))
-    val ts3: Fielder = parse_element (element (cls, fields (7)))
-    val ts4: Fielder = parse_element (element (cls, fields (8)))
-    val ts5: Fielder = parse_element (element (cls, fields (9)))
-    val ts6: Fielder = parse_element (element (cls, fields (10)))
+    val apss: Fielder = parse_element (element (cls, fields(0)))
+    val ks1: Fielder = parse_element (element (cls, fields(1)))
+    val ks2: Fielder = parse_element (element (cls, fields(2)))
+    val ppss: Fielder = parse_element (element (cls, fields(3)))
+    val psslim: Fielder = parse_element (element (cls, fields(4)))
+    val ts1: Fielder = parse_element (element (cls, fields(5)))
+    val ts2: Fielder = parse_element (element (cls, fields(6)))
+    val ts3: Fielder = parse_element (element (cls, fields(7)))
+    val ts4: Fielder = parse_element (element (cls, fields(8)))
+    val ts5: Fielder = parse_element (element (cls, fields(9)))
+    val ts6: Fielder = parse_element (element (cls, fields(10)))
 
     def parse (context: CIMContext): PssELIN2 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PssELIN2 (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (apss (), 0)),
@@ -1736,7 +1691,7 @@ object PssELIN2Serializer extends CIMSerializer[PssELIN2]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssELIN2]): PssELIN2 =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssELIN2 (
             parent,
@@ -1764,30 +1719,30 @@ object PssELIN2Serializer extends CIMSerializer[PssELIN2]
  * Reference: IEEE 1A 421.5-2005, 8.1.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param a1                            PSS signal conditioning frequency filter constant (<i>A1</i>).
- *                                      Typical value = 0,061.
- * @param a2                            PSS signal conditioning frequency filter constant (<i>A2</i>).
- *                                      Typical value = 0,0017.
- * @param inputSignalType               Type of input signal (rotorAngularFrequencyDeviation, generatorElectricalPower, or busFrequencyDeviation).
- *                                      Typical value = rotorAngularFrequencyDeviation.
- * @param ks                            Stabilizer gain (<i>Ks</i>).
- *                                      Typical value = 5.
- * @param t1                            Lead/lag time constant (<i>T1</i>) (&gt;= 0).
- *                                      Typical value = 0,3.
- * @param t2                            Lead/lag time constant (<i>T2</i>) (&gt;= 0).
- *                                      Typical value = 0,03.
- * @param t3                            Lead/lag time constant (<i>T3</i>) (&gt;= 0).
- *                                      Typical value = 0,3.
- * @param t4                            Lead/lag time constant (<i>T4</i>) (&gt;= 0).
- *                                      Typical value = 0,03.
- * @param t5                            Washout time constant (<i>T5</i>) (&gt;= 0).
- *                                      Typical value = 10.
- * @param t6                            Transducer time constant (<i>T6</i>) (&gt;= 0).
- *                                      Typical value = 0,01.
- * @param vrmax                         Maximum stabilizer output (<i>Vrmax</i>) (&gt; PssIEEE1A.vrmin).
- *                                      Typical value = 0,05.
- * @param vrmin                         Minimum stabilizer output (<i>Vrmin</i>) (&lt; PssIEEE1A.vrmax).
- *                                      Typical value = -0,05.
+ * @param a1 PSS signal conditioning frequency filter constant (<i>A1</i>).
+ *        Typical value = 0,061.
+ * @param a2 PSS signal conditioning frequency filter constant (<i>A2</i>).
+ *        Typical value = 0,0017.
+ * @param inputSignalType Type of input signal (rotorAngularFrequencyDeviation, generatorElectricalPower, or busFrequencyDeviation).
+ *        Typical value = rotorAngularFrequencyDeviation.
+ * @param ks Stabilizer gain (<i>Ks</i>).
+ *        Typical value = 5.
+ * @param t1 Lead/lag time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t2 Lead/lag time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param t3 Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t4 Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param t5 Washout time constant (<i>T5</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param t6 Transducer time constant (<i>T6</i>) (&gt;= 0).
+ *        Typical value = 0,01.
+ * @param vrmax Maximum stabilizer output (<i>Vrmax</i>) (&gt; PssIEEE1A.vrmin).
+ *        Typical value = 0,05.
+ * @param vrmin Minimum stabilizer output (<i>Vrmin</i>) (&lt; PssIEEE1A.vrmax).
+ *        Typical value = -0,05.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -1808,8 +1763,8 @@ final case class PssIEEE1A
     vrmax: Double = 0.0,
     vrmin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -1835,20 +1790,14 @@ final case class PssIEEE1A
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssIEEE1A.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssIEEE1A.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PssIEEE1A.fields (position), value)
-
         emitelem (0, a1)
         emitelem (1, a2)
         emitattr (2, inputSignalType)
@@ -1863,18 +1812,17 @@ final case class PssIEEE1A
         emitelem (11, vrmin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssIEEE1A rdf:ID=\"%s\">\n%s\t</cim:PssIEEE1A>".format (id, export_fields)
+        "\t<cim:PssIEEE1A rdf:%s=\"%s\">\n%s\t</cim:PssIEEE1A>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssIEEE1A
-    extends
-        CIMParseable[PssIEEE1A]
+extends
+    CIMParseable[PssIEEE1A]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "a1",
         "a2",
         "inputSignalType",
@@ -1888,23 +1836,23 @@ object PssIEEE1A
         "vrmax",
         "vrmin"
     )
-    val a1: Fielder = parse_element (element (cls, fields (0)))
-    val a2: Fielder = parse_element (element (cls, fields (1)))
-    val inputSignalType: Fielder = parse_attribute (attribute (cls, fields (2)))
-    val ks: Fielder = parse_element (element (cls, fields (3)))
-    val t1: Fielder = parse_element (element (cls, fields (4)))
-    val t2: Fielder = parse_element (element (cls, fields (5)))
-    val t3: Fielder = parse_element (element (cls, fields (6)))
-    val t4: Fielder = parse_element (element (cls, fields (7)))
-    val t5: Fielder = parse_element (element (cls, fields (8)))
-    val t6: Fielder = parse_element (element (cls, fields (9)))
-    val vrmax: Fielder = parse_element (element (cls, fields (10)))
-    val vrmin: Fielder = parse_element (element (cls, fields (11)))
+    val a1: Fielder = parse_element (element (cls, fields(0)))
+    val a2: Fielder = parse_element (element (cls, fields(1)))
+    val inputSignalType: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val ks: Fielder = parse_element (element (cls, fields(3)))
+    val t1: Fielder = parse_element (element (cls, fields(4)))
+    val t2: Fielder = parse_element (element (cls, fields(5)))
+    val t3: Fielder = parse_element (element (cls, fields(6)))
+    val t4: Fielder = parse_element (element (cls, fields(7)))
+    val t5: Fielder = parse_element (element (cls, fields(8)))
+    val t6: Fielder = parse_element (element (cls, fields(9)))
+    val vrmax: Fielder = parse_element (element (cls, fields(10)))
+    val vrmin: Fielder = parse_element (element (cls, fields(11)))
 
     def parse (context: CIMContext): PssIEEE1A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PssIEEE1A (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (a1 (), 0)),
@@ -1953,7 +1901,7 @@ object PssIEEE1ASerializer extends CIMSerializer[PssIEEE1A]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssIEEE1A]): PssIEEE1A =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssIEEE1A (
             parent,
@@ -1982,60 +1930,60 @@ object PssIEEE1ASerializer extends CIMSerializer[PssIEEE1A]
  * Reference: IEEE 2B 421.5-2005, 8.2.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param inputSignal1Type              Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation).
- *                                      Typical value = rotorAngularFrequencyDeviation.
- * @param inputSignal2Type              Type of input signal #2 (generatorElectricalPower).
- *                                      Typical value = generatorElectricalPower.
- * @param ks1                           Stabilizer gain (<i>Ks1</i>).
- *                                      Typical value = 12.
- * @param ks2                           Gain on signal #2 (<i>Ks2</i>).
- *                                      Typical value = 0,2.
- * @param ks3                           Gain on signal #2 input before ramp-tracking filter (<i>Ks3</i>).
- *                                      Typical value = 1.
- * @param m                             Denominator order of ramp tracking filter (<i>M</i>).
- *                                      Typical value = 5.
- * @param n                             Order of ramp tracking filter (<i>N</i>).
- *                                      Typical value = 1.
- * @param t1                            Lead/lag time constant (<i>T1</i>) (&gt;= 0).
- *                                      Typical value = 0,12.
- * @param t10                           Lead/lag time constant (<i>T10</i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param t11                           Lead/lag time constant (<i>T11</i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param t2                            Lead/lag time constant (<i>T2</i>) (&gt;= 0).
- *                                      Typical value = 0,02.
- * @param t3                            Lead/lag time constant (<i>T3</i>) (&gt;= 0).
- *                                      Typical value = 0,3.
- * @param t4                            Lead/lag time constant (<i>T4</i>) (&gt;= 0).
- *                                      Typical value = 0,02.
- * @param t6                            Time constant on signal #1 (<i>T6</i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param t7                            Time constant on signal #2 (<i>T7</i>) (&gt;= 0).
- *                                      Typical value = 2.
- * @param t8                            Lead of ramp tracking filter (<i>T8</i>) (&gt;= 0).
- *                                      Typical value = 0,2.
- * @param t9                            Lag of ramp tracking filter (<i>T9</i>) (&gt;= 0).
- *                                      Typical value = 0,1.
- * @param tw1                           First washout on signal #1 (<i>Tw1</i>) (&gt;= 0).
- *                                      Typical value = 2.
- * @param tw2                           Second washout on signal #1 (<i>Tw2</i>) (&gt;= 0).
- *                                      Typical value = 2.
- * @param tw3                           First washout on signal #2 (<i>Tw3</i>) (&gt;= 0).
- *                                      Typical value = 2.
- * @param tw4                           Second washout on signal #2 (<i>Tw4</i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param vsi1max                       Input signal #1 maximum limit (<i>Vsi1max</i>) (&gt; PssIEEE2B.vsi1min).
- *                                      Typical value = 2.
- * @param vsi1min                       Input signal #1 minimum limit (<i>Vsi1min</i>) (&lt; PssIEEE2B.vsi1max).
- *                                      Typical value = -2.
- * @param vsi2max                       Input signal #2 maximum limit (<i>Vsi2max</i>) (&gt; PssIEEE2B.vsi2min).
- *                                      Typical value = 2.
- * @param vsi2min                       Input signal #2 minimum limit (<i>Vsi2min</i>) (&lt; PssIEEE2B.vsi2max).
- *                                      Typical value = -2.
- * @param vstmax                        Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; PssIEEE2B.vstmin).
- *                                      Typical value = 0,1.
- * @param vstmin                        Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; PssIEEE2B.vstmax).
- *                                      Typical value = -0,1.
+ * @param inputSignal1Type Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation).
+ *        Typical value = rotorAngularFrequencyDeviation.
+ * @param inputSignal2Type Type of input signal #2 (generatorElectricalPower).
+ *        Typical value = generatorElectricalPower.
+ * @param ks1 Stabilizer gain (<i>Ks1</i>).
+ *        Typical value = 12.
+ * @param ks2 Gain on signal #2 (<i>Ks2</i>).
+ *        Typical value = 0,2.
+ * @param ks3 Gain on signal #2 input before ramp-tracking filter (<i>Ks3</i>).
+ *        Typical value = 1.
+ * @param m Denominator order of ramp tracking filter (<i>M</i>).
+ *        Typical value = 5.
+ * @param n Order of ramp tracking filter (<i>N</i>).
+ *        Typical value = 1.
+ * @param t1 Lead/lag time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,12.
+ * @param t10 Lead/lag time constant (<i>T10</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t11 Lead/lag time constant (<i>T11</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t2 Lead/lag time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param t3 Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t4 Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param t6 Time constant on signal #1 (<i>T6</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t7 Time constant on signal #2 (<i>T7</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param t8 Lead of ramp tracking filter (<i>T8</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param t9 Lag of ramp tracking filter (<i>T9</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tw1 First washout on signal #1 (<i>Tw1</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw2 Second washout on signal #1 (<i>Tw2</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw3 First washout on signal #2 (<i>Tw3</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw4 Second washout on signal #2 (<i>Tw4</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vsi1max Input signal #1 maximum limit (<i>Vsi1max</i>) (&gt; PssIEEE2B.vsi1min).
+ *        Typical value = 2.
+ * @param vsi1min Input signal #1 minimum limit (<i>Vsi1min</i>) (&lt; PssIEEE2B.vsi1max).
+ *        Typical value = -2.
+ * @param vsi2max Input signal #2 maximum limit (<i>Vsi2max</i>) (&gt; PssIEEE2B.vsi2min).
+ *        Typical value = 2.
+ * @param vsi2min Input signal #2 minimum limit (<i>Vsi2min</i>) (&lt; PssIEEE2B.vsi2max).
+ *        Typical value = -2.
+ * @param vstmax Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; PssIEEE2B.vstmin).
+ *        Typical value = 0,1.
+ * @param vstmin Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; PssIEEE2B.vstmax).
+ *        Typical value = -0,1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -2071,8 +2019,8 @@ final case class PssIEEE2B
     vstmax: Double = 0.0,
     vstmin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -2098,20 +2046,14 @@ final case class PssIEEE2B
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssIEEE2B.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssIEEE2B.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PssIEEE2B.fields (position), value)
-
         emitattr (0, inputSignal1Type)
         emitattr (1, inputSignal2Type)
         emitelem (2, ks1)
@@ -2141,18 +2083,17 @@ final case class PssIEEE2B
         emitelem (26, vstmin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssIEEE2B rdf:ID=\"%s\">\n%s\t</cim:PssIEEE2B>".format (id, export_fields)
+        "\t<cim:PssIEEE2B rdf:%s=\"%s\">\n%s\t</cim:PssIEEE2B>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssIEEE2B
-    extends
-        CIMParseable[PssIEEE2B]
+extends
+    CIMParseable[PssIEEE2B]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "inputSignal1Type",
         "inputSignal2Type",
         "ks1",
@@ -2181,38 +2122,38 @@ object PssIEEE2B
         "vstmax",
         "vstmin"
     )
-    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val ks1: Fielder = parse_element (element (cls, fields (2)))
-    val ks2: Fielder = parse_element (element (cls, fields (3)))
-    val ks3: Fielder = parse_element (element (cls, fields (4)))
-    val m: Fielder = parse_element (element (cls, fields (5)))
-    val n: Fielder = parse_element (element (cls, fields (6)))
-    val t1: Fielder = parse_element (element (cls, fields (7)))
-    val t10: Fielder = parse_element (element (cls, fields (8)))
-    val t11: Fielder = parse_element (element (cls, fields (9)))
-    val t2: Fielder = parse_element (element (cls, fields (10)))
-    val t3: Fielder = parse_element (element (cls, fields (11)))
-    val t4: Fielder = parse_element (element (cls, fields (12)))
-    val t6: Fielder = parse_element (element (cls, fields (13)))
-    val t7: Fielder = parse_element (element (cls, fields (14)))
-    val t8: Fielder = parse_element (element (cls, fields (15)))
-    val t9: Fielder = parse_element (element (cls, fields (16)))
-    val tw1: Fielder = parse_element (element (cls, fields (17)))
-    val tw2: Fielder = parse_element (element (cls, fields (18)))
-    val tw3: Fielder = parse_element (element (cls, fields (19)))
-    val tw4: Fielder = parse_element (element (cls, fields (20)))
-    val vsi1max: Fielder = parse_element (element (cls, fields (21)))
-    val vsi1min: Fielder = parse_element (element (cls, fields (22)))
-    val vsi2max: Fielder = parse_element (element (cls, fields (23)))
-    val vsi2min: Fielder = parse_element (element (cls, fields (24)))
-    val vstmax: Fielder = parse_element (element (cls, fields (25)))
-    val vstmin: Fielder = parse_element (element (cls, fields (26)))
+    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val ks1: Fielder = parse_element (element (cls, fields(2)))
+    val ks2: Fielder = parse_element (element (cls, fields(3)))
+    val ks3: Fielder = parse_element (element (cls, fields(4)))
+    val m: Fielder = parse_element (element (cls, fields(5)))
+    val n: Fielder = parse_element (element (cls, fields(6)))
+    val t1: Fielder = parse_element (element (cls, fields(7)))
+    val t10: Fielder = parse_element (element (cls, fields(8)))
+    val t11: Fielder = parse_element (element (cls, fields(9)))
+    val t2: Fielder = parse_element (element (cls, fields(10)))
+    val t3: Fielder = parse_element (element (cls, fields(11)))
+    val t4: Fielder = parse_element (element (cls, fields(12)))
+    val t6: Fielder = parse_element (element (cls, fields(13)))
+    val t7: Fielder = parse_element (element (cls, fields(14)))
+    val t8: Fielder = parse_element (element (cls, fields(15)))
+    val t9: Fielder = parse_element (element (cls, fields(16)))
+    val tw1: Fielder = parse_element (element (cls, fields(17)))
+    val tw2: Fielder = parse_element (element (cls, fields(18)))
+    val tw3: Fielder = parse_element (element (cls, fields(19)))
+    val tw4: Fielder = parse_element (element (cls, fields(20)))
+    val vsi1max: Fielder = parse_element (element (cls, fields(21)))
+    val vsi1min: Fielder = parse_element (element (cls, fields(22)))
+    val vsi2max: Fielder = parse_element (element (cls, fields(23)))
+    val vsi2min: Fielder = parse_element (element (cls, fields(24)))
+    val vstmax: Fielder = parse_element (element (cls, fields(25)))
+    val vstmin: Fielder = parse_element (element (cls, fields(26)))
 
     def parse (context: CIMContext): PssIEEE2B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PssIEEE2B (
             PowerSystemStabilizerDynamics.parse (context),
             mask (inputSignal1Type (), 0),
@@ -2291,7 +2232,7 @@ object PssIEEE2BSerializer extends CIMSerializer[PssIEEE2B]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssIEEE2B]): PssIEEE2B =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssIEEE2B (
             parent,
@@ -2336,40 +2277,40 @@ object PssIEEE2BSerializer extends CIMSerializer[PssIEEE2B]
  * Reference: IEEE 3B 421.5-2005, 8.3.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param a1                            Notch filter parameter (<i>A1</i>).
- *                                      Typical value = 0,359.
- * @param a2                            Notch filter parameter (<i>A2</i>).
- *                                      Typical value = 0,586.
- * @param a3                            Notch filter parameter (<i>A3</i>).
- *                                      Typical value = 0,429.
- * @param a4                            Notch filter parameter (<i>A4</i>).
- *                                      Typical value = 0,564.
- * @param a5                            Notch filter parameter (<i>A5</i>).
- *                                      Typical value = 0,001.
- * @param a6                            Notch filter parameter (<i>A6</i>).
- *                                      Typical value = 0.
- * @param a7                            Notch filter parameter (<i>A7</i>).
- *                                      Typical value = 0,031.
- * @param a8                            Notch filter parameter (<i>A8</i>).
- *                                      Typical value = 0.
- * @param ks1                           Gain on signal # 1 (<i>Ks1</i>).
- *                                      Typical value = -0,602.
- * @param ks2                           Gain on signal # 2 (<i>Ks2</i>).
- *                                      Typical value = 30,12.
- * @param t1                            Transducer time constant (<i>T1</i>) (&gt;= 0).
- *                                      Typical value = 0,012.
- * @param t2                            Transducer time constant (<i>T2</i>) (&gt;= 0).
- *                                      Typical value = 0,012.
- * @param tw1                           Washout time constant (<i>Tw1</i>) (&gt;= 0).
- *                                      Typical value = 0,3.
- * @param tw2                           Washout time constant (<i>Tw2</i>) (&gt;= 0).
- *                                      Typical value = 0,3.
- * @param tw3                           Washout time constant (<i>Tw3</i>) (&gt;= 0).
- *                                      Typical value = 0,6.
- * @param vstmax                        Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; PssIEEE3B.vstmin).
- *                                      Typical value = 0,1.
- * @param vstmin                        Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; PssIEEE3B.vstmax).
- *                                      Typical value = -0,1.
+ * @param a1 Notch filter parameter (<i>A1</i>).
+ *        Typical value = 0,359.
+ * @param a2 Notch filter parameter (<i>A2</i>).
+ *        Typical value = 0,586.
+ * @param a3 Notch filter parameter (<i>A3</i>).
+ *        Typical value = 0,429.
+ * @param a4 Notch filter parameter (<i>A4</i>).
+ *        Typical value = 0,564.
+ * @param a5 Notch filter parameter (<i>A5</i>).
+ *        Typical value = 0,001.
+ * @param a6 Notch filter parameter (<i>A6</i>).
+ *        Typical value = 0.
+ * @param a7 Notch filter parameter (<i>A7</i>).
+ *        Typical value = 0,031.
+ * @param a8 Notch filter parameter (<i>A8</i>).
+ *        Typical value = 0.
+ * @param ks1 Gain on signal # 1 (<i>Ks1</i>).
+ *        Typical value = -0,602.
+ * @param ks2 Gain on signal # 2 (<i>Ks2</i>).
+ *        Typical value = 30,12.
+ * @param t1 Transducer time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,012.
+ * @param t2 Transducer time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 0,012.
+ * @param tw1 Washout time constant (<i>Tw1</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param tw2 Washout time constant (<i>Tw2</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param tw3 Washout time constant (<i>Tw3</i>) (&gt;= 0).
+ *        Typical value = 0,6.
+ * @param vstmax Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; PssIEEE3B.vstmin).
+ *        Typical value = 0,1.
+ * @param vstmin Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; PssIEEE3B.vstmax).
+ *        Typical value = -0,1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -2395,8 +2336,8 @@ final case class PssIEEE3B
     vstmax: Double = 0.0,
     vstmin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -2422,18 +2363,13 @@ final case class PssIEEE3B
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssIEEE3B.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssIEEE3B.fields (position), value)
-
         emitelem (0, a1)
         emitelem (1, a2)
         emitelem (2, a3)
@@ -2453,18 +2389,17 @@ final case class PssIEEE3B
         emitelem (16, vstmin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssIEEE3B rdf:ID=\"%s\">\n%s\t</cim:PssIEEE3B>".format (id, export_fields)
+        "\t<cim:PssIEEE3B rdf:%s=\"%s\">\n%s\t</cim:PssIEEE3B>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssIEEE3B
-    extends
-        CIMParseable[PssIEEE3B]
+extends
+    CIMParseable[PssIEEE3B]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "a1",
         "a2",
         "a3",
@@ -2483,28 +2418,28 @@ object PssIEEE3B
         "vstmax",
         "vstmin"
     )
-    val a1: Fielder = parse_element (element (cls, fields (0)))
-    val a2: Fielder = parse_element (element (cls, fields (1)))
-    val a3: Fielder = parse_element (element (cls, fields (2)))
-    val a4: Fielder = parse_element (element (cls, fields (3)))
-    val a5: Fielder = parse_element (element (cls, fields (4)))
-    val a6: Fielder = parse_element (element (cls, fields (5)))
-    val a7: Fielder = parse_element (element (cls, fields (6)))
-    val a8: Fielder = parse_element (element (cls, fields (7)))
-    val ks1: Fielder = parse_element (element (cls, fields (8)))
-    val ks2: Fielder = parse_element (element (cls, fields (9)))
-    val t1: Fielder = parse_element (element (cls, fields (10)))
-    val t2: Fielder = parse_element (element (cls, fields (11)))
-    val tw1: Fielder = parse_element (element (cls, fields (12)))
-    val tw2: Fielder = parse_element (element (cls, fields (13)))
-    val tw3: Fielder = parse_element (element (cls, fields (14)))
-    val vstmax: Fielder = parse_element (element (cls, fields (15)))
-    val vstmin: Fielder = parse_element (element (cls, fields (16)))
+    val a1: Fielder = parse_element (element (cls, fields(0)))
+    val a2: Fielder = parse_element (element (cls, fields(1)))
+    val a3: Fielder = parse_element (element (cls, fields(2)))
+    val a4: Fielder = parse_element (element (cls, fields(3)))
+    val a5: Fielder = parse_element (element (cls, fields(4)))
+    val a6: Fielder = parse_element (element (cls, fields(5)))
+    val a7: Fielder = parse_element (element (cls, fields(6)))
+    val a8: Fielder = parse_element (element (cls, fields(7)))
+    val ks1: Fielder = parse_element (element (cls, fields(8)))
+    val ks2: Fielder = parse_element (element (cls, fields(9)))
+    val t1: Fielder = parse_element (element (cls, fields(10)))
+    val t2: Fielder = parse_element (element (cls, fields(11)))
+    val tw1: Fielder = parse_element (element (cls, fields(12)))
+    val tw2: Fielder = parse_element (element (cls, fields(13)))
+    val tw3: Fielder = parse_element (element (cls, fields(14)))
+    val vstmax: Fielder = parse_element (element (cls, fields(15)))
+    val vstmin: Fielder = parse_element (element (cls, fields(16)))
 
     def parse (context: CIMContext): PssIEEE3B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PssIEEE3B (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (a1 (), 0)),
@@ -2563,7 +2498,7 @@ object PssIEEE3BSerializer extends CIMSerializer[PssIEEE3B]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssIEEE3B]): PssIEEE3B =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssIEEE3B (
             parent,
@@ -2600,132 +2535,132 @@ object PssIEEE3BSerializer extends CIMSerializer[PssIEEE3B]
  * This model has 2 input signals. They have the following fixed types (expressed in terms of InputSignalKind values): the first one is of rotorAngleFrequencyDeviation type and the second one is of generatorElectricalPower type.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param bwh1                          Notch filter 1 (high-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
- * @param bwh2                          Notch filter 2 (high-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
- * @param bwl1                          Notch filter 1 (low-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
- * @param bwl2                          Notch filter 2 (low-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
- * @param kh                            High band gain (<i>K</i><i><sub>H</sub></i>).
- *                                      Typical value = 120.
- * @param kh1                           High band differential filter gain (<i>K</i><i><sub>H1</sub></i>).
- *                                      Typical value = 66.
- * @param kh11                          High band first lead-lag blocks coefficient (<i>K</i><i><sub>H11</sub></i>).
- *                                      Typical value = 1.
- * @param kh17                          High band first lead-lag blocks coefficient (<i>K</i><i><sub>H17</sub></i>).
- *                                      Typical value = 1.
- * @param kh2                           High band differential filter gain (<i>K</i><i><sub>H2</sub></i>).
- *                                      Typical value = 66.
- * @param ki                            Intermediate band gain (<i>K</i><i><sub>I</sub></i>).
- *                                      Typical value = 30.
- * @param ki1                           Intermediate band differential filter gain (<i>K</i><i><sub>I1</sub></i>).
- *                                      Typical value = 66.
- * @param ki11                          Intermediate band first lead-lag blocks coefficient (<i>K</i><i><sub>I11</sub></i>).
- *                                      Typical value = 1.
- * @param ki17                          Intermediate band first lead-lag blocks coefficient (<i>K</i><i><sub>I17</sub></i>).
- *                                      Typical value = 1.
- * @param ki2                           Intermediate band differential filter gain (<i>K</i><i><sub>I2</sub></i>).
- *                                      Typical value = 66.
- * @param kl                            Low band gain (<i>K</i><i><sub>L</sub></i>).
- *                                      Typical value = 7.5.
- * @param kl1                           Low band differential filter gain (<i>K</i><i><sub>L1</sub></i>).
- *                                      Typical value = 66.
- * @param kl11                          Low band first lead-lag blocks coefficient (<i>K</i><i><sub>L11</sub></i>).
- *                                      Typical value = 1.
- * @param kl17                          Low band first lead-lag blocks coefficient (<i>K</i><i><sub>L17</sub></i>).
- *                                      Typical value = 1.
- * @param kl2                           Low band differential filter gain (<i>K</i><i><sub>L2</sub></i>).
- *                                      Typical value = 66.
- * @param omeganh1                      Notch filter 1 (high-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
- * @param omeganh2                      Notch filter 2 (high-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
- * @param omeganl1                      Notch filter 1 (low-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
- * @param omeganl2                      Notch filter 2 (low-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
- * @param th1                           High band time constant (<i>T</i><i><sub>H1</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,01513.
- * @param th10                          High band time constant (<i>T</i><i><sub>H10</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param th11                          High band time constant (<i>T</i><i><sub>H11</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param th12                          High band time constant (<i>T</i><i><sub>H12</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param th2                           High band time constant (<i>T</i><i><sub>H2</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,01816.
- * @param th3                           High band time constant (<i>T</i><i><sub>H3</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param th4                           High band time constant (<i>T</i><i><sub>H4</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param th5                           High band time constant (<i>T</i><i><sub>H5</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param th6                           High band time constant (<i>T</i><i><sub>H6</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param th7                           High band time constant (<i>T</i><i><sub>H7</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,01816.
- * @param th8                           High band time constant (<i>T</i><i><sub>H8</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,02179.
- * @param th9                           High band time constant (<i>T</i><i><sub>H9</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param ti1                           Intermediate band time constant (<i>T</i><i><sub>I1</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,173.
- * @param ti10                          Intermediate band time constant (<i>T</i><i><sub>I10</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param ti11                          Intermediate band time constant (<i>T</i><i><sub>I11</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param ti12                          Intermediate band time constant (<i>T</i><i><sub>I12</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param ti2                           Intermediate band time constant (<i>T</i><i><sub>I2</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,2075.
- * @param ti3                           Intermediate band time constant (<i>T</i><i><sub>I3</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param ti4                           Intermediate band time constant (<i>T</i><i><sub>I4</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param ti5                           Intermediate band time constant (<i>T</i><i><sub>I5</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param ti6                           Intermediate band time constant (<i>T</i><i><sub>I6</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param ti7                           Intermediate band time constant (<i>T</i><i><sub>I7</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,2075.
- * @param ti8                           Intermediate band time constant (<i>T</i><i><sub>I8</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,2491.
- * @param ti9                           Intermediate band time constant (<i>T</i><i><sub>I9</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tl1                           Low band time constant (<i>T</i><i><sub>L1</sub></i>) (&gt;= 0).
- *                                      Typical value = 1,73.
- * @param tl10                          Low band time constant (<i>T</i><i><sub>L10</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tl11                          Low band time constant (<i>T</i><i><sub>L11</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tl12                          Low band time constant (<i>T</i><i><sub>L12</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tl2                           Low band time constant (<i>T</i><i><sub>L2</sub></i>) (&gt;= 0).
- *                                      Typical value = 2,075.
- * @param tl3                           Low band time constant (<i>T</i><i><sub>L3</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tl4                           Low band time constant (<i>T</i><i><sub>L4</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tl5                           Low band time constant (<i>T</i><i><sub>L5</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tl6                           Low band time constant (<i>T</i><i><sub>L6</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param tl7                           Low band time constant (<i>T</i><i><sub>L7</sub></i>) (&gt;= 0).
- *                                      Typical value = 2,075.
- * @param tl8                           Low band time constant (<i>T</i><i><sub>L8</sub></i>) (&gt;= 0).
- *                                      Typical value = 2,491.
- * @param tl9                           Low band time constant (<i>T</i><i><sub>L9</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param vhmax                         High band output maximum limit (<i>V</i><i><sub>Hmax</sub></i>) (&gt; PssIEEE4B.vhmin).
- *                                      Typical value = 0,6.
- * @param vhmin                         High band output minimum limit (<i>V</i><i><sub>Hmin</sub></i>) (&lt; PssIEEE4V.vhmax).
- *                                      Typical value = -0,6.
- * @param vimax                         Intermediate band output maximum limit (<i>V</i><i><sub>Imax</sub></i>) (&gt; PssIEEE4B.vimin).
- *                                      Typical value = 0,6.
- * @param vimin                         Intermediate band output minimum limit (<i>V</i><i><sub>Imin</sub></i>) (&lt; PssIEEE4B.vimax).
- *                                      Typical value = -0,6.
- * @param vlmax                         Low band output maximum limit (<i>V</i><i><sub>Lmax</sub></i>) (&gt; PssIEEE4B.vlmin).
- *                                      Typical value = 0,075.
- * @param vlmin                         Low band output minimum limit (<i>V</i><i><sub>Lmin</sub></i>) (&lt; PssIEEE4B.vlmax).
- *                                      Typical value = -0,075.
- * @param vstmax                        PSS output maximum limit (<i>V</i><i><sub>STmax</sub></i>) (&gt; PssIEEE4B.vstmin).
- *                                      Typical value = 0,15.
- * @param vstmin                        PSS output minimum limit (<i>V</i><i><sub>STmin</sub></i>) (&lt; PssIEEE4B.vstmax).
- *                                      Typical value = -0,15.
+ * @param bwh1 Notch filter 1 (high-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
+ * @param bwh2 Notch filter 2 (high-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
+ * @param bwl1 Notch filter 1 (low-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
+ * @param bwl2 Notch filter 2 (low-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
+ * @param kh High band gain (<i>K</i><i><sub>H</sub></i>).
+ *        Typical value = 120.
+ * @param kh1 High band differential filter gain (<i>K</i><i><sub>H1</sub></i>).
+ *        Typical value = 66.
+ * @param kh11 High band first lead-lag blocks coefficient (<i>K</i><i><sub>H11</sub></i>).
+ *        Typical value = 1.
+ * @param kh17 High band first lead-lag blocks coefficient (<i>K</i><i><sub>H17</sub></i>).
+ *        Typical value = 1.
+ * @param kh2 High band differential filter gain (<i>K</i><i><sub>H2</sub></i>).
+ *        Typical value = 66.
+ * @param ki Intermediate band gain (<i>K</i><i><sub>I</sub></i>).
+ *        Typical value = 30.
+ * @param ki1 Intermediate band differential filter gain (<i>K</i><i><sub>I1</sub></i>).
+ *        Typical value = 66.
+ * @param ki11 Intermediate band first lead-lag blocks coefficient (<i>K</i><i><sub>I11</sub></i>).
+ *        Typical value = 1.
+ * @param ki17 Intermediate band first lead-lag blocks coefficient (<i>K</i><i><sub>I17</sub></i>).
+ *        Typical value = 1.
+ * @param ki2 Intermediate band differential filter gain (<i>K</i><i><sub>I2</sub></i>).
+ *        Typical value = 66.
+ * @param kl Low band gain (<i>K</i><i><sub>L</sub></i>).
+ *        Typical value = 7.5.
+ * @param kl1 Low band differential filter gain (<i>K</i><i><sub>L1</sub></i>).
+ *        Typical value = 66.
+ * @param kl11 Low band first lead-lag blocks coefficient (<i>K</i><i><sub>L11</sub></i>).
+ *        Typical value = 1.
+ * @param kl17 Low band first lead-lag blocks coefficient (<i>K</i><i><sub>L17</sub></i>).
+ *        Typical value = 1.
+ * @param kl2 Low band differential filter gain (<i>K</i><i><sub>L2</sub></i>).
+ *        Typical value = 66.
+ * @param omeganh1 Notch filter 1 (high-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
+ * @param omeganh2 Notch filter 2 (high-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
+ * @param omeganl1 Notch filter 1 (low-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
+ * @param omeganl2 Notch filter 2 (low-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
+ * @param th1 High band time constant (<i>T</i><i><sub>H1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,01513.
+ * @param th10 High band time constant (<i>T</i><i><sub>H10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th11 High band time constant (<i>T</i><i><sub>H11</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th12 High band time constant (<i>T</i><i><sub>H12</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th2 High band time constant (<i>T</i><i><sub>H2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,01816.
+ * @param th3 High band time constant (<i>T</i><i><sub>H3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th4 High band time constant (<i>T</i><i><sub>H4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th5 High band time constant (<i>T</i><i><sub>H5</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th6 High band time constant (<i>T</i><i><sub>H6</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th7 High band time constant (<i>T</i><i><sub>H7</sub></i>) (&gt;= 0).
+ *        Typical value = 0,01816.
+ * @param th8 High band time constant (<i>T</i><i><sub>H8</sub></i>) (&gt;= 0).
+ *        Typical value = 0,02179.
+ * @param th9 High band time constant (<i>T</i><i><sub>H9</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti1 Intermediate band time constant (<i>T</i><i><sub>I1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,173.
+ * @param ti10 Intermediate band time constant (<i>T</i><i><sub>I10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti11 Intermediate band time constant (<i>T</i><i><sub>I11</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti12 Intermediate band time constant (<i>T</i><i><sub>I12</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti2 Intermediate band time constant (<i>T</i><i><sub>I2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,2075.
+ * @param ti3 Intermediate band time constant (<i>T</i><i><sub>I3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti4 Intermediate band time constant (<i>T</i><i><sub>I4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti5 Intermediate band time constant (<i>T</i><i><sub>I5</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti6 Intermediate band time constant (<i>T</i><i><sub>I6</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti7 Intermediate band time constant (<i>T</i><i><sub>I7</sub></i>) (&gt;= 0).
+ *        Typical value = 0,2075.
+ * @param ti8 Intermediate band time constant (<i>T</i><i><sub>I8</sub></i>) (&gt;= 0).
+ *        Typical value = 0,2491.
+ * @param ti9 Intermediate band time constant (<i>T</i><i><sub>I9</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl1 Low band time constant (<i>T</i><i><sub>L1</sub></i>) (&gt;= 0).
+ *        Typical value = 1,73.
+ * @param tl10 Low band time constant (<i>T</i><i><sub>L10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl11 Low band time constant (<i>T</i><i><sub>L11</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl12 Low band time constant (<i>T</i><i><sub>L12</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl2 Low band time constant (<i>T</i><i><sub>L2</sub></i>) (&gt;= 0).
+ *        Typical value = 2,075.
+ * @param tl3 Low band time constant (<i>T</i><i><sub>L3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl4 Low band time constant (<i>T</i><i><sub>L4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl5 Low band time constant (<i>T</i><i><sub>L5</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl6 Low band time constant (<i>T</i><i><sub>L6</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl7 Low band time constant (<i>T</i><i><sub>L7</sub></i>) (&gt;= 0).
+ *        Typical value = 2,075.
+ * @param tl8 Low band time constant (<i>T</i><i><sub>L8</sub></i>) (&gt;= 0).
+ *        Typical value = 2,491.
+ * @param tl9 Low band time constant (<i>T</i><i><sub>L9</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vhmax High band output maximum limit (<i>V</i><i><sub>Hmax</sub></i>) (&gt; PssIEEE4B.vhmin).
+ *        Typical value = 0,6.
+ * @param vhmin High band output minimum limit (<i>V</i><i><sub>Hmin</sub></i>) (&lt; PssIEEE4V.vhmax).
+ *        Typical value = -0,6.
+ * @param vimax Intermediate band output maximum limit (<i>V</i><i><sub>Imax</sub></i>) (&gt; PssIEEE4B.vimin).
+ *        Typical value = 0,6.
+ * @param vimin Intermediate band output minimum limit (<i>V</i><i><sub>Imin</sub></i>) (&lt; PssIEEE4B.vimax).
+ *        Typical value = -0,6.
+ * @param vlmax Low band output maximum limit (<i>V</i><i><sub>Lmax</sub></i>) (&gt; PssIEEE4B.vlmin).
+ *        Typical value = 0,075.
+ * @param vlmin Low band output minimum limit (<i>V</i><i><sub>Lmin</sub></i>) (&lt; PssIEEE4B.vlmax).
+ *        Typical value = -0,075.
+ * @param vstmax PSS output maximum limit (<i>V</i><i><sub>STmax</sub></i>) (&gt; PssIEEE4B.vstmin).
+ *        Typical value = 0,15.
+ * @param vstmin PSS output minimum limit (<i>V</i><i><sub>STmin</sub></i>) (&lt; PssIEEE4B.vstmax).
+ *        Typical value = -0,15.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -2801,8 +2736,8 @@ final case class PssIEEE4B
     vstmax: Double = 0.0,
     vstmin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -2828,18 +2763,13 @@ final case class PssIEEE4B
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssIEEE4B.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssIEEE4B.fields (position), value)
-
         emitelem (0, bwh1)
         emitelem (1, bwh2)
         emitelem (2, bwl1)
@@ -2909,18 +2839,17 @@ final case class PssIEEE4B
         emitelem (66, vstmin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssIEEE4B rdf:ID=\"%s\">\n%s\t</cim:PssIEEE4B>".format (id, export_fields)
+        "\t<cim:PssIEEE4B rdf:%s=\"%s\">\n%s\t</cim:PssIEEE4B>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssIEEE4B
-    extends
-        CIMParseable[PssIEEE4B]
+extends
+    CIMParseable[PssIEEE4B]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "bwh1",
         "bwh2",
         "bwl1",
@@ -2989,78 +2918,78 @@ object PssIEEE4B
         "vstmax",
         "vstmin"
     )
-    val bwh1: Fielder = parse_element (element (cls, fields (0)))
-    val bwh2: Fielder = parse_element (element (cls, fields (1)))
-    val bwl1: Fielder = parse_element (element (cls, fields (2)))
-    val bwl2: Fielder = parse_element (element (cls, fields (3)))
-    val kh: Fielder = parse_element (element (cls, fields (4)))
-    val kh1: Fielder = parse_element (element (cls, fields (5)))
-    val kh11: Fielder = parse_element (element (cls, fields (6)))
-    val kh17: Fielder = parse_element (element (cls, fields (7)))
-    val kh2: Fielder = parse_element (element (cls, fields (8)))
-    val ki: Fielder = parse_element (element (cls, fields (9)))
-    val ki1: Fielder = parse_element (element (cls, fields (10)))
-    val ki11: Fielder = parse_element (element (cls, fields (11)))
-    val ki17: Fielder = parse_element (element (cls, fields (12)))
-    val ki2: Fielder = parse_element (element (cls, fields (13)))
-    val kl: Fielder = parse_element (element (cls, fields (14)))
-    val kl1: Fielder = parse_element (element (cls, fields (15)))
-    val kl11: Fielder = parse_element (element (cls, fields (16)))
-    val kl17: Fielder = parse_element (element (cls, fields (17)))
-    val kl2: Fielder = parse_element (element (cls, fields (18)))
-    val omeganh1: Fielder = parse_element (element (cls, fields (19)))
-    val omeganh2: Fielder = parse_element (element (cls, fields (20)))
-    val omeganl1: Fielder = parse_element (element (cls, fields (21)))
-    val omeganl2: Fielder = parse_element (element (cls, fields (22)))
-    val th1: Fielder = parse_element (element (cls, fields (23)))
-    val th10: Fielder = parse_element (element (cls, fields (24)))
-    val th11: Fielder = parse_element (element (cls, fields (25)))
-    val th12: Fielder = parse_element (element (cls, fields (26)))
-    val th2: Fielder = parse_element (element (cls, fields (27)))
-    val th3: Fielder = parse_element (element (cls, fields (28)))
-    val th4: Fielder = parse_element (element (cls, fields (29)))
-    val th5: Fielder = parse_element (element (cls, fields (30)))
-    val th6: Fielder = parse_element (element (cls, fields (31)))
-    val th7: Fielder = parse_element (element (cls, fields (32)))
-    val th8: Fielder = parse_element (element (cls, fields (33)))
-    val th9: Fielder = parse_element (element (cls, fields (34)))
-    val ti1: Fielder = parse_element (element (cls, fields (35)))
-    val ti10: Fielder = parse_element (element (cls, fields (36)))
-    val ti11: Fielder = parse_element (element (cls, fields (37)))
-    val ti12: Fielder = parse_element (element (cls, fields (38)))
-    val ti2: Fielder = parse_element (element (cls, fields (39)))
-    val ti3: Fielder = parse_element (element (cls, fields (40)))
-    val ti4: Fielder = parse_element (element (cls, fields (41)))
-    val ti5: Fielder = parse_element (element (cls, fields (42)))
-    val ti6: Fielder = parse_element (element (cls, fields (43)))
-    val ti7: Fielder = parse_element (element (cls, fields (44)))
-    val ti8: Fielder = parse_element (element (cls, fields (45)))
-    val ti9: Fielder = parse_element (element (cls, fields (46)))
-    val tl1: Fielder = parse_element (element (cls, fields (47)))
-    val tl10: Fielder = parse_element (element (cls, fields (48)))
-    val tl11: Fielder = parse_element (element (cls, fields (49)))
-    val tl12: Fielder = parse_element (element (cls, fields (50)))
-    val tl2: Fielder = parse_element (element (cls, fields (51)))
-    val tl3: Fielder = parse_element (element (cls, fields (52)))
-    val tl4: Fielder = parse_element (element (cls, fields (53)))
-    val tl5: Fielder = parse_element (element (cls, fields (54)))
-    val tl6: Fielder = parse_element (element (cls, fields (55)))
-    val tl7: Fielder = parse_element (element (cls, fields (56)))
-    val tl8: Fielder = parse_element (element (cls, fields (57)))
-    val tl9: Fielder = parse_element (element (cls, fields (58)))
-    val vhmax: Fielder = parse_element (element (cls, fields (59)))
-    val vhmin: Fielder = parse_element (element (cls, fields (60)))
-    val vimax: Fielder = parse_element (element (cls, fields (61)))
-    val vimin: Fielder = parse_element (element (cls, fields (62)))
-    val vlmax: Fielder = parse_element (element (cls, fields (63)))
-    val vlmin: Fielder = parse_element (element (cls, fields (64)))
-    val vstmax: Fielder = parse_element (element (cls, fields (65)))
-    val vstmin: Fielder = parse_element (element (cls, fields (66)))
+    val bwh1: Fielder = parse_element (element (cls, fields(0)))
+    val bwh2: Fielder = parse_element (element (cls, fields(1)))
+    val bwl1: Fielder = parse_element (element (cls, fields(2)))
+    val bwl2: Fielder = parse_element (element (cls, fields(3)))
+    val kh: Fielder = parse_element (element (cls, fields(4)))
+    val kh1: Fielder = parse_element (element (cls, fields(5)))
+    val kh11: Fielder = parse_element (element (cls, fields(6)))
+    val kh17: Fielder = parse_element (element (cls, fields(7)))
+    val kh2: Fielder = parse_element (element (cls, fields(8)))
+    val ki: Fielder = parse_element (element (cls, fields(9)))
+    val ki1: Fielder = parse_element (element (cls, fields(10)))
+    val ki11: Fielder = parse_element (element (cls, fields(11)))
+    val ki17: Fielder = parse_element (element (cls, fields(12)))
+    val ki2: Fielder = parse_element (element (cls, fields(13)))
+    val kl: Fielder = parse_element (element (cls, fields(14)))
+    val kl1: Fielder = parse_element (element (cls, fields(15)))
+    val kl11: Fielder = parse_element (element (cls, fields(16)))
+    val kl17: Fielder = parse_element (element (cls, fields(17)))
+    val kl2: Fielder = parse_element (element (cls, fields(18)))
+    val omeganh1: Fielder = parse_element (element (cls, fields(19)))
+    val omeganh2: Fielder = parse_element (element (cls, fields(20)))
+    val omeganl1: Fielder = parse_element (element (cls, fields(21)))
+    val omeganl2: Fielder = parse_element (element (cls, fields(22)))
+    val th1: Fielder = parse_element (element (cls, fields(23)))
+    val th10: Fielder = parse_element (element (cls, fields(24)))
+    val th11: Fielder = parse_element (element (cls, fields(25)))
+    val th12: Fielder = parse_element (element (cls, fields(26)))
+    val th2: Fielder = parse_element (element (cls, fields(27)))
+    val th3: Fielder = parse_element (element (cls, fields(28)))
+    val th4: Fielder = parse_element (element (cls, fields(29)))
+    val th5: Fielder = parse_element (element (cls, fields(30)))
+    val th6: Fielder = parse_element (element (cls, fields(31)))
+    val th7: Fielder = parse_element (element (cls, fields(32)))
+    val th8: Fielder = parse_element (element (cls, fields(33)))
+    val th9: Fielder = parse_element (element (cls, fields(34)))
+    val ti1: Fielder = parse_element (element (cls, fields(35)))
+    val ti10: Fielder = parse_element (element (cls, fields(36)))
+    val ti11: Fielder = parse_element (element (cls, fields(37)))
+    val ti12: Fielder = parse_element (element (cls, fields(38)))
+    val ti2: Fielder = parse_element (element (cls, fields(39)))
+    val ti3: Fielder = parse_element (element (cls, fields(40)))
+    val ti4: Fielder = parse_element (element (cls, fields(41)))
+    val ti5: Fielder = parse_element (element (cls, fields(42)))
+    val ti6: Fielder = parse_element (element (cls, fields(43)))
+    val ti7: Fielder = parse_element (element (cls, fields(44)))
+    val ti8: Fielder = parse_element (element (cls, fields(45)))
+    val ti9: Fielder = parse_element (element (cls, fields(46)))
+    val tl1: Fielder = parse_element (element (cls, fields(47)))
+    val tl10: Fielder = parse_element (element (cls, fields(48)))
+    val tl11: Fielder = parse_element (element (cls, fields(49)))
+    val tl12: Fielder = parse_element (element (cls, fields(50)))
+    val tl2: Fielder = parse_element (element (cls, fields(51)))
+    val tl3: Fielder = parse_element (element (cls, fields(52)))
+    val tl4: Fielder = parse_element (element (cls, fields(53)))
+    val tl5: Fielder = parse_element (element (cls, fields(54)))
+    val tl6: Fielder = parse_element (element (cls, fields(55)))
+    val tl7: Fielder = parse_element (element (cls, fields(56)))
+    val tl8: Fielder = parse_element (element (cls, fields(57)))
+    val tl9: Fielder = parse_element (element (cls, fields(58)))
+    val vhmax: Fielder = parse_element (element (cls, fields(59)))
+    val vhmin: Fielder = parse_element (element (cls, fields(60)))
+    val vimax: Fielder = parse_element (element (cls, fields(61)))
+    val vimin: Fielder = parse_element (element (cls, fields(62)))
+    val vlmax: Fielder = parse_element (element (cls, fields(63)))
+    val vlmin: Fielder = parse_element (element (cls, fields(64)))
+    val vstmax: Fielder = parse_element (element (cls, fields(65)))
+    val vstmin: Fielder = parse_element (element (cls, fields(66)))
 
     def parse (context: CIMContext): PssIEEE4B =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0, 0, 0)
+        implicit val bitfields: Array[Int] = Array(0,0,0)
         val ret = PssIEEE4B (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (bwh1 (), 0)),
@@ -3219,7 +3148,7 @@ object PssIEEE4BSerializer extends CIMSerializer[PssIEEE4B]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssIEEE4B]): PssIEEE4B =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssIEEE4B (
             parent,
@@ -3300,28 +3229,28 @@ object PssIEEE4BSerializer extends CIMSerializer[PssIEEE4B]
  * PTI microprocessor-based stabilizer type 1.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param dtc                           Time step related to activation of controls (<i>deltatc</i>) (&gt;= 0).
- *                                      Typical value = 0,025.
- * @param dtf                           Time step frequency calculation (<i>deltatf</i>) (&gt;= 0).
- *                                      Typical value = 0,025.
- * @param dtp                           Time step active power calculation (<i>deltatp</i>) (&gt;= 0).
- *                                      Typical value = 0,0125.
- * @param k                             Gain (<i>K</i>).
- *                                      Typical value = 9.
- * @param m                             (<i>M</i>).  <i>M </i>= 2 x <i>H</i>.
- *                                      Typical value = 5.
- * @param t1                            Time constant (<i>T1</i>) (&gt;= 0).
- *                                      Typical value = 0,3.
- * @param t2                            Time constant (<i>T2</i>) (&gt;= 0).
- *                                      Typical value = 1.
- * @param t3                            Time constant (<i>T3</i>) (&gt;= 0).
- *                                      Typical value = 0,2.
- * @param t4                            Time constant (<i>T4</i>) (&gt;= 0).
- *                                      Typical value = 0,05.
- * @param tf                            Time constant (<i>Tf</i>) (&gt;= 0).
- *                                      Typical value = 0,2.
- * @param tp                            Time constant (<i>Tp</i>) (&gt;= 0).
- *                                      Typical value = 0,2.
+ * @param dtc Time step related to activation of controls (<i>deltatc</i>) (&gt;= 0).
+ *        Typical value = 0,025.
+ * @param dtf Time step frequency calculation (<i>deltatf</i>) (&gt;= 0).
+ *        Typical value = 0,025.
+ * @param dtp Time step active power calculation (<i>deltatp</i>) (&gt;= 0).
+ *        Typical value = 0,0125.
+ * @param k Gain (<i>K</i>).
+ *        Typical value = 9.
+ * @param m (<i>M</i>).  <i>M </i>= 2 x <i>H</i>.
+ *        Typical value = 5.
+ * @param t1 Time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t2 Time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param t3 Time constant (<i>T3</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param t4 Time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param tf Time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param tp Time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0,2.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -3341,8 +3270,8 @@ final case class PssPTIST1
     tf: Double = 0.0,
     tp: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -3368,18 +3297,13 @@ final case class PssPTIST1
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssPTIST1.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssPTIST1.fields (position), value)
-
         emitelem (0, dtc)
         emitelem (1, dtf)
         emitelem (2, dtp)
@@ -3393,18 +3317,17 @@ final case class PssPTIST1
         emitelem (10, tp)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssPTIST1 rdf:ID=\"%s\">\n%s\t</cim:PssPTIST1>".format (id, export_fields)
+        "\t<cim:PssPTIST1 rdf:%s=\"%s\">\n%s\t</cim:PssPTIST1>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssPTIST1
-    extends
-        CIMParseable[PssPTIST1]
+extends
+    CIMParseable[PssPTIST1]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "dtc",
         "dtf",
         "dtp",
@@ -3417,22 +3340,22 @@ object PssPTIST1
         "tf",
         "tp"
     )
-    val dtc: Fielder = parse_element (element (cls, fields (0)))
-    val dtf: Fielder = parse_element (element (cls, fields (1)))
-    val dtp: Fielder = parse_element (element (cls, fields (2)))
-    val k: Fielder = parse_element (element (cls, fields (3)))
-    val m: Fielder = parse_element (element (cls, fields (4)))
-    val t1: Fielder = parse_element (element (cls, fields (5)))
-    val t2: Fielder = parse_element (element (cls, fields (6)))
-    val t3: Fielder = parse_element (element (cls, fields (7)))
-    val t4: Fielder = parse_element (element (cls, fields (8)))
-    val tf: Fielder = parse_element (element (cls, fields (9)))
-    val tp: Fielder = parse_element (element (cls, fields (10)))
+    val dtc: Fielder = parse_element (element (cls, fields(0)))
+    val dtf: Fielder = parse_element (element (cls, fields(1)))
+    val dtp: Fielder = parse_element (element (cls, fields(2)))
+    val k: Fielder = parse_element (element (cls, fields(3)))
+    val m: Fielder = parse_element (element (cls, fields(4)))
+    val t1: Fielder = parse_element (element (cls, fields(5)))
+    val t2: Fielder = parse_element (element (cls, fields(6)))
+    val t3: Fielder = parse_element (element (cls, fields(7)))
+    val t4: Fielder = parse_element (element (cls, fields(8)))
+    val tf: Fielder = parse_element (element (cls, fields(9)))
+    val tp: Fielder = parse_element (element (cls, fields(10)))
 
     def parse (context: CIMContext): PssPTIST1 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PssPTIST1 (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (dtc (), 0)),
@@ -3479,7 +3402,7 @@ object PssPTIST1Serializer extends CIMSerializer[PssPTIST1]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssPTIST1]): PssPTIST1 =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssPTIST1 (
             parent,
@@ -3504,55 +3427,55 @@ object PssPTIST1Serializer extends CIMSerializer[PssPTIST1]
  * PTI microprocessor-based stabilizer type 3.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param a0                            Filter coefficient (<i>A0</i>).
- * @param a1                            Limiter (<i>Al</i>).
- * @param a2                            Filter coefficient (<i>A2</i>).
- * @param a3                            Filter coefficient (<i>A3</i>).
- * @param a4                            Filter coefficient (<i>A4</i>).
- * @param a5                            Filter coefficient (<i>A5</i>).
- * @param al                            Limiter (<i>Al</i>).
- * @param athres                        Threshold value above which output averaging will be bypassed (<i>Athres</i>).
- *                                      Typical value = 0,005.
- * @param b0                            Filter coefficient (<i>B0</i>).
- * @param b1                            Filter coefficient (<i>B1</i>).
- * @param b2                            Filter coefficient (<i>B2</i>).
- * @param b3                            Filter coefficient (<i>B3</i>).
- * @param b4                            Filter coefficient (<i>B4</i>).
- * @param b5                            Filter coefficient (<i>B5</i>).
- * @param dl                            Limiter (<i>Dl</i>).
- * @param dtc                           Time step related to activation of controls (<i>deltatc</i>) (&gt;= 0).
- *                                      Typical value = 0,025 (0,03 for 50 Hz).
- * @param dtf                           Time step frequency calculation (<i>deltatf</i>) (&gt;= 0).
- *                                      Typical value = 0,025 (0,03 for 50 Hz).
- * @param dtp                           Time step active power calculation (<i>deltatp</i>) (&gt;= 0).
- *                                      Typical value = 0,0125  (0,015 for 50 Hz).
- * @param isw                           Digital/analogue output switch (<i>Isw</i>).
- *                                      true = produce analogue output
- *                                      false = convert to digital output, using tap selection table.
- * @param k                             Gain (<i>K</i>).
- *                                      Typical value = 9.
- * @param lthres                        Threshold value (<i>Lthres</i>).
- * @param m                             (<i>M</i>).  <i>M</i> = 2 x <i>H</i>.
- *                                      Typical value = 5.
- * @param nav                           Number of control outputs to average (<i>NAV</i>) (1 &lt;=  <i>NAV</i> &lt;= 16).
- *                                      Typical value = 4.
- * @param ncl                           Number of counts at limit to active limit function (<i>NCL</i>) (&gt; 0).
- * @param ncr                           Number of counts until reset after limit function is triggered (<i>NCR</i>).
- * @param pmin                          (<i>Pmin</i>).
- * @param t1                            Time constant (<i>T1</i>) (&gt;= 0).
- *                                      Typical value = 0,3.
- * @param t2                            Time constant (<i>T2</i>) (&gt;= 0).
- *                                      Typical value = 1.
- * @param t3                            Time constant (<i>T3</i>) (&gt;= 0).
- *                                      Typical value = 0,2.
- * @param t4                            Time constant (<i>T4</i>) (&gt;= 0).
- *                                      Typical value = 0,05.
- * @param t5                            Time constant (<i>T5</i>) (&gt;= 0).
- * @param t6                            Time constant (<i>T6</i>) (&gt;= 0).
- * @param tf                            Time constant (<i>Tf</i>) (&gt;= 0).
- *                                      Typical value = 0,2.
- * @param tp                            Time constant (<i>Tp</i>) (&gt;= 0).
- *                                      Typical value = 0,2.
+ * @param a0 Filter coefficient (<i>A0</i>).
+ * @param a1 Limiter (<i>Al</i>).
+ * @param a2 Filter coefficient (<i>A2</i>).
+ * @param a3 Filter coefficient (<i>A3</i>).
+ * @param a4 Filter coefficient (<i>A4</i>).
+ * @param a5 Filter coefficient (<i>A5</i>).
+ * @param al Limiter (<i>Al</i>).
+ * @param athres Threshold value above which output averaging will be bypassed (<i>Athres</i>).
+ *        Typical value = 0,005.
+ * @param b0 Filter coefficient (<i>B0</i>).
+ * @param b1 Filter coefficient (<i>B1</i>).
+ * @param b2 Filter coefficient (<i>B2</i>).
+ * @param b3 Filter coefficient (<i>B3</i>).
+ * @param b4 Filter coefficient (<i>B4</i>).
+ * @param b5 Filter coefficient (<i>B5</i>).
+ * @param dl Limiter (<i>Dl</i>).
+ * @param dtc Time step related to activation of controls (<i>deltatc</i>) (&gt;= 0).
+ *        Typical value = 0,025 (0,03 for 50 Hz).
+ * @param dtf Time step frequency calculation (<i>deltatf</i>) (&gt;= 0).
+ *        Typical value = 0,025 (0,03 for 50 Hz).
+ * @param dtp Time step active power calculation (<i>deltatp</i>) (&gt;= 0).
+ *        Typical value = 0,0125  (0,015 for 50 Hz).
+ * @param isw Digital/analogue output switch (<i>Isw</i>).
+ *        true = produce analogue output
+ *        false = convert to digital output, using tap selection table.
+ * @param k Gain (<i>K</i>).
+ *        Typical value = 9.
+ * @param lthres Threshold value (<i>Lthres</i>).
+ * @param m (<i>M</i>).  <i>M</i> = 2 x <i>H</i>.
+ *        Typical value = 5.
+ * @param nav Number of control outputs to average (<i>NAV</i>) (1 &lt;=  <i>NAV</i> &lt;= 16).
+ *        Typical value = 4.
+ * @param ncl Number of counts at limit to active limit function (<i>NCL</i>) (&gt; 0).
+ * @param ncr Number of counts until reset after limit function is triggered (<i>NCR</i>).
+ * @param pmin (<i>Pmin</i>).
+ * @param t1 Time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t2 Time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param t3 Time constant (<i>T3</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param t4 Time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param t5 Time constant (<i>T5</i>) (&gt;= 0).
+ * @param t6 Time constant (<i>T6</i>) (&gt;= 0).
+ * @param tf Time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param tp Time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0,2.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -3595,8 +3518,8 @@ final case class PssPTIST3
     tf: Double = 0.0,
     tp: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -3622,18 +3545,13 @@ final case class PssPTIST3
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssPTIST3.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssPTIST3.fields (position), value)
-
         emitelem (0, a0)
         emitelem (1, a1)
         emitelem (2, a2)
@@ -3670,18 +3588,17 @@ final case class PssPTIST3
         emitelem (33, tp)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssPTIST3 rdf:ID=\"%s\">\n%s\t</cim:PssPTIST3>".format (id, export_fields)
+        "\t<cim:PssPTIST3 rdf:%s=\"%s\">\n%s\t</cim:PssPTIST3>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssPTIST3
-    extends
-        CIMParseable[PssPTIST3]
+extends
+    CIMParseable[PssPTIST3]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "a0",
         "a1",
         "a2",
@@ -3717,45 +3634,45 @@ object PssPTIST3
         "tf",
         "tp"
     )
-    val a0: Fielder = parse_element (element (cls, fields (0)))
-    val a1: Fielder = parse_element (element (cls, fields (1)))
-    val a2: Fielder = parse_element (element (cls, fields (2)))
-    val a3: Fielder = parse_element (element (cls, fields (3)))
-    val a4: Fielder = parse_element (element (cls, fields (4)))
-    val a5: Fielder = parse_element (element (cls, fields (5)))
-    val al: Fielder = parse_element (element (cls, fields (6)))
-    val athres: Fielder = parse_element (element (cls, fields (7)))
-    val b0: Fielder = parse_element (element (cls, fields (8)))
-    val b1: Fielder = parse_element (element (cls, fields (9)))
-    val b2: Fielder = parse_element (element (cls, fields (10)))
-    val b3: Fielder = parse_element (element (cls, fields (11)))
-    val b4: Fielder = parse_element (element (cls, fields (12)))
-    val b5: Fielder = parse_element (element (cls, fields (13)))
-    val dl: Fielder = parse_element (element (cls, fields (14)))
-    val dtc: Fielder = parse_element (element (cls, fields (15)))
-    val dtf: Fielder = parse_element (element (cls, fields (16)))
-    val dtp: Fielder = parse_element (element (cls, fields (17)))
-    val isw: Fielder = parse_element (element (cls, fields (18)))
-    val k: Fielder = parse_element (element (cls, fields (19)))
-    val lthres: Fielder = parse_element (element (cls, fields (20)))
-    val m: Fielder = parse_element (element (cls, fields (21)))
-    val nav: Fielder = parse_element (element (cls, fields (22)))
-    val ncl: Fielder = parse_element (element (cls, fields (23)))
-    val ncr: Fielder = parse_element (element (cls, fields (24)))
-    val pmin: Fielder = parse_element (element (cls, fields (25)))
-    val t1: Fielder = parse_element (element (cls, fields (26)))
-    val t2: Fielder = parse_element (element (cls, fields (27)))
-    val t3: Fielder = parse_element (element (cls, fields (28)))
-    val t4: Fielder = parse_element (element (cls, fields (29)))
-    val t5: Fielder = parse_element (element (cls, fields (30)))
-    val t6: Fielder = parse_element (element (cls, fields (31)))
-    val tf: Fielder = parse_element (element (cls, fields (32)))
-    val tp: Fielder = parse_element (element (cls, fields (33)))
+    val a0: Fielder = parse_element (element (cls, fields(0)))
+    val a1: Fielder = parse_element (element (cls, fields(1)))
+    val a2: Fielder = parse_element (element (cls, fields(2)))
+    val a3: Fielder = parse_element (element (cls, fields(3)))
+    val a4: Fielder = parse_element (element (cls, fields(4)))
+    val a5: Fielder = parse_element (element (cls, fields(5)))
+    val al: Fielder = parse_element (element (cls, fields(6)))
+    val athres: Fielder = parse_element (element (cls, fields(7)))
+    val b0: Fielder = parse_element (element (cls, fields(8)))
+    val b1: Fielder = parse_element (element (cls, fields(9)))
+    val b2: Fielder = parse_element (element (cls, fields(10)))
+    val b3: Fielder = parse_element (element (cls, fields(11)))
+    val b4: Fielder = parse_element (element (cls, fields(12)))
+    val b5: Fielder = parse_element (element (cls, fields(13)))
+    val dl: Fielder = parse_element (element (cls, fields(14)))
+    val dtc: Fielder = parse_element (element (cls, fields(15)))
+    val dtf: Fielder = parse_element (element (cls, fields(16)))
+    val dtp: Fielder = parse_element (element (cls, fields(17)))
+    val isw: Fielder = parse_element (element (cls, fields(18)))
+    val k: Fielder = parse_element (element (cls, fields(19)))
+    val lthres: Fielder = parse_element (element (cls, fields(20)))
+    val m: Fielder = parse_element (element (cls, fields(21)))
+    val nav: Fielder = parse_element (element (cls, fields(22)))
+    val ncl: Fielder = parse_element (element (cls, fields(23)))
+    val ncr: Fielder = parse_element (element (cls, fields(24)))
+    val pmin: Fielder = parse_element (element (cls, fields(25)))
+    val t1: Fielder = parse_element (element (cls, fields(26)))
+    val t2: Fielder = parse_element (element (cls, fields(27)))
+    val t3: Fielder = parse_element (element (cls, fields(28)))
+    val t4: Fielder = parse_element (element (cls, fields(29)))
+    val t5: Fielder = parse_element (element (cls, fields(30)))
+    val t6: Fielder = parse_element (element (cls, fields(31)))
+    val tf: Fielder = parse_element (element (cls, fields(32)))
+    val tp: Fielder = parse_element (element (cls, fields(33)))
 
     def parse (context: CIMContext): PssPTIST3 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0, 0)
+        implicit val bitfields: Array[Int] = Array(0,0)
         val ret = PssPTIST3 (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (a0 (), 0)),
@@ -3848,7 +3765,7 @@ object PssPTIST3Serializer extends CIMSerializer[PssPTIST3]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssPTIST3]): PssPTIST3 =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssPTIST3 (
             parent,
@@ -3898,26 +3815,26 @@ object PssPTIST3Serializer extends CIMSerializer[PssPTIST3]
  * This power system stabilizer is intended to be used together with excitation system type ExcRQB, which is primarily used in nuclear or thermal generating units.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param kdpm                          Lead lag gain (<i>KDPM</i>).
- *                                      Typical value = 0,185.
- * @param ki2                           Speed input gain (<i>Ki2</i>).
- *                                      Typical value = 3,43.
- * @param ki3                           Electrical power input gain (<i>Ki3</i>).
- *                                      Typical value = -11,45.
- * @param ki4                           Mechanical power input gain (<i>Ki4</i>).
- *                                      Typical value = 11,86.
- * @param sibv                          Speed deadband (<i>SIBV</i>).
- *                                      Typical value = 0,006.
- * @param t4f                           Lead lag time constant (<i>T4F</i>) (&gt;= 0).
- *                                      Typical value = 0,045.
- * @param t4m                           Input time constant (<i>T4M</i>) (&gt;= 0).
- *                                      Typical value = 5.
- * @param t4mom                         Speed time constant (<i>T4MOM</i>) (&gt;= 0).
- *                                      Typical value = 1,27.
- * @param tomd                          Speed delay (<i>TOMD</i>) (&gt;= 0).
- *                                      Typical value = 0,02.
- * @param tomsl                         Speed time constant (<i>TOMSL</i>) (&gt;= 0).
- *                                      Typical value = 0,04.
+ * @param kdpm Lead lag gain (<i>KDPM</i>).
+ *        Typical value = 0,185.
+ * @param ki2 Speed input gain (<i>Ki2</i>).
+ *        Typical value = 3,43.
+ * @param ki3 Electrical power input gain (<i>Ki3</i>).
+ *        Typical value = -11,45.
+ * @param ki4 Mechanical power input gain (<i>Ki4</i>).
+ *        Typical value = 11,86.
+ * @param sibv Speed deadband (<i>SIBV</i>).
+ *        Typical value = 0,006.
+ * @param t4f Lead lag time constant (<i>T4F</i>) (&gt;= 0).
+ *        Typical value = 0,045.
+ * @param t4m Input time constant (<i>T4M</i>) (&gt;= 0).
+ *        Typical value = 5.
+ * @param t4mom Speed time constant (<i>T4MOM</i>) (&gt;= 0).
+ *        Typical value = 1,27.
+ * @param tomd Speed delay (<i>TOMD</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param tomsl Speed time constant (<i>TOMSL</i>) (&gt;= 0).
+ *        Typical value = 0,04.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -3936,8 +3853,8 @@ final case class PssRQB
     tomd: Double = 0.0,
     tomsl: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -3963,18 +3880,13 @@ final case class PssRQB
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssRQB.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssRQB.fields (position), value)
-
         emitelem (0, kdpm)
         emitelem (1, ki2)
         emitelem (2, ki3)
@@ -3987,18 +3899,17 @@ final case class PssRQB
         emitelem (9, tomsl)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssRQB rdf:ID=\"%s\">\n%s\t</cim:PssRQB>".format (id, export_fields)
+        "\t<cim:PssRQB rdf:%s=\"%s\">\n%s\t</cim:PssRQB>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssRQB
-    extends
-        CIMParseable[PssRQB]
+extends
+    CIMParseable[PssRQB]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "kdpm",
         "ki2",
         "ki3",
@@ -4010,21 +3921,21 @@ object PssRQB
         "tomd",
         "tomsl"
     )
-    val kdpm: Fielder = parse_element (element (cls, fields (0)))
-    val ki2: Fielder = parse_element (element (cls, fields (1)))
-    val ki3: Fielder = parse_element (element (cls, fields (2)))
-    val ki4: Fielder = parse_element (element (cls, fields (3)))
-    val sibv: Fielder = parse_element (element (cls, fields (4)))
-    val t4f: Fielder = parse_element (element (cls, fields (5)))
-    val t4m: Fielder = parse_element (element (cls, fields (6)))
-    val t4mom: Fielder = parse_element (element (cls, fields (7)))
-    val tomd: Fielder = parse_element (element (cls, fields (8)))
-    val tomsl: Fielder = parse_element (element (cls, fields (9)))
+    val kdpm: Fielder = parse_element (element (cls, fields(0)))
+    val ki2: Fielder = parse_element (element (cls, fields(1)))
+    val ki3: Fielder = parse_element (element (cls, fields(2)))
+    val ki4: Fielder = parse_element (element (cls, fields(3)))
+    val sibv: Fielder = parse_element (element (cls, fields(4)))
+    val t4f: Fielder = parse_element (element (cls, fields(5)))
+    val t4m: Fielder = parse_element (element (cls, fields(6)))
+    val t4mom: Fielder = parse_element (element (cls, fields(7)))
+    val tomd: Fielder = parse_element (element (cls, fields(8)))
+    val tomsl: Fielder = parse_element (element (cls, fields(9)))
 
     def parse (context: CIMContext): PssRQB =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PssRQB (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (kdpm (), 0)),
@@ -4069,7 +3980,7 @@ object PssRQBSerializer extends CIMSerializer[PssRQB]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssRQB]): PssRQB =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssRQB (
             parent,
@@ -4093,28 +4004,28 @@ object PssRQBSerializer extends CIMSerializer[PssRQB]
  * Power sensitive stabilizer model.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param kx                            Gain (<i>Kx</i>).
- *                                      Typical value = 2,7.
- * @param ta                            Time constant (<i>Ta</i>) (&gt;= 0).
- *                                      Typical value = 0,37.
- * @param tb                            Time constant (<i>Tb</i>) (&gt;= 0).
- *                                      Typical value = 0,37.
- * @param tc                            Time constant (<i>Tc</i>) (&gt;= 0).
- *                                      Typical value = 0,035.
- * @param td                            Time constant (<i>Td</i>) (&gt;= 0).
- *                                      Typical value = 0,0.
- * @param te                            Time constant (<i>Te</i>) (&gt;= 0).
- *                                      Typical value = 0,0169.
- * @param tt                            Time constant (<i>Tt</i>) (&gt;= 0).
- *                                      Typical value = 0,18.
- * @param tx1                           Reset time constant (<i>Tx1</i>) (&gt;= 0).
- *                                      Typical value = 0,035.
- * @param tx2                           Time constant (<i>Tx2</i>) (&gt;= 0).
- *                                      Typical value = 5,0.
- * @param vsmax                         Limiter (<i>Vsmax</i>) (&gt; PssSB4.vsmin).
- *                                      Typical value = 0,062.
- * @param vsmin                         Limiter (<i>Vsmin</i>) (&lt; PssSB4.vsmax).
- *                                      Typical value = -0,062.
+ * @param kx Gain (<i>Kx</i>).
+ *        Typical value = 2,7.
+ * @param ta Time constant (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 0,37.
+ * @param tb Time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0,37.
+ * @param tc Time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0,035.
+ * @param td Time constant (<i>Td</i>) (&gt;= 0).
+ *        Typical value = 0,0.
+ * @param te Time constant (<i>Te</i>) (&gt;= 0).
+ *        Typical value = 0,0169.
+ * @param tt Time constant (<i>Tt</i>) (&gt;= 0).
+ *        Typical value = 0,18.
+ * @param tx1 Reset time constant (<i>Tx1</i>) (&gt;= 0).
+ *        Typical value = 0,035.
+ * @param tx2 Time constant (<i>Tx2</i>) (&gt;= 0).
+ *        Typical value = 5,0.
+ * @param vsmax Limiter (<i>Vsmax</i>) (&gt; PssSB4.vsmin).
+ *        Typical value = 0,062.
+ * @param vsmin Limiter (<i>Vsmin</i>) (&lt; PssSB4.vsmax).
+ *        Typical value = -0,062.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -4134,8 +4045,8 @@ final case class PssSB4
     vsmax: Double = 0.0,
     vsmin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4161,18 +4072,13 @@ final case class PssSB4
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssSB4.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssSB4.fields (position), value)
-
         emitelem (0, kx)
         emitelem (1, ta)
         emitelem (2, tb)
@@ -4186,18 +4092,17 @@ final case class PssSB4
         emitelem (10, vsmin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssSB4 rdf:ID=\"%s\">\n%s\t</cim:PssSB4>".format (id, export_fields)
+        "\t<cim:PssSB4 rdf:%s=\"%s\">\n%s\t</cim:PssSB4>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssSB4
-    extends
-        CIMParseable[PssSB4]
+extends
+    CIMParseable[PssSB4]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "kx",
         "ta",
         "tb",
@@ -4210,22 +4115,22 @@ object PssSB4
         "vsmax",
         "vsmin"
     )
-    val kx: Fielder = parse_element (element (cls, fields (0)))
-    val ta: Fielder = parse_element (element (cls, fields (1)))
-    val tb: Fielder = parse_element (element (cls, fields (2)))
-    val tc: Fielder = parse_element (element (cls, fields (3)))
-    val td: Fielder = parse_element (element (cls, fields (4)))
-    val te: Fielder = parse_element (element (cls, fields (5)))
-    val tt: Fielder = parse_element (element (cls, fields (6)))
-    val tx1: Fielder = parse_element (element (cls, fields (7)))
-    val tx2: Fielder = parse_element (element (cls, fields (8)))
-    val vsmax: Fielder = parse_element (element (cls, fields (9)))
-    val vsmin: Fielder = parse_element (element (cls, fields (10)))
+    val kx: Fielder = parse_element (element (cls, fields(0)))
+    val ta: Fielder = parse_element (element (cls, fields(1)))
+    val tb: Fielder = parse_element (element (cls, fields(2)))
+    val tc: Fielder = parse_element (element (cls, fields(3)))
+    val td: Fielder = parse_element (element (cls, fields(4)))
+    val te: Fielder = parse_element (element (cls, fields(5)))
+    val tt: Fielder = parse_element (element (cls, fields(6)))
+    val tx1: Fielder = parse_element (element (cls, fields(7)))
+    val tx2: Fielder = parse_element (element (cls, fields(8)))
+    val vsmax: Fielder = parse_element (element (cls, fields(9)))
+    val vsmin: Fielder = parse_element (element (cls, fields(10)))
 
     def parse (context: CIMContext): PssSB4 =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PssSB4 (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (kx (), 0)),
@@ -4272,7 +4177,7 @@ object PssSB4Serializer extends CIMSerializer[PssSB4]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssSB4]): PssSB4 =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssSB4 (
             parent,
@@ -4300,32 +4205,32 @@ object PssSB4Serializer extends CIMSerializer[PssSB4]
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param k                             Main gain (<i>K</i>).
- *                                      Typical value = 1.
- * @param k0                            Gain 0 (<i>K0</i>).
- *                                      Typical value = 0,012.
- * @param k1                            Gain 1 (<i>K1</i>).
- *                                      Typical value = 0,488.
- * @param k2                            Gain 2 (<i>K2</i>).
- *                                      Typical value = 0,064.
- * @param k3                            Gain 3 (<i>K3</i>).
- *                                      Typical value = 0,224.
- * @param k4                            Gain 4 (<i>K4</i>).
- *                                      Typical value = 0,1.
- * @param t1                            Time constant 1 (<i>T1</i>) (&gt; 0).
- *                                      Typical value = 0,076.
- * @param t2                            Time constant 2 (<i>T2</i>) (&gt; 0).
- *                                      Typical value = 0,086.
- * @param t3                            Time constant 3 (<i>T3</i>) (&gt; 0).
- *                                      Typical value = 1,068.
- * @param t4                            Time constant 4 (<i>T4</i>) (&gt; 0).
- *                                      Typical value = 1,913.
- * @param td                            Input time constant (<i>T</i><i><sub>d</sub></i>) (&gt;= 0).
- *                                      Typical value = 10.
- * @param vsmax                         Output maximum limit (<i>Vsmax</i>) (&gt; PssSH.vsmin).
- *                                      Typical value = 0,1.
- * @param vsmin                         Output minimum limit (<i>Vsmin</i>) (&lt; PssSH.vsmax).
- *                                      Typical value = -0,1.
+ * @param k Main gain (<i>K</i>).
+ *        Typical value = 1.
+ * @param k0 Gain 0 (<i>K0</i>).
+ *        Typical value = 0,012.
+ * @param k1 Gain 1 (<i>K1</i>).
+ *        Typical value = 0,488.
+ * @param k2 Gain 2 (<i>K2</i>).
+ *        Typical value = 0,064.
+ * @param k3 Gain 3 (<i>K3</i>).
+ *        Typical value = 0,224.
+ * @param k4 Gain 4 (<i>K4</i>).
+ *        Typical value = 0,1.
+ * @param t1 Time constant 1 (<i>T1</i>) (&gt; 0).
+ *        Typical value = 0,076.
+ * @param t2 Time constant 2 (<i>T2</i>) (&gt; 0).
+ *        Typical value = 0,086.
+ * @param t3 Time constant 3 (<i>T3</i>) (&gt; 0).
+ *        Typical value = 1,068.
+ * @param t4 Time constant 4 (<i>T4</i>) (&gt; 0).
+ *        Typical value = 1,913.
+ * @param td Input time constant (<i>T</i><i><sub>d</sub></i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param vsmax Output maximum limit (<i>Vsmax</i>) (&gt; PssSH.vsmin).
+ *        Typical value = 0,1.
+ * @param vsmin Output minimum limit (<i>Vsmin</i>) (&lt; PssSH.vsmax).
+ *        Typical value = -0,1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -4347,8 +4252,8 @@ final case class PssSH
     vsmax: Double = 0.0,
     vsmin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4374,18 +4279,13 @@ final case class PssSH
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssSH.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssSH.fields (position), value)
-
         emitelem (0, k)
         emitelem (1, k0)
         emitelem (2, k1)
@@ -4401,18 +4301,17 @@ final case class PssSH
         emitelem (12, vsmin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssSH rdf:ID=\"%s\">\n%s\t</cim:PssSH>".format (id, export_fields)
+        "\t<cim:PssSH rdf:%s=\"%s\">\n%s\t</cim:PssSH>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssSH
-    extends
-        CIMParseable[PssSH]
+extends
+    CIMParseable[PssSH]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "k",
         "k0",
         "k1",
@@ -4427,24 +4326,24 @@ object PssSH
         "vsmax",
         "vsmin"
     )
-    val k: Fielder = parse_element (element (cls, fields (0)))
-    val k0: Fielder = parse_element (element (cls, fields (1)))
-    val k1: Fielder = parse_element (element (cls, fields (2)))
-    val k2: Fielder = parse_element (element (cls, fields (3)))
-    val k3: Fielder = parse_element (element (cls, fields (4)))
-    val k4: Fielder = parse_element (element (cls, fields (5)))
-    val t1: Fielder = parse_element (element (cls, fields (6)))
-    val t2: Fielder = parse_element (element (cls, fields (7)))
-    val t3: Fielder = parse_element (element (cls, fields (8)))
-    val t4: Fielder = parse_element (element (cls, fields (9)))
-    val td: Fielder = parse_element (element (cls, fields (10)))
-    val vsmax: Fielder = parse_element (element (cls, fields (11)))
-    val vsmin: Fielder = parse_element (element (cls, fields (12)))
+    val k: Fielder = parse_element (element (cls, fields(0)))
+    val k0: Fielder = parse_element (element (cls, fields(1)))
+    val k1: Fielder = parse_element (element (cls, fields(2)))
+    val k2: Fielder = parse_element (element (cls, fields(3)))
+    val k3: Fielder = parse_element (element (cls, fields(4)))
+    val k4: Fielder = parse_element (element (cls, fields(5)))
+    val t1: Fielder = parse_element (element (cls, fields(6)))
+    val t2: Fielder = parse_element (element (cls, fields(7)))
+    val t3: Fielder = parse_element (element (cls, fields(8)))
+    val t4: Fielder = parse_element (element (cls, fields(9)))
+    val td: Fielder = parse_element (element (cls, fields(10)))
+    val vsmax: Fielder = parse_element (element (cls, fields(11)))
+    val vsmin: Fielder = parse_element (element (cls, fields(12)))
 
     def parse (context: CIMContext): PssSH =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PssSH (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (k (), 0)),
@@ -4495,7 +4394,7 @@ object PssSHSerializer extends CIMSerializer[PssSH]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssSH]): PssSH =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssSH (
             parent,
@@ -4522,28 +4421,28 @@ object PssSHSerializer extends CIMSerializer[PssSH]
  * Slovakian PSS with three inputs.
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param k1                            Gain <i>P</i> (<i>K</i><i><sub>1</sub></i>).
- *                                      Typical value = -0,3.
- * @param k2                            Gain <i>f</i><i><sub>E</sub></i><i> </i>(<i>K</i><i><sub>2</sub></i>).
- *                                      Typical value = -0,15.
- * @param k3                            Gain <i>I</i><i><sub>f</sub></i><i> </i>(<i>K</i><i><sub>3</sub></i>).
- *                                      Typical value = 10.
- * @param t1                            Denominator time constant (<i>T</i><i><sub>1</sub></i>) (&gt; 0,005).
- *                                      Typical value = 0,3.
- * @param t2                            Filter time constant (<i>T</i><i><sub>2</sub></i>) (&gt; 0,005).
- *                                      Typical value = 0,35.
- * @param t3                            Denominator time constant (<i>T</i><i><sub>3</sub></i>) (&gt; 0,005).
- *                                      Typical value = 0,22.
- * @param t4                            Filter time constant (<i>T</i><i><sub>4</sub></i>) (&gt; 0,005).
- *                                      Typical value = 0,02.
- * @param t5                            Denominator time constant (<i>T</i><i><sub>5</sub></i>) (&gt; 0,005).
- *                                      Typical value = 0,02.
- * @param t6                            Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt; 0,005).
- *                                      Typical value = 0,02.
- * @param vsmax                         Stabilizer output maximum limit (<i>V</i><i><sub>SMAX</sub></i>) (&gt; PssSK.vsmin).
- *                                      Typical value = 0,4.
- * @param vsmin                         Stabilizer output minimum limit (<i>V</i><i><sub>SMIN</sub></i>) (&lt; PssSK.vsmax).
- *                                      Typical value = -0.4.
+ * @param k1 Gain <i>P</i> (<i>K</i><i><sub>1</sub></i>).
+ *        Typical value = -0,3.
+ * @param k2 Gain <i>f</i><i><sub>E</sub></i><i> </i>(<i>K</i><i><sub>2</sub></i>).
+ *        Typical value = -0,15.
+ * @param k3 Gain <i>I</i><i><sub>f</sub></i><i> </i>(<i>K</i><i><sub>3</sub></i>).
+ *        Typical value = 10.
+ * @param t1 Denominator time constant (<i>T</i><i><sub>1</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,3.
+ * @param t2 Filter time constant (<i>T</i><i><sub>2</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,35.
+ * @param t3 Denominator time constant (<i>T</i><i><sub>3</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,22.
+ * @param t4 Filter time constant (<i>T</i><i><sub>4</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,02.
+ * @param t5 Denominator time constant (<i>T</i><i><sub>5</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,02.
+ * @param t6 Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,02.
+ * @param vsmax Stabilizer output maximum limit (<i>V</i><i><sub>SMAX</sub></i>) (&gt; PssSK.vsmin).
+ *        Typical value = 0,4.
+ * @param vsmin Stabilizer output minimum limit (<i>V</i><i><sub>SMIN</sub></i>) (&lt; PssSK.vsmax).
+ *        Typical value = -0.4.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -4563,8 +4462,8 @@ final case class PssSK
     vsmax: Double = 0.0,
     vsmin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4590,18 +4489,13 @@ final case class PssSK
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssSK.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssSK.fields (position), value)
-
         emitelem (0, k1)
         emitelem (1, k2)
         emitelem (2, k3)
@@ -4615,18 +4509,17 @@ final case class PssSK
         emitelem (10, vsmin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssSK rdf:ID=\"%s\">\n%s\t</cim:PssSK>".format (id, export_fields)
+        "\t<cim:PssSK rdf:%s=\"%s\">\n%s\t</cim:PssSK>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssSK
-    extends
-        CIMParseable[PssSK]
+extends
+    CIMParseable[PssSK]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "k1",
         "k2",
         "k3",
@@ -4639,22 +4532,22 @@ object PssSK
         "vsmax",
         "vsmin"
     )
-    val k1: Fielder = parse_element (element (cls, fields (0)))
-    val k2: Fielder = parse_element (element (cls, fields (1)))
-    val k3: Fielder = parse_element (element (cls, fields (2)))
-    val t1: Fielder = parse_element (element (cls, fields (3)))
-    val t2: Fielder = parse_element (element (cls, fields (4)))
-    val t3: Fielder = parse_element (element (cls, fields (5)))
-    val t4: Fielder = parse_element (element (cls, fields (6)))
-    val t5: Fielder = parse_element (element (cls, fields (7)))
-    val t6: Fielder = parse_element (element (cls, fields (8)))
-    val vsmax: Fielder = parse_element (element (cls, fields (9)))
-    val vsmin: Fielder = parse_element (element (cls, fields (10)))
+    val k1: Fielder = parse_element (element (cls, fields(0)))
+    val k2: Fielder = parse_element (element (cls, fields(1)))
+    val k3: Fielder = parse_element (element (cls, fields(2)))
+    val t1: Fielder = parse_element (element (cls, fields(3)))
+    val t2: Fielder = parse_element (element (cls, fields(4)))
+    val t3: Fielder = parse_element (element (cls, fields(5)))
+    val t4: Fielder = parse_element (element (cls, fields(6)))
+    val t5: Fielder = parse_element (element (cls, fields(7)))
+    val t6: Fielder = parse_element (element (cls, fields(8)))
+    val vsmax: Fielder = parse_element (element (cls, fields(9)))
+    val vsmin: Fielder = parse_element (element (cls, fields(10)))
 
     def parse (context: CIMContext): PssSK =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PssSK (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (k1 (), 0)),
@@ -4701,7 +4594,7 @@ object PssSKSerializer extends CIMSerializer[PssSK]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssSK]): PssSK =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssSK (
             parent,
@@ -4729,22 +4622,22 @@ object PssSKSerializer extends CIMSerializer[PssSK]
  * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param hlim                          Stabilizer output limiter (<i>H</i><i><sub>LIM</sub></i>).
- *                                      Typical value = 0,5.
- * @param k2                            Gain (<i>K2</i>).
- *                                      Typical value = 1,0.
- * @param k3                            Gain (<i>K3</i>).
- *                                      Typical value = 0,25.
- * @param k4                            Gain (<i>K4</i>).
- *                                      Typical value = 0,075.
- * @param k5                            Gain (<i>K5</i>).
- *                                      Typical value = 2,5.
- * @param t2                            Time constant (<i>T2</i>).
- *                                      Typical value = 4,0.
- * @param t3                            Time constant (<i>T3</i>).
- *                                      Typical value = 2,0.
- * @param t5                            Time constant (<i>T5</i>).
- *                                      Typical value = 4,5.
+ * @param hlim Stabilizer output limiter (<i>H</i><i><sub>LIM</sub></i>).
+ *        Typical value = 0,5.
+ * @param k2 Gain (<i>K2</i>).
+ *        Typical value = 1,0.
+ * @param k3 Gain (<i>K3</i>).
+ *        Typical value = 0,25.
+ * @param k4 Gain (<i>K4</i>).
+ *        Typical value = 0,075.
+ * @param k5 Gain (<i>K5</i>).
+ *        Typical value = 2,5.
+ * @param t2 Time constant (<i>T2</i>).
+ *        Typical value = 4,0.
+ * @param t3 Time constant (<i>T3</i>).
+ *        Typical value = 2,0.
+ * @param t5 Time constant (<i>T5</i>).
+ *        Typical value = 4,5.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -4761,8 +4654,8 @@ final case class PssSTAB2A
     t3: Double = 0.0,
     t5: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4788,18 +4681,13 @@ final case class PssSTAB2A
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssSTAB2A.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssSTAB2A.fields (position), value)
-
         emitelem (0, hlim)
         emitelem (1, k2)
         emitelem (2, k3)
@@ -4810,18 +4698,17 @@ final case class PssSTAB2A
         emitelem (7, t5)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssSTAB2A rdf:ID=\"%s\">\n%s\t</cim:PssSTAB2A>".format (id, export_fields)
+        "\t<cim:PssSTAB2A rdf:%s=\"%s\">\n%s\t</cim:PssSTAB2A>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssSTAB2A
-    extends
-        CIMParseable[PssSTAB2A]
+extends
+    CIMParseable[PssSTAB2A]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "hlim",
         "k2",
         "k3",
@@ -4831,19 +4718,19 @@ object PssSTAB2A
         "t3",
         "t5"
     )
-    val hlim: Fielder = parse_element (element (cls, fields (0)))
-    val k2: Fielder = parse_element (element (cls, fields (1)))
-    val k3: Fielder = parse_element (element (cls, fields (2)))
-    val k4: Fielder = parse_element (element (cls, fields (3)))
-    val k5: Fielder = parse_element (element (cls, fields (4)))
-    val t2: Fielder = parse_element (element (cls, fields (5)))
-    val t3: Fielder = parse_element (element (cls, fields (6)))
-    val t5: Fielder = parse_element (element (cls, fields (7)))
+    val hlim: Fielder = parse_element (element (cls, fields(0)))
+    val k2: Fielder = parse_element (element (cls, fields(1)))
+    val k3: Fielder = parse_element (element (cls, fields(2)))
+    val k4: Fielder = parse_element (element (cls, fields(3)))
+    val k5: Fielder = parse_element (element (cls, fields(4)))
+    val t2: Fielder = parse_element (element (cls, fields(5)))
+    val t3: Fielder = parse_element (element (cls, fields(6)))
+    val t5: Fielder = parse_element (element (cls, fields(7)))
 
     def parse (context: CIMContext): PssSTAB2A =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PssSTAB2A (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (hlim (), 0)),
@@ -4884,7 +4771,7 @@ object PssSTAB2ASerializer extends CIMSerializer[PssSTAB2A]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssSTAB2A]): PssSTAB2A =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssSTAB2A (
             parent,
@@ -4906,42 +4793,42 @@ object PssSTAB2ASerializer extends CIMSerializer[PssSTAB2A]
  * Dual input power system stabilizer, based on IEEE type 2, with modified output limiter defined by WECC (Western Electricity Coordinating Council, USA).
  *
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param inputSignal1Type              Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than PssWECC.inputSignal2Type).
- *                                      Typical value = rotorAngularFrequencyDeviation.
- * @param inputSignal2Type              Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, busVoltageDerivative - shall be different than PssWECC.inputSignal1Type).
- *                                      Typical value = busVoltageDerivative.
- * @param k1                            Input signal 1 gain (<i>K</i><i><sub>1</sub></i>).
- *                                      Typical value = 1,13.
- * @param k2                            Input signal 2 gain (<i>K</i><i><sub>2</sub></i>).
- *                                      Typical value = 0,0.
- * @param t1                            Input signal 1 transducer time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,037.
- * @param t10                           Lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param t2                            Input signal 2 transducer time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
- *                                      Typical value = 0,0.
- * @param t3                            Stabilizer washout time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
- *                                      Typical value = 9,5.
- * @param t4                            Stabilizer washout time lag constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
- *                                      Typical value = 9,5.
- * @param t5                            Lead time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
- *                                      Typical value = 1,7.
- * @param t6                            Lag time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
- *                                      Typical value = 1,5.
- * @param t7                            Lead time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
- *                                      Typical value = 1,7.
- * @param t8                            Lag time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
- *                                      Typical value = 1,5.
- * @param t9                            Lead time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
- *                                      Typical value = 0.
- * @param vcl                           Minimum value for voltage compensator output (<i>V</i><i><sub>CL</sub></i>).
- *                                      Typical value = 0.
- * @param vcu                           Maximum value for voltage compensator output (<i>V</i><i><sub>CU</sub></i>).
- *                                      Typical value = 0.
- * @param vsmax                         Maximum output signal (<i>Vsmax</i>) (&gt; PssWECC.vsmin).
- *                                      Typical value = 0,05.
- * @param vsmin                         Minimum output signal (<i>Vsmin</i>) (&lt; PssWECC.vsmax).
- *                                      Typical value = -0,05.
+ * @param inputSignal1Type Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than PssWECC.inputSignal2Type).
+ *        Typical value = rotorAngularFrequencyDeviation.
+ * @param inputSignal2Type Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, busVoltageDerivative - shall be different than PssWECC.inputSignal1Type).
+ *        Typical value = busVoltageDerivative.
+ * @param k1 Input signal 1 gain (<i>K</i><i><sub>1</sub></i>).
+ *        Typical value = 1,13.
+ * @param k2 Input signal 2 gain (<i>K</i><i><sub>2</sub></i>).
+ *        Typical value = 0,0.
+ * @param t1 Input signal 1 transducer time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,037.
+ * @param t10 Lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t2 Input signal 2 transducer time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,0.
+ * @param t3 Stabilizer washout time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *        Typical value = 9,5.
+ * @param t4 Stabilizer washout time lag constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ *        Typical value = 9,5.
+ * @param t5 Lead time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ *        Typical value = 1,7.
+ * @param t6 Lag time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ *        Typical value = 1,5.
+ * @param t7 Lead time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
+ *        Typical value = 1,7.
+ * @param t8 Lag time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
+ *        Typical value = 1,5.
+ * @param t9 Lead time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vcl Minimum value for voltage compensator output (<i>V</i><i><sub>CL</sub></i>).
+ *        Typical value = 0.
+ * @param vcu Maximum value for voltage compensator output (<i>V</i><i><sub>CU</sub></i>).
+ *        Typical value = 0.
+ * @param vsmax Maximum output signal (<i>Vsmax</i>) (&gt; PssWECC.vsmin).
+ *        Typical value = 0,05.
+ * @param vsmin Minimum output signal (<i>Vsmin</i>) (&lt; PssWECC.vsmax).
+ *        Typical value = -0,05.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
@@ -4968,8 +4855,8 @@ final case class PssWECC
     vsmax: Double = 0.0,
     vsmin: Double = 0.0
 )
-    extends
-        Element
+extends
+    Element
 {
     /**
      * Return the superclass object.
@@ -4995,20 +4882,14 @@ final case class PssWECC
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row =
-    {
-        clone ().asInstanceOf [Row]
-    }
+    override def copy (): Row = { clone ().asInstanceOf[Row] }
 
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssWECC.cls
-
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssWECC.fields (position), value)
-
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PssWECC.fields (position), value)
-
         emitattr (0, inputSignal1Type)
         emitattr (1, inputSignal2Type)
         emitelem (2, k1)
@@ -5029,18 +4910,17 @@ final case class PssWECC
         emitelem (17, vsmin)
         s.toString
     }
-
     override def export: String =
     {
-        "\t<cim:PssWECC rdf:ID=\"%s\">\n%s\t</cim:PssWECC>".format (id, export_fields)
+        "\t<cim:PssWECC rdf:%s=\"%s\">\n%s\t</cim:PssWECC>".format (if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object PssWECC
-    extends
-        CIMParseable[PssWECC]
+extends
+    CIMParseable[PssWECC]
 {
-    override val fields: Array[String] = Array [String](
+    override val fields: Array[String] = Array[String] (
         "inputSignal1Type",
         "inputSignal2Type",
         "k1",
@@ -5060,29 +4940,29 @@ object PssWECC
         "vsmax",
         "vsmin"
     )
-    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields (0)))
-    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields (1)))
-    val k1: Fielder = parse_element (element (cls, fields (2)))
-    val k2: Fielder = parse_element (element (cls, fields (3)))
-    val t1: Fielder = parse_element (element (cls, fields (4)))
-    val t10: Fielder = parse_element (element (cls, fields (5)))
-    val t2: Fielder = parse_element (element (cls, fields (6)))
-    val t3: Fielder = parse_element (element (cls, fields (7)))
-    val t4: Fielder = parse_element (element (cls, fields (8)))
-    val t5: Fielder = parse_element (element (cls, fields (9)))
-    val t6: Fielder = parse_element (element (cls, fields (10)))
-    val t7: Fielder = parse_element (element (cls, fields (11)))
-    val t8: Fielder = parse_element (element (cls, fields (12)))
-    val t9: Fielder = parse_element (element (cls, fields (13)))
-    val vcl: Fielder = parse_element (element (cls, fields (14)))
-    val vcu: Fielder = parse_element (element (cls, fields (15)))
-    val vsmax: Fielder = parse_element (element (cls, fields (16)))
-    val vsmin: Fielder = parse_element (element (cls, fields (17)))
+    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val k1: Fielder = parse_element (element (cls, fields(2)))
+    val k2: Fielder = parse_element (element (cls, fields(3)))
+    val t1: Fielder = parse_element (element (cls, fields(4)))
+    val t10: Fielder = parse_element (element (cls, fields(5)))
+    val t2: Fielder = parse_element (element (cls, fields(6)))
+    val t3: Fielder = parse_element (element (cls, fields(7)))
+    val t4: Fielder = parse_element (element (cls, fields(8)))
+    val t5: Fielder = parse_element (element (cls, fields(9)))
+    val t6: Fielder = parse_element (element (cls, fields(10)))
+    val t7: Fielder = parse_element (element (cls, fields(11)))
+    val t8: Fielder = parse_element (element (cls, fields(12)))
+    val t9: Fielder = parse_element (element (cls, fields(13)))
+    val vcl: Fielder = parse_element (element (cls, fields(14)))
+    val vcu: Fielder = parse_element (element (cls, fields(15)))
+    val vsmax: Fielder = parse_element (element (cls, fields(16)))
+    val vsmin: Fielder = parse_element (element (cls, fields(17)))
 
     def parse (context: CIMContext): PssWECC =
     {
         implicit val ctx: CIMContext = context
-        implicit val bitfields: Array[Int] = Array (0)
+        implicit val bitfields: Array[Int] = Array(0)
         val ret = PssWECC (
             PowerSystemStabilizerDynamics.parse (context),
             mask (inputSignal1Type (), 0),
@@ -5143,7 +5023,7 @@ object PssWECCSerializer extends CIMSerializer[PssWECC]
 
     def read (kryo: Kryo, input: Input, cls: Class[PssWECC]): PssWECC =
     {
-        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf [PowerSystemStabilizerDynamics])
+        val parent = PowerSystemStabilizerDynamicsSerializer.read (kryo, input, classOf[PowerSystemStabilizerDynamics])
         implicit val bitfields: Array[Int] = readBitfields (input)
         val obj = PssWECC (
             parent,
