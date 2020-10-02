@@ -511,7 +511,7 @@ case class JavaScript (parser: ModelParser, options: CIMToolOptions) extends Cod
                                     }
 
                                 }
-                                s.append ("                temp = %s[document.getElementById (id + \"_%s\").value]; if (temp) obj[\"%s\"] = \"http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; else delete obj[\"%s\"];\n".format (qualified, attribute.name, attribute.name, attribute.typ, attribute.name))
+                                s.append ("                temp = %s[document.getElementById (id + \"_%s\").value]; if (temp) obj[\"%s\"] = \"http://iec.ch/TC57/2016/CIM-schema-cim17#%s.\" + temp; else delete obj[\"%s\"];\n".format (qualified, attribute.name, attribute.name, attribute.typ, attribute.name))
                             }
                             else
                                 attribute.typ match

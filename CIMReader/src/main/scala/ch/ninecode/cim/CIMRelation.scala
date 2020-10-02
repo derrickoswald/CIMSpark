@@ -67,6 +67,8 @@ class CIMRelation (
     val _Normalize: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_normalize", "false").toBoolean
     // check for deduplication option
     val _DeDup: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_deduplication", "false").toBoolean
+    // check for change set merge option
+    val _Changes: Boolean = parameters.getOrElse ("ch.ninecode.cim.apply_changesets", "false").toBoolean
     // check for edge creation option
     val _Edges: Boolean = parameters.getOrElse ("ch.ninecode.cim.make_edges", "false").toBoolean
     // check for ISU join option
@@ -240,6 +242,13 @@ class CIMRelation (
             {
                 val dedup = new CIMDeDup (spark, _StorageLevel)
                 rdd = dedup.do_deduplicate ()
+                ret = rdd.asInstanceOf [RDD[Row]]
+            }
+
+            if (_Changes)
+            {
+                val change = new CIMChange (spark, _StorageLevel)
+                rdd = change.apply_changes
                 ret = rdd.asInstanceOf [RDD[Row]]
             }
 

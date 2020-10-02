@@ -20,7 +20,6 @@ class CIMCacheSuite extends ch.ninecode.SparkSuite
 
         // erase the unpacked file and cache
         deleteRecursive (new File (s"${FILE_DEPOT}DemoData.rdf"))
-        deleteRecursive (new File (s"${FILE_DEPOT}DemoData_cache"))
         ret
     }
 

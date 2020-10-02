@@ -105,4 +105,16 @@ class SparkSuite extends FixtureAnyFunSuite with Unzip
         val name = classname.substring (classname.lastIndexOf (".") + 1)
         get (name)
     }
+
+    def using[T <: AutoCloseable, R] (resource: T)(block: T => R): R =
+    {
+        try
+        {
+            block (resource)
+        }
+        finally
+        {
+            resource.close ()
+        }
+    }
 }
