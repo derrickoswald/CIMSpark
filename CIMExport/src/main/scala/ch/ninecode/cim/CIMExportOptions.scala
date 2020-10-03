@@ -52,8 +52,10 @@ final case class CIMExportOptions
     sparkopts: Map[String, String] = Map (
         "spark.graphx.pregel.checkpointInterval" -> "8",
         "spark.serializer" -> "org.apache.spark.serializer.KryoSerializer",
+        "spark.kryo.registrator" -> "ch.ninecode.cim.CIMRegistrator",
         "spark.ui.showConsoleProgress" -> "false",
-        "spark.debug.maxToStringFields" -> "100"),
+        "spark.debug.maxToStringFields" -> "250",
+        "spark.sql.catalog.casscatalog" -> "com.datastax.spark.connector.datasource.CassandraCatalog"),
     cimopts: Map[String, String] = Map (
         "ch.ninecode.cim.do_topo_islands" -> "true"
     ),

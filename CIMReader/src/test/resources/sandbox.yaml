@@ -68,10 +68,13 @@ services:
       MAX_HEAP_SIZE: "1G"
       HEAP_NEWSIZE: "24M"
   beach_node:
+    container_name: beach_worker
     image: derrickoswald/cassandra-docker
     command: cassandra -f
     environment:
       CASSANDRA_SEEDS: beach
+      MAX_HEAP_SIZE: "1G"
+      HEAP_NEWSIZE: "24M"
     links:
       - beach
 
