@@ -76,9 +76,10 @@ trait CIMRDD
      * @param log   A logger for error messages.
      * @tparam T The type of objects contained in the named RDD.
      * @return The typed RDD, e.g. <code>RDD[T]</code>.
-     * @example                                                   The RDD of all elements is somewhat special,
-     *                                                            currently it is named Elements (plural), so this method must be used:
-     * {{{val elements: RDD[Element] = get[Element]("Elements")}}}.
+     * @example If there were two CIM files read in and stored with names having suffix _1 and _2,
+     *          this would get both of the RDD[Element] :
+     * {{{val elements_1: RDD[Element] = get[Element]("Element_1")}}}
+     * {{{val elements_2: RDD[Element] = get[Element]("Element_2")}}}
      *
      */
     def get[T: ClassTag] (name: String)(implicit spark: SparkSession, log: Logger): RDD[T] =

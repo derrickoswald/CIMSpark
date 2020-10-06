@@ -158,7 +158,7 @@ class CIMRelation (
         var ret: RDD[Row] = null
 
         // remove any existing RDD created by this relation
-        spark.sparkContext.getPersistentRDDs.find (_._2.name == "Elements").foreach (
+        spark.sparkContext.getPersistentRDDs.find (_._2.name == "Element").foreach (
             x =>
             {
                 val (_, old) = x
@@ -190,7 +190,7 @@ class CIMRelation (
             {
                 log.info (s"reading cache: ${_Cache}")
                 val rdd: RDD[Element] = spark.sparkContext.objectFile (_Cache)
-                put (rdd, "Elements", true)
+                put (rdd, true)
                 make_tables (rdd)
                 ret = rdd.asInstanceOf [RDD[Row]]
             }
@@ -218,7 +218,7 @@ class CIMRelation (
                     classOf [String],
                     classOf [Element]).values
 
-            put (rdd, "Elements", true)
+            put (rdd, true)
             ret = rdd.asInstanceOf [RDD[Row]]
 
             // about processing if requested

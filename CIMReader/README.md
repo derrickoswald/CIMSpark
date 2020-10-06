@@ -103,7 +103,7 @@ This should print out the Scala shell welcome screen with cool ASCII art:
 ```
 Ivy Default Cache set to: /root/.ivy2/cache
 The jars for the packages stored in: /root/.ivy2/jars
-:: loading settings :: url = jar:file:/root/spark/spark-3.0.0-bin-hadoop3.2/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
+:: loading settings :: url = jar:file:/root/spark/spark-3.0.1-bin-hadoop3.2/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
 ch.ninecode.cim#CIMReader added as a dependency
 :: resolving dependencies :: org.apache.spark#spark-submit-parent-69ac0dfd-a56d-46a5-9b45-b9754495a263;1.0
 	confs: [default]
@@ -129,7 +129,7 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 3.0.0
+   /___/ .__/\_,_/_/ /_/\_\   version 3.0.1
       /_/
          
 Using Scala version 2.12.10 (OpenJDK 64-Bit Server VM, Java 11.0.7)

@@ -28,5 +28,6 @@ class TestSuite extends Suites (
     new CIMAboutSuite,
     new CIMNormalizeSuite,
     new CIMCacheSuite,
-    new CIMSerializeSuite
+    new CIMSerializeSuite,
+    new CIMDiffSuite
 )

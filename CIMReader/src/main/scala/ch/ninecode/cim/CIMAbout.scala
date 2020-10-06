@@ -77,7 +77,7 @@ class CIMAbout (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
      * Since RDD are immutable, another copy is created containing only
      * primary elements (elements with rdf:ID attributes) and this replaces
      * the current RDD[Element] referenced by the persistent
-     * RDD registry. The old element RDD is renamed to "about_Elements".
+     * RDD registry.
      * Multiple (duplicate) primary elements each have all rdf:about elements
      * merged into them (no de-duplication).
      *
@@ -88,7 +88,7 @@ class CIMAbout (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
     def do_about (): RDD[Element] =
     {
         // get the elements RDD
-        val elements = getOrElse [Element]("Elements")
+        val elements = getOrElse [Element]
 
         // get the elements flagged as "rdf:about"
         val about_elements = elements.filter (_.about).groupBy (_.id)
@@ -103,7 +103,7 @@ class CIMAbout (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
             val new_elements = element_groups.map (merge)
 
             // swap the old Elements RDD for the new one
-            put (new_elements, "Elements", false)
+            put (new_elements, false)
 
             new_elements
         }

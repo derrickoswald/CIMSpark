@@ -432,7 +432,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession, options: CIMTopolog
     def makeGraph (): Graph[CIMVD, CIMEdgeData] =
     {
         // get Element that are ConductingEquipment
-        val equipment = getOrElse [Element]("Elements").filter (conductingEquipment (_).isDefined)
+        val equipment = getOrElse [Element].filter (conductingEquipment (_).isDefined)
 
         // get the terminals with ConnectivityNode keyed by equipment
         val terms = getOrElse [Terminal]
@@ -868,7 +868,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession, options: CIMTopolog
             graph = identifyIslands (graph)
 
             // get the terminals keyed by equipment with equipment
-            val elements = getOrElse [Element]("Elements").keyBy (_.id)
+            val elements = getOrElse [Element].keyBy (_.id)
             val terms = getOrElse [Terminal].keyBy (_.ConductingEquipment).join (elements).values
             // map each graph vertex to the terminals
             val vertices = getOrElse [ConnectivityNode].map (x => (asVertexId (x.id), x))
@@ -978,13 +978,13 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession, options: CIMTopolog
             union (new_terminals.asInstanceOf [RDD[Element]])
 
         // replace elements in Elements
-        val old_elements = getOrElse [Element]("Elements")
+        val old_elements = getOrElse [Element]
         val new_elements = old_elements.keyBy (_.id).subtract (oldelem.keyBy (_.id)).values.union (newelem)
 
         // swap the old Elements RDD for the new one
         if (options.debug && log.isDebugEnabled)
             log.debug (s"RDD[Element]")
-        put (new_elements, "Elements", true)
+        put (new_elements, true)
 
         log.info ("finished Network Topology Processing")
         new_elements
@@ -1009,7 +1009,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession, options: CIMTopolog
             if (options.identify_islands && islands.isEmpty)
                 process
             else
-                get [Element]("Elements")
+                get [Element]
         }
     }
 }

@@ -306,7 +306,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
             union (updated_locations.asInstanceOf [RDD[Element]])
 
         // replace elements in Elements
-        val old_elements = getOrElse [Element]("Elements")
+        val old_elements = getOrElse [Element]
         val new_elements = old_elements.keyBy (_.id).leftOuterJoin (newelem.keyBy (_.id)).
             values.flatMap (
             (arg: (Element, Option[Element])) =>
@@ -318,7 +318,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         )
 
         // swap the old Elements RDD for the new one
-        put (new_elements, "Elements", false)
+        put (new_elements, false)
 
         new_elements
     }

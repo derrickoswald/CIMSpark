@@ -89,7 +89,7 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
      *
      * Since RDD are immutable, another copy is created containing only unique elements
      * and this replaces the current RDD[Element] referenced by the persistent
-     * RDD registry. The old element RDD is renamed to "duplicate_Elements".
+     * RDD registry.
      *
      * The new RDD is cached and checkpointed (if checkpointing is enabled by the Spark context having a CheckpointDir).
      *
@@ -100,13 +100,13 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
         log.info ("eliminating duplicates")
 
         // get the elements RDD
-        val elements = getOrElse [Element]("Elements")
+        val elements = getOrElse [Element]
 
         // deduplicate
         val new_elements = elements.keyBy (_.id).groupByKey ().values.map (deduplicate)
 
         // swap the old Elements RDD for the new one
-        put (new_elements, "Elements", false)
+        put (new_elements, false)
 
         new_elements
     }

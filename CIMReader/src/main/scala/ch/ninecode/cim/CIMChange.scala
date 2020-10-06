@@ -286,7 +286,7 @@ case class CIMChange (spark: SparkSession, storage: StorageLevel = StorageLevel.
     def apply_changes: RDD[Element] =
     {
         // get the elements RDD
-        var elements = getOrElse [Element]("Elements")
+        var elements = getOrElse [Element]
 
         // get the ChangeSet(s)
         val changes = elements.filter (x => changeset_classes.contains (x.baseclass)) // reduce the work as much as possible

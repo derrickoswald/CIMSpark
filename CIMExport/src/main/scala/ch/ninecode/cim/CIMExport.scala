@@ -529,7 +529,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      */
     def exportAll (filename: String): Unit =
     {
-        val elements = getOrElse [Element]("Elements")
+        val elements = getOrElse [Element]
         export (elements, filename)
     }
 
@@ -642,7 +642,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         // make a mapping of mRID to mRID
         // "if you include me, you have to include him" and vice-versa for some relations
         val relationships = classes.map (x => (x.name, x.relations)).toMap
-        val ying_yang = getOrElse [Element]("Elements").flatMap (dependents (relationships, stop.map (_._1))).persist (storage)
+        val ying_yang = getOrElse [Element].flatMap (dependents (relationships, stop.map (_._1))).persist (storage)
 
         // done is a list of keyed PairRDD, the keys are mRID_Island and each pair is an mRID and the Island it belongs to
         var done: List[RDD[KeyedItem]] = List ()
@@ -685,7 +685,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
             .flatMap (p => p._2.map (q => (p._1, q)))
             .persist (storage)
 
-        val ret = getOrElse [Element]("Elements").keyBy (_.id).join (all_done).values.map (_.swap).persist (storage)
+        val ret = getOrElse [Element].keyBy (_.id).join (all_done).values.map (_.swap).persist (storage)
         log.info (s"${ret.count} elements")
         done.foreach (_.unpersist (false))
         ying_yang.unpersist (false)

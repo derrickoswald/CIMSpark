@@ -167,7 +167,7 @@ class CIMNormalize (spark: SparkSession, storage: StorageLevel = StorageLevel.ME
     def do_normalization (): RDD[Element] =
     {
         // get the elements RDD keyed by id
-        val old_elements = getOrElse [Element]("Elements")
+        val old_elements = getOrElse [Element]
         val elements = old_elements.keyBy (_.id)
         val all = elements.count
 
@@ -197,7 +197,7 @@ class CIMNormalize (spark: SparkSession, storage: StorageLevel = StorageLevel.ME
         val new_elements: RDD[Element] = cleaned.subtractByKey (fixed2).union (fixed2).values
 
         // swap the old Elements RDD for the new one
-        put (new_elements, "Elements", true)
+        put (new_elements, true)
 
         new_elements
     }

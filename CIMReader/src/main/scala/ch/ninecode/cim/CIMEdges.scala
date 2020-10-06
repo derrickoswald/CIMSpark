@@ -388,7 +388,7 @@ class CIMEdges (spark: SparkSession, storage: StorageLevel)
         log.info ("making Edges RDD")
 
         // get the elements RDD
-        val elements = getOrElse [Element]("Elements")
+        val elements = getOrElse [Element]
 
         // get the terminals
         val terminals = getOrElse [Terminal]
