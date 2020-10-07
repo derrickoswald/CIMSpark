@@ -3,9 +3,9 @@ package ch.ninecode.cim
 import java.io.File
 import java.io.PrintWriter
 
-import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
+import ch.ninecode.model.ACLineSegment
 import ch.ninecode.model.EnergyConsumer
 import ch.ninecode.model.EquivalentNetwork
 import ch.ninecode.model.Fuse
@@ -106,16 +106,53 @@ case class CIMDiffSuite () extends ch.ninecode.SparkSuite
             val deletions = 5
             val additions = 1
             assert (demo - deletions + additions == count, "# elements after applying ChangeSet")
-            val fuses = spark.sparkContext.getPersistentRDDs.find (_._2.name == "Fuse").map (_._2).head.asInstanceOf[RDD[Fuse]]
+
+            val fuses = get[Fuse]
             assert (fuses.filter (_.id == "FUS0053").count () == 0, "FUS0053 is deleted")
-            val networks = spark.sparkContext.getPersistentRDDs.find (_._2.name == "EquivalentNetwork").map (_._2).head.asInstanceOf[RDD[EquivalentNetwork]]
+            val networks = get[EquivalentNetwork]
             assert (networks.count == 1, "one network added")
             assert (networks.filter (_.id == "Network1").count () == 1, "Network1 is added")
-            val consumers = spark.sparkContext.getPersistentRDDs.find (_._2.name == "EnergyConsumer").map (_._2).head.asInstanceOf[RDD[EnergyConsumer]]
+            val consumers = get[EnergyConsumer]
             val user19 = consumers.filter (_.id == "USR0019").collect
             assert (user19.length == 1, "USR0019 is still present")
             assert (user19(0).p == 14000.0, "USR0019 p")
             assert (user19(0).q == 1200.0, "USR0019 q")
     }
 
+    test ("two RDD sets")
+    {
+        implicit spark: SparkSession =>
+
+            val TEMPLATE1 = "%s_1"
+            val TEMPLATE2 = "%s_2"
+
+            val filename = s"${FILE_DEPOT}DemoData.rdf"
+            val elements1 = readFile (filename, Map ("ch.ninecode.cim.name_template" -> TEMPLATE1)).count
+            val elements2 = readFile (filename, Map ("ch.ninecode.cim.name_template" -> TEMPLATE2)).count
+            assert (elements1 == elements2, "same contents")
+
+//            val names = spark
+//                .sparkContext
+//                .getPersistentRDDs
+//                .map (_._2.name)
+//                .take (2000)
+//                .toArray
+//                .sorted
+//            println (names.mkString ("\n"))
+
+            val lines1 = get[ACLineSegment](TEMPLATE1.format ("ACLineSegment"))
+            val lines2 = get[ACLineSegment](TEMPLATE2.format ("ACLineSegment"))
+            assert (lines1.count == lines2.count, "same line count")
+            val pairs1 = lines1.keyBy (_.id).leftOuterJoin (lines2.keyBy (_.id)).values
+            assert (pairs1.flatMap ({ case (_, Some (_)) => None case x => Some (x) }).isEmpty, "all right in left")
+            val pairs2 = lines2.keyBy (_.id).leftOuterJoin (lines1.keyBy (_.id)).values
+            assert (pairs2.flatMap ({ case (_, Some (_)) => None case x => Some (x) }).isEmpty, "all left in right")
+
+            // delete one of them
+            lines2.name = null
+            lines2.unpersist (true)
+
+            assert (get[ACLineSegment](TEMPLATE2.format ("ACLineSegment")) == null, "deleted")
+            assert (get[ACLineSegment](TEMPLATE1.format ("ACLineSegment")) != null, "not deleted")
+    }
 }

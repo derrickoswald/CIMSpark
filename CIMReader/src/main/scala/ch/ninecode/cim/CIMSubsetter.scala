@@ -73,23 +73,26 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
     /**
      * Create the Dataframe for Typeclass A.
      *
-     * @param context The SQL context for creating the views.
-     * @param rdd     The raw Element RDD to subset.
-     * @param storage The storage level to persist the subset RDD with.
+     * @param context  the SQL context for creating the views
+     * @param rdd      the raw Element RDD to subset
+     * @param storage  the storage level to persist the subset RDD with
+     * @param template the name template, String.format for the name of the RDD and Dataset view
      */
-    def save (context: SQLContext, rdd: rddtype, storage: StorageLevel): Unit =
+    def save (context: SQLContext, rdd: rddtype, storage: StorageLevel, template: String): Unit =
     {
+        val name = template.format (cls)
+
         // remove any previously named RDD
-        val matched = context.sparkContext.getPersistentRDDs.filter (like (cls))
+        val matched = context.sparkContext.getPersistentRDDs.filter (like (name))
         matched.foreach (_._2.setName (null).unpersist (true))
 
-        rdd.name = cls
+        rdd.name = name
         val _ = rdd.persist (storage)
         if (context.sparkSession.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
         val df = context.sparkSession.createDataFrame (rdd)(tag)
         val altered_schema = modify_schema (runtime_class, df.schema)
         val data_frame = context.sparkSession.createDataFrame (rdd.asInstanceOf [RDD[Row]], altered_schema)
-        data_frame.createOrReplaceTempView (cls)
+        data_frame.createOrReplaceTempView (name)
     }
 
     /**
@@ -110,13 +113,14 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
     /**
      * Create the Dataframe for Typeclass A.
      *
-     * @param context The SQL context for creating the views.
-     * @param rdd     The raw Element RDD to subset.
-     * @param storage The storage level to persist the subset RDD with.
+     * @param context  the SQL context for creating the views
+     * @param rdd      the raw Element RDD to subset
+     * @param storage  the storage level to persist the subset RDD with
+     * @param template the name template, String.format for the name of the RDD and Dataset view
      */
-    def make (context: SQLContext, rdd: RDD[Element], storage: StorageLevel): Unit =
+    def make (context: SQLContext, rdd: RDD[Element], storage: StorageLevel, template: String): Unit =
     {
         val subrdd = rdd.flatMap (asThisClass)
-        save (context, subrdd, storage)
+        save (context, subrdd, storage, template)
     }
 }

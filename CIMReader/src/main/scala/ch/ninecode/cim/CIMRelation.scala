@@ -93,11 +93,14 @@ class CIMRelation (
     val _SplitSize: Long = parameters.getOrElse ("ch.ninecode.cim.split_maxsize", "67108864").toLong
     // check for cache option
     val _Cache: String = parameters.getOrElse ("ch.ninecode.cim.cache", "")
+    // get the name template if any
+    val _NameTemplate: String = parameters.getOrElse ("ch.ninecode.cim.name_template", "%s")
 
     log.info (s"parameters: ${parameters.toString}")
     log.info (s"storage: ${_StorageLevel.description}")
 
     def sqlContext: SQLContext = spark.sqlContext
+    override def pattern: String = _NameTemplate
 
     // just to get a schema
     case class dummy
@@ -140,8 +143,8 @@ class CIMRelation (
             {
                 if (names.contains (subsetter.cls))
                 {
-                    log.debug (s"building ${subsetter.cls}")
-                    subsetter.make (spark.sqlContext, rdd, _StorageLevel)
+                    log.debug (s"building ${applyPattern (subsetter.cls)}")
+                    subsetter.make (spark.sqlContext, rdd, _StorageLevel, _NameTemplate)
                 }
             }
         )
@@ -158,7 +161,8 @@ class CIMRelation (
         var ret: RDD[Row] = null
 
         // remove any existing RDD created by this relation
-        spark.sparkContext.getPersistentRDDs.find (_._2.name == "Element").foreach (
+        val target = applyPattern ("Element")
+        spark.sparkContext.getPersistentRDDs.find (_._2.name == target).foreach (
             x =>
             {
                 val (_, old) = x
@@ -169,8 +173,9 @@ class CIMRelation (
                         (set1, set2) => set1.union (set2)
                     )
                 // remove subclass RDD if they exist (they should)
-                for (name <- names)
-                    spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
+                for (name <- names;
+                     target = applyPattern (name))
+                    spark.sparkContext.getPersistentRDDs.find (_._2.name == target) match
                     {
                         case Some ((_: Int, existing: RDD[_])) =>
                             existing.setName (null).unpersist (true)
@@ -247,7 +252,7 @@ class CIMRelation (
 
             if (_Changes)
             {
-                val change = new CIMChange (spark, _StorageLevel)
+                val change = CIMChange (spark, _StorageLevel)
                 rdd = change.apply_changes
                 ret = rdd.asInstanceOf [RDD[Row]]
             }

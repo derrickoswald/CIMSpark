@@ -241,23 +241,19 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         val temp_locations = service_locations.keyBy (_.id).leftOuterJoin (pairs.keyBy (_._2._1.id)).values.map (edit_service_location)
         // step 4, delete the NIS ServiceLocations that have a corresponding ISU ServiceLocation
         val updated_locations = temp_locations.keyBy (_.id).leftOuterJoin (pairs).values.filter (delete_service_location).map (_._1)
-        service_locations.name = "unjoined_ServiceLocation"
-        ServiceLocation.subsetter.save (session.sqlContext, updated_locations.asInstanceOf [ServiceLocation.subsetter.rddtype], storage)
+        put (updated_locations, true)
 
         // step 2, change the Location attribute of affected PositionPoint
         val updated_points = points.keyBy (_.Location).leftOuterJoin (pairs).values.map (edit_position_point)
-        points.name = "unjoined_PositionPoint"
-        PositionPoint.subsetter.save (session.sqlContext, updated_points.asInstanceOf [PositionPoint.subsetter.rddtype], storage)
+        put (updated_points, true)
 
         // step 3, change the name attribute of affected UserAttribute
         val updated_attributes = attributes.keyBy (_.name).leftOuterJoin (pairs).values.map (edit_user_attribute)
-        attributes.name = "unjoined_UserAttribute"
-        UserAttribute.subsetter.save (session.sqlContext, updated_attributes.asInstanceOf [UserAttribute.subsetter.rddtype], storage)
+        put (updated_attributes, true)
 
         // step 5 and 6, delete the Name objects that are no longer needed
         val updated_names = names.keyBy (_.IdentifiedObject).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
-        names.name = "unjoined_Name"
-        Name.subsetter.save (session.sqlContext, updated_names.asInstanceOf [Name.subsetter.rddtype], storage)
+        put (updated_names, true)
 
         // replace service locations in WorkLocation
         val updated_worklocations_pairrdd = updated_locations.map (_.WorkLocation).keyBy (_.id)
@@ -270,8 +266,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     case None => List (arg._1)
                 }
         )
-        work_loc.name = "unjoined_WorkLocation"
-        WorkLocation.subsetter.save (session.sqlContext, new_work_loc.asInstanceOf [WorkLocation.subsetter.rddtype], storage)
+        put (new_work_loc, true)
 
         // replace service locations in Location
         val new_loc = locations.keyBy (_.id).leftOuterJoin (updated_locations.map (_.WorkLocation.Location).keyBy (_.id)).
@@ -283,8 +278,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     case None => List (arg._1)
                 }
         )
-        locations.name = "unjoined_Location"
-        Location.subsetter.save (session.sqlContext, new_loc.asInstanceOf [Location.subsetter.rddtype], storage)
+        put (new_loc, true)
 
         // replace identified objects in IdentifiedObject
         val new_idobj = idobj.keyBy (_.id).leftOuterJoin (locations.map (_.IdentifiedObject).keyBy (_.id)).
@@ -296,8 +290,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     case None => List (arg._1)
                 }
         )
-        idobj.name = "unjoined_IdentifiedObject"
-        IdentifiedObject.subsetter.save (session.sqlContext, new_idobj.asInstanceOf [IdentifiedObject.subsetter.rddtype], storage)
+        put (new_idobj, true)
 
         // make a union of all new RDD as Element
         val newelem = updated_points.asInstanceOf[RDD[Element]].
@@ -307,18 +300,13 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
 
         // replace elements in Elements
         val old_elements = getOrElse [Element]
-        val new_elements = old_elements.keyBy (_.id).leftOuterJoin (newelem.keyBy (_.id)).
-            values.flatMap (
-            (arg: (Element, Option[Element])) =>
-                arg._2 match
-                {
-                    case Some (x) => List (x)
-                    case None => List (arg._1)
-                }
-        )
+        val new_elements = old_elements.keyBy (_.id)
+            .subtractByKey (newelem.keyBy (_.id))
+            .values
+            .union (newelem)
 
         // swap the old Elements RDD for the new one
-        put (new_elements, false)
+        put (new_elements, true)
 
         new_elements
     }
