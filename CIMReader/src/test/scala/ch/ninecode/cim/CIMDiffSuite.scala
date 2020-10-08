@@ -155,4 +155,33 @@ case class CIMDiffSuite () extends ch.ninecode.SparkSuite
             assert (get[ACLineSegment](TEMPLATE2.format ("ACLineSegment")) == null, "deleted")
             assert (get[ACLineSegment](TEMPLATE1.format ("ACLineSegment")) != null, "not deleted")
     }
+
+    test ("append changeset")
+    {
+        implicit spark: SparkSession =>
+
+            val elements1 = readFile (s"${FILE_DEPOT}DemoData.rdf")
+            val count1 = elements1.count
+            assert (count1 == 1742, "# elements before applying ChangeSet")
+            val elements2 = readFile (s"$FILE_DEPOT${CIMFILE}_diff.rdf", Map [String, String](
+                "ch.ninecode.cim.append" -> "true",
+                "ch.ninecode.cim.apply_changesets" -> "true"
+            ))
+            val count2 = elements2.count
+            val demo = 1742 // the _diff file has 12 which are added then removed
+            val deletions = 5
+            val additions = 1
+            assert (demo - deletions + additions == count2, "# elements after applying ChangeSet")
+
+            val fuses = get[Fuse]
+            assert (fuses.filter (_.id == "FUS0053").count () == 0, "FUS0053 is deleted")
+            val networks = get[EquivalentNetwork]
+            assert (networks.count == 1, "one network added")
+            assert (networks.filter (_.id == "Network1").count () == 1, "Network1 is added")
+            val consumers = get[EnergyConsumer]
+            val user19 = consumers.filter (_.id == "USR0019").collect
+            assert (user19.length == 1, "USR0019 is still present")
+            assert (user19(0).p == 14000.0, "USR0019 p")
+            assert (user19(0).q == 1200.0, "USR0019 q")
+    }
 }

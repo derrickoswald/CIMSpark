@@ -61,6 +61,8 @@ class CIMRelation (
 
     // check for a storage level option
     implicit val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_AND_DISK_SER"))
+    // check for append option
+    val _Append: Boolean = parameters.getOrElse ("ch.ninecode.cim.append", "false").toBoolean
     // check for rdf:about option
     val _About: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_about", "false").toBoolean
     // check for normalization option
@@ -150,6 +152,27 @@ class CIMRelation (
         )
     }
 
+    def removeSubclassRDD (elements: RDD[Element]): Unit =
+    {
+        // aggregate the set of subclass names
+        val names = elements
+            .aggregate (Set [String]())(
+                (set, element) => element.classes.toSet.union (set),
+                (set1, set2) => set1.union (set2)
+            )
+        // remove subclass RDD if they exist
+        for (name <- names;
+             target = applyPattern (name))
+        {
+            spark.sparkContext.getPersistentRDDs.find (_._2.name == target) match
+            {
+                case Some ((_: Int, existing: RDD[_])) =>
+                    existing.setName (null).unpersist (true)
+                case Some (_) | None =>
+            }
+        }
+    }
+
     // For a non-partitioned relation, this method builds an RDD[Row] containing all rows within this relation.
     override def buildScan (): RDD[Row] =
     {
@@ -158,33 +181,27 @@ class CIMRelation (
         // register the ElementUDT
         ElementRegistration.register ()
 
-        var ret: RDD[Row] = null
+        var ret: RDD[Element] = null
 
-        // remove any existing RDD created by this relation
+        // if appending get the old RDD[Element] and remove any existing subclass RDD
+        // else also remove the old RDD[Element]
         val target = applyPattern ("Element")
-        spark.sparkContext.getPersistentRDDs.find (_._2.name == target).foreach (
-            x =>
-            {
-                val (_, old) = x
-                // aggregate the set of subclass names
-                val names = old.asInstanceOf[RDD[Element]]
-                    .aggregate (Set [String]())(
-                        (set, element) => element.classes.toSet.union (set),
-                        (set1, set2) => set1.union (set2)
-                    )
-                // remove subclass RDD if they exist (they should)
-                for (name <- names;
-                     target = applyPattern (name))
-                    spark.sparkContext.getPersistentRDDs.find (_._2.name == target) match
-                    {
-                        case Some ((_: Int, existing: RDD[_])) =>
-                            existing.setName (null).unpersist (true)
-                        case Some (_) | None =>
-                    }
-                // remove the Element rdd
-                old.setName (null).unpersist (true)
-            }
-        )
+        val previous = spark.sparkContext.getPersistentRDDs.find (_._2.name == target) match
+        {
+            case Some ((_, old)) =>
+                val rdd = old.asInstanceOf[RDD[Element]]
+                removeSubclassRDD (rdd)
+                if (_Append)
+                    Some (rdd)
+                else
+                {
+                    // remove the old RDD[Element]
+                    rdd.setName (null).unpersist (true)
+                    None
+                }
+            case None =>
+                None
+        }
 
         if (_Cache != "")
         {
@@ -197,7 +214,7 @@ class CIMRelation (
                 val rdd: RDD[Element] = spark.sparkContext.objectFile (_Cache)
                 put (rdd, true)
                 make_tables (rdd)
-                ret = rdd.asInstanceOf [RDD[Row]]
+                ret = rdd
             }
         }
 
@@ -210,7 +227,7 @@ class CIMRelation (
             configuration.set (FileInputFormat.INPUT_DIR, path)
             configuration.setLong (FileInputFormat.SPLIT_MAXSIZE, _SplitSize)
 
-            var rdd = if (_Debug)
+            ret = if (_Debug)
                 spark.sparkContext.newAPIHadoopRDD (
                     configuration,
                     classOf [CIMInputFormatDebug],
@@ -223,50 +240,38 @@ class CIMRelation (
                     classOf [String],
                     classOf [Element]).values
 
-            put (rdd, true)
-            ret = rdd.asInstanceOf [RDD[Row]]
+            ret = previous match
+            {
+                case Some (old) =>
+                    old.union (ret)
+                case None =>
+                    ret
+            }
+            put (ret, true)
 
             // about processing if requested
             if (_About)
-            {
-                val about = new CIMAbout (spark, _StorageLevel)
-                rdd = about.do_about ()
-                ret = rdd.asInstanceOf [RDD[Row]]
-            }
+                ret = new CIMAbout (spark, _StorageLevel).do_about ()
 
             // normalize if requested
             if (_Normalize)
-            {
-                val normalize = new CIMNormalize (spark, _StorageLevel)
-                rdd = normalize.do_normalization ()
-                ret = rdd.asInstanceOf [RDD[Row]]
-            }
+                ret = new CIMNormalize (spark, _StorageLevel).do_normalization ()
 
             // dedup if requested
             if (_DeDup)
-            {
-                val dedup = new CIMDeDup (spark, _StorageLevel)
-                rdd = dedup.do_deduplicate ()
-                ret = rdd.asInstanceOf [RDD[Row]]
-            }
+                ret = new CIMDeDup (spark, _StorageLevel).do_deduplicate ()
 
+            // apply changes if requested
             if (_Changes)
-            {
-                val change = CIMChange (spark, _StorageLevel)
-                rdd = change.apply_changes
-                ret = rdd.asInstanceOf [RDD[Row]]
-            }
+                ret = CIMChange (spark, _StorageLevel).apply_changes
 
             // as a side effect, define all the other temporary tables
             log.info ("creating temporary tables")
-            make_tables (rdd)
+            make_tables (ret)
 
             // merge ISU and NIS ServiceLocations if requested
             if (_Join)
-            {
-                val join = new CIMJoin (spark, _StorageLevel)
-                ret = join.do_join ().asInstanceOf [RDD[Row]]
-            }
+                ret = new CIMJoin (spark, _StorageLevel).do_join ()
 
             // perform topological processing if requested
             if (_Topo)
@@ -284,15 +289,12 @@ class CIMRelation (
                         storage = _StorageLevel
                     )
                 )
-                ret = ntp.process.asInstanceOf [RDD[Row]]
+                ret = ntp.process
             }
 
             // set up edge graph if requested
             if (_Edges)
-            {
-                val cimedges = new CIMEdges (spark, _StorageLevel)
-                ret = cimedges.make_edges (_Topo).asInstanceOf [RDD[Row]]
-            }
+                ret = new CIMEdges (spark, _StorageLevel).make_edges (_Topo)
 
             // cache elements if requested
             if (_Cache != "")
@@ -302,6 +304,6 @@ class CIMRelation (
             }
         }
 
-        ret
+        ret.asInstanceOf [RDD[Row]]
     }
 }

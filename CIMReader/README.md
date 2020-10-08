@@ -242,6 +242,8 @@ where:
 * opts is pairs of named options in a Map[String,String], where values are usually "true" or "false",
 but for some topology options "ForceTrue", "ForceFalse" or "Unforced".
 CIM reader specific option names and their meaning are:
+  * ch.ninecode.cim.append - on a subsequent read operation, append these CIM file(s) contents to existing RDD in memory
+  * ch.ninecode.cim.apply_changesets - merge difference model elements by applying all ChangeSet
   * ch.ninecode.cim.do_about - merge rdf:about elements into rdf:ID elements with the same mRID
   * ch.ninecode.cim.do_normalize - normalize 1:N relations which are denormalized
   * ch.ninecode.cim.do_deduplication - eliminate duplicates based on CIM mRID
@@ -249,10 +251,10 @@ CIM reader specific option names and their meaning are:
   * ch.ninecode.cim.do_join - merge CIM files (by UserAttribute)
   * ch.ninecode.cim.do_topo - generate TopologicalNode elements
   * ch.ninecode.cim.do_topo_islands - generate TopologicalIsland elements (forces ch.ninecode.cim.do_topo true also)
-  * ch.ninecode.cim.force_retain_switches - force switches to have two TopologicalNode irregardless of the retain value
-  * ch.ninecode.cim.force_retain_fuses - force fuses to have two TopologicalNode irregardless of the retain value
-  * ch.ninecode.cim.force_switch_separate_islands - force switches to have two TopologicalIsland irregardless of the retain value
-  * ch.ninecode.cim.force_fuse_separate_islands - force fuses to have two TopologicalIsland irregardless of the retain value
+  * ch.ninecode.cim.force_retain_switches - force switches to have two TopologicalNode regardless of the retain value
+  * ch.ninecode.cim.force_retain_fuses - force fuses to have two TopologicalNode regardless of the retain value
+  * ch.ninecode.cim.force_switch_separate_islands - force switches to have two TopologicalIsland regardless of the retain value
+  * ch.ninecode.cim.force_fuse_separate_islands - force fuses to have two TopologicalIsland regardless of the retain value
   * ch.ninecode.cim.default_switch_open_state - default open value when normalOpen and open aren both not specified
   * ch.ninecode.cim.debug - add additional checks and messages for debugging purposes
   * ch.ninecode.cim.cache - save resulting RDD as an object file using this name, for subsequent reads use this as a cache
