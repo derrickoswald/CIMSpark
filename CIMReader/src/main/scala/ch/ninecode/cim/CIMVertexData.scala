@@ -27,14 +27,14 @@ case class CIMVertexData (
      */
     def name: String =
     {
-        if (node_label.endsWith ("_node_fuse"))
-            s"${node_label.substring (0, node_label.length - "_node_fuse".length)}_fuse_topo"
+        if (node_label.endsWith("_node_fuse"))
+            s"${node_label.substring(0, node_label.length - "_node_fuse".length)}_fuse_topo"
         else
-            if (node_label.endsWith ("_fuse_node"))
-                s"${node_label.substring (0, node_label.length - "_fuse_node".length)}_fuse_topo"
+            if (node_label.endsWith("_fuse_node"))
+                s"${node_label.substring(0, node_label.length - "_fuse_node".length)}_fuse_topo"
             else
-                if (node_label.endsWith ("_node"))
-                    s"${node_label.substring (0, node_label.length - "_node".length)}_topo"
+                if (node_label.endsWith("_node"))
+                    s"${node_label.substring(0, node_label.length - "_node".length)}_topo"
                 else
                     s"${node_label}_topo"
     }

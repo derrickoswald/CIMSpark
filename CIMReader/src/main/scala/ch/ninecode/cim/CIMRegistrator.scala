@@ -12,9 +12,9 @@ class CIMRegistrator extends KryoRegistrator
 {
     override def registerClasses (kryo: Kryo)
     {
-        kryo.register (classOf [BasicElement], BasicElementSerializer)
-        kryo.register (classOf [Unknown], UnknownSerializer)
-        val infos = new CHIM ("").classes
-        infos.foreach (info => kryo.register (info.subsetter.runtime_class, info.serializer))
+        kryo.register(classOf[BasicElement], BasicElementSerializer)
+        kryo.register(classOf[Unknown], UnknownSerializer)
+        val infos = new CHIM("").classes
+        infos.foreach(info => kryo.register(info.subsetter.runtime_class, info.serializer))
     }
 }

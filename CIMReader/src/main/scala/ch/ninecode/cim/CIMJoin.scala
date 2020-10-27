@@ -20,7 +20,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
 {
     implicit val session: SparkSession = spark
     implicit val level: StorageLevel = storage
-    implicit val log: Logger = LoggerFactory.getLogger (getClass)
+    implicit val log: Logger = LoggerFactory.getLogger(getClass)
 
     def unbundle (a: ((Name, ServiceLocation), (Name, ServiceLocation))): (String, (ServiceLocation, ServiceLocation)) =
     {
@@ -31,15 +31,15 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
     {
         a._2 match
         {
-            case Some (x) =>
+            case Some(x) =>
                 // for ISU ServiceLocation with a matching NIS ServiceLocation, make a merged one
                 val isu = x._2._1
                 val nis = x._2._2
-                val element = BasicElement (
+                val element = BasicElement(
                     null,
                     isu.WorkLocation.Location.IdentifiedObject.mRID
                 )
-                val id = IdentifiedObject (
+                val id = IdentifiedObject(
                     element,
                     nis.WorkLocation.Location.IdentifiedObject.aliasName, // aliasName, e.g. ######:nis_el_meter_point
                     isu.WorkLocation.Location.IdentifiedObject.aliasName, // description, e.g. Anschlussobjekt
@@ -52,8 +52,8 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     nis.WorkLocation.Location.IdentifiedObject.TargetingCIMDataObject
                 )
                 id.bitfields = nis.WorkLocation.Location.IdentifiedObject.bitfields.clone
-                IdentifiedObject.fieldsToBitfields ("mRID").zipWithIndex.foreach (x => id.bitfields (x._2) |= x._1)
-                val location = Location (
+                IdentifiedObject.fieldsToBitfields("mRID").zipWithIndex.foreach(x => id.bitfields(x._2) |= x._1)
+                val location = Location(
                     id,
                     direction = isu.WorkLocation.Location.direction,
                     electronicAddress = isu.WorkLocation.Location.electronicAddress,
@@ -83,24 +83,24 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     SwitchingOrder = isu.WorkLocation.Location.SwitchingOrder,
                     TroubleOrder = isu.WorkLocation.Location.TroubleOrder
                 )
-                val ibits = Location.fieldsToBitfields ("direction", "electronicAddress", "geoInfoReference", "mainAddress",
+                val ibits = Location.fieldsToBitfields("direction", "electronicAddress", "geoInfoReference", "mainAddress",
                     "phone1", "phone2", "status", "Assets", "ConfigurationEvents", "Crew", "Crews", "EnvironmentalLocationKind",
                     "EnvironmentalMonitoringStation", "Fault", "Hazards", "Incident", "LandProperties",
                     "Measurements", "OutageOrder", "Routes", "SwitchingOrder", "TroubleOrder")
-                val nbits = Location.fieldsToBitfields ("secondaryAddress", "type", "CoordinateSystem",
+                val nbits = Location.fieldsToBitfields("secondaryAddress", "type", "CoordinateSystem",
                     "PositionPoints", "PowerSystemResources")
                 location.bitfields =
-                    isu.WorkLocation.Location.bitfields.clone.zipWithIndex.map (x => x._1 & ibits (x._2)).zip (
-                        nis.WorkLocation.Location.bitfields.clone.zipWithIndex.map (x => x._1 & nbits (x._2)))
-                        .map (x => x._1 | x._2)
-                val worklocation = WorkLocation (
+                    isu.WorkLocation.Location.bitfields.clone.zipWithIndex.map(x => x._1 & ibits(x._2)).zip(
+                        nis.WorkLocation.Location.bitfields.clone.zipWithIndex.map(x => x._1 & nbits(x._2)))
+                        .map(x => x._1 | x._2)
+                val worklocation = WorkLocation(
                     location,
                     BaseWorks = isu.WorkLocation.BaseWorks,
                     isu.WorkLocation.DesignLocations,
                     isu.WorkLocation.OneCallRequest
                 )
                 worklocation.bitfields = isu.WorkLocation.bitfields.clone
-                val s = ServiceLocation (
+                val s = ServiceLocation(
                     worklocation,
                     accessMethod = isu.accessMethod,
                     needsInspection = isu.needsInspection,
@@ -123,7 +123,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         a._2 match
         {
             // delete ServiceLocation that match (they were edited already and new ones have an ISU mRID)
-            case Some (_) => false
+            case Some(_) => false
             // keep ServiceLocation without a match
             case None => true
         }
@@ -134,9 +134,9 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         a._2 match
         {
             // for PositionPoint with a NIS ServiceLocation, make a new one with the ISU ServiceLocation
-            case Some (x) =>
-                val p = PositionPoint (
-                    BasicElement (null, a._1.id),
+            case Some(x) =>
+                val p = PositionPoint(
+                    BasicElement(null, a._1.id),
                     a._1.groupNumber,
                     a._1.sequenceNumber,
                     a._1.xPosition,
@@ -155,9 +155,9 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         a._2 match
         {
             // for UserAttribute with a name of a NIS ServiceLocation, make a new one with the name of the ISU ServiceLocation
-            case Some (x) =>
-                val u = UserAttribute (
-                    BasicElement (null, a._1.id),
+            case Some(x) =>
+                val u = UserAttribute(
+                    BasicElement(null, a._1.id),
                     name = x._1.id,
                     sequenceNumber = a._1.sequenceNumber,
                     value = a._1.value,
@@ -169,7 +169,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     Transaction = a._1.Transaction
                 )
                 u.bitfields = a._1.bitfields.clone
-                UserAttribute.fieldsToBitfields ("name").zipWithIndex.foreach (x => u.bitfields (x._2) |= x._1)
+                UserAttribute.fieldsToBitfields("name").zipWithIndex.foreach(x => u.bitfields(x._2) |= x._1)
                 u
             // default is to keep the original UserAttribute where there isn't a match
             case None => a._1
@@ -181,7 +181,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         a._2 match
         {
             // delete Name that matches (it was used to perform the join already)
-            case Some (_) => false
+            case Some(_) => false
             // keep Name without a match
             case None => true
         }
@@ -220,93 +220,93 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
      */
     def do_join (): RDD[Element] =
     {
-        log.info ("joining ISU and NIS")
+        log.info("joining ISU and NIS")
 
-        val names = getOrElse [Name]
-        val service_locations = getOrElse [ServiceLocation]
-        val points = getOrElse [PositionPoint]
-        val attributes = getOrElse [UserAttribute]
-        val work_loc = getOrElse [WorkLocation]
-        val locations = getOrElse [Location]
-        val idobj = getOrElse [IdentifiedObject]
+        val names = getOrElse[Name]
+        val service_locations = getOrElse[ServiceLocation]
+        val points = getOrElse[PositionPoint]
+        val attributes = getOrElse[UserAttribute]
+        val work_loc = getOrElse[WorkLocation]
+        val locations = getOrElse[Location]
+        val idobj = getOrElse[IdentifiedObject]
 
         // get only the cim:Name objects pertaining to the ServiceLocation join
-        val isusl = names.keyBy (_.name).join (service_locations.keyBy (_.id)).values
-        val nissl = names.keyBy (_.IdentifiedObject).join (service_locations.keyBy (_.id)).values
+        val isusl = names.keyBy(_.name).join(service_locations.keyBy(_.id)).values
+        val nissl = names.keyBy(_.IdentifiedObject).join(service_locations.keyBy(_.id)).values
 
         // construct a useful intermediate representation of the cim:Name objects
-        val pairs = isusl.keyBy (_._1.id).join (nissl.keyBy (_._1.id)).values.map (unbundle)
+        val pairs = isusl.keyBy(_._1.id).join(nissl.keyBy(_._1.id)).values.map(unbundle)
 
         // step 1, edit (replace) ISU ServiceLocation that have a corresponding NIS ServiceLocation
-        val temp_locations = service_locations.keyBy (_.id).leftOuterJoin (pairs.keyBy (_._2._1.id)).values.map (edit_service_location)
+        val temp_locations = service_locations.keyBy(_.id).leftOuterJoin(pairs.keyBy(_._2._1.id)).values.map(edit_service_location)
         // step 4, delete the NIS ServiceLocations that have a corresponding ISU ServiceLocation
-        val updated_locations = temp_locations.keyBy (_.id).leftOuterJoin (pairs).values.filter (delete_service_location).map (_._1)
-        put (updated_locations, true)
+        val updated_locations = temp_locations.keyBy(_.id).leftOuterJoin(pairs).values.filter(delete_service_location).map(_._1)
+        put(updated_locations, true)
 
         // step 2, change the Location attribute of affected PositionPoint
-        val updated_points = points.keyBy (_.Location).leftOuterJoin (pairs).values.map (edit_position_point)
-        put (updated_points, true)
+        val updated_points = points.keyBy(_.Location).leftOuterJoin(pairs).values.map(edit_position_point)
+        put(updated_points, true)
 
         // step 3, change the name attribute of affected UserAttribute
-        val updated_attributes = attributes.keyBy (_.name).leftOuterJoin (pairs).values.map (edit_user_attribute)
-        put (updated_attributes, true)
+        val updated_attributes = attributes.keyBy(_.name).leftOuterJoin(pairs).values.map(edit_user_attribute)
+        put(updated_attributes, true)
 
         // step 5 and 6, delete the Name objects that are no longer needed
-        val updated_names = names.keyBy (_.IdentifiedObject).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
-        put (updated_names, true)
+        val updated_names = names.keyBy(_.IdentifiedObject).leftOuterJoin(pairs).values.filter(delete_name).map(_._1)
+        put(updated_names, true)
 
         // replace service locations in WorkLocation
-        val updated_worklocations_pairrdd = updated_locations.map (_.WorkLocation).keyBy (_.id)
-        val new_work_loc = work_loc.keyBy (_.id).leftOuterJoin (updated_worklocations_pairrdd).
-            values.flatMap (
+        val updated_worklocations_pairrdd = updated_locations.map(_.WorkLocation).keyBy(_.id)
+        val new_work_loc = work_loc.keyBy(_.id).leftOuterJoin(updated_worklocations_pairrdd).
+            values.flatMap(
             (arg: (WorkLocation, Option[WorkLocation])) =>
                 arg._2 match
                 {
-                    case Some (x) => List (x)
-                    case None => List (arg._1)
+                    case Some(x) => List(x)
+                    case None => List(arg._1)
                 }
         )
-        put (new_work_loc, true)
+        put(new_work_loc, true)
 
         // replace service locations in Location
-        val new_loc = locations.keyBy (_.id).leftOuterJoin (updated_locations.map (_.WorkLocation.Location).keyBy (_.id)).
-            values.flatMap (
+        val new_loc = locations.keyBy(_.id).leftOuterJoin(updated_locations.map(_.WorkLocation.Location).keyBy(_.id)).
+            values.flatMap(
             (arg: (Location, Option[Location])) =>
                 arg._2 match
                 {
-                    case Some (x) => List (x)
-                    case None => List (arg._1)
+                    case Some(x) => List(x)
+                    case None => List(arg._1)
                 }
         )
-        put (new_loc, true)
+        put(new_loc, true)
 
         // replace identified objects in IdentifiedObject
-        val new_idobj = idobj.keyBy (_.id).leftOuterJoin (locations.map (_.IdentifiedObject).keyBy (_.id)).
-            values.flatMap (
+        val new_idobj = idobj.keyBy(_.id).leftOuterJoin(locations.map(_.IdentifiedObject).keyBy(_.id)).
+            values.flatMap(
             (arg: (IdentifiedObject, Option[IdentifiedObject])) =>
                 arg._2 match
                 {
-                    case Some (x) => List (x)
-                    case None => List (arg._1)
+                    case Some(x) => List(x)
+                    case None => List(arg._1)
                 }
         )
-        put (new_idobj, true)
+        put(new_idobj, true)
 
         // make a union of all new RDD as Element
         val newelem = updated_points.asInstanceOf[RDD[Element]].
-            union (updated_attributes.asInstanceOf [RDD[Element]]).
-            union (updated_names.asInstanceOf [RDD[Element]]).
-            union (updated_locations.asInstanceOf [RDD[Element]])
+            union(updated_attributes.asInstanceOf[RDD[Element]]).
+            union(updated_names.asInstanceOf[RDD[Element]]).
+            union(updated_locations.asInstanceOf[RDD[Element]])
 
         // replace elements in Elements
-        val old_elements = getOrElse [Element]
-        val new_elements = old_elements.keyBy (_.id)
-            .subtractByKey (newelem.keyBy (_.id))
+        val old_elements = getOrElse[Element]
+        val new_elements = old_elements.keyBy(_.id)
+            .subtractByKey(newelem.keyBy(_.id))
             .values
-            .union (newelem)
+            .union(newelem)
 
         // swap the old Elements RDD for the new one
-        put (new_elements, true)
+        put(new_elements, true)
 
         new_elements
     }

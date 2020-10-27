@@ -18,7 +18,7 @@ import org.scalatest.Suites
  * 6) Execute the file.
  * 7) Interpret the generated file (default: java.hprof.txt).
  */
-class TestSuite extends Suites (
+class TestSuite extends Suites(
     new CHIMSuite,
     new CIMSuite,
     new CIMRDDSuite,

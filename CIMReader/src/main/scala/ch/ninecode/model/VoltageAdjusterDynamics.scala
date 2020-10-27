@@ -18,21 +18,21 @@ import ch.ninecode.cim.CIMSerializer
  * Reference: IEEE 421.5-2005, 11.1.
  *
  * @param VoltageAdjusterDynamics [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Reference to the superclass object.
- * @param adjslew Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
- *        Unit = s / PU.  Typical value = 300.
- * @param taoff Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>) (&gt;= 0).
- *        Typical value = 0,5.
- * @param taon Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>) (&gt;= 0).
- *        Typical value = 0,1.
- * @param vadjf Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).
- * @param vadjmax Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>) (&gt; VAdjIEEE.vadjmin).
- *        Typical value = 1,1.
- * @param vadjmin Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>) (&lt; VAdjIEEE.vadjmax).
- *        Typical value = 0,9.
+ * @param adjslew                 Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
+ *                                Unit = s / PU.  Typical value = 300.
+ * @param taoff                   Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>) (&gt;= 0).
+ *                                Typical value = 0,5.
+ * @param taon                    Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>) (&gt;= 0).
+ *                                Typical value = 0,1.
+ * @param vadjf                   Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).
+ * @param vadjmax                 Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>) (&gt; VAdjIEEE.vadjmin).
+ *                                Typical value = 1,1.
+ * @param vadjmin                 Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>) (&lt; VAdjIEEE.vadjmax).
+ *                                Typical value = 0,9.
  * @group VoltageAdjusterDynamics
  * @groupname VoltageAdjusterDynamics Package VoltageAdjusterDynamics
  * @groupdesc VoltageAdjusterDynamics <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
-<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
+ *            <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
 final case class VAdjIEEE
 (
@@ -44,8 +44,8 @@ final case class VAdjIEEE
     vadjmax: Double = 0.0,
     vadjmin: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -71,32 +71,38 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone().asInstanceOf[Row]
+    }
 
     override def export_fields: String =
     {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val s: StringBuilder = new StringBuilder(sup.export_fields)
         implicit val clz: String = VAdjIEEE.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VAdjIEEE.fields (position), value)
-        emitelem (0, adjslew)
-        emitelem (1, taoff)
-        emitelem (2, taon)
-        emitelem (3, vadjf)
-        emitelem (4, vadjmax)
-        emitelem (5, vadjmin)
+
+        def emitelem (position: Int, value: Any): Unit = if (mask(position)) emit_element(VAdjIEEE.fields(position), value)
+
+        emitelem(0, adjslew)
+        emitelem(1, taoff)
+        emitelem(2, taon)
+        emitelem(3, vadjf)
+        emitelem(4, vadjmax)
+        emitelem(5, vadjmin)
         s.toString
     }
+
     override def export: String =
     {
-        "\t<cim:VAdjIEEE rdf:%s=\"%s\">\n%s\t</cim:VAdjIEEE>".format (if (about) "about" else "ID", id, export_fields)
+        "\t<cim:VAdjIEEE rdf:%s=\"%s\">\n%s\t</cim:VAdjIEEE>".format(if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object VAdjIEEE
-extends
-    CIMParseable[VAdjIEEE]
+    extends
+        CIMParseable[VAdjIEEE]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String](
         "adjslew",
         "taoff",
         "taon",
@@ -104,25 +110,25 @@ extends
         "vadjmax",
         "vadjmin"
     )
-    val adjslew: Fielder = parse_element (element (cls, fields(0)))
-    val taoff: Fielder = parse_element (element (cls, fields(1)))
-    val taon: Fielder = parse_element (element (cls, fields(2)))
-    val vadjf: Fielder = parse_element (element (cls, fields(3)))
-    val vadjmax: Fielder = parse_element (element (cls, fields(4)))
-    val vadjmin: Fielder = parse_element (element (cls, fields(5)))
+    val adjslew: Fielder = parse_element(element(cls, fields(0)))
+    val taoff: Fielder = parse_element(element(cls, fields(1)))
+    val taon: Fielder = parse_element(element(cls, fields(2)))
+    val vadjf: Fielder = parse_element(element(cls, fields(3)))
+    val vadjmax: Fielder = parse_element(element(cls, fields(4)))
+    val vadjmin: Fielder = parse_element(element(cls, fields(5)))
 
     def parse (context: CIMContext): VAdjIEEE =
     {
         implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
-        val ret = VAdjIEEE (
-            VoltageAdjusterDynamics.parse (context),
-            toDouble (mask (adjslew (), 0)),
-            toDouble (mask (taoff (), 1)),
-            toDouble (mask (taon (), 2)),
-            toDouble (mask (vadjf (), 3)),
-            toDouble (mask (vadjmax (), 4)),
-            toDouble (mask (vadjmin (), 5))
+        val ret = VAdjIEEE(
+            VoltageAdjusterDynamics.parse(context),
+            toDouble(mask(adjslew(), 0)),
+            toDouble(mask(taoff(), 1)),
+            toDouble(mask(taon(), 2)),
+            toDouble(mask(vadjf(), 3)),
+            toDouble(mask(vadjmax(), 4)),
+            toDouble(mask(vadjmin(), 5))
         )
         ret.bitfields = bitfields
         ret
@@ -135,32 +141,32 @@ object VAdjIEEESerializer extends CIMSerializer[VAdjIEEE]
 {
     def write (kryo: Kryo, output: Output, obj: VAdjIEEE): Unit =
     {
-        val toSerialize: Array[() => Unit] = Array (
-            () => output.writeDouble (obj.adjslew),
-            () => output.writeDouble (obj.taoff),
-            () => output.writeDouble (obj.taon),
-            () => output.writeDouble (obj.vadjf),
-            () => output.writeDouble (obj.vadjmax),
-            () => output.writeDouble (obj.vadjmin)
+        val toSerialize: Array[() => Unit] = Array(
+            () => output.writeDouble(obj.adjslew),
+            () => output.writeDouble(obj.taoff),
+            () => output.writeDouble(obj.taon),
+            () => output.writeDouble(obj.vadjf),
+            () => output.writeDouble(obj.vadjmax),
+            () => output.writeDouble(obj.vadjmin)
         )
-        VoltageAdjusterDynamicsSerializer.write (kryo, output, obj.sup)
+        VoltageAdjusterDynamicsSerializer.write(kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
-        writeBitfields (output)
-        writeFields (toSerialize)
+        writeBitfields(output)
+        writeFields(toSerialize)
     }
 
     def read (kryo: Kryo, input: Input, cls: Class[VAdjIEEE]): VAdjIEEE =
     {
-        val parent = VoltageAdjusterDynamicsSerializer.read (kryo, input, classOf[VoltageAdjusterDynamics])
-        implicit val bitfields: Array[Int] = readBitfields (input)
-        val obj = VAdjIEEE (
+        val parent = VoltageAdjusterDynamicsSerializer.read(kryo, input, classOf[VoltageAdjusterDynamics])
+        implicit val bitfields: Array[Int] = readBitfields(input)
+        val obj = VAdjIEEE(
             parent,
-            if (isSet (0)) input.readDouble else 0.0,
-            if (isSet (1)) input.readDouble else 0.0,
-            if (isSet (2)) input.readDouble else 0.0,
-            if (isSet (3)) input.readDouble else 0.0,
-            if (isSet (4)) input.readDouble else 0.0,
-            if (isSet (5)) input.readDouble else 0.0
+            if (isSet(0)) input.readDouble else 0.0,
+            if (isSet(1)) input.readDouble else 0.0,
+            if (isSet(2)) input.readDouble else 0.0,
+            if (isSet(3)) input.readDouble else 0.0,
+            if (isSet(4)) input.readDouble else 0.0,
+            if (isSet(5)) input.readDouble else 0.0
         )
         obj.bitfields = bitfields
         obj
@@ -170,20 +176,20 @@ object VAdjIEEESerializer extends CIMSerializer[VAdjIEEE]
 /**
  * Voltage adjuster function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock        [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power factor or VAr controller type 1 model with which this voltage adjuster is associated.
  * @group VoltageAdjusterDynamics
  * @groupname VoltageAdjusterDynamics Package VoltageAdjusterDynamics
  * @groupdesc VoltageAdjusterDynamics <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
-<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
+ *            <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
 final case class VoltageAdjusterDynamics
 (
     DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     PFVArControllerType1Dynamics: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -209,41 +215,47 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone().asInstanceOf[Row]
+    }
 
     override def export_fields: String =
     {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val s: StringBuilder = new StringBuilder(sup.export_fields)
         implicit val clz: String = VoltageAdjusterDynamics.cls
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (VoltageAdjusterDynamics.fields (position), value)
-        emitattr (0, PFVArControllerType1Dynamics)
+
+        def emitattr (position: Int, value: Any): Unit = if (mask(position)) emit_attribute(VoltageAdjusterDynamics.fields(position), value)
+
+        emitattr(0, PFVArControllerType1Dynamics)
         s.toString
     }
+
     override def export: String =
     {
-        "\t<cim:VoltageAdjusterDynamics rdf:%s=\"%s\">\n%s\t</cim:VoltageAdjusterDynamics>".format (if (about) "about" else "ID", id, export_fields)
+        "\t<cim:VoltageAdjusterDynamics rdf:%s=\"%s\">\n%s\t</cim:VoltageAdjusterDynamics>".format(if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object VoltageAdjusterDynamics
-extends
-    CIMParseable[VoltageAdjusterDynamics]
+    extends
+        CIMParseable[VoltageAdjusterDynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String](
         "PFVArControllerType1Dynamics"
     )
-    override val relations: List[CIMRelationship] = List (
-        CIMRelationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "1", "0..1")
+    override val relations: List[CIMRelationship] = List(
+        CIMRelationship("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "1", "0..1")
     )
-    val PFVArControllerType1Dynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val PFVArControllerType1Dynamics: Fielder = parse_attribute(attribute(cls, fields(0)))
 
     def parse (context: CIMContext): VoltageAdjusterDynamics =
     {
         implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
-        val ret = VoltageAdjusterDynamics (
-            DynamicsFunctionBlock.parse (context),
-            mask (PFVArControllerType1Dynamics (), 0)
+        val ret = VoltageAdjusterDynamics(
+            DynamicsFunctionBlock.parse(context),
+            mask(PFVArControllerType1Dynamics(), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -256,22 +268,22 @@ object VoltageAdjusterDynamicsSerializer extends CIMSerializer[VoltageAdjusterDy
 {
     def write (kryo: Kryo, output: Output, obj: VoltageAdjusterDynamics): Unit =
     {
-        val toSerialize: Array[() => Unit] = Array (
-            () => output.writeString (obj.PFVArControllerType1Dynamics)
+        val toSerialize: Array[() => Unit] = Array(
+            () => output.writeString(obj.PFVArControllerType1Dynamics)
         )
-        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        DynamicsFunctionBlockSerializer.write(kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
-        writeBitfields (output)
-        writeFields (toSerialize)
+        writeBitfields(output)
+        writeFields(toSerialize)
     }
 
     def read (kryo: Kryo, input: Input, cls: Class[VoltageAdjusterDynamics]): VoltageAdjusterDynamics =
     {
-        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
-        implicit val bitfields: Array[Int] = readBitfields (input)
-        val obj = VoltageAdjusterDynamics (
+        val parent = DynamicsFunctionBlockSerializer.read(kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields(input)
+        val obj = VoltageAdjusterDynamics(
             parent,
-            if (isSet (0)) input.readString else null
+            if (isSet(0)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -282,7 +294,7 @@ private[ninecode] object _VoltageAdjusterDynamics
 {
     def register: List[CIMClassInfo] =
     {
-        List (
+        List(
             VAdjIEEE.register,
             VoltageAdjusterDynamics.register
         )

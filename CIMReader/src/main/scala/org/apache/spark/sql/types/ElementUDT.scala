@@ -43,30 +43,30 @@ class ElementUDT extends UserDefinedType[Element]
     override def serialize (obj: Element): Any =
     {
         val output = new Array[Any](1)
-        output (0) = UTF8String.fromString (obj.id.toString)
-        val r = new GenericInternalRow (output)
+        output(0) = UTF8String.fromString(obj.id.toString)
+        val r = new GenericInternalRow(output)
         r
     }
 
     override def deserialize (datum: Any): Element =
     {
         if (null == datum)
-            BasicElement (null, "")
+            BasicElement(null, "")
         else
             datum match
             {
                 case _: UnsafeRow => // only GenericInternalRow and InternalRow are used, kept for reference
-                    BasicElement (null, "")
+                    BasicElement(null, "")
                 case _: GenericInternalRow =>
-                    BasicElement (null, "")
+                    BasicElement(null, "")
                 case _: InternalRow =>
-                    BasicElement (null, "")
+                    BasicElement(null, "")
                 case _: Any =>
-                    BasicElement (null, "")
+                    BasicElement(null, "")
             }
     }
 
-    override def userClass: Class[Element] = classOf [Element]
+    override def userClass: Class[Element] = classOf[Element]
 
     override def equals (o: Any): Boolean =
     {
@@ -77,7 +77,7 @@ class ElementUDT extends UserDefinedType[Element]
         }
     }
 
-    override def hashCode (): Int = classOf [ElementUDT].getName.hashCode ()
+    override def hashCode (): Int = classOf[ElementUDT].getName.hashCode()
 
     override def typeName: String = "element"
 
@@ -88,7 +88,7 @@ object ElementRegistration
 {
     def register (): Unit =
     {
-        if (!UDTRegistration.exists (classOf [Element].getName))
-            UDTRegistration.register (classOf [Element].getName, classOf [ElementUDT].getName)
+        if (!UDTRegistration.exists(classOf[Element].getName))
+            UDTRegistration.register(classOf[Element].getName, classOf[ElementUDT].getName)
     }
 }

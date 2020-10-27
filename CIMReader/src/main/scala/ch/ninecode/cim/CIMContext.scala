@@ -22,7 +22,7 @@ class CIMContext (var xml: String, val start: Long, var end: Long, var first_byt
     /**
      * The array of character positions of newlines in the xml string.
      */
-    val newlines: ArrayBuffer[Long] = index_string (xml, start)
+    val newlines: ArrayBuffer[Long] = index_string(xml, start)
 
     /**
      * An array of string start and end offsets that have been parsed.
@@ -54,12 +54,12 @@ class CIMContext (var xml: String, val start: Long, var end: Long, var first_byt
      * @param offset optional offset to add to the index values
      * @return {Unit} nothing
      */
-    def index_string (string: String, offset: Long = 0L, n: ArrayBuffer[Long] = ArrayBuffer [Long]()): ArrayBuffer[Long] =
+    def index_string (string: String, offset: Long = 0L, n: ArrayBuffer[Long] = ArrayBuffer[Long]()): ArrayBuffer[Long] =
     {
-        val matcher = lines.matcher (string)
-        while (matcher.find ())
+        val matcher = lines.matcher(string)
+        while (matcher.find())
         {
-            val _ = n += (matcher.start () + offset)
+            val _ = n += (matcher.start() + offset)
         }
         n
     }
@@ -72,7 +72,7 @@ class CIMContext (var xml: String, val start: Long, var end: Long, var first_byt
      * @param offset the character position in the stream
      * @return the line number (1 + how many newlines precede the offset)
      */
-    @SuppressWarnings (Array ("org.wartremover.warts.Return"))
+    @SuppressWarnings(Array("org.wartremover.warts.Return"))
     def line_number (offset: Long = end): Int =
     {
         var min = 0
@@ -82,7 +82,7 @@ class CIMContext (var xml: String, val start: Long, var end: Long, var first_byt
         while (min <= max)
         {
             index = (min + max) / 2 | 0
-            val item = newlines (index)
+            val item = newlines(index)
 
             if (item < offset)
                 min = index + 1
@@ -93,7 +93,7 @@ class CIMContext (var xml: String, val start: Long, var end: Long, var first_byt
                     return index + 1
         }
 
-        if (newlines (index) <= offset)
+        if (newlines(index) <= offset)
             index += 1
 
         index + 1
@@ -113,21 +113,21 @@ class CIMContext (var xml: String, val start: Long, var end: Long, var first_byt
         {
             while (ret && index < pair._1)
             {
-                ret &&= subxml.charAt (index).isWhitespace
+                ret &&= subxml.charAt(index).isWhitespace
                 if (!ret && errors.size < MAXERRORS)
                 {
-                    val _ = errors += """Unknown content "%s" at line %d""".format (subxml.substring (index, pair._1).trim (), line_number ())
+                    val _ = errors += """Unknown content "%s" at line %d""".format(subxml.substring(index, pair._1).trim(), line_number())
                 }
                 index += 1
             }
             index = pair._2
         }
-        while (ret && index < subxml.length ())
+        while (ret && index < subxml.length())
         {
-            ret &&= subxml.charAt (index).isWhitespace
+            ret &&= subxml.charAt(index).isWhitespace
             if (!ret && errors.size < MAXERRORS)
             {
-                val _ = errors += """Unknown content "%s" at line %d""".format (subxml.substring (index, subxml.length ()).trim (), line_number ())
+                val _ = errors += """Unknown content "%s" at line %d""".format(subxml.substring(index, subxml.length()).trim(), line_number())
             }
             index += 1
         }
@@ -140,7 +140,7 @@ class CIMContext (var xml: String, val start: Long, var end: Long, var first_byt
      */
     override def toString: String =
     {
-        s""""${subxml.substring (0, 50)}..." @ $end character $last_byte byte"""
+        s""""${subxml.substring(0, 50)}..." @ $end character $last_byte byte"""
     }
 }
 
@@ -164,5 +164,5 @@ object CIMContext
     /**
      * Regular expression for line counting.
      */
-    val lines: Pattern = Pattern.compile ("""\n""")
+    val lines: Pattern = Pattern.compile("""\n""")
 }

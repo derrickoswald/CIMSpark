@@ -17,35 +17,35 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
     override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
         // unpack the zip files
-        new Unzip ().unzip (s"${FILE_DEPOT}DemoData.zip", FILE_DEPOT)
-        new Unzip ().unzip (s"${FILE_DEPOT}DemoData_unknown_voltage.zip", FILE_DEPOT)
+        new Unzip().unzip(s"${FILE_DEPOT}DemoData.zip", FILE_DEPOT)
+        new Unzip().unzip(s"${FILE_DEPOT}DemoData_unknown_voltage.zip", FILE_DEPOT)
 
         // run the tests
-        val ret = super.run (testName, args)
+        val ret = super.run(testName, args)
 
         // erase the unpacked files
-        deleteRecursive (new File (s"${FILE_DEPOT}DemoData.rdf"))
-        deleteRecursive (new File (s"${FILE_DEPOT}DemoData_unknown_voltage.rdf"))
+        deleteRecursive(new File(s"${FILE_DEPOT}DemoData.rdf"))
+        deleteRecursive(new File(s"${FILE_DEPOT}DemoData_unknown_voltage.rdf"))
         ret
     }
 
-    test ("Basic")
+    test("Basic")
     {
         implicit session: SparkSession =>
 
-            val start = System.nanoTime ()
+            val start = System.nanoTime()
 
             val filename = s"${FILE_DEPOT}DemoData.rdf"
-            val elements = readFile (filename)
+            val elements = readFile(filename)
             // grep "rdf:ID" DemoData.rdf | wc  =>  1742
-            assert (elements.count == 1742, "# elements before")
+            assert(elements.count == 1742, "# elements before")
 
-            val read = System.nanoTime ()
+            val read = System.nanoTime()
 
             // set up for execution
-            val topo = CIMNetworkTopologyProcessor (
+            val topo = CIMNetworkTopologyProcessor(
                 session,
-                CIMTopologyOptions (
+                CIMTopologyOptions(
                     identify_islands = true,
                     force_retain_switches = ForceTrue,
                     force_retain_fuses = ForceTrue,
@@ -54,32 +54,32 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             )
             val new_elements = topo.process
 
-            val process = System.nanoTime ()
+            val process = System.nanoTime()
 
-            assert (new_elements.count == 1897, "# elements after")
-            val nodes = get [TopologicalNode]
-            assert (nodes != null, "no TopologicalNode RDD")
-            assert (nodes.count == 151, "# nodes")
+            assert(new_elements.count == 1897, "# elements after")
+            val nodes = get[TopologicalNode]
+            assert(nodes != null, "no TopologicalNode RDD")
+            assert(nodes.count == 151, "# nodes")
 
-            info ("read: %s seconds, process: %s seconds".format ((read - start) / 1e9, (process - read) / 1e9))
+            info("read: %s seconds, process: %s seconds".format((read - start) / 1e9, (process - read) / 1e9))
     }
 
-    test ("TopologicalNode")
+    test("TopologicalNode")
     {
         implicit session: SparkSession =>
 
-            val start = System.nanoTime ()
+            val start = System.nanoTime()
 
             val filename = s"${FILE_DEPOT}DemoData_unknown_voltage.rdf"
-            val elements = readFile (filename)
-            assert (elements.count == 1742, "# elements before")
+            val elements = readFile(filename)
+            assert(elements.count == 1742, "# elements before")
 
-            val read = System.nanoTime ()
+            val read = System.nanoTime()
 
             // set up for execution
-            val topo = CIMNetworkTopologyProcessor (
+            val topo = CIMNetworkTopologyProcessor(
                 session,
-                CIMTopologyOptions (
+                CIMTopologyOptions(
                     identify_islands = false,
                     force_retain_switches = ForceTrue,
                     force_retain_fuses = ForceTrue,
@@ -88,34 +88,34 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             )
             val new_elements = topo.process
 
-            val process = System.nanoTime ()
+            val process = System.nanoTime()
 
-            assert (new_elements.count == 1894, "# elements after")
-            val nodes = get [TopologicalNode]
-            assert (nodes != null, "no TopologicalNode RDD")
-            assert (nodes.count == 152, "# nodes")
-            assert (nodes.filter (_.TopologicalIsland == null).isEmpty, "null islands")
+            assert(new_elements.count == 1894, "# elements after")
+            val nodes = get[TopologicalNode]
+            assert(nodes != null, "no TopologicalNode RDD")
+            assert(nodes.count == 152, "# nodes")
+            assert(nodes.filter(_.TopologicalIsland == null).isEmpty, "null islands")
 
-            info ("read: %s seconds, process: %s seconds".format ((read - start) / 1e9, (process - read) / 1e9))
+            info("read: %s seconds, process: %s seconds".format((read - start) / 1e9, (process - read) / 1e9))
     }
 
-    test ("Islands")
+    test("Islands")
     {
         implicit session: SparkSession =>
 
-            val start = System.nanoTime ()
+            val start = System.nanoTime()
 
             val filename = s"${FILE_DEPOT}DemoData.rdf"
-            val elements = readFile (filename)
+            val elements = readFile(filename)
             // grep "rdf:ID" DemoData.rdf | wc  =>  1742
-            assert (elements.count == 1742, "# elements before")
+            assert(elements.count == 1742, "# elements before")
 
-            val read = System.nanoTime ()
+            val read = System.nanoTime()
 
             // set up for execution
-            val topo = CIMNetworkTopologyProcessor (
+            val topo = CIMNetworkTopologyProcessor(
                 session,
-                CIMTopologyOptions (
+                CIMTopologyOptions(
                     identify_islands = true,
                     force_retain_switches = ForceTrue,
                     force_retain_fuses = ForceTrue,
@@ -124,36 +124,36 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             )
             val new_elements = topo.process
 
-            val process = System.nanoTime ()
+            val process = System.nanoTime()
 
             // 1742 + 4 + 151 = 1897
-            assert (new_elements.count == 1897, "# elements after")
-            val islands = get [TopologicalIsland]
-            assert (islands != null, "no TopologicalIsland RDD")
-            assert (islands.count == 4, "# islands")
-            val nodes = get [TopologicalNode]
-            assert (nodes != null, "no TopologicalNode RDD")
-            assert (nodes.count == 151, "# nodes")
+            assert(new_elements.count == 1897, "# elements after")
+            val islands = get[TopologicalIsland]
+            assert(islands != null, "no TopologicalIsland RDD")
+            assert(islands.count == 4, "# islands")
+            val nodes = get[TopologicalNode]
+            assert(nodes != null, "no TopologicalNode RDD")
+            assert(nodes.count == 151, "# nodes")
 
-            info ("read: %s seconds, process: %s seconds".format ((read - start) / 1e9, (process - read) / 1e9))
+            info("read: %s seconds, process: %s seconds".format((read - start) / 1e9, (process - read) / 1e9))
     }
 
-    test ("TopologicalIsland")
+    test("TopologicalIsland")
     {
         implicit session: SparkSession =>
 
-            val start = System.nanoTime ()
+            val start = System.nanoTime()
 
             val filename = s"${FILE_DEPOT}DemoData_unknown_voltage.rdf"
-            val elements = readFile (filename)
-            assert (elements.count == 1742, "# elements before")
+            val elements = readFile(filename)
+            assert(elements.count == 1742, "# elements before")
 
-            val read = System.nanoTime ()
+            val read = System.nanoTime()
 
             // set up for execution
-            val topo = CIMNetworkTopologyProcessor (
+            val topo = CIMNetworkTopologyProcessor(
                 session,
-                CIMTopologyOptions (
+                CIMTopologyOptions(
                     identify_islands = true,
                     force_retain_switches = ForceTrue,
                     force_retain_fuses = ForceTrue,
@@ -162,44 +162,44 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             )
             val new_elements = topo.process
 
-            val process = System.nanoTime ()
+            val process = System.nanoTime()
 
-            assert (new_elements.count == 1899, "# elements after")
-            val terminals = get [Terminal]
-            assert (terminals.filter (_.TopologicalNode == null).isEmpty, "null nodes")
-            val nodes = get [TopologicalNode]
-            assert (nodes != null, "no TopologicalNode RDD")
-            assert (nodes.count == 152, "# nodes")
-            assert (nodes.filter (_.TopologicalIsland == null).isEmpty, "null islands")
+            assert(new_elements.count == 1899, "# elements after")
+            val terminals = get[Terminal]
+            assert(terminals.filter(_.TopologicalNode == null).isEmpty, "null nodes")
+            val nodes = get[TopologicalNode]
+            assert(nodes != null, "no TopologicalNode RDD")
+            assert(nodes.count == 152, "# nodes")
+            assert(nodes.filter(_.TopologicalIsland == null).isEmpty, "null islands")
 
-            info ("read: %s seconds, process: %s seconds".format ((read - start) / 1e9, (process - read) / 1e9))
+            info("read: %s seconds, process: %s seconds".format((read - start) / 1e9, (process - read) / 1e9))
     }
 
-    test ("Auto")
+    test("Auto")
     {
         implicit session: SparkSession =>
 
             def readFileAuto (filename: String): DataFrame =
             {
-                val options = Map [String, String](
+                val options = Map[String, String](
                     "ch.ninecode.cim.do_topo_islands" -> "true")
-                readFile (filename, options)
+                readFile(filename, options)
             }
 
-            val start = System.nanoTime ()
+            val start = System.nanoTime()
 
             val filename = s"${FILE_DEPOT}DemoData.rdf"
-            val elements = readFileAuto (filename)
-            assert (elements.count == 1806, "# elements")
+            val elements = readFileAuto(filename)
+            assert(elements.count == 1806, "# elements")
 
-            val read = System.nanoTime ()
-            val islands = get [TopologicalIsland]
-            assert (null != islands, "no TopologicalIsland RDD")
-            assert (islands.count == 4, "# islands")
-            val nodes = get [TopologicalNode]
-            assert (null != nodes, "no TopologicalNode RDD")
-            assert (nodes.count == 60, "# nodes") // 91 fewer nodes when switches and fuses aren't retained
+            val read = System.nanoTime()
+            val islands = get[TopologicalIsland]
+            assert(null != islands, "no TopologicalIsland RDD")
+            assert(islands.count == 4, "# islands")
+            val nodes = get[TopologicalNode]
+            assert(null != nodes, "no TopologicalNode RDD")
+            assert(nodes.count == 60, "# nodes") // 91 fewer nodes when switches and fuses aren't retained
 
-            info ("read and process: %s seconds".format ((read - start) / 1e9))
+            info("read and process: %s seconds".format((read - start) / 1e9))
     }
 }

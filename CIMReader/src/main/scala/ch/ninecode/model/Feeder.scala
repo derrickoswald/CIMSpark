@@ -22,8 +22,8 @@ final case class Circuit
     EndBay: List[String] = null,
     EndTerminal: List[String] = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -49,46 +49,52 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone().asInstanceOf[Row]
+    }
 
     override def export_fields: String =
     {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val s: StringBuilder = new StringBuilder(sup.export_fields)
         implicit val clz: String = Circuit.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute (Circuit.fields (position), x))
-        emitattrs (0, EndBay)
-        emitattrs (1, EndTerminal)
+
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask(position) && (null != value)) value.foreach(x => emit_attribute(Circuit.fields(position), x))
+
+        emitattrs(0, EndBay)
+        emitattrs(1, EndTerminal)
         s.toString
     }
+
     override def export: String =
     {
-        "\t<cim:Circuit rdf:%s=\"%s\">\n%s\t</cim:Circuit>".format (if (about) "about" else "ID", id, export_fields)
+        "\t<cim:Circuit rdf:%s=\"%s\">\n%s\t</cim:Circuit>".format(if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object Circuit
-extends
-    CIMParseable[Circuit]
+    extends
+        CIMParseable[Circuit]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String](
         "EndBay",
         "EndTerminal"
     )
-    override val relations: List[CIMRelationship] = List (
-        CIMRelationship ("EndBay", "Bay", "0..*", "0..1"),
-        CIMRelationship ("EndTerminal", "Terminal", "0..*", "0..1")
+    override val relations: List[CIMRelationship] = List(
+        CIMRelationship("EndBay", "Bay", "0..*", "0..1"),
+        CIMRelationship("EndTerminal", "Terminal", "0..*", "0..1")
     )
-    val EndBay: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val EndTerminal: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val EndBay: FielderMultiple = parse_attributes(attribute(cls, fields(0)))
+    val EndTerminal: FielderMultiple = parse_attributes(attribute(cls, fields(1)))
 
     def parse (context: CIMContext): Circuit =
     {
         implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
-        val ret = Circuit (
-            Line.parse (context),
-            masks (EndBay (), 0),
-            masks (EndTerminal (), 1)
+        val ret = Circuit(
+            Line.parse(context),
+            masks(EndBay(), 0),
+            masks(EndTerminal(), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -101,24 +107,24 @@ object CircuitSerializer extends CIMSerializer[Circuit]
 {
     def write (kryo: Kryo, output: Output, obj: Circuit): Unit =
     {
-        val toSerialize: Array[() => Unit] = Array (
-            () => writeList (obj.EndBay, output),
-            () => writeList (obj.EndTerminal, output)
+        val toSerialize: Array[() => Unit] = Array(
+            () => writeList(obj.EndBay, output),
+            () => writeList(obj.EndTerminal, output)
         )
-        LineSerializer.write (kryo, output, obj.sup)
+        LineSerializer.write(kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
-        writeBitfields (output)
-        writeFields (toSerialize)
+        writeBitfields(output)
+        writeFields(toSerialize)
     }
 
     def read (kryo: Kryo, input: Input, cls: Class[Circuit]): Circuit =
     {
-        val parent = LineSerializer.read (kryo, input, classOf[Line])
-        implicit val bitfields: Array[Int] = readBitfields (input)
-        val obj = Circuit (
+        val parent = LineSerializer.read(kryo, input, classOf[Line])
+        implicit val bitfields: Array[Int] = readBitfields(input)
+        val obj = Circuit(
             parent,
-            if (isSet (0)) readList (input) else null,
-            if (isSet (1)) readList (input) else null
+            if (isSet(0)) readList(input) else null,
+            if (isSet(1)) readList(input) else null
         )
         obj.bitfields = bitfields
         obj
@@ -129,7 +135,7 @@ private[ninecode] object _Feeder
 {
     def register: List[CIMClassInfo] =
     {
-        List (
+        List(
             Circuit.register
         )
     }

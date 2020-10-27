@@ -9,7 +9,7 @@ import ch.ninecode.model.Element
 
 class CIMInputFormatDebug extends CIMInputFormat
 {
-    val log: Log = LogFactory.getLog (getClass)
+    val log: Log = LogFactory.getLog(getClass)
 
     /**
      * Generate the list of files and make them into FileSplits.
@@ -25,9 +25,9 @@ class CIMInputFormatDebug extends CIMInputFormat
      */
     override def getSplits (context: JobContext): java.util.List[InputSplit] =
     {
-        log.info ("getSplits")
-        val ret = super.getSplits (context)
-        log.info (s"getSplits: ${ret.size ()} splits returned")
+        log.info("getSplits")
+        val ret = super.getSplits(context)
+        log.info(s"getSplits: ${ret.size()} splits returned")
         ret
     }
 
@@ -40,9 +40,9 @@ class CIMInputFormatDebug extends CIMInputFormat
      */
     override def createRecordReader (split: InputSplit, context: TaskAttemptContext): RecordReader[String, Element] =
     {
-        log.info ("createRecordReader")
-        log.info (s"split: ${split.toString}")
-        log.info (s"context: ${context.getTaskAttemptID.toString}")
-        new CIMRecordReader (true)
+        log.info("createRecordReader")
+        log.info(s"split: ${split.toString}")
+        log.info(s"context: ${context.getTaskAttemptID.toString}")
+        new CIMRecordReader(true)
     }
 }

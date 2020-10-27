@@ -19,42 +19,42 @@ class CIMSparkSuite extends ch.ninecode.SparkSuite
     override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
         // unpack the zip file
-        new Unzip ().unzip (s"${FILE_DEPOT}CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
-        new Unzip ().unzip (s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", s"${FILE_DEPOT}RealGrid/")
+        new Unzip().unzip(s"${FILE_DEPOT}CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
+        new Unzip().unzip(s"${FILE_DEPOT}RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", s"${FILE_DEPOT}RealGrid/")
         // run the tests
-        val ret = super.run (testName, args)
+        val ret = super.run(testName, args)
         // erase the unpacked files
-        deleteRecursive (new File (s"${FILE_DEPOT}MicroGrid/"))
-        deleteRecursive (new File (s"${FILE_DEPOT}MicroGrid_Error/"))
-        deleteRecursive (new File (s"${FILE_DEPOT}MiniGrid/"))
-        deleteRecursive (new File (s"${FILE_DEPOT}SmallGrid/"))
-        deleteRecursive (new File (s"${FILE_DEPOT}RealGrid/"))
+        deleteRecursive(new File(s"${FILE_DEPOT}MicroGrid/"))
+        deleteRecursive(new File(s"${FILE_DEPOT}MicroGrid_Error/"))
+        deleteRecursive(new File(s"${FILE_DEPOT}MiniGrid/"))
+        deleteRecursive(new File(s"${FILE_DEPOT}SmallGrid/"))
+        deleteRecursive(new File(s"${FILE_DEPOT}RealGrid/"))
         ret
     }
 
-    test ("Basic")
+    test("Basic")
     {
         implicit session: SparkSession =>
-            val options = Map [String, String](
+            val options = Map[String, String](
                 "ch.ninecode.cim.make_edges" -> "true",
                 "ch.ninecode.cim.do_topo_islands" -> "true")
-            val elements = readFile (FILENAME, options)
-            assert (elements.count () === ELEMENTS1x)
-            val edges = session.sqlContext.sql ("select * from edges")
+            val elements = readFile(FILENAME, options)
+            assert(elements.count() === ELEMENTS1x)
+            val edges = session.sqlContext.sql("select * from edges")
             val count = edges.count
-            markup (s"edge count: $count")
-            assert (count === 8348)
+            markup(s"edge count: $count")
+            assert(count === 8348)
     }
 
-    test ("Dedup")
+    test("Dedup")
     {
         implicit session: SparkSession =>
-            val elements1 = readFile (FILENAME)
-            val count1 = elements1.count ()
-            assert (count1 === ELEMENTS1x)
-            val options = Map [String, String]("ch.ninecode.cim.do_deduplication" -> "true")
-            val elements2 = readFile (s"$FILENAME,$FILENAME", options)
-            val count2 = elements2.count ()
-            assert (count1 === count2)
+            val elements1 = readFile(FILENAME)
+            val count1 = elements1.count()
+            assert(count1 === ELEMENTS1x)
+            val options = Map[String, String]("ch.ninecode.cim.do_deduplication" -> "true")
+            val elements2 = readFile(s"$FILENAME,$FILENAME", options)
+            val count2 = elements2.count()
+            assert(count1 === count2)
     }
 }

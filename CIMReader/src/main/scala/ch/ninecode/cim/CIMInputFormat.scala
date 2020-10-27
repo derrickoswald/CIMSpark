@@ -36,7 +36,7 @@ class CIMInputFormat extends FileInputFormat[String, Element]
         // Note: we don't need to override this yet,
         // but the JobContext has the Credentials (@see org.apache.hadoop.mapreduce.JobContext.getCredentials())
         // which would be checked here.
-        super.getSplits (context)
+        super.getSplits(context)
     }
 
     /**
@@ -48,6 +48,6 @@ class CIMInputFormat extends FileInputFormat[String, Element]
      */
     def createRecordReader (split: InputSplit, context: TaskAttemptContext): RecordReader[String, Element] =
     {
-        new CIMRecordReader ()
+        new CIMRecordReader()
     }
 }

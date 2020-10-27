@@ -45,10 +45,10 @@ class SparkSuite extends FixtureAnyFunSuite
         @throws[IOException]
         def unzip (file: String, directory: String): Unit =
         {
-            val dir = new File (directory)
+            val dir = new File(directory)
             if (!dir.exists)
                 dir.mkdir
-            val zip = new ZipInputStream (new FileInputStream (file))
+            val zip = new ZipInputStream(new FileInputStream(file))
             var entry = zip.getNextEntry
             // iterates over entries in the zip file
             while (null != entry)
@@ -58,17 +58,17 @@ class SparkSuite extends FixtureAnyFunSuite
                 if (!entry.isDirectory)
                 {
                     // if the entry is a file, extracts it
-                    extractFile (zip, path)
+                    extractFile(zip, path)
                     if (null != time)
-                        new File (path).setLastModified (time.toMillis)
+                        new File(path).setLastModified(time.toMillis)
                 }
                 else
                 // if the entry is a directory, make the directory
-                    new File (path).mkdir
-                zip.closeEntry ()
+                    new File(path).mkdir
+                zip.closeEntry()
                 entry = zip.getNextEntry
             }
-            zip.close ()
+            zip.close()
         }
 
         /**
@@ -81,16 +81,16 @@ class SparkSuite extends FixtureAnyFunSuite
         @throws[IOException]
         private def extractFile (zip: ZipInputStream, path: String): Unit =
         {
-            val bos = new BufferedOutputStream (new FileOutputStream (path))
+            val bos = new BufferedOutputStream(new FileOutputStream(path))
             val bytesIn = new Array[Byte](4096)
             var read = -1
             while (
             {
-                read = zip.read (bytesIn);
+                read = zip.read(bytesIn);
                 read != -1
             })
-                bos.write (bytesIn, 0, read)
-            bos.close ()
+                bos.write(bytesIn, 0, read)
+            bos.close()
         }
     }
 
@@ -103,32 +103,32 @@ class SparkSuite extends FixtureAnyFunSuite
     {
         if (path.isDirectory)
             for (subpath <- path.list)
-                deleteRecursive (new File (path, subpath))
+                deleteRecursive(new File(path, subpath))
         path.delete
     }
 
     def withFixture (test: OneArgTest): Outcome =
     {
         // create the configuration
-        val configuration = new SparkConf (false)
-        configuration.setAppName ("CIMSparkSuite")
-        configuration.setMaster ("local[2]")
-        configuration.set ("spark.driver.memory", "2g")
-        configuration.set ("spark.executor.memory", "2g")
-        configuration.set ("spark.ui.showConsoleProgress", "false")
-        configuration.registerKryoClasses (CIMClasses.list)
+        val configuration = new SparkConf(false)
+        configuration.setAppName("CIMSparkSuite")
+        configuration.setMaster("local[2]")
+        configuration.set("spark.driver.memory", "2g")
+        configuration.set("spark.executor.memory", "2g")
+        configuration.set("spark.ui.showConsoleProgress", "false")
+        configuration.registerKryoClasses(CIMClasses.list)
 
-        val session = SparkSession.builder ().config (configuration).getOrCreate () // create the fixture
-        session.sparkContext.setLogLevel ("INFO") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
+        val session = SparkSession.builder().config(configuration).getOrCreate() // create the fixture
+        session.sparkContext.setLogLevel("INFO") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
         try
-        withFixture (test.toNoArgTest (session)) // "loan" the fixture to the test
-        finally session.stop () // clean up the fixture
+        withFixture(test.toNoArgTest(session)) // "loan" the fixture to the test
+        finally session.stop() // clean up the fixture
     }
 
-    def readFile (filename: String, options: Map[String, String] = Map [String, String]())(implicit spark: SparkSession): DataFrame =
+    def readFile (filename: String, options: Map[String, String] = Map[String, String]())(implicit spark: SparkSession): DataFrame =
     {
         val o = options + ("StorageLevel" -> "MEMORY_AND_DISK_SER")
-        spark.read.format ("ch.ninecode.cim").options (o).load (filename) // ToDo: why doesn't this work? load (filename.split (","):_*)
+        spark.read.format("ch.ninecode.cim").options(o).load(filename) // ToDo: why doesn't this work? load (filename.split (","):_*)
     }
 
     /**
@@ -147,11 +147,11 @@ class SparkSuite extends FixtureAnyFunSuite
     {
 
         val rdd: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs
-        rdd.find (_._2.name == name) match
+        rdd.find(_._2.name == name) match
         {
-            case Some ((_, rdd: RDD[_])) =>
-                rdd.asInstanceOf [RDD[T]]
-            case Some (_) =>
+            case Some((_, rdd: RDD[_])) =>
+                rdd.asInstanceOf[RDD[T]]
+            case Some(_) =>
                 null
             case None =>
                 null
@@ -171,8 +171,8 @@ class SparkSuite extends FixtureAnyFunSuite
      */
     def get[T: ClassTag] (implicit spark: SparkSession): RDD[T] =
     {
-        val classname = classTag [T].runtimeClass.getName
-        val name = classname.substring (classname.lastIndexOf (".") + 1)
-        get (name)
+        val classname = classTag[T].runtimeClass.getName
+        val name = classname.substring(classname.lastIndexOf(".") + 1)
+        get(name)
     }
 }

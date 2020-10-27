@@ -26,8 +26,8 @@ case class Role (
     extends
         ProgramaticName
 {
-    lazy val upper: Int = if (card.equals ("1") || card.endsWith ("..1")) 1 else 0
-    lazy val lower: Int = if (card.equals ("*") || card.startsWith ("0..")) 0 else 1
+    lazy val upper: Int = if (card.equals("1") || card.endsWith("..1")) 1 else 0
+    lazy val lower: Int = if (card.equals("*") || card.startsWith("0..")) 0 else 1
     lazy val many_to_many: Boolean = ((card == "0..*") || (card == "1..*")) && ((mate.card == "0..*") || (mate.card == "1..*"))
 
     override def hashCode: Int = xuid.hashCode
@@ -46,5 +46,5 @@ case class Role (
         stupid_name
     }
 
-    override def toString: String = "%s from %s to %s %s:%s".format (name, src.name, dst.name, card, mate.card)
+    override def toString: String = "%s from %s to %s %s:%s".format(name, src.name, dst.name, card, mate.card)
 }

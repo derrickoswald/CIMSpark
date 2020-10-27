@@ -11,39 +11,39 @@ import ch.ninecode.model.Element
 
 class CIMRecordReader (debug: Boolean = false) extends RecordReader[String, Element]
 {
-    val log: Log = LogFactory.getLog (getClass)
+    val log: Log = LogFactory.getLog(getClass)
     var cim: CHIM = _
 
     def initialize (genericSplit: InputSplit, context: TaskAttemptContext): Unit =
     {
         if (debug)
         {
-            log.info ("initialize")
-            log.info (s"genericSplit: ${genericSplit.toString}")
-            log.info (s"context: ${context.getTaskAttemptID.toString}")
+            log.info("initialize")
+            log.info(s"genericSplit: ${genericSplit.toString}")
+            log.info(s"context: ${context.getTaskAttemptID.toString}")
         }
         val job = context.getConfiguration
-        val split = genericSplit.asInstanceOf [FileSplit]
+        val split = genericSplit.asInstanceOf[FileSplit]
         val start = split.getStart
         val bytes = split.getLength
         val file = split.getPath
 
         // open the file and seek to the start of the split
-        val fs = file.getFileSystem (job)
-        val in = fs.open (file)
+        val fs = file.getFileSystem(job)
+        val in = fs.open(file)
 
         val end = start + bytes
-        val available = fs.getFileStatus (file).getLen
-        val extra = if (available > end) Math.min (CHIM.OVERREAD.toLong, available - end) else 0L
+        val available = fs.getFileStatus(file).getLen
+        val extra = if (available > end) Math.min(CHIM.OVERREAD.toLong, available - end) else 0L
         // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
         val size = (bytes + extra).toInt
         val buffer = new Array[Byte](size)
-        in.readFully (start, buffer)
+        in.readFully(start, buffer)
 
         val low =
             if (0 == start)
             // strip any BOM(Byte Order Mark) i.e. 0xEF,0xBB,0xBF
-                if ((size >= 3) && (buffer (0) == 0xef) && (buffer (1) == 0xbb) && (buffer (2) == 0xbf))
+                if ((size >= 3) && (buffer(0) == 0xef) && (buffer(1) == 0xbb) && (buffer(2) == 0xbf))
                     3
                 else
                     0
@@ -56,33 +56,33 @@ class CIMRecordReader (debug: Boolean = false) extends RecordReader[String, Elem
                 // skip to next UTF-8 non-continuation byte (high order bit zero)
                 // by advancing past at most 4 bytes
                 var i = 0
-                if ((buffer (low + i) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
-                    while (0 != (buffer (low + i) & 0x80) && (i < Math.min (4, size)))
+                if ((buffer(low + i) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
+                    while (0 != (buffer(low + i) & 0x80) && (i < Math.min(4, size)))
                         i += 1
                 low + i
             }
             else
                 low
 
-        val xml = Text.decode (buffer, first, size - first)
-        val len = if (0 == extra) xml.length else Text.decode (buffer, first, (size - first - extra).toInt).length
+        val xml = Text.decode(buffer, first, size - first)
+        val len = if (0 == extra) xml.length else Text.decode(buffer, first, (size - first - extra).toInt).length
 
         // ToDo: using first here is approximate,
         // the real character count would require reading the complete file
         // from 0 to (start + first) and converting to characters
         if (debug)
-            log.debug (s"XML text starting at byte offset ${start + first} of length $len characters begins with: ${xml.substring (0, 120)}")
+            log.debug(s"XML text starting at byte offset ${start + first} of length $len characters begins with: ${xml.substring(0, 120)}")
         CIMContext.DEBUG = debug
-        cim = new CHIM (xml, first, first + len, start, start + bytes)
+        cim = new CHIM(xml, first, first + len, start, start + bytes)
     }
 
     def close (): Unit =
     {
         if (debug)
         {
-            log.info ("close")
+            log.info("close")
             for (error <- cim.context.errors)
-                log.error (error)
+                log.error(error)
         }
         cim = null
     }
@@ -91,7 +91,7 @@ class CIMRecordReader (debug: Boolean = false) extends RecordReader[String, Elem
 
     def getCurrentValue: Element = cim.value
 
-    def getProgress: Float = cim.progress ()
+    def getProgress: Float = cim.progress()
 
-    def nextKeyValue (): Boolean = cim.parse_one ()
+    def nextKeyValue (): Boolean = cim.parse_one()
 }

@@ -29,7 +29,7 @@ class CIMFileFormat
     extends
         FileFormat
 {
-    private val log = LoggerFactory.getLogger (getClass)
+    private val log = LoggerFactory.getLogger(getClass)
 
     // just to get a schema
     case class dummy
@@ -41,7 +41,7 @@ class CIMFileFormat
     {
         override def copy (): Row =
         {
-            clone ().asInstanceOf [Row]
+            clone().asInstanceOf[Row]
         }
     }
 
@@ -54,7 +54,7 @@ class CIMFileFormat
         options: Map[String, String],
         files: Seq[FileStatus]): Option[StructType] =
     {
-        Some (Encoders.product[dummy].schema)
+        Some(Encoders.product[dummy].schema)
     }
 
     /**
@@ -67,7 +67,7 @@ class CIMFileFormat
         options: Map[String, String],
         dataSchema: StructType): OutputWriterFactory =
     {
-        throw new UnsupportedOperationException ("prepareWrite is not supported")
+        throw new UnsupportedOperationException("prepareWrite is not supported")
     }
 
     /**
@@ -109,7 +109,7 @@ class CIMFileFormat
         options: Map[String, String],
         hadoopConf: Configuration): PartitionedFile => Iterator[InternalRow] =
     {
-        log.info ("buildReader")
+        log.info("buildReader")
 
         new (PartitionedFile => Iterator[InternalRow]) with Serializable
         {

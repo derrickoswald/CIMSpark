@@ -26,19 +26,19 @@ import com.datastax.spark.connector.cql.CassandraConnector
  */
 final case class Schema (session: SparkSession, resource: String, loglevel: Level)
 {
-    org.apache.log4j.LogManager.getLogger (getClass).setLevel (loglevel)
-    val log: Logger = LoggerFactory.getLogger (getClass)
+    org.apache.log4j.LogManager.getLogger(getClass).setLevel(loglevel)
+    val log: Logger = LoggerFactory.getLogger(getClass)
 
     // check if we can get the schema generation script
     def script: Option[String] =
     {
-        val schema = this.getClass.getResourceAsStream (resource)
+        val schema = this.getClass.getResourceAsStream(resource)
         if (null != schema)
         {
-            val source = Source.fromInputStream (schema, "UTF-8")
-            val statements = source.getLines.mkString ("\n")
+            val source = Source.fromInputStream(schema, "UTF-8")
+            val statements = source.getLines.mkString("\n")
             source.close
-            Some (statements)
+            Some(statements)
         }
         else
             None
@@ -47,14 +47,14 @@ final case class Schema (session: SparkSession, resource: String, loglevel: Leve
     // check if keyspace name is legal, and quote it if necessary
     def validateKeyspace (name: String): Option[String] =
     {
-        val regex = Pattern.compile ("""^([a-z][a-z0-9_]{0,47})|([a-zA-Z0-9_]{1,48})$""")
-        val matcher = regex.matcher (name)
+        val regex = Pattern.compile("""^([a-z][a-z0-9_]{0,47})|([a-zA-Z0-9_]{1,48})$""")
+        val matcher = regex.matcher(name)
         if (matcher.matches)
         {
-            if (null != matcher.group (1))
-                Some (matcher.group (1))
+            if (null != matcher.group(1))
+                Some(matcher.group(1))
             else
-                Some (s""""${matcher.group (2)}"""")
+                Some(s""""${matcher.group(2)}"""")
         }
         else
             None
@@ -83,12 +83,12 @@ final case class Schema (session: SparkSession, resource: String, loglevel: Leve
         def edit (line: String): String =
         {
             val s = if (keyspace != DEFAULT_KEYSPACE)
-                line.replace (DEFAULT_KEYSPACE, keyspace)
+                line.replace(DEFAULT_KEYSPACE, keyspace)
             else
                 line
 
             if (replication != DEFAULT_REPLICATION)
-                s.replace (old_replication_string, new_replication_string)
+                s.replace(old_replication_string, new_replication_string)
             else
                 s
         }
@@ -110,45 +110,45 @@ final case class Schema (session: SparkSession, resource: String, loglevel: Leve
      * @return <code>true</code> if all DDL executed successfully, <code>false</code> if the schema file doesn't exist or there were errors
      */
     def make (
-        connector: CassandraConnector = CassandraConnector (session.sparkContext.getConf),
+        connector: CassandraConnector = CassandraConnector(session.sparkContext.getConf),
         keyspace: String = "cimapplication",
         replication: Int = 2
     ): Boolean =
     {
         script match
         {
-            case Some (text) =>
-                validateKeyspace (keyspace) match
+            case Some(text) =>
+                validateKeyspace(keyspace) match
                 {
-                    case Some (keyspace) =>
-                        log.info (s"""ensuring Cassandra keyspace $keyspace exists""")
+                    case Some(keyspace) =>
+                        log.info(s"""ensuring Cassandra keyspace $keyspace exists""")
 
                         // separate at blank lines and change keyspace
-                        val statements = text.split ("\n\n").map (editor (keyspace, replication))
+                        val statements = text.split("\n\n").map(editor(keyspace, replication))
 
                         // need to apply each DDL separately
-                        statements.forall (
+                        statements.forall(
                             sql =>
                             {
                                 try
                                 {
-                                    val _ = connector.withSessionDo (session => session.execute (sql))
+                                    val _ = connector.withSessionDo(session => session.execute(sql))
                                     true
                                 }
                                 catch
                                 {
                                     case exception: Exception =>
-                                        log.error (s"""failed to create schema in Cassandra keyspace $keyspace""", exception)
+                                        log.error(s"""failed to create schema in Cassandra keyspace $keyspace""", exception)
                                         false
                                 }
                             }
                         )
                     case None =>
-                        log.error (s"""invalid keyspace name (max 48 alphanumeric or underscore): $keyspace""")
+                        log.error(s"""invalid keyspace name (max 48 alphanumeric or underscore): $keyspace""")
                         false
                 }
             case None =>
-                log.error (s"""failed to get schema sql resource: $resource""")
+                log.error(s"""failed to get schema sql resource: $resource""")
                 false
         }
     }

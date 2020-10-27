@@ -34,7 +34,7 @@ import org.apache.spark.sql.types.ElementUDT
  * @groupname Added Classes added by CIMReader
  * @groupdesc Low level classes needed to parse the hierarchical CIM classes and generate nested RDD of.
  */
-@SQLUserDefinedType (udt = classOf [ElementUDT])
+@SQLUserDefinedType(udt = classOf[ElementUDT])
 trait Element
     extends
         Row
@@ -74,7 +74,7 @@ trait Element
      * For classes constructed manually, we initially fill this in with the worst case scenario.
      * ToDo: this won't work for classes with more than 128 fields (so far none).
      */
-    var bitfields: Array[Int] = Array (-1, -1, -1, -1)
+    var bitfields: Array[Int] = Array(-1, -1, -1, -1)
 
     /**
      * Is a field present predicate.
@@ -84,7 +84,7 @@ trait Element
      * @param position the field position in the fields array
      * @return <code>true</code> if the field was parsed, <code>false</code> otherwise.
      */
-    def mask (position: Int): Boolean = 0 != (bitfields (position / 32) & (1 << (position % 32)))
+    def mask (position: Int): Boolean = 0 != (bitfields(position / 32) & (1 << (position % 32)))
 
     /**
      * Flag for rdf:about elements.
@@ -105,7 +105,7 @@ trait Element
         else
         {
             val s = getClass.getName
-            s.substring (s.lastIndexOf (".") + 1)
+            s.substring(s.lastIndexOf(".") + 1)
         }
     }
 
@@ -116,7 +116,7 @@ trait Element
      */
     def classes: Seq[String] =
     {
-        if (null == sup) Seq (baseclass) else Seq (baseclass) ++ sup.classes
+        if (null == sup) Seq(baseclass) else Seq(baseclass) ++ sup.classes
     }
 
     //
@@ -145,9 +145,9 @@ trait Element
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf [AnyRef]
+            productElement(i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index $i")
+            throw new IllegalArgumentException(s"invalid property index $i")
     }
 
     /**
@@ -163,7 +163,7 @@ trait Element
     {
         if (null != value)
         {
-            val _ = s.append (s"		<$namespace:$clz.$field>${value.toString}</$namespace:$clz.$field>\n")
+            val _ = s.append(s"		<$namespace:$clz.$field>${value.toString}</$namespace:$clz.$field>\n")
         }
     }
 
@@ -181,9 +181,9 @@ trait Element
         if (null != value)
         {
             val v = value.toString
-            val prefix = if (!v.startsWith ("http://")) "#" else "" // relative
+            val prefix = if (!v.startsWith("http://")) "#" else "" // relative
             val q = "\""
-            val _ = s.append (s"		<$namespace:$clz.$field rdf:resource=$q$prefix$v$q/>\n")
+            val _ = s.append(s"		<$namespace:$clz.$field rdf:resource=$q$prefix$v$q/>\n")
         }
     }
 
@@ -233,7 +233,7 @@ case class BasicElement
      */
     def this () =
     {
-        this (null, null)
+        this(null, null)
     }
 
     override def sup: Element = Element
@@ -276,7 +276,7 @@ case class BasicElement
      */
     override def copy (): Row =
     {
-        clone ().asInstanceOf [Row]
+        clone().asInstanceOf[Row]
     }
 }
 
@@ -289,28 +289,28 @@ object BasicElement
      * Parse an element.
      * Simply extracts the rdf:ID.
      */
-    val ID: FielderFunction = parse_element ((Pattern.compile ("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
+    val ID: FielderFunction = parse_element((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
     /**
      * Parse an element.
      * Simply extracts the rdf:about.
      */
-    val about: FielderFunction = parse_element ((Pattern.compile ("""rdf:about=("|')([\s\S]*?)\1>?"""), 2))
+    val about: FielderFunction = parse_element((Pattern.compile("""rdf:about=("|')([\s\S]*?)\1>?"""), 2))
 
-    override val fields: Array[String] = Array [String]("mRID")
+    override val fields: Array[String] = Array[String]("mRID")
 
     override def parse (context: CIMContext): BasicElement =
     {
         implicit val ctx: CIMContext = context
-        val id = ID.apply ().orNull
-        val ab = about.apply ()
+        val id = ID.apply().orNull
+        val ab = about.apply()
         val mRID = ab match
         {
-            case Some (mrid) =>
-                if ('#' == mrid.charAt (0)) mrid.substring (1) else mrid // remove '#'
+            case Some(mrid) =>
+                if ('#' == mrid.charAt(0)) mrid.substring(1) else mrid // remove '#'
             case None =>
                 id // id may be null anyway
         }
-        val basic = BasicElement (null, mRID)
+        val basic = BasicElement(null, mRID)
         basic._about = ab.isDefined
         basic
     }
@@ -322,15 +322,15 @@ object BasicElementSerializer extends CIMSerializer[BasicElement]
 {
     def write (kryo: Kryo, output: Output, obj: BasicElement): Unit =
     {
-        output.writeString (obj.id)
-        output.writeBoolean (obj.about)
+        output.writeString(obj.id)
+        output.writeBoolean(obj.about)
     }
 
     def read (kryo: Kryo, input: Input, cls: Class[BasicElement]): BasicElement =
     {
         val mrid = input.readString
         val about = input.readBoolean
-        val basic = BasicElement (null, mrid)
+        val basic = BasicElement(null, mrid)
         basic._about = about
         basic
     }
@@ -364,22 +364,22 @@ case class Unknown (
      */
     def this () =
     {
-        this (null, null, 0, 0L, 0L)
+        this(null, null, 0, 0L, 0L)
     }
 
     override def sup: Element = Element
 
     override def copy (): Row =
     {
-        clone ().asInstanceOf [Unknown]
+        clone().asInstanceOf[Unknown]
     }
 
     override def get (i: Int): Object =
     {
         if (i < productArity)
-            productElement (i).asInstanceOf [AnyRef]
+            productElement(i).asInstanceOf[AnyRef]
         else
-            throw new IllegalArgumentException (s"invalid property index $i")
+            throw new IllegalArgumentException(s"invalid property index $i")
     }
 
     override def length: Int = productArity
@@ -399,12 +399,12 @@ object Unknown
     {
         if (CIMContext.DEBUG && (context.errors.size < CIMContext.MAXERRORS))
         {
-            val _ = context.errors += s"""Unknown element "$name" at line ${context.line_number ()}"""
+            val _ = context.errors += s"""Unknown element "$name" at line ${context.line_number()}"""
         }
-        Unknown (
-            BasicElement.parse (context),
+        Unknown(
+            BasicElement.parse(context),
             context.subxml,
-            context.line_number (),
+            context.line_number(),
             context.start,
             context.end)
     }
@@ -416,17 +416,17 @@ object UnknownSerializer extends CIMSerializer[Unknown]
 {
     def write (kryo: Kryo, output: Output, obj: Unknown): Unit =
     {
-        BasicElementSerializer.write (kryo, output, obj.Element.asInstanceOf [BasicElement])
-        output.writeString (obj.guts)
-        output.writeInt (obj.line)
-        output.writeLong (obj.start)
-        output.writeLong (obj.end)
+        BasicElementSerializer.write(kryo, output, obj.Element.asInstanceOf[BasicElement])
+        output.writeString(obj.guts)
+        output.writeInt(obj.line)
+        output.writeLong(obj.start)
+        output.writeLong(obj.end)
     }
 
     def read (kryo: Kryo, input: Input, cls: Class[Unknown]): Unknown =
     {
-        Unknown (
-            BasicElementSerializer.read (kryo, input, classOf [BasicElement]),
+        Unknown(
+            BasicElementSerializer.read(kryo, input, classOf[BasicElement]),
             input.readString,
             input.readInt,
             input.readLong,

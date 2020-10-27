@@ -25,7 +25,7 @@ class CIMAbout (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
 {
     implicit val session: SparkSession = spark
     implicit val storage_level: StorageLevel = storage // for put()
-    implicit val log: Logger = LoggerFactory.getLogger (getClass)
+    implicit val log: Logger = LoggerFactory.getLogger(getClass)
 
     /**
      * Apply rdf:about elements to the primary element.
@@ -46,24 +46,24 @@ class CIMAbout (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
         // process any rdf:about elements
         maybe__about match
         {
-            case Some (abouts: Iterable[Element]) =>
-                val fields = (for (i <- 0 until original.length) yield original.get (i)).toArray
+            case Some(abouts: Iterable[Element]) =>
+                val fields = (for (i <- 0 until original.length) yield original.get(i)).toArray
                 for (about <- abouts)
                     if (clz.getCanonicalName == about.getClass.getCanonicalName) // check the class is the same
                     {
                         for (i <- 0 until original.length - 1)
-                            if (about.mask (i))
+                            if (about.mask(i))
                             {
-                                fields (i + 1) = about.get (i + 1) // shift by one to avoid superclass
-                                bitfields (i / 32) |= (1 << (i % 32))
+                                fields(i + 1) = about.get(i + 1) // shift by one to avoid superclass
+                                bitfields(i / 32) |= (1 << (i % 32))
                             }
                     }
                     else
-                        log.error ("rdf:about class %s is not the same as the reference class %s".format (about.getClass.getCanonicalName, clz.getCanonicalName))
+                        log.error("rdf:about class %s is not the same as the reference class %s".format(about.getClass.getCanonicalName, clz.getCanonicalName))
                 // recurse for superclasses
-                fields (0) = if (null != original.sup) merge ((original.sup, Some (abouts.map (_.sup)))) else null
-                val c = clz.getConstructors.filter (_.getParameterCount == fields.length).head
-                val n = c.newInstance (fields: _*).asInstanceOf [Element]
+                fields(0) = if (null != original.sup) merge((original.sup, Some(abouts.map(_.sup)))) else null
+                val c = clz.getConstructors.filter(_.getParameterCount == fields.length).head
+                val n = c.newInstance(fields: _*).asInstanceOf[Element]
                 n.bitfields = bitfields
                 n
             case None =>
@@ -88,22 +88,22 @@ class CIMAbout (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
     def do_about (): RDD[Element] =
     {
         // get the elements RDD
-        val elements = getOrElse [Element]
+        val elements = getOrElse[Element]
 
         // get the elements flagged as "rdf:about"
-        val about_elements = elements.filter (_.about).groupBy (_.id)
+        val about_elements = elements.filter(_.about).groupBy(_.id)
 
         if (!about_elements.isEmpty)
         {
-            log.info ("merging rdf:about elements")
+            log.info("merging rdf:about elements")
 
             // clusters of similarly named elements
-            val element_groups = elements.filter (!_.about).keyBy (_.id).leftOuterJoin (about_elements).values
+            val element_groups = elements.filter(!_.about).keyBy(_.id).leftOuterJoin(about_elements).values
 
-            val new_elements = element_groups.map (merge)
+            val new_elements = element_groups.map(merge)
 
             // swap the old Elements RDD for the new one
-            put (new_elements, false)
+            put(new_elements, false)
 
             new_elements
         }
