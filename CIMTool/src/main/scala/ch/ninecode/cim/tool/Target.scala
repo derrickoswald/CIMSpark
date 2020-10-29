@@ -18,17 +18,17 @@ package ch.ninecode.cim.tool
     /**
      * Target the Scala language.
      */
-    case object ScalaLanguage extends Target ("Scala")
+    case object ScalaLanguage extends Target("Scala")
     {
-        def generator (parser: ModelParser, options: CIMToolOptions): CodeGenerator = Scala (parser, options)
+        def generator (parser: ModelParser, options: CIMToolOptions): CodeGenerator = Scala(parser, options)
     }
 
     /**
      * Target the JavaScript language.
      */
-    case object JavaScriptLanguage extends Target ("JavaScript")
+    case object JavaScriptLanguage extends Target("JavaScript")
     {
-        def generator (parser: ModelParser, options: CIMToolOptions): CodeGenerator = JavaScript (parser, options)
+        def generator (parser: ModelParser, options: CIMToolOptions): CodeGenerator = JavaScript(parser, options)
     }
 
     /**
@@ -36,20 +36,20 @@ package ch.ninecode.cim.tool
      */
     class TargetReader extends Read[Target]
     {
-        val generators: List[Target] = List [Target](ScalaLanguage, JavaScriptLanguage)
+        val generators: List[Target] = List[Target](ScalaLanguage, JavaScriptLanguage)
 
         def arity: Int = 1
 
-        def reads: String => Target = (s: String) => generators.find (_.name == s).getOrElse (
+        def reads: String => Target = (s: String) => generators.find(_.name == s).getOrElse(
             {
                 val fallback = ScalaLanguage
-                val log = LoggerFactory.getLogger (getClass)
-                log.error (s"""unrecognized target "$s", using ${fallback.name} as a fallback""")
+                val log = LoggerFactory.getLogger(getClass)
+                log.error(s"""unrecognized target "$s", using ${fallback.name} as a fallback""")
                 fallback
             }
         )
 
-        def languages: List[String] = generators.map (_.name)
+        def languages: List[String] = generators.map(_.name)
     }
 
 }

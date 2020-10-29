@@ -16,7 +16,7 @@ class CIMSuite extends AnyFunSuite
      *  - ignore
      *  - pending
      */
-    test ("Basic")
+    test("Basic")
     {
         val xml =
             """yadda yadda
@@ -24,13 +24,13 @@ class CIMSuite extends AnyFunSuite
         <cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
     </cim:PSRType>
 foo bar"""
-        val parser = new CHIM (xml)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 0)
+        val parser = new CHIM(xml)
+        val result = CHIM.parse(parser)
+        assert(result._1.size === 1)
+        assert(result._2.length === 0)
     }
 
-    test ("External Extra")
+    test("External Extra")
     {
         val xml =
             """yadda yadda
@@ -42,14 +42,14 @@ foo bar
 			<cim:IdentifiedObject.name>Transformer Station</cim:IdentifiedObject.name>
 		</cim:PSRType>
 yadda yadda"""
-        val parser = new CHIM (xml)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 1)
+        val parser = new CHIM(xml)
+        val result = CHIM.parse(parser)
+        assert(result._1.size === 1)
+        assert(result._2.length === 1)
         //markup (result._2(0))
     }
 
-    test ("Internal Extra")
+    test("Internal Extra")
     {
         val xml =
             """yadda yadda
@@ -63,15 +63,15 @@ foo bar
 yadda yadda"""
 
         CIMContext.STOP_ON_ERROR = true
-        val parser = new CHIM (xml)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 1)
+        val parser = new CHIM(xml)
+        val result = CHIM.parse(parser)
+        assert(result._1.size === 1)
+        assert(result._2.length === 1)
         //markup (result._2(0))
         CIMContext.STOP_ON_ERROR = false
     }
 
-    test ("Voltage")
+    test("Voltage")
     {
         // Note: scala XML really hates processing instructions
         val xml =
@@ -87,15 +87,15 @@ yadda yadda"""
 		<cim:BaseVoltage.nominalVoltage>0.400000000000</cim:BaseVoltage.nominalVoltage>
 	</cim:BaseVoltage>
 </rdf:RDF>"""
-        val parser = new CHIM (xml)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 0)
-        val voltage = result._1 ("BaseVoltage_0.400000000000").asInstanceOf [BaseVoltage]
-        assert (voltage.nominalVoltage === 0.40)
+        val parser = new CHIM(xml)
+        val result = CHIM.parse(parser)
+        assert(result._1.size === 1)
+        assert(result._2.length === 0)
+        val voltage = result._1("BaseVoltage_0.400000000000").asInstanceOf[BaseVoltage]
+        assert(voltage.nominalVoltage === 0.40)
     }
 
-    test ("Illegal Voltage")
+    test("Illegal Voltage")
     {
         val xml =
             """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -110,15 +110,15 @@ yadda yadda"""
 		<cim:BaseVoltage.nominalVoltage>x0.400000000000</cim:BaseVoltage.nominalVoltage>
 	</cim:BaseVoltage>
 </rdf:RDF>"""
-        val parser = new CHIM (xml)
-        intercept [Exception]
+        val parser = new CHIM(xml)
+        intercept[Exception]
             {
-                val _ = CHIM.parse (parser)
-                fail ("invalid voltage accepted")
+                val _ = CHIM.parse(parser)
+                fail("invalid voltage accepted")
             }
     }
 
-    test ("Coordinate System")
+    test("Coordinate System")
     {
         val xml =
             """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -135,18 +135,18 @@ yadda yadda"""
 	</cim:CoordinateSystem>
 </rdf:RDF>"""
 
-        val parser = new CHIM (xml)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 0)
-        result._1 ("wgs84") match
+        val parser = new CHIM(xml)
+        val result = CHIM.parse(parser)
+        assert(result._1.size === 1)
+        assert(result._2.length === 0)
+        result._1("wgs84") match
         {
-            case cs: CoordinateSystem => assert (cs.crsUrn === "EPSG::4326")
-            case _ => assert (false, "not a CoordinateSystem")
+            case cs: CoordinateSystem => assert(cs.crsUrn === "EPSG::4326")
+            case _ => assert(false, "not a CoordinateSystem")
         }
     }
 
-    test ("Many-to-Many")
+    test("Many-to-Many")
     {
         val xml =
             """	<cim:Facility rdf:ID="STA196_asset">
@@ -160,16 +160,16 @@ yadda yadda"""
 		<cim:Asset.lifecycleDate rdf:resource="#STA196_lifecycle"/>
 	</cim:Facility>"""
 
-        val parser = new CHIM (xml)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 0)
-        val facility = result._1 ("STA196_asset").asInstanceOf [Facility]
+        val parser = new CHIM(xml)
+        val result = CHIM.parse(parser)
+        assert(result._1.size === 1)
+        assert(result._2.length === 0)
+        val facility = result._1("STA196_asset").asInstanceOf[Facility]
         val asset = facility.AssetContainer.Asset
-        assert (2 == asset.PowerSystemResources.length)
+        assert(2 == asset.PowerSystemResources.length)
     }
 
-    test ("Self Closing Tag")
+    test("Self Closing Tag")
     {
         val xml =
             """	<cim:ACLineSegment rdf:ID="LEK110315">
@@ -188,15 +188,15 @@ yadda yadda"""
 		<cim:ACLineSegment.x/>
 	</cim:ACLineSegment>"""
 
-        val parser = new CHIM (xml)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 0)
-        val line = result._1 ("LEK110315").asInstanceOf [ACLineSegment]
-        assert (0 == line.r)
-        assert (0 == line.x)
-        assert (0 == line.r0)
-        assert (0 == line.x0)
-        assert (1.125373716 == line.Conductor.len)
+        val parser = new CHIM(xml)
+        val result = CHIM.parse(parser)
+        assert(result._1.size === 1)
+        assert(result._2.length === 0)
+        val line = result._1("LEK110315").asInstanceOf[ACLineSegment]
+        assert(0 == line.r)
+        assert(0 == line.x)
+        assert(0 == line.r0)
+        assert(0 == line.x0)
+        assert(1.125373716 == line.Conductor.len)
     }
 }

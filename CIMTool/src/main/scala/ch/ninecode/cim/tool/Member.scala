@@ -35,7 +35,7 @@ case class Member (
      *
      * @return <code>true</code> if this is an n:m relation
      */
-    def multiple: Boolean = !(this_cardinality.equals ("1") || this_cardinality.endsWith ("..1"))
+    def multiple: Boolean = !(this_cardinality.equals("1") || this_cardinality.endsWith("..1"))
 
     /**
      * Heuristic conversion of summary or body into Javadoc format.
@@ -46,19 +46,19 @@ case class Member (
     def edit (s: String): String =
     {
         // turn Fortran squared syntax into HTML
-        val l1 = s.replace ("^2", "<sup>2</sup>")
+        val l1 = s.replace("^2", "<sup>2</sup>")
         // escape dollar signs that are interpreted as macros
-        val l2 = l1.replace ("$", """\$""")
+        val l2 = l1.replace("$", """\$""")
         // remove leading equals signs to avoid looking like a heading
-        val l3 = l2.split ('\n')
-        val l4 = l3.map (l => if (l.startsWith ("=")) s"&equals;${l.substring (1)}" else l)
-        l4.mkString ("\n")
+        val l3 = l2.split('\n')
+        val l4 = l3.map(l => if (l.startsWith("=")) s"&equals;${l.substring(1)}" else l)
+        l4.mkString("\n")
     }
 
     def variableAsDoc: String =
     {
-        if (variable.charAt (0) == '`')
-            variable.substring (1, variable.length - 1)
+        if (variable.charAt(0) == '`')
+            variable.substring(1, variable.length - 1)
         else
             variable
     }
@@ -70,17 +70,17 @@ case class Member (
      */
     def javaDoc: String =
     {
-        val jd = JavaDoc (comment, 0)
+        val jd = JavaDoc(comment, 0)
         val ref = if (null != referenced_class)
             s" [[ch.ninecode.model.$referenced_class $referenced_class]]"
         else
             ""
         val summary = if (jd.summary.nonEmpty)
-            jd.summary.mkString ("\n *        ")
+            jd.summary.mkString("\n *        ")
         else
             "<em>undocumented</em>"
         val body = if (jd.body.nonEmpty)
-            jd.body.mkString ("\n *        ", "\n *        ", "")
+            jd.body.mkString("\n *        ", "\n *        ", "")
         else
             ""
         s"@param $variableAsDoc$ref $summary$body"

@@ -30,12 +30,12 @@ class CIMSerializeSuite extends FixtureAnyFunSuite with BeforeAndAfter with Unzi
 
     before
     {
-        new Unzip ().unzip (s"$FILE_DEPOT$FILENAME.zip", FILE_DEPOT)
+        new Unzip().unzip(s"$FILE_DEPOT$FILENAME.zip", FILE_DEPOT)
     }
 
     after
     {
-        val _ = new File (s"$FILE_DEPOT$FILENAME.rdf").delete
+        val _ = new File(s"$FILE_DEPOT$FILENAME.rdf").delete
     }
 
     //    def toBytes (buffer: java.nio.ByteBuffer): String =
@@ -45,38 +45,38 @@ class CIMSerializeSuite extends FixtureAnyFunSuite with BeforeAndAfter with Unzi
 
     def check[T <: Element : ClassTag] (t: T)(implicit serializer: SerializerInstance): Int =
     {
-        val buffer = serializer.serialize (t)
+        val buffer = serializer.serialize(t)
         val bytes = buffer.remaining
         // info (s"$bytes bytes", None)
         // info (s"${toBytes (buffer)}", None)
         val o = serializer.deserialize[T](buffer)
-        assert (o.bitfields.sameElements (t.bitfields))
-        assert (o === t)
+        assert(o.bitfields.sameElements(t.bitfields))
+        assert(o === t)
         bytes
     }
 
     override protected def withFixture (test: OneArgTest): Outcome =
     {
-        val configuration = new SparkConf (false)
-            .set (KRYO_REGISTRATION_REQUIRED, "true")
-            .registerKryoClasses (CIMClasses.list)
-            .set (KRYO_RESISTRATOR, "ch.ninecode.cim.CIMRegistrator")
+        val configuration = new SparkConf(false)
+            .set(KRYO_REGISTRATION_REQUIRED, "true")
+            .registerKryoClasses(CIMClasses.list)
+            .set(KRYO_RESISTRATOR, "ch.ninecode.cim.CIMRegistrator")
 
         // val serializer = new org.apache.spark.serializer.JavaSerializer (configuration).newInstance ()
-        val serializer = new KryoSerializer (configuration).newInstance ()
-        withFixture (test.toNoArgTest (serializer))
+        val serializer = new KryoSerializer(configuration).newInstance()
+        withFixture(test.toNoArgTest(serializer))
     }
 
-    test ("basic")
+    test("basic")
     {
         implicit serializer =>
             val MRID = "_20480b94-e981-4a76-9c88-4aef3d1b8be2"
-            val basic = BasicElement (
+            val basic = BasicElement(
                 null,
                 mRID = MRID
             )
-            basic.bitfields = BasicElement.fieldsToBitfields ("mRID")
-            val obj = IdentifiedObject (
+            basic.bitfields = BasicElement.fieldsToBitfields("mRID")
+            val obj = IdentifiedObject(
                 Element = basic,
                 aliasName = "KAB0202002",
                 description = "a simple identified object",
@@ -84,20 +84,20 @@ class CIMSerializeSuite extends FixtureAnyFunSuite with BeforeAndAfter with Unzi
                 name = "GKN 3x150se/150 1/0.6 kV",
                 DiagramObjects = "object1" :: "object2" :: Nil
             )
-            obj.bitfields = IdentifiedObject.fieldsToBitfields ("aliasName", "description", "mRID", "name", "DiagramObjects")
-            check (obj)
+            obj.bitfields = IdentifiedObject.fieldsToBitfields("aliasName", "description", "mRID", "name", "DiagramObjects")
+            check(obj)
     }
 
-    test ("null list")
+    test("null list")
     {
         implicit serializer =>
             val MRID = "_81849a73-d1c5-4cae-b58f-a6f1ad3b53a0"
-            val basic = BasicElement (
+            val basic = BasicElement(
                 null,
                 mRID = MRID
             )
-            basic.bitfields = BasicElement.fieldsToBitfields ("mRID")
-            val obj = IdentifiedObject (
+            basic.bitfields = BasicElement.fieldsToBitfields("mRID")
+            val obj = IdentifiedObject(
                 Element = basic,
                 aliasName = "USR34519",
                 description = "another simple identified object",
@@ -105,25 +105,25 @@ class CIMSerializeSuite extends FixtureAnyFunSuite with BeforeAndAfter with Unzi
                 name = "17, Kerkstraat, Oost West en Middelbeers",
                 DiagramObjects = null
             )
-            obj.bitfields = IdentifiedObject.fieldsToBitfields ("aliasName", "description", "mRID", "name", "DiagramObjects")
-            check (obj)
+            obj.bitfields = IdentifiedObject.fieldsToBitfields("aliasName", "description", "mRID", "name", "DiagramObjects")
+            check(obj)
     }
 
-    test ("simple")
+    test("simple")
     {
         implicit serializer =>
 
             val filename = s"$FILE_DEPOT$FILENAME.rdf"
-            val fis = new FileInputStream (filename)
-            val size = fis.available ()
-            fis.close ()
+            val fis = new FileInputStream(filename)
+            val size = fis.available()
+            fis.close()
 
-            val (xml, start, end) = CHIM.read (filename: String, 0L, size, 0L)
-            val parser = new CHIM (xml, start, end)
-            val result = CHIM.parse (parser)
-            assert (result._2.size === 0)
+            val (xml, start, end) = CHIM.read(filename: String, 0L, size, 0L)
+            val parser = new CHIM(xml, start, end)
+            val result = CHIM.parse(parser)
+            assert(result._2.size === 0)
 
-            val total = result._1.values.map (check).sum
-            info (s"$total bytes", None)
+            val total = result._1.values.map(check).sum
+            info(s"$total bytes", None)
     }
 }

@@ -35,10 +35,10 @@ object Hull extends Serializable
      */
     def add (hull: List[Point], point: Point): List[Point] =
     {
-        point :: hull.foldRight (List.empty [Point])
+        point :: hull.foldRight(List.empty[Point])
         {
             case (p1, rest@(p0 :: _)) =>
-                if (ccw (p0, p1, point))
+                if (ccw(p0, p1, point))
                     p1 :: rest
                 else
                     rest
@@ -59,11 +59,11 @@ object Hull extends Serializable
     def scan (points: List[Point]): List[Point] =
     {
         // perform a secondary sort by minimum x in case two points have the same minimum y
-        val pp = points.sortBy (_._1)
-        val min = pp.minBy (_._2)
+        val pp = points.sortBy(_._1)
+        val min = pp.minBy(_._2)
 
-        def angle (point: Point): Double = atan2 (point._2 - min._2, point._1 - min._1)
+        def angle (point: Point): Double = atan2(point._2 - min._2, point._1 - min._1)
 
-        min :: pp.sortBy (angle).foldLeft (List.empty [Point])(add)
+        min :: pp.sortBy(angle).foldLeft(List.empty[Point])(add)
     }
 }

@@ -47,7 +47,7 @@ class CIMRelation (
     //        parameters) (spark)
 
     implicit val session: SparkSession = spark
-    implicit val log: Logger = LoggerFactory.getLogger (getClass)
+    implicit val log: Logger = LoggerFactory.getLogger(getClass)
 
     def parseState (text: String): State =
         text match
@@ -60,48 +60,49 @@ class CIMRelation (
     val paths: Array[String] = location.inputFiles
 
     // check for a storage level option
-    implicit val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_AND_DISK_SER"))
+    implicit val _StorageLevel: StorageLevel = StorageLevel.fromString(parameters.getOrElse("StorageLevel", "MEMORY_AND_DISK_SER"))
     // check for append option
-    val _Append: Boolean = parameters.getOrElse ("ch.ninecode.cim.append", "false").toBoolean
+    val _Append: Boolean = parameters.getOrElse("ch.ninecode.cim.append", "false").toBoolean
     // check for rdf:about option
-    val _About: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_about", "false").toBoolean
+    val _About: Boolean = parameters.getOrElse("ch.ninecode.cim.do_about", "false").toBoolean
     // check for normalization option
-    val _Normalize: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_normalize", "false").toBoolean
+    val _Normalize: Boolean = parameters.getOrElse("ch.ninecode.cim.do_normalize", "false").toBoolean
     // check for deduplication option
-    val _DeDup: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_deduplication", "false").toBoolean
+    val _DeDup: Boolean = parameters.getOrElse("ch.ninecode.cim.do_deduplication", "false").toBoolean
     // check for change set merge option
-    val _Changes: Boolean = parameters.getOrElse ("ch.ninecode.cim.apply_changesets", "false").toBoolean
+    val _Changes: Boolean = parameters.getOrElse("ch.ninecode.cim.apply_changesets", "false").toBoolean
     // check for edge creation option
-    val _Edges: Boolean = parameters.getOrElse ("ch.ninecode.cim.make_edges", "false").toBoolean
+    val _Edges: Boolean = parameters.getOrElse("ch.ninecode.cim.make_edges", "false").toBoolean
     // check for ISU join option
-    val _Join: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_join", "false").toBoolean
+    val _Join: Boolean = parameters.getOrElse("ch.ninecode.cim.do_join", "false").toBoolean
     // check for NTP island option
-    val _Islands: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_topo_islands", "false").toBoolean
+    val _Islands: Boolean = parameters.getOrElse("ch.ninecode.cim.do_topo_islands", "false").toBoolean
     // check for NTP option, islands requires topological nodes
-    val _Topo: Boolean = if (_Islands) true else parameters.getOrElse ("ch.ninecode.cim.do_topo", "false").toBoolean
+    val _Topo: Boolean = if (_Islands) true else parameters.getOrElse("ch.ninecode.cim.do_topo", "false").toBoolean
     // check for NTP force switches option
-    val _Force_Retain_Switches: State = parseState (parameters.getOrElse ("ch.ninecode.cim.force_retain_switches", "Unforced"))
+    val _Force_Retain_Switches: State = parseState(parameters.getOrElse("ch.ninecode.cim.force_retain_switches", "Unforced"))
     // check for NTP force fuses option
-    val _Force_Retain_Fuses: State = parseState (parameters.getOrElse ("ch.ninecode.cim.force_retain_fuses", "Unforced"))
+    val _Force_Retain_Fuses: State = parseState(parameters.getOrElse("ch.ninecode.cim.force_retain_fuses", "Unforced"))
     // check for NTP force switches to separate islands option
-    val _Force_Switch_Separate_Islands: State = parseState (parameters.getOrElse ("ch.ninecode.cim.force_switch_separate_islands", "Unforced"))
+    val _Force_Switch_Separate_Islands: State = parseState(parameters.getOrElse("ch.ninecode.cim.force_switch_separate_islands", "Unforced"))
     // check for NTP force fuses to separate islands option
-    val _Force_Fuse_Separate_Islands: State = parseState (parameters.getOrElse ("ch.ninecode.cim.force_fuse_separate_islands", "Unforced"))
+    val _Force_Fuse_Separate_Islands: State = parseState(parameters.getOrElse("ch.ninecode.cim.force_fuse_separate_islands", "Unforced"))
     // check for NTP default switch state option
-    val _Default_Switch_Open_State: Boolean = parameters.getOrElse ("ch.ninecode.cim.default_switch_open_state", "false").toBoolean
+    val _Default_Switch_Open_State: Boolean = parameters.getOrElse("ch.ninecode.cim.default_switch_open_state", "false").toBoolean
     // check for NTP debug option
-    val _Debug: Boolean = parameters.getOrElse ("ch.ninecode.cim.debug", "false").toBoolean
+    val _Debug: Boolean = parameters.getOrElse("ch.ninecode.cim.debug", "false").toBoolean
     // check for split size option, default is 64MB
-    val _SplitSize: Long = parameters.getOrElse ("ch.ninecode.cim.split_maxsize", "67108864").toLong
+    val _SplitSize: Long = parameters.getOrElse("ch.ninecode.cim.split_maxsize", "67108864").toLong
     // check for cache option
-    val _Cache: String = parameters.getOrElse ("ch.ninecode.cim.cache", "")
+    val _Cache: String = parameters.getOrElse("ch.ninecode.cim.cache", "")
     // get the name template if any
-    val _NameTemplate: String = parameters.getOrElse ("ch.ninecode.cim.name_template", "%s")
+    val _NameTemplate: String = parameters.getOrElse("ch.ninecode.cim.name_template", "%s")
 
-    log.info (s"parameters: ${parameters.toString}")
-    log.info (s"storage: ${_StorageLevel.description}")
+    log.info(s"parameters: ${parameters.toString}")
+    log.info(s"storage: ${_StorageLevel.description}")
 
     def sqlContext: SQLContext = spark.sqlContext
+
     override def pattern: String = _NameTemplate
 
     // just to get a schema
@@ -114,7 +115,7 @@ class CIMRelation (
     {
         override def copy (): Row =
         {
-            clone ().asInstanceOf [Row]
+            clone().asInstanceOf[Row]
         }
     }
 
@@ -136,17 +137,17 @@ class CIMRelation (
     {
         // aggregate the set of class names
         val names = rdd
-            .aggregate (Set [String]())(
-                (set, element) => set.union (element.classes.toSet),
-                (set1, set2) => set1.union (set2)
+            .aggregate(Set[String]())(
+                (set, element) => set.union(element.classes.toSet),
+                (set1, set2) => set1.union(set2)
             )
-        CHIM.apply_to_all_classes (
+        CHIM.apply_to_all_classes(
             (subsetter: CIMSubsetter[_]) =>
             {
-                if (names.contains (subsetter.cls))
+                if (names.contains(subsetter.cls))
                 {
-                    log.debug (s"building ${applyPattern (subsetter.cls)}")
-                    subsetter.make (spark.sqlContext, rdd, _StorageLevel, _NameTemplate)
+                    log.debug(s"building ${applyPattern(subsetter.cls)}")
+                    subsetter.make(spark.sqlContext, rdd, _StorageLevel, _NameTemplate)
                 }
             }
         )
@@ -156,19 +157,19 @@ class CIMRelation (
     {
         // aggregate the set of subclass names
         val names = elements
-            .aggregate (Set [String]())(
-                (set, element) => element.classes.toSet.union (set),
-                (set1, set2) => set1.union (set2)
+            .aggregate(Set[String]())(
+                (set, element) => element.classes.toSet.union(set),
+                (set1, set2) => set1.union(set2)
             )
         // remove subclass RDD if they exist
         for (name <- names;
-             target = applyPattern (name))
+             target = applyPattern(name))
         {
-            spark.sparkContext.getPersistentRDDs.find (_._2.name == target) match
+            spark.sparkContext.getPersistentRDDs.find(_._2.name == target) match
             {
-                case Some ((_: Int, existing: RDD[_])) =>
-                    existing.setName (null).unpersist (true)
-                case Some (_) | None =>
+                case Some((_: Int, existing: RDD[_])) =>
+                    existing.setName(null).unpersist(true)
+                case Some(_) | None =>
             }
         }
     }
@@ -176,27 +177,27 @@ class CIMRelation (
     // For a non-partitioned relation, this method builds an RDD[Row] containing all rows within this relation.
     override def buildScan (): RDD[Row] =
     {
-        log.info ("buildScan")
+        log.info("buildScan")
 
         // register the ElementUDT
-        ElementRegistration.register ()
+        ElementRegistration.register()
 
         var ret: RDD[Element] = null
 
         // if appending get the old RDD[Element] and remove any existing subclass RDD
         // else also remove the old RDD[Element]
-        val target = applyPattern ("Element")
-        val previous = spark.sparkContext.getPersistentRDDs.find (_._2.name == target) match
+        val target = applyPattern("Element")
+        val previous = spark.sparkContext.getPersistentRDDs.find(_._2.name == target) match
         {
-            case Some ((_, old)) =>
+            case Some((_, old)) =>
                 val rdd = old.asInstanceOf[RDD[Element]]
-                removeSubclassRDD (rdd)
+                removeSubclassRDD(rdd)
                 if (_Append)
-                    Some (rdd)
+                    Some(rdd)
                 else
                 {
                     // remove the old RDD[Element]
-                    rdd.setName (null).unpersist (true)
+                    rdd.setName(null).unpersist(true)
                     None
                 }
             case None =>
@@ -205,80 +206,80 @@ class CIMRelation (
 
         if (_Cache != "")
         {
-            val path = new Path (_Cache)
-            val configuration = new Configuration (spark.sparkContext.hadoopConfiguration)
-            val fs = path.getFileSystem (configuration)
-            if (fs.exists (path))
+            val path = new Path(_Cache)
+            val configuration = new Configuration(spark.sparkContext.hadoopConfiguration)
+            val fs = path.getFileSystem(configuration)
+            if (fs.exists(path))
             {
-                log.info (s"reading cache: ${_Cache}")
-                val rdd: RDD[Element] = spark.sparkContext.objectFile (_Cache)
-                put (rdd, true)
-                make_tables (rdd)
+                log.info(s"reading cache: ${_Cache}")
+                val rdd: RDD[Element] = spark.sparkContext.objectFile(_Cache)
+                put(rdd, true)
+                make_tables(rdd)
                 ret = rdd
             }
         }
 
         if (null == ret)
         {
-            val path = parameters.getOrElse ("path", paths.mkString (","))
+            val path = parameters.getOrElse("path", paths.mkString(","))
 
             // make a config
-            val configuration = new Configuration (spark.sparkContext.hadoopConfiguration)
-            configuration.set (FileInputFormat.INPUT_DIR, path)
-            configuration.setLong (FileInputFormat.SPLIT_MAXSIZE, _SplitSize)
+            val configuration = new Configuration(spark.sparkContext.hadoopConfiguration)
+            configuration.set(FileInputFormat.INPUT_DIR, path)
+            configuration.setLong(FileInputFormat.SPLIT_MAXSIZE, _SplitSize)
 
             ret = if (_Debug)
-                spark.sparkContext.newAPIHadoopRDD (
+                spark.sparkContext.newAPIHadoopRDD(
                     configuration,
-                    classOf [CIMInputFormatDebug],
-                    classOf [String],
-                    classOf [Element]).values
+                    classOf[CIMInputFormatDebug],
+                    classOf[String],
+                    classOf[Element]).values
             else
-                spark.sparkContext.newAPIHadoopRDD (
+                spark.sparkContext.newAPIHadoopRDD(
                     configuration,
-                    classOf [CIMInputFormat],
-                    classOf [String],
-                    classOf [Element]).values
+                    classOf[CIMInputFormat],
+                    classOf[String],
+                    classOf[Element]).values
 
             ret = previous match
             {
-                case Some (old) =>
-                    old.union (ret)
+                case Some(old) =>
+                    old.union(ret)
                 case None =>
                     ret
             }
-            put (ret, true)
+            put(ret, true)
 
             // about processing if requested
             if (_About)
-                ret = new CIMAbout (spark, _StorageLevel).do_about ()
+                ret = new CIMAbout(spark, _StorageLevel).do_about()
 
             // normalize if requested
             if (_Normalize)
-                ret = new CIMNormalize (spark, _StorageLevel).do_normalization ()
+                ret = new CIMNormalize(spark, _StorageLevel).do_normalization()
 
             // dedup if requested
             if (_DeDup)
-                ret = new CIMDeDup (spark, _StorageLevel).do_deduplicate ()
+                ret = new CIMDeDup(spark, _StorageLevel).do_deduplicate()
 
             // apply changes if requested
             if (_Changes)
-                ret = CIMChange (spark, _StorageLevel).apply_changes
+                ret = CIMChange(spark, _StorageLevel).apply_changes
 
             // as a side effect, define all the other temporary tables
-            log.info ("creating temporary tables")
-            make_tables (ret)
+            log.info("creating temporary tables")
+            make_tables(ret)
 
             // merge ISU and NIS ServiceLocations if requested
             if (_Join)
-                ret = new CIMJoin (spark, _StorageLevel).do_join ()
+                ret = new CIMJoin(spark, _StorageLevel).do_join()
 
             // perform topological processing if requested
             if (_Topo)
             {
-                val ntp = CIMNetworkTopologyProcessor (
+                val ntp = CIMNetworkTopologyProcessor(
                     spark,
-                    CIMTopologyOptions (
+                    CIMTopologyOptions(
                         identify_islands = _Islands,
                         force_retain_switches = _Force_Retain_Switches,
                         force_retain_fuses = _Force_Retain_Fuses,
@@ -294,16 +295,16 @@ class CIMRelation (
 
             // set up edge graph if requested
             if (_Edges)
-                ret = new CIMEdges (spark, _StorageLevel).make_edges (_Topo)
+                ret = new CIMEdges(spark, _StorageLevel).make_edges(_Topo)
 
             // cache elements if requested
             if (_Cache != "")
             {
-                log.info (s"writing cache: ${_Cache}")
-                ret.saveAsObjectFile (_Cache)
+                log.info(s"writing cache: ${_Cache}")
+                ret.saveAsObjectFile(_Cache)
             }
         }
 
-        ret.asInstanceOf [RDD[Row]]
+        ret.asInstanceOf[RDD[Row]]
     }
 }

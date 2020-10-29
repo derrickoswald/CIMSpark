@@ -25,7 +25,7 @@ class CIMNormalize (spark: SparkSession, storage: StorageLevel = StorageLevel.ME
 {
     implicit val session: SparkSession = spark
     implicit val level: StorageLevel = storage // for put()
-    implicit val log: Logger = LoggerFactory.getLogger (getClass)
+    implicit val log: Logger = LoggerFactory.getLogger(getClass)
 
     /**
      * Retrieve a (static) companion object.
@@ -36,7 +36,7 @@ class CIMNormalize (spark: SparkSession, storage: StorageLevel = StorageLevel.ME
      * @return the companion object as type T
      */
     def companion[T] (name: String)(implicit man: Manifest[T]): T =
-        Class.forName (s"${name}$$").getField ("MODULE$").get (man.runtimeClass).asInstanceOf [T]
+        Class.forName(s"${name}$$").getField("MODULE$").get(man.runtimeClass).asInstanceOf[T]
 
     /**
      * A denormalized relation to be fixed.
@@ -56,25 +56,25 @@ class CIMNormalize (spark: SparkSession, storage: StorageLevel = StorageLevel.ME
      */
     def get_denormalized (arg: (String, Element)): List[Relation] =
     {
-        var ret = List [Relation]()
+        var ret = List[Relation]()
 
         val id = arg._1
         val element = arg._2
 
         var clz = element
         val parent = element.getClass.getName
-        val parent_class = parent.substring (parent.lastIndexOf (".") + 1)
+        val parent_class = parent.substring(parent.lastIndexOf(".") + 1)
         while (null != clz)
         {
             val name = clz.getClass.getName
-            val relationships = companion [CIMParser](name).relations
-            val fields = companion [CIMParser](name).fields
-            val onesies = relationships.filter (_.heavyside)
-            onesies.foreach (relationship =>
+            val relationships = companion[CIMParser](name).relations
+            val fields = companion[CIMParser](name).fields
+            val onesies = relationships.filter(_.heavyside)
+            onesies.foreach(relationship =>
             {
-                val list = clz.get (fields.indexOf (relationship.field) + 1).asInstanceOf [List[String]]
+                val list = clz.get(fields.indexOf(relationship.field) + 1).asInstanceOf[List[String]]
                 if (null != list && list.nonEmpty) // could also check bitfields instead of checking for null
-                    ret = ret :+ Relation (id, parent_class, relationship, list)
+                    ret = ret :+ Relation(id, parent_class, relationship, list)
             }
             )
             clz = clz.sup
@@ -98,31 +98,31 @@ class CIMNormalize (spark: SparkSession, storage: StorageLevel = StorageLevel.ME
      */
     def set (element: Element, child: String, field: String, value: String, setbit: Boolean = true): Element =
     {
-        val fields = (for (i <- 0 until element.length) yield element.get (i)).toArray // current field data
+        val fields = (for (i <- 0 until element.length) yield element.get(i)).toArray // current field data
         val clz = element.getClass
         val class_name = clz.getName
-        val bitfields = element.bitfields.clone ()
-        if (child == class_name.substring (class_name.lastIndexOf (".") + 1)) // e.g. ACLineSegment
+        val bitfields = element.bitfields.clone()
+        if (child == class_name.substring(class_name.lastIndexOf(".") + 1)) // e.g. ACLineSegment
         {
-            val field_names = companion [CIMParser](class_name).fields
-            val index = field_names.indexOf (field)
+            val field_names = companion[CIMParser](class_name).fields
+            val index = field_names.indexOf(field)
             if (-1 != index)
             {
-                log.debug ("%s:%s.%s = %s".format (child, element.id, field, if (null == value) "null" else value.toString))
-                fields (index + 1) = value
-                bitfields (index / 32) = if (setbit)
-                    bitfields (index / 32) | (1 << (index % 32))
+                log.debug("%s:%s.%s = %s".format(child, element.id, field, if (null == value) "null" else value.toString))
+                fields(index + 1) = value
+                bitfields(index / 32) = if (setbit)
+                    bitfields(index / 32) | (1 << (index % 32))
                 else
-                    bitfields (index / 32) & ~(1 << (index % 32))
+                    bitfields(index / 32) & ~(1 << (index % 32))
             }
             else
-                log.error ("field %s not found in class %s, value cannot be set".format (field, class_name))
+                log.error("field %s not found in class %s, value cannot be set".format(field, class_name))
         }
         else
-            fields (0) = set (element.sup, child, field, value)
-        val c = clz.getConstructors.filter (_.getParameterCount == fields.length).head
-        val obj = c.newInstance (fields: _*)
-        val new_element = obj.asInstanceOf [Element]
+            fields(0) = set(element.sup, child, field, value)
+        val c = clz.getConstructors.filter(_.getParameterCount == fields.length).head
+        val obj = c.newInstance(fields: _*)
+        val new_element = obj.asInstanceOf[Element]
         new_element.bitfields = bitfields
         new_element
     }
@@ -139,7 +139,7 @@ class CIMNormalize (spark: SparkSession, storage: StorageLevel = StorageLevel.ME
         val element = arg._2._1
         val relations = arg._2._2
 
-        val new_element = relations.foldLeft (element)((element, relation) => set (element, relation.parent_class, relation.relationship.field, null, false))
+        val new_element = relations.foldLeft(element)((element, relation) => set(element, relation.parent_class, relation.relationship.field, null, false))
         (id, new_element)
     }
 
@@ -155,7 +155,7 @@ class CIMNormalize (spark: SparkSession, storage: StorageLevel = StorageLevel.ME
         val element = arg._2._1
         val relations = arg._2._2
 
-        val new_element = relations.foldLeft (element)((element, relation) => set (element, relation.relationship.clazz, relation.parent_class, relation.parent))
+        val new_element = relations.foldLeft(element)((element, relation) => set(element, relation.relationship.clazz, relation.parent_class, relation.parent))
         (id, new_element)
     }
 
@@ -167,37 +167,37 @@ class CIMNormalize (spark: SparkSession, storage: StorageLevel = StorageLevel.ME
     def do_normalization (): RDD[Element] =
     {
         // get the elements RDD keyed by id
-        val old_elements = getOrElse [Element]
-        val elements = old_elements.keyBy (_.id)
+        val old_elements = getOrElse[Element]
+        val elements = old_elements.keyBy(_.id)
         val all = elements.count
 
         // get the objects that are denormalized, i.e. contain N references in a 1:N relationship
-        val relations: RDD[Relation] = elements.flatMap (get_denormalized).persist (storage)
+        val relations: RDD[Relation] = elements.flatMap(get_denormalized).persist(storage)
         val bad = relations.count
-        log.info ("normalizing %d of %d elements".format (bad, all))
+        log.info("normalizing %d of %d elements".format(bad, all))
 
         // get the broken objects and the relations that need deleting
-        val broken: RDD[(String, Iterable[Relation])] = relations.groupBy (_.parent).persist (storage)
+        val broken: RDD[(String, Iterable[Relation])] = relations.groupBy(_.parent).persist(storage)
 
         // get the fixed objects
-        val fixed: RDD[(String, Element)] = elements.join (broken).map (remove).persist (storage)
+        val fixed: RDD[(String, Element)] = elements.join(broken).map(remove).persist(storage)
 
         // get a cleaned elements RDD, after this the denormalization is only held in the relations RDD
         // slightly slower: elements.leftOuterJoin (fixed).map (replace).persist (storage)
-        val cleaned = elements.subtractByKey (fixed).union (fixed).persist (storage)
+        val cleaned = elements.subtractByKey(fixed).union(fixed).persist(storage)
 
         // invert the relation
-        val fixme: RDD[(String, Iterable[Relation])] = relations.flatMap (relation => relation.referred.map (id => (id, relation))).groupByKey.persist (storage)
+        val fixme: RDD[(String, Iterable[Relation])] = relations.flatMap(relation => relation.referred.map(id => (id, relation))).groupByKey.persist(storage)
 
         // get the fixed objects
-        val fixed2: RDD[(String, Element)] = cleaned.join (fixme).map (add).persist (storage)
+        val fixed2: RDD[(String, Element)] = cleaned.join(fixme).map(add).persist(storage)
 
         // construct the new elements RDD
         // slightly slower: cleaned.leftOuterJoin (fixed2).map (replace).values
-        val new_elements: RDD[Element] = cleaned.subtractByKey (fixed2).union (fixed2).values
+        val new_elements: RDD[Element] = cleaned.subtractByKey(fixed2).union(fixed2).values
 
         // swap the old Elements RDD for the new one
-        put (new_elements, true)
+        put(new_elements, true)
 
         new_elements
     }

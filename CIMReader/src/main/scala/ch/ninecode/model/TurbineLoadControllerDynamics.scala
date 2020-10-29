@@ -18,36 +18,36 @@ import ch.ninecode.cim.CIMSerializer
  * This model represents a supervisory turbine load controller that acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference. This model is intended to represent slow reset 'outer loop' controllers managing the action of the turbine governor.
  *
  * @param TurbineLoadControllerDynamics [[ch.ninecode.model.TurbineLoadControllerDynamics TurbineLoadControllerDynamics]] Reference to the superclass object.
- * @param db Controller deadband (<i>db</i>).
- *        Typical value = 0.
- * @param emax Maximum control error (<i>Emax</i>) (see parameter detail 4).
- *        Typical value = 0,02.
- * @param fb Frequency bias gain (<i>Fb</i>).
- *        Typical value = 0.
- * @param fbf Frequency bias flag (<i>Fbf</i>).
- *        true = enable frequency bias
- *        false = disable frequency bias.
- *        Typical value = false.
- * @param irmax Maximum turbine speed/load reference bias (<i>Irmax</i>) (see parameter detail 3).
- *        Typical value = 0.
- * @param ki Integral gain (<i>Ki</i>).
- *        Typical value = 0.
- * @param kp Proportional gain (<i>Kp</i>).
- *        Typical value = 0.
- * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
- *        Unit = MW.
- * @param pbf Power controller flag (<i>Pbf</i>).
- *        true = enable load controller
- *        false = disable load controller.
- *        Typical value = false.
- * @param pmwset Power controller setpoint (<i>Pmwset</i>) (see parameter detail 1).
- *        Unit = MW. Typical value = 0.
- * @param speedReferenceGovernor Type of turbine governor reference (<i>Type</i>).
- *        true = speed reference governor
- *        false = load reference governor.
- *        Typical value = true.
- * @param tpelec Power transducer time constant (<i>Tpelec</i>) (&gt;= 0).
- *        Typical value = 0.
+ * @param db                            Controller deadband (<i>db</i>).
+ *                                      Typical value = 0.
+ * @param emax                          Maximum control error (<i>Emax</i>) (see parameter detail 4).
+ *                                      Typical value = 0,02.
+ * @param fb                            Frequency bias gain (<i>Fb</i>).
+ *                                      Typical value = 0.
+ * @param fbf                           Frequency bias flag (<i>Fbf</i>).
+ *                                      true = enable frequency bias
+ *                                      false = disable frequency bias.
+ *                                      Typical value = false.
+ * @param irmax                         Maximum turbine speed/load reference bias (<i>Irmax</i>) (see parameter detail 3).
+ *                                      Typical value = 0.
+ * @param ki                            Integral gain (<i>Ki</i>).
+ *                                      Typical value = 0.
+ * @param kp                            Proportional gain (<i>Kp</i>).
+ *                                      Typical value = 0.
+ * @param mwbase                        Base for power values (<i>MWbase</i>) (&gt; 0).
+ *                                      Unit = MW.
+ * @param pbf                           Power controller flag (<i>Pbf</i>).
+ *                                      true = enable load controller
+ *                                      false = disable load controller.
+ *                                      Typical value = false.
+ * @param pmwset                        Power controller setpoint (<i>Pmwset</i>) (see parameter detail 1).
+ *                                      Unit = MW. Typical value = 0.
+ * @param speedReferenceGovernor        Type of turbine governor reference (<i>Type</i>).
+ *                                      true = speed reference governor
+ *                                      false = load reference governor.
+ *                                      Typical value = true.
+ * @param tpelec                        Power transducer time constant (<i>Tpelec</i>) (&gt;= 0).
+ *                                      Typical value = 0.
  * @group TurbineLoadControllerDynamics
  * @groupname TurbineLoadControllerDynamics Package TurbineLoadControllerDynamics
  * @groupdesc TurbineLoadControllerDynamics A turbine load controller acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference.
@@ -68,8 +68,8 @@ final case class TurbLCFB1
     speedReferenceGovernor: Boolean = false,
     tpelec: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -95,38 +95,44 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone().asInstanceOf[Row]
+    }
 
     override def export_fields: String =
     {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val s: StringBuilder = new StringBuilder(sup.export_fields)
         implicit val clz: String = TurbLCFB1.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TurbLCFB1.fields (position), value)
-        emitelem (0, db)
-        emitelem (1, emax)
-        emitelem (2, fb)
-        emitelem (3, fbf)
-        emitelem (4, irmax)
-        emitelem (5, ki)
-        emitelem (6, kp)
-        emitelem (7, mwbase)
-        emitelem (8, pbf)
-        emitelem (9, pmwset)
-        emitelem (10, speedReferenceGovernor)
-        emitelem (11, tpelec)
+
+        def emitelem (position: Int, value: Any): Unit = if (mask(position)) emit_element(TurbLCFB1.fields(position), value)
+
+        emitelem(0, db)
+        emitelem(1, emax)
+        emitelem(2, fb)
+        emitelem(3, fbf)
+        emitelem(4, irmax)
+        emitelem(5, ki)
+        emitelem(6, kp)
+        emitelem(7, mwbase)
+        emitelem(8, pbf)
+        emitelem(9, pmwset)
+        emitelem(10, speedReferenceGovernor)
+        emitelem(11, tpelec)
         s.toString
     }
+
     override def export: String =
     {
-        "\t<cim:TurbLCFB1 rdf:%s=\"%s\">\n%s\t</cim:TurbLCFB1>".format (if (about) "about" else "ID", id, export_fields)
+        "\t<cim:TurbLCFB1 rdf:%s=\"%s\">\n%s\t</cim:TurbLCFB1>".format(if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TurbLCFB1
-extends
-    CIMParseable[TurbLCFB1]
+    extends
+        CIMParseable[TurbLCFB1]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String](
         "db",
         "emax",
         "fb",
@@ -140,37 +146,37 @@ extends
         "speedReferenceGovernor",
         "tpelec"
     )
-    val db: Fielder = parse_element (element (cls, fields(0)))
-    val emax: Fielder = parse_element (element (cls, fields(1)))
-    val fb: Fielder = parse_element (element (cls, fields(2)))
-    val fbf: Fielder = parse_element (element (cls, fields(3)))
-    val irmax: Fielder = parse_element (element (cls, fields(4)))
-    val ki: Fielder = parse_element (element (cls, fields(5)))
-    val kp: Fielder = parse_element (element (cls, fields(6)))
-    val mwbase: Fielder = parse_element (element (cls, fields(7)))
-    val pbf: Fielder = parse_element (element (cls, fields(8)))
-    val pmwset: Fielder = parse_element (element (cls, fields(9)))
-    val speedReferenceGovernor: Fielder = parse_element (element (cls, fields(10)))
-    val tpelec: Fielder = parse_element (element (cls, fields(11)))
+    val db: Fielder = parse_element(element(cls, fields(0)))
+    val emax: Fielder = parse_element(element(cls, fields(1)))
+    val fb: Fielder = parse_element(element(cls, fields(2)))
+    val fbf: Fielder = parse_element(element(cls, fields(3)))
+    val irmax: Fielder = parse_element(element(cls, fields(4)))
+    val ki: Fielder = parse_element(element(cls, fields(5)))
+    val kp: Fielder = parse_element(element(cls, fields(6)))
+    val mwbase: Fielder = parse_element(element(cls, fields(7)))
+    val pbf: Fielder = parse_element(element(cls, fields(8)))
+    val pmwset: Fielder = parse_element(element(cls, fields(9)))
+    val speedReferenceGovernor: Fielder = parse_element(element(cls, fields(10)))
+    val tpelec: Fielder = parse_element(element(cls, fields(11)))
 
     def parse (context: CIMContext): TurbLCFB1 =
     {
         implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
-        val ret = TurbLCFB1 (
-            TurbineLoadControllerDynamics.parse (context),
-            toDouble (mask (db (), 0)),
-            toDouble (mask (emax (), 1)),
-            toDouble (mask (fb (), 2)),
-            toBoolean (mask (fbf (), 3)),
-            toDouble (mask (irmax (), 4)),
-            toDouble (mask (ki (), 5)),
-            toDouble (mask (kp (), 6)),
-            toDouble (mask (mwbase (), 7)),
-            toBoolean (mask (pbf (), 8)),
-            toDouble (mask (pmwset (), 9)),
-            toBoolean (mask (speedReferenceGovernor (), 10)),
-            toDouble (mask (tpelec (), 11))
+        val ret = TurbLCFB1(
+            TurbineLoadControllerDynamics.parse(context),
+            toDouble(mask(db(), 0)),
+            toDouble(mask(emax(), 1)),
+            toDouble(mask(fb(), 2)),
+            toBoolean(mask(fbf(), 3)),
+            toDouble(mask(irmax(), 4)),
+            toDouble(mask(ki(), 5)),
+            toDouble(mask(kp(), 6)),
+            toDouble(mask(mwbase(), 7)),
+            toBoolean(mask(pbf(), 8)),
+            toDouble(mask(pmwset(), 9)),
+            toBoolean(mask(speedReferenceGovernor(), 10)),
+            toDouble(mask(tpelec(), 11))
         )
         ret.bitfields = bitfields
         ret
@@ -183,44 +189,44 @@ object TurbLCFB1Serializer extends CIMSerializer[TurbLCFB1]
 {
     def write (kryo: Kryo, output: Output, obj: TurbLCFB1): Unit =
     {
-        val toSerialize: Array[() => Unit] = Array (
-            () => output.writeDouble (obj.db),
-            () => output.writeDouble (obj.emax),
-            () => output.writeDouble (obj.fb),
-            () => output.writeBoolean (obj.fbf),
-            () => output.writeDouble (obj.irmax),
-            () => output.writeDouble (obj.ki),
-            () => output.writeDouble (obj.kp),
-            () => output.writeDouble (obj.mwbase),
-            () => output.writeBoolean (obj.pbf),
-            () => output.writeDouble (obj.pmwset),
-            () => output.writeBoolean (obj.speedReferenceGovernor),
-            () => output.writeDouble (obj.tpelec)
+        val toSerialize: Array[() => Unit] = Array(
+            () => output.writeDouble(obj.db),
+            () => output.writeDouble(obj.emax),
+            () => output.writeDouble(obj.fb),
+            () => output.writeBoolean(obj.fbf),
+            () => output.writeDouble(obj.irmax),
+            () => output.writeDouble(obj.ki),
+            () => output.writeDouble(obj.kp),
+            () => output.writeDouble(obj.mwbase),
+            () => output.writeBoolean(obj.pbf),
+            () => output.writeDouble(obj.pmwset),
+            () => output.writeBoolean(obj.speedReferenceGovernor),
+            () => output.writeDouble(obj.tpelec)
         )
-        TurbineLoadControllerDynamicsSerializer.write (kryo, output, obj.sup)
+        TurbineLoadControllerDynamicsSerializer.write(kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
-        writeBitfields (output)
-        writeFields (toSerialize)
+        writeBitfields(output)
+        writeFields(toSerialize)
     }
 
     def read (kryo: Kryo, input: Input, cls: Class[TurbLCFB1]): TurbLCFB1 =
     {
-        val parent = TurbineLoadControllerDynamicsSerializer.read (kryo, input, classOf[TurbineLoadControllerDynamics])
-        implicit val bitfields: Array[Int] = readBitfields (input)
-        val obj = TurbLCFB1 (
+        val parent = TurbineLoadControllerDynamicsSerializer.read(kryo, input, classOf[TurbineLoadControllerDynamics])
+        implicit val bitfields: Array[Int] = readBitfields(input)
+        val obj = TurbLCFB1(
             parent,
-            if (isSet (0)) input.readDouble else 0.0,
-            if (isSet (1)) input.readDouble else 0.0,
-            if (isSet (2)) input.readDouble else 0.0,
-            if (isSet (3)) input.readBoolean else false,
-            if (isSet (4)) input.readDouble else 0.0,
-            if (isSet (5)) input.readDouble else 0.0,
-            if (isSet (6)) input.readDouble else 0.0,
-            if (isSet (7)) input.readDouble else 0.0,
-            if (isSet (8)) input.readBoolean else false,
-            if (isSet (9)) input.readDouble else 0.0,
-            if (isSet (10)) input.readBoolean else false,
-            if (isSet (11)) input.readDouble else 0.0
+            if (isSet(0)) input.readDouble else 0.0,
+            if (isSet(1)) input.readDouble else 0.0,
+            if (isSet(2)) input.readDouble else 0.0,
+            if (isSet(3)) input.readBoolean else false,
+            if (isSet(4)) input.readDouble else 0.0,
+            if (isSet(5)) input.readDouble else 0.0,
+            if (isSet(6)) input.readDouble else 0.0,
+            if (isSet(7)) input.readDouble else 0.0,
+            if (isSet(8)) input.readBoolean else false,
+            if (isSet(9)) input.readDouble else 0.0,
+            if (isSet(10)) input.readBoolean else false,
+            if (isSet(11)) input.readDouble else 0.0
         )
         obj.bitfields = bitfields
         obj
@@ -230,7 +236,7 @@ object TurbLCFB1Serializer extends CIMSerializer[TurbLCFB1]
 /**
  * Turbine load controller function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param DynamicsFunctionBlock [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param DynamicsFunctionBlock   [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor controlled by this turbine load controller.
  * @group TurbineLoadControllerDynamics
  * @groupname TurbineLoadControllerDynamics Package TurbineLoadControllerDynamics
@@ -241,8 +247,8 @@ final case class TurbineLoadControllerDynamics
     DynamicsFunctionBlock: DynamicsFunctionBlock = null,
     TurbineGovernorDynamics: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -268,41 +274,47 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone().asInstanceOf[Row]
+    }
 
     override def export_fields: String =
     {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val s: StringBuilder = new StringBuilder(sup.export_fields)
         implicit val clz: String = TurbineLoadControllerDynamics.cls
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TurbineLoadControllerDynamics.fields (position), value)
-        emitattr (0, TurbineGovernorDynamics)
+
+        def emitattr (position: Int, value: Any): Unit = if (mask(position)) emit_attribute(TurbineLoadControllerDynamics.fields(position), value)
+
+        emitattr(0, TurbineGovernorDynamics)
         s.toString
     }
+
     override def export: String =
     {
-        "\t<cim:TurbineLoadControllerDynamics rdf:%s=\"%s\">\n%s\t</cim:TurbineLoadControllerDynamics>".format (if (about) "about" else "ID", id, export_fields)
+        "\t<cim:TurbineLoadControllerDynamics rdf:%s=\"%s\">\n%s\t</cim:TurbineLoadControllerDynamics>".format(if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object TurbineLoadControllerDynamics
-extends
-    CIMParseable[TurbineLoadControllerDynamics]
+    extends
+        CIMParseable[TurbineLoadControllerDynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String](
         "TurbineGovernorDynamics"
     )
-    override val relations: List[CIMRelationship] = List (
-        CIMRelationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "1", "0..1")
+    override val relations: List[CIMRelationship] = List(
+        CIMRelationship("TurbineGovernorDynamics", "TurbineGovernorDynamics", "1", "0..1")
     )
-    val TurbineGovernorDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val TurbineGovernorDynamics: Fielder = parse_attribute(attribute(cls, fields(0)))
 
     def parse (context: CIMContext): TurbineLoadControllerDynamics =
     {
         implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
-        val ret = TurbineLoadControllerDynamics (
-            DynamicsFunctionBlock.parse (context),
-            mask (TurbineGovernorDynamics (), 0)
+        val ret = TurbineLoadControllerDynamics(
+            DynamicsFunctionBlock.parse(context),
+            mask(TurbineGovernorDynamics(), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -315,22 +327,22 @@ object TurbineLoadControllerDynamicsSerializer extends CIMSerializer[TurbineLoad
 {
     def write (kryo: Kryo, output: Output, obj: TurbineLoadControllerDynamics): Unit =
     {
-        val toSerialize: Array[() => Unit] = Array (
-            () => output.writeString (obj.TurbineGovernorDynamics)
+        val toSerialize: Array[() => Unit] = Array(
+            () => output.writeString(obj.TurbineGovernorDynamics)
         )
-        DynamicsFunctionBlockSerializer.write (kryo, output, obj.sup)
+        DynamicsFunctionBlockSerializer.write(kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
-        writeBitfields (output)
-        writeFields (toSerialize)
+        writeBitfields(output)
+        writeFields(toSerialize)
     }
 
     def read (kryo: Kryo, input: Input, cls: Class[TurbineLoadControllerDynamics]): TurbineLoadControllerDynamics =
     {
-        val parent = DynamicsFunctionBlockSerializer.read (kryo, input, classOf[DynamicsFunctionBlock])
-        implicit val bitfields: Array[Int] = readBitfields (input)
-        val obj = TurbineLoadControllerDynamics (
+        val parent = DynamicsFunctionBlockSerializer.read(kryo, input, classOf[DynamicsFunctionBlock])
+        implicit val bitfields: Array[Int] = readBitfields(input)
+        val obj = TurbineLoadControllerDynamics(
             parent,
-            if (isSet (0)) input.readString else null
+            if (isSet(0)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -341,7 +353,7 @@ private[ninecode] object _TurbineLoadControllerDynamics
 {
     def register: List[CIMClassInfo] =
     {
-        List (
+        List(
             TurbLCFB1.register,
             TurbineLoadControllerDynamics.register
         )

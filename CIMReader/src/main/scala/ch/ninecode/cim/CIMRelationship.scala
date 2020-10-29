@@ -19,13 +19,13 @@ case class CIMRelationship (
      *
      * @return <code>true</code> if this relation is many:something
      */
-    def multiple: Boolean = !(this_cardinality.equals ("1") || this_cardinality.endsWith ("..1"))
+    def multiple: Boolean = !(this_cardinality.equals("1") || this_cardinality.endsWith("..1"))
 
     /**
      * Predicate that indicates this side of the relation can be more that one object and the other side is one (1).
      *
      * @return <code>true</code> if this relation is many:1
      */
-    def heavyside: Boolean = multiple && (mate_cardinality.equals ("1") || mate_cardinality.endsWith ("..1"))
+    def heavyside: Boolean = multiple && (mate_cardinality.equals("1") || mate_cardinality.endsWith("..1"))
 }
 

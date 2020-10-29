@@ -17,7 +17,7 @@ trait CodeGenerator
      */
     def mkdir (directory: String): Unit =
     {
-        val dir = new File (directory)
+        val dir = new File(directory)
         if (!dir.exists)
         {
             val _ = dir.mkdirs
@@ -26,9 +26,9 @@ trait CodeGenerator
 
     def save (filename: String, text: String): Unit =
     {
-        val file = Paths.get (filename)
-        mkdir (file.getParent.toString)
-        val _ = Files.write (file, text.getBytes (StandardCharsets.UTF_8))
+        val file = Paths.get(filename)
+        mkdir(file.getParent.toString)
+        val _ = Files.write(file, text.getBytes(StandardCharsets.UTF_8))
     }
 
     /**

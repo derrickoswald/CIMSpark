@@ -17,8 +17,8 @@ case class Class (
     var pkg: Package,
     stereotype: String,
     sup: Class)
-extends
-    ProgramaticName
+    extends
+        ProgramaticName
 {
     override def toString: String = s"${pkg.name}:$name${if (null != stereotype) s" ($stereotype)" else ""}${if (null != sup) s" subclass of ${sup.name}" else ""}"
 }
@@ -26,7 +26,7 @@ extends
 object Class
 {
     def apply (row: Row, pkg: Package): Class =
-        Class (row.getXUID, kludgeName (row, pkg), row.getNote, pkg, if (row.hasStereotype) row.getStereotype else null, null)
+        Class(row.getXUID, kludgeName(row, pkg), row.getNote, pkg, if (row.hasStereotype) row.getStereotype else null, null)
 
     /**
      * Override the name of "Profile" and "ResourceCertification" to avoid case class clashes

@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory
 
 case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGenerator
 {
-    val log: Logger = LoggerFactory.getLogger (getClass)
+    val log: Logger = LoggerFactory.getLogger(getClass)
 
     val package_doc_header: String =
         """ * ==Overview==
@@ -41,7 +41,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
 
     implicit val ordering: Ordering[Member] = new Ordering[Member]
     {
-        def unquote (variable: String): String = if ('`' == variable.charAt (0)) variable.substring (1, variable.length - 1) else variable
+        def unquote (variable: String): String = if ('`' == variable.charAt(0)) variable.substring(1, variable.length - 1) else variable
 
         def compare (a: Member, b: Member): Int =
             if (a.isSuper)
@@ -51,18 +51,18 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                     1
                 else
                 {
-                    val a_ = unquote (a.variable)
-                    val b_ = unquote (b.variable)
-                    if (a_.charAt (0).isLower)
-                        if (b_.charAt (0).isLower)
-                            a_.compareTo (b_)
+                    val a_ = unquote(a.variable)
+                    val b_ = unquote(b.variable)
+                    if (a_.charAt(0).isLower)
+                        if (b_.charAt(0).isLower)
+                            a_.compareTo(b_)
                         else
                             -1
                     else
-                        if (b_.charAt (0).isLower)
+                        if (b_.charAt(0).isLower)
                             1
                         else
-                            a_.compareTo (b_)
+                            a_.compareTo(b_)
                 }
     }
 
@@ -76,66 +76,66 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         val name = attribute.name
         val variable = attribute.attribute_name
         val comment = attribute.notes
-        parser.domains.find (_.name == attribute.typ) match
+        parser.domains.find(_.name == attribute.typ) match
         {
-            case Some (dom) =>
+            case Some(dom) =>
                 dom.stereotype match
                 {
                     case "Primitive" =>
                         dom.name match
                         {
                             case "Time" =>
-                                Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            case "Integer" => Member (name, variable, false, comment, false, "0..1", "0..*", "Int", "0", "toInteger", null)
+                                Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "Integer" => Member(name, variable, false, comment, false, "0..1", "0..*", "Int", "0", "toInteger", null)
                             case "Float" =>
-                                Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
-                            case "Decimal" => Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
-                            case "Boolean" => Member (name, variable, false, comment, false, "0..1", "0..*", "Boolean", "false", "toBoolean", null)
-                            case "Date" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            case "Duration" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            case "String" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            case "DateTime" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            case "MonthDay" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            case "URI" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                                Member(name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
+                            case "Decimal" => Member(name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
+                            case "Boolean" => Member(name, variable, false, comment, false, "0..1", "0..*", "Boolean", "false", "toBoolean", null)
+                            case "Date" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "Duration" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "String" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "DateTime" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "MonthDay" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "URI" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
                             case _ =>
-                                throw new Exception (s"""unknown primitive type "${dom.name}"""")
+                                throw new Exception(s"""unknown primitive type "${dom.name}"""")
                         }
                     case "enumeration" =>
-                        Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", null)
+                        Member(name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", null)
                     case "Compound" =>
-                        Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "",
-                            classes.find (_.name == attribute.typ) match
+                        Member(name, variable, false, comment, true, "0..1", "0..*", "String", "null", "",
+                            classes.find(_.name == attribute.typ) match
                             {
-                                case Some (clz: Class) => clz.valid_class_name
+                                case Some(clz: Class) => clz.valid_class_name
                                 case None => null
                             }
                         )
                     case "CIMDatatype" =>
                         dom.value match
                         {
-                            case "Time" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            case "Integer" => Member (name, variable, false, comment, false, "0..1", "0..*", "Int", "0", "toInteger", null)
-                            case "Float" => Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
-                            case "Decimal" => Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
-                            case "Boolean" => Member (name, variable, false, comment, false, "0..1", "0..*", "Boolean", "false", "toBoolean", null)
-                            case "Date" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            case "Duration" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            case "String" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            case "DateTime" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            case "MonthDay" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "Time" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "Integer" => Member(name, variable, false, comment, false, "0..1", "0..*", "Int", "0", "toInteger", null)
+                            case "Float" => Member(name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
+                            case "Decimal" => Member(name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
+                            case "Boolean" => Member(name, variable, false, comment, false, "0..1", "0..*", "Boolean", "false", "toBoolean", null)
+                            case "Date" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "Duration" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "String" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "DateTime" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "MonthDay" => Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
                             case _ =>
-                                Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                                Member(name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
                         }
                     case _ =>
-                        throw new Exception (s"""unknown Domain stereotype "${dom.stereotype}"""")
+                        throw new Exception(s"""unknown Domain stereotype "${dom.stereotype}"""")
                 }
             case None =>
-                classes.find (_.name == attribute.typ) match
+                classes.find(_.name == attribute.typ) match
                 {
-                    case Some (clz: Class) =>
-                        Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", clz.valid_class_name)
+                    case Some(clz: Class) =>
+                        Member(name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", clz.valid_class_name)
                     case None =>
-                        Member (name, variable, false, comment, true, "0..1", "", "String", "null", "", null)
+                        Member(name, variable, false, comment, true, "0..1", "", "String", "null", "", null)
                 }
         }
     }
@@ -147,9 +147,9 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         val comment = role.note
         val referenced_class = role.dst.valid_class_name
         if (role.upper == 1)
-            Member (name, variable, false, comment, true, role.card, role.mate.card, "String", "null", "", referenced_class)
+            Member(name, variable, false, comment, true, role.card, role.mate.card, "String", "null", "", referenced_class)
         else
-            Member (name, variable, false, comment, true, role.card, role.mate.card, "List[String]", "null", "", referenced_class)
+            Member(name, variable, false, comment, true, role.card, role.mate.card, "List[String]", "null", "", referenced_class)
     }
 
     def declareClass (name: String, members: SortedSet[Member]): String =
@@ -165,7 +165,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         }
         s"""final case class $name
            |(
-           |${initializers.mkString (",\n|")}
+           |${initializers.mkString(",\n|")}
            |)
            |extends
            |    Element""".stripMargin
@@ -213,19 +213,19 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
 
     def exportFields (name: String, fields: SortedSet[Member]): String =
     {
-        val ref = if (fields.exists (!_.reference))
+        val ref = if (fields.exists(!_.reference))
             s"        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element ($name.fields (position), value)\n|"
         else
             ""
-        val single = if (fields.exists (x => x.reference && !x.multiple))
+        val single = if (fields.exists(x => x.reference && !x.multiple))
             s"        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute ($name.fields (position), value)\n|"
         else
             ""
-        val multiple = if (fields.exists (_.multiple))
+        val multiple = if (fields.exists(_.multiple))
             s"        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x => emit_attribute ($name.fields (position), x))\n|"
         else
             ""
-        val emits = fields.iterator.zipWithIndex.map (
+        val emits = fields.iterator.zipWithIndex.map(
             x =>
             {
                 val (member, index) = x
@@ -238,7 +238,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                         "emitelem"
                 s"$emit ($index, ${member.variable})"
             }
-        ).mkString ("        ", "\n        ", "")
+        ).mkString("        ", "\n        ", "")
         if (fields.nonEmpty)
         {
             s"""
@@ -280,16 +280,16 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         if (fields.nonEmpty)
         {
             // output the fields map
-            val fieldmap = fields.iterator.map (x => s""""${x.name}"""")
-                .mkString ("    override val fields: Array[String] = Array[String] (\n        ", ",\n        ", "\n    )\n")
+            val fieldmap = fields.iterator.map(x => s""""${x.name}"""")
+                .mkString("    override val fields: Array[String] = Array[String] (\n        ", ",\n        ", "\n    )\n")
 
             // output the relations list
-            val references = fields.filter (member => (null != member.referenced_class))
+            val references = fields.filter(member => (null != member.referenced_class))
             val relationships = if (references.nonEmpty)
                 (for (r <- references.iterator) // need to use iterator here because SortedSet is brain dead
                     yield
                         s"""        CIMRelationship ("${r.variable}", "${r.referenced_class}", "${r.this_cardinality}", "${r.mate_cardinality}")"""
-                    ).mkString ("    override val relations: List[CIMRelationship] = List (\n", ",\n", "\n    )\n")
+                    ).mkString("    override val relations: List[CIMRelationship] = List (\n", ",\n", "\n    )\n")
             else
                 ""
 
@@ -310,9 +310,9 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                     {
                         val (member, index) = x
                         val fielder = if (member.multiple) "FielderMultiple" else "Fielder"
-                        s"val ${member.variable}: $fielder = ${pa (member)} (cls, fields(${index})))"
+                        s"val ${member.variable}: $fielder = ${pa(member)} (cls, fields(${index})))"
                     }
-                ).mkString ("    ", "\n    ", "\n")
+                ).mkString("    ", "\n    ", "\n")
             s"$fieldmap$relationships$parsers"
         }
         else
@@ -322,10 +322,10 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
     def parse (name: String, members: SortedSet[Member]): String =
     {
         val identified_object = name == "IdentifiedObject" // special handling for IdentifiedObject.mRID
-        val fields: SortedSet[Member] = members.filter (!_.isSuper)
+        val fields: SortedSet[Member] = members.filter(!_.isSuper)
         val boilerplate = if (fields.nonEmpty)
         {
-            val initializer = (for (_ <- 0 until 1 + (fields.size / 32)) yield "0").mkString (",")
+            val initializer = (for (_ <- 0 until 1 + (fields.size / 32)) yield "0").mkString(",")
             s"""
                |        implicit val ctx: CIMContext = context
                |        implicit val bitfields: Array[Int] = Array($initializer)""".stripMargin
@@ -340,7 +340,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
 
         // add field parser calls
         def wrap (members: Iterator[(Member, String)]): String =
-            members.map (x => if (x._1.function != "") s"${x._1.function} (${x._2})" else x._2).mkString ("            ", ",\n            ", "")
+            members.map(x => if (x._1.function != "") s"${x._1.function} (${x._2})" else x._2).mkString("            ", ",\n            ", "")
 
         def masker (x: (Member, Int)): String =
         {
@@ -350,10 +350,10 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         }
 
         val parsers = if (identified_object)
-            wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.isSuper) "base" else
-                if (x._1.name == "mRID") s"{val _ = ${masker (x)}; base.id}" else masker (x))))
+            wrap(members.iterator.zipWithIndex.map(x => (x._1, if (x._1.isSuper) "base" else
+                if (x._1.name == "mRID") s"{val _ = ${masker(x)}; base.id}" else masker(x))))
         else
-            wrap (members.iterator.zipWithIndex.map (x => (x._1, if (x._1.isSuper) s"${x._1.datatype}.parse (context)" else masker (x))))
+            wrap(members.iterator.zipWithIndex.map(x => (x._1, if (x._1.isSuper) s"${x._1.datatype}.parse (context)" else masker(x))))
 
         val update = if (fields.nonEmpty)
             """
@@ -394,7 +394,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 case "Boolean" => s"output.writeBoolean (obj.${member.variable})"
                 case "List[String]" => s"writeList (obj.${member.variable}, output)"
                 case _ =>
-                    throw new Exception (s"unhandled type ${member.datatype}")
+                    throw new Exception(s"unhandled type ${member.datatype}")
             }
     }
 
@@ -413,7 +413,7 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 case "Boolean" => "input.readBoolean"
                 case "List[String]" => s"readList (input)"
                 case _ =>
-                    throw new Exception (s"unhandled type ${member.datatype}")
+                    throw new Exception(s"unhandled type ${member.datatype}")
             }
             // adding "${member.variable} =" to use named parameters causes the compiler to run out of memory
             s"if (isSet ($index)) $kernel else ${member.initializer}"
@@ -423,10 +423,10 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
     def serialize (cls: Class, name: String, members: SortedSet[Member]): String =
     {
         implicit val identified_object: Boolean = name == "IdentifiedObject" // special handling for IdentifiedObject.mRID
-        val fields = members.filter (x => !x.isSuper).toSeq
+        val fields = members.filter(x => !x.isSuper).toSeq
 
-        val writers = fields.zipWithIndex.map (write).map (w => s"            () => $w").mkString (",\n")
-        val readers = (Seq ("parent") ++ fields.zipWithIndex.map (read)).map (r => s"            $r").mkString (",\n")
+        val writers = fields.zipWithIndex.map(write).map(w => s"            () => $w").mkString(",\n")
+        val readers = (Seq("parent") ++ fields.zipWithIndex.map(read)).map(r => s"            $r").mkString(",\n")
 
         // output the serializer/deserializer class
         val supser = if (null == cls.sup)
@@ -467,9 +467,9 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
 
     def asText (pkg: Package): String =
     {
-        val case_classes = parser.classesFor (pkg)
+        val case_classes = parser.classesFor(pkg)
         var hasRelationShip = false
-        val p = new StringBuilder ()
+        val p = new StringBuilder()
         for (cls <- case_classes)
         {
             val name = cls.valid_class_name
@@ -477,39 +477,39 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                 "Element"
             else
                 cls.sup.name
-            val supclass = Member (supname, supname, false, "Reference to the superclass object.", false, "1", "", if (null != cls.sup) cls.sup.name else "BasicElement", "null", "", if (null == cls.sup) null else cls.sup.valid_class_name, true)
+            val supclass = Member(supname, supname, false, "Reference to the superclass object.", false, "1", "", if (null != cls.sup) cls.sup.name else "BasicElement", "null", "", if (null == cls.sup) null else cls.sup.valid_class_name, true)
             val members: mutable.SortedSet[Member] =
                 mutable.SortedSet[Member](supclass) ++
-                    parser.attributesFor (cls).map (details (case_classes)).toSet
-                        .union (parser.rolesFor (cls).map (details).toSet)
-            val fields: mutable.SortedSet[Member] = members.filter (!_.isSuper)
-            hasRelationShip |= fields.exists (member => null != member.referenced_class)
-            val s = new StringBuilder ()
-                .append (JavaDoc (cls.note, 0, members, pkg.name, s"Package ${pkg.name}", pkg.notes).asText)
-                .append (declareClass (name, members))
-                .append ("\n{")
-                .append (superclass (cls))
-                .append (row_overrides)
-                .append (exportFields (name, fields))
-                .append (export (cls))
-                .append ("\n}\n")
-                .append (declareObject (name))
-                .append ("\n{\n")
-                .append (parseRelationships (fields))
-                .append (parse (name, members))
-                .append (serializer (name))
-                .append ("}\n")
-                .append (serialize (cls, name, members))
-                .append ("\n")
+                    parser.attributesFor(cls).map(details(case_classes)).toSet
+                        .union(parser.rolesFor(cls).map(details).toSet)
+            val fields: mutable.SortedSet[Member] = members.filter(!_.isSuper)
+            hasRelationShip |= fields.exists(member => null != member.referenced_class)
+            val s = new StringBuilder()
+                .append(JavaDoc(cls.note, 0, members, pkg.name, s"Package ${pkg.name}", pkg.notes).asText)
+                .append(declareClass(name, members))
+                .append("\n{")
+                .append(superclass(cls))
+                .append(row_overrides)
+                .append(exportFields(name, fields))
+                .append(export(cls))
+                .append("\n}\n")
+                .append(declareObject(name))
+                .append("\n{\n")
+                .append(parseRelationships(fields))
+                .append(parse(name, members))
+                .append(serializer(name))
+                .append("}\n")
+                .append(serialize(cls, name, members))
+                .append("\n")
 
-            p.append (s)
+            p.append(s)
         }
 
         if (case_classes.nonEmpty)
         {
-            val v = new StringBuilder ()
+            val v = new StringBuilder()
 
-                .append (
+                .append(
                     s"""package ch.ninecode.model
                        |
                        |import com.esotericsoftware.kryo.Kryo
@@ -525,17 +525,17 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                        |import ch.ninecode.cim.CIMSerializer
                        |
                        |""".stripMargin)
-                .append (p.toString)
-                .append ("""private[ninecode] object """)
-                .append (register (pkg))
-                .append (
+                .append(p.toString)
+                .append("""private[ninecode] object """)
+                .append(register(pkg))
+                .append(
                     """
                       |{
                       |    def register: List[CIMClassInfo] =
                       |    {
                       |""".stripMargin)
-                .append (case_classes.map (cls => s"${cls.valid_class_name}.register").mkString ("        List (\n            ", ",\n            ", "\n        )"))
-                .append (
+                .append(case_classes.map(cls => s"${cls.valid_class_name}.register").mkString("        List (\n            ", ",\n            ", "\n        )"))
+                .append(
                     """
                       |    }
                       |}""".stripMargin)
@@ -551,10 +551,10 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
         val register =
             s"""    lazy val classes: List[CIMClassInfo] =
                |        List (
-               |${registers.mkString (",\n")}
+               |${registers.mkString(",\n")}
                |        ).flatten
                |""".stripMargin
-        save (s"${options.directory}/chim_register.scala", register)
+        save(s"${options.directory}/chim_register.scala", register)
     }
 
     def writePackage (package_docs: List[String]): Unit =
@@ -564,51 +564,51 @@ case class Scala (parser: ModelParser, options: CIMToolOptions) extends CodeGene
                |
                |/**
                |$package_doc_header
-               |${package_docs.mkString ("\n")}
+               |${package_docs.mkString("\n")}
                | */
                |package object model
                |{
                |}
                |""".stripMargin
-        save (s"${options.directory}/model/package.scala", pkg_doc)
+        save(s"${options.directory}/model/package.scala", pkg_doc)
     }
 
     def generate (): Unit =
     {
         val dir = s"${options.directory}/model"
-        mkdir (dir)
-        val sc = Scala (parser, options)
+        mkdir(dir)
+        val sc = Scala(parser, options)
 
         val packages = scala.collection.mutable.SortedSet[(String, Int)]()
         for (pkg <- parser.packages)
         {
-            packages.add ((sc.register (pkg._2), pkg._1))
+            packages.add((sc.register(pkg._2), pkg._1))
         }
-        var registers: List[String] = List [String]()
-        var package_docs: List[String] = List [String]()
+        var registers: List[String] = List[String]()
+        var package_docs: List[String] = List[String]()
         for (q <- packages)
         {
-            val pkg = parser.packages (q._2)
-            val s = sc.asText (pkg)
+            val pkg = parser.packages(q._2)
+            val s = sc.asText(pkg)
             if (s.trim != "")
             {
                 val file = s"$dir/${pkg.name}.scala"
-                log.info (file)
-                save (file, s)
-                registers = registers :+ s"""            ${sc.register (pkg)}.register"""
+                log.info(file)
+                save(file, s)
+                registers = registers :+ s"""            ${sc.register(pkg)}.register"""
                 package_docs = package_docs :+ " *"
                 package_docs = package_docs :+ s" * ===${pkg.name}==="
                 if (pkg.notes != null)
-                    package_docs = package_docs :+ JavaDoc (pkg.notes, 0).contents
+                    package_docs = package_docs :+ JavaDoc(pkg.notes, 0).contents
             }
             else
-                log.debug (s"no text generated for package ${pkg.xuid} (${pkg.name})")
+                log.debug(s"no text generated for package ${pkg.xuid} (${pkg.name})")
         }
 
         // write the registration code
-        writeRegistration (registers)
+        writeRegistration(registers)
 
         // write the package file
-        writePackage (package_docs)
+        writePackage(package_docs)
     }
 }

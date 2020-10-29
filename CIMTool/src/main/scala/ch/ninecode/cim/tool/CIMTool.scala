@@ -12,48 +12,48 @@ object CIMTool
     {
         try
         {
-            block (resource)
+            block(resource)
         }
         finally
         {
-            resource.close ()
+            resource.close()
         }
     }
 
     val properties: Properties =
     {
-        using (this.getClass.getResourceAsStream ("/application.properties"))
+        using(this.getClass.getResourceAsStream("/application.properties"))
         {
             input =>
-                val p = new Properties ()
-                p.load (input)
+                val p = new Properties()
+                p.load(input)
                 p
         }
     }
 
-    val APPLICATION_NAME: String = properties.getProperty ("artifactId")
-    val APPLICATION_VERSION: String = properties.getProperty ("version")
+    val APPLICATION_NAME: String = properties.getProperty("artifactId")
+    val APPLICATION_VERSION: String = properties.getProperty("version")
 
     def main (args: Array[String])
     {
-        val optionsparser = new CIMToolOptionsParser (APPLICATION_NAME, APPLICATION_VERSION)
+        val optionsparser = new CIMToolOptionsParser(APPLICATION_NAME, APPLICATION_VERSION)
 
-        optionsparser.parse (args, CIMToolOptions ()) match
+        optionsparser.parse(args, CIMToolOptions()) match
         {
-            case Some (options) =>
+            case Some(options) =>
                 if (options.valid)
                 {
-                    val _ = System.setProperty (org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, options.loglevel.toString)
-                    val log = LoggerFactory.getLogger (getClass)
+                    val _ = System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, options.loglevel.toString)
+                    val log = LoggerFactory.getLogger(getClass)
                     val file = options.cim.file
-                    log.info (s"""generating CIM classes from file "$file"""")
-                    val parser = ModelParser (new File (s"private_data/$file"))
-                    options.target.generator (parser, options).generate ()
+                    log.info(s"""generating CIM classes from file "$file"""")
+                    val parser = ModelParser(new File(s"private_data/$file"))
+                    options.target.generator(parser, options).generate()
                 }
                 if (!options.unittest)
-                    sys.exit (0)
+                    sys.exit(0)
             case None =>
-                sys.exit (1)
+                sys.exit(1)
         }
     }
 }

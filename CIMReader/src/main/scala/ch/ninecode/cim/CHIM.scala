@@ -31,15 +31,15 @@ import ch.ninecode.model._
  */
 class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val first_byte: Long = 0L, val last_byte: Long = 0L) extends Serializable
 {
-    val last: Long = if (last_byte != 0L) last_byte else xml.getBytes ("UTF-8").length
-    val context: CIMContext = new CIMContext (xml, start, start, first_byte)
-    val matcher: Matcher = CIMParser.rddex.matcher (xml)
-    val bytes: ByteBuffer = ByteBuffer.wrap (new Array[Byte](4 * CHIM.OVERREAD))
-    val encoder: CharsetEncoder = Charset.forName ("UTF-8").newEncoder ()
+    val last: Long = if (last_byte != 0L) last_byte else xml.getBytes("UTF-8").length
+    val context: CIMContext = new CIMContext(xml, start, start, first_byte)
+    val matcher: Matcher = CIMParser.rddex.matcher(xml)
+    val bytes: ByteBuffer = ByteBuffer.wrap(new Array[Byte](4 * CHIM.OVERREAD))
+    val encoder: CharsetEncoder = Charset.forName("UTF-8").newEncoder()
     var value: Element = _
 
     lazy val classes: List[CIMClassInfo] =
-        List (
+        List(
             _AlternateModels.register,
             _AssetInfo.register,
             _AssetMeas.register,
@@ -141,22 +141,22 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
             _Work.register,
             _unused.register
         ).flatten
-    lazy val parsers: List[(String, CIMParseable[Product])] = classes.map (x => (s"${CIMParser.namespace}:${x.name}", x.parseable))
-    lazy val lookup: HashMap[String, CIMParseable[Product]] = HashMap (parsers: _*)
+    lazy val parsers: List[(String, CIMParseable[Product])] = classes.map(x => (s"${CIMParser.namespace}:${x.name}", x.parseable))
+    lazy val lookup: HashMap[String, CIMParseable[Product]] = HashMap(parsers: _*)
 
     def progress (): Float =
     {
-        (context.end - context.start).toFloat / xml.length ().toFloat
+        (context.end - context.start).toFloat / xml.length().toFloat
     }
 
     def byte_count (xml: String, begin: Int, end: Int): Int =
     {
-        val cb = CharBuffer.wrap (xml, begin, end)
+        val cb = CharBuffer.wrap(xml, begin, end)
         val _ = bytes.rewind
-        val cr = encoder.encode (cb, bytes, true)
+        val cr = encoder.encode(cb, bytes, true)
         if (!cr.isUnderflow)
-            cr.throwException ()
-        bytes.position ()
+            cr.throwException()
+        bytes.position()
     }
 
     def parse_one (): Boolean =
@@ -166,34 +166,34 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
         var found = false
         if (context.last_byte < last)
         {
-            while (!found && matcher.find ())
+            while (!found && matcher.find())
             {
-                val name = matcher.group (1)
+                val name = matcher.group(1)
                 // heuristic (along with the while and the 'not a dot' in rddex regular expression)
                 // that allows jumping into the middle of a large file:
                 // top level RDF elements do not have a period in their name
-                if (!name.contains ('.'))
+                if (!name.contains('.'))
                 {
-                    context.subxml = matcher.group (2)
+                    context.subxml = matcher.group(2)
                     Unknown.name = name
-                    value = lookup.getOrElse (name, Unknown).parse (context)
+                    value = lookup.getOrElse(name, Unknown).parse(context)
 
                     // return success unless there was unrecognized text before the match
                     // that wasn't at the start of the xml
                     if (context.end != (matcher.start + context.start))
                     {
-                        val unknown = xml.substring (context.end.toInt, matcher.start + context.start.toInt)
+                        val unknown = xml.substring(context.end.toInt, matcher.start + context.start.toInt)
                         if (context.end == context.start)
                         {
                             context.end += unknown.length
-                            val l = byte_count (unknown, 0, unknown.length)
+                            val l = byte_count(unknown, 0, unknown.length)
                             context.last_byte += l
                             ret = true // ignore unrecognized text at the start of the xml string
                         }
                         else
                         {
-                            val snippet = if (unknown.length > 50) s"${unknown.substring (0, 50)}..." else unknown
-                            context.errors.append (s"""Unknown content "$snippet" at line ${context.line_number ()}""")
+                            val snippet = if (unknown.length > 50) s"${unknown.substring(0, 50)}..." else unknown
+                            context.errors.append(s"""Unknown content "$snippet" at line ${context.line_number()}""")
                             ret = false
                         }
                     }
@@ -201,13 +201,13 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
                         ret = true
                     // or there is non-whitespace not covered
                     if (CIMContext.DEBUG)
-                        if (!context.covered () && CIMContext.STOP_ON_ERROR)
+                        if (!context.covered() && CIMContext.STOP_ON_ERROR)
                             ret = false
 
                     // set up for next parse
-                    val l = byte_count (xml, context.end.toInt - context.start.toInt, matcher.end)
+                    val l = byte_count(xml, context.end.toInt - context.start.toInt, matcher.end)
                     context.last_byte += l
-                    context.end = matcher.end () + context.start
+                    context.end = matcher.end() + context.start
                     context.coverage.clear
                     found = true
                 }
@@ -226,41 +226,41 @@ object CHIM
     def parse (parser: CHIM): (scala.collection.mutable.HashMap[String, Element], ArrayBuffer[String]) =
     {
         val result = new scala.collection.mutable.HashMap[String, Element]
-        while (parser.parse_one ())
+        while (parser.parse_one())
         {
-            val _ = result.put (parser.value.id, parser.value)
+            val _ = result.put(parser.value.id, parser.value)
         }
         (result, parser.context.errors)
     }
 
     def apply_to_all_classes (fn: CIMSubsetter[_] => Unit): Unit =
     {
-        val chim = new CHIM ("") // ensure registration has occurred
+        val chim = new CHIM("") // ensure registration has occurred
         for (i <- chim.classes)
-            fn (i.subsetter)
+            fn(i.subsetter)
     }
 
     def read (filename: String, start: Long, size: Long, overread: Long = OVERREAD): (String, Long, Long) =
     {
-        val file = new File (filename)
+        val file = new File(filename)
         val end = start + size
-        if (file.exists ())
+        if (file.exists())
         {
             // open the file and skip to the starting offset
-            val in = new FileInputStream (file)
-            val skipped = in.skip (start)
+            val in = new FileInputStream(file)
+            val skipped = in.skip(start)
             if (start == skipped)
             {
-                val extra = if (in.available () > end - start) overread else 0
+                val extra = if (in.available() > end - start) overread else 0
                 // ToDo: may need to handle block sizes bigger than 2GB - what happens for size > 2^31?
                 val size = (end - start + extra).toInt
                 val buffer = new Array[Byte](size)
-                val _ = in.read (buffer)
+                val _ = in.read(buffer)
 
                 val low =
                     if (0 == start)
                     // strip any BOM(Byte Order Mark) i.e. 0xEF,0xBB,0xBF
-                        if ((size >= 3) && (buffer (0) == 0xef) && (buffer (1) == 0xbb) && (buffer (2) == 0xbf))
+                        if ((size >= 3) && (buffer(0) == 0xef) && (buffer(1) == 0xbb) && (buffer(2) == 0xbf))
                             3
                         else
                             0
@@ -273,16 +273,16 @@ object CHIM
                         // skip to next UTF-8 non-continuation byte (high order bit zero)
                         // by advancing past at most 4 bytes
                         var i = 0
-                        if ((buffer (low + i) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
-                            while (0 != (buffer (low + i) & 0x80) && (i < Math.min (4, size)))
+                        if ((buffer(low + i) & 0xc0) != 0xc0) // check for the start of a UTF-8 character
+                            while (0 != (buffer(low + i) & 0x80) && (i < Math.min(4, size)))
                                 i += 1
                         low + i
                     }
                     else
                         low
 
-                val len = new String (buffer, first, (size - first - extra).toInt, "UTF-8").length
-                val xml = new String (buffer, first, size - first, "UTF-8")
+                val len = new String(buffer, first, (size - first - extra).toInt, "UTF-8").length
+                val xml = new String(buffer, first, size - first, "UTF-8")
                 (xml, first, first + len)
             }
             else
@@ -301,14 +301,14 @@ object CHIM
         {
             if (args.length > 1)
             {
-                println ("Press [Return] to continue...")
-                val _ = System.console ().readLine ()
+                println("Press [Return] to continue...")
+                val _ = System.console().readLine()
             }
 
-            val filename = args (0)
-            val fis = new FileInputStream (filename)
-            val size = fis.available ()
-            fis.close ()
+            val filename = args(0)
+            val fis = new FileInputStream(filename)
+            val size = fis.available()
+            fis.close()
 
             val result = new scala.collection.mutable.HashMap[String, Element]
             var offset = 0L
@@ -317,31 +317,31 @@ object CHIM
             while (offset < size)
             {
                 val start = System.nanoTime
-                val (xml, lo, hi) = read (filename, offset, CHUNK)
+                val (xml, lo, hi) = read(filename, offset, CHUNK)
                 val before = System.nanoTime
                 reading += (before - start) / 1000
 
-                val parser = new CHIM (xml, lo, hi, offset, offset + CHUNK)
+                val parser = new CHIM(xml, lo, hi, offset, offset + CHUNK)
                 offset += CHUNK
-                val map = CHIM.parse (parser)
+                val map = CHIM.parse(parser)
                 val _ = result ++= map._1
 
                 val after = System.nanoTime
                 parsing += (after - before) / 1000
-                print (".")
+                print(".")
 
                 for (error <- parser.context.errors)
-                    println (error)
+                    println(error)
             }
-            println ()
+            println()
 
-            println (f"reading ${reading / 1e6}%g seconds")
-            println (f"parsing ${parsing / 1e6}%g seconds")
-            println (s"${result.size} identified elements parsed")
-            val subset = result.values.filter (_.getClass == classOf [Unknown])
-            println (s"${subset.size} unknown elements")
+            println(f"reading ${reading / 1e6}%g seconds")
+            println(f"parsing ${parsing / 1e6}%g seconds")
+            println(s"${result.size} identified elements parsed")
+            val subset = result.values.filter(_.getClass == classOf[Unknown])
+            println(s"${subset.size} unknown elements")
         }
         else
-            println ("CIM XML input file not specified")
+            println("CIM XML input file not specified")
     }
 }

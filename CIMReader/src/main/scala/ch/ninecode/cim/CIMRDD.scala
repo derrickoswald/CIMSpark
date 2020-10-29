@@ -85,7 +85,7 @@ trait CIMRDD
      * @param name the root name of the RDD
      * @return the patterned name as formatted
      */
-    def applyPattern (name: String): String = pattern.format (name)
+    def applyPattern (name: String): String = pattern.format(name)
 
     /**
      * Check for the named RDD.
@@ -97,12 +97,12 @@ trait CIMRDD
      */
     def test[T: ClassTag] (name: String)(implicit spark: SparkSession): Boolean =
     {
-        val target = applyPattern (name)
-        spark.sparkContext.getPersistentRDDs.find (_._2.name == target) match
+        val target = applyPattern(name)
+        spark.sparkContext.getPersistentRDDs.find(_._2.name == target) match
         {
-            case Some ((_: Int, _: RDD[_])) =>
+            case Some((_: Int, _: RDD[_])) =>
                 true
-            case Some (_) | None =>
+            case Some(_) | None =>
                 false
         }
     }
@@ -123,13 +123,13 @@ trait CIMRDD
      */
     def get[T: ClassTag] (name: String)(implicit spark: SparkSession, log: Logger): RDD[T] =
     {
-        val target = applyPattern (name)
-        spark.sparkContext.getPersistentRDDs.find (_._2.name == target) match
+        val target = applyPattern(name)
+        spark.sparkContext.getPersistentRDDs.find(_._2.name == target) match
         {
-            case Some ((_: Int, rdd: RDD[_])) =>
-                rdd.asInstanceOf [RDD[T]]
-            case Some (_) | None =>
-                log.warn ("""%s not found in Spark context persistent RDDs map""".format (name))
+            case Some((_: Int, rdd: RDD[_])) =>
+                rdd.asInstanceOf[RDD[T]]
+            case Some(_) | None =>
+                log.warn("""%s not found in Spark context persistent RDDs map""".format(name))
                 null
         }
     }
@@ -145,13 +145,13 @@ trait CIMRDD
      */
     def getOrElse[T: ClassTag] (name: String)(implicit spark: SparkSession): RDD[T] =
     {
-        val target = applyPattern (name)
-        spark.sparkContext.getPersistentRDDs.find (_._2.name == target) match
+        val target = applyPattern(name)
+        spark.sparkContext.getPersistentRDDs.find(_._2.name == target) match
         {
-            case Some ((_: Int, rdd: RDD[_])) =>
-                rdd.asInstanceOf [RDD[T]]
-            case Some (_) | None =>
-                spark.sparkContext.emptyRDD [T]
+            case Some((_: Int, rdd: RDD[_])) =>
+                rdd.asInstanceOf[RDD[T]]
+            case Some(_) | None =>
+                spark.sparkContext.emptyRDD[T]
         }
     }
 
@@ -163,16 +163,16 @@ trait CIMRDD
      */
     def like (name: String): ((Int, RDD[_])) => Boolean =
     {
-        val target = applyPattern (name)
+        val target = applyPattern(name)
         val pattern = s"$target|"
-        (rdd: (Int, RDD[_])) => (rdd._2.name != null) && ((rdd._2.name == target) || rdd._2.name.startsWith (pattern))
+        (rdd: (Int, RDD[_])) => (rdd._2.name != null) && ((rdd._2.name == target) || rdd._2.name.startsWith(pattern))
     }
 
     def toInt (s: String): Option[Int] =
     {
         try
         {
-            Some (s.toInt)
+            Some(s.toInt)
         }
         catch
         {
@@ -188,15 +188,15 @@ trait CIMRDD
      */
     def biggest (name: String): (Int, (Int, RDD[_])) => Int =
     {
-        val target = applyPattern (name)
+        val target = applyPattern(name)
         val pattern = s"$target|"
         (current: Int, rdd: (Int, RDD[_])) =>
         {
             val rdd_name = rdd._2.name
-            if (rdd_name.startsWith (pattern))
-                toInt (rdd_name.substring (pattern.length)) match
+            if (rdd_name.startsWith(pattern))
+                toInt(rdd_name.substring(pattern.length)) match
                 {
-                    case Some (i) => if (i > current) i else current
+                    case Some(i) => if (i > current) i else current
                     case _ => current
                 }
             else
@@ -228,25 +228,25 @@ trait CIMRDD
      */
     def put[T <: Product : ClassTag : TypeTag] (rdd: RDD[T], name: String, keep: Boolean)(implicit spark: SparkSession, storage: StorageLevel): Unit =
     {
-        val target = applyPattern (name)
-        val matched = spark.sparkContext.getPersistentRDDs.filter (like (name))
-        val next = matched.foldLeft (0)(biggest (name)) + 1
-        matched.foreach (
+        val target = applyPattern(name)
+        val matched = spark.sparkContext.getPersistentRDDs.filter(like(name))
+        val next = matched.foldLeft(0)(biggest(name)) + 1
+        matched.foreach(
             x =>
             {
                 val (_, old) = x
                 if (keep)
-                    old.setName (s"$target|$next")
+                    old.setName(s"$target|$next")
                 else
                 {
-                    old.setName (null)
-                    old.unpersist (true)
+                    old.setName(null)
+                    old.unpersist(true)
                 }
             }
         )
-        val _ = rdd.setName (target).persist (storage)
-        if (spark.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
-        spark.createDataFrame (rdd).createOrReplaceTempView (target)
+        val _ = rdd.setName(target).persist(storage)
+        if (spark.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint()
+        spark.createDataFrame(rdd).createOrReplaceTempView(target)
     }
 
     /**
@@ -257,8 +257,8 @@ trait CIMRDD
      */
     def nameOf[T: ClassTag]: String =
     {
-        val classname = classTag [T].runtimeClass.getName
-        classname.substring (classname.lastIndexOf (".") + 1)
+        val classname = classTag[T].runtimeClass.getName
+        classname.substring(classname.lastIndexOf(".") + 1)
     }
 
     /**
@@ -271,7 +271,7 @@ trait CIMRDD
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return <code>true</code> if the named RDD exists, <code>false</code> otherwise.
      */
-    def test[T: ClassTag] (implicit spark: SparkSession): Boolean = test [T](nameOf [T])
+    def test[T: ClassTag] (implicit spark: SparkSession): Boolean = test[T](nameOf[T])
 
     /**
      * Get the typed RDD.
@@ -284,7 +284,7 @@ trait CIMRDD
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>.
      */
-    def get[T: ClassTag] (implicit spark: SparkSession, log: Logger): RDD[T] = get [T](nameOf [T])
+    def get[T: ClassTag] (implicit spark: SparkSession, log: Logger): RDD[T] = get[T](nameOf[T])
 
     /**
      * Get the typed RDD or an empty RDD if none was registered.
@@ -296,7 +296,7 @@ trait CIMRDD
      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
      * @return The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>, or an empty RDD of the requested type.
      */
-    def getOrElse[T: ClassTag] (implicit spark: SparkSession): RDD[T] = getOrElse (nameOf [T])
+    def getOrElse[T: ClassTag] (implicit spark: SparkSession): RDD[T] = getOrElse(nameOf[T])
 
     /**
      * Persist the typed RDD using the class name, checkpoint it if that is enabled, and create the SQL view for it.
@@ -308,7 +308,7 @@ trait CIMRDD
      * @tparam T The type of RDD.
      */
     def put[T <: Product : ClassTag : TypeTag] (rdd: RDD[T], keep: Boolean = false)(implicit spark: SparkSession, storage: StorageLevel): Unit =
-        put (rdd, nameOf [T], keep)
+        put(rdd, nameOf[T], keep)
 
     /**
      * Get a typed DataSet for the given class.
@@ -320,7 +320,7 @@ trait CIMRDD
     def asDataSet[T <: Product : ClassTag : TypeTag] (implicit spark: SparkSession): Dataset[T] =
     {
         import spark.sqlContext.implicits._
-        val rdd = getOrElse [T]
-        spark.createDataset (rdd)
+        val rdd = getOrElse[T]
+        spark.createDataset(rdd)
     }
 }

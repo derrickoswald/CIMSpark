@@ -13,43 +13,43 @@ class DefaultSource
     extends
         RelationProvider
 {
-    private val log = LoggerFactory.getLogger (getClass)
+    private val log = LoggerFactory.getLogger(getClass)
 
-    def isGlobPath (pattern: Path): Boolean = pattern.toString.exists ("{}[]*?\\".toSet.contains)
+    def isGlobPath (pattern: Path): Boolean = pattern.toString.exists("{}[]*?\\".toSet.contains)
 
-    def globPath (fs: FileSystem, path: Path): Seq[Path] = fs.globStatus (path).map (_.getPath)
+    def globPath (fs: FileSystem, path: Path): Seq[Path] = fs.globStatus(path).map(_.getPath)
 
-    def globPathIfNecessary (fs: FileSystem, pattern: Path): Seq[Path] = if (isGlobPath (pattern)) globPath (fs, pattern) else Seq (pattern)
+    def globPathIfNecessary (fs: FileSystem, pattern: Path): Seq[Path] = if (isGlobPath(pattern)) globPath(fs, pattern) else Seq(pattern)
 
     override def createRelation (
         sqlContext: SQLContext,
         parameters: Map[String, String]): BaseRelation =
     {
         val session = sqlContext.sparkSession
-        val files = parameters.getOrElse ("path", sys.error ("'path' must be specified for CIM data."))
-        log.info (s"createRelation for files $files")
-        val allPaths: Seq[String] = files.split (",")
+        val files = parameters.getOrElse("path", sys.error("'path' must be specified for CIM data."))
+        log.info(s"createRelation for files $files")
+        val allPaths: Seq[String] = files.split(",")
         val globbedPaths = allPaths.flatMap
         {
             path =>
-                val hdfsPath = new Path (path)
-                val configuration = new Configuration (session.sparkContext.hadoopConfiguration)
-                val fs = hdfsPath.getFileSystem (configuration)
-                val qualified = hdfsPath.makeQualified (fs.getUri, fs.getWorkingDirectory)
-                val globPath = globPathIfNecessary (fs, qualified)
+                val hdfsPath = new Path(path)
+                val configuration = new Configuration(session.sparkContext.hadoopConfiguration)
+                val fs = hdfsPath.getFileSystem(configuration)
+                val qualified = hdfsPath.makeQualified(fs.getUri, fs.getWorkingDirectory)
+                val globPath = globPathIfNecessary(fs, qualified)
                 if (globPath.isEmpty)
-                    throw new java.io.FileNotFoundException (s"Path does not exist: $qualified")
-                globPath.foreach (
+                    throw new java.io.FileNotFoundException(s"Path does not exist: $qualified")
+                globPath.foreach(
                     p =>
                     {
-                        if (!fs.exists (p))
-                            throw new java.io.FileNotFoundException (s"Path does not exist: $p")
+                        if (!fs.exists(p))
+                            throw new java.io.FileNotFoundException(s"Path does not exist: $p")
                     }
                 )
                 globPath
         }
-        val fileCatalog = new InMemoryFileIndex (session, globbedPaths, parameters, None)
-        new CIMRelation (fileCatalog, parameters)(session)
+        val fileCatalog = new InMemoryFileIndex(session, globbedPaths, parameters, None)
+        new CIMRelation(fileCatalog, parameters)(session)
     }
 }
 

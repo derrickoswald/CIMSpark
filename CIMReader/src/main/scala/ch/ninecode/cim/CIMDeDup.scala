@@ -39,7 +39,7 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
 {
     implicit val session: SparkSession = spark
     implicit val storage_level: StorageLevel = storage // for put()
-    implicit val log: Logger = LoggerFactory.getLogger (getClass)
+    implicit val log: Logger = LoggerFactory.getLogger(getClass)
 
     /**
      * Compare elements for equality.
@@ -58,8 +58,8 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
         {
             case e :: t =>
                 if (element != e)
-                    log.warn (s"element ${element.id} has a non-identical duplicate")
-                check (element, t)
+                    log.warn(s"element ${element.id} has a non-identical duplicate")
+                check(element, t)
             case Nil =>
         }
     }
@@ -78,9 +78,9 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
                 head
             case head :: tail =>
                 // check for equality
-                check (head, tail)
+                check(head, tail)
                 head
-            case _ => BasicElement ()
+            case _ => BasicElement()
         }
     }
 
@@ -97,16 +97,16 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
      */
     def do_deduplicate (): RDD[Element] =
     {
-        log.info ("eliminating duplicates")
+        log.info("eliminating duplicates")
 
         // get the elements RDD
-        val elements = getOrElse [Element]
+        val elements = getOrElse[Element]
 
         // deduplicate
-        val new_elements = elements.keyBy (_.id).groupByKey ().values.map (deduplicate)
+        val new_elements = elements.keyBy(_.id).groupByKey().values.map(deduplicate)
 
         // swap the old Elements RDD for the new one
-        put (new_elements, false)
+        put(new_elements, false)
 
         new_elements
     }

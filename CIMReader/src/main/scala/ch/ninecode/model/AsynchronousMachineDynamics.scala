@@ -21,16 +21,16 @@ import ch.ninecode.cim.CIMSerializer
  * However, some references use the symbol <i>L</i> instead of <i>X</i>.</li>
  * </ol>
  *
- * @param RotatingMachineDynamics [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
- * @param AsynchronousMachine [[ch.ninecode.model.AsynchronousMachine AsynchronousMachine]] Asynchronous machine to which this asynchronous machine dynamics model applies.
- * @param MechanicalLoadDynamics [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Mechanical load model associated with this asynchronous machine model.
- * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor model associated with this asynchronous machine model.
+ * @param RotatingMachineDynamics     [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
+ * @param AsynchronousMachine         [[ch.ninecode.model.AsynchronousMachine AsynchronousMachine]] Asynchronous machine to which this asynchronous machine dynamics model applies.
+ * @param MechanicalLoadDynamics      [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Mechanical load model associated with this asynchronous machine model.
+ * @param TurbineGovernorDynamics     [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor model associated with this asynchronous machine model.
  * @param WindTurbineType1or2Dynamics [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Wind generator type 1 or type 2 model associated with this asynchronous machine model.
  * @group AsynchronousMachineDynamics
  * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
  * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g. a squirrel-cage induction machine. 
-The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
-The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
+ *            The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
+ *            The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 final case class AsynchronousMachineDynamics
 (
@@ -40,8 +40,8 @@ final case class AsynchronousMachineDynamics
     TurbineGovernorDynamics: String = null,
     WindTurbineType1or2Dynamics: String = null
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -67,56 +67,62 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone().asInstanceOf[Row]
+    }
 
     override def export_fields: String =
     {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val s: StringBuilder = new StringBuilder(sup.export_fields)
         implicit val clz: String = AsynchronousMachineDynamics.cls
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AsynchronousMachineDynamics.fields (position), value)
-        emitattr (0, AsynchronousMachine)
-        emitattr (1, MechanicalLoadDynamics)
-        emitattr (2, TurbineGovernorDynamics)
-        emitattr (3, WindTurbineType1or2Dynamics)
+
+        def emitattr (position: Int, value: Any): Unit = if (mask(position)) emit_attribute(AsynchronousMachineDynamics.fields(position), value)
+
+        emitattr(0, AsynchronousMachine)
+        emitattr(1, MechanicalLoadDynamics)
+        emitattr(2, TurbineGovernorDynamics)
+        emitattr(3, WindTurbineType1or2Dynamics)
         s.toString
     }
+
     override def export: String =
     {
-        "\t<cim:AsynchronousMachineDynamics rdf:%s=\"%s\">\n%s\t</cim:AsynchronousMachineDynamics>".format (if (about) "about" else "ID", id, export_fields)
+        "\t<cim:AsynchronousMachineDynamics rdf:%s=\"%s\">\n%s\t</cim:AsynchronousMachineDynamics>".format(if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object AsynchronousMachineDynamics
-extends
-    CIMParseable[AsynchronousMachineDynamics]
+    extends
+        CIMParseable[AsynchronousMachineDynamics]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String](
         "AsynchronousMachine",
         "MechanicalLoadDynamics",
         "TurbineGovernorDynamics",
         "WindTurbineType1or2Dynamics"
     )
-    override val relations: List[CIMRelationship] = List (
-        CIMRelationship ("AsynchronousMachine", "AsynchronousMachine", "1", "0..1"),
-        CIMRelationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"),
-        CIMRelationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..1", "0..1"),
-        CIMRelationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "1")
+    override val relations: List[CIMRelationship] = List(
+        CIMRelationship("AsynchronousMachine", "AsynchronousMachine", "1", "0..1"),
+        CIMRelationship("MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"),
+        CIMRelationship("TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..1", "0..1"),
+        CIMRelationship("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "1")
     )
-    val AsynchronousMachine: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val MechanicalLoadDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val TurbineGovernorDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val WindTurbineType1or2Dynamics: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val AsynchronousMachine: Fielder = parse_attribute(attribute(cls, fields(0)))
+    val MechanicalLoadDynamics: Fielder = parse_attribute(attribute(cls, fields(1)))
+    val TurbineGovernorDynamics: Fielder = parse_attribute(attribute(cls, fields(2)))
+    val WindTurbineType1or2Dynamics: Fielder = parse_attribute(attribute(cls, fields(3)))
 
     def parse (context: CIMContext): AsynchronousMachineDynamics =
     {
         implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
-        val ret = AsynchronousMachineDynamics (
-            RotatingMachineDynamics.parse (context),
-            mask (AsynchronousMachine (), 0),
-            mask (MechanicalLoadDynamics (), 1),
-            mask (TurbineGovernorDynamics (), 2),
-            mask (WindTurbineType1or2Dynamics (), 3)
+        val ret = AsynchronousMachineDynamics(
+            RotatingMachineDynamics.parse(context),
+            mask(AsynchronousMachine(), 0),
+            mask(MechanicalLoadDynamics(), 1),
+            mask(TurbineGovernorDynamics(), 2),
+            mask(WindTurbineType1or2Dynamics(), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -129,28 +135,28 @@ object AsynchronousMachineDynamicsSerializer extends CIMSerializer[AsynchronousM
 {
     def write (kryo: Kryo, output: Output, obj: AsynchronousMachineDynamics): Unit =
     {
-        val toSerialize: Array[() => Unit] = Array (
-            () => output.writeString (obj.AsynchronousMachine),
-            () => output.writeString (obj.MechanicalLoadDynamics),
-            () => output.writeString (obj.TurbineGovernorDynamics),
-            () => output.writeString (obj.WindTurbineType1or2Dynamics)
+        val toSerialize: Array[() => Unit] = Array(
+            () => output.writeString(obj.AsynchronousMachine),
+            () => output.writeString(obj.MechanicalLoadDynamics),
+            () => output.writeString(obj.TurbineGovernorDynamics),
+            () => output.writeString(obj.WindTurbineType1or2Dynamics)
         )
-        RotatingMachineDynamicsSerializer.write (kryo, output, obj.sup)
+        RotatingMachineDynamicsSerializer.write(kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
-        writeBitfields (output)
-        writeFields (toSerialize)
+        writeBitfields(output)
+        writeFields(toSerialize)
     }
 
     def read (kryo: Kryo, input: Input, cls: Class[AsynchronousMachineDynamics]): AsynchronousMachineDynamics =
     {
-        val parent = RotatingMachineDynamicsSerializer.read (kryo, input, classOf[RotatingMachineDynamics])
-        implicit val bitfields: Array[Int] = readBitfields (input)
-        val obj = AsynchronousMachineDynamics (
+        val parent = RotatingMachineDynamicsSerializer.read(kryo, input, classOf[RotatingMachineDynamics])
+        implicit val bitfields: Array[Int] = readBitfields(input)
+        val obj = AsynchronousMachineDynamics(
             parent,
-            if (isSet (0)) input.readString else null,
-            if (isSet (1)) input.readString else null,
-            if (isSet (2)) input.readString else null,
-            if (isSet (3)) input.readString else null
+            if (isSet(0)) input.readString else null,
+            if (isSet(1)) input.readString else null,
+            if (isSet(2)) input.readString else null,
+            if (isSet(3)) input.readString else null
         )
         obj.bitfields = bitfields
         obj
@@ -174,16 +180,16 @@ object AsynchronousMachineDynamicsSerializer extends CIMSerializer[AsynchronousM
  * tppo = (xm x xlr1 + xm x xlr2 + xlr1 x xlr2) / (2 x pi x nominal frequency x rr2 x (xm + xlr1).
  *
  * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
- * @param rr1 Damper 1 winding resistance.
- * @param rr2 Damper 2 winding resistance.
- * @param xlr1 Damper 1 winding leakage reactance.
- * @param xlr2 Damper 2 winding leakage reactance.
- * @param xm Magnetizing reactance.
+ * @param rr1                         Damper 1 winding resistance.
+ * @param rr2                         Damper 2 winding resistance.
+ * @param xlr1                        Damper 1 winding leakage reactance.
+ * @param xlr2                        Damper 2 winding leakage reactance.
+ * @param xm                          Magnetizing reactance.
  * @group AsynchronousMachineDynamics
  * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
  * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g. a squirrel-cage induction machine. 
-The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
-The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
+ *            The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
+ *            The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 final case class AsynchronousMachineEquivalentCircuit
 (
@@ -194,8 +200,8 @@ final case class AsynchronousMachineEquivalentCircuit
     xlr2: Double = 0.0,
     xm: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -221,54 +227,60 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone().asInstanceOf[Row]
+    }
 
     override def export_fields: String =
     {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val s: StringBuilder = new StringBuilder(sup.export_fields)
         implicit val clz: String = AsynchronousMachineEquivalentCircuit.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AsynchronousMachineEquivalentCircuit.fields (position), value)
-        emitelem (0, rr1)
-        emitelem (1, rr2)
-        emitelem (2, xlr1)
-        emitelem (3, xlr2)
-        emitelem (4, xm)
+
+        def emitelem (position: Int, value: Any): Unit = if (mask(position)) emit_element(AsynchronousMachineEquivalentCircuit.fields(position), value)
+
+        emitelem(0, rr1)
+        emitelem(1, rr2)
+        emitelem(2, xlr1)
+        emitelem(3, xlr2)
+        emitelem(4, xm)
         s.toString
     }
+
     override def export: String =
     {
-        "\t<cim:AsynchronousMachineEquivalentCircuit rdf:%s=\"%s\">\n%s\t</cim:AsynchronousMachineEquivalentCircuit>".format (if (about) "about" else "ID", id, export_fields)
+        "\t<cim:AsynchronousMachineEquivalentCircuit rdf:%s=\"%s\">\n%s\t</cim:AsynchronousMachineEquivalentCircuit>".format(if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object AsynchronousMachineEquivalentCircuit
-extends
-    CIMParseable[AsynchronousMachineEquivalentCircuit]
+    extends
+        CIMParseable[AsynchronousMachineEquivalentCircuit]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String](
         "rr1",
         "rr2",
         "xlr1",
         "xlr2",
         "xm"
     )
-    val rr1: Fielder = parse_element (element (cls, fields(0)))
-    val rr2: Fielder = parse_element (element (cls, fields(1)))
-    val xlr1: Fielder = parse_element (element (cls, fields(2)))
-    val xlr2: Fielder = parse_element (element (cls, fields(3)))
-    val xm: Fielder = parse_element (element (cls, fields(4)))
+    val rr1: Fielder = parse_element(element(cls, fields(0)))
+    val rr2: Fielder = parse_element(element(cls, fields(1)))
+    val xlr1: Fielder = parse_element(element(cls, fields(2)))
+    val xlr2: Fielder = parse_element(element(cls, fields(3)))
+    val xm: Fielder = parse_element(element(cls, fields(4)))
 
     def parse (context: CIMContext): AsynchronousMachineEquivalentCircuit =
     {
         implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
-        val ret = AsynchronousMachineEquivalentCircuit (
-            AsynchronousMachineDynamics.parse (context),
-            toDouble (mask (rr1 (), 0)),
-            toDouble (mask (rr2 (), 1)),
-            toDouble (mask (xlr1 (), 2)),
-            toDouble (mask (xlr2 (), 3)),
-            toDouble (mask (xm (), 4))
+        val ret = AsynchronousMachineEquivalentCircuit(
+            AsynchronousMachineDynamics.parse(context),
+            toDouble(mask(rr1(), 0)),
+            toDouble(mask(rr2(), 1)),
+            toDouble(mask(xlr1(), 2)),
+            toDouble(mask(xlr2(), 3)),
+            toDouble(mask(xm(), 4))
         )
         ret.bitfields = bitfields
         ret
@@ -281,30 +293,30 @@ object AsynchronousMachineEquivalentCircuitSerializer extends CIMSerializer[Asyn
 {
     def write (kryo: Kryo, output: Output, obj: AsynchronousMachineEquivalentCircuit): Unit =
     {
-        val toSerialize: Array[() => Unit] = Array (
-            () => output.writeDouble (obj.rr1),
-            () => output.writeDouble (obj.rr2),
-            () => output.writeDouble (obj.xlr1),
-            () => output.writeDouble (obj.xlr2),
-            () => output.writeDouble (obj.xm)
+        val toSerialize: Array[() => Unit] = Array(
+            () => output.writeDouble(obj.rr1),
+            () => output.writeDouble(obj.rr2),
+            () => output.writeDouble(obj.xlr1),
+            () => output.writeDouble(obj.xlr2),
+            () => output.writeDouble(obj.xm)
         )
-        AsynchronousMachineDynamicsSerializer.write (kryo, output, obj.sup)
+        AsynchronousMachineDynamicsSerializer.write(kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
-        writeBitfields (output)
-        writeFields (toSerialize)
+        writeBitfields(output)
+        writeFields(toSerialize)
     }
 
     def read (kryo: Kryo, input: Input, cls: Class[AsynchronousMachineEquivalentCircuit]): AsynchronousMachineEquivalentCircuit =
     {
-        val parent = AsynchronousMachineDynamicsSerializer.read (kryo, input, classOf[AsynchronousMachineDynamics])
-        implicit val bitfields: Array[Int] = readBitfields (input)
-        val obj = AsynchronousMachineEquivalentCircuit (
+        val parent = AsynchronousMachineDynamicsSerializer.read(kryo, input, classOf[AsynchronousMachineDynamics])
+        implicit val bitfields: Array[Int] = readBitfields(input)
+        val obj = AsynchronousMachineEquivalentCircuit(
             parent,
-            if (isSet (0)) input.readDouble else 0.0,
-            if (isSet (1)) input.readDouble else 0.0,
-            if (isSet (2)) input.readDouble else 0.0,
-            if (isSet (3)) input.readDouble else 0.0,
-            if (isSet (4)) input.readDouble else 0.0
+            if (isSet(0)) input.readDouble else 0.0,
+            if (isSet(1)) input.readDouble else 0.0,
+            if (isSet(2)) input.readDouble else 0.0,
+            if (isSet(3)) input.readDouble else 0.0,
+            if (isSet(4)) input.readDouble else 0.0
         )
         obj.bitfields = bitfields
         obj
@@ -332,22 +344,23 @@ object AsynchronousMachineEquivalentCircuitSerializer extends CIMSerializer[Asyn
  *
  * - .tppo (<i>T''o</i>).
  *
+ *
  * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
- * @param tpo Transient rotor time constant (<i>T'o</i>) (&gt; AsynchronousMachineTimeConstantReactance.tppo).
- *        Typical value = 5.
- * @param tppo Subtransient rotor time constant (<i>T''o</i>) (&gt; 0).
- *        Typical value = 0,03.
- * @param xp Transient reactance (unsaturated) (<i>X'</i>) (&gt;= AsynchronousMachineTimeConstantReactance.xpp).
- *        Typical value = 0,5.
- * @param xpp Subtransient reactance (unsaturated) (<i>X''</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).
- *        Typical value = 0,2.
- * @param xs Synchronous reactance (<i>Xs</i>) (&gt;= AsynchronousMachineTimeConstantReactance.xp).
- *        Typical value = 1,8.
+ * @param tpo                         Transient rotor time constant (<i>T'o</i>) (&gt; AsynchronousMachineTimeConstantReactance.tppo).
+ *                                    Typical value = 5.
+ * @param tppo                        Subtransient rotor time constant (<i>T''o</i>) (&gt; 0).
+ *                                    Typical value = 0,03.
+ * @param xp                          Transient reactance (unsaturated) (<i>X'</i>) (&gt;= AsynchronousMachineTimeConstantReactance.xpp).
+ *                                    Typical value = 0,5.
+ * @param xpp                         Subtransient reactance (unsaturated) (<i>X''</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).
+ *                                    Typical value = 0,2.
+ * @param xs                          Synchronous reactance (<i>Xs</i>) (&gt;= AsynchronousMachineTimeConstantReactance.xp).
+ *                                    Typical value = 1,8.
  * @group AsynchronousMachineDynamics
  * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
  * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g. a squirrel-cage induction machine. 
-The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
-The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
+ *            The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
+ *            The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 final case class AsynchronousMachineTimeConstantReactance
 (
@@ -358,8 +371,8 @@ final case class AsynchronousMachineTimeConstantReactance
     xpp: Double = 0.0,
     xs: Double = 0.0
 )
-extends
-    Element
+    extends
+        Element
 {
     /**
      * Return the superclass object.
@@ -385,54 +398,60 @@ extends
      * @groupname Row SQL Row Implementation
      * @groupdesc Row Members related to implementing the SQL Row interface
      */
-    override def copy (): Row = { clone ().asInstanceOf[Row] }
+    override def copy (): Row =
+    {
+        clone().asInstanceOf[Row]
+    }
 
     override def export_fields: String =
     {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val s: StringBuilder = new StringBuilder(sup.export_fields)
         implicit val clz: String = AsynchronousMachineTimeConstantReactance.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AsynchronousMachineTimeConstantReactance.fields (position), value)
-        emitelem (0, tpo)
-        emitelem (1, tppo)
-        emitelem (2, xp)
-        emitelem (3, xpp)
-        emitelem (4, xs)
+
+        def emitelem (position: Int, value: Any): Unit = if (mask(position)) emit_element(AsynchronousMachineTimeConstantReactance.fields(position), value)
+
+        emitelem(0, tpo)
+        emitelem(1, tppo)
+        emitelem(2, xp)
+        emitelem(3, xpp)
+        emitelem(4, xs)
         s.toString
     }
+
     override def export: String =
     {
-        "\t<cim:AsynchronousMachineTimeConstantReactance rdf:%s=\"%s\">\n%s\t</cim:AsynchronousMachineTimeConstantReactance>".format (if (about) "about" else "ID", id, export_fields)
+        "\t<cim:AsynchronousMachineTimeConstantReactance rdf:%s=\"%s\">\n%s\t</cim:AsynchronousMachineTimeConstantReactance>".format(if (about) "about" else "ID", id, export_fields)
     }
 }
 
 object AsynchronousMachineTimeConstantReactance
-extends
-    CIMParseable[AsynchronousMachineTimeConstantReactance]
+    extends
+        CIMParseable[AsynchronousMachineTimeConstantReactance]
 {
-    override val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String](
         "tpo",
         "tppo",
         "xp",
         "xpp",
         "xs"
     )
-    val tpo: Fielder = parse_element (element (cls, fields(0)))
-    val tppo: Fielder = parse_element (element (cls, fields(1)))
-    val xp: Fielder = parse_element (element (cls, fields(2)))
-    val xpp: Fielder = parse_element (element (cls, fields(3)))
-    val xs: Fielder = parse_element (element (cls, fields(4)))
+    val tpo: Fielder = parse_element(element(cls, fields(0)))
+    val tppo: Fielder = parse_element(element(cls, fields(1)))
+    val xp: Fielder = parse_element(element(cls, fields(2)))
+    val xpp: Fielder = parse_element(element(cls, fields(3)))
+    val xs: Fielder = parse_element(element(cls, fields(4)))
 
     def parse (context: CIMContext): AsynchronousMachineTimeConstantReactance =
     {
         implicit val ctx: CIMContext = context
         implicit val bitfields: Array[Int] = Array(0)
-        val ret = AsynchronousMachineTimeConstantReactance (
-            AsynchronousMachineDynamics.parse (context),
-            toDouble (mask (tpo (), 0)),
-            toDouble (mask (tppo (), 1)),
-            toDouble (mask (xp (), 2)),
-            toDouble (mask (xpp (), 3)),
-            toDouble (mask (xs (), 4))
+        val ret = AsynchronousMachineTimeConstantReactance(
+            AsynchronousMachineDynamics.parse(context),
+            toDouble(mask(tpo(), 0)),
+            toDouble(mask(tppo(), 1)),
+            toDouble(mask(xp(), 2)),
+            toDouble(mask(xpp(), 3)),
+            toDouble(mask(xs(), 4))
         )
         ret.bitfields = bitfields
         ret
@@ -445,30 +464,30 @@ object AsynchronousMachineTimeConstantReactanceSerializer extends CIMSerializer[
 {
     def write (kryo: Kryo, output: Output, obj: AsynchronousMachineTimeConstantReactance): Unit =
     {
-        val toSerialize: Array[() => Unit] = Array (
-            () => output.writeDouble (obj.tpo),
-            () => output.writeDouble (obj.tppo),
-            () => output.writeDouble (obj.xp),
-            () => output.writeDouble (obj.xpp),
-            () => output.writeDouble (obj.xs)
+        val toSerialize: Array[() => Unit] = Array(
+            () => output.writeDouble(obj.tpo),
+            () => output.writeDouble(obj.tppo),
+            () => output.writeDouble(obj.xp),
+            () => output.writeDouble(obj.xpp),
+            () => output.writeDouble(obj.xs)
         )
-        AsynchronousMachineDynamicsSerializer.write (kryo, output, obj.sup)
+        AsynchronousMachineDynamicsSerializer.write(kryo, output, obj.sup)
         implicit val bitfields: Array[Int] = obj.bitfields
-        writeBitfields (output)
-        writeFields (toSerialize)
+        writeBitfields(output)
+        writeFields(toSerialize)
     }
 
     def read (kryo: Kryo, input: Input, cls: Class[AsynchronousMachineTimeConstantReactance]): AsynchronousMachineTimeConstantReactance =
     {
-        val parent = AsynchronousMachineDynamicsSerializer.read (kryo, input, classOf[AsynchronousMachineDynamics])
-        implicit val bitfields: Array[Int] = readBitfields (input)
-        val obj = AsynchronousMachineTimeConstantReactance (
+        val parent = AsynchronousMachineDynamicsSerializer.read(kryo, input, classOf[AsynchronousMachineDynamics])
+        implicit val bitfields: Array[Int] = readBitfields(input)
+        val obj = AsynchronousMachineTimeConstantReactance(
             parent,
-            if (isSet (0)) input.readDouble else 0.0,
-            if (isSet (1)) input.readDouble else 0.0,
-            if (isSet (2)) input.readDouble else 0.0,
-            if (isSet (3)) input.readDouble else 0.0,
-            if (isSet (4)) input.readDouble else 0.0
+            if (isSet(0)) input.readDouble else 0.0,
+            if (isSet(1)) input.readDouble else 0.0,
+            if (isSet(2)) input.readDouble else 0.0,
+            if (isSet(3)) input.readDouble else 0.0,
+            if (isSet(4)) input.readDouble else 0.0
         )
         obj.bitfields = bitfields
         obj
@@ -479,7 +498,7 @@ private[ninecode] object _AsynchronousMachineDynamics
 {
     def register: List[CIMClassInfo] =
     {
-        List (
+        List(
             AsynchronousMachineDynamics.register,
             AsynchronousMachineEquivalentCircuit.register,
             AsynchronousMachineTimeConstantReactance.register

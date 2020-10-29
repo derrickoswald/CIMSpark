@@ -28,7 +28,7 @@ class SparkSuite extends FixtureAnyFunSuite with Unzip
     {
         if (path.isDirectory)
             for (subpath <- path.list)
-                deleteRecursive (new File (path, subpath))
+                deleteRecursive(new File(path, subpath))
         val _ = path.delete
     }
 
@@ -36,29 +36,29 @@ class SparkSuite extends FixtureAnyFunSuite with Unzip
     {
         // create the configuration
 
-        val configuration = new SparkConf (false)
-            .setAppName ("CIMSparkSuite")
-            .setMaster ("local[2]")
-            .set ("spark.driver.memory", "1g")
-            .set ("spark.executor.memory", "1g")
-            .set ("spark.ui.port", "4041")
-            .set ("spark.ui.showConsoleProgress", "false")
-            .registerKryoClasses (CIMClasses.list)
-            .set ("spark.kryo.registrator", "ch.ninecode.cim.CIMRegistrator")
+        val configuration = new SparkConf(false)
+            .setAppName("CIMSparkSuite")
+            .setMaster("local[2]")
+            .set("spark.driver.memory", "1g")
+            .set("spark.executor.memory", "1g")
+            .set("spark.ui.port", "4041")
+            .set("spark.ui.showConsoleProgress", "false")
+            .registerKryoClasses(CIMClasses.list)
+            .set("spark.kryo.registrator", "ch.ninecode.cim.CIMRegistrator")
         // can't turn on "required" because many Spark internal classes are not registered:
         // IllegalArgumentException: Class is not registered: org.apache.spark.sql.Row
         // .set ("spark.kryo.registrationRequired", "true")
 
-        val session = SparkSession.builder ().config (configuration).getOrCreate () // create the fixture
-        session.sparkContext.setLogLevel ("ERROR") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
+        val session = SparkSession.builder().config(configuration).getOrCreate() // create the fixture
+        session.sparkContext.setLogLevel("ERROR") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
         try
-        withFixture (test.toNoArgTest (session)) // "loan" the fixture to the test
-        finally session.stop () // clean up the fixture
+        withFixture(test.toNoArgTest(session)) // "loan" the fixture to the test
+        finally session.stop() // clean up the fixture
     }
 
-    def readFile (filename: String, options: Map[String, String] = Map [String, String]())(implicit spark: SparkSession): DataFrame =
+    def readFile (filename: String, options: Map[String, String] = Map[String, String]())(implicit spark: SparkSession): DataFrame =
     {
-        spark.read.format ("ch.ninecode.cim").options (options).load (filename) // ToDo: why doesn't this work? load (filename.split (","):_*)
+        spark.read.format("ch.ninecode.cim").options(options).load(filename) // ToDo: why doesn't this work? load (filename.split (","):_*)
     }
 
     /**
@@ -78,11 +78,11 @@ class SparkSuite extends FixtureAnyFunSuite with Unzip
     {
 
         val rdd: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs
-        rdd.find (_._2.name == name) match
+        rdd.find(_._2.name == name) match
         {
-            case Some ((_, rdd: RDD[_])) =>
-                rdd.asInstanceOf [RDD[T]]
-            case Some (_) =>
+            case Some((_, rdd: RDD[_])) =>
+                rdd.asInstanceOf[RDD[T]]
+            case Some(_) =>
                 null
             case None =>
                 null
@@ -102,20 +102,20 @@ class SparkSuite extends FixtureAnyFunSuite with Unzip
      */
     def get[T: ClassTag] (implicit spark: SparkSession): RDD[T] =
     {
-        val classname = classTag [T].runtimeClass.getName
-        val name = classname.substring (classname.lastIndexOf (".") + 1)
-        get (name)
+        val classname = classTag[T].runtimeClass.getName
+        val name = classname.substring(classname.lastIndexOf(".") + 1)
+        get(name)
     }
 
     def using[T <: AutoCloseable, R] (resource: T)(block: T => R): R =
     {
         try
         {
-            block (resource)
+            block(resource)
         }
         finally
         {
-            resource.close ()
+            resource.close()
         }
     }
 }

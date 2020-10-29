@@ -36,8 +36,8 @@ trait CIMParser
 
     type FielderMultiple = FielderFunctionMultiple
 
-    val fields: Array[String] = Array ()
-    val relations: List[CIMRelationship] = List ()
+    val fields: Array[String] = Array()
+    val relations: List[CIMRelationship] = List()
 
     def serializer: Serializer[_ <: Product]
 
@@ -50,16 +50,16 @@ trait CIMParser
     def fieldsToBitfields (strings: String*): Array[Int] =
     {
         val bits = new Array[Int]((fields.length + 31) / 32)
-        strings.foreach (
+        strings.foreach(
             fieldname =>
             {
-                val index = fields.indexOf (fieldname)
+                val index = fields.indexOf(fieldname)
                 if (-1 != index)
-                    bits (index / 32) |= (1 << (index % 32))
+                    bits(index / 32) |= (1 << (index % 32))
                 else
                 {
                     // ToDo: better error handling
-                    println (s"""field "$fieldname not fould in fields array of ${getClass.getName}""")
+                    println(s"""field "$fieldname not fould in fields array of ${getClass.getName}""")
                 }
             }
         )
@@ -77,7 +77,7 @@ trait CIMParser
     def element (cls: String, name: String): Expression =
     {
         val trigger = s"$namespace:$cls.$name"
-        (Pattern.compile ("""<""" + trigger + """>([\s\S]*?)<\/""" + trigger + """>|<""" + trigger + """\/>"""), 1)
+        (Pattern.compile("""<""" + trigger + """>([\s\S]*?)<\/""" + trigger + """>|<""" + trigger + """\/>"""), 1)
     }
 
     /**
@@ -91,7 +91,7 @@ trait CIMParser
     def attribute (cls: String, name: String): Expression =
     {
         val trigger = s"$namespace:$cls.$name"
-        (Pattern.compile ("""<""" + trigger + """\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>"""), 2)
+        (Pattern.compile("""<""" + trigger + """\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>"""), 2)
     }
 
     /**
@@ -138,13 +138,13 @@ trait CIMParser
         {
             def apply ()(implicit context: CIMContext): Field =
             {
-                val matcher = pattern._1.matcher (context.subxml)
-                if (matcher.find ())
+                val matcher = pattern._1.matcher(context.subxml)
+                if (matcher.find())
                 {
-                    val string = matcher.group (pattern._2)
+                    val string = matcher.group(pattern._2)
                     if (CIMContext.DEBUG)
-                        context.coverage.append ((matcher.start, matcher.end))
-                    Some (if (null == string) "" else string)
+                        context.coverage.append((matcher.start, matcher.end))
+                    Some(if (null == string) "" else string)
                 }
                 else
                     None
@@ -168,21 +168,21 @@ trait CIMParser
         {
             def apply ()(implicit context: CIMContext): Fields =
             {
-                val matcher = pattern._1.matcher (context.subxml)
+                val matcher = pattern._1.matcher(context.subxml)
                 val enumerator = new Iterator[String]()
                 {
-                    def hasNext: Boolean = matcher.find ()
+                    def hasNext: Boolean = matcher.find()
 
                     def next (): String =
                     {
                         if (CIMContext.DEBUG)
-                            context.coverage.append ((matcher.start, matcher.end))
-                        matcher.group (pattern._2)
+                            context.coverage.append((matcher.start, matcher.end))
+                        matcher.group(pattern._2)
                     }
                 }
                 val iterator = for (string <- enumerator)
                     yield string
-                if (iterator.isEmpty) None else Some (iterator.toList)
+                if (iterator.isEmpty) None else Some(iterator.toList)
             }
         }
     }
@@ -203,18 +203,18 @@ trait CIMParser
         {
             def apply ()(implicit context: CIMContext): Field =
             {
-                val matcher = pattern._1.matcher (context.subxml)
-                if (matcher.find ())
+                val matcher = pattern._1.matcher(context.subxml)
+                if (matcher.find())
                 {
-                    val start = matcher.start (pattern._2)
-                    val end = matcher.end (pattern._2)
+                    val start = matcher.start(pattern._2)
+                    val end = matcher.end(pattern._2)
                     if ((-1 != start) && (-1 != end))
                     {
-                        val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
-                        val string = context.subxml.subSequence (begin, end).toString
+                        val begin = if ('#' == context.subxml.charAt(start)) start + 1 else start // remove '#'
+                        val string = context.subxml.subSequence(begin, end).toString
                         if (CIMContext.DEBUG)
-                            context.coverage.append ((matcher.start, matcher.end))
-                        Option (string)
+                            context.coverage.append((matcher.start, matcher.end))
+                        Option(string)
                     }
                     else
                         None
@@ -241,22 +241,22 @@ trait CIMParser
         {
             def apply ()(implicit context: CIMContext): Fields =
             {
-                val matcher = pattern._1.matcher (context.subxml)
+                val matcher = pattern._1.matcher(context.subxml)
                 val enumerator = new Iterator[Option[String]]()
                 {
-                    def hasNext: Boolean = matcher.find ()
+                    def hasNext: Boolean = matcher.find()
 
                     def next (): Option[String] =
                     {
-                        val start = matcher.start (pattern._2)
-                        val end = matcher.end (pattern._2)
+                        val start = matcher.start(pattern._2)
+                        val end = matcher.end(pattern._2)
                         if ((-1 != start) && (-1 != end))
                         {
-                            val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
-                            val string = context.subxml.subSequence (begin, end).toString
+                            val begin = if ('#' == context.subxml.charAt(start)) start + 1 else start // remove '#'
+                            val string = context.subxml.subSequence(begin, end).toString
                             if (CIMContext.DEBUG)
-                                context.coverage.append ((matcher.start, matcher.end))
-                            Some (string)
+                                context.coverage.append((matcher.start, matcher.end))
+                            Some(string)
                         }
                         else
                             None
@@ -265,7 +265,7 @@ trait CIMParser
                 val iterator = for (string <- enumerator)
                     yield string
                 val l = iterator.flatten
-                if (l.isEmpty) None else Some (l.toList)
+                if (l.isEmpty) None else Some(l.toList)
             }
         }
     }
@@ -286,7 +286,7 @@ trait CIMParser
             ret = string.toBoolean
             catch
             {
-                case _: Throwable => throw new Exception (s"unparsable boolean ($string) found while parsing at line ${context.line_number ()}")
+                case _: Throwable => throw new Exception(s"unparsable boolean ($string) found while parsing at line ${context.line_number()}")
             }
 
         ret
@@ -308,7 +308,7 @@ trait CIMParser
             ret = string.trim.toInt
             catch
             {
-                case _: Throwable => throw new Exception (s"unparsable integer ($string) found while parsing at line ${context.line_number ()}")
+                case _: Throwable => throw new Exception(s"unparsable integer ($string) found while parsing at line ${context.line_number()}")
             }
 
         ret
@@ -330,7 +330,7 @@ trait CIMParser
             ret = string.trim.toDouble
             catch
             {
-                case _: Throwable => throw new Exception (s"unparsable double ($string) found while parsing at line ${context.line_number ()}")
+                case _: Throwable => throw new Exception(s"unparsable double ($string) found while parsing at line ${context.line_number()}")
             }
 
         ret
@@ -353,5 +353,5 @@ object CIMParser
     /**
      * The regular expression for parsing top level elements.
      */
-    val rddex: Pattern = Pattern.compile ("""\s*<(""" + namespace + """:[^>\.\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
+    val rddex: Pattern = Pattern.compile("""\s*<(""" + namespace + """:[^>\.\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
 }
