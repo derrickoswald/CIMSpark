@@ -31,7 +31,7 @@ import ch.ninecode.model._
  * @example Export entire deduplicated CIM file with it's topology
  * {{{
  * // enter Spark shell environment
- * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-<cim_reader_version>.jar
+ * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --jars /opt/code/CIMExport-<cim_export_version>.jar
  *
  * // read the large CIM file
  * import scala.collection.mutable.HashMap
@@ -41,7 +41,7 @@ import ch.ninecode.model._
  * val opts = new HashMap[String,String] ()
  * opts.put("StorageLevel", "MEMORY_AND_DISK_SER")
  * opts.put("ch.ninecode.cim.do_deduplication", "true")
- * val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe1.rdf,hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe2.rdf, etc.")
+ * val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/cim_export_equipmentsstripe1.rdf,hdfs://sandbox:8020/cim_export_equipmentsstripe2.rdf, etc.")
  * element.count
  *
  * // process topology (your choice of with or without islands)
@@ -51,12 +51,12 @@ import ch.ninecode.model._
  *
  * // export the complete CIM file
  * val export = new CIMExport (spark)
- * export.exportAll ("bkw_cim_export_equipment.rdf")
+ * export.exportAll ("cim_export_equipment.rdf")
  * }}}
  * @example Export one transformer area (trafokreis)
  * {{{
  * // enter Spark shell environment
- * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-<cim_reader_version>.jar
+ * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --jars /opt/code/CIMExport-<cim_export_version>.jar
  *
  * // read the large CIM file
  * import scala.collection.mutable.HashMap
@@ -65,7 +65,7 @@ import ch.ninecode.model._
  * import ch.ninecode.model._
  * val opts = new HashMap[String,String] ()
  * opts.put("StorageLevel", "MEMORY_AND_DISK_SER")
- * val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe2.rdf")
+ * val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/cim_export_equipmentsstripe2.rdf")
  * element.count
  *
  * // process topology with islands

@@ -323,6 +323,8 @@ case class CIMChange (spark: SparkSession, storage: StorageLevel = StorageLevel.
             val modspluskeyed = modsplus.map (x => (x._1.ChangeSetMember.TargetObject, ("forward", x._1.id, x._2)))
             val deltas = modspluskeyed.union (revspluskeyed).groupByKey.flatMap (lambda)
             elements = elements.keyBy (_.id).leftOuterJoin (deltas).values.flatMap (update)
+            // swap the old Elements RDD for the new one
+            put (elements, false)
         }
 
         elements
