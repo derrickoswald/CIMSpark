@@ -122,6 +122,7 @@
         <version.dependency.maven-surefire-plugin>2.22.2</version.dependency.maven-surefire-plugin>
         <version.dependency.build-helper-maven-plugin>3.1.0</version.dependency.build-helper-maven-plugin>
         <version.dependency.maven-gpg-plugin>1.6</version.dependency.maven-gpg-plugin>
+        <version.dependency.maven-jar-plugin>3.2.0</version.dependency.maven-jar-plugin>
         <version.dependency.maven-assembly-plugin>3.3.0</version.dependency.maven-assembly-plugin>
         <version.dependency.maven-source-plugin>3.2.1</version.dependency.maven-source-plugin>
         <version.dependency.maven-site-plugin>3.9.0</version.dependency.maven-site-plugin>

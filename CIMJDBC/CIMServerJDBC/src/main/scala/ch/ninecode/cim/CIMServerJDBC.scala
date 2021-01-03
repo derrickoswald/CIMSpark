@@ -62,7 +62,7 @@ object CIMServerJDBC
 {
     val properties: Properties =
     {
-        val in = this.getClass.getResourceAsStream("/app.properties")
+        val in = this.getClass.getResourceAsStream("/application.properties")
         val p = new Properties()
         p.load(in)
         in.close()

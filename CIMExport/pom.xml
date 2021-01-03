@@ -227,6 +227,9 @@
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
+                        <configuration>
+                            <classesDirectory>${project.build.directory}/${project.build.finalName}-jar-with-dependencies.jar</classesDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -326,6 +329,22 @@ enable_scripted_user_defined_functions: true
                     <doUpdate>false</doUpdate>
                 </configuration>
             </plugin>
+            <!-- do not include application.properties in jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${version.dependency.maven-jar-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <configuration>
+                            <excludes>
+                                <exclude>application.properties</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- assembly for stand-alone program -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -340,9 +359,9 @@ enable_scripted_user_defined_functions: true
                         </goals>
                         <configuration>
                             <finalName>CIMExport-${project.version}</finalName>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
+                            <descriptors>
+                                <descriptor>src/assembly/assembly.xml</descriptor>
+                            </descriptors>
                             <archive>
                                 <manifest>
                                     <mainClass>ch.ninecode.cim.CIMExportMain</mainClass>

@@ -166,6 +166,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- do not include application.properties in jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${version.dependency.maven-jar-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <configuration>
+                            <excludes>
+                                <exclude>application.properties</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- source jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
