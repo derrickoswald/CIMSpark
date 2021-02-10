@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'cimspark'
+        label 'cimapp'
     }
     tools {
         maven 'maven'
