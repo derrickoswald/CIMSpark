@@ -51,7 +51,7 @@ pipeline {
                 stage("Test CIMExport") {
                     when {
                         expression {
-                            return params.Ingest
+                            return params.CIMExport
                         }
                     }
                     steps {
