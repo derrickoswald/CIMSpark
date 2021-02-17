@@ -1,0 +1,71 @@
+pipeline {
+    agent {
+        label 'cimapp'
+    }
+    tools {
+        maven 'maven'
+    }
+    parameters {
+        booleanParam defaultValue: true, description: 'Build', name: 'BUILD'
+        booleanParam defaultValue: true, description: 'CIMReader', name: 'CIMReader'
+        booleanParam defaultValue: true, description: 'CIMExport', name: 'CIMExport'
+    }
+    stages {
+        stage ('Build') {
+            when {
+                expression {
+                    return params.BUILD
+                }
+            }
+            steps {
+                withMaven(maven: 'maven', mavenLocalRepo: '../../maven_repos/'+BRANCH_NAME) {
+                    sh 'mvn -B -DskipTests -Dgpg.skip -DskipITs -Dscaladoc.skip=true clean install'
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'CIMReader/target/*.jar', fingerprint: true
+                }
+            }
+        }
+
+        stage('Test') {
+            parallel{
+                stage("Test CIMReader") {
+                    when {
+                        expression {
+                            return params.CIMReader
+                        }
+                    }
+                    steps {
+                        withMaven(maven: 'maven', mavenLocalRepo: '../../maven_repos/'+BRANCH_NAME) {
+                            sh 'mvn test -pl CIMReader'
+                        }
+                    }
+                    post {
+                        always {
+                            junit 'CIMReader/target/surefire-reports/*.xml'
+                        }
+                    }
+                }
+                stage("Test CIMExport") {
+                    when {
+                        expression {
+                            return params.CIMExport
+                        }
+                    }
+                    steps {
+                        withMaven(maven: 'maven', mavenLocalRepo: '../../maven_repos/'+BRANCH_NAME) {
+                            sh 'mvn test -pl CIMExport'
+                        }
+                    }
+                    post {
+                        always {
+                            junit 'CIMExport/target/surefire-reports/*.xml'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
