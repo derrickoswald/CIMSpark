@@ -39,7 +39,7 @@ pipeline {
                     }
                     steps {
                         withMaven(maven: 'maven', mavenLocalRepo: '../../maven_repos/'+BRANCH_NAME) {
-                            sh 'mvn test -pl CIMReader'
+                            sh 'mvn verify -pl CIMReader'
                         }
                     }
                     post {
@@ -56,7 +56,7 @@ pipeline {
                     }
                     steps {
                         withMaven(maven: 'maven', mavenLocalRepo: '../../maven_repos/'+BRANCH_NAME) {
-                            sh 'mvn test -pl CIMExport'
+                            sh 'mvn verify -pl CIMExport'
                         }
                     }
                     post {
