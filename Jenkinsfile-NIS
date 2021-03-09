@@ -5,6 +5,9 @@ pipeline {
     tools {
         maven 'maven'
     }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr:'5'))
+    }
     parameters {
         booleanParam defaultValue: true, description: 'Build', name: 'BUILD'
         booleanParam defaultValue: true, description: 'CIMReader', name: 'CIMReader'
@@ -18,7 +21,15 @@ pipeline {
                 }
             }
             steps {
-                withMaven(maven: 'maven', mavenLocalRepo: '../../maven_repos/'+BRANCH_NAME) {
+                withMaven(
+                    maven: 'maven',
+                    mavenLocalRepo: '../../maven_repos/'+BRANCH_NAME,
+                    options: [
+                        junitPublisher(disabled: true),
+                        artifactsPublisher(disabled: true),
+                        spotbugsPublisher(healthy: '10', unHealthy: '100')
+                    ]
+                ) {
                     sh 'mvn -B -DskipTests -Dgpg.skip -DskipITs -Dscaladoc.skip=true clean install'
                 }
             }
@@ -38,7 +49,14 @@ pipeline {
                         }
                     }
                     steps {
-                        withMaven(maven: 'maven', mavenLocalRepo: '../../maven_repos/'+BRANCH_NAME) {
+                        withMaven(
+                            maven: 'maven',
+                            mavenLocalRepo: '../../maven_repos/'+BRANCH_NAME,
+                            options: [
+                                junitPublisher(disabled: true),
+                                artifactsPublisher(disabled: true)
+                            ]
+                        ) {
                             sh 'mvn verify -pl CIMReader -Dgpg.skip'
                         }
                     }
@@ -55,7 +73,14 @@ pipeline {
                         }
                     }
                     steps {
-                        withMaven(maven: 'maven', mavenLocalRepo: '../../maven_repos/'+BRANCH_NAME) {
+                        withMaven(
+                            maven: 'maven',
+                            mavenLocalRepo: '../../maven_repos/'+BRANCH_NAME,
+                            options: [
+                                junitPublisher(disabled: true),
+                                artifactsPublisher(disabled: true)
+                            ]
+                        ) {
                             sh 'mvn verify -pl CIMExport -Dgpg.skip'
                         }
                     }
