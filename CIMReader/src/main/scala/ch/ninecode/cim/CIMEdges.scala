@@ -217,10 +217,10 @@ class CIMEdges (spark: SparkSession, storage: StorageLevel)
                         do_equipment(o.asInstanceOf[ProtectionEquipment].Equipment)
                     case Some(o) if o.getClass == classOf[CurrentRelay] =>
                         do_equipment(o.asInstanceOf[CurrentRelay].ProtectionEquipment.Equipment)
-                    case Some(o) if o.getClass == classOf[SolarGeneratingUnit] =>
-                        val sgu = o.asInstanceOf[SolarGeneratingUnit]
-                        bucket.power = sgu.GeneratingUnit.ratedNetMaxP
-                        do_equipment(sgu.GeneratingUnit.Equipment)
+                    case Some(o) if o.getClass == classOf[PhotoVoltaicUnit] =>
+                        val pvu = o.asInstanceOf[PhotoVoltaicUnit]
+                        bucket.power = pvu.PowerElectronicsUnit.maxP
+                        do_equipment(pvu.PowerElectronicsUnit.Equipment)
                     case Some(o) if o.getClass == classOf[UsagePoint] =>
                         val up = o.asInstanceOf[UsagePoint]
                         bucket.voltage = up.nominalServiceVoltage.toString
@@ -430,14 +430,14 @@ class CIMEdges (spark: SparkSession, storage: StorageLevel)
             val topologicals = getOrElse[TopologicalNode].keyBy(_.id)
             val topo1 = asseted_edges.keyBy(_._1.cn_1).leftOuterJoin(topologicals).values.map(x => (x._1._1, x._1._2, x._1._3, x._2))
             val topo2 = topo1.keyBy(_._1.cn_2).leftOuterJoin(topologicals).values.map(x => (x._1._1, x._1._2, x._1._3, x._1._4, x._2))
-            val edges = topo2.map(topo_edge_op)
+            val edges: RDD[TopoEdge] = topo2.map(topo_edge_op)
 
             // persist and expose it
             put(edges, "Edges", true)
         }
         else
         {
-            val edges = asseted_edges.map(edge_op)
+            val edges: RDD[PostEdge] = asseted_edges.map(edge_op)
 
             // persist and expose it
             put(edges, "Edges", true)
