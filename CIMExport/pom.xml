@@ -276,7 +276,7 @@ enable_scripted_user_defined_functions: true
                     <dependency>
                         <groupId>org.apache.cassandra</groupId>
                         <artifactId>cassandra-all</artifactId>
-                        <version>3.11.4</version>
+                        <version>3.11.8</version>
                     </dependency>
                     <dependency>
                         <groupId>org.apache.logging.log4j</groupId>
