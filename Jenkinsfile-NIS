@@ -30,7 +30,7 @@ pipeline {
                         spotbugsPublisher(healthy: '10', unHealthy: '100')
                     ]
                 ) {
-                    sh 'mvn -B -DskipTests -Dgpg.skip -DskipITs -Dscaladoc.skip=true clean install'
+                    sh 'mvn -B -U -DskipTests -Dgpg.skip -DskipITs -Dscaladoc.skip=true clean install'
                 }
             }
             post {
