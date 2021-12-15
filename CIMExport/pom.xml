@@ -66,7 +66,7 @@
         <version.dependency.cassandra_driver>4.7.2</version.dependency.cassandra_driver>
         <version.dependency.joda-time>2.10.6</version.dependency.joda-time>
         <version.dependency.cassandra_maven>3.6</version.dependency.cassandra_maven>
-        <version.dependency.log4j>2.15.0</version.dependency.log4j>
+        <version.dependency.log4j>2.16.0</version.dependency.log4j>
         <version.dependency.netty-all>4.1.41.Final</version.dependency.netty-all>
     </properties>
 
